@@ -25,6 +25,34 @@ function pointer(id=11,extra={}){return {pointerId:id,pointerType:'touch',client
 function touch(id=1,extra={}){return {identifier:id,clientX:500,clientY:250,...extra};}
 function start(p,t,stamp=1000,all=[t]){p.touchStart({changedTouches:[t],touches:all,timeStamp:stamp,cancelable:true,preventDefault(){}});}
 
+test('Apple native authority ignores shifted PointerEvent echoes for ten rapid real blue heads',()=>{
+  const {probe:p,setNow}=playable(Array.from({length:10},(_,i)=>({type:1,time:40+i*.05})));
+  p.nativeTouchAuthoritative=true;
+  for(let i=0;i<10;i++){
+    const at=1000+i*50,id=i%2;
+    setNow(at);p.time=40+i*.05;start(p,touch(id),at);
+    // Old dual-source matching misses this echo (20ms / 10px > its limits),
+    // consuming the next head as an extra physical press.
+    setNow(at+20);p.time+=.02;
+    p.pointerDown(pointer(20+id,{timeStamp:at+20,clientX:510}));
+    p.pointerMove(pointer(20+id,{timeStamp:at+21,clientX:512}));
+    p.pointerUp(pointer(20+id,{timeStamp:at+22}));
+    p.touchEnd({changedTouches:[touch(id)],touches:[],timeStamp:at+24});
+  }
+  assert.equal(p.inputStats.edges,10);assert.equal(p.commits.length,10);
+  assert.equal(p.pointer.size,0);assert.equal(p.nativePointerLinks.size,0);
+  assert(p.commits.every(c=>c.j<=1));
+});
+
+test('an actual native start cannot repeat an edge already recovered from another finger snapshot',()=>{
+  const {probe:p,setNow}=playable([{type:1,time:40},{type:1,time:40.025},{type:1,time:40.05}]);
+  p.nativeTouchAuthoritative=true;
+  const a=touch(1),b=touch(2);
+  start(p,a,1000,[a,b]);
+  setNow(1016);p.time=40.016;start(p,b,1016,[a,b]);
+  assert.equal(p.inputStats.edges,2);assert.equal(p.commits.length,2);assert.equal(p.pointer.size,2);
+});
+
 test('an on-time Tap is not swallowed by a preceding unjudged Drag or Flick',()=>{
   for(const type of [2,4])for(const offset of [-.12,0,.12]){
     const {probe:p}=playable([{type,time:39.9},{type:1,time:40}]);

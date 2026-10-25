@@ -3,6 +3,17 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs'),vm=require('node:vm');
 const source=fs.readFileSync('js/app.js','utf8');
 const entry={id:'song',name:'Song',parser:'pgr',files:[{name:'chart.json',asset:'chart'},{name:'music.ogg',asset:'music'},{name:'cover.png',asset:'art'}],meta:{chart:'chart.json',music:'music.ogg',illustration:'cover.png'}};
+test('hosted music enters Web Audio only after its complete local Blob is ready',async()=>{
+  const {fixture}=require('./helpers/engine.cjs');
+  const ready=deferred(),blob=new Blob(['whole song']);let decodes=0;
+  const {probe:p}=fixture({audioBufferFromBlob:async(input,timeout)=>{
+    decodes++;assert.equal(input,blob);assert.equal(timeout,0);return {duration:160};
+  }});
+  p.record={builtin:true,streamAudioURL:'./music.m4a',_streamReady:ready.promise};
+  p.streamSession={blob:null};
+  const pending=p.prepareMusicBuffer();await Promise.resolve();assert.equal(decodes,0);
+  p.streamSession.blob=blob;ready.resolve();assert.equal((await pending).duration,160);assert.equal(decodes,1);
+});
 function deferred(){let resolve;const promise=new Promise(r=>resolve=r);return {promise,resolve};}
 test('a playable record never waits for its optional cover download',async()=>{
   let artworkCalls=0;

@@ -1,4 +1,4 @@
-/* Same-origin progressive media. Full originals remain the source for exports. */
+/* Same-origin complete music preparation. Full originals remain the export source. */
 (() => {
   'use strict';
   const manifest = globalThis.PhiHostedManifest;
@@ -19,51 +19,41 @@
       promise.then(resolve,reject).finally(()=>signal.removeEventListener('abort',abort));
     });
   }
-  async function bytes(path, { onProgress, priority = 'auto', signal } = {}) {
+  let transferReady;
+  function ensureTransfer(){
+    if(globalThis.PhiTransfer)return Promise.resolve();
+    // A previously cached entry may not include the new dependency yet.
+    return transferReady||=(new Promise(resolve=>{
+      const load=()=>{
+        const script=document.createElement('script');script.src=url('./js/resource-transfer.js?v=4.0.1.2-input-9');
+        script.onload=resolve;script.onerror=()=>{script.remove();setTimeout(load,1500);};document.head.appendChild(script);
+      };load();
+    }));
+  }
+  async function bytes(path, { onProgress, priority = 'auto', signal, expectedSize = 0 } = {}) {
     if(signal?.aborted)throw new DOMException('资源读取已取消','AbortError');
-    const href = url(path);
-    if (downloads.has(href)) return abortable(downloads.get(href).promise,signal);
-    const item = { size: 0, promise: null };
-    item.promise = (async () => {
-      const controller = new AbortController();
-      const abort=()=>controller.abort();
-      signal?.addEventListener('abort',abort,{once:true});
-      let timeout;
-      const renew = () => { clearTimeout(timeout); timeout = setTimeout(() => controller.abort(), 45000); };
-      renew();
-      try {
-        const response = await fetch(href, { credentials: 'same-origin', signal: controller.signal, priority });
-        if (!response.ok) throw Error(`资源加载失败（${response.status}）：${path}`);
-        const total = Number(response.headers.get('content-length')) || 0;
-        let result;
-        if (response.body?.getReader) {
-          const reader = response.body.getReader(), chunks = [];
-          let received = 0;
-          while (true) {
-            const part = await reader.read();
-            if (part.done) break;
-            chunks.push(part.value); received += part.value.byteLength; renew();
-            onProgress?.(received, total);
-          }
-          result = new Uint8Array(received);
-          let offset = 0;
-          for (const chunk of chunks) { result.set(chunk, offset); offset += chunk.byteLength; }
-        } else result = new Uint8Array(await response.arrayBuffer());
-        item.size = result.byteLength; cachedBytes += item.size;
-        for (const [key, old] of downloads) {
-          if (cachedBytes <= MAX_CACHE) break;
-          if (old !== item && old.size) { cachedBytes -= old.size; downloads.delete(key); }
-        }
+    const href=url(path);
+    let item=downloads.get(href);
+    if(item?.controller.signal.aborted){downloads.delete(href);item=null;}
+    if(!item){
+      item={size:0,consumers:0,listeners:new Set(),controller:new AbortController(),promise:null};
+      const current=item;
+      item.promise=ensureTransfer().then(()=>PhiTransfer.download(href,{priority,expectedSize,signal:item.controller.signal,
+        onProgress:(done,total)=>{for(const listener of current.listeners)listener(done,total);}
+      })).then(result=>{
+        current.size=result.byteLength;cachedBytes+=current.size;
+        for(const [key,old] of downloads){if(cachedBytes<=MAX_CACHE)break;
+          if(old!==current&&old.size&&!old.consumers){cachedBytes-=old.size;downloads.delete(key);}}
         return result;
-      } catch (error) {
-        downloads.delete(href);
-        if(signal?.aborted)throw new DOMException('资源读取已取消','AbortError');
-        if (controller.signal.aborted) throw Error('网络暂时没有响应，请返回选歌后重试');
-        throw error;
-      } finally { clearTimeout(timeout);signal?.removeEventListener('abort',abort); }
-    })();
-    downloads.set(href, item);
-    return abortable(item.promise,signal);
+      },error=>{if(downloads.get(href)===current)downloads.delete(href);throw error;});
+      downloads.set(href,item);
+    }
+    item.consumers++;if(onProgress)item.listeners.add(onProgress);
+    try{return await abortable(item.promise,signal);}
+    finally{
+      if(onProgress)item.listeners.delete(onProgress);
+      if(--item.consumers===0&&!item.size)item.controller.abort();
+    }
   }
   async function artwork(asset, { onStage, active = () => true, maxStage = 2, fromStage = 0, signal } = {}) {
     const spec = manifest.artwork[asset];
@@ -95,20 +85,19 @@
   }
   function chartTask(data,transfer=[],{onProgress,signal}={}){
     return new Promise((resolve,reject)=>{
-      let worker,timer,settled=false;
-      const finish=(error,bytes)=>{if(settled)return;settled=true;clearTimeout(timer);signal?.removeEventListener('abort',abort);worker?.terminate();error?reject(error):resolve(bytes);};
+      let worker,settled=false;
+      const finish=(error,bytes)=>{if(settled)return;settled=true;signal?.removeEventListener('abort',abort);worker?.terminate();error?reject(error):resolve(bytes);};
       const abort=()=>finish(new DOMException('谱面加载已取消','AbortError'));
-      const renew=ms=>{clearTimeout(timer);timer=setTimeout(()=>finish(Error('谱面下载或后台解码超时')),ms);};
       if(signal?.aborted)return abort();
       try{
-        worker=new Worker(url('./js/chart-decode-worker.js?v=4.0.1.2-input-8'));
+        worker=new Worker(url('./js/chart-decode-worker.js?v=4.0.1.2-input-9'));
         worker.onmessage=({data})=>{
           if(settled)return;
-          if(data.type==='progress'){renew(data.stage==='decode'?30000:45000);onProgress?.(data.received,data.total,data.stage);return;}
+          if(data.type==='progress'){onProgress?.(data.received,data.total,data.stage);return;}
           finish(data.ok?null:Error(data.error),data.bytes);
         };
         worker.onerror=()=>finish(Object.assign(Error('谱面后台线程不可用'),{name:'WorkerUnavailableError'}));
-        signal?.addEventListener('abort',abort,{once:true});renew(data.url?45000:30000);
+        signal?.addEventListener('abort',abort,{once:true});
         worker.postMessage(data,transfer);
       }catch(error){finish(Object.assign(Error(error?.message||'谱面后台线程不可用'),{name:'WorkerUnavailableError'}));}
     });
@@ -131,7 +120,15 @@
       this.lastBufferEnd=0;this.downloadRate=0;this.initialReady=false;
       audio.pause(); audio.loop = false; audio.muted = false; audio.preload = 'auto';
       audio.setAttribute('playsinline', '');
-      audio.src = url(spec.url); audio.load();
+      this.blob=null;this.blobURL='';this.loadedBytes=0;
+      this.downloadReady=bytes(spec.url,{signal:this.controller.signal,priority:'high',expectedSize:spec.bytes,
+        onProgress:(done,total)=>{this.loadedBytes=done;this.onProgress?.({...this.snapshot(),downloaded:done,total,downloading:true});}
+      }).then(data=>{
+        if(this.controller.signal.aborted)throw new DOMException('已返回选歌','AbortError');
+        this.blob=new Blob([data],{type:'audio/mp4'});this.blobURL=URL.createObjectURL(this.blob);
+        audio.src=this.blobURL;audio.load();return audio;
+      });
+      this.downloadReady.catch(()=>{});
     }
     snapshot(minimum = 6) {
       const at = Number(this.audio.currentTime) || 0;
@@ -144,13 +141,14 @@
       const remaining = Math.max(0, duration - at);
       const target = this.initialReady?Math.min(remaining,minimum):bufferTarget(remaining, rate, elapsed, minimum);
       return { ahead, target, duration, rate, complete: ahead >= remaining - .1,
-        ready: this.audio.readyState >= 3 && (ahead >= target || ahead >= remaining - .1) };
+        ready: !!this.blob && this.audio.readyState >= 3 };
     }
     wait(minimum = 6, {signal: externalSignal} = {}) {
       const audio = this.audio, signal = this.controller.signal;
       return new Promise((resolve, reject) => {
-        let timer, lastAhead = -1, lastProgress = performance.now();
+        let timer,settled=false;
         const finish = error => {
+          if(settled)return;settled=true;
           clearInterval(timer);
           for (const event of ['progress', 'loadedmetadata', 'canplay', 'error']) audio.removeEventListener(event, check);
           signal.removeEventListener('abort', abort);
@@ -160,21 +158,20 @@
         const abort = () => finish(new DOMException('已返回选歌', 'AbortError'));
         const check = () => {
           if (signal.aborted||externalSignal?.aborted) return abort();
-          if (audio.error) return finish(Error('音乐加载失败，请返回选歌重试'));
+          if (!this.blob) return;
+          if (audio.error) return finish(Error('音乐文件无法解码'));
           const state = this.snapshot(minimum);
-          if (state.ahead > lastAhead + .1) { lastProgress = performance.now(); lastAhead = state.ahead; }
-          this.onProgress?.(state);
-          const preloadPlateau=audio.readyState>=3&&!audio.seeking&&state.ahead>=6&&performance.now()-lastProgress>2000;
-          if (state.ready||preloadPlateau) {this.initialReady=true;return finish();}
-          if (performance.now() - lastProgress > 45000) finish(Error('网络暂时没有响应，请返回选歌重试'));
+          this.onProgress?.({...state,downloaded:this.loadedBytes,total:this.spec.bytes,downloading:false});
+          if (state.ready) {this.initialReady=true;return finish();}
         };
         for (const event of ['progress', 'loadedmetadata', 'canplay', 'error']) audio.addEventListener(event, check);
         signal.addEventListener('abort', abort, { once: true });
         externalSignal?.addEventListener('abort',abort,{once:true});
-        timer = setInterval(check, 120); check();
+        timer = setInterval(check, 120);
+        this.downloadReady.then(check,finish);check();
       });
     }
-    destroy() { this.controller.abort(); }
+    destroy() { this.controller.abort();if(this.blobURL)URL.revokeObjectURL(this.blobURL);this.blobURL='';this.blob=null; }
   }
   globalThis.PhiHostedMedia = Object.freeze({ manifest, url, bytes, artwork, bufferedAhead, bufferTarget, decodeChart, loadChart, Stream });
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {

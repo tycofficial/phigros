@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-input-8';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-input-9';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,10 +26,10 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-input-8",
+    runtime: "4.0.1.2-input-9",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
-    buildTimestamp: "2026-10-24T04:14:45Z",
+    buildTimestamp: "2026-10-25T10:00:00Z",
     coreSha256: "dcae237af6ee34b393b4ceea31605c87aaf0d0b737c95da89cc12e9cd5dbe677",
   });
   const PHI_SECURITY_LIMITS = Object.freeze({
@@ -5626,10 +5626,10 @@ function withTimeout(promise, ms, message = "操作超时") {
         if (error) rej(error);
         else res(im);
       };
-      const timer = setTimeout(
+      const timer = timeoutMs > 0 ? setTimeout(
         () => finish(new Error("图片解码超时，已跳过该素材")),
         Math.max(1000, Number(timeoutMs) || 12000),
-      );
+      ) : 0;
       im.decoding = "async";
       im.onload = () => finish();
       im.onerror = () => finish(new Error("图片解码失败"));
@@ -5835,18 +5835,12 @@ function withTimeout(promise, ms, message = "操作超时") {
       return null;
     }
   }
-  async function audioBufferFromBlob(blob) {
-    const ac = Engine.sharedAudioContext(),
-      data = await withTimeout(
-        blob.arrayBuffer(),
-        12000,
-        "音频数据读取超时",
-      );
-    return withTimeout(
-      ac.decodeAudioData(data),
-      12000,
-      "音频解码超时",
-    );
+  async function audioBufferFromBlob(blob, timeoutMs = 12000) {
+    const ac=Engine.sharedAudioContext();
+    const reading=blob.arrayBuffer();
+    const data=await (timeoutMs>0?withTimeout(reading,timeoutMs,"音频数据读取超时"):reading);
+    const decoding=ac.decodeAudioData(data);
+    return timeoutMs>0?withTimeout(decoding,timeoutMs,"音频解码超时"):decoding;
   }
   async function loadResourcePack(pack) {
     if (!pack) return null;
@@ -5903,7 +5897,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       const f = byName(files, n);
       if (f)
         try {
-          const im = await imageFromBlob(f.blob),
+          const im = await imageFromBlob(f.blob,pack.builtin?0:12000),
             m = i.preserveTextureRect ? null : imageAlphaMetrics(im);
           r.images[k] = im;
           if(k==='pause'||k==='progress')r[k==='pause'?'pauseIconURL':'progressIconURL']=await new Promise((resolve,reject)=>{
@@ -5937,7 +5931,7 @@ function withTimeout(promise, ms, message = "操作超时") {
           const f = files.find((x) =>
             new RegExp(`(^|/)${k}\.(ogg|wav|mp3)$`, "i").test(x.name),
           );
-          if (f) r.sounds[k] = await audioBufferFromBlob(f.blob);
+          if (f) r.sounds[k] = await audioBufferFromBlob(f.blob,pack.builtin?0:12000);
         }),
       );
     } else {
@@ -6210,7 +6204,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         const specs = Object.entries(PhiHostedMedia.manifest.skin);
         files = new Array(specs.length);
         await mapLimit(specs, 3, async ([name, spec],index) => {files[index]={name,
-          blob:new Blob([await PhiHostedMedia.bytes(spec.url,{priority:'low'})], {type:name.endsWith('.png')?'image/webp':mimeForEmbeddedName(name)})};});
+          blob:new Blob([await PhiHostedMedia.bytes(spec.url,{priority:'high',expectedSize:spec.bytes})], {type:name.endsWith('.png')?'image/webp':mimeForEmbeddedName(name)})};});
       } else {
         const blob = new Blob([await phiHostedBytes("./assets/packs/original-skin.zip")], { type: "application/zip" });
         if (Number(BUILTIN_RESOURCE_PACK.byteSize) > 0 && blob.size !== Number(BUILTIN_RESOURCE_PACK.byteSize))
@@ -6220,6 +6214,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       }
       const record = await buildResourcePack(files, sourceName);
       record.name = String(BUILTIN_RESOURCE_PACK.name || record.name || "官方皮肤");
+      record.builtin=true;
       const loaded = await loadResourcePack(record),
         missingCore = ["tap", "hold", "flick", "drag"].filter((key) => !loaded?.images?.[key]);
       if (missingCore.length)
@@ -6244,7 +6239,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     for (let attempt = 0; attempt < 2 && !activePack; attempt++) {
       try {
         const pending = bootResourcePackPromise || loadBuiltinResourcePack();
-        const loaded = await withTimeout(pending, 20000, "内嵌材质加载超时");
+        const loaded = await pending;
         if (loaded) activePack = loaded;
         else bootResourcePackPromise = null;
       } catch (e) {
@@ -6327,7 +6322,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       const audioFile=entry.files?.find(file=>file.name===entry.meta?.music),spec=globalThis.PhiHostedMedia?.manifest.audio[audioFile?.asset];
       if(spec&&!playOptions?.offlineExport){
         const audio=Engine._primedMusicElement||new Audio();Engine._primedMusicElement=null;
-        stream=new PhiHostedMedia.Stream(audio,spec,state=>setLoadingStatus(`音乐已缓冲 ${state.ahead.toFixed(1)} 秒 · 目标 ${Math.ceil(state.target)} 秒`));
+        stream=new PhiHostedMedia.Stream(audio,spec,state=>setLoadingStatus(state.downloading?`音乐下载 ${state.total?Math.min(100,Math.round(state.downloaded/state.total*100))+'%':Math.ceil(state.downloaded/1024)+' KB'}`:'音乐已就绪，正在准备谱面…'));
         songLoadStream=stream;
         streamReady=stream.wait();streamReady.catch(()=>{});
       }
@@ -8409,9 +8404,9 @@ function withTimeout(promise, ms, message = "操作超时") {
         engine?.chart?.kind === "pjsk"
           ? `点按接收 ${engine?.inputStats?.edges || 0} | PJSK 判定见游戏分数`
           : `点按接收 ${engine?.inputStats?.edges || 0} | 蓝键/长条 ${engine?.inputStats?.accepted || 0} | 无候选 ${engine?.inputStats?.noCandidate || 0} | 噪域 ${engine?.inputStats?.blocked || 0} | 早 Bad 保护 ${engine?.inputStats?.earlyGuard || 0}`,
-        `输入接管 ${engine?.inputStats?.bridges || 0} | 补收 ${engine?.inputStats?.recovered || 0} | 最大派发延迟 ${Number(engine?.inputStats?.maxDispatchMs || 0).toFixed(1)} ms`,
+        `输入源 ${engine?.nativeTouchAuthoritative?'原生多点触摸':'兼容输入'} | 接管 ${engine?.inputStats?.bridges || 0} | 补收 ${engine?.inputStats?.recovered || 0} | 最大派发延迟 ${Number(engine?.inputStats?.maxDispatchMs || 0).toFixed(1)} ms`,
         `原始按下 Pointer ${engine?.inputStats?.pointerDown || 0} / Touch ${engine?.inputStats?.touchStart || 0} | 缓冲中按下 ${engine?.inputStats?.buffered || 0}`,
-        engine?.streamSession ? `音乐/谱面时钟差 ${((Number(engine.clockValue||0)-Number(engine.audio?.currentTime||0))*1000).toFixed(1)} ms | 音乐缓冲 ${PhiHostedMedia.bufferedAhead(engine.audio).toFixed(1)} 秒` : `音频后端 ${engine?.musicUsingWebAudio?'Web Audio':'媒体元素'}`,
+        engine?.musicUsingWebAudio ? '音频后端 Web Audio · 完整本地音轨' : engine?.streamSession ? `音乐/谱面时钟差 ${((Number(engine.clockValue||0)-Number(engine.audio?.currentTime||0))*1000).toFixed(1)} ms | 音乐缓冲 ${PhiHostedMedia.bufferedAhead(engine.audio).toFixed(1)} 秒` : `音频后端 ${engine?.musicUsingWebAudio?'Web Audio':'媒体元素'}`,
         `判定候选 ${engine?.metricsCandidates || 0} | 空间候选 ${engine?.metricsIndexedCandidates || 0} / ${engine?.noteItems?.length || 0} | 实绘 ${engine?.metricsDrawnNotes || 0}`,
         `粒子 ${engine?.effects?.length || 0} | DPR ${Number(engine?.baseDpr || 1).toFixed(2)} × ${Number(engine?.renderQuality || 1).toFixed(2)} | backing ${engine?.canvas?.dataset?.backingSize || "--"}`,
         `抖动帧 ${engine?.jankFrames || 0} | 判定邻近抖动 ${engine?.hitJankFrames || 0} | Audio ${Engine._hitMixer ? "Worklet Mixer" : "BufferSource fallback"}`,
@@ -8821,6 +8816,10 @@ function withTimeout(promise, ms, message = "操作超时") {
         typeof TouchEvent !== "undefined" &&
         "ontouchstart" in window &&
         (Number(navigator.maxTouchPoints) || 0) > 0;
+      // WebKit delivers both APIs with independent timestamps. Touch.identifier
+      // is the authoritative contact on Apple; a PointerEvent echo must not
+      // consume the next note when it lands outside a deduplication heuristic.
+      this.nativeTouchAuthoritative=this.isAppleTouch&&this.useNativeTouchInput;
       const preparedStream=record._preparedStream&&!record._preparedStream.controller.signal.aborted?record._preparedStream:null;
       this.audio = preparedStream?.audio || Engine._primedMusicElement || new Audio();
       Engine._primedMusicElement=null;
@@ -9348,6 +9347,14 @@ function withTimeout(promise, ms, message = "操作超时") {
         }});
       }finally{clearTimeout(timer);controller.abort();}
     }
+    async prepareMusicBuffer() {
+      if(this.record.streamAudioURL&&!this._offlineExport){
+        this.streamSession ||= new PhiHostedMedia.Stream(this.audio,this.record.streamSpec);
+        await (this.record._streamReady || this.streamSession.wait());
+        this.record.audioBlob=this.streamSession.blob;
+      }
+      return audioBufferFromBlob(this.record.audioBlob,this.record.builtin?0:12000);
+    }
     musicDuration() {
       return this.musicUsingWebAudio
         ? this.musicBuffer?.duration || this.record.duration || 1
@@ -9827,8 +9834,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         if (!this.musicUsingWebAudio) this.finish();
       });
       try {
-        if(this.record.streamAudioURL&&!this._offlineExport)throw new Error('使用边下边播音轨');
-        this.musicBuffer = await audioBufferFromBlob(this.record.audioBlob);
+        this.musicBuffer = await this.prepareMusicBuffer();
         this.musicUsingWebAudio = !!this.musicBuffer;
       } catch {
         this.musicUsingWebAudio = false;
@@ -11770,7 +11776,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         if (stale) {
           if(receipt&&stale.downReceipt===receipt){stale.downT=receipt.at;stale.nativeDownT=this.eventPerformanceTime(e);accepted=true;continue;}
           // The same edge can first appear in another finger's live snapshot.
-          if (stale.active !== false && Math.abs(this.eventPerformanceTime(e)-stale.nativeDownT) <= 1) {
+          if (stale.active !== false && (stale.downReceipt?.recovered || Math.abs(this.eventPerformanceTime(e)-stale.nativeDownT) <= 1)) {
             accepted = true;
             continue;
           }
@@ -11959,6 +11965,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       });
     }
     pointerDown(e) {
+      if(this.nativeTouchAuthoritative&&e.pointerType==='touch')return;
       if (
         !this.running ||
         this.paused ||
@@ -12001,6 +12008,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.judgeContactDown(p,eventAudioTime);
     }
     pointerMove(e) {
+      if(this.nativeTouchAuthoritative&&e.pointerType==='touch')return;
       // Once the native contact takes over, only TouchEvent drives its motion.
       // Until then a real pointerdown remains a complete independent fallback.
       if (this.useNativeTouchInput && e.pointerType === "touch" && !this.pointer.has(e.pointerId)) return;
@@ -12102,6 +12110,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       }
     }
     pointerUp(e) {
+      if(this.nativeTouchAuthoritative&&e.pointerType==='touch')return;
       if (this.useNativeTouchInput && e.pointerType === "touch") {
         const pid = this.nativePointerLinks?.get(e.pointerId);
         if (pid != null) {
@@ -12129,6 +12138,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       } catch (error) { Diagnostics.warn("Runtime.recoverable", error?.message || String(error)); }
     }
     pointerCancel(e) {
+      if(this.nativeTouchAuthoritative&&e.pointerType==='touch')return;
       if (this.useNativeTouchInput && e.pointerType === "touch" && !this.pointer.has(e.pointerId)) return;
       const p = this.pointer.get(e.pointerId);
       if (!p) return;
@@ -14362,7 +14372,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       const node=$('#phiNativeBlockResources'),spec=JSON.parse(node.textContent||dec.decode(await PhiHostedMedia.bytes(node.dataset.src))),textures={};
       const entries=Object.entries(spec.textures);let next=0;
       await Promise.all(Array.from({length:Math.min(3,entries.length)},async()=>{
-        while(next<entries.length){const [name,url]=entries[next++],image=new Image(),ready=new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=reject;});image.src=url;await withTimeout(ready,12000,`噪域材质 ${name} 解码超时`);textures[name]=image;}
+        while(next<entries.length){const [name,url]=entries[next++],image=new Image(),ready=new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=reject;});image.src=url;await ready;textures[name]=image;}
       }));
       nativeBlockTextures={...textures,...spec};return nativeBlockTextures;
     })().catch(error=>{nativeBlockTexturePromise=null;throw error;});

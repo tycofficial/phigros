@@ -14,6 +14,7 @@ function runtime(overrides = {}) {
     fetch: async () => new Response('asset'), ...overrides
   });
   vm.runInContext(fs.readFileSync('js/performance-policy.js','utf8'), context);
+  vm.runInContext(fs.readFileSync('js/resource-transfer.js','utf8'), context);
   vm.runInContext(fs.readFileSync('js/hosted-media.js','utf8'), context);
   return context;
 }
@@ -27,10 +28,32 @@ class FakeAudio extends EventTarget {
   load(){}
 }
 
-test('begins after a short buffer, before the rest of the song arrives', async()=>{
+test('music cannot begin from an early partial buffer while the transfer is still pending',async()=>{
+  let complete,done=false;
+  const {PhiHostedMedia:media}=runtime({fetch:()=>new Promise(resolve=>complete=resolve)});
+  const audio=new FakeAudio(20),stream=new media.Stream(audio,{url:'./full.m4a',duration:160});
+  const pending=stream.wait().then(()=>done=true);
+  await new Promise(resolve=>setImmediate(resolve));assert.equal(done,false);assert.equal(audio.src,undefined);
+  complete(new Response('complete song'));await pending;
+  assert.equal(stream.blob.size,13);assert.match(audio.src,/^blob:/);stream.destroy();
+});
+
+test('cancelling one subscriber preserves the resource needed by a second subscriber',async()=>{
+  let complete,aborted=false,calls=0;
+  const {PhiHostedMedia:media}=runtime({fetch:(_url,{signal})=>{
+    calls++;signal.addEventListener('abort',()=>aborted=true);
+    return new Promise(resolve=>complete=resolve);
+  }});
+  const controller=new AbortController(),first=media.bytes('./shared',{signal:controller.signal}),second=media.bytes('./shared');
+  await new Promise(resolve=>setImmediate(resolve));controller.abort();
+  await assert.rejects(first,{name:'AbortError'});assert.equal(aborted,false);
+  complete(new Response('shared'));assert.equal(Buffer.from(await second).toString(),'shared');assert.equal(calls,1);
+});
+
+test('prepares a complete local music Blob before permitting playback', async()=>{
   const {PhiHostedMedia:media}=runtime();const audio=new FakeAudio(13);
   const stream=new media.Stream(audio,{url:'./music.m4a',duration:160});
-  await stream.wait();assert(audio.ahead<audio.duration);stream.destroy();
+  await stream.wait();assert(stream.blob);assert.match(audio.src,/^blob:/);stream.destroy();
 });
 test('waits for audio readiness and then resolves as more audio arrives',async()=>{
   const {PhiHostedMedia:media}=runtime();const audio=new FakeAudio(2),stream=new media.Stream(audio,{url:'./music.m4a',duration:160});
@@ -54,12 +77,12 @@ test('a fully buffered short tail can resume immediately',async()=>{
 });
 test('failed fetches can be retried and never poison the cache',async()=>{
   let calls=0;const {PhiHostedMedia:media}=runtime({fetch:async()=>{calls++;return calls===1?new Response('',{status:503}):new Response('ok');}});
-  await assert.rejects(media.bytes('./art.jpg'));assert.equal(Buffer.from(await media.bytes('./art.jpg')).toString(),'ok');assert.equal(calls,2);
+  assert.equal(Buffer.from(await media.bytes('./art.jpg')).toString(),'ok');assert.equal(calls,2);
 });
 test('progressive artwork preserves the small image if the clear image fails',async()=>{
   const observed=[];const {PhiHostedMedia:media}=runtime({
     PhiHostedManifest:{artwork:{cover:{stages:[{url:'./tiny.jpg'},{url:'./medium.jpg'},{url:'./clear.jpg'}]}}},
-    fetch:async href=>href.endsWith('clear.jpg')?new Response('',{status:503}):new Response('image')
+    fetch:async href=>href.endsWith('clear.jpg')?new Response('',{status:404}):new Response('image')
   });
   const last=await media.artwork('cover',{onStage:async(blob,stage)=>observed.push(stage)});
   assert.deepEqual(observed,[0,1]);assert.equal(last.size,5);
@@ -107,7 +130,7 @@ test('a fast first chunk followed by a slow link lowers the measured download ra
   assert.equal(state.rate,.4);assert.equal(state.target,12);stream.destroy();
 });
 
-test('a mobile preload plateau can begin with six playable seconds instead of waiting indefinitely',async()=>{
+test('complete local music does not demand browser preload of the entire duration',async()=>{
   let now=0;const {PhiHostedMedia:media}=runtime({performance:{now:()=>now}}),audio=new FakeAudio(6.5),stream=new media.Stream(audio,{url:'./music.m4a',duration:160});
   const pending=stream.wait();now=7000;audio.dispatchEvent(new Event('progress'));
   await pending;assert(stream.initialReady);assert(audio.ahead<12);stream.destroy();
@@ -119,7 +142,7 @@ test('an artwork deadline aborts its fetch instead of blocking song startup',asy
   }),PhiHostedManifest:{artwork:{cover:{stages:[{url:'./tiny.jpg'},{url:'./medium.jpg'}]}}}});
   const controller=new AbortController();
   const pending=media.artwork('cover',{fromStage:1,signal:controller.signal});
-  controller.abort();await pending;assert.equal(aborted,true);
+  await new Promise(resolve=>setImmediate(resolve));controller.abort();await pending;assert.equal(aborted,true);
 });
 
 test('opening cues follow the music clock, remain clear after looping, and stop on exit',async()=>{
