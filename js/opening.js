@@ -3,8 +3,10 @@
   'use strict';
   const cues = globalThis.PhiHostedManifest.opening;
   const home = document.getElementById('refHome');
-  const audioURL=new URL(cues.audio,document.baseURI).href;
-  const audio = new Audio(audioURL);
+  const audio = new Audio();
+  const openingSpec=globalThis.PhiHostedMedia?.selectAudio(cues.audioSpec||{url:cues.audio},audio);
+  const audioURL=new URL(openingSpec?.url||cues.audio,document.baseURI).href;
+  audio.src=audioURL;
   audio.loop = true; audio.preload = 'metadata'; audio.setAttribute('playsinline', '');
   audio.id='openingAudio';audio.hidden=true;home.appendChild(audio);
   const canvas = document.getElementById('openingParticles'), ctx = canvas.getContext('2d');

@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-input-9';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-input-10';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,7 +26,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-input-9",
+    runtime: "4.0.1.2-input-10",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-10-25T10:00:00Z",
@@ -6322,7 +6322,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       const audioFile=entry.files?.find(file=>file.name===entry.meta?.music),spec=globalThis.PhiHostedMedia?.manifest.audio[audioFile?.asset];
       if(spec&&!playOptions?.offlineExport){
         const audio=Engine._primedMusicElement||new Audio();Engine._primedMusicElement=null;
-        stream=new PhiHostedMedia.Stream(audio,spec,state=>setLoadingStatus(state.downloading?`音乐下载 ${state.total?Math.min(100,Math.round(state.downloaded/state.total*100))+'%':Math.ceil(state.downloaded/1024)+' KB'}`:'音乐已就绪，正在准备谱面…'));
+        stream=new PhiHostedMedia.Stream(audio,spec,state=>setLoadingStatus(state.downloading?`音乐下载 · ${state.formatLabel||'自动音质'} ${state.total?Math.min(100,Math.round(state.downloaded/state.total*100))+'%':Math.ceil(state.downloaded/1024)+' KB'}`:'音乐已就绪，正在准备谱面…'));
         songLoadStream=stream;
         streamReady=stream.wait();streamReady.catch(()=>{});
       }
@@ -9271,7 +9271,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     ensureMediaAudioSource() {
       if (!this.audioURL) {
-        this.audioURL = this.record.streamAudioURL ? PhiHostedMedia.url(this.record.streamAudioURL) : URL.createObjectURL(this.record.audioBlob);
+        this.audioURL = this.streamSession?.blobURL || (this.record.streamAudioURL ? PhiHostedMedia.url(this.record.streamAudioURL) : URL.createObjectURL(this.record.audioBlob));
         this.audio.loop=false;this.audio.muted=false;
         if(this.audio.src!==this.audioURL){this.audio.src=this.audioURL;this.audio.load();}
       }

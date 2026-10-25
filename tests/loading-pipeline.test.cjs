@@ -3,6 +3,12 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs'),vm=require('node:vm');
 const source=fs.readFileSync('js/app.js','utf8');
 const entry={id:'song',name:'Song',parser:'pgr',files:[{name:'chart.json',asset:'chart'},{name:'music.ogg',asset:'music'},{name:'cover.png',asset:'art'}],meta:{chart:'chart.json',music:'music.ogg',illustration:'cover.png'}};
+test('native media fallback preserves the selected local quality instead of fetching the large URL again',()=>{
+  const {probe:p}=require('./helpers/engine.cjs').fixture();
+  p.record={streamAudioURL:'./large.m4a'};p.streamSession={blobURL:'blob:small-selected-track'};
+  p.audio.src='blob:small-selected-track';p.audio.load=()=>{throw Error('must not reload the large source');};
+  assert.equal(p.ensureMediaAudioSource(),p.audio);assert.equal(p.audio.src,'blob:small-selected-track');
+});
 test('hosted music enters Web Audio only after its complete local Blob is ready',async()=>{
   const {fixture}=require('./helpers/engine.cjs');
   const ready=deferred(),blob=new Blob(['whole song']);let decodes=0;

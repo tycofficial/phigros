@@ -51,7 +51,18 @@ def main():
             dest = ROOT / "assets/stream" / f"{ident}.m4a"
             if not dest.exists():
                 ffmpeg("-i", ROOT / spec["url"], "-vn", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", dest)
-            manifest["audio"][ident] = {"url": "./" + dest.relative_to(ROOT).as_posix(), "duration": spec["duration"], "bytes": dest.stat().st_size, "original": spec["url"]}
+            low_ogg = ROOT / "assets/stream" / f"{ident}-low.ogg"
+            low_aac = ROOT / "assets/stream" / f"{ident}-low.m4a"
+            if not low_ogg.exists():
+                ffmpeg("-i", ROOT / spec["url"], "-map_metadata", "-1", "-vn", "-c:a", "libopus", "-b:a", "24k", "-vbr", "on", "-ac", "2", low_ogg)
+            if not low_aac.exists():
+                ffmpeg("-i", ROOT / spec["url"], "-map_metadata", "-1", "-vn", "-c:a", "aac", "-b:a", "32k", "-ar", "22050", "-ac", "2", "-movflags", "+faststart", low_aac)
+            def audio_variant(path, mime):
+                return {"url": "./" + path.relative_to(ROOT).as_posix(), "bytes": path.stat().st_size, "mime": mime}
+            manifest["audio"][ident] = {"url": "./" + dest.relative_to(ROOT).as_posix(), "duration": spec["duration"], "bytes": dest.stat().st_size, "original": spec["url"],
+                "high": audio_variant(ROOT / spec["url"], 'audio/ogg; codecs="vorbis"'),
+                "low": audio_variant(low_ogg, 'audio/ogg; codecs="opus"'),
+                "lowFallback": audio_variant(low_aac, 'audio/mp4')}
         elif ident in originals and originals[ident]['file'].startswith('assets/charts/'):
             # Fetch just the selected difficulty, including on hosts without Range.
             original = originals[ident]
@@ -100,6 +111,15 @@ def main():
         # encoder delay/edit list; use an exact sample count for the native loop.
         ffmpeg("-i", args.recording, "-vn", "-af", "atrim=end_sample=5412822,asetpts=PTS-STARTPTS", "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", ROOT / "assets/opening/theme.m4a")
     manifest["opening"] = {"audio": "./assets/opening/theme.m4a", "loopSeconds": 122.739727891, "warningAt": 3.4, "titleAt": 8.0, "titleSettledAt": 8.9, "version": "4.0.1.2"}
+    opening_source = ROOT / "assets/opening/theme.m4a"
+    opening_ogg = ROOT / "assets/opening/theme-low.ogg"
+    opening_aac = ROOT / "assets/opening/theme-low.m4a"
+    if not opening_ogg.exists():
+        ffmpeg("-i", opening_source, "-map_metadata", "-1", "-vn", "-c:a", "libopus", "-b:a", "24k", "-vbr", "on", "-ac", "2", opening_ogg)
+    if not opening_aac.exists():
+        ffmpeg("-i", opening_source, "-map_metadata", "-1", "-vn", "-c:a", "aac", "-b:a", "32k", "-ar", "22050", "-ac", "2", "-movflags", "+faststart", opening_aac)
+    manifest["opening"]["audioSpec"] = {**audio_variant(opening_source, "audio/mp4"),
+        "low": audio_variant(opening_ogg, 'audio/ogg; codecs="opus"'), "lowFallback": audio_variant(opening_aac, "audio/mp4")}
     (ROOT / "assets/hosted-media.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
     (ROOT / "js/hosted-manifest.js").write_text("globalThis.PhiHostedManifest=" + json.dumps(manifest, ensure_ascii=False, separators=(",", ":")) + ";\n")
     print(json.dumps({"chartBytesBefore": old_chart_bytes, "chartBytesAfter": new_chart_bytes, "artworks": len(manifest["artwork"]), "songs": len(manifest["audio"])}, ensure_ascii=False))

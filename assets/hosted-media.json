@@ -262,73 +262,253 @@
       "url": "./assets/stream/ch9_0_music.m4a",
       "duration": 127.235193,
       "bytes": 2091370,
-      "original": "./assets/audio/ch9_0_music.ogg"
+      "original": "./assets/audio/ch9_0_music.ogg",
+      "high": {
+        "url": "./assets/audio/ch9_0_music.ogg",
+        "bytes": 1922807,
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      },
+      "low": {
+        "url": "./assets/stream/ch9_0_music-low.ogg",
+        "bytes": 357876,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/stream/ch9_0_music-low.m4a",
+        "bytes": 525761,
+        "mime": "audio/mp4"
+      }
     },
     "ch9_1_music": {
       "url": "./assets/stream/ch9_1_music.m4a",
       "duration": 139.675283,
       "bytes": 2292898,
-      "original": "./assets/audio/ch9_1_music.ogg"
+      "original": "./assets/audio/ch9_1_music.ogg",
+      "high": {
+        "url": "./assets/audio/ch9_1_music.ogg",
+        "bytes": 1991566,
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      },
+      "low": {
+        "url": "./assets/stream/ch9_1_music-low.ogg",
+        "bytes": 380564,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/stream/ch9_1_music-low.m4a",
+        "bytes": 583494,
+        "mime": "audio/mp4"
+      }
     },
     "ch9_2_music": {
       "url": "./assets/stream/ch9_2_music.m4a",
       "duration": 137.022404,
       "bytes": 2216292,
-      "original": "./assets/audio/ch9_2_music.ogg"
+      "original": "./assets/audio/ch9_2_music.ogg",
+      "high": {
+        "url": "./assets/audio/ch9_2_music.ogg",
+        "bytes": 2025877,
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      },
+      "low": {
+        "url": "./assets/stream/ch9_2_music-low.ogg",
+        "bytes": 386324,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/stream/ch9_2_music-low.m4a",
+        "bytes": 565777,
+        "mime": "audio/mp4"
+      }
     },
     "ch9_3_music": {
       "url": "./assets/stream/ch9_3_music.m4a",
       "duration": 130.041905,
       "bytes": 2166215,
-      "original": "./assets/audio/ch9_3_music.ogg"
+      "original": "./assets/audio/ch9_3_music.ogg",
+      "high": {
+        "url": "./assets/audio/ch9_3_music.ogg",
+        "bytes": 1936333,
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      },
+      "low": {
+        "url": "./assets/stream/ch9_3_music-low.ogg",
+        "bytes": 389782,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/stream/ch9_3_music-low.m4a",
+        "bytes": 541727,
+        "mime": "audio/mp4"
+      }
     },
     "ch9_4_music": {
       "url": "./assets/stream/ch9_4_music.m4a",
       "duration": 144.356,
       "bytes": 2337945,
-      "original": "./assets/audio/ch9_4_music.ogg"
+      "original": "./assets/audio/ch9_4_music.ogg",
+      "high": {
+        "url": "./assets/audio/ch9_4_music.ogg",
+        "bytes": 2123174,
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      },
+      "low": {
+        "url": "./assets/stream/ch9_4_music-low.ogg",
+        "bytes": 406609,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/stream/ch9_4_music-low.m4a",
+        "bytes": 595678,
+        "mime": "audio/mp4"
+      }
     },
     "ch9_5_music": {
       "url": "./assets/stream/ch9_5_music.m4a",
       "duration": 178.754467,
       "bytes": 2930018,
-      "original": "./assets/audio/ch9_5_music.ogg"
+      "original": "./assets/audio/ch9_5_music.ogg",
+      "high": {
+        "url": "./assets/audio/ch9_5_music.ogg",
+        "bytes": 2602309,
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      },
+      "low": {
+        "url": "./assets/stream/ch9_5_music-low.ogg",
+        "bytes": 513071,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/stream/ch9_5_music-low.m4a",
+        "bytes": 750702,
+        "mime": "audio/mp4"
+      }
     },
     "ch9_7_music": {
       "url": "./assets/stream/ch9_7_music.m4a",
       "duration": 172.00907,
       "bytes": 2829619,
-      "original": "./assets/audio/ch9_7_music.ogg"
+      "original": "./assets/audio/ch9_7_music.ogg",
+      "high": {
+        "url": "./assets/audio/ch9_7_music.ogg",
+        "bytes": 2644690,
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      },
+      "low": {
+        "url": "./assets/stream/ch9_7_music-low.ogg",
+        "bytes": 534100,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/stream/ch9_7_music-low.m4a",
+        "bytes": 713877,
+        "mime": "audio/mp4"
+      }
     },
     "ch9_8_music": {
       "url": "./assets/stream/ch9_8_music.m4a",
       "duration": 165.313333,
       "bytes": 2737429,
-      "original": "./assets/audio/ch9_8_music.ogg"
+      "original": "./assets/audio/ch9_8_music.ogg",
+      "high": {
+        "url": "./assets/audio/ch9_8_music.ogg",
+        "bytes": 2534724,
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      },
+      "low": {
+        "url": "./assets/stream/ch9_8_music-low.ogg",
+        "bytes": 501499,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/stream/ch9_8_music-low.m4a",
+        "bytes": 689093,
+        "mime": "audio/mp4"
+      }
     },
     "ch9_9_music": {
       "url": "./assets/stream/ch9_9_music.m4a",
       "duration": 174.966667,
       "bytes": 2826722,
-      "original": "./assets/audio/ch9_9_music.ogg"
+      "original": "./assets/audio/ch9_9_music.ogg",
+      "high": {
+        "url": "./assets/audio/ch9_9_music.ogg",
+        "bytes": 2486239,
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      },
+      "low": {
+        "url": "./assets/stream/ch9_9_music-low.ogg",
+        "bytes": 498408,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/stream/ch9_9_music-low.m4a",
+        "bytes": 718925,
+        "mime": "audio/mp4"
+      }
     },
     "ch9_10_music": {
       "url": "./assets/stream/ch9_10_music.m4a",
       "duration": 150.750667,
       "bytes": 2482882,
-      "original": "./assets/audio/ch9_10_music.ogg"
+      "original": "./assets/audio/ch9_10_music.ogg",
+      "high": {
+        "url": "./assets/audio/ch9_10_music.ogg",
+        "bytes": 2352757,
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      },
+      "low": {
+        "url": "./assets/stream/ch9_10_music-low.ogg",
+        "bytes": 445364,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/stream/ch9_10_music-low.m4a",
+        "bytes": 624658,
+        "mime": "audio/mp4"
+      }
     },
     "ch9_11_music": {
       "url": "./assets/stream/ch9_11_music.m4a",
       "duration": 168.006667,
       "bytes": 2742525,
-      "original": "./assets/audio/ch9_11_music.ogg"
+      "original": "./assets/audio/ch9_11_music.ogg",
+      "high": {
+        "url": "./assets/audio/ch9_11_music.ogg",
+        "bytes": 2435927,
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      },
+      "low": {
+        "url": "./assets/stream/ch9_11_music-low.ogg",
+        "bytes": 618502,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/stream/ch9_11_music-low.m4a",
+        "bytes": 700565,
+        "mime": "audio/mp4"
+      }
     },
     "ch9_12_music": {
       "url": "./assets/stream/ch9_12_music.m4a",
       "duration": 162.198639,
       "bytes": 2645988,
-      "original": "./assets/audio/ch9_12_music.ogg"
+      "original": "./assets/audio/ch9_12_music.ogg",
+      "high": {
+        "url": "./assets/audio/ch9_12_music.ogg",
+        "bytes": 2521479,
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      },
+      "low": {
+        "url": "./assets/stream/ch9_12_music-low.ogg",
+        "bytes": 470833,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/stream/ch9_12_music-low.m4a",
+        "bytes": 674167,
+        "mime": "audio/mp4"
+      }
     }
   },
   "charts": {
@@ -873,6 +1053,21 @@
     "warningAt": 3.4,
     "titleAt": 8.0,
     "titleSettledAt": 8.9,
-    "version": "4.0.1.2"
+    "version": "4.0.1.2",
+    "audioSpec": {
+      "url": "./assets/opening/theme.m4a",
+      "bytes": 2507153,
+      "mime": "audio/mp4",
+      "low": {
+        "url": "./assets/opening/theme-low.ogg",
+        "bytes": 353311,
+        "mime": "audio/ogg; codecs=\"opus\""
+      },
+      "lowFallback": {
+        "url": "./assets/opening/theme-low.m4a",
+        "bytes": 511939,
+        "mime": "audio/mp4"
+      }
+    }
   }
 }

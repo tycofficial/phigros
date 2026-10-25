@@ -4,6 +4,7 @@
   const manifest = globalThis.PhiHostedManifest;
   const downloads = new Map();
   let cachedBytes = 0;
+  let networkSample = null;
   const MAX_CACHE = 12 * 1024 * 1024;
   function url(path) {
     const value = new URL(path, document.baseURI);
@@ -25,7 +26,7 @@
     // A previously cached entry may not include the new dependency yet.
     return transferReady||=(new Promise(resolve=>{
       const load=()=>{
-        const script=document.createElement('script');script.src=url('./js/resource-transfer.js?v=4.0.1.2-input-9');
+        const script=document.createElement('script');script.src=url('./js/resource-transfer.js?v=4.0.1.2-input-10');
         script.onload=resolve;script.onerror=()=>{script.remove();setTimeout(load,1500);};document.head.appendChild(script);
       };load();
     }));
@@ -36,11 +37,15 @@
     let item=downloads.get(href);
     if(item?.controller.signal.aborted){downloads.delete(href);item=null;}
     if(!item){
-      item={size:0,consumers:0,listeners:new Set(),controller:new AbortController(),promise:null};
+      item={size:0,consumers:0,listeners:new Set(),controller:new AbortController(),promise:null,started:performance.now()};
       const current=item;
       item.promise=ensureTransfer().then(()=>PhiTransfer.download(href,{priority,expectedSize,signal:item.controller.signal,
         onProgress:(done,total)=>{for(const listener of current.listeners)listener(done,total);}
       })).then(result=>{
+        const elapsed=(performance.now()-current.started)/1000;
+        // Tiny/cache-speed responses cannot establish the route's bandwidth.
+        if(result.byteLength>=65536&&elapsed>=.08)
+          networkSample={rate:result.byteLength/elapsed,at:performance.now()};
         current.size=result.byteLength;cachedBytes+=current.size;
         for(const [key,old] of downloads){if(cachedBytes<=MAX_CACHE)break;
           if(old!==current&&old.size&&!old.consumers){cachedBytes-=old.size;downloads.delete(key);}}
@@ -90,7 +95,7 @@
       const abort=()=>finish(new DOMException('谱面加载已取消','AbortError'));
       if(signal?.aborted)return abort();
       try{
-        worker=new Worker(url('./js/chart-decode-worker.js?v=4.0.1.2-input-9'));
+        worker=new Worker(url('./js/chart-decode-worker.js?v=4.0.1.2-input-10'));
         worker.onmessage=({data})=>{
           if(settled)return;
           if(data.type==='progress'){onProgress?.(data.received,data.total,data.stage);return;}
@@ -113,6 +118,27 @@
     if (elapsed < 1.2 || !(downloadRate > 0)) return Math.min(duration, minimum);
     return Math.min(duration, downloadRate >= 2 ? minimum : Math.max(minimum,12));
   }
+  function audioQuality() {
+    const connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+    if(connection?.saveData||/^(slow-2g|2g|3g)$/.test(connection?.effectiveType||'')||
+      (connection?.downlink>0&&connection.downlink<1.5)||connection?.rtt>=500)return 'low';
+    if(networkSample&&performance.now()-networkSample.at<60000)
+      return networkSample.rate>=256*1024?'high':'low';
+    if(connection?.downlink>=4&&(!connection.rtt||connection.rtt<400))return 'high';
+    // Safari often has no Network Information API. Start conservatively until
+    // same-origin resource transfers establish a usable bandwidth sample.
+    return 'low';
+  }
+  function selectAudio(spec,audio,forceLow=false) {
+    if(!spec.low)return {...spec,mime:spec.mime||'audio/mp4',quality:'high',formatLabel:'原始音质'};
+    const supports=mime=>!!audio.canPlayType?.(mime);
+    if(!forceLow&&audioQuality()==='high'){
+      const high=[spec.lossless,spec.high].find(variant=>variant&&supports(variant.mime));
+      return {...spec,...(high||{}),quality:'high',formatLabel:high&&high===spec.lossless?'无损音质':'原始音质',mime:high?.mime||spec.mime||'audio/mp4'};
+    }
+    const variant=supports(spec.low.mime)?spec.low:spec.lowFallback||spec.low;
+    return {...spec,...variant,quality:'low',formatLabel:variant===spec.low?'省流 OGG':'省流 AAC'};
+  }
   class Stream {
     constructor(audio, spec, onProgress) {
       this.audio = audio; this.spec = spec; this.onProgress = onProgress;
@@ -121,14 +147,35 @@
       audio.pause(); audio.loop = false; audio.muted = false; audio.preload = 'auto';
       audio.setAttribute('playsinline', '');
       this.blob=null;this.blobURL='';this.loadedBytes=0;
-      this.downloadReady=bytes(spec.url,{signal:this.controller.signal,priority:'high',expectedSize:spec.bytes,
-        onProgress:(done,total)=>{this.loadedBytes=done;this.onProgress?.({...this.snapshot(),downloaded:done,total,downloading:true});}
-      }).then(data=>{
+      this.downloadReady=this.readMusic().then(data=>{
         if(this.controller.signal.aborted)throw new DOMException('已返回选歌','AbortError');
-        this.blob=new Blob([data],{type:'audio/mp4'});this.blobURL=URL.createObjectURL(this.blob);
+        this.blob=new Blob([data],{type:this.selectedSpec.mime});this.blobURL=URL.createObjectURL(this.blob);
         audio.src=this.blobURL;audio.load();return audio;
       });
       this.downloadReady.catch(()=>{});
+    }
+    async readMusic() {
+      let selected=selectAudio(this.spec,this.audio);
+      for(;;){
+        this.selectedSpec=selected;this.loadedBytes=0;
+        const controller=new AbortController(),abort=()=>controller.abort();
+        this.controller.signal.addEventListener('abort',abort,{once:true});
+        if(this.controller.signal.aborted)controller.abort();
+        const started=performance.now();let downgrade=false;
+        // A changed/overoptimistic connection hint must not trap weak networks
+        // on the large file. This changes quality, never ends song loading.
+        const timer=selected.quality==='high'&&this.spec.low?setInterval(()=>{
+          const seconds=(performance.now()-started)/1000;
+          if(seconds>=2&&this.loadedBytes/seconds<96*1024){downgrade=true;controller.abort();}
+        },500):0;
+        try{
+          return await bytes(selected.url,{signal:controller.signal,priority:'high',expectedSize:selected.bytes,
+            onProgress:(done,total)=>{this.loadedBytes=done;this.onProgress?.({...this.snapshot(),downloaded:done,total,downloading:true});}});
+        }catch(error){
+          if(!downgrade||this.controller.signal.aborted)throw error;
+          selected=selectAudio(this.spec,this.audio,true);
+        }finally{clearInterval(timer);this.controller.signal.removeEventListener('abort',abort);}
+      }
     }
     snapshot(minimum = 6) {
       const at = Number(this.audio.currentTime) || 0;
@@ -140,7 +187,7 @@
       const rate=this.downloadRate=this.lastBufferEnd/elapsed;
       const remaining = Math.max(0, duration - at);
       const target = this.initialReady?Math.min(remaining,minimum):bufferTarget(remaining, rate, elapsed, minimum);
-      return { ahead, target, duration, rate, complete: ahead >= remaining - .1,
+      return { ahead, target, duration, rate, quality:this.selectedSpec?.quality,formatLabel:this.selectedSpec?.formatLabel,complete: ahead >= remaining - .1,
         ready: !!this.blob && this.audio.readyState >= 3 };
     }
     wait(minimum = 6, {signal: externalSignal} = {}) {
@@ -161,7 +208,7 @@
           if (!this.blob) return;
           if (audio.error) return finish(Error('音乐文件无法解码'));
           const state = this.snapshot(minimum);
-          this.onProgress?.({...state,downloaded:this.loadedBytes,total:this.spec.bytes,downloading:false});
+          this.onProgress?.({...state,downloaded:this.loadedBytes,total:this.selectedSpec?.bytes,downloading:false});
           if (state.ready) {this.initialReady=true;return finish();}
         };
         for (const event of ['progress', 'loadedmetadata', 'canplay', 'error']) audio.addEventListener(event, check);
@@ -173,7 +220,7 @@
     }
     destroy() { this.controller.abort();if(this.blobURL)URL.revokeObjectURL(this.blobURL);this.blobURL='';this.blob=null; }
   }
-  globalThis.PhiHostedMedia = Object.freeze({ manifest, url, bytes, artwork, bufferedAhead, bufferTarget, decodeChart, loadChart, Stream });
+  globalThis.PhiHostedMedia = Object.freeze({ manifest, url, bytes, artwork, bufferedAhead, bufferTarget, audioQuality,selectAudio,decodeChart, loadChart, Stream });
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}), { once: true });
   }

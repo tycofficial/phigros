@@ -28,6 +28,57 @@ class FakeAudio extends EventTarget {
   load(){}
 }
 
+const adaptiveSpec={url:'./high.m4a',bytes:100,duration:160,
+  high:{url:'./original.ogg',bytes:90,mime:'audio/ogg; codecs="vorbis"'},
+  low:{url:'./low.ogg',bytes:10,mime:'audio/ogg; codecs="opus"'},
+  lowFallback:{url:'./low.m4a',bytes:15,mime:'audio/mp4'}};
+test('save-data, slow mobile hints and unknown Safari routes select small OGG',()=>{
+  for(const connection of [undefined,{saveData:true,downlink:10},{effectiveType:'3g'}, {downlink:.6},{downlink:10,rtt:600}]){
+    const {PhiHostedMedia:media}=runtime({navigator:{connection}});
+    const selected=media.selectAudio(adaptiveSpec,{canPlayType:()=> 'probably'});
+    assert.equal(selected.url,'./low.ogg');assert.equal(selected.quality,'low');
+  }
+});
+test('a strong route selects the original OGG and preserves actual lossless assets when provided',()=>{
+  const {PhiHostedMedia:media}=runtime({navigator:{connection:{effectiveType:'4g',downlink:10,rtt:50}}});
+  const audio={canPlayType:()=> 'probably'};
+  assert.equal(media.selectAudio(adaptiveSpec,audio).url,'./original.ogg');
+  const lossless={url:'./actual.flac',bytes:1000,mime:'audio/flac'};
+  assert.equal(media.selectAudio({...adaptiveSpec,lossless},audio).url,'./actual.flac');
+});
+test('unsupported OGG codecs use small AAC on weak links and compatible AAC on strong links',()=>{
+  const audio={canPlayType:mime=>mime==='audio/mp4'?'probably':''};
+  const weak=runtime().PhiHostedMedia;assert.equal(weak.selectAudio(adaptiveSpec,audio).url,'./low.m4a');
+  const strong=runtime({navigator:{connection:{downlink:10,rtt:50}}}).PhiHostedMedia;
+  assert.equal(strong.selectAudio(adaptiveSpec,audio).url,'./high.m4a');
+});
+test('measured same-origin bandwidth selects quality on browsers without network hints',async()=>{
+  for(const [duration,expected] of [[200,'high'],[2000,'low']]){
+    let now=0;const media=runtime({performance:{now:()=>now},fetch:async()=>{
+      now=duration;return new Response(new Uint8Array(100000));
+    }}).PhiHostedMedia;
+    await media.bytes('./measured');assert.equal(media.audioQuality(),expected);
+  }
+});
+test('an overoptimistic strong-network hint downgrades stalled music without ending the load',async()=>{
+  let now=0,watch,aborted=false;const calls=[];
+  const {PhiHostedMedia:media}=runtime({performance:{now:()=>now},
+    navigator:{connection:{downlink:10,rtt:50}},setInterval:fn=>{watch=fn;return 1;},clearInterval(){},
+    fetch:(href,{signal})=>{
+      calls.push(href);
+      if(href.endsWith('/original.ogg'))return new Promise((resolve,reject)=>signal.addEventListener('abort',()=>{
+        aborted=true;reject(new DOMException('switch quality','AbortError'));
+      }));
+      return Promise.resolve(new Response(new Uint8Array(10)));
+    }});
+  const audio=new FakeAudio(12);audio.canPlayType=()=> 'probably';
+  const stream=new media.Stream(audio,adaptiveSpec);
+  await new Promise(resolve=>setImmediate(resolve));now=3000;watch();
+  await stream.downloadReady;
+  assert(aborted);assert.equal(stream.selectedSpec.quality,'low');assert.equal(stream.blob.size,10);
+  assert.equal(calls.length,2);assert(calls[1].endsWith('/low.ogg'));stream.destroy();
+});
+
 test('music cannot begin from an early partial buffer while the transfer is still pending',async()=>{
   let complete,done=false;
   const {PhiHostedMedia:media}=runtime({fetch:()=>new Promise(resolve=>complete=resolve)});
