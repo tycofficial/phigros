@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-input-10';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-1';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,7 +26,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-input-10",
+    runtime: "4.0.1.2-pages-1",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-10-25T10:00:00Z",
@@ -6037,6 +6037,9 @@ function withTimeout(promise, ms, message = "操作超时") {
       t[BASE91_ALPHABET.charCodeAt(i)] = i;
     return t;
   })();
+  const fullCatalogState = globalThis.PhiCatalogRuntime?.install({
+    entries:BUILTIN_PACKS, assets:BUILTIN_ASSETS, hostedManifest:globalThis.PhiHostedManifest
+  });
   const BUILTIN_ASSET_MAP = new Map(
     (BUILTIN_ASSETS || []).map((x) => [String(x.id), x]),
   );
@@ -6316,8 +6319,9 @@ function withTimeout(promise, ms, message = "操作超时") {
     return rec;
   }
   async function startBuiltinPack(entry, playOptions = null) {
-    const token = ++songLoadToken;
-    let stream=null,streamReady=null;
+    const token = ++songLoadToken,course=!!playOptions?.courseSessionId;
+    const fallbackArtwork=course?null:libraryFocusBgBlob;
+    let stream=null,streamReady=null,courseArtwork=null,courseArtworkReady=null;
     try {
       const audioFile=entry.files?.find(file=>file.name===entry.meta?.music),spec=globalThis.PhiHostedMedia?.manifest.audio[audioFile?.asset];
       if(spec&&!playOptions?.offlineExport){
@@ -6326,12 +6330,20 @@ function withTimeout(promise, ms, message = "操作超时") {
         songLoadStream=stream;
         streamReady=stream.wait();streamReady.catch(()=>{});
       }
+      if(course&&globalThis.PhiHostedMedia){
+        const asset=entry.files?.find(file=>file.name===entry.meta?.illustration)?.asset;
+        if(asset)courseArtworkReady=PhiHostedMedia.artwork(asset,{fromStage:1,maxStage:1,
+          signal:stream?.controller.signal,active:()=>token===songLoadToken,
+          onStage:blob=>{courseArtwork=blob;if(token===songLoadToken)setLoadingArtwork(blob);}
+        }).catch(error=>{if(error.name!=="AbortError")Diagnostics.warn("Course.artwork",error.message);return null;});
+      }
       const preparation=Promise.all([ensureBuiltinMaterialForPlay(),loadSavedOrAdjacentOfficialFont()]);
       preparation.catch(()=>{});
-      const [record] = await Promise.all([materializeBuiltinPack(entry,{streaming:!playOptions?.offlineExport,signal:stream?.controller.signal}),beginLoadingPresentation(entry, libraryFocusBgBlob)]);
-      const rec = {...record,bgBlob:record.bgBlob||libraryFocusBgBlob,_preparedStream:stream,_streamReady:streamReady};
+      const [record] = await Promise.all([materializeBuiltinPack(entry,{streaming:!playOptions?.offlineExport,signal:stream?.controller.signal}),beginLoadingPresentation(entry, fallbackArtwork)]);
+      const rec = {...record,bgBlob:record.bgBlob||courseArtwork||fallbackArtwork,_preparedStream:stream,_streamReady:streamReady,
+        _courseArtworkReady:courseArtworkReady};
       assertSongLoad(token);
-      updateLoadingPresentation(rec, libraryFocusBgBlob);
+      updateLoadingPresentation(rec, fallbackArtwork);
       await startChart(rec, true, {...playOptions,loadToken:token,preparation});
     } catch (e) {
       stream?.destroy();
@@ -6340,6 +6352,59 @@ function withTimeout(promise, ms, message = "操作超时") {
       cancelLoadingPresentation();
       toast(`内置谱面无法开始：${e.message}`, true, 8000);
     }
+  }
+  // Collection policy: metadata only. Never infer ownership from a song title.
+  function catalogCollectionFor(record) {
+    const meta=record?.meta||{}, chapter=String(meta.chapter||record?.chapter||'').trim(),
+      explicit=String(meta.collectionId||record?.collectionId||'').trim(),
+      title=String(meta.collectionTitle||meta.collectionName||record?.collectionTitle||meta.collection||chapter||'其他曲目').trim();
+    const chapterNumber=chapter.match(/(?:chapter\s*|第)([0-9]+)(?:章)?/i);
+    const id=explicit||(chapterNumber?`chapter-${Number(chapterNumber[1])}`:/单曲精选集|single/i.test(chapter)?'singles':chapter?`collection:${chapter}`:'other');
+    return {id,title,order:Number(meta.collectionOrder??record?.collectionOrder)||0};
+  }
+  function catalogCollections(entries) {
+    const groups=new Map();
+    for(const record of entries){
+      const collection=catalogCollectionFor(record);
+      let group=groups.get(collection.id);
+      if(!group){group={...collection,songs:new Set(),charts:0};groups.set(collection.id,group);}
+      group.songs.add(String(record.audioHash||record.songId||record.meta?.songId||record.name||record.id));
+      group.charts++;
+    }
+    return [...groups.values()].sort((a,b)=>a.order-b.order).map(group=>({id:group.id,title:group.title,order:group.order,songs:group.songs.size,charts:group.charts}));
+  }
+  function catalogMatchesCollection(item,id) {
+    if(id==='all')return true;
+    if(id==='local')return !item.builtin;
+    return !!item.builtin&&catalogCollectionFor(item.entry||item.record||item).id===id;
+  }
+  // End collection policy.
+  let libraryCollectionId='all', libraryLocalSongCount=null;
+  function libraryCollectionTitle() {
+    return libraryCollectionId==='all'?'全部歌曲':libraryCollectionId==='local'?'本地导入':catalogCollections(BUILTIN_PACKS).find(group=>group.id===libraryCollectionId)?.title||'曲目';
+  }
+  function renderCollectionNavigation() {
+    const host=$('#refCatalogGroups');if(!host)return;
+    host.replaceChildren();
+    const groups=catalogCollections(BUILTIN_PACKS);
+    const allCount=new Set(BUILTIN_PACKS.map(record=>String(record.audioHash||record.name||record.id))).size;
+    const summary=$('#refCatalogSummary');if(summary)summary.textContent=`${allCount} 首内置曲目 · ${BUILTIN_PACKS.length} 个难度`;
+    for(const group of [...groups,{id:'local',title:'本地导入',songs:libraryLocalSongCount}]){
+      const button=document.createElement('button'),title=document.createElement('strong'),count=document.createElement('small');
+      button.type='button';button.className='refCollectionCard catalogGroup';button.dataset.collection=group.id;
+      title.textContent=group.title;count.textContent=group.songs==null?'浏览已导入谱面':`${group.songs} 首曲目`;
+      button.append(title,count);button.onclick=()=>referenceEnterLibrary(group.id);host.append(button);
+    }
+  }
+  function setLibraryCollection(id='all') {
+    const valid=id==='all'||id==='local'||catalogCollections(BUILTIN_PACKS).some(group=>group.id===id);
+    libraryCollectionId=valid?id:'all';
+    librarySearchQuery='';
+    const search=$('#librarySearch');if(search)search.value='';
+    const pjskSearch=$('#pjskMusicSearch');if(pjskSearch)pjskSearch.value='';
+    clearTimeout(librarySearchTimer);
+    libraryDirty=true;referenceInitialSelection=false;
+    return renderLibrary();
   }
   function builtinSearchText(e) {
     return [
@@ -6454,9 +6519,9 @@ function withTimeout(promise, ms, message = "操作超时") {
   let libraryVisualsSuspended = false;
   function suspendLibraryVisuals() {
     clearTimeout(focusedArtworkTimer);focusedArtworkAbort?.abort();focusedArtworkGeneration++;
+    document.body.classList.add("phiGameplayActive");
     if (libraryVisualsSuspended) return;
     libraryVisualsSuspended = true;
-    document.body.classList.add("phiGameplayActive");
     releaseLibraryFocusBackground();
     const list = $("#chartList");
     if (list) {
@@ -6841,6 +6906,14 @@ function withTimeout(promise, ms, message = "操作超时") {
       libraryDeferredGroups.clear();
     }, 140);
   }, {passive:true});
+  async function prepareInitialLibrary() {
+    if(["home","collection"].includes(document.body.dataset.referenceScene)) {
+      libraryDirty=true;
+      renderCollectionNavigation();
+      return;
+    }
+    await renderLibrary();
+  }
   async function renderLibrary() {
     const token = ++libraryRenderToken,
       list = $("#chartList"),
@@ -6862,7 +6935,9 @@ function withTimeout(promise, ms, message = "操作超时") {
     let loaded = 0, total = 0, visibleGroups = 0;
 
     function status(done = false) {
-      const statusEl=$("#libraryStatus");if(statusEl)statusEl.textContent=visibleGroups?`${visibleGroups} 首曲目`:"曲目";
+      const text=`${libraryCollectionTitle()} · ${visibleGroups} 首曲目`;
+      const statusEl=$("#libraryStatus");if(statusEl)statusEl.textContent=text;
+      const label=$('#libraryCollectionLabel');if(label)label.textContent=text;
     }
     function groupForItem(item) {
       const c = libraryPayload(item), nk = normalizedSongName(c.name), hk = String(c.audioHash || ""),
@@ -6913,9 +6988,10 @@ function withTimeout(promise, ms, message = "操作超时") {
 
     // Built-ins remain available immediately and stay after the progressive local section.
     for (const entry of BUILTIN_PACKS) {
-      const group = groupForItem({ builtin: true, entry });
-      renderGroup(group, false);
+      if(!catalogMatchesCollection({builtin:true,entry},libraryCollectionId))continue;
+      groupForItem({ builtin: true, entry });
     }
+    for(const group of groups)renderGroup(group,false);
 
     let keys = [];
     try { keys = await dbGetChartKeysNewest(); }
@@ -6929,6 +7005,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     if (token !== libraryRenderToken) return;
     total = keys.length;
     status(false);
+    const localSongs=new Set();
     for (let i = 0; i < keys.length; i++) {
       if (token !== libraryRenderToken) return;
       const id = keys[i];
@@ -6942,8 +7019,11 @@ function withTimeout(promise, ms, message = "操作超时") {
           summary = chartSummaryFromRecord(record);
           await dbPutChartSummary(summary);
         }
-        const group = groupForItem({ builtin: false, record: summary });
-        renderGroup(group, true);
+        localSongs.add(String(summary.audioHash||normalizedSongName(summary.name)||summary.id));
+        if(catalogMatchesCollection({builtin:false,record:summary},libraryCollectionId)){
+          const group = groupForItem({ builtin: false, record: summary });
+          renderGroup(group, true);
+        }
       } catch (error) {
         Diagnostics.warn("Library.streamRecord", error?.message || String(error), { id });
       }
@@ -6954,6 +7034,11 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     if (token !== libraryRenderToken) return;
     status(true);
+    libraryLocalSongCount=localSongs.size;renderCollectionNavigation();
+    if(!visibleGroups){
+      const empty=document.createElement('div');empty.className='libraryCollectionEmpty';empty.setAttribute('role','status');
+      empty.textContent=q?'当前分类没有匹配的曲目':libraryCollectionId==='local'?'还没有导入谱面，可在“更多”中导入。':'当前分类暂无可用曲目';list.append(empty);
+    }
     loadState.classList.add("complete");
     setTimeout(() => { if (token === libraryRenderToken && loadState.isConnected) loadState.remove(); }, 900);
     libraryLoadedOnce = true;
@@ -9136,6 +9221,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       };
     }
     setAutoplay(value) {
+      if(this.courseSessionId && value){toast("课题模式使用手动游玩");return;}
       this.autoplay = !!value;
       if (this.autoplay) {
         this.usedAutoplay = true;
@@ -9152,6 +9238,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       refreshAutoplayUI();
     }
     setPlaybackRate(value) {
+      if(this.courseSessionId){toast("课题模式固定为原速");return "1";}
       const canonical = canonicalDecimalInput(value), rate = Number(canonical);
       if (!(rate > 0) || !Number.isFinite(rate)) throw new Error("游玩速度必须是大于 0 的有效数字");
       const offset = this.musicCurrentTime();
@@ -9164,6 +9251,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       return canonical;
     }
     seekPausedMusic(musicTime) {
+      if(this.courseSessionId){toast("课题模式不支持跳转歌曲位置");return false;}
       if (!this.paused) return false;
       const target = clamp(Number(musicTime) || 0, 0, this.musicDuration());
       this.stopMusic(false);
@@ -9228,6 +9316,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       return true;
     }
     setInvincible(value) {
+      if(this.courseSessionId && value){toast("课题模式使用真实判定");return;}
       this.invincibleMode = !!value;
       if (this.invincibleMode) {
         this.usedInvincible = true;
@@ -9334,18 +9423,26 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     async prepareHostedArtwork(){
       if(!this.record.artworkAsset||this._offlineExport||!globalThis.PhiHostedMedia)return;
-      const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),350);
+      const controller=new AbortController(),loadSignal=this.record._preparedStream?.controller.signal,
+        timer=this.courseSessionId?null:setTimeout(()=>controller.abort(),350);
+      const abort=()=>controller.abort();
+      this.hostedArtworkAbort?.abort();this.hostedArtworkAbort=controller;
+      if(loadSignal?.aborted)abort();else loadSignal?.addEventListener('abort',abort,{once:true});
       const active=()=>engine===this&&!this.running&&!controller.signal.aborted;
+      const apply=(blob,stage)=>{
+        if(!blob||!active())return;
+        if(this.bgURL)URL.revokeObjectURL(this.bgURL);
+        this.record.bgBlob=blob;this.bgURL=URL.createObjectURL(blob);
+        $('#gameView').dataset.artworkStage=String(stage);setLoadingArtwork(blob);
+      };
       try{
-        // The 640px stage is ample for a blurred backdrop. Freeze the selected
-        // texture before init; no decode, blur worker or image swap during notes.
-        await PhiHostedMedia.artwork(this.record.artworkAsset,{fromStage:1,maxStage:1,signal:controller.signal,active,onStage:(blob,stage)=>{
-          if(!active())return;
-          if(this.bgURL)URL.revokeObjectURL(this.bgURL);
-          this.record.bgBlob=blob;this.bgURL=URL.createObjectURL(blob);
-          $('#gameView').dataset.artworkStage=String(stage);setLoadingArtwork(blob);
-        }});
-      }finally{clearTimeout(timer);controller.abort();}
+        // Courses fetch the selected cover alongside chart/music preparation.
+        // Their cover is allowed to finish on a slow connection, with cancellation
+        // tied to the selected song; a missing optional cover remains blank.
+        if(this.record._courseArtworkReady){apply(await this.record._courseArtworkReady,1);return;}
+        await PhiHostedMedia.artwork(this.record.artworkAsset,{fromStage:1,maxStage:1,signal:controller.signal,active,onStage:apply});
+      }finally{if(timer!==null)clearTimeout(timer);loadSignal?.removeEventListener('abort',abort);controller.abort();
+        if(this.hostedArtworkAbort===controller)this.hostedArtworkAbort=null;}
     }
     async prepareMusicBuffer() {
       if(this.record.streamAudioURL&&!this._offlineExport){
@@ -10650,6 +10747,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.updateHUD();
     }
     stop(reason = "stop") {
+      this.hostedArtworkAbort?.abort();
       this.streamRecoveryAbort?.abort();this.streamBuffering=false;$('#streamBufferStatus')?.classList.add('hidden');
       clearTimeout(this.referenceFinishTimer);this.referenceFinishing=false;
       $("#gameView")?.classList.remove("phiStageIntro","phiStageOutro");
@@ -10888,6 +10986,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.scheduleLoop();
     }
     async restart() {
+      if(this.courseSessionId && globalThis.PhiCourse)return PhiCourse.retry();
       if (!this.record || !this.chart) throw new Error("当前谱面已经释放，无法重新开始");
       if (this.restartPending) return;
       this.restartPending = true;
@@ -11338,7 +11437,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     seekJudgeFeed(at) {
       this.pendingJudge.clear();
-      this.judgeFeedIndex = lowerBoundNumeric(this.noteTimes, at - BAD - 0.35);
+      this.judgeFeedIndex = lowerBoundNumeric(this.noteTimes, at - (this.courseStrict ? 0.14 : BAD) - 0.35);
     }
     update(t = this.time, frameNow = performance.now(), geometryT = t) {
       const nowSec = frameNow / 1000,
@@ -11373,7 +11472,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         this.keyboardContinuous(t);
         while (
           this.judgeFeedIndex < this.noteItems.length &&
-          this.noteItems[this.judgeFeedIndex].n.time <= jt + Math.max(BAD, DRAG_LATE_WINDOW, FLICK_ARM_LATE) + 0.18
+          this.noteItems[this.judgeFeedIndex].n.time <= jt + Math.max((this.courseStrict ? 0.14 : BAD), DRAG_LATE_WINDOW, FLICK_ARM_LATE) + 0.18
         ) {
           const item = this.noteItems[this.judgeFeedIndex++];
           if (!item.n.fake) this.pendingJudge.add(item);
@@ -11422,9 +11521,9 @@ function withTimeout(promise, ms, message = "操作超时") {
             }
           }
           const missLimit =
-            n.type === 3 ? GOOD :
+            n.type === 3 ? (this.courseStrict ? 0.09 : GOOD) :
             n.type === 2 ? DRAG_LATE_WINDOW :
-            n.type === 4 ? FLICK_ARM_LATE : BAD;
+            n.type === 4 ? FLICK_ARM_LATE : (this.courseStrict ? 0.14 : BAD);
           if (n.state === 0 && jt - target > missLimit) {
             // rAF can run before an already queued touch task after a long
             // frame. Leave a short dispatch opportunity before finalizing Miss.
@@ -12252,7 +12351,7 @@ function withTimeout(promise, ms, message = "操作超时") {
           audioT +
           judgeTimingLead +
           clamp((Number(this.clockDrift) || 0) * 0.28, -0.012, 0.012),
-        span = Math.max(BAD, DRAG_LATE_WINDOW, FLICK_ARM_EARLY, FLICK_ARM_LATE) + Math.max(0.18, specialJudgeDelay + 0.08),
+        span = Math.max((this.courseStrict ? 0.14 : BAD), DRAG_LATE_WINDOW, FLICK_ARM_EARLY, FLICK_ARM_LATE) + Math.max(0.18, specialJudgeDelay + 0.08),
         lo = lowerBoundNumeric(this.noteTimes, audioT - span),
         hi = lowerBoundNumeric(this.noteTimes, audioT + span);
       const earliestTapHold = (typeMask & ~((1 << 1) | (1 << 3))) === 0;
@@ -12277,13 +12376,13 @@ function withTimeout(promise, ms, message = "操作超时") {
           if (signed < -FLICK_ARM_EARLY || signed > FLICK_ARM_LATE)
             continue;
         } else if (n.type === 1) {
-          if (dt > BAD) continue;
+          if (dt > (this.courseStrict ? 0.14 : BAD)) continue;
         } else if (n.type === 3) {
           // Hold starts can be Perfect/Good/Miss, never Bad.
-          if (dt > GOOD) continue;
+          if (dt > (this.courseStrict ? 0.09 : GOOD)) continue;
         } else if (n.type === 2) {
           if (dt > DRAG_LATE_WINDOW) continue;
-        } else if (dt > BAD) continue;
+        } else if (dt > (this.courseStrict ? 0.14 : BAD)) continue;
         let dx;
         if (this.chart.kind === "pjsk") {
           const stage = pjskStageGeometry(this), lane = clamp(Number(n._pjskLane) || 0, 0, stage.lanes - 1),
@@ -12342,10 +12441,10 @@ function withTimeout(promise, ms, message = "操作超时") {
       const tap = tapCandidate?.n;
       // Protect a following Tap only from an *early Bad* press intended for a
       // closer Drag/Flick. Never veto an otherwise valid Perfect/Good Tap.
-      if (!tap || tap.type !== 1 || tapCandidate.signed >= -GOOD) return false;
+      if (!tap || tap.type !== 1 || tapCandidate.signed >= -(this.courseStrict ? 0.09 : GOOD)) return false;
       const visualT = tapCandidate.visualT,
         t = tapCandidate.t,
-        span = Math.max(BAD, DRAG_LATE_WINDOW, FLICK_ARM_EARLY, FLICK_ARM_LATE) + Math.max(0.18, specialJudgeDelay + 0.08),
+        span = Math.max((this.courseStrict ? 0.14 : BAD), DRAG_LATE_WINDOW, FLICK_ARM_EARLY, FLICK_ARM_LATE) + Math.max(0.18, specialJudgeDelay + 0.08),
         lo = lowerBoundNumeric(this.noteTimes, visualT - span),
         hi = lowerBoundNumeric(this.noteTimes, visualT + span);
       for (let i = lo; i < hi; i++) {
@@ -12392,7 +12491,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         c.n.state = 2;
         c.n.holdPointer = pid;
         c.n.releaseAt = Infinity;
-        c.n.judge = Math.abs(diff) <= PERFECT ? "perfect" : "good";
+        c.n.judge = Math.abs(diff) <= (this.courseStrict ? 0.04 : PERFECT) ? "perfect" : "good";
         c.n.holdHeadDiff = diff;
         c.n.holdFxAt = this.time + (this.chart.kind === "pjsk" ? PJSK_HOLD_FX_INTERVAL : HOLD_HIT_FX_INTERVAL);
         this.activeHolds.add(c.n._item);
@@ -12401,7 +12500,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         this.hitEffect(c.L, c.n, c.n.judge === "good" ? 1 : 0);
       } else {
         const j =
-          Math.abs(diff) <= PERFECT ? 0 : diff >= -GOOD && diff <= GOOD ? 1 : 2;
+          Math.abs(diff) <= (this.courseStrict ? 0.04 : PERFECT) ? 0 : diff >= -(this.courseStrict ? 0.09 : GOOD) && diff <= (this.courseStrict ? 0.09 : GOOD) ? 1 : 2;
         this.commit(c.n, j, diff, c.L);
       }
     }
@@ -12449,7 +12548,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       if(this.streamBuffering)return null;
       const visualT = this.time,
         t = visualT + judgeTimingLead + clamp((Number(this.clockDrift) || 0) * 0.28, -0.012, 0.012),
-        span = Math.max(BAD, DRAG_LATE_WINDOW, FLICK_ARM_EARLY, FLICK_ARM_LATE) + Math.max(0.18, specialJudgeDelay + 0.08),
+        span = Math.max((this.courseStrict ? 0.14 : BAD), DRAG_LATE_WINDOW, FLICK_ARM_EARLY, FLICK_ARM_LATE) + Math.max(0.18, specialJudgeDelay + 0.08),
         lo = lowerBoundNumeric(this.noteTimes, visualT - span),
         hi = lowerBoundNumeric(this.noteTimes, visualT + span);
       const earliestTapHold = (typeMask & ~((1 << 1) | (1 << 3))) === 0;
@@ -12465,12 +12564,12 @@ function withTimeout(promise, ms, message = "操作超时") {
         if (n.type === 4) {
           if (signed < -FLICK_ARM_EARLY || signed > FLICK_ARM_LATE) continue;
         } else if (n.type === 1) {
-          if (dt > BAD) continue;
+          if (dt > (this.courseStrict ? 0.14 : BAD)) continue;
         } else if (n.type === 3) {
-          if (dt > GOOD) continue;
+          if (dt > (this.courseStrict ? 0.09 : GOOD)) continue;
         } else if (n.type === 2) {
           if (dt > DRAG_LATE_WINDOW) continue;
-        } else if (dt > BAD) continue;
+        } else if (dt > (this.courseStrict ? 0.14 : BAD)) continue;
         const score = Math.abs(visualSigned);
         if (earliestTapHold
           ? (target < bestTarget - 0.0005 || (Math.abs(target - bestTarget) <= 0.0005 && score < bestScore))
@@ -12512,7 +12611,7 @@ function withTimeout(promise, ms, message = "操作超时") {
           candidate.n.state = 2;
           candidate.n.holdPointer = "keyboard";
           candidate.n.releaseAt = Infinity;
-          candidate.n.judge = Math.abs(diff) <= PERFECT ? "perfect" : "good";
+          candidate.n.judge = Math.abs(diff) <= (this.courseStrict ? 0.04 : PERFECT) ? "perfect" : "good";
           candidate.n.holdHeadDiff = diff;
           candidate.n.holdFxAt = this.time + (this.chart.kind === "pjsk" ? PJSK_HOLD_FX_INTERVAL : HOLD_HIT_FX_INTERVAL);
           this.activeHolds.add(candidate.n._item);
@@ -12520,7 +12619,7 @@ function withTimeout(promise, ms, message = "操作超时") {
           this.playSound("click", null, candidate.n);
           this.hitEffect(candidate.L, candidate.n, candidate.n.judge === "good" ? 1 : 0);
         } else {
-          const judgement = Math.abs(diff) <= PERFECT ? 0 : diff >= -GOOD && diff <= GOOD ? 1 : 2;
+          const judgement = Math.abs(diff) <= (this.courseStrict ? 0.04 : PERFECT) ? 0 : diff >= -(this.courseStrict ? 0.09 : GOOD) && diff <= (this.courseStrict ? 0.09 : GOOD) ? 1 : 2;
           this.commit(candidate.n, judgement, diff, candidate.L);
         }
       }
@@ -12807,7 +12906,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     score() {
       if (!(this.total > 0)) return 0;
-      if(this.chart.kind === "pjsk")return Math.round(this.accuracy()*1000000);
+      if(this.chart.kind === "pjsk" || this.courseStrict)return Math.round(this.accuracy()*1000000);
       if (this.counts[0] === this.total) return 1000000;
       return Math.round(
         (0.9 * this.accuracy() +
@@ -13990,6 +14089,7 @@ function withTimeout(promise, ms, message = "操作超时") {
   }
   async function switchPausedPjskMode(enable, requestedLanes) {
     const previous = engine;
+    if(previous?.courseSessionId){toast("课题模式使用原谱玩法");return;}
     if (pausedModeSwitchBusy || !previous?.running || !previous.paused || previous.starting || previous.resumePending || previous.chart.nativePjsk) return;
     const lanes = clamp(Math.round(Number(requestedLanes) || PJSK_DEFAULT_LANES), PJSK_MIN_LANES, PJSK_MAX_LANES);
     if ((previous.chart.kind === "pjsk") === !!enable && (!enable || previous.chart.pjskLaneCount === lanes)) return;
@@ -14062,6 +14162,11 @@ function withTimeout(promise, ms, message = "操作超时") {
       engine?.stop();
       if(playOptions?.offlineExport)phiExportViewport?.syncRoot();
       engine = new Engine(rec, chart, activePack);
+      if(playOptions?.courseSessionId){
+        if(chart.kind === "pjsk")throw Error("课题模式暂不支持 PJSK 谱面");
+        engine.courseSessionId=playOptions.courseSessionId;engine.courseStageToken=playOptions.courseStageToken;engine.courseStrict=true;
+        engine.autoplay=false;engine.invincibleMode=false;engine.usedInvincible=false;
+      }
       engine._offlineExport=!!playOptions?.offlineExport;
       engine._exportDpr=Number(playOptions?.exportDpr)||1;
       await prepareNativeBlockTextures(chart);
@@ -14165,8 +14270,10 @@ function withTimeout(promise, ms, message = "操作超时") {
     syncReferenceViewport();
     if (name==="library") requestAnimationFrame(()=>centerReferenceSelection(libraryFocusCard,false));
   }
-  async function referenceEnterLibrary() {
+  async function referenceEnterLibrary(collectionId='all') {
     const token=++referenceRouteToken;
+    await setLibraryCollection(typeof collectionId==='string'?collectionId:'all');
+    if(token!==referenceRouteToken)return;
     referenceScene("interlude");
     await sleep(matchMedia("(prefers-reduced-motion: reduce)").matches?30:2650);
     if (token===referenceRouteToken) referenceScene("library");
@@ -14223,9 +14330,12 @@ function withTimeout(promise, ms, message = "操作超时") {
       engine=null;currentRecord=null;performanceMonitor.setGameActive(false);
       $('#gameView').classList.add('hidden');
       cancelLoadingPresentation();resumeLibraryVisuals();referenceScene('library');
+      if(!libraryLoadedOnce||libraryDirty)void renderLibrary();
     };
     $("#refLibraryBack").onclick=()=>{++referenceRouteToken;referenceScene("collection");};
-    for (const button of document.querySelectorAll("[data-reference-open-library]")) button.onclick=referenceEnterLibrary;
+    for (const button of document.querySelectorAll("[data-reference-open-library]")) button.onclick=()=>referenceEnterLibrary(button.dataset.collection||'all');
+    $('#libraryCollectionLabel')?.addEventListener('click',()=>{++referenceRouteToken;referenceScene('collection');});
+    renderCollectionNavigation();
     $("#refCollectionSettings").onclick=openSettingsPanel;
     $("#refCourse").onclick=(event)=>{
       event.stopPropagation();
@@ -14804,7 +14914,14 @@ function withTimeout(promise, ms, message = "操作超时") {
     image.width=121;image.height=128;image.src=url;el.replaceChildren(image);el.dataset.rank=key;
   }
   function showResults(e) {
+    if(e.courseSessionId && e!==engine)return;
     performanceMonitor.setGameActive(false);
+    if(e.courseSessionId){
+      if(!globalThis.PhiCourse?.onResult(e))return;
+      document.body.classList.remove("phiGameplayActive", "pjskModeActive");
+      $("#gameView").classList.add("hidden");
+      return;
+    }
     document.body.classList.remove("phiGameplayActive", "pjskModeActive");
     document.body.classList.add("phiResultActive");
     $("#gameView").classList.add("hidden");
@@ -14855,6 +14972,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     observeResultGeometry();
   }
   async function backToLibrary() {
+    globalThis.PhiCourse?.cancel();
     performanceMonitor.setGameActive(false);
     try { engine?.stop("back-to-library"); }
     catch (error) { Diagnostics.warn("GameState.cleanup", error?.message || String(error)); }
@@ -15936,7 +16054,7 @@ function withTimeout(promise, ms, message = "操作超时") {
   registerModule("ErrorBoundary", { reportRecoverable });
   registerModule("Diagnostics", Diagnostics);
   registerModule("StorageManager", { openDB, dbGetSetting, dbPutSetting, dbGetChart, dbGetChartSummary, dbPutChart, dbDeleteChart, chartSummaryFromRecord, exportLibraryMigrationPackage, importLibraryMigrationPackage, mode:()=>storageMode });
-  registerModule("BuiltinCatalog",{entries:BUILTIN_PACKS,materialize:materializeBuiltinPack});
+  registerModule("BuiltinCatalog",{entries:BUILTIN_PACKS,materialize:materializeBuiltinPack,coverage:fullCatalogState?.coverage});
   registerModule("ResourceManager", { loadResourcePack, importResourcePack, loadBuiltinResourcePack });
   registerModule("BackgroundRenderer", { createFrostedBackgroundBlob, imageLumaMetrics, imageFromPersistentURL });
   registerModule("ArchiveScanner", { ZipArchive, unpackFile, safeArchivePath, limits:PHI_SECURITY_LIMITS });
@@ -15971,6 +16089,32 @@ function withTimeout(promise, ms, message = "操作超时") {
   installDualUI();
   document.documentElement.style.setProperty("--ref-menu-image",`url("${REFERENCE_THUMBNAILS["LeaveAllBehind.rider"]}")`);
   installReferenceUI();
+  if(globalThis.PhiCourse){
+    PhiCourse.install({
+      entries:async()=>{
+        const imported=[];
+        for(const id of await dbGetChartKeysNewest()){
+          const item=await dbGetChartSummary(id);if(item)imported.push(item);
+        }
+        return [...BUILTIN_PACKS,...imported];
+      },
+      start:async(item,courseSessionId,courseStageToken)=>{
+        Engine.primeAudioFromGesture();
+        const options={mode:"phi",courseSessionId,courseStageToken};
+        engine?.stop("course-next");
+        referenceScene("library");
+        const builtin=BUILTIN_PACKS.find(entry=>entry.id===item.id);
+        if(builtin)await startBuiltinPack(builtin,options);
+        else {
+          const record=await dbGetChart(item.id);if(!record)throw Error("谱面已删除，请重新选择");
+          await startChart(record,false,options);
+        }
+        if(engine?.courseSessionId!==courseSessionId||!engine.running)throw Error("歌曲未能开始，请检查资源后重试");
+      },
+      back:backToLibrary
+    });
+    registerModule("CourseMode",PhiCourse);
+  }
 
   const PHI_SELF_TEST_MODE = new URLSearchParams(location.search).get("phiSelfTest") === "1";
   if (PHI_SELF_TEST_MODE) setTimeout(runPhiSelfTests, 0);
@@ -16083,7 +16227,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       if (!activePack && builtinResourcePackCache) activePack = builtinResourcePackCache;
       updatePackStatus();
       refreshAutoplayUI();
-      await renderLibrary();
+      await prepareInitialLibrary();
       scheduleLegacyStorageMigration();
       if (isTemporaryStorage()) announceTemporaryStorage();
     } catch (e) {
@@ -16096,7 +16240,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         } catch (error) { Diagnostics.warn("Runtime.recoverable", error?.message || String(error)); }
       updatePackStatus();
       refreshAutoplayUI();
-      try { await renderLibrary(); } catch (error) { Diagnostics.error("Library.render", error); }
+      try { await prepareInitialLibrary(); } catch (error) { Diagnostics.error("Library.render", error); }
       scheduleLegacyStorageMigration();
       if (isTemporaryStorage()) announceTemporaryStorage();
       else toast(`本机存储已保留，但初始化部分功能失败：${e.message}`, true, 7000);

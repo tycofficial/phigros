@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' blob: 'wasm-unsafe-eval'; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' data: blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <link rel="preload" href="./assets/opening/studio.webp" as="image" fetchpriority="high">
-<link rel="preload" href="./js/app.js?v=4.0.1.2-input-10" as="script">
+<link rel="preload" href="./js/app.js?v=4.0.1.2-pages-1" as="script">
 <meta name="theme-color" content="#0b111d">
 <script id="phiOfflineNetworkGuard" src="./js/site-network-guard.js"></script>
 <title>TYCPHIGROS4.0.1.2</title>
@@ -185,13 +185,15 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 -->
 <!-- Chart/music/art source: https://github.com/7aGiven/Phigros_Resource . Authorship is retained per song. Native blockAreaList is rendered live, with no recording-derived overlays. Native GPU passes and original GLSL: Adai-add/PhiraiAd a60b49ad, GPL-3.0 (full license below). -->
 <link rel="stylesheet" id="phiOriginalMaterialStyles" href="./css/original-materials.css"><script id="phiRepairEvidence" type="application/json" data-src="./assets/meta/repair-evidence.json"></script><link rel="stylesheet" id="phiSafariHudLoadingFix" href="./css/safari-hud.css">
-<link rel="stylesheet" href="./css/opening.css?v=4.0.1.2-input-10">
+<link rel="stylesheet" href="./css/opening.css?v=4.0.1.2-pages-1">
+<link rel="stylesheet" href="./css/catalog.css?v=4.0.1.2-pages-1">
+<link rel="stylesheet" href="./css/course-mode.css?v=4.0.1.2-pages-1">
 </head>
 
 <!-- PJSK perspective math reference: Next-SEKAI/sonolus-next-sekai-engine (MIT License). Copyright (c) 2025 Kyle Chang. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, subject to the MIT License terms; the software is provided "AS IS", without warranty of any kind. -->
 <body>
 <script id="phiBuildMetadata" type="application/json">{
-  "runtime": "4.0.1.2-input-10",
+  "runtime": "4.0.1.2-pages-1",
   "parser": "9.0-native-sus",
   "renderEngine": "38.3-safari-caption-baseline",
   "buildTimestamp": "2026-10-24T04:14:45Z",
@@ -207,14 +209,17 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   <button id="openingSound" type="button" hidden>点按开启音乐</button>
 </section>
   <section id="refCollection" class="refScene hidden" aria-label="章节选择">
+<p class="pagesReleaseSummary" style="position:absolute;top:10px;left:70px;right:70px;text-align:center;font-size:12px;color:#ddd;pointer-events:none">4.0.1.2 · Pages 曲库：142 个歌曲／版本 · 429 张谱面</p>
     <button class="refCorner" id="refCollectionBack" type="button" aria-label="返回开始界面"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 8h10l3 4h13v15H3ZM3 8V5h10l3 3"/></svg></button>
-    <div class="refCollectionStrip"><div class="refCollectionCard main" role="group" aria-label="IN 曲目">
+    <div class="refCollectionStrip"><div class="refCollectionCard main" role="group" aria-label="全部歌曲">
+      <div class="refCatalogHeading"><strong>全部歌曲</strong><small id="refCatalogSummary">内置曲目</small></div>
       <div class="refCollectionOptions"><button id="refCourse" type="button">课题模式</button><button type="button" data-reference-open-library>全部歌曲</button></div>
       <button class="refCollectionOpen" type="button" data-reference-open-library aria-label="进入全部歌曲"></button>
-    </div><button class="refCollectionCard narrow" type="button" data-reference-open-library><span>Single</span></button><button class="refCollectionCard narrow legacy" type="button" data-reference-open-library><span>Legacy</span></button></div>
+    </div><div id="refCatalogGroups"></div></div>
     <button class="refCollectionSettings" id="refCollectionSettings" type="button" aria-label="设置">⚙</button>
   </section><section id="refInterlude" class="refScene hidden" aria-label="正在进入曲目列表"></section>
   <section id="libraryView" class="view hidden">
+    <button id="libraryCollectionLabel" class="libraryCollectionLabel" type="button" aria-label="返回精选集选择">全部歌曲</button>
     <button class="refCorner" id="refLibraryBack" type="button" aria-label="返回章节"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M27 16H5M14 7l-9 9 9 9"/></svg></button>
     <div class="libraryBackdrop" aria-hidden="true"><div id="libraryBackdropImage" class="libraryBackdropImage"></div><div class="libraryBackdropShade"></div><div class="libraryBackdropLines"></div></div>
     <div class="phiVideoTopBar" aria-label="选歌顶部栏目">
@@ -618,12 +623,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
-<script src="./js/performance-policy.js?v=4.0.1.2-input-10" defer></script>
-<script src="./js/hosted-manifest.js?v=4.0.1.2-input-10" defer></script>
-<script src="./js/resource-transfer.js?v=4.0.1.2-input-10" defer></script>
-<script src="./js/hosted-media.js?v=4.0.1.2-input-10" defer></script>
-<script src="./js/opening.js?v=4.0.1.2-input-10" defer></script>
-<script src="./js/app.js?v=4.0.1.2-input-10" defer></script>
+<script src="./js/performance-policy.js?v=4.0.1.2-pages-1" defer></script>
+<script src="./js/hosted-manifest.js?v=4.0.1.2-pages-1" defer></script>
+<script src="./js/full-catalog.js?v=4.0.1.2-pages-1" defer></script>
+<script src="./js/catalog-runtime.js?v=4.0.1.2-pages-1" defer></script>
+<script src="./js/course-mode.js?v=4.0.1.2-pages-1" defer></script>
+<script src="./js/resource-transfer.js?v=4.0.1.2-pages-1" defer></script>
+<script src="./js/hosted-media.js?v=4.0.1.2-pages-1" defer></script>
+<script src="./js/opening.js?v=4.0.1.2-pages-1" defer></script>
+<script src="./js/app.js?v=4.0.1.2-pages-1" defer></script>
 
 
 

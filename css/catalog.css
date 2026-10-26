@@ -1,0 +1,16 @@
+#refCollection .refCollectionStrip{left:0;top:17%;width:100%;height:66%;display:flex;gap:16px;padding:0 7%;box-sizing:border-box;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scrollbar-width:thin;--chapter-cut:30px}
+#refCollection .refCollectionCard{position:relative;left:auto;top:auto;flex:0 0 50%;width:auto;height:100%;min-width:260px;scroll-snap-align:center}
+#refCollection .refCollectionCard.main::after{content:"PHIGROS";font-size:clamp(24px,4vw,60px);left:12%;bottom:32%}
+#refCatalogGroups{display:contents}
+#refCollection .catalogGroup{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left;gap:12px;padding:12% 7% 5% 8%;flex-basis:29%;min-width:200px;background:linear-gradient(150deg,#263b4f,#151321)}
+#refCollection .catalogGroup:nth-child(2n){background:linear-gradient(150deg,#33312a,#172025)}
+#refCollection .catalogGroup strong{font-size:clamp(20px,2.5vw,34px);font-weight:400;line-height:1.3;overflow-wrap:anywhere}
+#refCollection .catalogGroup small,.refCatalogHeading small{font-size:clamp(11px,1.2vw,16px);opacity:.75}
+.refCatalogHeading{position:absolute;inset:12% 10% auto 15%;display:flex;flex-direction:column;gap:10px}
+.refCatalogHeading strong{font-size:clamp(22px,3vw,40px);font-weight:400}
+#refCollection .refCollectionOptions{width:56%;right:5%;height:27%}
+#refCollection button:focus-visible{outline:3px solid #90dcff;outline-offset:-9px}
+.libraryCollectionLabel{position:absolute;z-index:12;left:11%;top:11%;max-width:34%;padding:6px 10px;border:0;background:#0a111c9c;color:#e8f5ff;font:400 clamp(10px,1.1vw,15px)/1.4 var(--phi-global-font);text-align:left;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.libraryCollectionEmpty{position:relative;z-index:4;padding:20px;color:#dcebf4;background:#07131cbf;font-size:14px;line-height:1.7}
+body[data-menu-mode="pjsk"] .libraryCollectionLabel{top:auto;bottom:10px;left:12px;max-width:75%}
+@media(orientation:portrait){#refCollection .refCollectionStrip{top:22%;height:48%;padding:0 4%;gap:10px}#refCollection .refCollectionCard{flex-basis:82%;min-width:260px}#refCollection .catalogGroup{flex-basis:60%;min-width:210px;padding:20px 32px}.libraryCollectionLabel{left:12%;max-width:34%;font-size:10px}}
