@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-2';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-3';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,10 +26,10 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-2",
+    runtime: "4.0.1.2-pages-3",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
-    buildTimestamp: "2026-10-27T10:01:12Z",
+    buildTimestamp: "2026-10-27T10:08:25Z",
     coreSha256: "dcae237af6ee34b393b4ceea31605c87aaf0d0b737c95da89cc12e9cd5dbe677",
   });
   const PHI_SECURITY_LIMITS = Object.freeze({
@@ -12683,9 +12683,10 @@ function withTimeout(promise, ms, message = "操作超时") {
       } else if(this.inputStats)this.inputStats.keyboardNoCandidate=(this.inputStats.keyboardNoCandidate||0)+1;
       // A held keyboard state behaves like a continuous full-area contact:
       // yellow Drag and red Flick are consumed as they reach their line.
-      // Other keys in a chord do not repeat the continuous-contact scan. The
-      // first held key and the normal frame update already cover those notes.
-      if(!keyboardInput||keyboardInput.down.size<=1)this.keyboardContinuous(at,historical);
+      // Share a scan only for the same captured instant. A later keydown must
+      // still judge newly due specials when the next animation frame is late.
+      if(!keyboardInput||keyboardInput.down.size<=1||!Number.isFinite(this.keyboardContinuousAt)||Math.abs(this.keyboardContinuousAt-at)>1e-9)
+        this.keyboardContinuous(at,historical);
     }
     keyboardContact(code) {
       this.keyboardContacts ||= new Map();
@@ -12711,6 +12712,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         t=at+judgeTimingLead+clamp((Number(this.clockDrift)||0)*.28,-.012,.012),
         span=Math.max(DRAG_LATE_WINDOW,FLICK_ARM_LATE)+Math.max(.18,specialJudgeDelay+.08),
         lo=lowerBoundNumeric(this.noteTimes,at-span),hi=lowerBoundNumeric(this.noteTimes,at+span);
+      this.keyboardContinuousAt=at;
       // One bounded pass replaces repeated nearest-candidate searches. Every
       // due special in a dense chord is judged; there is no per-frame note cap.
       let scanned=0;

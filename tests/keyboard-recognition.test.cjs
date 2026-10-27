@@ -128,3 +128,10 @@ test('continuous keyboard contact visits a dense special-note window once, witho
   for(const code of codes.slice(1,6))manager.keyDown(key(code));
   assert.equal(p.inputStats.keyboardContinuousScanned,80);assert.equal(p.commits.length,80);
 });
+test('a later keydown judges newly due special notes before a delayed animation frame',()=>{
+  const {p,manager,setNow}=playable([{type:2,time:40.1},{type:4,time:40.1}]);
+  manager.keyDown(key('KeyA'));assert.equal(p.commits.length,0);
+  setNow(1100);p.time=40.1;
+  manager.keyDown(key('KeyS',{timeStamp:1100}));
+  assert.equal(p.commits.length,2);assert(p.commits.every(result=>result.j===0&&Math.abs(result.diff)<1e-9));
+});
