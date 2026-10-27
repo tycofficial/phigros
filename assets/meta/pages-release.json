@@ -1,16 +1,16 @@
 {
-  "version": "4.0.1.2-pages-8",
+  "version": "4.0.1.2-pages-9",
   "maxBytes": 990000000,
   "baseBytes": 138035549,
   "selectedBundleBytes": 845795864,
   "selectedNewSongVersions": 150,
   "publishedSongVersions": 335,
   "publishedCharts": 1064,
-  "visibleCollections": 24,
+  "visibleCollections": 35,
   "requiredNewBundles": 15,
   "omittedNewSongVersions": 0,
   "originalQualityPreserved": true,
-  "selectionPolicy": "required chapter8/chapter9/SP, then smallest complete song bundles",
+  "selectionPolicy": "162 local song versions; remaining 173 require fixed external sources",
   "selectedAudioHashes": [
     "reference-song:Adastraperaspera.RabbitHouse",
     "reference-song:AfterDawn.S9ryne",
@@ -199,8 +199,8 @@
   "headroomBytes": 5111376,
   "songs": 162,
   "charts": 492,
-  "addedSongs": 150,
-  "addedCharts": 446,
+  "addedSongs": 323,
+  "addedCharts": 1018,
   "selection": "preserve every published song; lossless chart/art storage; then smallest complete additional song bundles",
   "bytes": 984888624,
   "updatedAt": "2026-10-27T10:16:39Z",
@@ -215,5 +215,7 @@
   "localSongVersions": 162,
   "localCharts": 492,
   "remoteSongVersions": 173,
-  "remoteCharts": 572
+  "remoteCharts": 572,
+  "localAddedSongs": 150,
+  "localAddedCharts": 446
 }

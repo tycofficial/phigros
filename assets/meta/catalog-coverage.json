@@ -46,14 +46,14 @@
     "AT": 56,
     "SP": 1
   },
-  "addedSongs": 150,
-  "addedCharts": 446,
+  "addedSongs": 323,
+  "addedCharts": 1018,
   "historicalSPChartsAdded": 8,
   "reusedExistingCharts": 46,
   "existingCharts": 46,
-  "playableCharts": 492,
-  "playableSongVersions": 162,
-  "visibleCollections": 24,
+  "playableCharts": 1064,
+  "playableSongVersions": 335,
+  "visibleCollections": 35,
   "excludedCharts": [
     {
       "path": "Introduction/EZ.json",
@@ -67,8 +67,14 @@
     "Chapter assignments and group sequence are community metadata; official in-game layout was not independently verified.",
     "Catalog audio/art/chart availability does not verify every special visual or original-game behavior."
   ],
-  "releaseType": "github-pages-lossless-expanded-subset",
+  "releaseType": "github-pages-hybrid-catalog",
   "fullSourcePlayableCharts": 1064,
   "fullSourceSongVersions": 335,
-  "omittedSongVersionsForHostingBudget": 173
+  "omittedSongVersionsForHostingBudget": 0,
+  "localPlayableSongVersions": 162,
+  "localPlayableCharts": 492,
+  "externalSongVersions": 173,
+  "externalCharts": 572,
+  "externalDependency": "固定 GitHub 和 jsDelivr 外部来源；需要兼容 OGG 的浏览器和可访问的网络",
+  "localOmittedForHostingBudget": 173
 }

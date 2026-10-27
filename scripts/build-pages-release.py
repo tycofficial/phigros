@@ -164,11 +164,11 @@ def main():
     index = (output / 'index.html').read_text()
     banner = f'<p class="pagesReleaseSummary" style="position:absolute;top:10px;left:70px;right:70px;text-align:center;font-size:12px;color:#ddd;pointer-events:none">4.0.1.2 · Pages 曲库：{coverage["playableSongVersions"]} 个歌曲／版本 · {coverage["playableCharts"]} 张谱面</p>'
     index = re.sub(r'(<section id="refCollection"[^>]*>)', lambda match: match[1] + '\n' + banner, index, count=1)
-    index = index.replace('4.0.1.2-catalog-1', '4.0.1.2-pages-8')
+    index = index.replace('4.0.1.2-catalog-1', '4.0.1.2-pages-9')
     (output / 'index.html').write_text(index)
     for path in ['js/app.js', 'js/hosted-media.js', 'sw.js']:
         file = output / path
-        file.write_text(file.read_text().replace('4.0.1.2-catalog-1', '4.0.1.2-pages-8').replace('tycphigros-app-catalog-1', 'tycphigros-app-pages-8'))
+        file.write_text(file.read_text().replace('4.0.1.2-catalog-1', '4.0.1.2-pages-9').replace('tycphigros-app-catalog-1', 'tycphigros-app-pages-9'))
     readme = f'''# TYCPHIGROS 4.0.1.2 · GitHub Pages 发布曲库
 
 此发布包含 **{coverage['playableSongVersions']} 个歌曲／活动版本、{coverage['playableCharts']} 张谱面**，共 {coverage['visibleCollections']} 个有内容的章节与精选集分类。完整开发资源库是 335 个版本、1064 张谱面；本次因 Pages 站点容量而发布其中可完整容纳的部分。页面仅显示随站点实际发布的资源，未发布歌曲不会作为可玩条目出现。
@@ -191,7 +191,7 @@ python scripts/build-pages-release.py --source /workspace/phigros --output /work
 '''
     (output / 'README.md').write_text(readme)
     report_path = output / 'assets/meta/pages-release.json'
-    release_report = {'version': '4.0.1.2-pages-8', 'maxBytes': args.max_bytes, 'baseBytes': base_bytes, 'selectedBundleBytes': used,
+    release_report = {'version': '4.0.1.2-pages-9', 'maxBytes': args.max_bytes, 'baseBytes': base_bytes, 'selectedBundleBytes': used,
                       'selectedNewSongVersions': len(selected_set), 'publishedSongVersions': coverage['playableSongVersions'],
                       'publishedCharts': coverage['playableCharts'], 'visibleCollections': coverage['visibleCollections'],
                       'requiredNewBundles': len(required), 'omittedNewSongVersions': len(bundles) - len(selected_set),
