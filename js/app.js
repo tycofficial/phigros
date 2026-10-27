@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-10';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-11';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,7 +26,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-10",
+    runtime: "4.0.1.2-pages-11",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-10-27T10:16:39Z",
@@ -14570,7 +14570,15 @@ function withTimeout(promise, ms, message = "操作超时") {
     out.center.x=cx;out.center.y=cy;out.hx=Math.abs(cache.hx*sx);out.hy=Math.abs(cache.hy*sy);out.angle=rotation*Math.PI/180;out.cos=Math.cos(out.angle);out.sin=Math.sin(out.angle);return out;
   }
   class NativeBlockTimeline {
-    constructor(areas){this.areas=areas;this.events=areas.flatMap((b,i)=>b.appearTime<b.disappearTime?[[b.appearTime,i,true],[b.disappearTime,i,false]]:[]).sort((a,b)=>a[0]-b[0]||a[1]-b[1]||(+a[2])-(+b[2]));this.visible=new Set();this.cursor=0;this.time=-Infinity;this.ids=[];}
+    constructor(areas){
+      this.areas=areas;this.events=areas.flatMap((b,i)=>b.appearTime<b.disappearTime?[[b.appearTime,i,true],[b.disappearTime,i,false]]:[]).sort((a,b)=>a[0]-b[0]||a[1]-b[1]||(+a[2])-(+b[2]));
+      // An area is visible on [appearTime, disappearTime). Sum all events at
+      // the same timestamp before measuring the peak; a handoff at one instant
+      // must not create a spurious allocation for both outgoing and incoming.
+      let count=0,peak=0;
+      for(let i=0;i<this.events.length;){const time=this.events[i][0];while(i<this.events.length&&this.events[i][0]===time)count+=this.events[i++][2]?1:-1;peak=Math.max(peak,count);}
+      this.peak=peak;this.visible=new Set();this.cursor=0;this.time=-Infinity;this.ids=[];
+    }
     at(t){
       let lo=0,hi=this.events.length;while(lo<hi){const m=(lo+hi)>>>1;if(this.events[m][0]<=t)lo=m+1;else hi=m;}const end=lo;let changed=end!==this.cursor;
       while(this.cursor>end){const [,id,on]=this.events[--this.cursor];if(on)this.visible.delete(id);else this.visible.add(id);}
@@ -14631,7 +14639,11 @@ function withTimeout(promise, ms, message = "操作超时") {
       // Rebuild on the next play. Never restart shader compilation in a live song.
       if(!(e.w>0&&e.h>0))throw new Error('噪域初始化前游戏画布尺寸无效');
       const areas=e.chart.blockAreas||[];for(const b of areas)nativeBlockTransform(b,b.appearTime,nativeBlockViewport(e).aspect);
-      let cap=64;while(cap<Math.max(1,areas.length)*54)cap*=2;this.geometryArena={capacity:cap,a:Array.from({length:6},()=>new Float32Array(cap)),b:Array.from({length:6},()=>new Float32Array(cap)),lengths:new Int32Array(6),counts:new Int32Array(6)};
+      // Only simultaneous visible areas can contribute vertices in one frame.
+      // Hate AT has over 14,000 authored areas but far fewer active at once;
+      // preallocating by the total needlessly costs tens of MiB on mobile.
+      if(!e.nativeBlockTimeline||e.nativeBlockTimeline.areas!==areas)e.nativeBlockTimeline=new NativeBlockTimeline(areas);
+      let cap=64;while(cap<Math.max(1,e.nativeBlockTimeline.peak)*54)cap*=2;this.geometryArena={capacity:cap,a:Array.from({length:6},()=>new Float32Array(cap)),b:Array.from({length:6},()=>new Float32Array(cap)),lengths:new Int32Array(6),counts:new Int32Array(6)};
     }
     program(vert,frag){
       const gl=this.gl,p=gl.createProgram(),shaders=[];

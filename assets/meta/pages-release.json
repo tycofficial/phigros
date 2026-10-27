@@ -1,5 +1,5 @@
 {
-  "version": "4.0.1.2-pages-10",
+  "version": "4.0.1.2-pages-11",
   "maxBytes": 990000000,
   "baseBytes": 138035549,
   "selectedBundleBytes": 845795864,
@@ -218,5 +218,6 @@
   "remoteCharts": 572,
   "localAddedSongs": 150,
   "localAddedCharts": 446,
-  "noiseEasingFix": "sine, quadratic, cubic and quartic easing match pinned PhiraiAd noise-area format"
+  "noiseEasingFix": "sine, quadratic, cubic and quartic easing match pinned PhiraiAd noise-area format",
+  "noiseCapacityFix": "preallocate by maximum simultaneous visible regions; retain dynamic growth"
 }
