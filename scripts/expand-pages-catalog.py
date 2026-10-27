@@ -82,7 +82,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--full-source',type=Path,default=Path('/workspace/phigros'))
     parser.add_argument('--publish',type=Path,default=Path('/workspace/phigros-publish'))
-    parser.add_argument('--output',type=Path,default=Path('/workspace/phigros-expanded-release'))
+    parser.add_argument('--output',type=Path,default=Path('/workspace/phigros-stage-reuse-art'))
     parser.add_argument('--cache',type=Path,default=Path('/workspace/phigros-pages-packed-assets'))
     parser.add_argument('--media-index',type=Path,default=Path('/workspace/phigros-media-opt/lossless-art-index.json'))
     parser.add_argument('--max-bytes',type=int,default=990_000_000)
@@ -125,6 +125,20 @@ def main():
             spec['original']=value['url']
             spec['losslessStorage']={key:value[key] for key in ['pixelSHA256','originalSHA256','rgbaEquivalent','metadataPreserved','encoding'] if key in value}
             art_extensions[ident]='.webp'
+    # The full-size menu preview can share the verified original image instead
+    # of storing a second full-resolution JPEG. Gameplay's medium stage remains
+    # unchanged. Keep the actual image MIME for browser Blob decoding.
+    for spec in source['artwork'].values():
+        if len(spec.get('stages', [])) < 3:
+            continue
+        url=spec['original']
+        path=locations.get(url[2:], full/url[2:])
+        data=path.read_bytes()
+        ext=path.suffix.lower()
+        mime={'.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg','.png':'image/png'}.get(ext)
+        if not mime:
+            raise ValueError('Unsupported original artwork format: '+url)
+        spec['stages'][2]={'url':url,'bytes':len(data),'sha256':digest(data),'mime':mime}
     for entry in source['entries']:
         old_name=entry['meta']['illustration']
         art=next(file for file in entry['files'] if file['name']==old_name)
@@ -245,8 +259,8 @@ def main():
                'indexIntegration':'Only update pagesReleaseSummary counts in the latest index; preserve independently deployed code/versions.'}
     atomic(output/'assets/meta/lossless-expansion.json',(json.dumps(expansion,ensure_ascii=False,indent=2)+'\n').encode())
     readme=(publish/'README.md').read_text()
-    readme=re.sub(r'142 个歌曲／活动版本、429 张谱面',f"{coverage['playableSongVersions']} 个歌曲／活动版本、{coverage['playableCharts']} 张谱面",readme)
-    readme=re.sub(r'共 22 个有内容',f"共 {len(group_ids)} 个有内容",readme)
+    readme=re.sub(r'\d+ 个歌曲／活动版本、\d+ 张谱面',f"{coverage['playableSongVersions']} 个歌曲／活动版本、{coverage['playableCharts']} 张谱面",readme)
+    readme=re.sub(r'共 \d+ 个有内容',f"共 {len(group_ids)} 个有内容",readme)
     readme=readme.replace('原始高清曲绘','与原 PNG 解码像素完全一致的无损 WebP 高清曲绘')
     readme+='\n\n本次扩容保留所有已发布歌曲及成绩标识；谱面仅重新 gzip 压缩，解压后的 JSON 字节不变。高清原图以逐像素校验相同的无损 WebP 存储，原 PNG 保留于完整开发资源库，音乐不重编码。旧聚合谱面包由已存在的 individual 文件取代，发布清单同步更新；游玩、导出和离线备份仍使用同一资源索引。扩容报告见 `assets/meta/lossless-expansion.json`。\n'
     atomic(output/'README.md',readme.encode())

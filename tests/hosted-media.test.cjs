@@ -219,3 +219,10 @@ test('opening cues follow the music clock, remain clear after looping, and stop 
   opening.show(false);await Promise.resolve();frame();assert.equal(home.dataset.stage,'title');assert(opening.audio.src);
   opening.stop();
 });
+
+test('progressive artwork assigns each JPEG and lossless WebP its true MIME type',async()=>{
+  const stages=[{url:'./tiny.jpg'},{url:'./medium.jpg'},{url:'./original.webp',mime:'image/webp'}];
+  const {PhiHostedMedia:media}=runtime({PhiHostedManifest:{artwork:{cover:{stages}}}});
+  const observed=[];await media.artwork('cover',{onStage:async(blob,stage)=>observed.push([stage,blob.type])});
+  assert.deepEqual(observed,[[0,'image/jpeg'],[1,'image/jpeg'],[2,'image/webp']]);
+});
