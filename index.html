@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' blob: 'wasm-unsafe-eval'; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' data: blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <link rel="preload" href="./assets/opening/studio.webp" as="image" fetchpriority="high">
-<link rel="preload" href="./js/app.js?v=4.0.1.2-pages-4" as="script">
+<link rel="preload" href="./js/app.js?v=4.0.1.2-pages-5" as="script">
 <meta name="theme-color" content="#0b111d">
 <script id="phiOfflineNetworkGuard" src="./js/site-network-guard.js"></script>
 <title>TYCPHIGROS4.0.1.2</title>
@@ -185,15 +185,15 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 -->
 <!-- Chart/music/art source: https://github.com/7aGiven/Phigros_Resource . Authorship is retained per song. Native blockAreaList is rendered live, with no recording-derived overlays. Native GPU passes and original GLSL: Adai-add/PhiraiAd a60b49ad, GPL-3.0 (full license below). -->
 <link rel="stylesheet" id="phiOriginalMaterialStyles" href="./css/original-materials.css"><script id="phiRepairEvidence" type="application/json" data-src="./assets/meta/repair-evidence.json"></script><link rel="stylesheet" id="phiSafariHudLoadingFix" href="./css/safari-hud.css">
-<link rel="stylesheet" href="./css/opening.css?v=4.0.1.2-pages-4">
-<link rel="stylesheet" href="./css/catalog.css?v=4.0.1.2-pages-4">
-<link rel="stylesheet" href="./css/course-mode.css?v=4.0.1.2-pages-4">
+<link rel="stylesheet" href="./css/opening.css?v=4.0.1.2-pages-5">
+<link rel="stylesheet" href="./css/catalog.css?v=4.0.1.2-pages-5">
+<link rel="stylesheet" href="./css/course-mode.css?v=4.0.1.2-pages-5">
 </head>
 
 <!-- PJSK perspective math reference: Next-SEKAI/sonolus-next-sekai-engine (MIT License). Copyright (c) 2025 Kyle Chang. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, subject to the MIT License terms; the software is provided "AS IS", without warranty of any kind. -->
 <body>
 <script id="phiBuildMetadata" type="application/json">{
-  "runtime": "4.0.1.2-pages-4",
+  "runtime": "4.0.1.2-pages-5",
   "parser": "9.0-native-sus",
   "renderEngine": "38.3-safari-caption-baseline",
   "buildTimestamp": "2026-10-27T10:16:39Z",
@@ -335,6 +335,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <button id="pausePjskBtn" type="button" aria-pressed="false">PJSK · 开启</button>
         <label class="pausePjskLanes" for="pausePjskLanes">轨道 <input id="pausePjskLanes" type="number" min="2" max="24" step="1" value="12" inputmode="numeric" aria-label="PJSK 轨道数，2 至 24"></label>
         <button id="pauseSettingsBtn" type="button">SETTINGS</button>
+        <button id="pauseDiagnosticsBtn" type="button">触控诊断</button>
         <div class="revealScaleBox hidden" id="revealScaleBox"><div class="revealScaleHead"><b>正式谱面区域大小</b><output id="revealScaleValue">62%</output></div><input id="revealScaleRange" type="range" min="28" max="100" step="1" value="62" aria-label="谱面揭秘缩放"><div class="revealScaleMarks"><span>28%</span><span>62%</span><span>100%</span></div><div class="revealScaleHint">调整谱面揭秘区域；关闭“更多”不会改变当前设置。</div></div>
         <div class="pauseTransportBox"><div class="pauseTransportHead"><b>曲目进度</b><output id="pauseSeekValue">00:00 / 00:00</output></div><input id="pauseSeekRange" type="range" min="0" max="1000" step="1" value="0" aria-label="拖动曲目进度"><div class="pauseRateRow"><b>游玩速度</b><div class="pauseRateButtons" id="pauseRateButtons"><button type="button" data-rate="0.5">0.5×</button><button type="button" data-rate="1" class="active">1×</button><button type="button" data-rate="1.5">1.5×</button><button type="button" data-rate="2">2×</button></div><label class="pauseRateCustom"><input id="pausePlaybackRateInput" type="text" value="1" inputmode="decimal" spellcheck="false" aria-label="自定义游玩速度"><span>×</span></label></div></div>
       </div>
@@ -623,15 +624,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
-<script src="./js/performance-policy.js?v=4.0.1.2-pages-4" defer></script>
-<script src="./js/hosted-manifest.js?v=4.0.1.2-pages-4" defer></script>
-<script src="./js/full-catalog.js?v=4.0.1.2-pages-4" defer></script>
-<script src="./js/catalog-runtime.js?v=4.0.1.2-pages-4" defer></script>
-<script src="./js/course-mode.js?v=4.0.1.2-pages-4" defer></script>
-<script src="./js/resource-transfer.js?v=4.0.1.2-pages-4" defer></script>
-<script src="./js/hosted-media.js?v=4.0.1.2-pages-4" defer></script>
-<script src="./js/opening.js?v=4.0.1.2-pages-4" defer></script>
-<script src="./js/app.js?v=4.0.1.2-pages-4" defer></script>
+<script src="./js/performance-policy.js?v=4.0.1.2-pages-5" defer></script>
+<script src="./js/hosted-manifest.js?v=4.0.1.2-pages-5" defer></script>
+<script src="./js/full-catalog.js?v=4.0.1.2-pages-5" defer></script>
+<script src="./js/catalog-runtime.js?v=4.0.1.2-pages-5" defer></script>
+<script src="./js/course-mode.js?v=4.0.1.2-pages-5" defer></script>
+<script src="./js/resource-transfer.js?v=4.0.1.2-pages-5" defer></script>
+<script src="./js/hosted-media.js?v=4.0.1.2-pages-5" defer></script>
+<script src="./js/opening.js?v=4.0.1.2-pages-5" defer></script>
+<script src="./js/app.js?v=4.0.1.2-pages-5" defer></script>
 
 
 

@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-4';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-5';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,7 +26,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-4",
+    runtime: "4.0.1.2-pages-5",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-10-27T10:16:39Z",
@@ -8509,6 +8509,7 @@ function withTimeout(promise, ms, message = "操作超时") {
           : `点按接收 ${engine?.inputStats?.edges || 0} | 蓝键/长条 ${engine?.inputStats?.accepted || 0} | 无候选 ${engine?.inputStats?.noCandidate || 0} | 噪域 ${engine?.inputStats?.blocked || 0} | 早 Bad 保护 ${engine?.inputStats?.earlyGuard || 0}`,
         `输入源 ${engine?.nativeTouchAuthoritative?'原生多点触摸':'兼容输入'} | 接管 ${engine?.inputStats?.bridges || 0} | 补收 ${engine?.inputStats?.recovered || 0} | 最大派发延迟 ${Number(engine?.inputStats?.maxDispatchMs || 0).toFixed(1)} ms`,
         `原始按下 Pointer ${engine?.inputStats?.pointerDown || 0} / Touch ${engine?.inputStats?.touchStart || 0} | 缓冲中按下 ${engine?.inputStats?.buffered || 0}`,
+        `浏览器触控快照最多 ${engine?.inputStats?.nativeTouchMax || 0} 指 | touchcancel ${engine?.inputStats?.touchCancelEvents || 0} 次 / ${engine?.inputStats?.touchCancelContacts || 0} 点`,
         `键盘接收 ${engine?.inputStats?.keyboardDown || 0} | 当前 ${engine?.inputStats?.keyboardHeld || 0} / 最大同时 ${engine?.inputStats?.keyboardMaxHeld || 0} | 命中 ${engine?.inputStats?.keyboardAccepted || 0} | 无候选 ${engine?.inputStats?.keyboardNoCandidate || 0} | 重复过滤 ${engine?.inputStats?.keyboardDuplicates || 0}`,
         `同时按下多键时，若“最大同时”小于实际按键数，浏览器可能未收到键盘冲突的按键；可换另一组按键核对。`,
         engine?.musicUsingWebAudio ? '音频后端 Web Audio · 完整本地音轨' : engine?.streamSession ? `音乐/谱面时钟差 ${((Number(engine.clockValue||0)-Number(engine.audio?.currentTime||0))*1000).toFixed(1)} ms | 音乐缓冲 ${PhiHostedMedia.bufferedAhead(engine.audio).toFixed(1)} 秒` : `音频后端 ${engine?.musicUsingWebAudio?'Web Audio':'媒体元素'}`,
@@ -8995,12 +8996,12 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.nativePointerLinks = new Map();
       this.inputDownReceipts = [];
       this.nativeTouchEndedAt = new Map();
-      this.inputStats = { pointerDown:0, touchStart:0, edges:0, accepted:0, noCandidate:0, blocked:0, earlyGuard:0, bridges:0, recovered:0, buffered:0, maxDispatchMs:0 };
+      this.inputStats = { pointerDown:0, touchStart:0, edges:0, accepted:0, noCandidate:0, blocked:0, earlyGuard:0, bridges:0, recovered:0, buffered:0, maxDispatchMs:0, nativeTouchMax:0, touchCancelEvents:0, touchCancelContacts:0 };
       // On iPadOS/Safari the surface already owns gestures through touch-action:none.
       // Let high-frequency touchmove stay passive so WebKit never waits for JS before
       // compositor progress; touchstart/gesturestart remain cancelable arbitration gates.
       this.nativeTouchMovePassive =
-        (!globalThis.CSS || typeof CSS.supports !== "function" || CSS.supports("touch-action", "none"));
+        !!(globalThis.CSS && typeof CSS.supports === "function" && CSS.supports("touch-action", "none"));
       this.running = false;
       this.paused = false;
       this.starting = false;
@@ -11444,6 +11445,16 @@ function withTimeout(promise, ms, message = "操作超时") {
         tx = this.touchLineX(L, x, y, t);
       return Math.abs(tx - along) <= this.judgeHalfWidth(n);
     }
+    holdContactAvailable(n, contact, t) {
+      if(n.type!==3)return true;
+      // Preserve the other live Hold's contact during a handoff. Only a free
+      // touch can replace a lifted finger in a same-position multi-Hold chord.
+      for(const item of this.activeHolds||[]){
+        const held=item.n;
+        if(held!==n&&held.state===2&&held.holdPointer===contact.id&&this.touchMatchesNote(item.L,held,contact,t))return false;
+      }
+      return true;
+    }
     findTouchForNote(
       L, n, t = this.time, allowCancelGhost = false,
       now = performance.now() / 1000, preferredId = null,
@@ -11468,6 +11479,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       ) return preferred;
       for (const replacement of this.pointer.values()) {
         if (replacement === preferred || replacement.active === false) continue;
+        if (!this.holdContactAvailable(n,replacement,t)) continue;
         if (this.touchMatchesNote(L, n, replacement, t)) return replacement;
       }
       // Browser-generated touchcancel may temporarily hide a physically held
@@ -11482,6 +11494,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         for (const ghost of this.pointer.values()) {
           if (ghost === preferred || ghost.active !== false || ghost.cancelled !== true) continue;
           if (Number(ghost.ghostUntil) <= now) continue;
+          if (!this.holdContactAvailable(n,ghost,t)) continue;
           if (this.touchMatchesNote(L, n, ghost, t)) return ghost;
         }
       }
@@ -11635,7 +11648,10 @@ function withTimeout(promise, ms, message = "操作超时") {
         if (
           Number.isFinite(n.releaseAt) &&
           nowSec - n.releaseAt > grace &&
-          jt < end - HOLD_TAIL_EARLY
+          // A slow frame can cross the tail window after a much earlier lift.
+          // Test the release's audio position rather than letting the current
+          // frame's tail position erase an already expired contact gap.
+          jt-Math.max(0,nowSec-n.releaseAt)*(Number(this.musicRate)||1) < end-HOLD_TAIL_EARLY
         )
           this.commit(n, 3, 0, L);
         else if (jt >= end - HOLD_TAIL_EARLY)
@@ -11814,12 +11830,24 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.releasePointerState(p,eventTime);
       return true;
     }
+    cancelNativeTouchContact(pid, at, nowSec, grace) {
+      const p=this.pointer.get(pid);
+      if(!p?.nativeTouch||at<Math.max(Number(p.downT)||0,Number(p.lastT)||0)-.01)return false;
+      // A cancel belongs to the contact generation/sample that produced it.
+      // An older queued cancel must not disable a newer same-ID finger, and an
+      // older queued move must not resurrect a genuinely cancelled contact.
+      p.lastT=Math.max(Number(p.lastT)||0,at);
+      const deadline=p.cancelled&&p.active===false&&Number(p.ghostUntil)>0?p.ghostUntil:Infinity;
+      p.active=false;p.cancelled=true;p.ghostUntil=Math.min(deadline,nowSec+grace);
+      return true;
+    }
     recoverNativeTouchSnapshot(
       e,
       { synthesizeMissingDown = false, reconcileMissing = false, reviveLive = true, motion = false } = {},
     ) {
       if (!this.useNativeTouchInput || !e || e.touches == null) return false;
-      const touches = e.touches, live = this.nativeTouchLiveIds;
+      const touches = e.touches, live = this.nativeTouchLiveIds, at=this.eventPerformanceTime(e);
+      if(this.inputStats)this.inputStats.nativeTouchMax=Math.max(Number(this.inputStats.nativeTouchMax)||0,touches.length);
       live.clear();
       let changedAny = false;
       const eventAudioTime = synthesizeMissingDown ? this.eventAudioTime(e) : this.time;
@@ -11827,7 +11855,6 @@ function withTimeout(promise, ms, message = "操作超时") {
         const touch = touches[i], pid = this.touchPointerId(touch);
         live.add(pid);
         if (this.nativeTouchBlocked.has(pid)) continue;
-        const at=this.eventPerformanceTime(e);
         let latest=null;
         for(const r of this.inputDownReceipts||[])if(r.touchId===pid&&r.at<=at&&(!latest||r.at>latest.at))latest=r;
         // The other API may deliver an old live snapshot after a real lift.
@@ -11848,21 +11875,21 @@ function withTimeout(promise, ms, message = "操作超时") {
         }
         let p = this.pointer.get(pid);
         if (p) {
-          if(this.eventPerformanceTime(e)<p.lastT-0.01)continue;
+          if(at<p.lastT-0.01)continue;
           // A Safari touchcancel is not proof that the finger left the glass. If a
           // later authoritative snapshot still contains the identifier, immediately
           // restore it as a live contact without generating a second Tap edge.
           if (reviveLive && (p.active === false || p.cancelled === true)) {
             this.touchPoint(touch, p);
             p.lastX = p.x; p.lastY = p.y;
-            p.lastT = this.eventPerformanceTime(e);
+            p.lastT = at;
             p.active = true; p.cancelled = false; p.ghostUntil = 0;
             changedAny = true;
           }
           p.clientX = touch.clientX; p.clientY = touch.clientY;
           const q = this.touchPoint(touch, this.pointScratchB || (this.pointScratchB = {}));
           if (synthesizeMissingDown && (Math.abs(q.x-p.x) > .01 || Math.abs(q.y-p.y) > .01))
-            this.processNativeTouchMotion(touch,p,eventAudioTime,this.eventPerformanceTime(e));
+            this.processNativeTouchMotion(touch,p,eventAudioTime,at);
           else { p.x=q.x; p.y=q.y; }
           continue;
         }
@@ -11882,9 +11909,9 @@ function withTimeout(promise, ms, message = "操作超时") {
       if (reconcileMissing) {
         const nowSec = performance.now() / 1000;
         for (const [pid, p] of this.pointer) {
-          if(!p||p.downT>this.eventPerformanceTime(e)+.001)continue;
+          if(!p||p.downT>at+.001||p.lastT>at+.01)continue;
           if(!p.nativeTouch){
-            if(p.touchPointer&&touches.length===0)this.releaseNativeTouchContact(pid,p,nowSec,this.eventPerformanceTime(e));
+            if(p.touchPointer&&touches.length===0)this.releaseNativeTouchContact(pid,p,nowSec,at);
             continue;
           }
           if (live.has(pid)) continue;
@@ -11892,13 +11919,13 @@ function withTimeout(promise, ms, message = "操作超时") {
           // The inverse failure also occurs: touchend/cancel changedTouches can omit
           // one identifier. A state absent from authoritative `touches` must not
           // remain as a ghost active finger that steals Hold/Drag ownership.
-          this.releaseNativeTouchContact(pid, p, nowSec, this.eventPerformanceTime(e));
+          this.releaseNativeTouchContact(pid, p, nowSec, at);
           changedAny = true;
         }
         for (const pid of this.nativeTouchBlocked)
           if (!live.has(pid)) this.nativeTouchBlocked.delete(pid);
       }
-      this.nativeTouchSnapshotTime=Math.max(this.nativeTouchSnapshotTime||0,this.eventPerformanceTime(e));
+      this.nativeTouchSnapshotTime=Math.max(this.nativeTouchSnapshotTime||0,at);
       return changedAny;
     }
     touchStart(e) {
@@ -11931,6 +11958,8 @@ function withTimeout(promise, ms, message = "操作超时") {
           if(receipt&&stale.downReceipt===receipt){stale.downT=receipt.at;stale.nativeDownT=this.eventPerformanceTime(e);accepted=true;continue;}
           // The same edge can first appear in another finger's live snapshot.
           if (stale.active !== false && (stale.downReceipt?.recovered || Math.abs(this.eventPerformanceTime(e)-stale.nativeDownT) <= 1)) {
+            if(stale.downReceipt)stale.downReceipt.recovered=false;
+            stale.nativeDownT=Math.max(stale.nativeDownT||0,this.eventPerformanceTime(e));
             accepted = true;
             continue;
           }
@@ -12089,14 +12118,17 @@ function withTimeout(promise, ms, message = "操作超时") {
         this.nativeTouchBlocked.delete(pid);
         // Normal changedTouches still gets an explicit release if the snapshot was
         // incomplete/non-standard. The helper is idempotent after reconciliation.
-        if (p&&p.downT<=this.eventPerformanceTime(e)+.001) this.releaseNativeTouchContact(pid, p, now, this.eventPerformanceTime(e));
+        if (p&&p.downT<=this.eventPerformanceTime(e)+.001&&p.lastT<=this.eventPerformanceTime(e)+.01) this.releaseNativeTouchContact(pid, p, now, this.eventPerformanceTime(e));
       }
     }
     touchCancel(e) {
       if (!this.useNativeTouchInput) return;
       const changed = e.changedTouches;
-      if (!changed?.length) return;
-      const now = performance.now() / 1000,
+      if(this.inputStats){
+        this.inputStats.touchCancelEvents=(Number(this.inputStats.touchCancelEvents)||0)+1;
+        this.inputStats.touchCancelContacts=(Number(this.inputStats.touchCancelContacts)||0)+(changed?.length||0);
+      }
+      const now = performance.now() / 1000,at=this.eventPerformanceTime(e),
         grace = MULTITOUCH_CANCEL_GRACE * clamp(touchSensitivity, 0.9, 1.35);
       // Safari may cancel one contact while the physical finger is still down when
       // another finger lands/leaves or a proprietary gesture recognizer briefly
@@ -12104,13 +12136,16 @@ function withTimeout(promise, ms, message = "操作超时") {
       // only that finger's last coordinate for a short, bounded rebind window.
       // A matching newly-issued Touch identifier can then take ownership of the
       // same Hold; an actual lift still uses touchEnd() and releases immediately.
-      for (let i = 0; i < changed.length; i++) {
-        const pid = this.touchPointerId(changed[i]), p = this.pointer.get(pid);
-        this.nativeTouchBlocked.delete(pid);
-        if (!p) continue;
-        p.active = false;
-        p.cancelled = true;
-        p.ghostUntil = now + grace;
+      for (let i = 0; i < (changed?.length||0); i++) {
+        const pid = this.touchPointerId(changed[i]);
+        if(this.cancelNativeTouchContact(pid,at,now,grace))this.nativeTouchBlocked.delete(pid);
+      }
+      if(!changed?.length&&e.touches!=null){
+        // A missing changedTouches list must not leave cancelled fingers active
+        // forever. Preserve independent contacts still present in the snapshot.
+        const live=this.nativeTouchLiveIds;live.clear();
+        for(let i=0;i<e.touches.length;i++)live.add(this.touchPointerId(e.touches[i]));
+        for(const [pid,p]of this.pointer)if(p.nativeTouch&&!live.has(pid))this.cancelNativeTouchContact(pid,at,now,grace);
       }
       this.recoverNativeTouchSnapshot(e, {
         synthesizeMissingDown: false,
@@ -15177,6 +15212,7 @@ function withTimeout(promise, ms, message = "操作超时") {
   });
   $("#openSettings").onclick = openSettingsPanel;
   $("#pauseSettingsBtn").onclick = openSettingsPanel;
+  $("#pauseDiagnosticsBtn").onclick = () => Diagnostics.toggle(true);
   $("#settingsCloseTop").onclick = closeSettingsPanel;
   $("#settingsDone").onclick = closeSettingsPanel;
   $("#latencyStartBtn").onclick = startLatencyCalibration;
