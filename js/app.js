@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-9';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-10';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,7 +26,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-9",
+    runtime: "4.0.1.2-pages-10",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-10-27T10:16:39Z",
@@ -14517,7 +14517,13 @@ function withTimeout(promise, ms, message = "操作超时") {
   // Phira-Pro (GPL-3.0); the full license and readable shader source are embedded.
   const BLOCK_EASE_TABLES=Array.from({length:15},(_,type)=>Float32Array.from({length:101},(_,i)=>{
     const u=i/100;if(type===0)return u;if(type===13)return 0;if(type===14)return 1;
-    const p=Math.floor((type-1)/3)+2,k=(type-1)%3;
+    // PhiraiAd's block-area format uses sine easing for 1–3, followed by
+    // quadratic, cubic and quartic triples for 4–12. Applying polynomials
+    // starting at 1 shifts every authored noise-area motion to the wrong curve.
+    if(type===1)return 1-Math.cos(u*Math.PI/2);
+    if(type===2)return Math.sin(u*Math.PI/2);
+    if(type===3)return (1-Math.cos(Math.PI*u))/2;
+    const p=Math.floor((type-4)/3)+2,k=(type-4)%3;
     return k===0?u**p:k===1?1-(1-u)**p:u<.5?2**(p-1)*u**p:1-(2-2*u)**p/2;
   }));
   function blockEase(type,u){u=Math.max(0,Math.min(1,u));const p=u*100,i=Math.floor(p),a=BLOCK_EASE_TABLES[type]||BLOCK_EASE_TABLES[0];return i>=100?a[100]:a[i]+(p-i)*(a[i+1]-a[i]);}
