@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' blob: 'wasm-unsafe-eval'; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' data: blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <link rel="preload" href="./assets/opening/studio.webp" as="image" fetchpriority="high">
-<link rel="preload" href="./js/app.js?v=4.0.1.2-pages-3" as="script">
+<link rel="preload" href="./js/app.js?v=4.0.1.2-pages-4" as="script">
 <meta name="theme-color" content="#0b111d">
 <script id="phiOfflineNetworkGuard" src="./js/site-network-guard.js"></script>
 <title>TYCPHIGROS4.0.1.2</title>
@@ -185,18 +185,18 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 -->
 <!-- Chart/music/art source: https://github.com/7aGiven/Phigros_Resource . Authorship is retained per song. Native blockAreaList is rendered live, with no recording-derived overlays. Native GPU passes and original GLSL: Adai-add/PhiraiAd a60b49ad, GPL-3.0 (full license below). -->
 <link rel="stylesheet" id="phiOriginalMaterialStyles" href="./css/original-materials.css"><script id="phiRepairEvidence" type="application/json" data-src="./assets/meta/repair-evidence.json"></script><link rel="stylesheet" id="phiSafariHudLoadingFix" href="./css/safari-hud.css">
-<link rel="stylesheet" href="./css/opening.css?v=4.0.1.2-pages-3">
-<link rel="stylesheet" href="./css/catalog.css?v=4.0.1.2-pages-3">
-<link rel="stylesheet" href="./css/course-mode.css?v=4.0.1.2-pages-3">
+<link rel="stylesheet" href="./css/opening.css?v=4.0.1.2-pages-4">
+<link rel="stylesheet" href="./css/catalog.css?v=4.0.1.2-pages-4">
+<link rel="stylesheet" href="./css/course-mode.css?v=4.0.1.2-pages-4">
 </head>
 
 <!-- PJSK perspective math reference: Next-SEKAI/sonolus-next-sekai-engine (MIT License). Copyright (c) 2025 Kyle Chang. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, subject to the MIT License terms; the software is provided "AS IS", without warranty of any kind. -->
 <body>
 <script id="phiBuildMetadata" type="application/json">{
-  "runtime": "4.0.1.2-pages-3",
+  "runtime": "4.0.1.2-pages-4",
   "parser": "9.0-native-sus",
   "renderEngine": "38.3-safari-caption-baseline",
-  "buildTimestamp": "2026-10-27T10:08:25Z",
+  "buildTimestamp": "2026-10-27T10:16:39Z",
   "coreSha256": "e3a3da3a4e966f5b8314dccbd253a5b5655ef87aa8f0f5e5f865bb8c726f38b9",
   "hosting": "github-pages-multi-file"
 }</script>
@@ -205,7 +205,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 <section id="refHome" class="refScene" data-stage="studio" aria-label="Phigros 开始界面">
   <div class="openingStudio"><img src="./assets/opening/studio.webp" alt="Pigeon Games · TapTap"></div>
   <div class="openingWarning"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 38 36H2Z M20 12v12 M20 28v3"/></svg><h2>警告：请在游戏前阅读</h2><div class="openingWarningText"><p>在某些特定光线或灯光闪烁的刺激下，极个别人可能会出现癫痫症状。同时，当看到屏幕上的某些背景或图像，以及玩某些游戏时，这类人有可能被诱发癫痫症状。某些特殊情况也有可能对以前没有癫痫病史的一部分人触发癫痫症状。</p><p>如果您或您的家庭成员有此类病史，请在进行本游戏前咨询医生的建议。如果您在进行游戏时出现以下任何一种症状：头晕、视觉模糊、眼部或肌肉抽搐、失去知觉、失去方向感、不由自主地移动、抽搐，请立即停止游戏，并咨询医生的建议。</p></div></div>
-  <div class="openingTitle"><canvas id="openingParticles" aria-hidden="true"></canvas><img class="openingLogo" src="./assets/opening/logo.webp" alt="Phigros"><span class="openingVersion">Version : 4.0.1.2</span><button class="refHomeStart" type="button">点击屏幕开始</button></div>
+  <div class="openingTitle"><canvas id="openingParticles" aria-hidden="true"></canvas><div class="openingBrand"><span class="openingVersion">Version : 4.0.1.2</span><svg class="openingLogo" viewBox="0 0 498 134" role="img" aria-label="Phigros" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><filter id="openingLogoTransparency" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 4 0 0 -0.8"/></filter></defs><image href="./assets/opening/logo.webp" xlink:href="./assets/opening/logo.webp" width="498" height="134" filter="url(#openingLogoTransparency)"/></svg><button class="refHomeStart" type="button">点击屏幕开始</button></div></div>
   <button id="openingSound" type="button" hidden>点按开启音乐</button>
 </section>
   <section id="refCollection" class="refScene hidden" aria-label="章节选择">
@@ -623,15 +623,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
-<script src="./js/performance-policy.js?v=4.0.1.2-pages-3" defer></script>
-<script src="./js/hosted-manifest.js?v=4.0.1.2-pages-3" defer></script>
-<script src="./js/full-catalog.js?v=4.0.1.2-pages-3" defer></script>
-<script src="./js/catalog-runtime.js?v=4.0.1.2-pages-3" defer></script>
-<script src="./js/course-mode.js?v=4.0.1.2-pages-3" defer></script>
-<script src="./js/resource-transfer.js?v=4.0.1.2-pages-3" defer></script>
-<script src="./js/hosted-media.js?v=4.0.1.2-pages-3" defer></script>
-<script src="./js/opening.js?v=4.0.1.2-pages-3" defer></script>
-<script src="./js/app.js?v=4.0.1.2-pages-3" defer></script>
+<script src="./js/performance-policy.js?v=4.0.1.2-pages-4" defer></script>
+<script src="./js/hosted-manifest.js?v=4.0.1.2-pages-4" defer></script>
+<script src="./js/full-catalog.js?v=4.0.1.2-pages-4" defer></script>
+<script src="./js/catalog-runtime.js?v=4.0.1.2-pages-4" defer></script>
+<script src="./js/course-mode.js?v=4.0.1.2-pages-4" defer></script>
+<script src="./js/resource-transfer.js?v=4.0.1.2-pages-4" defer></script>
+<script src="./js/hosted-media.js?v=4.0.1.2-pages-4" defer></script>
+<script src="./js/opening.js?v=4.0.1.2-pages-4" defer></script>
+<script src="./js/app.js?v=4.0.1.2-pages-4" defer></script>
 
 
 

@@ -12,11 +12,13 @@
 .openingWarning p{text-indent:2em;margin:0}
 .openingWarning p+p{margin-top:.5em}
 .openingTitle{background-image:linear-gradient(90deg,transparent 46%,#151a20 59%,#101419 100%),var(--ref-home-image);background-position:center;background-size:cover}
-.openingLogo{position:absolute;left:59.3%;top:42.1%;width:34.2%;height:auto;mix-blend-mode:screen;filter:contrast(1.5);user-select:none}
-.openingVersion{position:absolute;right:8.2%;top:39.7%;font-family:Saira,Arial,sans-serif;font-size:clamp(9px,1.5vw,21px);font-weight:400;color:#9a9ca3}
-#refHome .refHomeStart{left:69.2%;top:56.5%;width:25%;height:7%;font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:clamp(12px,2.34vw,30px);font-weight:400;letter-spacing:.24em;color:#f4f8f9;opacity:var(--opening-prompt);white-space:nowrap;cursor:pointer;pointer-events:auto}
+.openingBrand{position:absolute;right:7%;top:50%;width:min(35vw,120vh);transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.5vh,18px);z-index:2}
+.openingLogo{display:block;width:100%;height:auto;overflow:visible;user-select:none}
+.openingVersion{align-self:flex-end;font-family:Saira,Arial,sans-serif;font-size:clamp(9px,1.5vw,21px);font-weight:400;color:#9a9ca3}
+#refHome .refHomeStart{position:static;width:auto;height:auto;min-height:32px;font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:clamp(12px,2.34vw,30px);font-weight:400;letter-spacing:.24em;color:#f4f8f9;opacity:var(--opening-prompt);white-space:nowrap;cursor:pointer;pointer-events:auto}
 #openingParticles{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 .openingLogo,.openingVersion,.refHomeStart{z-index:2}
+@media(orientation:portrait){.openingBrand{right:5%;width:44vw}}
 #openingSound{position:absolute;right:4%;bottom:5%;z-index:4;padding:8px 14px;border:1px solid #a4b6be55;border-radius:4px;background:#0d151fcc;color:#e4f5fa;font-size:clamp(11px,1.65vw,18px);cursor:pointer}
 #openingSound[hidden]{display:none}
 #loadingBack{position:absolute;z-index:20;left:max(18px,env(safe-area-inset-left));top:max(18px,env(safe-area-inset-top));border:1px solid #fff5;border-radius:3px;background:#0a111a88;color:#fff;padding:8px 12px;font:inherit;cursor:pointer}

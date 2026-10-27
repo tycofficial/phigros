@@ -1,5 +1,5 @@
 {
-  "version": "4.0.1.2-pages-3",
+  "version": "4.0.1.2-pages-4",
   "maxBytes": 990000000,
   "baseBytes": 147466224,
   "selectedBundleBytes": 837611547,
@@ -175,18 +175,19 @@
       "Catalog audio/art/chart availability does not verify every special visual or original-game behavior."
     ]
   },
-  "releaseBytes": 986015712,
-  "headroomBytes": 3984288,
+  "releaseBytes": 986016577,
+  "headroomBytes": 3983423,
   "songs": 142,
   "charts": 429,
   "addedSongs": 130,
   "addedCharts": 383,
   "selection": "required chapter8/chapter9/SP, then smallest complete song bundles",
-  "bytes": 986015712,
-  "updatedAt": "2026-10-27T10:08:25Z",
+  "bytes": 986016577,
+  "updatedAt": "2026-10-27T10:16:39Z",
   "fixes": [
     "opening-gesture-audio-sync",
     "multi-key-timestamps-and-hold-ownership",
-    "historical-spasmodic-stationary-overlay"
+    "historical-spasmodic-stationary-overlay",
+    "opening-logo-transparent-responsive-layout"
   ]
 }
