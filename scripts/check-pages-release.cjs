@@ -14,8 +14,34 @@ function original(name){
 const entries=original('BUILTIN_PACKS'),assets=original('BUILTIN_ASSETS');
 const result=context.PhiCatalogRuntime.install({entries,assets,hostedManifest:context.PhiHostedManifest});
 check(result.addedEntries>0,'Release must add playable charts');
-const checked=new Map();
+const checked=new Map(), remoteChecked=new Map();
+// The online catalog can use only these exact fixed-commit files. Local
+// resources are always read and hashed; remote objects are checked against
+// the compiled allowlist here, and their actual bytes are hashed on download.
+const remoteManifestPath=path.join(root,'assets/meta/online-manifest.json');
+const remoteManifest=fs.existsSync(remoteManifestPath)?JSON.parse(fs.readFileSync(remoteManifestPath,'utf8')):{};
+if(Object.keys(remoteManifest).length){
+  const code=read('js/remote-assets.js'), prefix='const known = Object.freeze(', suffix='), allowed = new Map();';
+  const start=code.indexOf(prefix),end=code.indexOf(suffix,start);
+  check(start>=0&&end>start,'Missing compiled online whitelist');
+  const compiled=JSON.parse(code.slice(start+prefix.length,end));
+  check(JSON.stringify(compiled)===JSON.stringify(remoteManifest),'Online whitelist does not match manifest');
+  const commits=new Set(['5d40bfdf05bee53f5107a6ea5620ca0e953de815','5142ba2673ccbeb23173886f3bd851e9c881e6ec','0c7e90ee5d8ffaaa756d79d8aef879338fdde423']);
+  for(const [address,spec] of Object.entries(remoteManifest)){
+    const u=new URL(address),parts=u.pathname.split('/');
+    check(u.origin==='https://raw.githubusercontent.com'&&!u.search&&!u.hash&&!u.username&&!u.password&&parts[1]==='7aGiven'&&parts[2]==='Phigros_Resource'&&commits.has(parts[3])&&parts.length>=5,'Invalid online origin '+address);
+    check(Number.isSafeInteger(spec.bytes)&&spec.bytes>0&&/^[a-f0-9]{64}$/.test(spec.sha256),'Invalid online metadata '+address);
+    const mirror='https://cdn.jsdelivr.net/gh/7aGiven/Phigros_Resource@'+parts[3]+'/'+parts.slice(4).join('/');
+    check(spec.mirror===mirror,'Invalid online mirror '+address);
+  }
+}
 function resource(url,bytes,hash){
+  if(typeof url==='string'&&url.startsWith('https://')){
+    const spec=remoteManifest[url];check(spec,'Unexpected remote resource '+url);
+    if(bytes!=null)check(spec.bytes===bytes,'Wrong remote byte size '+url);
+    if(hash)check(spec.sha256===hash,'Wrong remote hash '+url);
+    remoteChecked.set(url,spec);return;
+  }
   check(typeof url==='string'&&url.startsWith('./assets/'),'Unexpected resource '+url);
   const name=url.slice(2),target=path.resolve(root,name);
   check(target.startsWith(root+path.sep),'Invalid path '+url);
@@ -52,4 +78,8 @@ function size(dir){return fs.readdirSync(dir,{withFileTypes:true}).reduce((n,ite
 },0);}
 const bytes=size(root);check(bytes<1000000000,'Pages site exceeds 1 GB');
 console.log(JSON.stringify({passed:true,songs:result.totalSongs,charts:result.totalEntries,
-  addedCharts:result.addedEntries,verifiedResources:checked.size,publishedBytes:bytes}));
+  localSongs:context.PhiFullCatalog.coverage?.localPlayableSongVersions||result.totalSongs,
+  localCharts:context.PhiFullCatalog.coverage?.localPlayableCharts||result.totalEntries,
+  remoteSongs:context.PhiFullCatalog.coverage?.externalSongVersions||0,
+  remoteCharts:context.PhiFullCatalog.coverage?.externalCharts||0,
+  addedCharts:result.addedEntries,verifiedResources:checked.size,remoteReferences:remoteChecked.size,publishedBytes:bytes}));

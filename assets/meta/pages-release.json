@@ -1,14 +1,14 @@
 {
-  "version": "4.0.1.2-pages-7",
+  "version": "4.0.1.2-pages-8",
   "maxBytes": 990000000,
   "baseBytes": 138035549,
   "selectedBundleBytes": 845795864,
   "selectedNewSongVersions": 150,
-  "publishedSongVersions": 162,
-  "publishedCharts": 492,
+  "publishedSongVersions": 335,
+  "publishedCharts": 1064,
   "visibleCollections": 24,
   "requiredNewBundles": 15,
-  "omittedNewSongVersions": 173,
+  "omittedNewSongVersions": 0,
   "originalQualityPreserved": true,
   "selectionPolicy": "required chapter8/chapter9/SP, then smallest complete song bundles",
   "selectedAudioHashes": [
@@ -211,5 +211,9 @@
     "opening-logo-transparent-responsive-layout"
   ],
   "previousPublishedSongVersions": 155,
-  "previousPublishedCharts": 471
+  "previousPublishedCharts": 471,
+  "localSongVersions": 162,
+  "localCharts": 492,
+  "remoteSongVersions": 173,
+  "remoteCharts": 572
 }

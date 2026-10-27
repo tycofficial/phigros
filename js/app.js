@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-7';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-8';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,7 +26,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-7",
+    runtime: "4.0.1.2-pages-8",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-10-27T10:16:39Z",
@@ -6064,10 +6064,16 @@ function withTimeout(promise, ms, message = "操作超时") {
   const builtinAssetBlobCache = new PhiPerformance.ResourceCache(24*1024*1024,32);
   // Static hosting: load only resources from this site's own origin.
   const phiHostedBundleCache = new PhiPerformance.ResourceCache(12*1024*1024,32);
-  async function phiHostedBytes(relativePath) {
+  async function phiHostedBytes(relativePath, {signal} = {}) {
     const url = new URL(relativePath, document.baseURI);
-    if (url.origin !== location.origin || !/^https?:$/.test(url.protocol))
-      throw new Error('请通过 GitHub Pages 或本地 HTTP 服务打开项目。');
+    if ((url.origin !== location.origin || !/^https?:$/.test(url.protocol)) && !globalThis.PhiRemoteAssets?.info(url.href))
+      throw new Error('资源来源未获允许。');
+    if (globalThis.PhiRemoteAssets?.info(url.href)) {
+      const options={signal, onProgress:(done,total)=>{
+        if (!$('#loadingView')?.classList.contains('hidden')) setLoadingStatus(total ? `联网谱面 ${Math.min(100,Math.round(done/total*100))}%` : `联网谱面已读取 ${Math.ceil(done/1024)} KB`);
+      }};
+      return globalThis.PhiHostedMedia ? PhiHostedMedia.bytes(relativePath, options) : PhiRemoteAssets.download(url.href, options);
+    }
     let pending = phiHostedBundleCache.get(url.href);
     if (!pending) {
       pending = (async () => {
@@ -6084,8 +6090,8 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     return pending;
   }
-  async function phiHostedAssetBytes(spec) {
-    const bytes = await phiHostedBytes(spec.url), start = Number(spec.offset) || 0;
+  async function phiHostedAssetBytes(spec, {signal} = {}) {
+    const bytes = await phiHostedBytes(spec.url, {signal}), start = Number(spec.offset) || 0;
     const end = start + Number(spec.byteLength);
     if (end > bytes.byteLength) throw new Error('资源不完整：' + spec.id);
     return bytes.subarray(start, end);
@@ -6170,7 +6176,7 @@ function withTimeout(promise, ms, message = "操作超时") {
           return new Blob([bytes],{type:mimeForEmbeddedName(name)});
         }catch(error){if(error.name!=='WorkerUnavailableError')throw error;workerUnavailable=true;Diagnostics.warn('Chart.worker',error.message);}
       }
-      const packed = await phiHostedAssetBytes(spec);
+      const packed = await phiHostedAssetBytes(spec,{signal});
       if(!workerUnavailable&&Number(spec.method)===14&&typeof Worker==='function'&&globalThis.PhiHostedMedia?.decodeChart){
         try{
           const bytes=await PhiHostedMedia.decodeChart(packed,Number(spec.usize)||0);
@@ -6344,6 +6350,8 @@ function withTimeout(promise, ms, message = "操作超时") {
       const audioFile=entry.files?.find(file=>file.name===entry.meta?.music),spec=globalThis.PhiHostedMedia?.manifest.audio[audioFile?.asset];
       if(spec&&!playOptions?.offlineExport){
         const audio=Engine._primedMusicElement||new Audio();Engine._primedMusicElement=null;
+        if(spec.remote && !audio.canPlayType?.(spec.mime||'audio/ogg'))
+          throw Error('此设备不支持联网曲目的 OGG 音轨，请使用支持 OGG Vorbis 的浏览器');
         stream=new PhiHostedMedia.Stream(audio,spec,state=>setLoadingStatus(state.downloading?`音乐下载 · ${state.formatLabel||'自动音质'} ${state.total?Math.min(100,Math.round(state.downloaded/state.total*100))+'%':Math.ceil(state.downloaded/1024)+' KB'}`:'音乐已就绪，正在准备谱面…'));
         songLoadStream=stream;
         streamReady=stream.wait();streamReady.catch(()=>{});
@@ -6624,6 +6632,8 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     const selectedItem = card._groupItems?.[selected], selectedRecord = selectedItem ? libraryPayload(selectedItem) : null,
       selectedInfo = difficultyInfoFor(selectedRecord || selectedItem || {meta:{level:sourceDiffs[selected]?.textContent || ""}}), levelBox = $("#libraryFocusLevelBox");
+    const online = !!selectedRecord?.remote, onlineAudioSupported = !online || !!document.createElement("audio").canPlayType('audio/ogg; codecs="vorbis"');
+    if (meta && online) meta.textContent += onlineAudioSupported ? " · 联网曲目，依赖外部资源" : " · 此设备不支持 OGG 音轨，需更新浏览器";
     if (levelBox) { levelBox.querySelector("b").textContent = selectedInfo.level >= 0 ? String(selectedInfo.level) : "?"; levelBox.querySelector("span").textContent = selectedInfo.tier || "LV"; }
     const recScore = $("#libraryFocusRecordScore"), recGrade = $("#libraryFocusRecordGrade"),
       bestScore = selectedRecord ? loadStoredBestScore(selectedRecord) : 0,
@@ -6634,6 +6644,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     if (play) {
       play.disabled = !card.querySelector(".play") || card.querySelector(".play").disabled;
       play.textContent = dualMenuMode === "pjsk" ? "Select" : `START · ${sourceDiffs[selected]?.textContent || "PLAY"}`;
+      if (online && !onlineAudioSupported) { play.disabled = true; play.textContent = "不支持 OGG 音轨"; }
       play.onclick = () => card.querySelector(".play")?.click();
     }
     const pjskButton = $("#libraryFocusPjsk");
@@ -6816,7 +6827,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         "";
       const lines = Number(c.lines) || 0,
         notes = Number(c.notes) || 0;
-      pills.innerHTML = `<span class="pill">${String(c.parser || "ZIP").toUpperCase()}</span>${lines ? `<span class="pill">${lines} LINES</span>` : ""}${notes ? `<span class="pill">${notes} NOTES</span>` : ""}${group.items.length > 1 ? `<span class="pill difficultyCount">${group.items.length} DIFF</span>` : ""}<span class="pill">${builtin ? "BUILTIN" : c.adminPublished ? "PUBLISHED" : temporary ? "TEMP" : "LOCAL"}</span>`;
+      pills.innerHTML = `<span class="pill">${String(c.parser || "ZIP").toUpperCase()}</span>${lines ? `<span class="pill">${lines} LINES</span>` : ""}${notes ? `<span class="pill">${notes} NOTES</span>` : ""}${group.items.length > 1 ? `<span class="pill difficultyCount">${group.items.length} DIFF</span>` : ""}<span class="pill">${c.remote ? "联网" : builtin ? "BUILTIN" : c.adminPublished ? "PUBLISHED" : temporary ? "TEMP" : "LOCAL"}</span>`;
       play.textContent = `PLAY · ${difficultyInfoFor(c).caption}`;
       del.classList.toggle("hidden", builtin);
       if (builtin && c.thumbnailData && !card._bgBlob) {
