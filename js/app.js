@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-1';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-2';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,10 +26,10 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-1",
+    runtime: "4.0.1.2-pages-2",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
-    buildTimestamp: "2026-10-25T10:00:00Z",
+    buildTimestamp: "2026-10-27T10:01:12Z",
     coreSha256: "dcae237af6ee34b393b4ceea31605c87aaf0d0b737c95da89cc12e9cd5dbe677",
   });
   const PHI_SECURITY_LIMITS = Object.freeze({
@@ -4917,8 +4917,26 @@ function withTimeout(promise, ms, message = "操作超时") {
     else throw new Error("不支持的谱面类型");
     return markMultipleHints(compatibilityNormalizeChart(chart));
   }
+  function applyHistoricalSPLineProfile(chart, record) {
+    // Pinned historical Spasmodic export (JSON SHA256 f9134dcb91e60f71ac5c604bdf3c0d06ddbae39f79f0c428af2ce77165dce7c6).
+    // Its four stationary alpha-only channels otherwise overlay the moving
+    // playable line. Keep their data; exclude only this known export's channels
+    // from line painting, never ordinary empty or decorative judge lines.
+    const entryId='catalog-17f20bcfd8a1abbf-sp';
+    if(!record?.builtin||(record.builtinEntryId!==entryId&&record.id!==`builtin:${entryId}`)||
+      chart?.kind!=='pgr'||chart.formatVersion!==3||chart.lines?.length!==24||chart.noteCount!==2500||
+      chart.lines[0].notes.length!==2500||chart.lines.slice(1).some(line=>line.notes.length))return chart;
+    const ids=[20,21,22,23],alphaCounts=[958,74,243,94],stationary=events=>events?.length===1&&events[0].a===0&&events[0].b===0;
+    if(!ids.every((id,index)=>{const line=chart.lines[id];return line.alpha.length===alphaCounts[index]&&
+      stationary(line.moveX)&&stationary(line.moveY)&&stationary(line.rotate);}))return chart;
+    for(const id of ids)chart.lines[id].nonRenderingControl=true;
+    chart.compatibilityReport||={};
+    chart.compatibilityReport.nonRenderingControlLines=ids;
+    return chart;
+  }
   function applyRecordChartMetadata(chart, record) {
     if (!chart || !record) return chart;
+    applyHistoricalSPLineProfile(chart,record);
     const packageOffset = normalizeOffset(record.meta?.offset || 0);
     if (packageOffset) chart.offset = (Number(chart.offset) || 0) + packageOffset;
     const baseDir = record.assetBaseDir || archiveDirname(record.chartFileName || ""),
@@ -8491,6 +8509,8 @@ function withTimeout(promise, ms, message = "操作超时") {
           : `点按接收 ${engine?.inputStats?.edges || 0} | 蓝键/长条 ${engine?.inputStats?.accepted || 0} | 无候选 ${engine?.inputStats?.noCandidate || 0} | 噪域 ${engine?.inputStats?.blocked || 0} | 早 Bad 保护 ${engine?.inputStats?.earlyGuard || 0}`,
         `输入源 ${engine?.nativeTouchAuthoritative?'原生多点触摸':'兼容输入'} | 接管 ${engine?.inputStats?.bridges || 0} | 补收 ${engine?.inputStats?.recovered || 0} | 最大派发延迟 ${Number(engine?.inputStats?.maxDispatchMs || 0).toFixed(1)} ms`,
         `原始按下 Pointer ${engine?.inputStats?.pointerDown || 0} / Touch ${engine?.inputStats?.touchStart || 0} | 缓冲中按下 ${engine?.inputStats?.buffered || 0}`,
+        `键盘接收 ${engine?.inputStats?.keyboardDown || 0} | 当前 ${engine?.inputStats?.keyboardHeld || 0} / 最大同时 ${engine?.inputStats?.keyboardMaxHeld || 0} | 命中 ${engine?.inputStats?.keyboardAccepted || 0} | 无候选 ${engine?.inputStats?.keyboardNoCandidate || 0} | 重复过滤 ${engine?.inputStats?.keyboardDuplicates || 0}`,
+        `同时按下多键时，若“最大同时”小于实际按键数，浏览器可能未收到键盘冲突的按键；可换另一组按键核对。`,
         engine?.musicUsingWebAudio ? '音频后端 Web Audio · 完整本地音轨' : engine?.streamSession ? `音乐/谱面时钟差 ${((Number(engine.clockValue||0)-Number(engine.audio?.currentTime||0))*1000).toFixed(1)} ms | 音乐缓冲 ${PhiHostedMedia.bufferedAhead(engine.audio).toFixed(1)} 秒` : `音频后端 ${engine?.musicUsingWebAudio?'Web Audio':'媒体元素'}`,
         `判定候选 ${engine?.metricsCandidates || 0} | 空间候选 ${engine?.metricsIndexedCandidates || 0} / ${engine?.noteItems?.length || 0} | 实绘 ${engine?.metricsDrawnNotes || 0}`,
         `粒子 ${engine?.effects?.length || 0} | DPR ${Number(engine?.baseDpr || 1).toFixed(2)} × ${Number(engine?.renderQuality || 1).toFixed(2)} | backing ${engine?.canvas?.dataset?.backingSize || "--"}`,
@@ -8520,6 +8540,9 @@ function withTimeout(promise, ms, message = "操作超时") {
   }
   const performanceMonitor = new PerformanceMonitor();
 
+  const KEYBOARD_LEGACY_CODES=Object.freeze({8:'Backspace',9:'Tab',13:'Enter',16:'ShiftLeft',17:'ControlLeft',18:'AltLeft',19:'Pause',20:'CapsLock',27:'Escape',32:'Space',33:'PageUp',34:'PageDown',35:'End',36:'Home',37:'ArrowLeft',38:'ArrowUp',39:'ArrowRight',40:'ArrowDown',45:'Insert',46:'Delete',91:'MetaLeft',92:'MetaRight',93:'ContextMenu',106:'NumpadMultiply',107:'NumpadAdd',109:'NumpadSubtract',110:'NumpadDecimal',111:'NumpadDivide',186:'Semicolon',187:'Equal',188:'Comma',189:'Minus',190:'Period',191:'Slash',192:'Backquote',219:'BracketLeft',220:'Backslash',221:'BracketRight',222:'Quote'}),
+    KEYBOARD_KEY_ALIASES=Object.freeze({' ':'Space',Spacebar:'Space',Esc:'Escape',Left:'ArrowLeft',Right:'ArrowRight',Up:'ArrowUp',Down:'ArrowDown',Control:'ControlLeft',Shift:'ShiftLeft',Alt:'AltLeft',Meta:'MetaLeft',OS:'MetaLeft'}),
+    KEYBOARD_PUNCTUATION=Object.freeze({';':'Semicolon',':':'Semicolon','=':'Equal','+':'Equal',',':'Comma','<':'Comma','-':'Minus','_':'Minus','.':'Period','>':'Period','/':'Slash','?':'Slash','`':'Backquote','~':'Backquote','[':'BracketLeft','{':'BracketLeft',']':'BracketRight','}':'BracketRight','\\':'Backslash','|':'Backslash',"'":'Quote','"':'Quote','!':'Digit1','@':'Digit2','#':'Digit3','$':'Digit4','%':'Digit5','^':'Digit6','&':'Digit7','*':'Digit8','(':'Digit9',')':'Digit0'});
   class KeyboardInputManager {
     constructor() {
       this.down = new Set();
@@ -8534,14 +8557,34 @@ function withTimeout(promise, ms, message = "操作超时") {
     isTypingTarget(target) {
       return !!target?.closest?.('input,textarea,select,[contenteditable="true"]');
     }
-    isGameplayKey(event) {
-      const code = event?.code || "";
+    eventCode(event) {
+      const code=event?.code;
+      if(code&&code!=="Unidentified")return code;
+      // Older engines omit code. Legacy numeric codes remain stable when Shift
+      // changes event.key between keydown and keyup.
+      const legacy=Number(event?.keyCode||event?.which)||0,key=String(event?.key||"");
+      if(legacy>=65&&legacy<=90)return `Key${String.fromCharCode(legacy)}`;
+      if(legacy>=48&&legacy<=57)return `Digit${legacy-48}`;
+      if(legacy>=96&&legacy<=105)return `Numpad${legacy-96}`;
+      if(legacy>=112&&legacy<=135)return `F${legacy-111}`;
+      if(legacy===13&&event?.location===3)return 'NumpadEnter';
+      if(legacy===16||key==='Shift')return event?.location===2?'ShiftRight':'ShiftLeft';
+      if(KEYBOARD_LEGACY_CODES[legacy])return KEYBOARD_LEGACY_CODES[legacy];
+      if(/^[a-z]$/i.test(key))return `Key${key.toUpperCase()}`;
+      if(/^[0-9]$/.test(key))return `Digit${key}`;
+      if(event?.location===3&&key==='Enter')return 'NumpadEnter';
+      if(KEYBOARD_KEY_ALIASES[key]||KEYBOARD_PUNCTUATION[key])return KEYBOARD_KEY_ALIASES[key]||KEYBOARD_PUNCTUATION[key];
+      if(key&&key!=="Unidentified"&&key!=="Dead"&&key!=="Process")return key;
+      return legacy?`Legacy${legacy}`:"";
+    }
+    isGameplayKey(event, code = this.eventCode(event)) {
       if (!code || KEYBOARD_RESERVED_CODES.has(code) || KEYBOARD_MODIFIER_CODES.has(code)) return false;
+      if (event.isComposing||event.keyCode===229) return false;
       if (event.ctrlKey || event.metaKey || event.altKey) return false;
       return true;
     }
     keyDown(event) {
-      const code = event.code;
+      const code = this.eventCode(event);
       if (this.isTypingTarget(event.target)) return;
       if (code === "F1") { event.preventDefault(); Diagnostics.toggle(); return; }
       if (code === "F2") { event.preventDefault(); performanceMonitor.toggle(); return; }
@@ -8564,22 +8607,30 @@ function withTimeout(promise, ms, message = "操作超时") {
         });
         return;
       }
-      if (event.repeat || !this.isGameplayKey(event)) return;
+      if(this.down.has(code)){
+        event.preventDefault();
+        if(engine?.inputStats)engine.inputStats.keyboardDuplicates=(engine.inputStats.keyboardDuplicates||0)+1;
+        return;
+      }
+      if (event.repeat || !this.isGameplayKey(event,code)) return;
       if (!engine?.running || engine.paused || engine.starting || engine.resumePending || engine.autoplay) return;
       event.preventDefault();
       this.down.add(code);
-      engine.keyboardDown(code);
+      if(engine.inputStats){const stats=engine.inputStats;stats.keyboardDown=(stats.keyboardDown||0)+1;stats.keyboardHeld=this.down.size;stats.keyboardMaxHeld=Math.max(stats.keyboardMaxHeld||0,this.down.size);}
+      engine.keyboardDown(code,event);
     }
     keyUp(event) {
-      const code = event.code;
+      const code = this.eventCode(event);
       if (!this.down.has(code)) return;
       event.preventDefault();
       this.down.delete(code);
-      engine?.keyboardUp(code);
+      if(engine?.inputStats)engine.inputStats.keyboardHeld=this.down.size;
+      engine?.keyboardUp(code,event);
     }
     clear(reason = "clear") {
       if (!this.down.size) return;
       this.down.clear();
+      if(engine?.inputStats)engine.inputStats.keyboardHeld=0;
       engine?.keyboardAllReleased(performance.now() / 1000);
       Diagnostics.info("InputManager.keyboard", "全区域键盘状态已清理", { reason });
     }
@@ -11397,8 +11448,12 @@ function withTimeout(promise, ms, message = "操作超时") {
       L, n, t = this.time, allowCancelGhost = false,
       now = performance.now() / 1000, preferredId = null,
     ) {
-      const keyboard = keyboardInput?.hasGameplayKey();
-      if (keyboard) return this.keyboardPointer;
+      const keyboard = keyboardInput?.hasGameplayKey(),
+        keyOwner=typeof preferredId==='string'&&preferredId.startsWith('keyboard:')?preferredId.slice(9):null;
+      if (keyboard) {
+        if(keyOwner){if(keyboardInput.down.has(keyOwner))return this.keyboardContact(keyOwner);}
+        else return this.keyboardPointer;
+      }
       const preferred =
         preferredId != null && preferredId !== "keyboard"
           ? this.pointer.get(preferredId)
@@ -12544,9 +12599,9 @@ function withTimeout(promise, ms, message = "操作超时") {
       return true;
     }
 
-    keyboardCandidateMask(typeMask, dueOnly = false, out = this.keyboardCandidateScratch) {
-      if(this.streamBuffering)return null;
-      const visualT = this.time,
+    keyboardCandidateMask(typeMask, dueOnly = false, out = this.keyboardCandidateScratch, eventAudioTime = NaN, allowBuffered = false) {
+      if(this.streamBuffering&&!allowBuffered)return null;
+      const visualT = Number.isFinite(eventAudioTime)?eventAudioTime:this.time,
         t = visualT + judgeTimingLead + clamp((Number(this.clockDrift) || 0) * 0.28, -0.012, 0.012),
         span = Math.max((this.courseStrict ? 0.14 : BAD), DRAG_LATE_WINDOW, FLICK_ARM_EARLY, FLICK_ARM_LATE) + Math.max(0.18, specialJudgeDelay + 0.08),
         lo = lowerBoundNumeric(this.noteTimes, visualT - span),
@@ -12593,23 +12648,26 @@ function withTimeout(promise, ms, message = "操作超时") {
       out.dt = bestDt;
       return out;
     }
-    keyboardDown(code) {
-      if(this.streamBuffering)return;
+    keyboardDown(code, event = null) {
+      const capturedAt=event?this.eventPerformanceTime(event):performance.now(),
+        frozen=this.inputCapturedWhileBuffered(capturedAt),historical=!!event&&this.streamBuffering&&!frozen;
+      if(frozen||(this.streamBuffering&&!historical))return;
+      const at=event?this.eventAudioTime(event):this.time;
       if(this.chart.kind === "pjsk"){
         const k=SEKAI_KEYS.indexOf(code),f=SEKAI_FLICK_KEYS.indexOf(code);if(k<0&&f<0)return;
         this.usedKeyboard=true;const s=pjskStageGeometry(this),x=s.cx-s.bottomHalf+((k>=0?k:f)+.5)*s.bottomHalf*2/6;
-        if(f>=0)pjskInput(this,"tap",x,s.judgeY,this.time);
-        return pjskInput(this,f>=0?"flick":"tap",x,s.judgeY,this.time);
+        if(f>=0)pjskInput(this,"tap",x,s.judgeY,at);
+        return pjskInput(this,f>=0?"flick":"tap",x,s.judgeY,at);
       }
       if (this.autoplay) return;
-      this.usedKeyboard = true;
-      syncAssistIndicators(this);
-      const candidate = this.keyboardCandidateMask((1 << 1) | (1 << 3));
+      if(!this.usedKeyboard){this.usedKeyboard = true;syncAssistIndicators(this);}
+      const candidate = this.keyboardCandidateMask((1 << 1) | (1 << 3),false,this.keyboardCandidateScratch,at,historical);
       if (candidate) {
+        if(this.inputStats)this.inputStats.keyboardAccepted=(this.inputStats.keyboardAccepted||0)+1;
         const diff = candidate.t - candidate.target;
         if (candidate.n.type === 3) {
           candidate.n.state = 2;
-          candidate.n.holdPointer = "keyboard";
+          candidate.n.holdPointer = this.keyboardContact(code).id;
           candidate.n.releaseAt = Infinity;
           candidate.n.judge = Math.abs(diff) <= (this.courseStrict ? 0.04 : PERFECT) ? "perfect" : "good";
           candidate.n.holdHeadDiff = diff;
@@ -12622,29 +12680,49 @@ function withTimeout(promise, ms, message = "操作超时") {
           const judgement = Math.abs(diff) <= (this.courseStrict ? 0.04 : PERFECT) ? 0 : diff >= -(this.courseStrict ? 0.09 : GOOD) && diff <= (this.courseStrict ? 0.09 : GOOD) ? 1 : 2;
           this.commit(candidate.n, judgement, diff, candidate.L);
         }
-      }
+      } else if(this.inputStats)this.inputStats.keyboardNoCandidate=(this.inputStats.keyboardNoCandidate||0)+1;
       // A held keyboard state behaves like a continuous full-area contact:
       // yellow Drag and red Flick are consumed as they reach their line.
-      this.keyboardContinuous(this.time);
+      // Other keys in a chord do not repeat the continuous-contact scan. The
+      // first held key and the normal frame update already cover those notes.
+      if(!keyboardInput||keyboardInput.down.size<=1)this.keyboardContinuous(at,historical);
     }
-    keyboardUp() {
-      if (!keyboardInput?.hasGameplayKey()) this.keyboardAllReleased(performance.now() / 1000);
+    keyboardContact(code) {
+      this.keyboardContacts ||= new Map();
+      let contact=this.keyboardContacts.get(code);
+      if(!contact){contact={id:`keyboard:${code}`,keyboard:true,active:true,x:0,y:0};this.keyboardContacts.set(code,contact);}
+      return contact;
+    }
+    keyboardUp(code, event = null) {
+      const now=(event?this.eventPerformanceTime(event):performance.now())/1000,owner=`keyboard:${code}`;
+      for(const item of this.activeHolds){const n=item.n;if(n.holdPointer===owner)n.releaseAt=Math.min(n.releaseAt,now);}
+      if (!keyboardInput?.hasGameplayKey()) this.keyboardAllReleased(now);
     }
     keyboardAllReleased(now = performance.now() / 1000) {
       for (const item of this.activeHolds) {
-        if (item.n.holdPointer === "keyboard" && !Number.isFinite(item.n.releaseAt)) item.n.releaseAt = now;
+        const owner=item.n.holdPointer;
+        if ((owner === "keyboard"||typeof owner==='string'&&owner.startsWith('keyboard:')) && !Number.isFinite(item.n.releaseAt)) item.n.releaseAt = now;
       }
     }
-    keyboardContinuous() {
-      if(this.chart.kind === "pjsk")return;
+    keyboardContinuous(eventAudioTime = this.time, allowBuffered = false) {
+      if(this.chart.kind === "pjsk"||(this.streamBuffering&&!allowBuffered))return;
       if (!keyboardInput?.hasGameplayKey()) return;
-      // Consume all due Drag/Flick notes, including simultaneous notes, without
-      // creating per-key bindings or scanning the full chart.
-      for (let guard = 0; guard < 32; guard++) {
-        const candidate = this.keyboardCandidateMask((1 << 2) | (1 << 4), true);
-        if (!candidate) break;
-        this.commit(candidate.n, 0, candidate.visualT - candidate.target, candidate.L);
+      const at=Number.isFinite(eventAudioTime)?eventAudioTime:this.time,
+        t=at+judgeTimingLead+clamp((Number(this.clockDrift)||0)*.28,-.012,.012),
+        span=Math.max(DRAG_LATE_WINDOW,FLICK_ARM_LATE)+Math.max(.18,specialJudgeDelay+.08),
+        lo=lowerBoundNumeric(this.noteTimes,at-span),hi=lowerBoundNumeric(this.noteTimes,at+span);
+      // One bounded pass replaces repeated nearest-candidate searches. Every
+      // due special in a dense chord is judged; there is no per-frame note cap.
+      let scanned=0;
+      for(let i=lo;i<hi;i++){
+        scanned++;
+        const {L,n}=this.noteItems[i];if(n.fake||n.state!==0||(n.type!==2&&n.type!==4))continue;
+        const target=this.manualTargetTime(n),diff=t-target,
+          limit=n.type===2?DRAG_LATE_WINDOW:FLICK_ARM_LATE;
+        if(diff<-.0005||diff>limit)continue;
+        this.commit(n,0,at-target,L);
       }
+      if(this.inputStats)this.inputStats.keyboardContinuousScanned=(this.inputStats.keyboardContinuousScanned||0)+scanned;
     }
 
     playSound(k, when = null, note = null) {
@@ -13651,7 +13729,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         for (let ri = 0; ri < this.renderLines.length; ri++) {
           const L = this.renderLines[ri],
             ls = this.frameLines[L.id];
-          if (!(ls.alpha > 0.001) || !this.officialLineIntersectsViewport(ls, lineWidth * 0.5, officialThickness * 0.5)) continue;
+          if (L.nonRenderingControl || !(ls.alpha > 0.001) || !this.officialLineIntersectsViewport(ls, lineWidth * 0.5, officialThickness * 0.5)) continue;
           c.setTransform(
             baseScale * ls.ux,
             baseScale * ls.uy,
@@ -14316,7 +14394,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     syncReferenceViewport();
     $("#refHome").onclick=()=>{
       if (document.body.dataset.referenceScene!=="home") return;
-      if(globalThis.PhiOpening&&!PhiOpening.readyForStart()){PhiOpening.enableFromGesture();return;}
+      if(globalThis.PhiOpening&&!PhiOpening.advanceFromGesture())return;
       ++referenceRouteToken;
       Engine.primeAudioFromGesture(false);
       referenceScene("collection");
