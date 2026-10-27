@@ -63,3 +63,7 @@
 未取得第八章、第九章完整原版过场、交互事件脚本和全部意象动画资源，也未完成与官方客户端逐曲、逐帧和判定行为对照。检查过的 [sim-phi](https://github.com/lchzh3473/sim-phi)、[PhiZone/player](https://github.com/PhiZone/player)、[Phira](https://github.com/TeamFlos/phira)、[PhiCommunity](https://github.com/yuameshi/PhiCommunity) 是模拟器或同人项目，不能据其可运行推断原版全部演出齐全。
 
 [AconHol/phigros-chapter9-web](https://github.com/AconHol/phigros-chapter9-web) 有可运行的第九章地图、曲绘和剧情界面，但明确有替代正文且不含完整游玩；[LyCecilion/Phigros_Chapter_9_ARG](https://github.com/LyCecilion/Phigros_Chapter_9_ARG) 的 `replay` 是外部 ARG 网页存档，不能冒充游戏内的“重演”。因此不能用占位动画、普通自动播放或 ARG 存档宣称已实现原版 1:1 重演。
+
+## 第八章社区演出时间线
+
+Distorted Fate EZ/HD/IN 与 DESTRUCTION 3,2,1 IN 的部分演出改编自 PhiTogether 固定提交 817fc3469f9d5120e53f260359cf87f718997cc1 的 SpecialChartsProcessor，使用 AGPL-3.0，许可与来源见 `assets/meta/chapter8-community-effects-source.md`。原始着色器、剧情过场和完整重演未包含。

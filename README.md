@@ -1,5 +1,9 @@
 # TYCPHIGROS 4.0.1.2 · GitHub Pages 发布曲库
 
+## 第八章社区演出 · pages-12
+
+为 Distorted Fate EZ/HD/IN 与 DESTRUCTION 3,2,1 IN 接入 PhiTogether 的社区时间线，包括背景变暗、HUD 状态和 Distorted Fate 倒计时；只对 SHA-256 匹配的原谱生效并按需加载。原版着色器和剧情重演资源尚缺，不能称为完整原版演出。源码、署名和 AGPL-3.0 许可见 `assets/meta/chapter8-community-effects-source.md`。
+
 ## 第九章噪域内存优化 · pages-11
 
 按同时显示数量预分配噪域几何数据，保留全部谱面区块与动态扩容，降低密集谱面的内存占用。

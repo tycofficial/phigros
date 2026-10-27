@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-11';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-12';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,7 +26,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-11",
+    runtime: "4.0.1.2-pages-12",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-10-27T10:16:39Z",
@@ -6342,6 +6342,56 @@ function withTimeout(promise, ms, message = "操作超时") {
     if (!Array.isArray(entry.files)) document.getElementById(`phiBuiltin_${entry.id}`)?.remove();
     return rec;
   }
+  // Only these exact original chart bytes have an upstream community timeline.
+  // Check the decompressed bytes as well as the catalogue declaration so a
+  // modified chart, imported chart, or different difficulty never inherits it.
+  const CHAPTER8_COMMUNITY_HASHES = new Set([
+    "b13ed5ccefc29fcbfec55c0d8437c6baade3b2889604d579e5ce9ae58d8297d6",
+    "b9da6d696354486a7f3dc62b531edc0489d874fb99eee29a18cd393b7079d2eb",
+    "9f4508d425c0c241e9cfca064256a54b2509aa5e9169c12b6f131b848a1f828b",
+    "52c749bec3353160c6c0bb14c145e2bc7d708f44e9e3d5c49220ffb372d3b91e",
+  ]);
+  let chapter8CommunityModulePromise = null;
+  function loadChapter8CommunityModule() {
+    if (globalThis.PhiChapter8CommunityEffects) return Promise.resolve(globalThis.PhiChapter8CommunityEffects);
+    if (chapter8CommunityModulePromise) return chapter8CommunityModulePromise;
+    chapter8CommunityModulePromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = `./js/chapter8-community-effects.js?v=${encodeURIComponent(PHI_VERSIONS.runtime)}`;
+      let settled = false;
+      const finish = (error) => {
+        if (settled) return;
+        settled = true; clearTimeout(timer);
+        if (error || !globalThis.PhiChapter8CommunityEffects) {
+          script.remove(); chapter8CommunityModulePromise = null;
+          reject(error || new Error('第八章演出模块不可用'));
+        } else resolve(globalThis.PhiChapter8CommunityEffects);
+      };
+      const timer = setTimeout(() => finish(new Error('第八章演出模块加载超时')), 6000);
+      script.onload = () => finish(null);
+      script.onerror = () => finish(new Error('第八章演出模块加载失败'));
+      document.head.appendChild(script);
+    });
+    return chapter8CommunityModulePromise;
+  }
+  async function prepareChapter8CommunityEffect(entry, signal) {
+    const file = entry?.files?.find(item => item.name === entry.meta?.chart);
+    const declared = BUILTIN_ASSET_MAP.get(String(file?.asset))?.sha256;
+    if (!file || !CHAPTER8_COMMUNITY_HASHES.has(declared)) return null;
+    try {
+      const [api, blob] = await Promise.all([
+        loadChapter8CommunityModule(), materializeBuiltinAsset(file.asset, file.name, { signal }),
+      ]);
+      if (signal?.aborted) throw new DOMException('已取消', 'AbortError');
+      const actual = await sha256Blob(blob);
+      if (signal?.aborted) throw new DOMException('已取消', 'AbortError');
+      return actual === declared ? api.select(actual) : null;
+    } catch (error) {
+      if (error?.name === 'AbortError') throw error;
+      Diagnostics.warn('Chapter8.communityEffect', error?.message || String(error));
+      return null; // Effects are optional; their failure must not prevent play.
+    }
+  }
   async function startBuiltinPack(entry, playOptions = null) {
     const token = ++songLoadToken,course=!!playOptions?.courseSessionId;
     const fallbackArtwork=course?null:libraryFocusBgBlob;
@@ -6365,8 +6415,8 @@ function withTimeout(promise, ms, message = "操作超时") {
       }
       const preparation=Promise.all([ensureBuiltinMaterialForPlay(),loadSavedOrAdjacentOfficialFont()]);
       preparation.catch(()=>{});
-      const [record] = await Promise.all([materializeBuiltinPack(entry,{streaming:!playOptions?.offlineExport,signal:stream?.controller.signal}),beginLoadingPresentation(entry, fallbackArtwork)]);
-      const rec = {...record,bgBlob:record.bgBlob||courseArtwork||fallbackArtwork,_preparedStream:stream,_streamReady:streamReady,
+      const [record,,chapter8CommunityProfile] = await Promise.all([materializeBuiltinPack(entry,{streaming:!playOptions?.offlineExport,signal:stream?.controller.signal}),beginLoadingPresentation(entry, fallbackArtwork),prepareChapter8CommunityEffect(entry,stream?.controller.signal)]);
+      const rec = {...record,chapter8CommunityProfile,bgBlob:record.bgBlob||courseArtwork||fallbackArtwork,_preparedStream:stream,_streamReady:streamReady,
         _courseArtworkReady:courseArtworkReady};
       assertSongLoad(token);
       updateLoadingPresentation(rec, fallbackArtwork);
@@ -8922,6 +8972,10 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.record = record;
       this.chart = chart;
       this.pack = pack;
+      this.chapter8CommunityProfile = chart.kind === 'pgr' && record.builtin ? record.chapter8CommunityProfile || null : null;
+      this.chapter8CommunityFrame = {};
+      this.chapter8HideMetadata = false;
+      this.chapter8HideCombo = false;
       this.packageNoteScale = clamp(Number(record?.meta?.noteScale ?? 1) || 1, 0.05, 8);
       this.customHitSounds = new Map();
       this.canvas = $("#gameCanvas");
@@ -10740,6 +10794,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     reset() {
       this.streamRecoveryAbort?.abort();this.streamBuffering=false;
+      this.clearChapter8CommunityPresentation();
       this.inputFrameTime=NaN;
       clearTimeout(this.referenceFinishTimer);this.referenceFinishing=false;
       $("#gameView")?.classList.remove("phiStageIntro","phiStageOutro");
@@ -10811,6 +10866,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     stop(reason = "stop") {
       this.hostedArtworkAbort?.abort();
+      this.clearChapter8CommunityPresentation();
       this.streamRecoveryAbort?.abort();this.streamBuffering=false;$('#streamBufferStatus')?.classList.add('hidden');
       clearTimeout(this.referenceFinishTimer);this.referenceFinishing=false;
       $("#gameView")?.classList.remove("phiStageIntro","phiStageOutro");
@@ -13698,6 +13754,29 @@ function withTimeout(promise, ms, message = "操作超时") {
       c.globalCompositeOperation = "source-over";
       c.filter = "none";
     }
+    clearChapter8CommunityPresentation() {
+      const view = $('#gameView');
+      view?.classList.remove('chapter8HideMetadata', 'chapter8HideCombo');
+      this.chapter8HideMetadata = false;
+      this.chapter8HideCombo = false;
+    }
+    sampleChapter8CommunityPresentation() {
+      const api = globalThis.PhiChapter8CommunityEffects;
+      const frame = this.chart.kind === 'pgr' && this.chapter8CommunityProfile && api
+        ? api.sample(this.chapter8CommunityProfile, this.musicCurrentTime(), this.chapter8CommunityFrame)
+        : null;
+      const hideMetadata = !!frame?.hideMetadata, hideCombo = !!frame?.hideCombo;
+      const view = $('#gameView');
+      if (hideMetadata !== this.chapter8HideMetadata) {
+        view?.classList.toggle('chapter8HideMetadata', hideMetadata);
+        this.chapter8HideMetadata = hideMetadata;
+      }
+      if (hideCombo !== this.chapter8HideCombo) {
+        view?.classList.toggle('chapter8HideCombo', hideCombo);
+        this.chapter8HideCombo = hideCombo;
+      }
+      return frame;
+    }
     draw(t = this.time, frameNow = performance.now()) {
       const c = this.ctx,
         w = this.w,
@@ -13709,6 +13788,11 @@ function withTimeout(promise, ms, message = "操作超时") {
       // Canvas-first background: this remains visible even when WebKit promotes
       // the gameplay Canvas to an opaque surface.
       this.drawGameplayBackground(c,t);
+      // The source timeline follows the actual music position, independent of
+      // chart offset, render latency, pause/seek and playback rate.
+      const chapter8Frame = this.sampleChapter8CommunityPresentation();
+      if (chapter8Frame)
+        globalThis.PhiChapter8CommunityEffects.drawBackground(c,chapter8Frame,this.canvas.width,this.canvas.height);
       const d = this.dpr || 1,
         baseScale = d * this.viewScale,
         baseX = d * this.viewX,
@@ -13843,6 +13927,11 @@ function withTimeout(promise, ms, message = "操作超时") {
         }
       }
       c.restore();
+      if (chapter8Frame?.showCountdown) {
+        c.save();c.setTransform(baseScale,0,0,baseScale,baseX,baseY);
+        globalThis.PhiChapter8CommunityEffects.drawCountdown(c,chapter8Frame,w,h);
+        c.restore();
+      }
       const activeEffects = this.visibleEffectsAt(t);
       if (activeEffects.length) {
         if (!this.postProcessor)

@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' blob: 'wasm-unsafe-eval'; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' data: blob: https://raw.githubusercontent.com https://cdn.jsdelivr.net; object-src 'none'; base-uri 'none'; form-action 'none'">
 <link rel="preload" href="./assets/opening/studio.webp" as="image" fetchpriority="high">
-<link rel="preload" href="./js/app.js?v=4.0.1.2-pages-11" as="script">
+<link rel="preload" href="./js/app.js?v=4.0.1.2-pages-12" as="script">
 <meta name="theme-color" content="#0b111d">
-<script src="./js/remote-assets.js?v=pages-11"></script>
-<script id="phiOfflineNetworkGuard" src="./js/site-network-guard.js?v=4.0.1.2-pages-11"></script>
+<script src="./js/remote-assets.js?v=pages-12"></script>
+<script id="phiOfflineNetworkGuard" src="./js/site-network-guard.js?v=4.0.1.2-pages-12"></script>
 <title>TYCPHIGROS4.0.1.2</title>
 <meta name="application-name" content="TYCPHIGROS4.0.1.2">
 <!-- Native noise 60.2: Adai-add/PhiraiAd a60b49ad shaders/materials/textures,
@@ -186,15 +186,22 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 -->
 <!-- Chart/music/art source: https://github.com/7aGiven/Phigros_Resource . Authorship is retained per song. Native blockAreaList is rendered live, with no recording-derived overlays. Native GPU passes and original GLSL: Adai-add/PhiraiAd a60b49ad, GPL-3.0 (full license below). -->
 <link rel="stylesheet" id="phiOriginalMaterialStyles" href="./css/original-materials.css"><script id="phiRepairEvidence" type="application/json" data-src="./assets/meta/repair-evidence.json"></script><link rel="stylesheet" id="phiSafariHudLoadingFix" href="./css/safari-hud.css">
-<link rel="stylesheet" href="./css/opening.css?v=4.0.1.2-pages-11">
-<link rel="stylesheet" href="./css/catalog.css?v=4.0.1.2-pages-11">
-<link rel="stylesheet" href="./css/course-mode.css?v=4.0.1.2-pages-11">
+<link rel="stylesheet" href="./css/opening.css?v=4.0.1.2-pages-12">
+<link rel="stylesheet" href="./css/catalog.css?v=4.0.1.2-pages-12">
+<link rel="stylesheet" href="./css/course-mode.css?v=4.0.1.2-pages-12">
+<style>
+/* Preserve pause controls while community story effects hide the other HUD. */
+#gameView.chapter8HideMetadata .gameTop .hud,
+#gameView.chapter8HideMetadata .gameBottom,
+#gameView.chapter8HideMetadata .progress,
+#gameView.chapter8HideCombo .comboHud { visibility:hidden }
+</style>
 </head>
 
 <!-- PJSK perspective math reference: Next-SEKAI/sonolus-next-sekai-engine (MIT License). Copyright (c) 2025 Kyle Chang. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, subject to the MIT License terms; the software is provided "AS IS", without warranty of any kind. -->
 <body>
 <script id="phiBuildMetadata" type="application/json">{
-  "runtime": "4.0.1.2-pages-11",
+  "runtime": "4.0.1.2-pages-12",
   "parser": "9.0-native-sus",
   "renderEngine": "38.3-safari-caption-baseline",
   "buildTimestamp": "2026-10-27T10:16:39Z",
@@ -469,6 +476,10 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <div class="rangeMarks"><span>静音 0%</span><span>推荐 72%</span><span>增强 150%</span></div>
             <div class="settingHint">只调整 Note 打击音效，不改变歌曲音量。右侧预览每次落键都会按当前音量播放材质包中的 click 音效。</div>
           </div>
+          <div class="sliderPane">
+            <div class="sliderTitle"><b>第八章社区演出</b></div>
+            <div class="settingHint">部分谱面演出参考 PhiTogether 社区实现，随曲目按需加载；并非完整原版意象。<a href="https://github.com/tycofficial/phigros" target="_blank" rel="noopener noreferrer" style="color:#a9ecff">对应源码</a> · <a href="./assets/licenses/AGPL-3.0.txt" target="_blank" rel="noopener noreferrer" style="color:#a9ecff">AGPL-3.0 许可</a> · <a href="./assets/meta/chapter8-community-effects-source.md" target="_blank" rel="noopener noreferrer" style="color:#a9ecff">来源说明</a></div>
+          </div>
         </div>
         <div class="previewPane"><strong>实时落键预览</strong><small>当前模式的音符会循环落向判定线，并播放打击音效和动画</small><canvas id="notePreview"></canvas></div>
       </div>
@@ -625,15 +636,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
-<script src="./js/performance-policy.js?v=4.0.1.2-pages-11" defer></script>
-<script src="./js/hosted-manifest.js?v=4.0.1.2-pages-11" defer></script>
-<script src="./js/full-catalog.js?v=4.0.1.2-pages-11" defer></script>
-<script src="./js/catalog-runtime.js?v=4.0.1.2-pages-11" defer></script>
-<script src="./js/course-mode.js?v=4.0.1.2-pages-11" defer></script>
-<script src="./js/resource-transfer.js?v=4.0.1.2-pages-11" defer></script>
-<script src="./js/hosted-media.js?v=4.0.1.2-pages-11" defer></script>
-<script src="./js/opening.js?v=4.0.1.2-pages-11" defer></script>
-<script src="./js/app.js?v=4.0.1.2-pages-11" defer></script>
+<script src="./js/performance-policy.js?v=4.0.1.2-pages-12" defer></script>
+<script src="./js/hosted-manifest.js?v=4.0.1.2-pages-12" defer></script>
+<script src="./js/full-catalog.js?v=4.0.1.2-pages-12" defer></script>
+<script src="./js/catalog-runtime.js?v=4.0.1.2-pages-12" defer></script>
+<script src="./js/course-mode.js?v=4.0.1.2-pages-12" defer></script>
+<script src="./js/resource-transfer.js?v=4.0.1.2-pages-12" defer></script>
+<script src="./js/hosted-media.js?v=4.0.1.2-pages-12" defer></script>
+<script src="./js/opening.js?v=4.0.1.2-pages-12" defer></script>
+<script src="./js/app.js?v=4.0.1.2-pages-12" defer></script>
 
 
 

@@ -1,5 +1,5 @@
 {
-  "version": "4.0.1.2-pages-11",
+  "version": "4.0.1.2-pages-12",
   "maxBytes": 990000000,
   "baseBytes": 138035549,
   "selectedBundleBytes": 845795864,
@@ -219,5 +219,22 @@
   "localAddedSongs": 150,
   "localAddedCharts": 446,
   "noiseEasingFix": "sine, quadratic, cubic and quartic easing match pinned PhiraiAd noise-area format",
-  "noiseCapacityFix": "preallocate by maximum simultaneous visible regions; retain dynamic growth"
+  "noiseCapacityFix": "preallocate by maximum simultaneous visible regions; retain dynamic growth",
+  "chapter8CommunityEffects": {
+    "charts": [
+      "Distorted Fate EZ",
+      "Distorted Fate HD",
+      "Distorted Fate IN",
+      "DESTRUCTION 3,2,1 IN"
+    ],
+    "components": [
+      "background dimming",
+      "HUD state",
+      "Distorted Fate countdown"
+    ],
+    "originalShaderIncluded": false,
+    "originalStoryReplayIncluded": false,
+    "source": "PhiTogether SpecialChartsProcessor 817fc3469f9d5120e53f260359cf87f718997cc1",
+    "license": "AGPL-3.0"
+  }
 }
