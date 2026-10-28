@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "source": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+  "videos": [
+    {
+      "id": "spas_unlock",
+      "chapter": 5,
+      "title": "Spasmodic · 历史解锁片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Spas_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Spas_Unlock.mp4",
+      "bytes": 9796619,
+      "sha256": "3702ea9825fa49ec77a14fecb038372df4b916eaac987d867bfd912fe698c4e1",
+      "mime": "video/mp4"
+    },
+    {
+      "id": "iga_loop",
+      "chapter": 6,
+      "title": "Igallta · 循环片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Loop.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Loop.mp4",
+      "bytes": 2079320,
+      "sha256": "20616a52283193a45e0fd1ad58e8a117fea8076071860fd17805571e3c34b1b0",
+      "mime": "video/mp4"
+    },
+    {
+      "id": "iga_main",
+      "chapter": 6,
+      "title": "Igallta · 主过场",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Main.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Main.mp4",
+      "bytes": 8198916,
+      "sha256": "b1775f38ef55990aa97f755229aa700454d9e918a1ced2a8da0685720865d7e4",
+      "mime": "video/mp4"
+    },
+    {
+      "id": "time_reverse",
+      "chapter": 7,
+      "title": "Rrhar’il · 时间倒转片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/TimeReverse_Video.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/TimeReverse_Video.mp4",
+      "bytes": 3412027,
+      "sha256": "691eae099af269b4fe2ec928b1cee3ab43916166aa11135700421d7e11c94b5e",
+      "mime": "video/mp4"
+    },
+    {
+      "id": "321_unlock",
+      "chapter": 8,
+      "title": "DESTRUCTION 3,2,1 · 历史解锁片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/321_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/321_Unlock.mp4",
+      "bytes": 12280482,
+      "sha256": "d2790db3b24888bba3faf7f9372af81d0ea3c1a439e82c47975bcaa049033885",
+      "mime": "video/mp4"
+    },
+    {
+      "id": "df_touch",
+      "chapter": 8,
+      "title": "Distorted Fate · 启动画面片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+      "bytes": 1069467,
+      "sha256": "18851074ef2e1675fb4c5c031a3aa536042a2d61e93d6903be4b026548abdaa9",
+      "mime": "video/mp4"
+    },
+    {
+      "id": "df_unlock",
+      "chapter": 8,
+      "title": "Distorted Fate · 历史解锁片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4",
+      "bytes": 23085541,
+      "sha256": "f8141d25ecd18db2da97cfb6e33b6da87fb55282a7d9b2a7885bf1890481cfbe",
+      "mime": "video/mp4"
+    }
+  ]
+}

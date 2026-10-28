@@ -26,7 +26,7 @@
     // A previously cached entry may not include the new dependency yet.
     return transferReady||=(new Promise(resolve=>{
       const load=()=>{
-        const script=document.createElement('script');script.src=url('./js/resource-transfer.js?v=4.0.1.2-pages-12');
+        const script=document.createElement('script');script.src=url('./js/resource-transfer.js?v=4.0.1.2-pages-13');
         script.onload=resolve;script.onerror=()=>{script.remove();setTimeout(load,1500);};document.head.appendChild(script);
       };load();
     }));
@@ -95,7 +95,7 @@
       const abort=()=>finish(new DOMException('谱面加载已取消','AbortError'));
       if(signal?.aborted)return abort();
       try{
-        worker=new Worker(url('./js/chart-decode-worker.js?v=4.0.1.2-pages-12'));
+        worker=new Worker(url('./js/chart-decode-worker.js?v=4.0.1.2-pages-13'));
         worker.onmessage=({data})=>{
           if(settled)return;
           if(data.type==='progress'){onProgress?.(data.received,data.total,data.stage);return;}

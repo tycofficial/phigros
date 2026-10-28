@@ -1,5 +1,9 @@
 # TYCPHIGROS 4.0.1.2 · GitHub Pages 发布曲库
 
+## 主线历史过场片段 · pages-13
+
+章节页新增按需播放入口，提供第五至第八章共七段片段，影片由独立 GitHub 媒体分支提供并在下载后校验。来源为第三方 3.0 修改版历史存档，未验证与最新官方发行版一致，且这些独立视频不构成完整交互重演；详见 `assets/meta/vision-media-source.json`。
+
 ## 第八章社区演出 · pages-12
 
 为 Distorted Fate EZ/HD/IN 与 DESTRUCTION 3,2,1 IN 接入 PhiTogether 的社区时间线，包括背景变暗、HUD 状态和 Distorted Fate 倒计时；只对 SHA-256 匹配的原谱生效并按需加载。原版着色器和剧情重演资源尚缺，不能称为完整原版演出。源码、署名和 AGPL-3.0 许可见 `assets/meta/chapter8-community-effects-source.md`。

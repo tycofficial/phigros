@@ -1,5 +1,5 @@
 {
-  "version": "4.0.1.2-pages-12",
+  "version": "4.0.1.2-pages-13",
   "maxBytes": 990000000,
   "baseBytes": 138035549,
   "selectedBundleBytes": 845795864,
@@ -236,5 +236,17 @@
     "originalStoryReplayIncluded": false,
     "source": "PhiTogether SpecialChartsProcessor 817fc3469f9d5120e53f260359cf87f718997cc1",
     "license": "AGPL-3.0"
+  },
+  "historicalChapterVideoClips": {
+    "count": 7,
+    "chapters": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "mediaCommit": "cee10d70dc4f036f9ce98577abee52455f88423e",
+    "source": "third-party modified 3.0 archive; current official equivalence unverified",
+    "completeInteractiveReplay": false
   }
 }
