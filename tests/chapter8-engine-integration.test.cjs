@@ -6,7 +6,7 @@ function presentation(){
   const f=fixture(),p=f.probe;f.context.PhiChapter8CommunityEffects=fx;
   const values=new Set(),view=f.node('#gameView');view.classList={remove(...v){v.forEach(x=>values.delete(x));},toggle(k,on){if(on)values.add(k);else values.delete(k);},contains:k=>values.has(k)};
   let time=0;p.musicCurrentTime=()=>time;p.chapter8CommunityFrame={};p.chapter8CommunityProfile='distorted-fate';p.chapter8HideMetadata=false;p.chapter8HideCombo=false;
-  return {p,values,seek:n=>time=n};
+  return {p,values,context:f.context,seek:n=>time=n};
 }
 test('music-clock boundaries and backward seeks hide and restore DOM HUD independently',()=>{
   const {p,values,seek}=presentation();seek(96);p.sampleChapter8CommunityPresentation();assert(values.has('chapter8HideMetadata'));assert(!values.has('chapter8HideCombo'));
@@ -30,4 +30,8 @@ test('only trusted matching SHA triggers the module and changed chart bytes neve
   assert.equal(await c.prepareEffect(entry('good')),'distorted-fate');assert.equal(reads,1);
   actual='modified';assert.equal(await c.prepareEffect(entry('good')),null);assert.equal(reads,2);
   const abort=new AbortController();abort.abort();await assert.rejects(c.prepareEffect(entry('good'),abort.signal),{name:'AbortError'});
+});
+
+test('independent replay switch removes and restores supported HUD at the current music position',()=>{
+  const {p,values,context,seek}=presentation();context.PhiVisionMode={enabled:true};seek(130);assert(p.sampleChapter8CommunityPresentation().showCountdown);assert.equal(values.size,2);context.PhiVisionMode.enabled=false;assert.equal(p.sampleChapter8CommunityPresentation(),null);assert.equal(values.size,0);context.PhiVisionMode.enabled=true;assert(p.sampleChapter8CommunityPresentation().showCountdown);assert.equal(values.size,2);
 });

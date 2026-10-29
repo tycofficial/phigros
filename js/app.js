@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-13';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-14';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,7 +26,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-13",
+    runtime: "4.0.1.2-pages-14",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-10-27T10:16:39Z",
@@ -6377,7 +6377,7 @@ function withTimeout(promise, ms, message = "操作超时") {
   async function prepareChapter8CommunityEffect(entry, signal) {
     const file = entry?.files?.find(item => item.name === entry.meta?.chart);
     const declared = BUILTIN_ASSET_MAP.get(String(file?.asset))?.sha256;
-    if (!file || !CHAPTER8_COMMUNITY_HASHES.has(declared)) return null;
+    if (!file || !CHAPTER8_COMMUNITY_HASHES.has(declared) || globalThis.PhiVisionMode?.enabled === false) return null;
     try {
       const [api, blob] = await Promise.all([
         loadChapter8CommunityModule(), materializeBuiltinAsset(file.asset, file.name, { signal }),
@@ -8272,6 +8272,12 @@ function withTimeout(promise, ms, message = "操作超时") {
     const ua = String(navigator.userAgent || "");
     return /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && Number(navigator.maxTouchPoints || 0) > 1);
   }
+  function supportsNativeTouchInput(apple, host = window, caps = navigator) {
+    // Old iOS WebKit can support Touch Events without exposing a constructible
+    // global TouchEvent or navigator.maxTouchPoints. The event target capability
+    // plus an Apple touch user agent is sufficient for the native path.
+    return "ontouchstart" in host && ((Number(caps.maxTouchPoints) || 0) > 0 || !!apple);
+  }
 
 
   function canvasBlob(canvas, type = "image/jpeg", quality = 0.84) {
@@ -9014,10 +9020,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       // whenever this is a touch-capable device: changedTouches delivers every
       // changed finger in one event and Touch.identifier remains independent.
       // Mouse/pen keep the PointerEvent path. This does not alter the rAF/render cap.
-      this.useNativeTouchInput =
-        typeof TouchEvent !== "undefined" &&
-        "ontouchstart" in window &&
-        (Number(navigator.maxTouchPoints) || 0) > 0;
+      this.useNativeTouchInput = supportsNativeTouchInput(this.isAppleTouch);
       // WebKit delivers both APIs with independent timestamps. Touch.identifier
       // is the authoritative contact on Apple; a PointerEvent echo must not
       // consume the next note when it lands outside a deduplication heuristic.
@@ -10218,6 +10221,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     updateViewport() {
       this.inputFrameTime=NaN;
+      const previousScale=Number(this.viewScale)||1;
       if (!(this.w > 0 && this.h > 0)) this.applyLogicalLayout();
       const base =
           Math.min(this.surfaceW / this.w, this.surfaceH / this.h) || 1,
@@ -10233,6 +10237,21 @@ function withTimeout(promise, ms, message = "操作超时") {
       bounds.top = -this.viewY * inv;
       bounds.right = (this.surfaceW - this.viewX) * inv;
       bounds.bottom = (this.surfaceH - this.viewY) * inv;
+      // Safari can resize/shift the visual viewport without a large layout
+      // reflow or another touchmove. Reproject every held contact immediately;
+      // keep its physical down time and transform the existing swipe trajectory.
+      const ratio=previousScale*inv;
+      for(const p of this.pointer.values()){
+        if(!Number.isFinite(p.clientX)||!Number.isFinite(p.clientY))continue;
+        const x=(p.clientX-this.inputRect.left-this.viewX)*inv,
+          y=(p.clientY-this.inputRect.top-this.viewY)*inv,oldX=p.x,oldY=p.y;
+        if(x===oldX&&y===oldY&&ratio===1)continue;
+        p.startX=x+(Number.isFinite(p.startX)?p.startX-oldX:0)*ratio;
+        p.startY=y+(Number.isFinite(p.startY)?p.startY-oldY:0)*ratio;
+        p.lastX=x+(Number.isFinite(p.lastX)?p.lastX-oldX:0)*ratio;
+        p.lastY=y+(Number.isFinite(p.lastY)?p.lastY-oldY:0)*ratio;
+        p.x=x;p.y=y;p.speed=(Number(p.speed)||0)*ratio;
+      }
       this.updatePlayfieldFrame();
       this.nativeNoiseHudCache=null;
     }
@@ -11403,10 +11422,12 @@ function withTimeout(promise, ms, message = "操作超时") {
       for (let i = 0; i < lines.length; i++) this.computeLineFrame(lines[i], t, stamp);
     }
     lineScreen(L, t) {
-      if(this.frameLines[L.id]&&Math.abs(t-this.frameTime)<=1/240)return this.frameLines[L.id];
+      if(this.frameLines[L.id]&&t===this.frameTime)return this.frameLines[L.id];
       // An input sample needs this line and its ancestors, not every line in the
       // chart. Keep input samples out of the immutable current render frame.
-      if(!Number.isFinite(this.inputFrameTime)||Math.abs(t-this.inputFrameTime)>1/240){
+      // Close input times are still different samples on a rotating/moving
+      // line. Quantizing them to 4.17 ms can move a valid contact out of range.
+      if(this.inputFrameTime!==t){
         this.inputFrameTime=t;this.inputFrameStamp++;
       }
       return this.computeLineFrame(L,t,this.inputFrameStamp,this.inputFrameLines);
@@ -11512,16 +11533,6 @@ function withTimeout(promise, ms, message = "操作超时") {
         tx = this.touchLineX(L, x, y, t);
       return Math.abs(tx - along) <= this.judgeHalfWidth(n);
     }
-    holdContactAvailable(n, contact, t) {
-      if(n.type!==3)return true;
-      // Preserve the other live Hold's contact during a handoff. Only a free
-      // touch can replace a lifted finger in a same-position multi-Hold chord.
-      for(const item of this.activeHolds||[]){
-        const held=item.n;
-        if(held!==n&&held.state===2&&held.holdPointer===contact.id&&this.touchMatchesNote(item.L,held,contact,t))return false;
-      }
-      return true;
-    }
     findTouchForNote(
       L, n, t = this.time, allowCancelGhost = false,
       now = performance.now() / 1000, preferredId = null,
@@ -11530,7 +11541,10 @@ function withTimeout(promise, ms, message = "操作超时") {
         keyOwner=typeof preferredId==='string'&&preferredId.startsWith('keyboard:')?preferredId.slice(9):null;
       if (keyboard) {
         if(keyOwner){if(keyboardInput.down.has(keyOwner))return this.keyboardContact(keyOwner);}
-        else return this.keyboardPointer;
+        // Keyboard play models full-area contact. Any remaining held key can
+        // continue a Hold, just as one touch may cover overlapping Hold bodies.
+        for(const code of keyboardInput.down||[])return this.keyboardContact(code);
+        return this.keyboardPointer;
       }
       const preferred =
         preferredId != null && preferredId !== "keyboard"
@@ -11546,7 +11560,6 @@ function withTimeout(promise, ms, message = "操作超时") {
       ) return preferred;
       for (const replacement of this.pointer.values()) {
         if (replacement === preferred || replacement.active === false) continue;
-        if (!this.holdContactAvailable(n,replacement,t)) continue;
         if (this.touchMatchesNote(L, n, replacement, t)) return replacement;
       }
       // Browser-generated touchcancel may temporarily hide a physically held
@@ -11561,7 +11574,6 @@ function withTimeout(promise, ms, message = "操作超时") {
         for (const ghost of this.pointer.values()) {
           if (ghost === preferred || ghost.active !== false || ghost.cancelled !== true) continue;
           if (Number(ghost.ghostUntil) <= now) continue;
-          if (!this.holdContactAvailable(n,ghost,t)) continue;
           if (this.touchMatchesNote(L, n, ghost, t)) return ghost;
         }
       }
@@ -11816,7 +11828,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       for(let i=records.length-1;i>=0;i--){
         const r=records[i],dt=Math.abs(at-r.at),distance=(clientX-r.x)**2+(clientY-r.y)**2;
         const within=r.recovered ? at>=r.earliestAt-1&&at<=r.at+12 : dt<=12;
-        if(r[seen]||!r[other]||!within||distance>36)continue;
+        if(r[seen]||!r[other]||!within||distance>36||(native&&r.pointerSeen&&!r.touchPointer))continue;
         const rank=dt+distance*.01;if(rank<score){best=r;score=rank;}
       }
       if(best){best[seen]=true;best[native?'touchId':'pointerId']=id;if(best.recovered){best.at=at;best.recovered=false;}}
@@ -11824,7 +11836,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     rememberDownReceipt(p, recovered = false) {
       const records=this.inputDownReceipts||=([]),native=!!p.nativeTouch;
-      const r={at:p.downT,x:p.downClientX,y:p.downClientY,pointerSeen:!native,touchSeen:native,
+      const r={at:p.downT,x:p.downClientX,y:p.downClientY,pointerSeen:!native,touchSeen:native,touchPointer:!native&&!!p.touchPointer,
         pointerId:native?null:p.id,touchId:native?p.id:null,ended:false,endAt:Infinity,recovered,
         earliestAt:recovered?Math.min(p.downT,this.nativeTouchSnapshotTime??p.downT-250):p.downT-12};
       records.push(r);if(records.length>128)records.shift();p.downReceipt=r;return r;
@@ -11922,25 +11934,31 @@ function withTimeout(promise, ms, message = "操作超时") {
         const touch = touches[i], pid = this.touchPointerId(touch);
         live.add(pid);
         if (this.nativeTouchBlocked.has(pid)) continue;
-        let latest=null;
-        for(const r of this.inputDownReceipts||[])if(r.touchId===pid&&r.at<=at&&(!latest||r.at>latest.at))latest=r;
-        // The other API may deliver an old live snapshot after a real lift.
-        // That snapshot must not resurrect the ended finger as a new Tap.
-        if(latest?.ended&&at<=latest.endAt)continue;
-        let unpaired=null;
-        const after=Math.max(this.nativeTouchEndedAt?.get(pid)??-Infinity,this.nativeTouchSnapshotTime??-Infinity);
-        for(const r of this.inputDownReceipts||[])if(r.pointerSeen&&r.touchId==null&&r.at>=after-1&&r.at<=at&&at<=r.endAt&&
-          (touch.clientX-r.x)**2+(touch.clientY-r.y)**2<=36&&(!unpaired||r.at>unpaired.at))unpaired=r;
-        if(unpaired){
-          unpaired.touchId=pid;
-          if(unpaired.ended){this.nativeTouchBlocked.add(pid);continue;}
+        let p = this.pointer.get(pid), unpaired=null;
+        // Native TouchEvent is the sole touch authority on Apple. A live contact
+        // already carries its own generation and last sample time, and pointer
+        // echoes are ignored, so rescanning up to 128 receipts twice per finger
+        // on every high-rate move only wastes main-thread time on dense chords.
+        if (!this.nativeTouchAuthoritative || !p) {
+          let latest=null;
+          for(const r of this.inputDownReceipts||[])if(r.touchId===pid&&r.at<=at&&(!latest||r.at>latest.at))latest=r;
+          // An old snapshot following a real lift must not resurrect the finger.
+          if(latest?.ended&&at<=latest.endAt)continue;
+          if (!this.nativeTouchAuthoritative) {
+            const after=Math.max(this.nativeTouchEndedAt?.get(pid)??-Infinity,this.nativeTouchSnapshotTime??-Infinity);
+            for(const r of this.inputDownReceipts||[])if(r.pointerSeen&&r.touchPointer&&r.touchId==null&&r.at>=after-1&&r.at<=at&&at<=r.endAt&&
+              (touch.clientX-r.x)**2+(touch.clientY-r.y)**2<=36&&(!unpaired||r.at>unpaired.at))unpaired=r;
+            if(unpaired){
+              unpaired.touchId=pid;
+              if(unpaired.ended){this.nativeTouchBlocked.add(pid);continue;}
+            }
+          }
         }
         if (touch.target instanceof Element &&
             touch.target.closest("button,input,select,textarea,a,[contenteditable='true']")) {
           this.nativeTouchBlocked.add(pid);
           continue;
         }
-        let p = this.pointer.get(pid);
         if (p) {
           if(at<p.lastT-0.01)continue;
           // A Safari touchcancel is not proof that the finger left the glass. If a
@@ -12016,7 +12034,10 @@ function withTimeout(promise, ms, message = "操作超时") {
           continue;
         }
         this.nativeTouchBlocked.delete(pid);
-        const receipt=this.matchDownReceipt(true,pid,touch.clientX,touch.clientY,this.eventPerformanceTime(e));
+        // Apple touch PointerEvents are ignored before a receipt can be created.
+        // A nearby pen or mouse receipt is an independent contact, not the
+        // missing echo of this native finger.
+        const receipt=this.nativeTouchAuthoritative ? null : this.matchDownReceipt(true,pid,touch.clientX,touch.clientY,this.eventPerformanceTime(e));
         if(receipt?.ended){this.nativeTouchBlocked.add(pid);accepted=true;continue;}
         // identifier reuse is legal after a finished contact. Replace any stale
         // state instead of swallowing a new physical finger.
@@ -12627,6 +12648,30 @@ function withTimeout(promise, ms, message = "操作超时") {
       }
       return false;
     }
+    startHoldHead(L, n, pid, diff) {
+      n.state=2;n.holdPointer=pid;n.releaseAt=Infinity;
+      n.judge=Math.abs(diff)<=(this.courseStrict?0.04:PERFECT)?'perfect':'good';
+      n.holdHeadDiff=diff;
+      n.holdFxAt=this.time+(this.chart.kind==='pjsk'?PJSK_HOLD_FX_INTERVAL:HOLD_HIT_FX_INTERVAL);
+      this.activeHolds.add(n._item);this.pendingJudge.delete(n._item);
+      this.playSound('click',null,n);this.hitEffect(L,n,n.judge==='good'?1:0);
+    }
+    startCoveredHoldHeads(candidate, pid, x = NaN, y = NaN) {
+      const head=candidate.n,at=candidate.t,visualT=candidate.visualT,
+        sameTimeEpsilon=1e-7,time=head.time,good=this.courseStrict?0.09:GOOD;
+      this.startHoldHead(candidate.L,head,pid,at-time);
+      let started=1;
+      // One real press may cover several simultaneous Hold heads. The bounded
+      // search excludes other timestamps and never consumes Tap notes.
+      const lo=lowerBoundNumeric(this.noteTimes,time-sameTimeEpsilon),hi=lowerBoundNumeric(this.noteTimes,time+sameTimeEpsilon);
+      for(let i=lo;i<hi;i++){
+        const {L,n}=this.noteItems[i];
+        if(n.type!==3||n.fake||n.state!==0||Math.abs(n.time-time)>sameTimeEpsilon||Math.abs(at-n.time)>good)continue;
+        if(Number.isFinite(x)&&!this.touchCoordinatesMatchNote(L,n,x,y,visualT))continue;
+        this.startHoldHead(L,n,pid,at-n.time);started++;
+      }
+      return started;
+    }
     tryTap(pid, x, y, eventAudioTime = NaN) {
       const stats = this.inputStats;
       if (stats) stats.edges++;
@@ -12645,16 +12690,8 @@ function withTimeout(promise, ms, message = "操作超时") {
       if (stats) stats.accepted++;
       const diff = c.t - c.target;
       if (c.n.type === 3) {
-        c.n.state = 2;
-        c.n.holdPointer = pid;
-        c.n.releaseAt = Infinity;
-        c.n.judge = Math.abs(diff) <= (this.courseStrict ? 0.04 : PERFECT) ? "perfect" : "good";
-        c.n.holdHeadDiff = diff;
-        c.n.holdFxAt = this.time + (this.chart.kind === "pjsk" ? PJSK_HOLD_FX_INTERVAL : HOLD_HIT_FX_INTERVAL);
-        this.activeHolds.add(c.n._item);
-        this.pendingJudge.delete(c.n._item);
-        this.playSound("click", null, c.n);
-        this.hitEffect(c.L, c.n, c.n.judge === "good" ? 1 : 0);
+        const started=this.startCoveredHoldHeads(c,pid,x,y);
+        if(stats)stats.accepted+=started-1;
       } else {
         const j =
           Math.abs(diff) <= (this.courseStrict ? 0.04 : PERFECT) ? 0 : diff >= -(this.courseStrict ? 0.09 : GOOD) && diff <= (this.courseStrict ? 0.09 : GOOD) ? 1 : 2;
@@ -12768,16 +12805,8 @@ function withTimeout(promise, ms, message = "操作超时") {
         if(this.inputStats)this.inputStats.keyboardAccepted=(this.inputStats.keyboardAccepted||0)+1;
         const diff = candidate.t - candidate.target;
         if (candidate.n.type === 3) {
-          candidate.n.state = 2;
-          candidate.n.holdPointer = this.keyboardContact(code).id;
-          candidate.n.releaseAt = Infinity;
-          candidate.n.judge = Math.abs(diff) <= (this.courseStrict ? 0.04 : PERFECT) ? "perfect" : "good";
-          candidate.n.holdHeadDiff = diff;
-          candidate.n.holdFxAt = this.time + (this.chart.kind === "pjsk" ? PJSK_HOLD_FX_INTERVAL : HOLD_HIT_FX_INTERVAL);
-          this.activeHolds.add(candidate.n._item);
-          this.pendingJudge.delete(candidate.n._item);
-          this.playSound("click", null, candidate.n);
-          this.hitEffect(candidate.L, candidate.n, candidate.n.judge === "good" ? 1 : 0);
+          const started=this.startCoveredHoldHeads(candidate,this.keyboardContact(code).id);
+          if(this.inputStats)this.inputStats.keyboardAccepted+=started-1;
         } else {
           const judgement = Math.abs(diff) <= (this.courseStrict ? 0.04 : PERFECT) ? 0 : diff >= -(this.courseStrict ? 0.09 : GOOD) && diff <= (this.courseStrict ? 0.09 : GOOD) ? 1 : 2;
           this.commit(candidate.n, judgement, diff, candidate.L);
@@ -12797,9 +12826,12 @@ function withTimeout(promise, ms, message = "操作超时") {
       return contact;
     }
     keyboardUp(code, event = null) {
-      const now=(event?this.eventPerformanceTime(event):performance.now())/1000,owner=`keyboard:${code}`;
-      for(const item of this.activeHolds){const n=item.n;if(n.holdPointer===owner)n.releaseAt=Math.min(n.releaseAt,now);}
-      if (!keyboardInput?.hasGameplayKey()) this.keyboardAllReleased(now);
+      // Full-area keyboard contact ends only when the last held key is lifted.
+      // Do not start one Hold's release timer while another key still covers it,
+      // including when both keyup tasks arrive before the next animation frame.
+      if (keyboardInput?.hasGameplayKey()) return;
+      const now=(event?this.eventPerformanceTime(event):performance.now())/1000;
+      this.keyboardAllReleased(now);
     }
     keyboardAllReleased(now = performance.now() / 1000) {
       for (const item of this.activeHolds) {
@@ -13762,7 +13794,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     sampleChapter8CommunityPresentation() {
       const api = globalThis.PhiChapter8CommunityEffects;
-      const frame = this.chart.kind === 'pgr' && this.chapter8CommunityProfile && api
+      const frame = this.chart.kind === 'pgr' && this.chapter8CommunityProfile && api && globalThis.PhiVisionMode?.enabled !== false
         ? api.sample(this.chapter8CommunityProfile, this.musicCurrentTime(), this.chapter8CommunityFrame)
         : null;
       const hideMetadata = !!frame?.hideMetadata, hideCombo = !!frame?.hideCombo;

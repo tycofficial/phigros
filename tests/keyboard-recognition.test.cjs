@@ -71,17 +71,18 @@ test('Shift remains a gameplay key in a six-key chord with five letters',()=>{
   for(const code of codes.slice(0,5))manager.keyDown(key(code,{shiftKey:true}));
   assert.equal(p.commits.length,6);assert.equal(manager.down.size,6);assert.equal(p.inputStats.keyboardMaxHeld,6);
 });
-test('legacy left and right Shift stay distinct and release their own Holds independently',()=>{
+test('legacy Shift edges stay distinct while a held Shift can cover both Hold bodies',()=>{
   const {p,manager,setNow}=playable([{type:3,time:40,end:42},{type:3,time:40,end:42}]);
   manager.keyDown(key('Unidentified',{key:'Shift',keyCode:16,location:1,shiftKey:true}));
   manager.keyDown(key('',{key:'Shift',keyCode:16,location:2,shiftKey:true}));
   assert.equal(manager.down.size,2);assert.equal(p.activeHolds.size,2);
   const [left,right]=p.noteItems.map(item=>item.n);
-  assert.equal(left.holdPointer,'keyboard:ShiftLeft');assert.equal(right.holdPointer,'keyboard:ShiftRight');
+  assert.equal(left.holdPointer,'keyboard:ShiftLeft');assert.equal(right.holdPointer,'keyboard:ShiftLeft');
   setNow(1100);manager.keyUp(key('',{key:'Shift',keyCode:16,location:2,timeStamp:1050}));
-  assert.equal(right.releaseAt,1.05);assert.equal(left.releaseAt,Infinity);assert(manager.down.has('ShiftLeft'));
-  assert.equal(p.findTouchForNote({},right,40,false,1.1,right.holdPointer),null);
+  assert.equal(right.releaseAt,Infinity);assert.equal(left.releaseAt,Infinity);assert(manager.down.has('ShiftLeft'));
+  assert.equal(p.findTouchForNote({},right,40,false,1.1,right.holdPointer).id,'keyboard:ShiftLeft');
   manager.keyUp(key('Unidentified',{key:'Shift',keyCode:16,location:1,timeStamp:1100}));assert.equal(manager.down.size,0);
+  assert.equal(left.releaseAt,1.1);assert.equal(right.releaseAt,1.1);
 });
 test('legacy key-only Backslash and its shifted vertical bar release the same key',()=>{
   const {p,manager}=playable([{type:1,time:40}]);
@@ -90,19 +91,26 @@ test('legacy key-only Backslash and its shifted vertical bar release the same ke
   manager.keyDown(key('',{key:'\\',keyCode:0}));assert.equal(p.commits.length,1);assert(manager.down.has('Backslash'));
   manager.keyUp(key('',{key:'|',keyCode:0,shiftKey:true}));assert.equal(manager.down.size,0);
 });
-for(const count of [4,5,6,10])test(`${count} simultaneous Holds retain separate key owners and independent captured releases`,()=>{
+for(const count of [4,5,6,10])test(`one keyboard edge starts ${count} simultaneous full-area Hold heads; remaining keys share coverage`,()=>{
   const {p,manager,setNow}=playable(Array.from({length:count},()=>({type:3,time:40,end:42})));
   for(const code of codes.slice(0,count))manager.keyDown(key(code));
   assert.equal(p.activeHolds.size,count);
   const first=p.noteItems[0].n,second=p.noteItems[1].n;
-  assert.equal(first.holdPointer,'keyboard:KeyA');assert.equal(second.holdPointer,'keyboard:KeyS');
-  setNow(1200);manager.keyUp(key('KeyA',{timeStamp:1030}));assert.equal(first.releaseAt,1.03);
-  assert.equal(p.findTouchForNote({},first,40,false,1.2,first.holdPointer),null);
+  assert.equal(first.holdPointer,'keyboard:KeyA');assert.equal(second.holdPointer,'keyboard:KeyA');
+  setNow(1200);manager.keyUp(key('KeyA',{timeStamp:1030}));assert.equal(first.releaseAt,Infinity);
+  assert.equal(p.findTouchForNote({},first,40,false,1.2,first.holdPointer).id,'keyboard:KeyS');
   assert.equal(p.findTouchForNote({},second,40,false,1.2,second.holdPointer).id,'keyboard:KeyS');
   assert.equal(second.releaseAt,Infinity);
-  const touch={id:31,active:true};p.pointer.set(31,touch);p.touchMatchesNote=()=>true;
-  assert.equal(p.findTouchForNote({},first,40,false,1.2,first.holdPointer),touch,'real touch handoff remains possible');
   manager.clear('blur');assert.equal(manager.down.size,0);assert.equal(second.releaseAt,1.2);
+  const touch={id:31,active:true};p.pointer.set(31,touch);p.touchMatchesNote=()=>true;
+  assert.equal(p.findTouchForNote({},first,40,false,1.2,first.holdPointer),touch,'real touch handoff remains possible after all keyboard contact is released');
+});
+test('shared keyboard Hold heads exclude later Hold timestamps and simultaneous Tap notes',()=>{
+  const {p,manager}=playable([{type:3,time:40,end:42},{type:3,time:40,end:42},
+    {type:3,time:40.001,end:42},{type:1,time:40}]);
+  manager.keyDown(key('KeyA'));assert.equal(p.activeHolds.size,2);assert.equal(p.commits.length,0);
+  assert.equal(p.noteItems.find(item=>item.n.time===40.001).n.state,0);
+  assert.equal(p.noteItems.find(item=>item.n.type===1).n.state,0);
 });
 test('PJSK keeps its six lane bindings and uses one captured time for paired tap/flick',()=>{
   const calls=[],{p,manager,setNow,context}=playable([]);p.chart.kind='pjsk';

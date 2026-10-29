@@ -1,5 +1,5 @@
 {
-  "version": "4.0.1.2-pages-13",
+  "version": "4.0.1.2-pages-14",
   "maxBytes": 990000000,
   "baseBytes": 138035549,
   "selectedBundleBytes": 845795864,
@@ -248,5 +248,15 @@
     "mediaCommit": "cee10d70dc4f036f9ce98577abee52455f88423e",
     "source": "third-party modified 3.0 archive; current official equivalence unverified",
     "completeInteractiveReplay": false
-  }
+  },
+  "branding": "TYC Game / TYC Official / TYCPhigros",
+  "touchFixes": [
+    "exact event-time line geometry",
+    "immediate viewport contact reprojection",
+    "shared simultaneous overlapping hold heads and bodies",
+    "older Safari native touch support",
+    "bounded Apple receipt work"
+  ],
+  "independentVisionSwitch": true,
+  "originalInteractiveReplayComplete": false
 }

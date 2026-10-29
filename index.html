@@ -6,11 +6,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' blob: 'wasm-unsafe-eval'; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' data: blob: https://raw.githubusercontent.com https://cdn.jsdelivr.net; object-src 'none'; base-uri 'none'; form-action 'none'">
-<link rel="preload" href="./assets/opening/studio.webp" as="image" fetchpriority="high">
-<link rel="preload" href="./js/app.js?v=4.0.1.2-pages-13" as="script">
+<link rel="preload" href="./assets/opening/tyc-brand.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="./js/app.js?v=4.0.1.2-pages-14" as="script">
 <meta name="theme-color" content="#0b111d">
-<script src="./js/remote-assets.js?v=pages-13"></script>
-<script id="phiOfflineNetworkGuard" src="./js/site-network-guard.js?v=4.0.1.2-pages-13"></script>
+<script src="./js/remote-assets.js?v=pages-14"></script>
+<script id="phiOfflineNetworkGuard" src="./js/site-network-guard.js?v=4.0.1.2-pages-14"></script>
 <title>TYCPHIGROS4.0.1.2</title>
 <meta name="application-name" content="TYCPHIGROS4.0.1.2">
 <!-- Native noise 60.2: Adai-add/PhiraiAd a60b49ad shaders/materials/textures,
@@ -186,10 +186,10 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 -->
 <!-- Chart/music/art source: https://github.com/7aGiven/Phigros_Resource . Authorship is retained per song. Native blockAreaList is rendered live, with no recording-derived overlays. Native GPU passes and original GLSL: Adai-add/PhiraiAd a60b49ad, GPL-3.0 (full license below). -->
 <link rel="stylesheet" id="phiOriginalMaterialStyles" href="./css/original-materials.css"><script id="phiRepairEvidence" type="application/json" data-src="./assets/meta/repair-evidence.json"></script><link rel="stylesheet" id="phiSafariHudLoadingFix" href="./css/safari-hud.css">
-<link rel="stylesheet" href="./css/opening.css?v=4.0.1.2-pages-13">
-<link rel="stylesheet" href="./css/catalog.css?v=4.0.1.2-pages-13">
-<link rel="stylesheet" href="./css/course-mode.css?v=4.0.1.2-pages-13">
-<link rel="stylesheet" href="./css/vision-replay.css?v=4.0.1.2-pages-13">
+<link rel="stylesheet" href="./css/opening.css?v=4.0.1.2-pages-14">
+<link rel="stylesheet" href="./css/catalog.css?v=4.0.1.2-pages-14">
+<link rel="stylesheet" href="./css/course-mode.css?v=4.0.1.2-pages-14">
+<link rel="stylesheet" href="./css/vision-replay.css?v=4.0.1.2-pages-14">
 <style>
 /* Preserve pause controls while community story effects hide the other HUD. */
 #gameView.chapter8HideMetadata .gameTop .hud,
@@ -202,7 +202,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 <!-- PJSK perspective math reference: Next-SEKAI/sonolus-next-sekai-engine (MIT License). Copyright (c) 2025 Kyle Chang. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, subject to the MIT License terms; the software is provided "AS IS", without warranty of any kind. -->
 <body>
 <script id="phiBuildMetadata" type="application/json">{
-  "runtime": "4.0.1.2-pages-13",
+  "runtime": "4.0.1.2-pages-14",
   "parser": "9.0-native-sus",
   "renderEngine": "38.3-safari-caption-baseline",
   "buildTimestamp": "2026-10-27T10:16:39Z",
@@ -211,10 +211,10 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 }</script>
 
 <div id="app">
-<section id="refHome" class="refScene" data-stage="studio" aria-label="Phigros 开始界面">
-  <div class="openingStudio"><img src="./assets/opening/studio.webp" alt="Pigeon Games · TapTap"></div>
+<section id="refHome" class="refScene" data-stage="studio" aria-label="TYCPhigros 开始界面">
+  <div class="openingStudio" aria-label="TYC Game · TYC Official"><div class="openingStudioBrands"><span>TYC Game</span><i aria-hidden="true"></i><strong>TYC Official</strong></div></div>
   <div class="openingWarning"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 38 36H2Z M20 12v12 M20 28v3"/></svg><h2>警告：请在游戏前阅读</h2><div class="openingWarningText"><p>在某些特定光线或灯光闪烁的刺激下，极个别人可能会出现癫痫症状。同时，当看到屏幕上的某些背景或图像，以及玩某些游戏时，这类人有可能被诱发癫痫症状。某些特殊情况也有可能对以前没有癫痫病史的一部分人触发癫痫症状。</p><p>如果您或您的家庭成员有此类病史，请在进行本游戏前咨询医生的建议。如果您在进行游戏时出现以下任何一种症状：头晕、视觉模糊、眼部或肌肉抽搐、失去知觉、失去方向感、不由自主地移动、抽搐，请立即停止游戏，并咨询医生的建议。</p></div></div>
-  <div class="openingTitle"><canvas id="openingParticles" aria-hidden="true"></canvas><div class="openingBrand"><span class="openingVersion">Version : 4.0.1.2</span><svg class="openingLogo" viewBox="0 0 498 134" role="img" aria-label="Phigros" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><filter id="openingLogoTransparency" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 4 0 0 -0.8"/></filter></defs><image href="./assets/opening/logo.webp" xlink:href="./assets/opening/logo.webp" width="498" height="134" filter="url(#openingLogoTransparency)"/></svg><button class="refHomeStart" type="button">点击屏幕开始</button></div></div>
+  <div class="openingTitle"><canvas id="openingParticles" aria-hidden="true"></canvas><div class="openingBrand"><span class="openingVersion">Version : 4.0.1.2</span><svg class="openingLogo" viewBox="0 0 2172 724" role="img" aria-label="TYCPhigros" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><filter id="tycLogoLight" x="-5%" y="-10%" width="110%" height="120%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  4 0 0 0 -1.8" result="letters"/><feGaussianBlur stdDeviation="7" result="halo"/><feFlood flood-color="#5cebf5" flood-opacity=".55"/><feComposite in2="halo" operator="in"/><feMerge><feMergeNode/><feMergeNode in="letters"/></feMerge></filter></defs><image href="./assets/opening/tyc-logo.png" xlink:href="./assets/opening/tyc-logo.png" width="2172" height="724" filter="url(#tycLogoLight)"/></svg><button class="refHomeStart" type="button">点击屏幕开始</button></div></div>
   <button id="openingSound" type="button" hidden>点按开启音乐</button>
 </section>
   <section id="refCollection" class="refScene hidden" aria-label="章节选择">
@@ -226,7 +226,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       <button class="refCollectionOpen" type="button" data-reference-open-library aria-label="进入全部歌曲"></button>
     </div><div id="refCatalogGroups"></div></div>
     <button class="refCollectionSettings" id="refCollectionSettings" type="button" aria-label="设置">⚙</button>
-    <button class="visionReplayOpen" id="visionReplayOpen" type="button">主线过场片段</button>
+    <div class="visionReplayTools"><button class="visionReplayOpen" id="visionReplayOpen" type="button">主线过场片段</button><button id="visionModeToggle" type="button" aria-pressed="true" title="控制本站已实现的曲内意象；完整章节交互仍未齐备">意象重演：开启</button></div>
   </section><section id="refInterlude" class="refScene hidden" aria-label="正在进入曲目列表"></section>
   <section id="libraryView" class="view hidden">
     <button id="libraryCollectionLabel" class="libraryCollectionLabel" type="button" aria-label="返回精选集选择">全部歌曲</button>
@@ -235,7 +235,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <div class="phiVideoTopBar" aria-label="选歌顶部栏目">
       <button class="phiVideoSort" id="phiVideoSort" type="button"><span>排序方式</span><b>↳ 难度</b></button>
       <button class="phiVideoRandom" id="phiVideoRandom" type="button" aria-label="随机选歌"><b>?</b><span>随机</span></button>
-      <i class="phiVideoTopSlash" aria-hidden="true"></i><nav class="dualModeTabs" aria-label="游戏模式"><button type="button" data-mode="phi" class="active" aria-pressed="true">PHIGROS</button><button type="button" data-mode="pjsk" aria-pressed="false">PJSK</button></nav>
+      <i class="phiVideoTopSlash" aria-hidden="true"></i><nav class="dualModeTabs" aria-label="游戏模式"><button type="button" data-mode="phi" class="active" aria-pressed="true">TYCPHIGROS</button><button type="button" data-mode="pjsk" aria-pressed="false">PJSK</button></nav>
       <button class="phiVideoSettings" id="phiVideoSettings" type="button" aria-label="设置"><i aria-hidden="true"><u></u><u></u><u></u></i><span>设置</span></button>
     </div>
     <button id="libraryMoreBtn" class="libraryMoreBtn" type="button" aria-label="更多" aria-expanded="false" aria-controls="libraryMoreSheet"><i aria-hidden="true"><b></b><b></b><b></b></i><span>更多</span></button>
@@ -648,16 +648,17 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
-<script src="./js/performance-policy.js?v=4.0.1.2-pages-13" defer></script>
-<script src="./js/hosted-manifest.js?v=4.0.1.2-pages-13" defer></script>
-<script src="./js/full-catalog.js?v=4.0.1.2-pages-13" defer></script>
-<script src="./js/catalog-runtime.js?v=4.0.1.2-pages-13" defer></script>
-<script src="./js/course-mode.js?v=4.0.1.2-pages-13" defer></script>
-<script src="./js/resource-transfer.js?v=4.0.1.2-pages-13" defer></script>
-<script src="./js/hosted-media.js?v=4.0.1.2-pages-13" defer></script>
-<script src="./js/opening.js?v=4.0.1.2-pages-13" defer></script>
-<script src="./js/vision-replay.js?v=4.0.1.2-pages-13" defer></script>
-<script src="./js/app.js?v=4.0.1.2-pages-13" defer></script>
+<script src="./js/performance-policy.js?v=4.0.1.2-pages-14" defer></script>
+<script src="./js/hosted-manifest.js?v=4.0.1.2-pages-14" defer></script>
+<script src="./js/full-catalog.js?v=4.0.1.2-pages-14" defer></script>
+<script src="./js/catalog-runtime.js?v=4.0.1.2-pages-14" defer></script>
+<script src="./js/course-mode.js?v=4.0.1.2-pages-14" defer></script>
+<script src="./js/resource-transfer.js?v=4.0.1.2-pages-14" defer></script>
+<script src="./js/hosted-media.js?v=4.0.1.2-pages-14" defer></script>
+<script src="./js/opening.js?v=4.0.1.2-pages-14" defer></script>
+<script src="./js/vision-replay.js?v=4.0.1.2-pages-14" defer></script>
+<script src="./js/vision-mode.js?v=4.0.1.2-pages-14" defer></script>
+<script src="./js/app.js?v=4.0.1.2-pages-14" defer></script>
 
 
 
