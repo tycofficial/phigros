@@ -1,0 +1,3645 @@
+{
+  "format": "phi-catalog-aac-fallback-v1",
+  "complete": true,
+  "fileCount": 173,
+  "totalBytes": 109437991,
+  "sourceCatalogVersion": "4.0.1.2",
+  "publishedCatalogVersion": "4.0.1.2",
+  "originalOGGPreserved": true,
+  "transcoded": false,
+  "assets": {
+    "catalog-00e9577e556ae899-music": {
+      "assetKey": "catalog-00e9577e556ae899-music",
+      "path": "music/catalog-00e9577e556ae899-music.m4a",
+      "url": "./music/catalog-00e9577e556ae899-music.m4a",
+      "bytes": 690551,
+      "sha256": "02457f57d947234f0294fe74fdbde94404e8ee12eb6c8cddf889bb9aebb2d852",
+      "mime": "audio/mp4",
+      "duration": 166.813605,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/00e9577e556ae899-low.m4a",
+        "bytes": 690551,
+        "sha256": "02457f57d947234f0294fe74fdbde94404e8ee12eb6c8cddf889bb9aebb2d852",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/LuminousEntitiesLostHeart.NormalMfeatUsagiDenki.ogg",
+        "bytes": 4884064,
+        "sha256": "37ad7d34889e21482fdae4da035aa2a138d9d9d22832c336e681f5772ae7bc3c",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-01464e15f0ec695e-music": {
+      "assetKey": "catalog-01464e15f0ec695e-music",
+      "path": "music/catalog-01464e15f0ec695e-music.m4a",
+      "url": "./music/catalog-01464e15f0ec695e-music.m4a",
+      "bytes": 611560,
+      "sha256": "e582c7207963a7bf680d42f131010d71f778eff95b3121bffb44b5700b0b7dff",
+      "mime": "audio/mp4",
+      "duration": 148.440816,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/01464e15f0ec695e-low.m4a",
+        "bytes": 611560,
+        "sha256": "e582c7207963a7bf680d42f131010d71f778eff95b3121bffb44b5700b0b7dff",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Thrashforce.KAHvsE0ri4.ogg",
+        "bytes": 3698092,
+        "sha256": "813d6c59f4e2b34c7bee5d80e8058b9b7370124998f0679aa468f9d8933de369",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-025dbd21e401dbac-music": {
+      "assetKey": "catalog-025dbd21e401dbac-music",
+      "path": "music/catalog-025dbd21e401dbac-music.m4a",
+      "url": "./music/catalog-025dbd21e401dbac-music.m4a",
+      "bytes": 674474,
+      "sha256": "6c6b24fad3f35eef6ff5cd6a6dd2fc4475679208359ab6f0b87371b43b83b009",
+      "mime": "audio/mp4",
+      "duration": 162.930068,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/025dbd21e401dbac-low.m4a",
+        "bytes": 674474,
+        "sha256": "6c6b24fad3f35eef6ff5cd6a6dd2fc4475679208359ab6f0b87371b43b83b009",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/FlutterEcho.Cansol.ogg",
+        "bytes": 4545415,
+        "sha256": "26e2e904336a4b1c2500b809bec7bf2fc5d856810cdab5094689f321b22dd7ee",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-03b9fcd17ade3794-music": {
+      "assetKey": "catalog-03b9fcd17ade3794-music",
+      "path": "music/catalog-03b9fcd17ade3794-music.m4a",
+      "url": "./music/catalog-03b9fcd17ade3794-music.m4a",
+      "bytes": 560687,
+      "sha256": "b9c2b4e049574331884bca922577f99fca82a7c4ed82e99415eec6cc4ba2f64a",
+      "mime": "audio/mp4",
+      "duration": 137.608707,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/03b9fcd17ade3794-low.m4a",
+        "bytes": 560687,
+        "sha256": "b9c2b4e049574331884bca922577f99fca82a7c4ed82e99415eec6cc4ba2f64a",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/IndelibleScar.Noah.ogg",
+        "bytes": 3548166,
+        "sha256": "856cc40e19405811889c31d31e368870df2a31a78c6a1c99b4ff2fd1ad222423",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-03efb5f262c4fdcd-music": {
+      "assetKey": "catalog-03efb5f262c4fdcd-music",
+      "path": "music/catalog-03efb5f262c4fdcd-music.m4a",
+      "url": "./music/catalog-03efb5f262c4fdcd-music.m4a",
+      "bytes": 532081,
+      "sha256": "7863fbdd569cca38e9f68ca6d0575a1b611dcc4fb523377abe8492485cb17333",
+      "mime": "audio/mp4",
+      "duration": 128.57034,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/03efb5f262c4fdcd-low.m4a",
+        "bytes": 532081,
+        "sha256": "7863fbdd569cca38e9f68ca6d0575a1b611dcc4fb523377abe8492485cb17333",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/BreakOver.Kforest.ogg",
+        "bytes": 3515141,
+        "sha256": "90a52c67c2a08fb4b84ba5387cb4cd241846e84556f73c3188b121ddffc6343c",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-0f84d6f4682820e0-music": {
+      "assetKey": "catalog-0f84d6f4682820e0-music",
+      "path": "music/catalog-0f84d6f4682820e0-music.m4a",
+      "url": "./music/catalog-0f84d6f4682820e0-music.m4a",
+      "bytes": 709431,
+      "sha256": "0301a6c65f55398fb00377e08ce9bded608a2c625918ecf54f30b378a6915dee",
+      "mime": "audio/mp4",
+      "duration": 171.902667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/0f84d6f4682820e0-low.m4a",
+        "bytes": 709431,
+        "sha256": "0301a6c65f55398fb00377e08ce9bded608a2c625918ecf54f30b378a6915dee",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E5%BD%BC%E6%96%B9%E3%81%B8%E5%90%8D%E3%82%82%E3%81%AA%E3%81%8D%E6%B5%B7%E8%BE%BA%E3%82%88%E3%82%8A.%E6%89%93%E6%89%93%E3%81%A0%E3%81%84%E3%81%9A%26%E6%9C%88%E4%B9%83.ogg",
+        "bytes": 4546078,
+        "sha256": "a25d9e326c7e99059560e668168d464d8faedd691d9e74889c77e8c9ac4947cd",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-101d3e917d380900-music": {
+      "assetKey": "catalog-101d3e917d380900-music",
+      "path": "music/catalog-101d3e917d380900-music.m4a",
+      "url": "./music/catalog-101d3e917d380900-music.m4a",
+      "bytes": 691782,
+      "sha256": "bc1491b4ebc718ced5990ee9a2b255cc0cdb19e952e3a28c4e395b3fc172260d",
+      "mime": "audio/mp4",
+      "duration": 165.281333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/101d3e917d380900-low.m4a",
+        "bytes": 691782,
+        "sha256": "bc1491b4ebc718ced5990ee9a2b255cc0cdb19e952e3a28c4e395b3fc172260d",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Apocalypse.%E3%82%A2%E3%83%AA%E3%82%B9%E3%82%B7%E3%83%A3%E3%83%83%E3%83%8F%E3%81%A8%E9%AD%94%E6%B3%95%E3%81%AE%E6%A5%BD%E5%9B%A3.ogg",
+        "bytes": 5013403,
+        "sha256": "324199160ff16bf2bd1b3292c576419c9a7915f29daf5a85cc5b9d4c23196dbe",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-1204f1e60a7e79b4-music": {
+      "assetKey": "catalog-1204f1e60a7e79b4-music",
+      "path": "music/catalog-1204f1e60a7e79b4-music.m4a",
+      "url": "./music/catalog-1204f1e60a7e79b4-music.m4a",
+      "bytes": 625706,
+      "sha256": "41553db481d7799e961fe7853ea7171ddfc7d0bc77656b1ec8db3ffdbb76bc2b",
+      "mime": "audio/mp4",
+      "duration": 151.624853,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/1204f1e60a7e79b4-low.m4a",
+        "bytes": 625706,
+        "sha256": "41553db481d7799e961fe7853ea7171ddfc7d0bc77656b1ec8db3ffdbb76bc2b",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/BoundedQuietude.FiniteLimitvsSiLiS.ogg",
+        "bytes": 4239401,
+        "sha256": "0bb7703a72910bee51a9bff37f48053400f5426008e34da382ea13e544755ce9",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-1375aaaacdb2cb1f-music": {
+      "assetKey": "catalog-1375aaaacdb2cb1f-music",
+      "path": "music/catalog-1375aaaacdb2cb1f-music.m4a",
+      "url": "./music/catalog-1375aaaacdb2cb1f-music.m4a",
+      "bytes": 694211,
+      "sha256": "fee4ae9570510d5dedfe12725b4d4bd518651b5e26e9819021c63023a19fc0d9",
+      "mime": "audio/mp4",
+      "duration": 170.020862,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/1375aaaacdb2cb1f-low.m4a",
+        "bytes": 694211,
+        "sha256": "fee4ae9570510d5dedfe12725b4d4bd518651b5e26e9819021c63023a19fc0d9",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/MiracleForestVIPMix.Rinthlive.ogg",
+        "bytes": 4203479,
+        "sha256": "7a9e6e29904df7681073baf588a82edcec6b71b6c2af2ba2944512857d020d1a",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-16be8126b61857a7-music": {
+      "assetKey": "catalog-16be8126b61857a7-music",
+      "path": "music/catalog-16be8126b61857a7-music.m4a",
+      "url": "./music/catalog-16be8126b61857a7-music.m4a",
+      "bytes": 567069,
+      "sha256": "5e492d9e46e26beeaf1f65b6768e569547e3148842d7ab3f525ca04fff036d83",
+      "mime": "audio/mp4",
+      "duration": 138.012154,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/16be8126b61857a7-low.m4a",
+        "bytes": 567069,
+        "sha256": "5e492d9e46e26beeaf1f65b6768e569547e3148842d7ab3f525ca04fff036d83",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E7%99%BE%E9%AC%BC%E5%A4%9C%E8%A1%8C.SaladSavior.ogg",
+        "bytes": 3907542,
+        "sha256": "8e47d9601d52f95e498137a694d651af34c3793b37aed0cff07cc2a780625074",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-16e2e1f4ab402d41-music": {
+      "assetKey": "catalog-16e2e1f4ab402d41-music",
+      "path": "music/catalog-16e2e1f4ab402d41-music.m4a",
+      "url": "./music/catalog-16e2e1f4ab402d41-music.m4a",
+      "bytes": 656024,
+      "sha256": "f650872e9bb7460fe7ce33add51ef40b0e99a9cec33b45456ecb963574be0c9c",
+      "mime": "audio/mp4",
+      "duration": 161.737333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/16e2e1f4ab402d41-low.m4a",
+        "bytes": 656024,
+        "sha256": "f650872e9bb7460fe7ce33add51ef40b0e99a9cec33b45456ecb963574be0c9c",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/PRAGMATISMRESURRECTION.Laur.ogg",
+        "bytes": 4817894,
+        "sha256": "c7bacf695cdaa0badbc256b13922c72427dcf99701498e1a4308528e1841423f",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-1749c98d23f65b42-music": {
+      "assetKey": "catalog-1749c98d23f65b42-music",
+      "path": "music/catalog-1749c98d23f65b42-music.m4a",
+      "url": "./music/catalog-1749c98d23f65b42-music.m4a",
+      "bytes": 654804,
+      "sha256": "bc1fbb2b223c75714a58f6043cca29842b28fa8f6b145a3967c580e8771fdbd9",
+      "mime": "audio/mp4",
+      "duration": 158.02195,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/1749c98d23f65b42-low.m4a",
+        "bytes": 654804,
+        "sha256": "bc1fbb2b223c75714a58f6043cca29842b28fa8f6b145a3967c580e8771fdbd9",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E9%9B%AA%E9%99%8D%E3%82%8A%E3%83%A1%E3%83%AA%E3%82%AF%E3%83%AA.A39.ogg",
+        "bytes": 5044790,
+        "sha256": "e42db31882d81477f6bcfc67691adcd6d4a91411e832d196620f35a01e0d774b",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-1a428260ee840401-music": {
+      "assetKey": "catalog-1a428260ee840401-music",
+      "path": "music/catalog-1a428260ee840401-music.m4a",
+      "url": "./music/catalog-1a428260ee840401-music.m4a",
+      "bytes": 543107,
+      "sha256": "4f9f7d95e4e73810bcaad35e3347ca271bfb9a2335d6f3ff22927d0435912f5a",
+      "mime": "audio/mp4",
+      "duration": 132.201333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/1a428260ee840401-low.m4a",
+        "bytes": 543107,
+        "sha256": "4f9f7d95e4e73810bcaad35e3347ca271bfb9a2335d6f3ff22927d0435912f5a",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E6%98%8E%E9%8F%A1%E7%83%88%E7%81%AB.MUEvsRekuMochizuki.ogg",
+        "bytes": 3547768,
+        "sha256": "40a247f658fffbea0221974ee884e8179f3294bdcfa7cf83413dc5305337db71",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-1b8851df41cf72e8-music": {
+      "assetKey": "catalog-1b8851df41cf72e8-music",
+      "path": "music/catalog-1b8851df41cf72e8-music.m4a",
+      "url": "./music/catalog-1b8851df41cf72e8-music.m4a",
+      "bytes": 594840,
+      "sha256": "540cad041293c7c0b9df5824f0265a604d849e5dd9991191463987cf9f9caa73",
+      "mime": "audio/mp4",
+      "duration": 143.898413,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/1b8851df41cf72e8-low.m4a",
+        "bytes": 594840,
+        "sha256": "540cad041293c7c0b9df5824f0265a604d849e5dd9991191463987cf9f9caa73",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E8%9D%8E%E8%99%8E%E5%A4%A9%E4%BD%93Lacertid.CreamvsDaily%E5%A4%A9%E5%88%A9.ogg",
+        "bytes": 4050911,
+        "sha256": "f0a7ac0e3fca98417a8845fc846f48d4af5e7acadad02f56547ac9f0bb0713e6",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-1dc6c10fd6664d05-music": {
+      "assetKey": "catalog-1dc6c10fd6664d05-music",
+      "path": "music/catalog-1dc6c10fd6664d05-music.m4a",
+      "url": "./music/catalog-1dc6c10fd6664d05-music.m4a",
+      "bytes": 583617,
+      "sha256": "b020206bd1478bd56805794745ecba4bb7a0acc6a4a1df6bd2a5e087750256f4",
+      "mime": "audio/mp4",
+      "duration": 142.174331,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/1dc6c10fd6664d05-low.m4a",
+        "bytes": 583617,
+        "sha256": "b020206bd1478bd56805794745ecba4bb7a0acc6a4a1df6bd2a5e087750256f4",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E7%A5%9E%E8%A9%B1.PicaM2U.ogg",
+        "bytes": 4316948,
+        "sha256": "43bf3f7e2530304df232897e1547fdfd37c9c08fd5f0ac91cd964cffa530c59f",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-1e051b83c629b9ec-music": {
+      "assetKey": "catalog-1e051b83c629b9ec-music",
+      "path": "music/catalog-1e051b83c629b9ec-music.m4a",
+      "url": "./music/catalog-1e051b83c629b9ec-music.m4a",
+      "bytes": 617109,
+      "sha256": "87323b7e51f99b8227b2f65642892a70f432ceb34159c3215f4585aff713b489",
+      "mime": "audio/mp4",
+      "duration": 149.868844,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/1e051b83c629b9ec-low.m4a",
+        "bytes": 617109,
+        "sha256": "87323b7e51f99b8227b2f65642892a70f432ceb34159c3215f4585aff713b489",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/opia.rN.ogg",
+        "bytes": 3736387,
+        "sha256": "c6f99195f0d94aad0230eb05c752021885e5af78751c8b00d727dd24c3b4b80f",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-1e0e2d706bc08785-music": {
+      "assetKey": "catalog-1e0e2d706bc08785-music",
+      "path": "music/catalog-1e0e2d706bc08785-music.m4a",
+      "url": "./music/catalog-1e0e2d706bc08785-music.m4a",
+      "bytes": 692407,
+      "sha256": "d0ed741c1e9a47903ab9146c60bc35231e95751640a4a1ce493ac5f1aedf2dbc",
+      "mime": "audio/mp4",
+      "duration": 167.42,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/1e0e2d706bc08785-low.m4a",
+        "bytes": 692407,
+        "sha256": "d0ed741c1e9a47903ab9146c60bc35231e95751640a4a1ce493ac5f1aedf2dbc",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/HorizonBlue.NothingButRequiemfeatAikapinChiyoko.ogg",
+        "bytes": 4523516,
+        "sha256": "41f8bf5839de80261e13d9ff898b06580f38cb77b4e63da0a819291bdb7ec489",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-1ff132d62a3c0510-music": {
+      "assetKey": "catalog-1ff132d62a3c0510-music",
+      "path": "music/catalog-1ff132d62a3c0510-music.m4a",
+      "url": "./music/catalog-1ff132d62a3c0510-music.m4a",
+      "bytes": 528300,
+      "sha256": "0ca389c304f4e847dcb0dc96e5a3e8d498c22300fe5f34fa56eff66b3f048296",
+      "mime": "audio/mp4",
+      "duration": 127.516735,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/1ff132d62a3c0510-low.m4a",
+        "bytes": 528300,
+        "sha256": "0ca389c304f4e847dcb0dc96e5a3e8d498c22300fe5f34fa56eff66b3f048296",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E6%B8%B8%E5%9B%AD%E5%9C%B0.%E6%A4%92%E7%9B%90%E8%8F%A0%E8%90%9D.ogg",
+        "bytes": 3682909,
+        "sha256": "7ccfd7b0ce91dfb1f6f1006c614ca9f6049424780b43ab76dccfe2c331cd218b",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-203229d7390968ac-music": {
+      "assetKey": "catalog-203229d7390968ac-music",
+      "path": "music/catalog-203229d7390968ac-music.m4a",
+      "url": "./music/catalog-203229d7390968ac-music.m4a",
+      "bytes": 599426,
+      "sha256": "4872339e8254817bf19518c32186890f91b61c00b8d9b694bd09d43a204bffe6",
+      "mime": "audio/mp4",
+      "duration": 146.332,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/203229d7390968ac-low.m4a",
+        "bytes": 599426,
+        "sha256": "4872339e8254817bf19518c32186890f91b61c00b8d9b694bd09d43a204bffe6",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Radiance.Nhato.ogg",
+        "bytes": 4073553,
+        "sha256": "9527a062f0c93faebaa85da4f934fcee20e0b681d54512ee680c355a535aa671",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-2345d7c3a752756a-music": {
+      "assetKey": "catalog-2345d7c3a752756a-music",
+      "path": "music/catalog-2345d7c3a752756a-music.m4a",
+      "url": "./music/catalog-2345d7c3a752756a-music.m4a",
+      "bytes": 717795,
+      "sha256": "5c057ed84b6ce53698d3c2387b8b3299d188a2e0300d063d0a43b8059d138431",
+      "mime": "audio/mp4",
+      "duration": 173.791202,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/2345d7c3a752756a-low.m4a",
+        "bytes": 717795,
+        "sha256": "5c057ed84b6ce53698d3c2387b8b3299d188a2e0300d063d0a43b8059d138431",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/RetributionCycleofRedemption.ArdolfvsDaily%E5%A4%A9%E5%88%A9.ogg",
+        "bytes": 4742535,
+        "sha256": "a3b5cbbbfff36aa4ad54d5f0771c7e609bbaeca1f194e1f298aed85a713782e5",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-2912662707ad11c0-music": {
+      "assetKey": "catalog-2912662707ad11c0-music",
+      "path": "music/catalog-2912662707ad11c0-music.m4a",
+      "url": "./music/catalog-2912662707ad11c0-music.m4a",
+      "bytes": 591695,
+      "sha256": "4c8d9c3579114889de800ce61e4799d05dd60165f6f9bc6f06885e4b7216028d",
+      "mime": "audio/mp4",
+      "duration": 144.009333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/2912662707ad11c0-low.m4a",
+        "bytes": 591695,
+        "sha256": "4c8d9c3579114889de800ce61e4799d05dd60165f6f9bc6f06885e4b7216028d",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E6%9C%80%E9%AB%98%E5%82%91%E4%BD%9C.PYKAMIA.ogg",
+        "bytes": 3792514,
+        "sha256": "c720bcd4bbd17fedab59acf99cd3da643dbbb619c334baa70b31eedbe0096ad3",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-2a627c8dacfe95c4-music": {
+      "assetKey": "catalog-2a627c8dacfe95c4-music",
+      "path": "music/catalog-2a627c8dacfe95c4-music.m4a",
+      "url": "./music/catalog-2a627c8dacfe95c4-music.m4a",
+      "bytes": 660071,
+      "sha256": "2967b08dee5bdff2e0acc919a85936023d4324407e166f5d7b08977eb324cb6a",
+      "mime": "audio/mp4",
+      "duration": 160.50068,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/2a627c8dacfe95c4-low.m4a",
+        "bytes": 660071,
+        "sha256": "2967b08dee5bdff2e0acc919a85936023d4324407e166f5d7b08977eb324cb6a",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/bye.DingerBox.ogg",
+        "bytes": 4014705,
+        "sha256": "4378fbfba9b78a9c0407f35a6c0e2daececace5230ddb120382db8905aac5771",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-2a683a75e6cfcfa3-music": {
+      "assetKey": "catalog-2a683a75e6cfcfa3-music",
+      "path": "music/catalog-2a683a75e6cfcfa3-music.m4a",
+      "url": "./music/catalog-2a683a75e6cfcfa3-music.m4a",
+      "bytes": 645255,
+      "sha256": "faad1ef8cbf37d132bd82edd4f13ef492becfbd62c81a64c7c114304e33a4a9a",
+      "mime": "audio/mp4",
+      "duration": 154.300952,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/2a683a75e6cfcfa3-low.m4a",
+        "bytes": 645255,
+        "sha256": "faad1ef8cbf37d132bd82edd4f13ef492becfbd62c81a64c7c114304e33a4a9a",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/996.%E6%9D%8E%E5%8C%96%E7%A6%B9.ogg",
+        "bytes": 3875649,
+        "sha256": "54eb5fbda0ef7fc4f74a90fb3add3277d6b2a7375bdeee80a6448d722fa24154",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-2b2cf9fa2a49afff-music": {
+      "assetKey": "catalog-2b2cf9fa2a49afff-music",
+      "path": "music/catalog-2b2cf9fa2a49afff-music.m4a",
+      "url": "./music/catalog-2b2cf9fa2a49afff-music.m4a",
+      "bytes": 506289,
+      "sha256": "26cc4d265248ab2491344c1b7c01375819fcd361e233557e86a6cfcc91d3b40f",
+      "mime": "audio/mp4",
+      "duration": 122.678667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/2b2cf9fa2a49afff-low.m4a",
+        "bytes": 506289,
+        "sha256": "26cc4d265248ab2491344c1b7c01375819fcd361e233557e86a6cfcc91d3b40f",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/SolaggyfeatUzumaki.ShrimpCats%E3%81%AF%E3%81%81%E3%81%A1%E5%BE%8C%E8%97%A4%E6%B6%BC%E8%BC%94.ogg",
+        "bytes": 3458496,
+        "sha256": "51bf8d6faf83617d52f9366cb7bcc9606dd39a5375bb19baa90ac869f255172c",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-2b7b1b277092f551-music": {
+      "assetKey": "catalog-2b7b1b277092f551-music",
+      "path": "music/catalog-2b7b1b277092f551-music.m4a",
+      "url": "./music/catalog-2b7b1b277092f551-music.m4a",
+      "bytes": 614925,
+      "sha256": "845cebec17f8fac12ef361075809d52c5d680b1f16d7bd86123007d3975b91f1",
+      "mime": "audio/mp4",
+      "duration": 149.651156,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/2b7b1b277092f551-low.m4a",
+        "bytes": 614925,
+        "sha256": "845cebec17f8fac12ef361075809d52c5d680b1f16d7bd86123007d3975b91f1",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/ManifoldHypothesis.cybermisofeattigerlily.ogg",
+        "bytes": 4089136,
+        "sha256": "958e3bcd70d9f41b8def9b01062537ee1467df7631afe2a436bfbb1a690cb053",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-2bd25eaa9c1f1ecc-music": {
+      "assetKey": "catalog-2bd25eaa9c1f1ecc-music",
+      "path": "music/catalog-2bd25eaa9c1f1ecc-music.m4a",
+      "url": "./music/catalog-2bd25eaa9c1f1ecc-music.m4a",
+      "bytes": 642121,
+      "sha256": "0ab00ac32465ab8df211c82379443961e0db9b29c82bd4eb45bb8f8979876803",
+      "mime": "audio/mp4",
+      "duration": 154.585397,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/2bd25eaa9c1f1ecc-low.m4a",
+        "bytes": 642121,
+        "sha256": "0ab00ac32465ab8df211c82379443961e0db9b29c82bd4eb45bb8f8979876803",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/InfinityHeaven.HyuN.ogg",
+        "bytes": 3947198,
+        "sha256": "1d0eae5f872b3980878b75d3e279b3f4f363f5eba186519696bc40e8ac0e1304",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-2c06c3a7c4c0c72f-music": {
+      "assetKey": "catalog-2c06c3a7c4c0c72f-music",
+      "path": "music/catalog-2c06c3a7c4c0c72f-music.m4a",
+      "url": "./music/catalog-2c06c3a7c4c0c72f-music.m4a",
+      "bytes": 659677,
+      "sha256": "47d23b18d6e0c4df10e048a6f2c4d079b8559ff8db1648251c86b692bc5cc6c9",
+      "mime": "audio/mp4",
+      "duration": 159.438367,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/2c06c3a7c4c0c72f-low.m4a",
+        "bytes": 659677,
+        "sha256": "47d23b18d6e0c4df10e048a6f2c4d079b8559ff8db1648251c86b692bc5cc6c9",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/NWAD.Knighthood.ogg",
+        "bytes": 4241530,
+        "sha256": "097bd28f9c52072ec25da7b946aebf7a36ab7afdebe1f145aa9ccebdf6661833",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-2cd2362e6703ee21-music": {
+      "assetKey": "catalog-2cd2362e6703ee21-music",
+      "path": "music/catalog-2cd2362e6703ee21-music.m4a",
+      "url": "./music/catalog-2cd2362e6703ee21-music.m4a",
+      "bytes": 696514,
+      "sha256": "4ffcc541c4c8e0eb354ae78bcd70ace434f5a21ecc3c44bd24c55223077aef4a",
+      "mime": "audio/mp4",
+      "duration": 168.807619,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/2cd2362e6703ee21-low.m4a",
+        "bytes": 696514,
+        "sha256": "4ffcc541c4c8e0eb354ae78bcd70ace434f5a21ecc3c44bd24c55223077aef4a",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E6%98%9F%E6%8B%82%E4%BA%91%E9%94%A6featkoi.S9ryne.ogg",
+        "bytes": 4291221,
+        "sha256": "874ca13f9c9094e62ea41b297a891c86523d33a601f7cdb9ee298ab17c5f1bdf",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-2ce417b57c9c01a0-music": {
+      "assetKey": "catalog-2ce417b57c9c01a0-music",
+      "path": "music/catalog-2ce417b57c9c01a0-music.m4a",
+      "url": "./music/catalog-2ce417b57c9c01a0-music.m4a",
+      "bytes": 606192,
+      "sha256": "680911ad2f6114b432a17829b933ba74e9b1477a67ef738cf73a3b113dd030e6",
+      "mime": "audio/mp4",
+      "duration": 146.60644,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/2ce417b57c9c01a0-low.m4a",
+        "bytes": 606192,
+        "sha256": "680911ad2f6114b432a17829b933ba74e9b1477a67ef738cf73a3b113dd030e6",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Xenophobia.XinG.ogg",
+        "bytes": 3842759,
+        "sha256": "0f7b766ec623636909be18ba0ffd416ba0131061dac61fb10f5c4e99acbb8dd8",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-2f01cf1433868a3f-music": {
+      "assetKey": "catalog-2f01cf1433868a3f-music",
+      "path": "music/catalog-2f01cf1433868a3f-music.m4a",
+      "url": "./music/catalog-2f01cf1433868a3f-music.m4a",
+      "bytes": 582705,
+      "sha256": "b8c91dbea202f958472290aa414a5aba05da7551848dfa651f12c96ed3c09d29",
+      "mime": "audio/mp4",
+      "duration": 140.496689,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/2f01cf1433868a3f-low.m4a",
+        "bytes": 582705,
+        "sha256": "b8c91dbea202f958472290aa414a5aba05da7551848dfa651f12c96ed3c09d29",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E7%99%BD%E3%81%A8%E9%BB%92%E3%81%AE%E3%83%90%E3%82%B1%E3%83%A2%E3%83%8E.%E3%83%86%E3%83%85%E3%82%AB.ogg",
+        "bytes": 3570052,
+        "sha256": "176e3ea2465df86e7a32a38ccb34ad1d079c88e86a7549083c4e94ad6c104295",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-309c55dbf957239c-music": {
+      "assetKey": "catalog-309c55dbf957239c-music",
+      "path": "music/catalog-309c55dbf957239c-music.m4a",
+      "url": "./music/catalog-309c55dbf957239c-music.m4a",
+      "bytes": 665934,
+      "sha256": "ab6afb6561ff1e68d95796444b3f83c4e9f724e8d5e0cbd53c14e37d3511bfe5",
+      "mime": "audio/mp4",
+      "duration": 162.378594,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/309c55dbf957239c-low.m4a",
+        "bytes": 665934,
+        "sha256": "ab6afb6561ff1e68d95796444b3f83c4e9f724e8d5e0cbd53c14e37d3511bfe5",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E5%BD%A9.MisoilePunch.ogg",
+        "bytes": 4458703,
+        "sha256": "cbefbb3b9019a70603da7d12fcfaf1cdc7b63dd09965691359f6b11d5578a4a9",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-3108fdd63e50c9cc-music": {
+      "assetKey": "catalog-3108fdd63e50c9cc-music",
+      "path": "music/catalog-3108fdd63e50c9cc-music.m4a",
+      "url": "./music/catalog-3108fdd63e50c9cc-music.m4a",
+      "bytes": 796954,
+      "sha256": "192cb1c6e2bdbd5c398b6fd49184097d3533e81f2e86fc0a370dfe19783cee0a",
+      "mime": "audio/mp4",
+      "duration": 192.654512,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/3108fdd63e50c9cc-low.m4a",
+        "bytes": 796954,
+        "sha256": "192cb1c6e2bdbd5c398b6fd49184097d3533e81f2e86fc0a370dfe19783cee0a",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/FrozenHeart.A39%E6%B2%99%E5%8C%85P.ogg",
+        "bytes": 6214053,
+        "sha256": "a2a29d8ab3d6c76d36254e1f1f393dc34556d79903f1563f2849a87a3a0338c0",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-319ddd59e1e111a7-music": {
+      "assetKey": "catalog-319ddd59e1e111a7-music",
+      "path": "music/catalog-319ddd59e1e111a7-music.m4a",
+      "url": "./music/catalog-319ddd59e1e111a7-music.m4a",
+      "bytes": 590707,
+      "sha256": "75c2bba1084f53ce1c15500b8e527d29d7606f56535930919b8bde57c665db0e",
+      "mime": "audio/mp4",
+      "duration": 140.842086,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/319ddd59e1e111a7-low.m4a",
+        "bytes": 590707,
+        "sha256": "75c2bba1084f53ce1c15500b8e527d29d7606f56535930919b8bde57c665db0e",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Antithese.Blacklolita.ogg",
+        "bytes": 4130847,
+        "sha256": "8dff9597dc95abc3e2339db7bb9ce7db97996b03a8fcabbe190e50779a85125b",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-323609475c1b8b49-music": {
+      "assetKey": "catalog-323609475c1b8b49-music",
+      "path": "music/catalog-323609475c1b8b49-music.m4a",
+      "url": "./music/catalog-323609475c1b8b49-music.m4a",
+      "bytes": 556412,
+      "sha256": "97446be5a7470de3dd8ab4599fad6080ec9bef661e659bd309449dc78dd04596",
+      "mime": "audio/mp4",
+      "duration": 134.651066,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/323609475c1b8b49-low.m4a",
+        "bytes": 556412,
+        "sha256": "97446be5a7470de3dd8ab4599fad6080ec9bef661e659bd309449dc78dd04596",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Chronologika.Hundotte.ogg",
+        "bytes": 3953070,
+        "sha256": "1f38111d099847a15c3f2c24c2bd6c031b0970837697208e02354253cfacbaa4",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-33443bfd584cdf10-music": {
+      "assetKey": "catalog-33443bfd584cdf10-music",
+      "path": "music/catalog-33443bfd584cdf10-music.m4a",
+      "url": "./music/catalog-33443bfd584cdf10-music.m4a",
+      "bytes": 632408,
+      "sha256": "f184c8e87d2ccdbdfd384fb82c8bbafca2cb4be7e79af08f29c6240df1448405",
+      "mime": "audio/mp4",
+      "duration": 153.160272,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/33443bfd584cdf10-low.m4a",
+        "bytes": 632408,
+        "sha256": "f184c8e87d2ccdbdfd384fb82c8bbafca2cb4be7e79af08f29c6240df1448405",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/NOx.Juggernaut.ogg",
+        "bytes": 4652847,
+        "sha256": "1a95ada24f33317ec5ccb3211f22336ae2537c92c603ad25281965bbc2b6f461",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-34ef462f27ebaf4c-music": {
+      "assetKey": "catalog-34ef462f27ebaf4c-music",
+      "path": "music/catalog-34ef462f27ebaf4c-music.m4a",
+      "url": "./music/catalog-34ef462f27ebaf4c-music.m4a",
+      "bytes": 606869,
+      "sha256": "6928d3d7c73983de4c9757286dc93b76dd5a2a6b17392780e28d0340fcf79941",
+      "mime": "audio/mp4",
+      "duration": 147.215964,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/34ef462f27ebaf4c-low.m4a",
+        "bytes": 606869,
+        "sha256": "6928d3d7c73983de4c9757286dc93b76dd5a2a6b17392780e28d0340fcf79941",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/MagentaPotion.EmoCo.ogg",
+        "bytes": 4854597,
+        "sha256": "d7f8d845516492aa673390302d6c150f418b53b47948a4d37325a76e4294a4ac",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-3a645cf4e19d0be5-music": {
+      "assetKey": "catalog-3a645cf4e19d0be5-music",
+      "path": "music/catalog-3a645cf4e19d0be5-music.m4a",
+      "url": "./music/catalog-3a645cf4e19d0be5-music.m4a",
+      "bytes": 606160,
+      "sha256": "0016c8d6d071e08af41d5d805f0bd6102c62faa9a0602a53b48a56307b78682a",
+      "mime": "audio/mp4",
+      "duration": 147.111474,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/3a645cf4e19d0be5-low.m4a",
+        "bytes": 606160,
+        "sha256": "0016c8d6d071e08af41d5d805f0bd6102c62faa9a0602a53b48a56307b78682a",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Re_NascencePsystyleVer.Rinth_live.ogg",
+        "bytes": 3644817,
+        "sha256": "8cab140839ba9d7ecaabd5bbab0312589fee6b751c283d9b559aaa10e9698187",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-3ad08d7a5e882ee9-music": {
+      "assetKey": "catalog-3ad08d7a5e882ee9-music",
+      "path": "music/catalog-3ad08d7a5e882ee9-music.m4a",
+      "url": "./music/catalog-3ad08d7a5e882ee9-music.m4a",
+      "bytes": 585391,
+      "sha256": "6f424b7a03d7b86c6eb5d70b7801a96ce8d26fd10e9e911c39c6a65c975f968c",
+      "mime": "audio/mp4",
+      "duration": 141.538685,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/3ad08d7a5e882ee9-low.m4a",
+        "bytes": 585391,
+        "sha256": "6f424b7a03d7b86c6eb5d70b7801a96ce8d26fd10e9e911c39c6a65c975f968c",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/ReEndofaDream.umavs%E3%83%A2%E3%83%AA%E3%83%A2%E3%83%AA%E3%81%82%E3%81%A4%E3%81%97.ogg",
+        "bytes": 3748003,
+        "sha256": "1e56f11ee334b745a807ac717f9b9732c0aeaaefc19f605cdb07d0c017c837a6",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-3fa5bc375b4de612-music": {
+      "assetKey": "catalog-3fa5bc375b4de612-music",
+      "path": "music/catalog-3fa5bc375b4de612-music.m4a",
+      "url": "./music/catalog-3fa5bc375b4de612-music.m4a",
+      "bytes": 614307,
+      "sha256": "e0c116d8800b89aa18d329595b0584955eb0e71cffcee86164ea1c800c7edcef",
+      "mime": "audio/mp4",
+      "duration": 149.517642,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/3fa5bc375b4de612-low.m4a",
+        "bytes": 614307,
+        "sha256": "e0c116d8800b89aa18d329595b0584955eb0e71cffcee86164ea1c800c7edcef",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E6%9C%88%E4%B8%8B%E7%BC%AD%E4%B9%B1.%E6%9C%88%E8%A6%8B%E9%9D%99%E8%8F%AFvsLUNARiUM.ogg",
+        "bytes": 4196020,
+        "sha256": "74b210729572db1dd0f0cb50b9b676b11b99540ef612515b7bedb1df363973db",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-41d724bc77080847-music": {
+      "assetKey": "catalog-41d724bc77080847-music",
+      "path": "music/catalog-41d724bc77080847-music.m4a",
+      "url": "./music/catalog-41d724bc77080847-music.m4a",
+      "bytes": 736498,
+      "sha256": "cdd1aa96b105422a7a6a2b2ba9c7fdd8613fddf58976f2daea93318590da3332",
+      "mime": "audio/mp4",
+      "duration": 178.806712,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/41d724bc77080847-low.m4a",
+        "bytes": 736498,
+        "sha256": "cdd1aa96b105422a7a6a2b2ba9c7fdd8613fddf58976f2daea93318590da3332",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E3%81%B1%E3%81%B4%E3%81%B7%E3%81%B4%E3%81%B7%E3%81%B4%E3%81%B1.%E3%81%93%E3%82%8D%E3%81%AD%E3%81%BD%E3%81%A1With%E7%AB%8B%E7%A7%8B.ogg",
+        "bytes": 4856798,
+        "sha256": "936859e95edbb56bbbd88e9ff7debc6f0a6d673b3b85f559f9085a10a7960e34",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-43e2945f32f681da-music": {
+      "assetKey": "catalog-43e2945f32f681da-music",
+      "path": "music/catalog-43e2945f32f681da-music.m4a",
+      "url": "./music/catalog-43e2945f32f681da-music.m4a",
+      "bytes": 648528,
+      "sha256": "18c85fa2ff9a2def1944099085c41585ab39fc5f4973952a8b8d7fc919f2dbe5",
+      "mime": "audio/mp4",
+      "duration": 156.715828,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/43e2945f32f681da-low.m4a",
+        "bytes": 648528,
+        "sha256": "18c85fa2ff9a2def1944099085c41585ab39fc5f4973952a8b8d7fc919f2dbe5",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/PRAW.Bluewind.ogg",
+        "bytes": 4250325,
+        "sha256": "0efdcfe1132551051d26bd44d4658ea2437e0446fe775b524732c6556098e160",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-4499a10489ddbee2-music": {
+      "assetKey": "catalog-4499a10489ddbee2-music",
+      "path": "music/catalog-4499a10489ddbee2-music.m4a",
+      "url": "./music/catalog-4499a10489ddbee2-music.m4a",
+      "bytes": 711519,
+      "sha256": "d4a4f1c94bfb971d9008872ddb77fde79edae066f25a194394adb163f6c9120a",
+      "mime": "audio/mp4",
+      "duration": 167.350567,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/4499a10489ddbee2-low.m4a",
+        "bytes": 711519,
+        "sha256": "d4a4f1c94bfb971d9008872ddb77fde79edae066f25a194394adb163f6c9120a",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/AphroditesChildshortver.RUQOA.ogg",
+        "bytes": 4763734,
+        "sha256": "32867152432d0e15b3af56c74ef19bdbb761056bf4b69634f36cc956c5488f43",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-45be6441a0869300-music": {
+      "assetKey": "catalog-45be6441a0869300-music",
+      "path": "music/catalog-45be6441a0869300-music.m4a",
+      "url": "./music/catalog-45be6441a0869300-music.m4a",
+      "bytes": 627257,
+      "sha256": "a3e2771372fd9e6dbeebd33c5552888486932078d6c9bd3566b09fd3139c9058",
+      "mime": "audio/mp4",
+      "duration": 152.74,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/45be6441a0869300-low.m4a",
+        "bytes": 627257,
+        "sha256": "a3e2771372fd9e6dbeebd33c5552888486932078d6c9bd3566b09fd3139c9058",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Schadenfreude.ZxNX.ogg",
+        "bytes": 4721687,
+        "sha256": "07f6e4712f969ef1c5694ad4a4296aef258c5ac9a3984120d31e895e480f4b57",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-48675a8e9a084ab3-music": {
+      "assetKey": "catalog-48675a8e9a084ab3-music",
+      "path": "music/catalog-48675a8e9a084ab3-music.m4a",
+      "url": "./music/catalog-48675a8e9a084ab3-music.m4a",
+      "bytes": 548592,
+      "sha256": "77ec06e5066160826ad309df1c9cd2ee02a95ede5c39ca6bcead2defe09e0349",
+      "mime": "audio/mp4",
+      "duration": 132.633832,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/48675a8e9a084ab3-low.m4a",
+        "bytes": 548592,
+        "sha256": "77ec06e5066160826ad309df1c9cd2ee02a95ede5c39ca6bcead2defe09e0349",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Rrharil.TeamGrimoire.ogg",
+        "bytes": 3734953,
+        "sha256": "56ac263329edaae2bee082bcd567bc1622a790df2f7a090440dd6413b7a40920",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-48d23c2b4183116c-music": {
+      "assetKey": "catalog-48d23c2b4183116c-music",
+      "path": "music/catalog-48d23c2b4183116c-music.m4a",
+      "url": "./music/catalog-48d23c2b4183116c-music.m4a",
+      "bytes": 663209,
+      "sha256": "e3a25df41d2867db0bda1d5ee27d423028cb46522f7411b07c6edc7317ad0b00",
+      "mime": "audio/mp4",
+      "duration": 161.102667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/48d23c2b4183116c-low.m4a",
+        "bytes": 663209,
+        "sha256": "e3a25df41d2867db0bda1d5ee27d423028cb46522f7411b07c6edc7317ad0b00",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/iLArtifact.Link0.ogg",
+        "bytes": 4499655,
+        "sha256": "c8413f40e84d9a94ea54174b1b36941cbe969a54ccdf67e96526965ca6c1da82",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-4f26e7b3e4ca9fe2-music": {
+      "assetKey": "catalog-4f26e7b3e4ca9fe2-music",
+      "path": "music/catalog-4f26e7b3e4ca9fe2-music.m4a",
+      "url": "./music/catalog-4f26e7b3e4ca9fe2-music.m4a",
+      "bytes": 721075,
+      "sha256": "f783c54550d5e59ee7097ebf6745cf4d20cf2b4577511ac34e3d83d5ac0aada2",
+      "mime": "audio/mp4",
+      "duration": 174.670667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/4f26e7b3e4ca9fe2-low.m4a",
+        "bytes": 721075,
+        "sha256": "f783c54550d5e59ee7097ebf6745cf4d20cf2b4577511ac34e3d83d5ac0aada2",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/AvataarReincarnationofKalpa.ScarletteakaCrYmson.ogg",
+        "bytes": 4847115,
+        "sha256": "fdbf7daeda1c2116322ff72d51bba87e7284b54685c8c011b7054bc993a36a3e",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-512a0d916e13ea27-music": {
+      "assetKey": "catalog-512a0d916e13ea27-music",
+      "path": "music/catalog-512a0d916e13ea27-music.m4a",
+      "url": "./music/catalog-512a0d916e13ea27-music.m4a",
+      "bytes": 652221,
+      "sha256": "01651dc9476278b0369783b4cf2c06e75f20a2978661ef044395d4c85d0bd5e6",
+      "mime": "audio/mp4",
+      "duration": 157.873923,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/512a0d916e13ea27-low.m4a",
+        "bytes": 652221,
+        "sha256": "01651dc9476278b0369783b4cf2c06e75f20a2978661ef044395d4c85d0bd5e6",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Luminescent.Daison.ogg",
+        "bytes": 3926595,
+        "sha256": "fd88e90f76d581edab4cb2bda3272f04aed99197905026c60a697a301714d4c0",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-514c70031ea2eb42-music": {
+      "assetKey": "catalog-514c70031ea2eb42-music",
+      "path": "music/catalog-514c70031ea2eb42-music.m4a",
+      "url": "./music/catalog-514c70031ea2eb42-music.m4a",
+      "bytes": 781487,
+      "sha256": "4924c80445ea43d8944e450fb1b3d2eb679385f9c5d4dbb16df0a575b2e788d4",
+      "mime": "audio/mp4",
+      "duration": 189.383401,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/514c70031ea2eb42-low.m4a",
+        "bytes": 781487,
+        "sha256": "4924c80445ea43d8944e450fb1b3d2eb679385f9c5d4dbb16df0a575b2e788d4",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/AbsoluTedisoRdeR.AcuteDisarray.ogg",
+        "bytes": 5236361,
+        "sha256": "dec046b8759998dc7d90ee4e5417160a517f24b60cd09805d6a07beea0f6f03f",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-51becfa8da72f0f8-music": {
+      "assetKey": "catalog-51becfa8da72f0f8-music",
+      "path": "music/catalog-51becfa8da72f0f8-music.m4a",
+      "url": "./music/catalog-51becfa8da72f0f8-music.m4a",
+      "bytes": 707664,
+      "sha256": "ee37c9699b72c7f10e79ad7a06ab73349ae387d026ca70c12a1a019cd227a3f0",
+      "mime": "audio/mp4",
+      "duration": 171.869751,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/51becfa8da72f0f8-low.m4a",
+        "bytes": 707664,
+        "sha256": "ee37c9699b72c7f10e79ad7a06ab73349ae387d026ca70c12a1a019cd227a3f0",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/DevIAtiOnshortver.polysha.ogg",
+        "bytes": 4626620,
+        "sha256": "9513c23f226241606b5376cb866cb2056a8080f15b9ece6ec07ce25f94bfb0c1",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-55aa41635cc082cb-music": {
+      "assetKey": "catalog-55aa41635cc082cb-music",
+      "path": "music/catalog-55aa41635cc082cb-music.m4a",
+      "url": "./music/catalog-55aa41635cc082cb-music.m4a",
+      "bytes": 687319,
+      "sha256": "d2f81bde9ffc82257735359597853b3b262ce4cbfa68d090cb0129c22ce25ef0",
+      "mime": "audio/mp4",
+      "duration": 165.728073,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/55aa41635cc082cb-low.m4a",
+        "bytes": 687319,
+        "sha256": "d2f81bde9ffc82257735359597853b3b262ce4cbfa68d090cb0129c22ce25ef0",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E7%93%B7%E5%B2%81.%E8%8C%B6%E9%B8%A3%E6%8B%BE%E8%B4%B0%E5%BE%8B.ogg",
+        "bytes": 4358286,
+        "sha256": "bb27cf4a06dcdb02ef775a4aeeb63cd872f55fc006e1dff3e9f0fa25cbe46975",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-55ae2e09fa83d113-music": {
+      "assetKey": "catalog-55ae2e09fa83d113-music",
+      "path": "music/catalog-55ae2e09fa83d113-music.m4a",
+      "url": "./music/catalog-55ae2e09fa83d113-music.m4a",
+      "bytes": 497717,
+      "sha256": "04417fcd07a84d85a65f36cfbc7bcc7f1ccc5e19c64c333ebfcebba4ef468f37",
+      "mime": "audio/mp4",
+      "duration": 124.338503,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/55ae2e09fa83d113-low.m4a",
+        "bytes": 497717,
+        "sha256": "04417fcd07a84d85a65f36cfbc7bcc7f1ccc5e19c64c333ebfcebba4ef468f37",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/atruthseekerCommunicationwithUtopiawillbelost.kuro.ogg",
+        "bytes": 3614094,
+        "sha256": "2a6ec502b9d93545066fbc18cfc14a77784542649a7a63c572fe79be656c3410",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-55d3c18ac50fff25-music": {
+      "assetKey": "catalog-55d3c18ac50fff25-music",
+      "path": "music/catalog-55d3c18ac50fff25-music.m4a",
+      "url": "./music/catalog-55d3c18ac50fff25-music.m4a",
+      "bytes": 688079,
+      "sha256": "c08c63b5728ff2e90e98ce563633a8eeb72928f26c7ea6015f43a7b0b89349fd",
+      "mime": "audio/mp4",
+      "duration": 166.459501,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/55d3c18ac50fff25-low.m4a",
+        "bytes": 688079,
+        "sha256": "c08c63b5728ff2e90e98ce563633a8eeb72928f26c7ea6015f43a7b0b89349fd",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/RubbishSorting.CtymaxvsNceS.ogg",
+        "bytes": 4620609,
+        "sha256": "ce89f9d45f85dcce7fadb4b63ad518b8a4c34581ce16ce2d53bdf14467eb838c",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-590124645ef9fc62-music": {
+      "assetKey": "catalog-590124645ef9fc62-music",
+      "path": "music/catalog-590124645ef9fc62-music.m4a",
+      "url": "./music/catalog-590124645ef9fc62-music.m4a",
+      "bytes": 692587,
+      "sha256": "f7d5bac4f9cdefbfa5bcbd2bb44fc101ac3f2d7267e1867f63bb50c8ded430a9",
+      "mime": "audio/mp4",
+      "duration": 167.835283,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/590124645ef9fc62-low.m4a",
+        "bytes": 692587,
+        "sha256": "f7d5bac4f9cdefbfa5bcbd2bb44fc101ac3f2d7267e1867f63bb50c8ded430a9",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E9%9D%92%E4%B8%98.BLACK0.ogg",
+        "bytes": 5849095,
+        "sha256": "36330a6fbb08a80dbbddab839ad3ca989588ac4e73812ded8ce69d38fe0f7a75",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-5917f05540ed6137-music": {
+      "assetKey": "catalog-5917f05540ed6137-music",
+      "path": "music/catalog-5917f05540ed6137-music.m4a",
+      "url": "./music/catalog-5917f05540ed6137-music.m4a",
+      "bytes": 624052,
+      "sha256": "9e5c5cce3e29acaeff22dae0c659d2fae66f6530c711a0603f5af19a19cfccd3",
+      "mime": "audio/mp4",
+      "duration": 152.037007,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/5917f05540ed6137-low.m4a",
+        "bytes": 624052,
+        "sha256": "9e5c5cce3e29acaeff22dae0c659d2fae66f6530c711a0603f5af19a19cfccd3",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Dreamland.z1onkyrrin.ogg",
+        "bytes": 3893404,
+        "sha256": "24089d2360ab41b3d0766ce86e23249282c8bf9ec99844efef37ca4fe78e8db5",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-5aab5beb446cb42b-music": {
+      "assetKey": "catalog-5aab5beb446cb42b-music",
+      "path": "music/catalog-5aab5beb446cb42b-music.m4a",
+      "url": "./music/catalog-5aab5beb446cb42b-music.m4a",
+      "bytes": 638020,
+      "sha256": "f3d8ce3caeaf365dfbbe5b82ce6c0b191c654cdfe5ae5281510134f28b94728d",
+      "mime": "audio/mp4",
+      "duration": 155.688345,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/5aab5beb446cb42b-low.m4a",
+        "bytes": 638020,
+        "sha256": "f3d8ce3caeaf365dfbbe5b82ce6c0b191c654cdfe5ae5281510134f28b94728d",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Trojan.litmus.ogg",
+        "bytes": 3995476,
+        "sha256": "440ed46b7150014979326984ee30e82b28186075b774c04ab930f033388ee9ad",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-5d43894c21a13c93-music": {
+      "assetKey": "catalog-5d43894c21a13c93-music",
+      "path": "music/catalog-5d43894c21a13c93-music.m4a",
+      "url": "./music/catalog-5d43894c21a13c93-music.m4a",
+      "bytes": 611245,
+      "sha256": "6b99fec7f1e126c7a463061e63704697838d48dde280ef04b4c95be645c72564",
+      "mime": "audio/mp4",
+      "duration": 146.391655,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/5d43894c21a13c93-low.m4a",
+        "bytes": 611245,
+        "sha256": "6b99fec7f1e126c7a463061e63704697838d48dde280ef04b4c95be645c72564",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/70MinutesFighters.%E3%81%8B%E3%81%9F%E3%81%8E%E3%82%8A.ogg",
+        "bytes": 3995612,
+        "sha256": "bf7422f425d013e03a932b3160461eba0de7ddc7cf1c3f2949e8ee6076f636c2",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-60cc0598b153a662-music": {
+      "assetKey": "catalog-60cc0598b153a662-music",
+      "path": "music/catalog-60cc0598b153a662-music.m4a",
+      "url": "./music/catalog-60cc0598b153a662-music.m4a",
+      "bytes": 686357,
+      "sha256": "b0b46cde66580b76ff05d40cfb2a944ba1adaa16eedbe3715a04526adbfb7816",
+      "mime": "audio/mp4",
+      "duration": 166.102667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/60cc0598b153a662-low.m4a",
+        "bytes": 686357,
+        "sha256": "b0b46cde66580b76ff05d40cfb2a944ba1adaa16eedbe3715a04526adbfb7816",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/StardustRAY.kanonevsBlackY.ogg",
+        "bytes": 4794001,
+        "sha256": "2863f74e8344a7c82dd8f6476580683808976f7d9d7fe2941b54cfe9a8e22e77",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-63785b7928d7dfb6-music": {
+      "assetKey": "catalog-63785b7928d7dfb6-music",
+      "path": "music/catalog-63785b7928d7dfb6-music.m4a",
+      "url": "./music/catalog-63785b7928d7dfb6-music.m4a",
+      "bytes": 560110,
+      "sha256": "6fa665df5032a2cc335a8cbd2a82530525cf1a6b6d0cf9d35bfef065196fa4cb",
+      "mime": "audio/mp4",
+      "duration": 136.784399,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/63785b7928d7dfb6-low.m4a",
+        "bytes": 560110,
+        "sha256": "6fa665df5032a2cc335a8cbd2a82530525cf1a6b6d0cf9d35bfef065196fa4cb",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Ramification.rareguyReina.ogg",
+        "bytes": 3494168,
+        "sha256": "0eea0c97f43cf0af7a2da5897de43b29e168cdc3720f0249cfa9cea84f70b95b",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-68abb7a97e35799f-music": {
+      "assetKey": "catalog-68abb7a97e35799f-music",
+      "path": "music/catalog-68abb7a97e35799f-music.m4a",
+      "url": "./music/catalog-68abb7a97e35799f-music.m4a",
+      "bytes": 622045,
+      "sha256": "75738f7615b77b5086945d804da2daf6cae2ce7300bc77ebfad8a3b968d11d1d",
+      "mime": "audio/mp4",
+      "duration": 151.281333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/68abb7a97e35799f-low.m4a",
+        "bytes": 622045,
+        "sha256": "75738f7615b77b5086945d804da2daf6cae2ce7300bc77ebfad8a3b968d11d1d",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/CometFeat%E7%AC%A6%E7%99%BD%E7%89%99.CNHKSS.ogg",
+        "bytes": 4764283,
+        "sha256": "4b471f479b2731348f16f157614cc478200b3fbadfc267bfab4cda4f25a4ae1f",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-68c2b6dafad3f338-music": {
+      "assetKey": "catalog-68c2b6dafad3f338-music",
+      "path": "music/catalog-68c2b6dafad3f338-music.m4a",
+      "url": "./music/catalog-68c2b6dafad3f338-music.m4a",
+      "bytes": 736236,
+      "sha256": "6d07e0894eda710f9c4b0e56ccc1473ea1d96b69b21b13e92e7dc48394756c37",
+      "mime": "audio/mp4",
+      "duration": 178.64127,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/68c2b6dafad3f338-low.m4a",
+        "bytes": 736236,
+        "sha256": "6d07e0894eda710f9c4b0e56ccc1473ea1d96b69b21b13e92e7dc48394756c37",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E4%BA%91%E5%A5%B3%E5%AD%A9.%E7%AC%A6%E7%99%BD%E7%89%99SiYFics.ogg",
+        "bytes": 4490643,
+        "sha256": "b86f726e76b8360241454e302ef46b0a5827c4657b7f26c3e271274498d62602",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-696dca6ffcf785a7-music": {
+      "assetKey": "catalog-696dca6ffcf785a7-music",
+      "path": "music/catalog-696dca6ffcf785a7-music.m4a",
+      "url": "./music/catalog-696dca6ffcf785a7-music.m4a",
+      "bytes": 661060,
+      "sha256": "8c7a90299a751be84c0db3ada9f8b5f69267034c4dc0ee5a5b5b1b96f31441cd",
+      "mime": "audio/mp4",
+      "duration": 161.718667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/696dca6ffcf785a7-low.m4a",
+        "bytes": 661060,
+        "sha256": "8c7a90299a751be84c0db3ada9f8b5f69267034c4dc0ee5a5b5b1b96f31441cd",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E3%82%A2%E3%83%B3%E3%83%93%E3%83%90%E3%83%AC%E3%83%B3%E3%82%B9.%E3%81%99%E3%82%8A%E3%81%83%E7%9B%B8%E6%B2%A2.ogg",
+        "bytes": 4008549,
+        "sha256": "e2c41d4e97f89a8fd9bb68e7025d3ccf4261f3cda5c2926f46c0162e0ee1b757",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-6b073813893084e8-music": {
+      "assetKey": "catalog-6b073813893084e8-music",
+      "path": "music/catalog-6b073813893084e8-music.m4a",
+      "url": "./music/catalog-6b073813893084e8-music.m4a",
+      "bytes": 657827,
+      "sha256": "987393e8aa89d139c5fc31fc3790c504cf9ff0f22a56d92d927796c9595803f0",
+      "mime": "audio/mp4",
+      "duration": 158.457324,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/6b073813893084e8-low.m4a",
+        "bytes": 657827,
+        "sha256": "987393e8aa89d139c5fc31fc3790c504cf9ff0f22a56d92d927796c9595803f0",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E8%90%A4%E7%81%AB%E8%99%AB%E3%81%AE%E6%80%A8.%E9%97%AB%E4%B8%9C%E7%82%9C.ogg",
+        "bytes": 5453022,
+        "sha256": "c060b2cb43eb207a3d118967d58ca84b842bba9197cdd2f649c3ef8576b0abd9",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-6c94e7086aebd4b6-music": {
+      "assetKey": "catalog-6c94e7086aebd4b6-music",
+      "path": "music/catalog-6c94e7086aebd4b6-music.m4a",
+      "url": "./music/catalog-6c94e7086aebd4b6-music.m4a",
+      "bytes": 554028,
+      "sha256": "03297e0b7b4cb21e37f904fdf20d6dc1efabfcfd8f1adda6e02767c1c0aeff80",
+      "mime": "audio/mp4",
+      "duration": 133.417506,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/6c94e7086aebd4b6-low.m4a",
+        "bytes": 554028,
+        "sha256": "03297e0b7b4cb21e37f904fdf20d6dc1efabfcfd8f1adda6e02767c1c0aeff80",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E8%B4%9D%E5%A4%9A%E8%8A%AC%E7%A5%9D%E7%A6%8FBeethovenBlessing.Nauts.ogg",
+        "bytes": 3787890,
+        "sha256": "bc4f8466d30c5e759fbe9e82636ceb8c58e4b6e1f63c0c2729504400ed2bc961",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-715b55d2aa98a2b7-music": {
+      "assetKey": "catalog-715b55d2aa98a2b7-music",
+      "path": "music/catalog-715b55d2aa98a2b7-music.m4a",
+      "url": "./music/catalog-715b55d2aa98a2b7-music.m4a",
+      "bytes": 655450,
+      "sha256": "174b36aa47c3dbef732bb52c89d1e88427096491bbf210009fb1c26e01f3e4ef",
+      "mime": "audio/mp4",
+      "duration": 158.09161,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/715b55d2aa98a2b7-low.m4a",
+        "bytes": 655450,
+        "sha256": "174b36aa47c3dbef732bb52c89d1e88427096491bbf210009fb1c26e01f3e4ef",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Devotion.Connexio.ogg",
+        "bytes": 4787918,
+        "sha256": "1fd60a83e3fa3edf2b4286694abc6af9d3d3e35d7d53080c3a386a6b33058376",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-7255bb034743796b-music": {
+      "assetKey": "catalog-7255bb034743796b-music",
+      "path": "music/catalog-7255bb034743796b-music.m4a",
+      "url": "./music/catalog-7255bb034743796b-music.m4a",
+      "bytes": 557554,
+      "sha256": "f1c05b1947b3863472f2b14b20d7b0645c73c93bd22e02e2c9d725a9673819be",
+      "mime": "audio/mp4",
+      "duration": 136.021043,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/7255bb034743796b-low.m4a",
+        "bytes": 557554,
+        "sha256": "f1c05b1947b3863472f2b14b20d7b0645c73c93bd22e02e2c9d725a9673819be",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E3%82%B9%E3%83%88%E3%83%AC%E3%82%A4%E3%82%BD%E3%82%A6%E3%83%AB%E3%82%A2%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%89.%E3%81%BF%E3%83%BC%E3%81%AB.ogg",
+        "bytes": 3645039,
+        "sha256": "aff677b6a65bae2d671b2397eb0e7f6787c4a35667f960575acf82a3c4113234",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-73323b3b5ad8bf1b-music": {
+      "assetKey": "catalog-73323b3b5ad8bf1b-music",
+      "path": "music/catalog-73323b3b5ad8bf1b-music.m4a",
+      "url": "./music/catalog-73323b3b5ad8bf1b-music.m4a",
+      "bytes": 594662,
+      "sha256": "9a11dd466d0bcd8157b153b593df1c714f945902658364e80158c537a2ef6776",
+      "mime": "audio/mp4",
+      "duration": 144.126667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/73323b3b5ad8bf1b-low.m4a",
+        "bytes": 594662,
+        "sha256": "9a11dd466d0bcd8157b153b593df1c714f945902658364e80158c537a2ef6776",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/slips.rintarosoma.ogg",
+        "bytes": 4384103,
+        "sha256": "78f667e2ef90b7563828c027bf28f94c3a733ff5657113c17f10a5de933883ff",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-7339fbdd5274f07b-music": {
+      "assetKey": "catalog-7339fbdd5274f07b-music",
+      "path": "music/catalog-7339fbdd5274f07b-music.m4a",
+      "url": "./music/catalog-7339fbdd5274f07b-music.m4a",
+      "bytes": 737721,
+      "sha256": "bfe5faf821afe913e9e02a7c86fa20f1727deb0ba466f5c70359b38f09cbb2b3",
+      "mime": "audio/mp4",
+      "duration": 180.577234,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/7339fbdd5274f07b-low.m4a",
+        "bytes": 737721,
+        "sha256": "bfe5faf821afe913e9e02a7c86fa20f1727deb0ba466f5c70359b38f09cbb2b3",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/LabyrinthinKowloonWalledWorld.%E3%81%8B%E3%82%81%E3%82%8A%E3%81%82.ogg",
+        "bytes": 4957180,
+        "sha256": "89acb932446f244b21504d6f43e6abdb73a54d6d364dfa1018a2a849b5158e92",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-7468a8fe56e848ca-music": {
+      "assetKey": "catalog-7468a8fe56e848ca-music",
+      "path": "music/catalog-7468a8fe56e848ca-music.m4a",
+      "url": "./music/catalog-7468a8fe56e848ca-music.m4a",
+      "bytes": 690268,
+      "sha256": "f0a9b33b8672cd8bb323b2a05dd9966cf947326985c0387cc954230b0e609c7a",
+      "mime": "audio/mp4",
+      "duration": 167.330249,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/7468a8fe56e848ca-low.m4a",
+        "bytes": 690268,
+        "sha256": "f0a9b33b8672cd8bb323b2a05dd9966cf947326985c0387cc954230b0e609c7a",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E3%82%B8%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%99%E3%83%ABJingleBell.A39%E6%B2%99%E5%8C%85P.ogg",
+        "bytes": 4933903,
+        "sha256": "d8e6fe08671b317123099cc2d42d5a257ecda3f2212271460cbc19352a66c050",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-75d58198ec3ee2cc-music": {
+      "assetKey": "catalog-75d58198ec3ee2cc-music",
+      "path": "music/catalog-75d58198ec3ee2cc-music.m4a",
+      "url": "./music/catalog-75d58198ec3ee2cc-music.m4a",
+      "bytes": 532907,
+      "sha256": "6860e76e03f8cf446a6e920493a732107a10b66db1241488edc329ca8534ca1d",
+      "mime": "audio/mp4",
+      "duration": 128.994104,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/75d58198ec3ee2cc-low.m4a",
+        "bytes": 532907,
+        "sha256": "6860e76e03f8cf446a6e920493a732107a10b66db1241488edc329ca8534ca1d",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Spotlight.Ardolf.ogg",
+        "bytes": 3695968,
+        "sha256": "5dc6251789d341fc3a6287a7f9ad13a5494489a3bb748961a60d46d70bf37614",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-76dc5b3809e4a093-music": {
+      "assetKey": "catalog-76dc5b3809e4a093-music",
+      "path": "music/catalog-76dc5b3809e4a093-music.m4a",
+      "url": "./music/catalog-76dc5b3809e4a093-music.m4a",
+      "bytes": 522221,
+      "sha256": "a69ab996e1c343557fc45344fd9ceb7538520a0d3c7a91732cd4f412c546b7dc",
+      "mime": "audio/mp4",
+      "duration": 123.758005,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/76dc5b3809e4a093-low.m4a",
+        "bytes": 522221,
+        "sha256": "a69ab996e1c343557fc45344fd9ceb7538520a0d3c7a91732cd4f412c546b7dc",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Archidoxen.Se_IRA.ogg",
+        "bytes": 3627008,
+        "sha256": "11d0667e6231a0a5617193b0e5b7fbc05ac8c74e48756dd4b9663a4878c8b51a",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-77761d7d824d3f28-music": {
+      "assetKey": "catalog-77761d7d824d3f28-music",
+      "path": "music/catalog-77761d7d824d3f28-music.m4a",
+      "url": "./music/catalog-77761d7d824d3f28-music.m4a",
+      "bytes": 608867,
+      "sha256": "85d2533b61f25bc93e4b2aa808eca88d3bd058ffbc146b595ce4410e9988f1f6",
+      "mime": "audio/mp4",
+      "duration": 147.204354,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/77761d7d824d3f28-low.m4a",
+        "bytes": 608867,
+        "sha256": "85d2533b61f25bc93e4b2aa808eca88d3bd058ffbc146b595ce4410e9988f1f6",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Lyrith%E8%BF%B7%E5%AE%AE%E3%83%AA%E3%83%AA%E3%82%B9.%E3%83%A6%E3%83%A1%E3%83%9F%E3%83%89.ogg",
+        "bytes": 4040631,
+        "sha256": "ab960966053bf54d3010fe77990f9242b93513431bd0228a803d6f2f844828f5",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-798ca7948aa16298-music": {
+      "assetKey": "catalog-798ca7948aa16298-music",
+      "path": "music/catalog-798ca7948aa16298-music.m4a",
+      "url": "./music/catalog-798ca7948aa16298-music.m4a",
+      "bytes": 637800,
+      "sha256": "bd024a6bc2aabf554e65bcdd2b29d11216e9e4e182af07730659a79bf8bb1ed7",
+      "mime": "audio/mp4",
+      "duration": 154.681333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/798ca7948aa16298-low.m4a",
+        "bytes": 637800,
+        "sha256": "bd024a6bc2aabf554e65bcdd2b29d11216e9e4e182af07730659a79bf8bb1ed7",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Stasis.Maozon.ogg",
+        "bytes": 4385894,
+        "sha256": "0cd8db404c83959cb6ba2c8fed2afe6bb254f8dd008ade992d2bc660717a0377",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-7b109a34159e32dc-music": {
+      "assetKey": "catalog-7b109a34159e32dc-music",
+      "path": "music/catalog-7b109a34159e32dc-music.m4a",
+      "url": "./music/catalog-7b109a34159e32dc-music.m4a",
+      "bytes": 554796,
+      "sha256": "a2de85bf7ade03f00304fe6e565b9f215bc82a2a0b3cc8ba2928beeb72370ecc",
+      "mime": "audio/mp4",
+      "duration": 133.734667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/7b109a34159e32dc-low.m4a",
+        "bytes": 554796,
+        "sha256": "a2de85bf7ade03f00304fe6e565b9f215bc82a2a0b3cc8ba2928beeb72370ecc",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/DiamondEyes.SYNTHETIC.ogg",
+        "bytes": 3718505,
+        "sha256": "83c21a7a0db8930127576ee1a73992c28c9604754247d506564dcf845255f719",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-7b54f681edefbdd6-music": {
+      "assetKey": "catalog-7b54f681edefbdd6-music",
+      "path": "music/catalog-7b54f681edefbdd6-music.m4a",
+      "url": "./music/catalog-7b54f681edefbdd6-music.m4a",
+      "bytes": 565255,
+      "sha256": "feb96b815a182a9e1b91db52d0b35758dad8d9bd5baaf47ccf2564afb9c1a6a0",
+      "mime": "audio/mp4",
+      "duration": 138.67102,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/7b54f681edefbdd6-low.m4a",
+        "bytes": 565255,
+        "sha256": "feb96b815a182a9e1b91db52d0b35758dad8d9bd5baaf47ccf2564afb9c1a6a0",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Demonkin.ForgedReigns.ogg",
+        "bytes": 3522071,
+        "sha256": "d9e6bec6f9a91b966f15e4fbf0169cf8efaf93f58ac0a9d96bdd16e781ef950d",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-7df185f77ecbb722-music": {
+      "assetKey": "catalog-7df185f77ecbb722-music",
+      "path": "music/catalog-7df185f77ecbb722-music.m4a",
+      "url": "./music/catalog-7df185f77ecbb722-music.m4a",
+      "bytes": 638925,
+      "sha256": "0a7df404c59113f6f457d0b96cbdbb00bd2e4bb76d6e4c6d8e613a7a59cb57a2",
+      "mime": "audio/mp4",
+      "duration": 154.475102,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/7df185f77ecbb722-low.m4a",
+        "bytes": 638925,
+        "sha256": "0a7df404c59113f6f457d0b96cbdbb00bd2e4bb76d6e4c6d8e613a7a59cb57a2",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E5%B9%BD%E4%B8%96%E6%A1%94%E6%A2%97.Capchiifeat%E3%81%BE%E3%82%8B%E3%82%82%E3%81%93.ogg",
+        "bytes": 4490033,
+        "sha256": "d4d75fcb550883b6f2f5faf9005d9db8230d300b8385060accfe4ab0bb9b0a83",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-81e339f406bf584b-music": {
+      "assetKey": "catalog-81e339f406bf584b-music",
+      "path": "music/catalog-81e339f406bf584b-music.m4a",
+      "url": "./music/catalog-81e339f406bf584b-music.m4a",
+      "bytes": 674988,
+      "sha256": "ec37a8d5eaf12faced5b937ee6cb06789ed9b94c96a107e9e05631e9c83d7406",
+      "mime": "audio/mp4",
+      "duration": 163.36254,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/81e339f406bf584b-low.m4a",
+        "bytes": 674988,
+        "sha256": "ec37a8d5eaf12faced5b937ee6cb06789ed9b94c96a107e9e05631e9c83d7406",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/MOBILYS.Dachs.ogg",
+        "bytes": 4946609,
+        "sha256": "1c950a8f6b52be8149813b7706b82efd0db073eaf9286e02e1b0bd5b5a248101",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-82d954dd5a7ec28c-music": {
+      "assetKey": "catalog-82d954dd5a7ec28c-music",
+      "path": "music/catalog-82d954dd5a7ec28c-music.m4a",
+      "url": "./music/catalog-82d954dd5a7ec28c-music.m4a",
+      "bytes": 538443,
+      "sha256": "98969c5e84f77bbab5e1435ea0747a250352b6c371c92bea86f8a1c29615f217",
+      "mime": "audio/mp4",
+      "duration": 126.113333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/82d954dd5a7ec28c-low.m4a",
+        "bytes": 538443,
+        "sha256": "98969c5e84f77bbab5e1435ea0747a250352b6c371c92bea86f8a1c29615f217",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/ABYSSMOTION192333.ariiolTSAR%E5%A5%8FSou.ogg",
+        "bytes": 3962900,
+        "sha256": "75bcc4b4b3f7fffcea075faed96d8cf64bc2e5e231e37bb2686b7491a656005f",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-841e2272cb74839c-music": {
+      "assetKey": "catalog-841e2272cb74839c-music",
+      "path": "music/catalog-841e2272cb74839c-music.m4a",
+      "url": "./music/catalog-841e2272cb74839c-music.m4a",
+      "bytes": 682750,
+      "sha256": "bb24cc95b2eccaffa3fdc7ebbb42bca05a27e65fa00f4ba0339c51555ed61b8b",
+      "mime": "audio/mp4",
+      "duration": 164.805079,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/841e2272cb74839c-low.m4a",
+        "bytes": 682750,
+        "sha256": "bb24cc95b2eccaffa3fdc7ebbb42bca05a27e65fa00f4ba0339c51555ed61b8b",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E5%BF%83%E3%81%AE%E8%A8%98%E6%86%B6.A39%E6%B2%99%E5%8C%85P.ogg",
+        "bytes": 5093616,
+        "sha256": "259775eaefd865d3dafbfe75007a04f6cff73a6ec146012200c54810111b81aa",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-854d00d393dc127d-music": {
+      "assetKey": "catalog-854d00d393dc127d-music",
+      "path": "music/catalog-854d00d393dc127d-music.m4a",
+      "url": "./music/catalog-854d00d393dc127d-music.m4a",
+      "bytes": 630564,
+      "sha256": "ccc3f84ce6b49c3024f445d89f04d038cf6ed595eb50d9663db963eab9838b57",
+      "mime": "audio/mp4",
+      "duration": 153.710667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/854d00d393dc127d-low.m4a",
+        "bytes": 630564,
+        "sha256": "ccc3f84ce6b49c3024f445d89f04d038cf6ed595eb50d9663db963eab9838b57",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E7%8E%A9%E5%85%B7%E7%8B%82%E5%A5%8F%E6%9B%B2%E7%B5%82%E7%84%89.%E3%81%8D%E3%81%8F%E3%81%8A.ogg",
+        "bytes": 4335456,
+        "sha256": "2de3a65937b57f78604991073d2e393193d65c68ad46b2694e974f9c800dda3c",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-85dc6194dd1951c3-music": {
+      "assetKey": "catalog-85dc6194dd1951c3-music",
+      "path": "music/catalog-85dc6194dd1951c3-music.m4a",
+      "url": "./music/catalog-85dc6194dd1951c3-music.m4a",
+      "bytes": 563563,
+      "sha256": "2bae08821b66ca7f940716ff7d03b4f2474db067c0fb31c8803341aae612342e",
+      "mime": "audio/mp4",
+      "duration": 136.999184,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/85dc6194dd1951c3-low.m4a",
+        "bytes": 563563,
+        "sha256": "2bae08821b66ca7f940716ff7d03b4f2474db067c0fb31c8803341aae612342e",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Random.SobremSilentroom.ogg",
+        "bytes": 3812132,
+        "sha256": "11fe92c88657bf9b4677c74ce827faabd57195aaa0798701b6cada62a6d2316e",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-86dd4ed291eeabd8-music": {
+      "assetKey": "catalog-86dd4ed291eeabd8-music",
+      "path": "music/catalog-86dd4ed291eeabd8-music.m4a",
+      "url": "./music/catalog-86dd4ed291eeabd8-music.m4a",
+      "bytes": 612618,
+      "sha256": "b1523790b4a72712e1d47135587d5e4ad104721f58648fc5f7ad64c5a4374396",
+      "mime": "audio/mp4",
+      "duration": 150.031383,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/86dd4ed291eeabd8-low.m4a",
+        "bytes": 612618,
+        "sha256": "b1523790b4a72712e1d47135587d5e4ad104721f58648fc5f7ad64c5a4374396",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/GungnirFracture.Kryexe.ogg",
+        "bytes": 3585718,
+        "sha256": "6908e9a4c87085501e3d0f332484018c8918d804bf3e1e66bd85cd1000c43222",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-87b169162c9a5ac8-music": {
+      "assetKey": "catalog-87b169162c9a5ac8-music",
+      "path": "music/catalog-87b169162c9a5ac8-music.m4a",
+      "url": "./music/catalog-87b169162c9a5ac8-music.m4a",
+      "bytes": 737869,
+      "sha256": "4d92f76508407432681c8bf06fcb7b548fd06008a23f8eddde4b17b3d6814c6b",
+      "mime": "audio/mp4",
+      "duration": 180.806531,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/87b169162c9a5ac8-low.m4a",
+        "bytes": 737869,
+        "sha256": "4d92f76508407432681c8bf06fcb7b548fd06008a23f8eddde4b17b3d6814c6b",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/FracturedAngel.DJRaisei.ogg",
+        "bytes": 4767770,
+        "sha256": "e2f6d2652696920251b3e1df5513609b9d1e47bbe18aac3b23594b6ebf7ee1b2",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-88330c07fd3d6596-music": {
+      "assetKey": "catalog-88330c07fd3d6596-music",
+      "path": "music/catalog-88330c07fd3d6596-music.m4a",
+      "url": "./music/catalog-88330c07fd3d6596-music.m4a",
+      "bytes": 606098,
+      "sha256": "7a859df428eb7efea670b3af6864b51c651ba7331b5f304b3d734c3363191cdb",
+      "mime": "audio/mp4",
+      "duration": 146.62966,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/88330c07fd3d6596-low.m4a",
+        "bytes": 606098,
+        "sha256": "7a859df428eb7efea670b3af6864b51c651ba7331b5f304b3d734c3363191cdb",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E5%8F%8C%E9%87%8D%E9%97%B4%E8%B0%8DDoubleAgent.WAVAV.ogg",
+        "bytes": 3360816,
+        "sha256": "ad7ca7ce4825f2345e1de48a6a6a6ba64091396b92c51c110f6dc77e0df1e6fa",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-8b7a3482f053f456-music": {
+      "assetKey": "catalog-8b7a3482f053f456-music",
+      "path": "music/catalog-8b7a3482f053f456-music.m4a",
+      "url": "./music/catalog-8b7a3482f053f456-music.m4a",
+      "bytes": 683785,
+      "sha256": "cfec96cffbf5847e1ac0152c7a89556c006cab31304574f2bee04c2167f19fc7",
+      "mime": "audio/mp4",
+      "duration": 165.873197,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/8b7a3482f053f456-low.m4a",
+        "bytes": 683785,
+        "sha256": "cfec96cffbf5847e1ac0152c7a89556c006cab31304574f2bee04c2167f19fc7",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Pontdessouvenirs.VeetaCrushvsitsufeatitsu.ogg",
+        "bytes": 4632127,
+        "sha256": "c50e049f25ea5e69c63d8a192989ef6c0a858f2cf219155ac4f7c670a0cd75a3",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-8be74449d30d78f9-music": {
+      "assetKey": "catalog-8be74449d30d78f9-music",
+      "path": "music/catalog-8be74449d30d78f9-music.m4a",
+      "url": "./music/catalog-8be74449d30d78f9-music.m4a",
+      "bytes": 662456,
+      "sha256": "3c58221c3562c24334806beaf487fe728941654486ea0a2e1bd0190e23ccce54",
+      "mime": "audio/mp4",
+      "duration": 160.030476,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/8be74449d30d78f9-low.m4a",
+        "bytes": 662456,
+        "sha256": "3c58221c3562c24334806beaf487fe728941654486ea0a2e1bd0190e23ccce54",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Aventyr.GrandThawRigelTheatre.ogg",
+        "bytes": 3739116,
+        "sha256": "aa264deded4fab614c691862c03640a42f59f2a27c74036957d286f9595e8337",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-8c237537d8769cf9-music": {
+      "assetKey": "catalog-8c237537d8769cf9-music",
+      "path": "music/catalog-8c237537d8769cf9-music.m4a",
+      "url": "./music/catalog-8c237537d8769cf9-music.m4a",
+      "bytes": 643145,
+      "sha256": "50f905cbc7e5c1b9dd18a822a8c55dc5eceb3f75be1877cc7bfa13bc29ec599a",
+      "mime": "audio/mp4",
+      "duration": 155.714467,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/8c237537d8769cf9-low.m4a",
+        "bytes": 643145,
+        "sha256": "50f905cbc7e5c1b9dd18a822a8c55dc5eceb3f75be1877cc7bfa13bc29ec599a",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Cthugha.USAO.ogg",
+        "bytes": 3737702,
+        "sha256": "42b786094a15843d7822329bd8b1eac23de106bd406cdaf957f6ec112d7f292a",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-8d2b376c294c491f-music": {
+      "assetKey": "catalog-8d2b376c294c491f-music",
+      "path": "music/catalog-8d2b376c294c491f-music.m4a",
+      "url": "./music/catalog-8d2b376c294c491f-music.m4a",
+      "bytes": 703457,
+      "sha256": "0ce6739cf9631f663fa5146005da860cc681453ac3fb48942df84a5173fb4ea7",
+      "mime": "audio/mp4",
+      "duration": 170.485261,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/8d2b376c294c491f-low.m4a",
+        "bytes": 703457,
+        "sha256": "0ce6739cf9631f663fa5146005da860cc681453ac3fb48942df84a5173fb4ea7",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/BelieveLightfeat%E6%9E%9C%E4%B8%B8%E5%93%92%E5%91%A6.ScalerMestie%E6%9E%9C%E4%B8%B8%E5%93%92%E5%91%A6.ogg",
+        "bytes": 4869191,
+        "sha256": "b72706b8192c4b090c9049f1fe0632728c03901e2ad03130f3cb312d2aee386a",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-8e12871eef6e97b4-music": {
+      "assetKey": "catalog-8e12871eef6e97b4-music",
+      "path": "music/catalog-8e12871eef6e97b4-music.m4a",
+      "url": "./music/catalog-8e12871eef6e97b4-music.m4a",
+      "bytes": 585456,
+      "sha256": "fe486332a90334b0a773e5bf12c6ce5a8d04a095c3486a1d4366de270d929111",
+      "mime": "audio/mp4",
+      "duration": 142.243991,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/8e12871eef6e97b4-low.m4a",
+        "bytes": 585456,
+        "sha256": "fe486332a90334b0a773e5bf12c6ce5a8d04a095c3486a1d4366de270d929111",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E9%9B%B6%E8%99%9F%E8%BB%8A%E8%BC%9B.seatrus.ogg",
+        "bytes": 3749771,
+        "sha256": "5594602ceab94ac317e2e4806b3b69ee6112ea4a9adf0455cf1a310b7fa2623f",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-8efd11db8f34a9c8-music": {
+      "assetKey": "catalog-8efd11db8f34a9c8-music",
+      "path": "music/catalog-8efd11db8f34a9c8-music.m4a",
+      "url": "./music/catalog-8efd11db8f34a9c8-music.m4a",
+      "bytes": 696025,
+      "sha256": "e86412b763555002d63e4ed132224d53646e0f1fcaf473179fd9f0e336920232",
+      "mime": "audio/mp4",
+      "duration": 168.029751,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/8efd11db8f34a9c8-low.m4a",
+        "bytes": 696025,
+        "sha256": "e86412b763555002d63e4ed132224d53646e0f1fcaf473179fd9f0e336920232",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Protoflicker.Silentroom.ogg",
+        "bytes": 4941031,
+        "sha256": "c2dc2fe5ae1b8d9bfb9833d8112ee519d07a06b4ab5389d4acc9cb262d939e96",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-901eebc183107aac-music": {
+      "assetKey": "catalog-901eebc183107aac-music",
+      "path": "music/catalog-901eebc183107aac-music.m4a",
+      "url": "./music/catalog-901eebc183107aac-music.m4a",
+      "bytes": 676923,
+      "sha256": "072dca19a993622edbf9af1087cf4cdf566f48a915bb6cf7cf9b115e603bddc9",
+      "mime": "audio/mp4",
+      "duration": 164.068,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/901eebc183107aac-low.m4a",
+        "bytes": 676923,
+        "sha256": "072dca19a993622edbf9af1087cf4cdf566f48a915bb6cf7cf9b115e603bddc9",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/SilenceisGoldenSpeechisGolden.NIWASHI.ogg",
+        "bytes": 4100884,
+        "sha256": "668d8a5776368d831aee70def128d446e68dd40a979c14363ede8322048e3ea9",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-944377e6b21b081a-music": {
+      "assetKey": "catalog-944377e6b21b081a-music",
+      "path": "music/catalog-944377e6b21b081a-music.m4a",
+      "url": "./music/catalog-944377e6b21b081a-music.m4a",
+      "bytes": 549836,
+      "sha256": "391b924a04aa45798d33b26b4948df6367003a18958ca708e0327a387a3bf79c",
+      "mime": "audio/mp4",
+      "duration": 134.006667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/944377e6b21b081a-low.m4a",
+        "bytes": 549836,
+        "sha256": "391b924a04aa45798d33b26b4948df6367003a18958ca708e0327a387a3bf79c",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/KIZUNAResolution.TAG.ogg",
+        "bytes": 3637029,
+        "sha256": "687dcfa7a40962e1d211270109e9af0fe08251de75c9b40219e4423949f9e20d",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-9443d92f96330140-music": {
+      "assetKey": "catalog-9443d92f96330140-music",
+      "path": "music/catalog-9443d92f96330140-music.m4a",
+      "url": "./music/catalog-9443d92f96330140-music.m4a",
+      "bytes": 607114,
+      "sha256": "7e4d3c0c294021336a95e360a182c3624271179c9f9fa6d155921575149b3439",
+      "mime": "audio/mp4",
+      "duration": 149.236,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/9443d92f96330140-low.m4a",
+        "bytes": 607114,
+        "sha256": "7e4d3c0c294021336a95e360a182c3624271179c9f9fa6d155921575149b3439",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E9%9B%AA%E9%99%8D%E3%82%8A%E9%9B%AA%E3%81%8C%E9%99%8D%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B.AiSSw%E5%A4%9C%E8%BC%AAft%E7%B5%90%E6%9C%88%E3%82%86%E3%81%8B%E3%82%8A.ogg",
+        "bytes": 3756497,
+        "sha256": "ea8c26649c2d3c6a5efba6e4e471580c1aa7b1621907a6ad498c669e4bc9198b",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-950ecfc70fbebd34-music": {
+      "assetKey": "catalog-950ecfc70fbebd34-music",
+      "path": "music/catalog-950ecfc70fbebd34-music.m4a",
+      "url": "./music/catalog-950ecfc70fbebd34-music.m4a",
+      "bytes": 653822,
+      "sha256": "e7404f119c074453000c12c111c865e8290c73b7cad9d98f5c274581ae626092",
+      "mime": "audio/mp4",
+      "duration": 157.522721,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/950ecfc70fbebd34-low.m4a",
+        "bytes": 653822,
+        "sha256": "e7404f119c074453000c12c111c865e8290c73b7cad9d98f5c274581ae626092",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Arkhei.SeraAmagi.ogg",
+        "bytes": 3812915,
+        "sha256": "8635ba390473a25cf0de0d3f6a79f17a235bc6a3d3a2b8b230f763fa56726179",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-960659289ae667b2-music": {
+      "assetKey": "catalog-960659289ae667b2-music",
+      "path": "music/catalog-960659289ae667b2-music.m4a",
+      "url": "./music/catalog-960659289ae667b2-music.m4a",
+      "bytes": 564104,
+      "sha256": "03084719e8c230800c305246860ef3a4fd3e7f6cfc2acee4dd9cc53742956e15",
+      "mime": "audio/mp4",
+      "duration": 136.581224,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/960659289ae667b2-low.m4a",
+        "bytes": 564104,
+        "sha256": "03084719e8c230800c305246860ef3a4fd3e7f6cfc2acee4dd9cc53742956e15",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Cristalisia.onoken.ogg",
+        "bytes": 3671613,
+        "sha256": "9002ce587cc74c5a82dd1efcde6e91196c2b8787dcf8bfc5718fb9608013aaa9",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-962dce95824b60a3-music": {
+      "assetKey": "catalog-962dce95824b60a3-music",
+      "path": "music/catalog-962dce95824b60a3-music.m4a",
+      "url": "./music/catalog-962dce95824b60a3-music.m4a",
+      "bytes": 612386,
+      "sha256": "4c3c29a07ae4ac56a5b83373a1db8c3e610b40251deced4ac4f3e310295c232f",
+      "mime": "audio/mp4",
+      "duration": 150.013968,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/962dce95824b60a3-low.m4a",
+        "bytes": 612386,
+        "sha256": "4c3c29a07ae4ac56a5b83373a1db8c3e610b40251deced4ac4f3e310295c232f",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Hydra.JamesLandinoXAkiraComplex.ogg",
+        "bytes": 4210637,
+        "sha256": "c538e7fd04f4688d5fdf9124d25cccc2cf2445a6da628f00df40ffa2eef76e43",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-991b43303e3fc19a-music": {
+      "assetKey": "catalog-991b43303e3fc19a-music",
+      "path": "music/catalog-991b43303e3fc19a-music.m4a",
+      "url": "./music/catalog-991b43303e3fc19a-music.m4a",
+      "bytes": 641830,
+      "sha256": "ccc0fd27e095afdd68cd0b0cd12ea2c626ca8f01f89bfd099c4114a68297bf56",
+      "mime": "audio/mp4",
+      "duration": 154.208073,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/991b43303e3fc19a-low.m4a",
+        "bytes": 641830,
+        "sha256": "ccc0fd27e095afdd68cd0b0cd12ea2c626ca8f01f89bfd099c4114a68297bf56",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/000AinSophAur.Yumeji.ogg",
+        "bytes": 4327383,
+        "sha256": "f8db518ee36e3a838685141a38a783d21cd80d970eee77b45706f4a7bf1bb01a",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-9b1e94de04dbae56-music": {
+      "assetKey": "catalog-9b1e94de04dbae56-music",
+      "path": "music/catalog-9b1e94de04dbae56-music.m4a",
+      "url": "./music/catalog-9b1e94de04dbae56-music.m4a",
+      "bytes": 547270,
+      "sha256": "e8cc7c6130cd8449c0e4fca80b457f777183f5d280da7d9dae1b8e9fbfdb8c8a",
+      "mime": "audio/mp4",
+      "duration": 132.311655,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/9b1e94de04dbae56-low.m4a",
+        "bytes": 547270,
+        "sha256": "e8cc7c6130cd8449c0e4fca80b457f777183f5d280da7d9dae1b8e9fbfdb8c8a",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/ElCondorPasaPhigrosEdit.PlasticFruits.ogg",
+        "bytes": 3479423,
+        "sha256": "d4ee106e4e7602a235990334f0f62513e594ce12bfa3b215e4f3be139356d6e9",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-9c36f5cd44eb621a-music": {
+      "assetKey": "catalog-9c36f5cd44eb621a-music",
+      "path": "music/catalog-9c36f5cd44eb621a-music.m4a",
+      "url": "./music/catalog-9c36f5cd44eb621a-music.m4a",
+      "bytes": 600167,
+      "sha256": "f3af6ec904b438747be9d311f10a8fa82e2bb39632bb6a2249e9eb7b711935a7",
+      "mime": "audio/mp4",
+      "duration": 146.220408,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/9c36f5cd44eb621a-low.m4a",
+        "bytes": 600167,
+        "sha256": "f3af6ec904b438747be9d311f10a8fa82e2bb39632bb6a2249e9eb7b711935a7",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/DerRichter.%CE%A9%CE%BC%CE%B5%CE%B3%CE%B1.ogg",
+        "bytes": 4030678,
+        "sha256": "7baeda3222212a2e1b7bceceaac751880e3e31d0eb2151705a0961d71b4fb1c5",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-9d67430a04010585-music": {
+      "assetKey": "catalog-9d67430a04010585-music",
+      "path": "music/catalog-9d67430a04010585-music.m4a",
+      "url": "./music/catalog-9d67430a04010585-music.m4a",
+      "bytes": 616775,
+      "sha256": "2bae510e9087724a1343a16de098d46f402e4c2432900cd3e2f88d7b88b08e5e",
+      "mime": "audio/mp4",
+      "duration": 148.884898,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/9d67430a04010585-low.m4a",
+        "bytes": 616775,
+        "sha256": "2bae510e9087724a1343a16de098d46f402e4c2432900cd3e2f88d7b88b08e5e",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Locomotive.K.ogg",
+        "bytes": 4150779,
+        "sha256": "ddb858141adc85bbeded5fe056a94cdfbf3c0147468e6c2460fa03cb4532216b",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-9e689d5c779d129f-music": {
+      "assetKey": "catalog-9e689d5c779d129f-music",
+      "path": "music/catalog-9e689d5c779d129f-music.m4a",
+      "url": "./music/catalog-9e689d5c779d129f-music.m4a",
+      "bytes": 639479,
+      "sha256": "0ddb7d48a9279e351eb7dd5eb1de30be626642f2b5d92f76594488b91ec2a378",
+      "mime": "audio/mp4",
+      "duration": 155.099138,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/9e689d5c779d129f-low.m4a",
+        "bytes": 639479,
+        "sha256": "0ddb7d48a9279e351eb7dd5eb1de30be626642f2b5d92f76594488b91ec2a378",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/BrokenSky.JungoMAX3feat%E5%88%98%E4%BD%B3%E5%AE%9CSnow%E5%B9%BB%E5%BD%B1%E5%88%83shadow.ogg",
+        "bytes": 3945559,
+        "sha256": "faae39313f5e39f7ff6ca8adb45d47fafdfce2e3cc7dbb38a588322e99ef2dcb",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-a19a08415a49724b-music": {
+      "assetKey": "catalog-a19a08415a49724b-music",
+      "path": "music/catalog-a19a08415a49724b-music.m4a",
+      "url": "./music/catalog-a19a08415a49724b-music.m4a",
+      "bytes": 658311,
+      "sha256": "5d205a423c90de82f8626ad7c3e2265de664b43996c3915454e924b86dcf42c7",
+      "mime": "audio/mp4",
+      "duration": 158.680816,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/a19a08415a49724b-low.m4a",
+        "bytes": 658311,
+        "sha256": "5d205a423c90de82f8626ad7c3e2265de664b43996c3915454e924b86dcf42c7",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Ark.kanoryo.ogg",
+        "bytes": 3972123,
+        "sha256": "8f95e07131799618ceea293ca1cd3a714d70c6ead378ea9cc87aee74814f2c9c",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-a519338625e302d0-music": {
+      "assetKey": "catalog-a519338625e302d0-music",
+      "path": "music/catalog-a519338625e302d0-music.m4a",
+      "url": "./music/catalog-a519338625e302d0-music.m4a",
+      "bytes": 604209,
+      "sha256": "b098ab5caebb8a14f6e1267cef704e6f6ff92f98bf31b6f92d0d0c67c395e463",
+      "mime": "audio/mp4",
+      "duration": 145.724082,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/a519338625e302d0-low.m4a",
+        "bytes": 604209,
+        "sha256": "b098ab5caebb8a14f6e1267cef704e6f6ff92f98bf31b6f92d0d0c67c395e463",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Doppelganger.LeaF.ogg",
+        "bytes": 4231836,
+        "sha256": "2e9568f7568bd04ec516cbd8980e4646a5c6659860ca7ac7c39fe20d86164e85",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-a5960753b799b49d-music": {
+      "assetKey": "catalog-a5960753b799b49d-music",
+      "path": "music/catalog-a5960753b799b49d-music.m4a",
+      "url": "./music/catalog-a5960753b799b49d-music.m4a",
+      "bytes": 652814,
+      "sha256": "33dcfa4f48c8eb4ae80d20983bf73e68953e92ab9ca9f98ff1549d6b5f20c161",
+      "mime": "audio/mp4",
+      "duration": 160.009333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/a5960753b799b49d-low.m4a",
+        "bytes": 652814,
+        "sha256": "33dcfa4f48c8eb4ae80d20983bf73e68953e92ab9ca9f98ff1549d6b5f20c161",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Resolver.Gomadare.ogg",
+        "bytes": 4437218,
+        "sha256": "b17630d81c372cb28e52da983b081ecd1ac071703e80eb316eddf6a2a487032d",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-a7a22898c1b79b65-music": {
+      "assetKey": "catalog-a7a22898c1b79b65-music",
+      "path": "music/catalog-a7a22898c1b79b65-music.m4a",
+      "url": "./music/catalog-a7a22898c1b79b65-music.m4a",
+      "bytes": 785635,
+      "sha256": "783dcf0d5ede7f2709af7e6e43974f99ad317823d5eeaa0a6fbeae4b1498b64f",
+      "mime": "audio/mp4",
+      "duration": 192.001451,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/a7a22898c1b79b65-low.m4a",
+        "bytes": 785635,
+        "sha256": "783dcf0d5ede7f2709af7e6e43974f99ad317823d5eeaa0a6fbeae4b1498b64f",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/SATELLITE.%E3%81%8B%E3%82%81%E3%82%8A%E3%81%82.ogg",
+        "bytes": 5128102,
+        "sha256": "7153430cfad19b71fce1a67915af9c759c6bebafab6fb8d7ebee45184fd296a8",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-aa0279bc56e1b4b3-music": {
+      "assetKey": "catalog-aa0279bc56e1b4b3-music",
+      "path": "music/catalog-aa0279bc56e1b4b3-music.m4a",
+      "url": "./music/catalog-aa0279bc56e1b4b3-music.m4a",
+      "bytes": 642948,
+      "sha256": "7a0bd2521128b7c9526348bd95d6d796338d7063edad3c4847da737270d72e54",
+      "mime": "audio/mp4",
+      "duration": 157.97551,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/aa0279bc56e1b4b3-low.m4a",
+        "bytes": 642948,
+        "sha256": "7a0bd2521128b7c9526348bd95d6d796338d7063edad3c4847da737270d72e54",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Rebirth.%E3%81%82%E3%81%82%E3%81%82%E3%81%82.ogg",
+        "bytes": 4304182,
+        "sha256": "ce52475d23f5792ba3bf372867261565d50a3bab29c369bcb3d12fa5f1f34031",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-ab586cbaba5c7683-music": {
+      "assetKey": "catalog-ab586cbaba5c7683-music",
+      "path": "music/catalog-ab586cbaba5c7683-music.m4a",
+      "url": "./music/catalog-ab586cbaba5c7683-music.m4a",
+      "bytes": 620325,
+      "sha256": "0eadf339e85beceb56d78103a555d5296ac45c39aad8f00cb987fbcd7f6e46eb",
+      "mime": "audio/mp4",
+      "duration": 149.938503,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/ab586cbaba5c7683-low.m4a",
+        "bytes": 620325,
+        "sha256": "0eadf339e85beceb56d78103a555d5296ac45c39aad8f00cb987fbcd7f6e46eb",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E4%B8%8B%E4%B8%80%E7%A7%92.BobHouSherlock%E5%8D%93%E6%99%BA%E5%AA%9Bfeat%E5%85%B0%E9%9F%B3Reine.ogg",
+        "bytes": 3713637,
+        "sha256": "8977499cd69ba7d7fd9b415d94acc4f412b735dfcf2905daca8576bbd40a15d6",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-ac37bd1f8580b7cb-music": {
+      "assetKey": "catalog-ac37bd1f8580b7cb-music",
+      "path": "music/catalog-ac37bd1f8580b7cb-music.m4a",
+      "url": "./music/catalog-ac37bd1f8580b7cb-music.m4a",
+      "bytes": 687644,
+      "sha256": "5437852126506826c9a66cacf4528e2e3dd96022aef94277aea1b3b4d9a015ec",
+      "mime": "audio/mp4",
+      "duration": 167.989116,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/ac37bd1f8580b7cb-low.m4a",
+        "bytes": 687644,
+        "sha256": "5437852126506826c9a66cacf4528e2e3dd96022aef94277aea1b3b4d9a015ec",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Cereris.SunsetRayNceS.ogg",
+        "bytes": 4700784,
+        "sha256": "29bf30f80c4f4a5444496917a09c652bf40b25d2f1815c4385af76cbf4810327",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-ac6ba0408593592c-music": {
+      "assetKey": "catalog-ac6ba0408593592c-music",
+      "path": "music/catalog-ac6ba0408593592c-music.m4a",
+      "url": "./music/catalog-ac6ba0408593592c-music.m4a",
+      "bytes": 560612,
+      "sha256": "c88c76ad969717be20cb6bc9a116dd5a9cca20b0bafdaac8a8db24e199446f6f",
+      "mime": "audio/mp4",
+      "duration": 135.014667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/ac6ba0408593592c-low.m4a",
+        "bytes": 560612,
+        "sha256": "c88c76ad969717be20cb6bc9a116dd5a9cca20b0bafdaac8a8db24e199446f6f",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E6%9C%88%E8%A9%A0%E3%81%AB%E9%B3%B4%E3%82%8B.Feryquitousfeat%E8%97%8D%E6%9C%88%E3%81%AA%E3%81%8F%E3%82%8B.ogg",
+        "bytes": 3836283,
+        "sha256": "e69578fab2d14a8b5437d8a6b84eaa4930da35cb2f47839622a6a2b6d9b12cc4",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-ad18f5080c40db61-music": {
+      "assetKey": "catalog-ad18f5080c40db61-music",
+      "path": "music/catalog-ad18f5080c40db61-music.m4a",
+      "url": "./music/catalog-ad18f5080c40db61-music.m4a",
+      "bytes": 625652,
+      "sha256": "361d02f0f10af9d9ddf0a1c35759bb9ad6037ecded2e4c55b5966b61e1431ffc",
+      "mime": "audio/mp4",
+      "duration": 150.876009,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/ad18f5080c40db61-low.m4a",
+        "bytes": 625652,
+        "sha256": "361d02f0f10af9d9ddf0a1c35759bb9ad6037ecded2e4c55b5966b61e1431ffc",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Alb.Avans.ogg",
+        "bytes": 4489266,
+        "sha256": "3b3804ddf8641b94b657ade125b62515689dfa006dec529f0d96c5e5f16b590d",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-ada9125b875c33af-music": {
+      "assetKey": "catalog-ada9125b875c33af-music",
+      "path": "music/catalog-ada9125b875c33af-music.m4a",
+      "url": "./music/catalog-ada9125b875c33af-music.m4a",
+      "bytes": 516862,
+      "sha256": "462549c1f1e90983da9c062fa464a32ccf9f4ae6a9191fffed9260a252c20c8c",
+      "mime": "audio/mp4",
+      "duration": 124.83483,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/ada9125b875c33af-low.m4a",
+        "bytes": 516862,
+        "sha256": "462549c1f1e90983da9c062fa464a32ccf9f4ae6a9191fffed9260a252c20c8c",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/FULiAUTOBUSTER.MYUKKE.ogg",
+        "bytes": 3207741,
+        "sha256": "8230188dc477e2a8f53abe5d38e521a4e1b556b2b68fd5bb8fdf8e91181d0659",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-adc20ea1a19d3ab0-music": {
+      "assetKey": "catalog-adc20ea1a19d3ab0-music",
+      "path": "music/catalog-adc20ea1a19d3ab0-music.m4a",
+      "url": "./music/catalog-adc20ea1a19d3ab0-music.m4a",
+      "bytes": 566289,
+      "sha256": "783217b1e3fd2b3f4bc89e02dc6b677c43a69093a414d0806cd019c1f4551321",
+      "mime": "audio/mp4",
+      "duration": 137.353288,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/adc20ea1a19d3ab0-low.m4a",
+        "bytes": 566289,
+        "sha256": "783217b1e3fd2b3f4bc89e02dc6b677c43a69093a414d0806cd019c1f4551321",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/KirakiraNoelStory.RekuMochizuki.ogg",
+        "bytes": 3877882,
+        "sha256": "dc0810f32a7edbe454614f7650b876cbd4ef283792289e4e8e7682f223e47c29",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-ae11db24ee3a6b1f-music": {
+      "assetKey": "catalog-ae11db24ee3a6b1f-music",
+      "path": "music/catalog-ae11db24ee3a6b1f-music.m4a",
+      "url": "./music/catalog-ae11db24ee3a6b1f-music.m4a",
+      "bytes": 499717,
+      "sha256": "b6d54416b2da4c63024235fb0b4387aa2544ea7b222d95efba9886520970f5b8",
+      "mime": "audio/mp4",
+      "duration": 121.247347,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/ae11db24ee3a6b1f-low.m4a",
+        "bytes": 499717,
+        "sha256": "b6d54416b2da4c63024235fb0b4387aa2544ea7b222d95efba9886520970f5b8",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Verruckt.Raimukun.ogg",
+        "bytes": 3477275,
+        "sha256": "f796aad4c515effeda5def7cf111fb8bcbb14fff8de77b6c649cdb27f8983689",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-afef7fee2c6ac5aa-music": {
+      "assetKey": "catalog-afef7fee2c6ac5aa-music",
+      "path": "music/catalog-afef7fee2c6ac5aa-music.m4a",
+      "url": "./music/catalog-afef7fee2c6ac5aa-music.m4a",
+      "bytes": 772194,
+      "sha256": "48671e8a99e450a3bf576c08c5fdee2612fe3f365489d65bb1adeca0fa47d1f8",
+      "mime": "audio/mp4",
+      "duration": 186.518639,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/afef7fee2c6ac5aa-low.m4a",
+        "bytes": 772194,
+        "sha256": "48671e8a99e450a3bf576c08c5fdee2612fe3f365489d65bb1adeca0fa47d1f8",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E8%81%96%E5%A4%9C%E8%AE%83%E6%AD%8C.A39%E6%B2%99%E5%8C%85P.ogg",
+        "bytes": 5469931,
+        "sha256": "29ca518dc068ef441dd68826472db0d524caba2ca05aafa185a78178ba800ee4",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-b15253cfcbef7eca-music": {
+      "assetKey": "catalog-b15253cfcbef7eca-music",
+      "path": "music/catalog-b15253cfcbef7eca-music.m4a",
+      "url": "./music/catalog-b15253cfcbef7eca-music.m4a",
+      "bytes": 735568,
+      "sha256": "4fa55430d3f1185c1fdd6494f4c78f63bac25c6990e82da184f77be8c5c245c2",
+      "mime": "audio/mp4",
+      "duration": 178.298776,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/b15253cfcbef7eca-low.m4a",
+        "bytes": 735568,
+        "sha256": "4fa55430d3f1185c1fdd6494f4c78f63bac25c6990e82da184f77be8c5c245c2",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E7%A5%88-%E6%88%91%E3%82%89%E7%A5%9E%E7%A5%96%E3%81%A8%E5%85%B1%E3%81%AB%E6%AD%A9%E3%82%80%E8%80%85%E3%81%AA%E3%82%8A-.%E5%85%89%E5%90%89%E7%8C%9B%E4%BF%AEVS%E7%A9%B4%E5%B1%B1%E5%A4%A7%E8%BC%94VSKaiVS%E6%B0%B4%E9%87%8E%E5%81%A5%E6%B2%BBVS%E5%A4%A7%E5%9B%BD%E5%A5%8F%E9%9F%B3.ogg",
+        "bytes": 4938268,
+        "sha256": "9e1c8e2c78a010f1665596b36c62fd0eb3e963236e6d1e8e4231cf782525c4f5",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-b1c2633601789f14-music": {
+      "assetKey": "catalog-b1c2633601789f14-music",
+      "path": "music/catalog-b1c2633601789f14-music.m4a",
+      "url": "./music/catalog-b1c2633601789f14-music.m4a",
+      "bytes": 630606,
+      "sha256": "06a0e03a16a37cda7cb994453b53b313930be01f9432908ccef66b3259f110a3",
+      "mime": "audio/mp4",
+      "duration": 153.105125,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/b1c2633601789f14-low.m4a",
+        "bytes": 630606,
+        "sha256": "06a0e03a16a37cda7cb994453b53b313930be01f9432908ccef66b3259f110a3",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/ChronosCollapseLaCampanella.SunsetRay.ogg",
+        "bytes": 4619463,
+        "sha256": "277f3a4f573a5412eb47e9a83adc60f8104ce7de09e03e2de0d9822cf5923912",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-b3fa304bb9fb211b-music": {
+      "assetKey": "catalog-b3fa304bb9fb211b-music",
+      "path": "music/catalog-b3fa304bb9fb211b-music.m4a",
+      "url": "./music/catalog-b3fa304bb9fb211b-music.m4a",
+      "bytes": 693088,
+      "sha256": "3daf7d61cf5add63ee3da38b95d0bf00fb05e9f623735db4bf2aae79a049c2d5",
+      "mime": "audio/mp4",
+      "duration": 169.353333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/b3fa304bb9fb211b-low.m4a",
+        "bytes": 693088,
+        "sha256": "3daf7d61cf5add63ee3da38b95d0bf00fb05e9f623735db4bf2aae79a049c2d5",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Demiurge.Rabpit.ogg",
+        "bytes": 4487732,
+        "sha256": "aae04b7a60449186579289bbe5764a208f77205710449dd37920b58e6d767fd8",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-b6efe63551564120-music": {
+      "assetKey": "catalog-b6efe63551564120-music",
+      "path": "music/catalog-b6efe63551564120-music.m4a",
+      "url": "./music/catalog-b6efe63551564120-music.m4a",
+      "bytes": 625467,
+      "sha256": "9b5d3b6300cad1c6dbddab1ae711afc46e38893c8f78eec5492c499401879f18",
+      "mime": "audio/mp4",
+      "duration": 151.592925,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/b6efe63551564120-low.m4a",
+        "bytes": 625467,
+        "sha256": "9b5d3b6300cad1c6dbddab1ae711afc46e38893c8f78eec5492c499401879f18",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Concvssion.Halv.ogg",
+        "bytes": 3813814,
+        "sha256": "c75b18d7d5851c3a2f386163f61e33b21257fae610b20d8650c52310aefa9320",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-b72935c743156565-music": {
+      "assetKey": "catalog-b72935c743156565-music",
+      "path": "music/catalog-b72935c743156565-music.m4a",
+      "url": "./music/catalog-b72935c743156565-music.m4a",
+      "bytes": 738635,
+      "sha256": "b266d6c0998278e1a5695b366cef594cd93b27ff1e322ff8f8a033e62b8560ec",
+      "mime": "audio/mp4",
+      "duration": 179.346576,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/b72935c743156565-low.m4a",
+        "bytes": 738635,
+        "sha256": "b266d6c0998278e1a5695b366cef594cd93b27ff1e322ff8f8a033e62b8560ec",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E9%A3%8E%E5%B1%BF.%E9%97%AB%E4%B8%9C%E7%82%9C.ogg",
+        "bytes": 4250462,
+        "sha256": "26ef2056a1252c85d7a7d33802cc441486ba3b8ee15ff2690933385dfaa05c49",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-b7d9739b9d627e7b-music": {
+      "assetKey": "catalog-b7d9739b9d627e7b-music",
+      "path": "music/catalog-b7d9739b9d627e7b-music.m4a",
+      "url": "./music/catalog-b7d9739b9d627e7b-music.m4a",
+      "bytes": 632170,
+      "sha256": "e63ad1961b046c7587d5fc708cc64c3c541d8b773d2ae07260318f6f7c63e464",
+      "mime": "audio/mp4",
+      "duration": 157.525624,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/b7d9739b9d627e7b-low.m4a",
+        "bytes": 632170,
+        "sha256": "e63ad1961b046c7587d5fc708cc64c3c541d8b773d2ae07260318f6f7c63e464",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/SecretIllumination.Yooh.ogg",
+        "bytes": 4186950,
+        "sha256": "0d40a09450a9d4aa75867757ed78bdc7e69f0a265c857dfac0b4c9816aeee3c4",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-b8bff808e6e4adce-music": {
+      "assetKey": "catalog-b8bff808e6e4adce-music",
+      "path": "music/catalog-b8bff808e6e4adce-music.m4a",
+      "url": "./music/catalog-b8bff808e6e4adce-music.m4a",
+      "bytes": 700612,
+      "sha256": "90df90a51e9ecdefaae7c6a0b120c62f6b5a4977865439cce09a547a051e7917",
+      "mime": "audio/mp4",
+      "duration": 169.606667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/b8bff808e6e4adce-low.m4a",
+        "bytes": 700612,
+        "sha256": "90df90a51e9ecdefaae7c6a0b120c62f6b5a4977865439cce09a547a051e7917",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/FixationsTowardtheStars.Foodbot.ogg",
+        "bytes": 4747877,
+        "sha256": "2af18cfc5b56e49daef26fb901b4cf234e59fbcebb0e899a4f65c914f105c7d8",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-b8d7127518c41630-music": {
+      "assetKey": "catalog-b8d7127518c41630-music",
+      "path": "music/catalog-b8d7127518c41630-music.m4a",
+      "url": "./music/catalog-b8d7127518c41630-music.m4a",
+      "bytes": 556903,
+      "sha256": "654738308297cb8b2569ae5dcb1c483ac67293c3573879e2a995bab5c55aa01c",
+      "mime": "audio/mp4",
+      "duration": 134.462404,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/b8d7127518c41630-low.m4a",
+        "bytes": 556903,
+        "sha256": "654738308297cb8b2569ae5dcb1c483ac67293c3573879e2a995bab5c55aa01c",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/ArtificialExistence.JunKuroda.ogg",
+        "bytes": 3924029,
+        "sha256": "83d4c90eed54ab84666b3b44fa71ce8b20c038ec2fe50cb5dc1960e22c9e3ddb",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-bbfc68e2a7b7de08-music": {
+      "assetKey": "catalog-bbfc68e2a7b7de08-music",
+      "path": "music/catalog-bbfc68e2a7b7de08-music.m4a",
+      "url": "./music/catalog-bbfc68e2a7b7de08-music.m4a",
+      "bytes": 525845,
+      "sha256": "505767ba5528493185a8ff263c9324b9aea548972f9dacbe1a65c4800e039779",
+      "mime": "audio/mp4",
+      "duration": 128.306213,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/bbfc68e2a7b7de08-low.m4a",
+        "bytes": 525845,
+        "sha256": "505767ba5528493185a8ff263c9324b9aea548972f9dacbe1a65c4800e039779",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Realms.HinkikAHimitsu.ogg",
+        "bytes": 3065444,
+        "sha256": "d31ace122e1da701c6e846e19fa03bca1f9899d4ae3ca496e3c87a6652b7553b",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-bc67a0cbdc5904d1-music": {
+      "assetKey": "catalog-bc67a0cbdc5904d1-music",
+      "path": "music/catalog-bc67a0cbdc5904d1-music.m4a",
+      "url": "./music/catalog-bc67a0cbdc5904d1-music.m4a",
+      "bytes": 552831,
+      "sha256": "31528f4739ac9fb4fe83b4f31a3feba823236d8c47d90094ad7ad6ff2b2f6b5c",
+      "mime": "audio/mp4",
+      "duration": 133.434921,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/bc67a0cbdc5904d1-low.m4a",
+        "bytes": 552831,
+        "sha256": "31528f4739ac9fb4fe83b4f31a3feba823236d8c47d90094ad7ad6ff2b2f6b5c",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E5%90%9B%E5%BE%80%E4%BD%95%E5%A4%84QuoVadis.M2U.ogg",
+        "bytes": 3917034,
+        "sha256": "39d0e93dbf42fc1a87c54df32d961f5e8270918c1e8071184f302f63020280f8",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-bcb2a2f9490b883f-music": {
+      "assetKey": "catalog-bcb2a2f9490b883f-music",
+      "path": "music/catalog-bcb2a2f9490b883f-music.m4a",
+      "url": "./music/catalog-bcb2a2f9490b883f-music.m4a",
+      "bytes": 635103,
+      "sha256": "110e0b6fdaa54a18df60b91392f6a138d40e9444a1ec78a16f7142f57ca105d8",
+      "mime": "audio/mp4",
+      "duration": 153.525986,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/bcb2a2f9490b883f-low.m4a",
+        "bytes": 635103,
+        "sha256": "110e0b6fdaa54a18df60b91392f6a138d40e9444a1ec78a16f7142f57ca105d8",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/DerSchneid.%CE%A9%CE%BC%CE%B5%CE%B3%CE%B1.ogg",
+        "bytes": 4332939,
+        "sha256": "5e56b655e4895fa914d30f1fc814c078259ed208c53e181f053c25e53a567fbe",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-bdf1a81c75c1bfc6-music": {
+      "assetKey": "catalog-bdf1a81c75c1bfc6-music",
+      "path": "music/catalog-bdf1a81c75c1bfc6-music.m4a",
+      "url": "./music/catalog-bdf1a81c75c1bfc6-music.m4a",
+      "bytes": 689412,
+      "sha256": "25ff553863dfcc943ce5ce8bac57986935bf2085b46a17bad4953ba0e4ee21d7",
+      "mime": "audio/mp4",
+      "duration": 167.071927,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/bdf1a81c75c1bfc6-low.m4a",
+        "bytes": 689412,
+        "sha256": "25ff553863dfcc943ce5ce8bac57986935bf2085b46a17bad4953ba0e4ee21d7",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/ATHAZA.LeaF.ogg",
+        "bytes": 4550655,
+        "sha256": "44d53d10780d4e5ee0bb38c5c3709ab6d6b0eb1b3a6d3b195cb905802e369fe1",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-be83a464207e49fd-music": {
+      "assetKey": "catalog-be83a464207e49fd-music",
+      "path": "music/catalog-be83a464207e49fd-music.m4a",
+      "url": "./music/catalog-be83a464207e49fd-music.m4a",
+      "bytes": 629577,
+      "sha256": "63d89baf13658705345ae2903cac866ed33bf0a063183bb922da323d24beaf09",
+      "mime": "audio/mp4",
+      "duration": 152.550748,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/be83a464207e49fd-low.m4a",
+        "bytes": 629577,
+        "sha256": "63d89baf13658705345ae2903cac866ed33bf0a063183bb922da323d24beaf09",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/RainyHeart.BelieverInYou%E9%98%BF%E5%8D%A1%E5%A7%86%E5%B7%AB%E5%B8%88.ogg",
+        "bytes": 3960563,
+        "sha256": "e00bb197d0044f346813e1f3d2a36db1e03a4bb2f7a245a17f6a2a9bc7b75b9d",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-c0f33ecfd6d21622-music": {
+      "assetKey": "catalog-c0f33ecfd6d21622-music",
+      "path": "music/catalog-c0f33ecfd6d21622-music.m4a",
+      "url": "./music/catalog-c0f33ecfd6d21622-music.m4a",
+      "bytes": 696999,
+      "sha256": "425f2455de588cf00a41c603dd4a6aa2c559d9b524ca5cb8d0403257ba59f6e4",
+      "mime": "audio/mp4",
+      "duration": 169.57678,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/c0f33ecfd6d21622-low.m4a",
+        "bytes": 696999,
+        "sha256": "425f2455de588cf00a41c603dd4a6aa2c559d9b524ca5cb8d0403257ba59f6e4",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E3%82%A4%E3%83%B3%E3%83%9E%E3%82%A4%E3%83%9E%E3%82%A4%E3%83%B3%E3%83%89.%E3%83%AC%E3%82%B7%E3%82%AAP.ogg",
+        "bytes": 3917264,
+        "sha256": "f365bda95716543b3bec7ac693ee5e7a5667f1f152089c6b79cf881d4e6b4049",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-c16d42cc360838a0-music": {
+      "assetKey": "catalog-c16d42cc360838a0-music",
+      "path": "music/catalog-c16d42cc360838a0-music.m4a",
+      "url": "./music/catalog-c16d42cc360838a0-music.m4a",
+      "bytes": 514361,
+      "sha256": "3d7f0b8792dcecfde8ebaa9b20fcbd48408a431c8b5cfd39e555c4d6293e00c0",
+      "mime": "audio/mp4",
+      "duration": 125.920363,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/c16d42cc360838a0-low.m4a",
+        "bytes": 514361,
+        "sha256": "3d7f0b8792dcecfde8ebaa9b20fcbd48408a431c8b5cfd39e555c4d6293e00c0",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E5%B0%8A%E5%B8%ABTheGuru.rider.ogg",
+        "bytes": 5390047,
+        "sha256": "da7e17c928c1a4be72f60bdb238163d12ce4c0430a8c618a3cf5a673deb7e820",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-c20e5f37b0dd409f-music": {
+      "assetKey": "catalog-c20e5f37b0dd409f-music",
+      "path": "music/catalog-c20e5f37b0dd409f-music.m4a",
+      "url": "./music/catalog-c20e5f37b0dd409f-music.m4a",
+      "bytes": 665702,
+      "sha256": "677b5b00511802bc80bc69a3f02411bd536b6129339d9e49cd5540bc1f4bb71f",
+      "mime": "audio/mp4",
+      "duration": 161.169333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/c20e5f37b0dd409f-low.m4a",
+        "bytes": 665702,
+        "sha256": "677b5b00511802bc80bc69a3f02411bd536b6129339d9e49cd5540bc1f4bb71f",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/GVNGlitterVomitusandNeon.SaltySaltUnfold33.ogg",
+        "bytes": 4673524,
+        "sha256": "46d1975dd9a1a6a6278d78461e889904fd8b0f0562f01eebad833a4e0dc3eb63",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-c403d1817f37b59c-music": {
+      "assetKey": "catalog-c403d1817f37b59c-music",
+      "path": "music/catalog-c403d1817f37b59c-music.m4a",
+      "url": "./music/catalog-c403d1817f37b59c-music.m4a",
+      "bytes": 630918,
+      "sha256": "6e8422f8c6edf0c87401a69da5236fec04fd2767f98a701c699d1fe0b41272fa",
+      "mime": "audio/mp4",
+      "duration": 154.173243,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/c403d1817f37b59c-low.m4a",
+        "bytes": 630918,
+        "sha256": "6e8422f8c6edf0c87401a69da5236fec04fd2767f98a701c699d1fe0b41272fa",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E6%9A%97%E5%A4%9C%E8%8B%8F%E9%86%92REANIMATE.Warak.ogg",
+        "bytes": 3758920,
+        "sha256": "5416b56ccea6ca30c63a0d3b67e97b58a87f78944b28639c9cdbfe676f97d482",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-c42eda17c0ce72dc-music": {
+      "assetKey": "catalog-c42eda17c0ce72dc-music",
+      "path": "music/catalog-c42eda17c0ce72dc-music.m4a",
+      "url": "./music/catalog-c42eda17c0ce72dc-music.m4a",
+      "bytes": 611096,
+      "sha256": "aef843da7a3f452cc7229343997ecbb30f838e83defab28638ed9a32eace102c",
+      "mime": "audio/mp4",
+      "duration": 148.001333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/c42eda17c0ce72dc-low.m4a",
+        "bytes": 611096,
+        "sha256": "aef843da7a3f452cc7229343997ecbb30f838e83defab28638ed9a32eace102c",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/BANGINGSTRIKE.DewPleiades.ogg",
+        "bytes": 3954534,
+        "sha256": "dcf579f7fc7af0e0df6b720daac2620009f69b97162ae67614d76fb6bf5f75ce",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-c4f6a72be4507d20-music": {
+      "assetKey": "catalog-c4f6a72be4507d20-music",
+      "path": "music/catalog-c4f6a72be4507d20-music.m4a",
+      "url": "./music/catalog-c4f6a72be4507d20-music.m4a",
+      "bytes": 569812,
+      "sha256": "54f4d4746c96616bc892a6abc5d6a2096aeb7e980a13b6d8f052734c465523f3",
+      "mime": "audio/mp4",
+      "duration": 138.406667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/c4f6a72be4507d20-low.m4a",
+        "bytes": 569812,
+        "sha256": "54f4d4746c96616bc892a6abc5d6a2096aeb7e980a13b6d8f052734c465523f3",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Shelter.MeatyRabbitNceS.ogg",
+        "bytes": 4069426,
+        "sha256": "a3ceb144a6cb812dc8439f2d5e11b4beb78d392b4883e17fd969797daaf1050f",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-c5ffdd7f21a10ae9-music": {
+      "assetKey": "catalog-c5ffdd7f21a10ae9-music",
+      "path": "music/catalog-c5ffdd7f21a10ae9-music.m4a",
+      "url": "./music/catalog-c5ffdd7f21a10ae9-music.m4a",
+      "bytes": 617447,
+      "sha256": "ee2bb35e7e2aa5e6beb0f4a4284af0ae6789c7f26852286630cdebf75549c714",
+      "mime": "audio/mp4",
+      "duration": 147.311746,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/c5ffdd7f21a10ae9-low.m4a",
+        "bytes": 617447,
+        "sha256": "ee2bb35e7e2aa5e6beb0f4a4284af0ae6789c7f26852286630cdebf75549c714",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/AfterZABANIYAMUGEdit.Daily%E5%A4%A9%E5%88%A9.ogg",
+        "bytes": 4087755,
+        "sha256": "f287d6798f9f03be08cd83c449778be9a9b202811d6050d57cc4fbd2c992a90c",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-c7250d2f0e2e32be-music": {
+      "assetKey": "catalog-c7250d2f0e2e32be-music",
+      "path": "music/catalog-c7250d2f0e2e32be-music.m4a",
+      "url": "./music/catalog-c7250d2f0e2e32be-music.m4a",
+      "bytes": 642834,
+      "sha256": "f317d0e1167c2489e3ec9608e5f58ebb76738792e688606a9018bd491cc2127e",
+      "mime": "audio/mp4",
+      "duration": 155.06,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/c7250d2f0e2e32be-low.m4a",
+        "bytes": 642834,
+        "sha256": "f317d0e1167c2489e3ec9608e5f58ebb76738792e688606a9018bd491cc2127e",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/DiamondDust.MasahiroGodspeedAoki.ogg",
+        "bytes": 4057210,
+        "sha256": "e0dc234904d0515c20a283ddfa5151c5bbc38d4d576320a3c2030b874d24b384",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-c9c5add0da44b1b9-music": {
+      "assetKey": "catalog-c9c5add0da44b1b9-music",
+      "path": "music/catalog-c9c5add0da44b1b9-music.m4a",
+      "url": "./music/catalog-c9c5add0da44b1b9-music.m4a",
+      "bytes": 576309,
+      "sha256": "acf8e72ab6ffc94e10845bf30535b11072982e6d6e03391131fde0f225c0cdbd",
+      "mime": "audio/mp4",
+      "duration": 139.483719,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/c9c5add0da44b1b9-low.m4a",
+        "bytes": 576309,
+        "sha256": "acf8e72ab6ffc94e10845bf30535b11072982e6d6e03391131fde0f225c0cdbd",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Cleyera.Riya.ogg",
+        "bytes": 3628799,
+        "sha256": "7f5233a3b3bc37018b773f061dc1f65ff4e020edca43d05321118df273e777d6",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-ca18a67c6ec912a6-music": {
+      "assetKey": "catalog-ca18a67c6ec912a6-music",
+      "path": "music/catalog-ca18a67c6ec912a6-music.m4a",
+      "url": "./music/catalog-ca18a67c6ec912a6-music.m4a",
+      "bytes": 654277,
+      "sha256": "203535a2232c791cd58a318b235b8f6d9e3bc76d8cfda0ca79a8542ff8157318",
+      "mime": "audio/mp4",
+      "duration": 161.629751,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/ca18a67c6ec912a6-low.m4a",
+        "bytes": 654277,
+        "sha256": "203535a2232c791cd58a318b235b8f6d9e3bc76d8cfda0ca79a8542ff8157318",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E7%8B%82%E5%96%9C%E8%98%AD%E8%88%9E.LeaF.ogg",
+        "bytes": 4330706,
+        "sha256": "876317820610419ee0fd4c3a88972fc14eb7549ca17928d19e051b4950c4cee2",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-cb8d347e86e47916-music": {
+      "assetKey": "catalog-cb8d347e86e47916-music",
+      "path": "music/catalog-cb8d347e86e47916-music.m4a",
+      "url": "./music/catalog-cb8d347e86e47916-music.m4a",
+      "bytes": 547196,
+      "sha256": "52c62a89b8f09b244074d3b9706ac124129afbcfc9444fe33e3d1f62cd7b4064",
+      "mime": "audio/mp4",
+      "duration": 134.404354,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/cb8d347e86e47916-low.m4a",
+        "bytes": 547196,
+        "sha256": "52c62a89b8f09b244074d3b9706ac124129afbcfc9444fe33e3d1f62cd7b4064",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Helios.NOABotaNya.ogg",
+        "bytes": 3657238,
+        "sha256": "4cc447cfdc847be56c64ae61b3df5f91ae6224ff06264427b223da8b14c62d75",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-cbd11e32f10a1168-music": {
+      "assetKey": "catalog-cbd11e32f10a1168-music",
+      "path": "music/catalog-cbd11e32f10a1168-music.m4a",
+      "url": "./music/catalog-cbd11e32f10a1168-music.m4a",
+      "bytes": 644714,
+      "sha256": "4d8a89dda8a4980f74c31aecea6ebb9701d8bb9770c854ca046cc56c358e3315",
+      "mime": "audio/mp4",
+      "duration": 155.006259,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/cbd11e32f10a1168-low.m4a",
+        "bytes": 644714,
+        "sha256": "4d8a89dda8a4980f74c31aecea6ebb9701d8bb9770c854ca046cc56c358e3315",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Aliceinaxxxxxxxx.Nagiha.ogg",
+        "bytes": 4410659,
+        "sha256": "db2e66fe0be1e6465ef8399eaebb8f8441f124487981e82f8e353ba0bceafa8d",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-cc13552546513a58-music": {
+      "assetKey": "catalog-cc13552546513a58-music",
+      "path": "music/catalog-cc13552546513a58-music.m4a",
+      "url": "./music/catalog-cc13552546513a58-music.m4a",
+      "bytes": 579731,
+      "sha256": "971f47a545975f38b1bb855ad7d9fb7110c9a05ba63a8f9663a2500dc3e291f1",
+      "mime": "audio/mp4",
+      "duration": 142.357188,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/cc13552546513a58-low.m4a",
+        "bytes": 579731,
+        "sha256": "971f47a545975f38b1bb855ad7d9fb7110c9a05ba63a8f9663a2500dc3e291f1",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Cryogenic.CamelliaftPetraGurin.ogg",
+        "bytes": 3973414,
+        "sha256": "fc95df3330de01f28683dd98f7632b5a4ea286981dbef992c7d39c13c2bf2c5a",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-ccdbfc2e58607898-music": {
+      "assetKey": "catalog-ccdbfc2e58607898-music",
+      "path": "music/catalog-ccdbfc2e58607898-music.m4a",
+      "url": "./music/catalog-ccdbfc2e58607898-music.m4a",
+      "bytes": 660693,
+      "sha256": "a6cae1037d77065c4541e3774a2859d66779f598946af3070e83ff3aeb56f327",
+      "mime": "audio/mp4",
+      "duration": 160.82576,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/ccdbfc2e58607898-low.m4a",
+        "bytes": 660693,
+        "sha256": "a6cae1037d77065c4541e3774a2859d66779f598946af3070e83ff3aeb56f327",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Cuvism.Fl00tvsHalv.ogg",
+        "bytes": 4122779,
+        "sha256": "a762f9ba866d9ecbd0b1036cc2ee23ac819df63813dc991efbb30adf28f89e43",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-ce5bf042c69a7996-music": {
+      "assetKey": "catalog-ce5bf042c69a7996-music",
+      "path": "music/catalog-ce5bf042c69a7996-music.m4a",
+      "url": "./music/catalog-ce5bf042c69a7996-music.m4a",
+      "bytes": 697818,
+      "sha256": "ac18cab41619c31e0d6dd6899d43cd754e331d98f003d0919e87a38c661885b2",
+      "mime": "audio/mp4",
+      "duration": 166.926803,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/ce5bf042c69a7996-low.m4a",
+        "bytes": 697818,
+        "sha256": "ac18cab41619c31e0d6dd6899d43cd754e331d98f003d0919e87a38c661885b2",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/AnotherMe.DAAN.ogg",
+        "bytes": 4909927,
+        "sha256": "624e63049558af0dec54378a6143a77b9a4007fdd1ec97976ad2cc00b62d4c63",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-d0bb262f6646fc28-music": {
+      "assetKey": "catalog-d0bb262f6646fc28-music",
+      "path": "music/catalog-d0bb262f6646fc28-music.m4a",
+      "url": "./music/catalog-d0bb262f6646fc28-music.m4a",
+      "bytes": 603372,
+      "sha256": "f81307959f6bdd4499f5c96b69560802fdd46870b9f4b8c497b8beed032a361d",
+      "mime": "audio/mp4",
+      "duration": 147.779048,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/d0bb262f6646fc28-low.m4a",
+        "bytes": 603372,
+        "sha256": "f81307959f6bdd4499f5c96b69560802fdd46870b9f4b8c497b8beed032a361d",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E9%9D%92%E8%8A%BD.%E8%8C%B6%E9%B8%A3%E6%8B%BE%E8%B4%B0%E5%BE%8B.ogg",
+        "bytes": 4420173,
+        "sha256": "d70ef4c430335ec8a211f320020fbf9b89bc2876ea69ecbe4779fb95ae9f4c4a",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-d2ba0996a3a34d44-music": {
+      "assetKey": "catalog-d2ba0996a3a34d44-music",
+      "path": "music/catalog-d2ba0996a3a34d44-music.m4a",
+      "url": "./music/catalog-d2ba0996a3a34d44-music.m4a",
+      "bytes": 567623,
+      "sha256": "970af6b83808042f7c25c3f23a988520e735c11b168d7e8dc7e3cbd627441d10",
+      "mime": "audio/mp4",
+      "duration": 138.009333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/d2ba0996a3a34d44-low.m4a",
+        "bytes": 567623,
+        "sha256": "970af6b83808042f7c25c3f23a988520e735c11b168d7e8dc7e3cbd627441d10",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/QZKagoRequiem.tpazolite.ogg",
+        "bytes": 3899742,
+        "sha256": "dd3d25bc6404559a9de40924344a59f8af4e159e7fe386793f437881f5bcfe95",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-d3bb964e14310e92-music": {
+      "assetKey": "catalog-d3bb964e14310e92-music",
+      "path": "music/catalog-d3bb964e14310e92-music.m4a",
+      "url": "./music/catalog-d3bb964e14310e92-music.m4a",
+      "bytes": 561760,
+      "sha256": "a7690d8c488ad470d3a7165d459174ff4e4343a8c1d292c394087ed2fc324fe0",
+      "mime": "audio/mp4",
+      "duration": 136.553333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/d3bb964e14310e92-low.m4a",
+        "bytes": 561760,
+        "sha256": "a7690d8c488ad470d3a7165d459174ff4e4343a8c1d292c394087ed2fc324fe0",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/FreakyUndulationsNobleKnightsofTune.JehezukielKURORAK.ogg",
+        "bytes": 3636648,
+        "sha256": "ac4895fc982400bc802ad9ecedc99ed4e576ce1d3a6639e3e969e9d35827f463",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-d4a5735ccbfa6c5e-music": {
+      "assetKey": "catalog-d4a5735ccbfa6c5e-music",
+      "path": "music/catalog-d4a5735ccbfa6c5e-music.m4a",
+      "url": "./music/catalog-d4a5735ccbfa6c5e-music.m4a",
+      "bytes": 582641,
+      "sha256": "c491a8d28f2099c1a3817eeb7759364b11f80a52759c9c142be70c921e3d181d",
+      "mime": "audio/mp4",
+      "duration": 142.934785,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/d4a5735ccbfa6c5e-low.m4a",
+        "bytes": 582641,
+        "sha256": "c491a8d28f2099c1a3817eeb7759364b11f80a52759c9c142be70c921e3d181d",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/DevastatingHistory.NAMV.ogg",
+        "bytes": 4013993,
+        "sha256": "801224834e6d5f59c3db0f21201b8d6020ce3733363215846f4e1ff8b40d5c99",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-d4edd0907e84c935-music": {
+      "assetKey": "catalog-d4edd0907e84c935-music",
+      "path": "music/catalog-d4edd0907e84c935-music.m4a",
+      "url": "./music/catalog-d4edd0907e84c935-music.m4a",
+      "bytes": 831877,
+      "sha256": "31aa7e854b729d8f2e416145cbe2b8f25e54b2b4014cba4ee51a4fcdcfaef245",
+      "mime": "audio/mp4",
+      "duration": 200.587029,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/d4edd0907e84c935-low.m4a",
+        "bytes": 831877,
+        "sha256": "31aa7e854b729d8f2e416145cbe2b8f25e54b2b4014cba4ee51a4fcdcfaef245",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Incyde.YbeLL.ogg",
+        "bytes": 5624125,
+        "sha256": "71f30077074e1c19c440adc574faf472e179396e588cec1556192c448cedc343",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-d5bd442183a97d43-music": {
+      "assetKey": "catalog-d5bd442183a97d43-music",
+      "path": "music/catalog-d5bd442183a97d43-music.m4a",
+      "url": "./music/catalog-d5bd442183a97d43-music.m4a",
+      "bytes": 729623,
+      "sha256": "b1d7f749b52e61497e776b5e42aa42263a561118087e9d435898508ff809d655",
+      "mime": "audio/mp4",
+      "duration": 179.482993,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/d5bd442183a97d43-low.m4a",
+        "bytes": 729623,
+        "sha256": "b1d7f749b52e61497e776b5e42aa42263a561118087e9d435898508ff809d655",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/DancewithSilence.%E3%81%8B%E3%82%81%E3%82%8A%E3%81%82.ogg",
+        "bytes": 5033565,
+        "sha256": "8624fb1a81d5739b399edc745ddad9ce1b20abf8d3c19ba5874e3163a4b59c89",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-d5e359f367f7791c-music": {
+      "assetKey": "catalog-d5e359f367f7791c-music",
+      "path": "music/catalog-d5e359f367f7791c-music.m4a",
+      "url": "./music/catalog-d5e359f367f7791c-music.m4a",
+      "bytes": 689650,
+      "sha256": "3c69616ff674e1c4cfc9d5873d74d7babe373b82d1e63ae83cc23287bf71e182",
+      "mime": "audio/mp4",
+      "duration": 168.035556,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/d5e359f367f7791c-low.m4a",
+        "bytes": 689650,
+        "sha256": "3c69616ff674e1c4cfc9d5873d74d7babe373b82d1e63ae83cc23287bf71e182",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/ERABYECONNEC10N.%E3%81%8B%E3%82%81%E3%82%8A%E3%81%82.ogg",
+        "bytes": 4663172,
+        "sha256": "faab0c9f905fce2811dc0d7122376d53ae77b9d3f500ebacf7c985c00fbe3629",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-d65a03568f9bd593-music": {
+      "assetKey": "catalog-d65a03568f9bd593-music",
+      "path": "music/catalog-d65a03568f9bd593-music.m4a",
+      "url": "./music/catalog-d65a03568f9bd593-music.m4a",
+      "bytes": 667658,
+      "sha256": "549a34e340d9a75147a5a13417fbdd638fd784f207705aa72c85adcba9a03bc9",
+      "mime": "audio/mp4",
+      "duration": 161.621043,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/d65a03568f9bd593-low.m4a",
+        "bytes": 667658,
+        "sha256": "549a34e340d9a75147a5a13417fbdd638fd784f207705aa72c85adcba9a03bc9",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Bloom.targ%E9%BA%BB%E5%9B%A2qwq.ogg",
+        "bytes": 4564883,
+        "sha256": "13fdd438f967b9b226ff1686537b166c326f9779d766fb1f6f9db66963ae5cd2",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-da2e62c3971bb4fe-music": {
+      "assetKey": "catalog-da2e62c3971bb4fe-music",
+      "path": "music/catalog-da2e62c3971bb4fe-music.m4a",
+      "url": "./music/catalog-da2e62c3971bb4fe-music.m4a",
+      "bytes": 658970,
+      "sha256": "bbf788d658fa669a72819a2fe1dcac89f0c00fb2e91fb753c9a0ea325596dbb0",
+      "mime": "audio/mp4",
+      "duration": 160.846077,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/da2e62c3971bb4fe-low.m4a",
+        "bytes": 658970,
+        "sha256": "bbf788d658fa669a72819a2fe1dcac89f0c00fb2e91fb753c9a0ea325596dbb0",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/ShineAfter.ADeanJocularACE.ogg",
+        "bytes": 3918545,
+        "sha256": "f729ec352c2df0eba149c0ae8208effcb1499a835458005740beb7a80f4661cb",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-dd9d286088623384-music": {
+      "assetKey": "catalog-dd9d286088623384-music",
+      "path": "music/catalog-dd9d286088623384-music.m4a",
+      "url": "./music/catalog-dd9d286088623384-music.m4a",
+      "bytes": 648735,
+      "sha256": "398d7988a61ada1da4b7fb536241eecf0e24830c2b7feec9ead566af7334d240",
+      "mime": "audio/mp4",
+      "duration": 156.855147,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/dd9d286088623384-low.m4a",
+        "bytes": 648735,
+        "sha256": "398d7988a61ada1da4b7fb536241eecf0e24830c2b7feec9ead566af7334d240",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/lifeflashesbeforeweebeyes.BilliumMoto.ogg",
+        "bytes": 4444621,
+        "sha256": "2e215d65c314e9b8414b1811a4f9bb147c2694c7151140f819689077b04961e1",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-ddf57765c5a4bd36-music": {
+      "assetKey": "catalog-ddf57765c5a4bd36-music",
+      "path": "music/catalog-ddf57765c5a4bd36-music.m4a",
+      "url": "./music/catalog-ddf57765c5a4bd36-music.m4a",
+      "bytes": 612391,
+      "sha256": "6c9e3edfc0c2fc339635382e71c1cefe3b12590bcb21e71601222867d36dbbe4",
+      "mime": "audio/mp4",
+      "duration": 147.773243,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/ddf57765c5a4bd36-low.m4a",
+        "bytes": 612391,
+        "sha256": "6c9e3edfc0c2fc339635382e71c1cefe3b12590bcb21e71601222867d36dbbe4",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Letempsperdu.Daison.ogg",
+        "bytes": 3738015,
+        "sha256": "38f38ac85dfe834561c08776ad1a52568c8f2d3ed93b7d25e65722f36e0b3280",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-dfaee39043b7af4f-music": {
+      "assetKey": "catalog-dfaee39043b7af4f-music",
+      "path": "music/catalog-dfaee39043b7af4f-music.m4a",
+      "url": "./music/catalog-dfaee39043b7af4f-music.m4a",
+      "bytes": 679498,
+      "sha256": "0ee05099104eabb99f2f49c25f1244b82169568cda46aea0d12fc8b036c6db1b",
+      "mime": "audio/mp4",
+      "duration": 163.855964,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/dfaee39043b7af4f-low.m4a",
+        "bytes": 679498,
+        "sha256": "0ee05099104eabb99f2f49c25f1244b82169568cda46aea0d12fc8b036c6db1b",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/YouaretheMiserable.tpazolite.ogg",
+        "bytes": 4628543,
+        "sha256": "ed6de39666cace6f5ff2f5dc0466ef0ad31a3df062f5a5a7a2d4d4da3e588754",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-dfb23e065cab4583-music": {
+      "assetKey": "catalog-dfb23e065cab4583-music",
+      "path": "music/catalog-dfb23e065cab4583-music.m4a",
+      "url": "./music/catalog-dfb23e065cab4583-music.m4a",
+      "bytes": 643519,
+      "sha256": "e5b82e5c71607f729d9cf67e7fa0d6d30f916a49225bc7f287f633268e9a15bb",
+      "mime": "audio/mp4",
+      "duration": 155.406803,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/dfb23e065cab4583-low.m4a",
+        "bytes": 643519,
+        "sha256": "e5b82e5c71607f729d9cf67e7fa0d6d30f916a49225bc7f287f633268e9a15bb",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/EternalSnow.AbyssIdols.ogg",
+        "bytes": 4029741,
+        "sha256": "670ef66e3db5cf3c730f6319c748211707fc3cfbd646d50fe606bf8ce0e424f5",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-dffb7b2c983e5f96-music": {
+      "assetKey": "catalog-dffb7b2c983e5f96-music",
+      "path": "music/catalog-dffb7b2c983e5f96-music.m4a",
+      "url": "./music/catalog-dffb7b2c983e5f96-music.m4a",
+      "bytes": 706024,
+      "sha256": "2562750919e5d97267cf54edd0fcd860890a165c6d03aaefdea52341282c0b4b",
+      "mime": "audio/mp4",
+      "duration": 173.278667,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/dffb7b2c983e5f96-low.m4a",
+        "bytes": 706024,
+        "sha256": "2562750919e5d97267cf54edd0fcd860890a165c6d03aaefdea52341282c0b4b",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9.PIKASONICfeat%E5%85%B0%E9%9F%B3Reine.ogg",
+        "bytes": 4498528,
+        "sha256": "adfebd223e12eff646889d036a50ae718880972984023cb26536bea74e967059",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-e2b180ab261c548f-music": {
+      "assetKey": "catalog-e2b180ab261c548f-music",
+      "path": "music/catalog-e2b180ab261c548f-music.m4a",
+      "url": "./music/catalog-e2b180ab261c548f-music.m4a",
+      "bytes": 603430,
+      "sha256": "c095f863f836179283a763d00f7d1f47576c91ddd0ff2ae6abc87f06727b36aa",
+      "mime": "audio/mp4",
+      "duration": 147.492,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/e2b180ab261c548f-low.m4a",
+        "bytes": 603430,
+        "sha256": "c095f863f836179283a763d00f7d1f47576c91ddd0ff2ae6abc87f06727b36aa",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E5%8D%83%E7%B4%AB%E4%B8%87%E7%B4%85.r0yvsWABI.ogg",
+        "bytes": 4125994,
+        "sha256": "2c564ea313b2476409bc492a2408b98298ebd5ca8c9ae2c1a355b2d97a03a046",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-e2f5fdb1b95df9f5-music": {
+      "assetKey": "catalog-e2f5fdb1b95df9f5-music",
+      "path": "music/catalog-e2f5fdb1b95df9f5-music.m4a",
+      "url": "./music/catalog-e2f5fdb1b95df9f5-music.m4a",
+      "bytes": 639931,
+      "sha256": "c369932b638ddb66a22b649530453b092fe0d4c83a912055e4298c1086c201ca",
+      "mime": "audio/mp4",
+      "duration": 154.32127,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/e2f5fdb1b95df9f5-low.m4a",
+        "bytes": 639931,
+        "sha256": "c369932b638ddb66a22b649530453b092fe0d4c83a912055e4298c1086c201ca",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Cipher20.TetrajectoryfeatCtymax.ogg",
+        "bytes": 4027127,
+        "sha256": "42cc43cdacc3e2c9eaabcaaea36b9414acd425497329742c677bba12af50f642",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-e7d52c5420f50206-music": {
+      "assetKey": "catalog-e7d52c5420f50206-music",
+      "path": "music/catalog-e7d52c5420f50206-music.m4a",
+      "url": "./music/catalog-e7d52c5420f50206-music.m4a",
+      "bytes": 619195,
+      "sha256": "0ff83c83b6428aa3a9a273aa6aab4284463bc6afb3c3465dd61befe47fa31903",
+      "mime": "audio/mp4",
+      "duration": 150.548027,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/e7d52c5420f50206-low.m4a",
+        "bytes": 619195,
+        "sha256": "0ff83c83b6428aa3a9a273aa6aab4284463bc6afb3c3465dd61befe47fa31903",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Ajourneytothemoonlight.Yesod.ogg",
+        "bytes": 3892015,
+        "sha256": "9243af46301cff76bcc187669c53a8c5ff384e804ade82855cfdd930996a4b85",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-e7d8858a8f269c37-music": {
+      "assetKey": "catalog-e7d8858a8f269c37-music",
+      "path": "music/catalog-e7d8858a8f269c37-music.m4a",
+      "url": "./music/catalog-e7d8858a8f269c37-music.m4a",
+      "bytes": 593477,
+      "sha256": "67692896117aa1108eaf036a6d886afa6a355e2653504c37224f335032c36bce",
+      "mime": "audio/mp4",
+      "duration": 143.509478,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/e7d8858a8f269c37-low.m4a",
+        "bytes": 593477,
+        "sha256": "67692896117aa1108eaf036a6d886afa6a355e2653504c37224f335032c36bce",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/TheWholeRest.KIV%CE%9B.ogg",
+        "bytes": 3859495,
+        "sha256": "30c5c0ce9c72b555e8d6d1ced9e89f4572ab3f44ecbe7b8efebb78b7cc74cffa",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-e9095c6467352441-music": {
+      "assetKey": "catalog-e9095c6467352441-music",
+      "path": "music/catalog-e9095c6467352441-music.m4a",
+      "url": "./music/catalog-e9095c6467352441-music.m4a",
+      "bytes": 657371,
+      "sha256": "7740e4f3c83e562e3f40230a55d13a3d6cb6de3451ccafa33c4e4c4fc1f77a9f",
+      "mime": "audio/mp4",
+      "duration": 159.772,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/e9095c6467352441-low.m4a",
+        "bytes": 657371,
+        "sha256": "7740e4f3c83e562e3f40230a55d13a3d6cb6de3451ccafa33c4e4c4fc1f77a9f",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/valorstarcross.LundyvsWyvren.ogg",
+        "bytes": 4315553,
+        "sha256": "1220a6905c6a2c402626708eac09dd9b239e05ddb156d5dc3964d781c865769f",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-e96aa9146deb2881-music": {
+      "assetKey": "catalog-e96aa9146deb2881-music",
+      "path": "music/catalog-e96aa9146deb2881-music.m4a",
+      "url": "./music/catalog-e96aa9146deb2881-music.m4a",
+      "bytes": 549652,
+      "sha256": "1b120de48f862a0f9a6d19d43cda80fb80fac397a583f2340a47cd20e39a7d78",
+      "mime": "audio/mp4",
+      "duration": 133.69034,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/e96aa9146deb2881-low.m4a",
+        "bytes": 549652,
+        "sha256": "1b120de48f862a0f9a6d19d43cda80fb80fac397a583f2340a47cd20e39a7d78",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/FutureMind.RayNauticaRekuMochizuki.ogg",
+        "bytes": 3258235,
+        "sha256": "c8a190e29b3a094cf7670e57e2a565f194b96afe0e5925370260190e188e8e6f",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-eafcbf3aefb787e4-music": {
+      "assetKey": "catalog-eafcbf3aefb787e4-music",
+      "path": "music/catalog-eafcbf3aefb787e4-music.m4a",
+      "url": "./music/catalog-eafcbf3aefb787e4-music.m4a",
+      "bytes": 660095,
+      "sha256": "f72da5387a2b02922691fa782a9a07dd16a0d7f33c5fb68266598e80d52b6668",
+      "mime": "audio/mp4",
+      "duration": 159.56898,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/eafcbf3aefb787e4-low.m4a",
+        "bytes": 660095,
+        "sha256": "f72da5387a2b02922691fa782a9a07dd16a0d7f33c5fb68266598e80d52b6668",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Nhelv.Silentroom.ogg",
+        "bytes": 4173477,
+        "sha256": "7a0d71267279b09798b5b82fa3eaaca137bb0a5f1b404cb6f48289abef6a1bf2",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-eb10a599e2af14fb-music": {
+      "assetKey": "catalog-eb10a599e2af14fb-music",
+      "path": "music/catalog-eb10a599e2af14fb-music.m4a",
+      "url": "./music/catalog-eb10a599e2af14fb-music.m4a",
+      "bytes": 546342,
+      "sha256": "2caeab5da1f19395bbd39acc7202b723f0438c1c1598d6c98c8d4a9c43a1e619",
+      "mime": "audio/mp4",
+      "duration": 131.853061,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/eb10a599e2af14fb-low.m4a",
+        "bytes": 546342,
+        "sha256": "2caeab5da1f19395bbd39acc7202b723f0438c1c1598d6c98c8d4a9c43a1e619",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/%E5%A4%A2%E3%81%AE%E9%99%8D%E3%82%8B%E6%97%A5%E3%81%AB.seatrus.ogg",
+        "bytes": 3608228,
+        "sha256": "1245715f5344fc6308175359c6b7f0a9df4bf66e7da486a0a7a60f8a6938a36a",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-ebaf914bc241eaa0-music": {
+      "assetKey": "catalog-ebaf914bc241eaa0-music",
+      "path": "music/catalog-ebaf914bc241eaa0-music.m4a",
+      "url": "./music/catalog-ebaf914bc241eaa0-music.m4a",
+      "bytes": 624325,
+      "sha256": "217a57ddf6a460b0e0e5a48f5a171030ba03b65c4a279d9f34563c550943aa49",
+      "mime": "audio/mp4",
+      "duration": 154.811791,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/ebaf914bc241eaa0-low.m4a",
+        "bytes": 624325,
+        "sha256": "217a57ddf6a460b0e0e5a48f5a171030ba03b65c4a279d9f34563c550943aa49",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Spasmodic.%E5%A7%9C%E7%B1%B3%E6%A2%9D%E9%A2%B6%E9%A2%A8%E5%85%83%E5%8A%9B%E4%B8%8A%E4%BA%BA.ogg",
+        "bytes": 4150798,
+        "sha256": "ad8cb8040c4a1d9f011c6f9305148f006ffb02bd2bd1ef5a7ace8336195c7397",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-f2171263b7cf3686-music": {
+      "assetKey": "catalog-f2171263b7cf3686-music",
+      "path": "music/catalog-f2171263b7cf3686-music.m4a",
+      "url": "./music/catalog-f2171263b7cf3686-music.m4a",
+      "bytes": 602687,
+      "sha256": "cf1db553ff4fd4df6ccdfd0f5fab1ebcc950be5539dcd2b14af258206526d8b4",
+      "mime": "audio/mp4",
+      "duration": 148.693333,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/f2171263b7cf3686-low.m4a",
+        "bytes": 602687,
+        "sha256": "cf1db553ff4fd4df6ccdfd0f5fab1ebcc950be5539dcd2b14af258206526d8b4",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/RESSiSTANCE.%E3%81%90%E3%82%8B%E3%81%9F%E3%81%BF%E3%82%93.ogg",
+        "bytes": 3564445,
+        "sha256": "29a9f0137f548e08f898ffdca4854625496cbf739ba02197e37269786919cbc1",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-f26a58ccfbeaecc3-music": {
+      "assetKey": "catalog-f26a58ccfbeaecc3-music",
+      "path": "music/catalog-f26a58ccfbeaecc3-music.m4a",
+      "url": "./music/catalog-f26a58ccfbeaecc3-music.m4a",
+      "bytes": 572522,
+      "sha256": "ddd41c79c124679f7bcb7136605a739ca24dbac480c66ff559d90dfeb3a46818",
+      "mime": "audio/mp4",
+      "duration": 138.566531,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/f26a58ccfbeaecc3-low.m4a",
+        "bytes": 572522,
+        "sha256": "ddd41c79c124679f7bcb7136605a739ca24dbac480c66ff559d90dfeb3a46818",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Xenolith.Tatsh.ogg",
+        "bytes": 3683706,
+        "sha256": "19dc94491a66d81327e8e824e5d551eddb7e12bd9f316b57ee6a969a041c21f4",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-f2a61d7250651abd-music": {
+      "assetKey": "catalog-f2a61d7250651abd-music",
+      "path": "music/catalog-f2a61d7250651abd-music.m4a",
+      "url": "./music/catalog-f2a61d7250651abd-music.m4a",
+      "bytes": 622574,
+      "sha256": "e236074824876eaa0571e579cda57dcfb6fb3c9b8d65ee282f4364187489a932",
+      "mime": "audio/mp4",
+      "duration": 153.209615,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/f2a61d7250651abd-low.m4a",
+        "bytes": 622574,
+        "sha256": "e236074824876eaa0571e579cda57dcfb6fb3c9b8d65ee282f4364187489a932",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Grimheart.Puru.ogg",
+        "bytes": 3293581,
+        "sha256": "7f82644f121676d00993d1ede6a3f6139778a31583062465fed5863ec7de136e",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-f3b1c5336e13b154-music": {
+      "assetKey": "catalog-f3b1c5336e13b154-music",
+      "path": "music/catalog-f3b1c5336e13b154-music.m4a",
+      "url": "./music/catalog-f3b1c5336e13b154-music.m4a",
+      "bytes": 674070,
+      "sha256": "1b7b906b57f22971c2809b4d1253f3c3f76b6834166f5d6708f9881ba9b10c73",
+      "mime": "audio/mp4",
+      "duration": 163.295782,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/f3b1c5336e13b154-low.m4a",
+        "bytes": 674070,
+        "sha256": "1b7b906b57f22971c2809b4d1253f3c3f76b6834166f5d6708f9881ba9b10c73",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Glaciaxion.SunsetRay.ogg",
+        "bytes": 4736386,
+        "sha256": "eb22794fa473a795a66a6a006fa04bd6fe01c7968fed5dae339cfb720f0709d9",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-f6ff9c2992a28b9d-music": {
+      "assetKey": "catalog-f6ff9c2992a28b9d-music",
+      "path": "music/catalog-f6ff9c2992a28b9d-music.m4a",
+      "url": "./music/catalog-f6ff9c2992a28b9d-music.m4a",
+      "bytes": 710396,
+      "sha256": "6d564956872a247b40ea20a0241213c8454d28157877e95e0483adbe3e29a7ff",
+      "mime": "audio/mp4",
+      "duration": 171.643356,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/f6ff9c2992a28b9d-low.m4a",
+        "bytes": 710396,
+        "sha256": "6d564956872a247b40ea20a0241213c8454d28157877e95e0483adbe3e29a7ff",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/ComputeItWithSomeDevilishAlcoholicSteampunkEngines.%E3%81%8B%E3%82%81%E3%82%8A%E3%81%82.ogg",
+        "bytes": 5470875,
+        "sha256": "51775c88d14db0ba4800a4b573d3b0dd56f0791f0a77e1b865d6d98e9777a7d7",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-fa5c3891175d6090-music": {
+      "assetKey": "catalog-fa5c3891175d6090-music",
+      "path": "music/catalog-fa5c3891175d6090-music.m4a",
+      "url": "./music/catalog-fa5c3891175d6090-music.m4a",
+      "bytes": 817706,
+      "sha256": "41354c11e1b1506de5cd87b1e8701a3a00590271bd5bc7264c789a89df382e92",
+      "mime": "audio/mp4",
+      "duration": 199.356372,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/fa5c3891175d6090-low.m4a",
+        "bytes": 817706,
+        "sha256": "41354c11e1b1506de5cd87b1e8701a3a00590271bd5bc7264c789a89df382e92",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/RIPPER.Friedwav.ogg",
+        "bytes": 5087686,
+        "sha256": "a58df3c3400e44d45dba6b165cfafd17679921efb3b4da63167b666c47a315d5",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-fb6ce695214371ea-music": {
+      "assetKey": "catalog-fb6ce695214371ea-music",
+      "path": "music/catalog-fb6ce695214371ea-music.m4a",
+      "url": "./music/catalog-fb6ce695214371ea-music.m4a",
+      "bytes": 608444,
+      "sha256": "73d1b5fc8767fafff317fcd7ec66978ddf1f5385fda63bf198417240591962c9",
+      "mime": "audio/mp4",
+      "duration": 146.989569,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/fb6ce695214371ea-low.m4a",
+        "bytes": 608444,
+        "sha256": "73d1b5fc8767fafff317fcd7ec66978ddf1f5385fda63bf198417240591962c9",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Chronomia.Lime.ogg",
+        "bytes": 3504810,
+        "sha256": "0cd08fc92092e976d1c6097059dfbe31989ba1335426b9f43951604223ad753d",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-fbb14a6f8a9c873d-music": {
+      "assetKey": "catalog-fbb14a6f8a9c873d-music",
+      "path": "music/catalog-fbb14a6f8a9c873d-music.m4a",
+      "url": "./music/catalog-fbb14a6f8a9c873d-music.m4a",
+      "bytes": 567340,
+      "sha256": "4ec8fc945232cd499d6efa26f317d9eb64b0a0a0fe5e004052870e5af6530f15",
+      "mime": "audio/mp4",
+      "duration": 138.88,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/fbb14a6f8a9c873d-low.m4a",
+        "bytes": 567340,
+        "sha256": "4ec8fc945232cd499d6efa26f317d9eb64b0a0a0fe5e004052870e5af6530f15",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/TECHNOPOLIS2085.PRASTIKDANCEFLOOR.ogg",
+        "bytes": 3877213,
+        "sha256": "6219b186ad44e0dd72c72f60b12afa2123c8f4225d9af0ab2e9443f39a41bbc9",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    },
+    "catalog-fcb1f5a9083b936d-music": {
+      "assetKey": "catalog-fcb1f5a9083b936d-music",
+      "path": "music/catalog-fcb1f5a9083b936d-music.m4a",
+      "url": "./music/catalog-fcb1f5a9083b936d-music.m4a",
+      "bytes": 588509,
+      "sha256": "7bf8a0c8f463f7b5db4664ecb891145a1988e75e0f854aed9cdfc164ad671c94",
+      "mime": "audio/mp4",
+      "duration": 142.556,
+      "sourceAAC": {
+        "url": "./assets/catalog-media/fcb1f5a9083b936d-low.m4a",
+        "bytes": 588509,
+        "sha256": "7bf8a0c8f463f7b5db4664ecb891145a1988e75e0f854aed9cdfc164ad671c94",
+        "sha256PresentInSource": true
+      },
+      "sourceOGG": {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Komplexe.%E9%9B%84%E4%B9%8B%E5%8A%A9featSennzai.ogg",
+        "bytes": 3905806,
+        "sha256": "a927a66d46915b68bdf75379e4eec986414d0136910c93baa04eeab5b04d19ec",
+        "mime": "audio/ogg; codecs=\"vorbis\""
+      }
+    }
+  }
+}
