@@ -1,0 +1,7 @@
+{
+  "difficulty": "IN",
+  "steps": [
+    { "call": "update", "time": 130.4340057373047, "rawScore": 784842.75 },
+    { "call": "update", "time": 151, "rawScore": 1000000 }
+  ]
+}

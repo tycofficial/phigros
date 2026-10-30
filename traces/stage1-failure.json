@@ -1,0 +1,8 @@
+{
+  "difficulty": "IN",
+  "steps": [
+    { "call": "update", "time": 96.52100372314453, "rawScore": 600000 },
+    { "call": "judge", "kind": "Bad" },
+    { "call": "update", "time": 151, "rawScore": 1000000 }
+  ]
+}
