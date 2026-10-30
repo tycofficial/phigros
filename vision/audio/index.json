@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "source": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+  "audios": [
+    {
+      "id": "about_us_0_flac",
+      "track": 0,
+      "chapter": 8,
+      "title": "AboutUs 0 lossless",
+      "path": "vision/audio/AboutUs0.flac",
+      "mime": "audio/flac",
+      "bytes": 15899006,
+      "sha256": "22aed626420c67f94bba954cdd8a78598fb758b23b66955af607860b698e5af8"
+    },
+    {
+      "id": "about_us_0_m4a",
+      "track": 0,
+      "chapter": 8,
+      "title": "AboutUs 0 AAC fallback",
+      "path": "vision/audio/AboutUs0.m4a",
+      "mime": "audio/mp4",
+      "bytes": 1051123,
+      "sha256": "0adf8f96d1f8aa4d2ba7cbab2c37a7468a7d15a4f97cabd472c1051a079f762f"
+    },
+    {
+      "id": "about_us_1_flac",
+      "track": 1,
+      "chapter": 8,
+      "title": "AboutUs 1 lossless",
+      "path": "vision/audio/AboutUs1.flac",
+      "mime": "audio/flac",
+      "bytes": 26730715,
+      "sha256": "4662bb4fd17d76bf49f5b23cff7b48d7d3430520455ee2d632bfdae7aece6dc9"
+    },
+    {
+      "id": "about_us_1_m4a",
+      "track": 1,
+      "chapter": 8,
+      "title": "AboutUs 1 AAC fallback",
+      "path": "vision/audio/AboutUs1.m4a",
+      "mime": "audio/mp4",
+      "bytes": 1603617,
+      "sha256": "2c861100d18a9dc0e8940b624ae77e590665dd851c4db52283537eff91c8b6f0"
+    }
+  ]
+}
