@@ -1,5 +1,5 @@
 {
-  "version": "4.0.1.2-pages-14",
+  "version": "4.0.1.2-pages-15",
   "maxBytes": 990000000,
   "baseBytes": 138035549,
   "selectedBundleBytes": 845795864,
@@ -255,7 +255,9 @@
     "immediate viewport contact reprojection",
     "shared simultaneous overlapping hold heads and bodies",
     "older Safari native touch support",
-    "bounded Apple receipt work"
+    "bounded Apple receipt work",
+    "desktop-mode older iPad touch discovery",
+    "atomic pointer to native touch handoff without stale fallback contacts"
   ],
   "independentVisionSwitch": true,
   "originalInteractiveReplayComplete": false

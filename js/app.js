@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-14';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-15';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,7 +26,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-14",
+    runtime: "4.0.1.2-pages-15",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-10-27T10:16:39Z",
@@ -8276,7 +8276,13 @@ function withTimeout(promise, ms, message = "操作超时") {
     // Old iOS WebKit can support Touch Events without exposing a constructible
     // global TouchEvent or navigator.maxTouchPoints. The event target capability
     // plus an Apple touch user agent is sufficient for the native path.
-    return "ontouchstart" in host && ((Number(caps.maxTouchPoints) || 0) > 0 || !!apple);
+    return "ontouchstart" in host && ((Number(caps.maxTouchPoints) || 0) > 0 || !!apple || needsNativeTouchConfirmation(apple,host,caps));
+  }
+  function needsNativeTouchConfirmation(apple, host = window, caps = navigator) {
+    // A desktop-mode iPad can identify as Macintosh while omitting touch-point
+    // metadata. A desktop browser can look identical, so keep the mouse/pen
+    // path and render policy unchanged until a genuine TouchEvent is received.
+    return !apple && caps.maxTouchPoints == null && /Macintosh/.test(String(caps.userAgent || "")) && "ontouchstart" in host;
   }
 
 
@@ -9025,6 +9031,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       // is the authoritative contact on Apple; a PointerEvent echo must not
       // consume the next note when it lands outside a deduplication heuristic.
       this.nativeTouchAuthoritative=this.isAppleTouch&&this.useNativeTouchInput;
+      this.nativeTouchPendingAuthority=this.useNativeTouchInput&&needsNativeTouchConfirmation(this.isAppleTouch);
       const preparedStream=record._preparedStream&&!record._preparedStream.controller.signal.aborted?record._preparedStream:null;
       this.audio = preparedStream?.audio || Engine._primedMusicElement || new Audio();
       Engine._primedMusicElement=null;
@@ -12013,11 +12020,28 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.nativeTouchSnapshotTime=Math.max(this.nativeTouchSnapshotTime||0,at);
       return changedAny;
     }
+    confirmNativeTouchAuthority(e) {
+      if (!this.nativeTouchPendingAuthority || e.touches == null) return;
+      // A first native sample can arrive long after pointerdown. Reconcile its
+      // full live snapshot before judging changedTouches so the existing edge,
+      // Hold ownership and motion state survive the handoff without a second Tap.
+      this.recoverNativeTouchSnapshot(e, {
+        synthesizeMissingDown: true, reconcileMissing: true, reviveLive: true, motion: true,
+      });
+      // After the handoff pointer echoes no longer release touch-pointer states.
+      // Retire any fallback absent from the authoritative contact snapshot.
+      const now = performance.now() / 1000, at = this.eventPerformanceTime(e);
+      for (const [pid, p] of this.pointer)
+        if (!p.nativeTouch && p.touchPointer) this.releaseNativeTouchContact(pid, p, now, at);
+      this.nativeTouchPendingAuthority = false;
+      this.nativeTouchAuthoritative = true;
+    }
     touchStart(e) {
       if (
         !this.useNativeTouchInput || !this.running || this.paused ||
         this.starting || this.resumePending || this.autoplay
       ) return;
+      this.confirmNativeTouchAuthority(e);
       const changed = e.changedTouches;
       if (this.inputStats) this.inputStats.touchStart+=changed?.length||0;
       let accepted = false;
@@ -12147,6 +12171,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     touchMove(e) {
       if (!this.useNativeTouchInput || !this.running || this.paused ||
           this.starting || this.resumePending || this.autoplay) return;
+      this.confirmNativeTouchAuthority(e);
       const changed = e.changedTouches, seen = this.nativeTouchChangedIds;
       seen.clear();
       let tracked = false;
