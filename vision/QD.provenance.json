@@ -1,0 +1,19 @@
+{
+  "source": "https://github.com/SteveZMTstudios/Phigros-history/releases/download/v3.0.0.1/Phigros_3.0.0.1.apk",
+  "sourceNote": "third-party modified historical 3.0.0.1 archive; current official equivalence unverified",
+  "file": "QD.mp4",
+  "resource": "assets/bin/Data/sharedassets26.resource",
+  "zipOffset": 1302189219,
+  "zipCRC32": "2fd3d392",
+  "resourceOffset": 1769984,
+  "bytes": 14588474,
+  "sha256": "ab1cfefa5b2a6358bbb125002d6010a19f9edb58df72625274ae638548a15c02",
+  "videoClip": {
+    "asset": "sharedassets26.assets",
+    "pathID": 7,
+    "name": "QD",
+    "duration": 24.1,
+    "frames": 723
+  },
+  "fullDecodeVerified": true
+}
