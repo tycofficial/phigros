@@ -1,0 +1,19 @@
+{
+  "file": "Rr_Unlock.mp4",
+  "originalPath": "Assets/TrackEventFile/RrharilEvent/Unlock_Video.mp4",
+  "resource": "assets/bin/Data/sharedassets20.resource",
+  "zipCRC32": "b3b5c9a6",
+  "zipOffset": 1268686636,
+  "resourceOffset": 0,
+  "bytes": 15910589,
+  "sha256": "671e2862af83d5629aad91cfc764a4bd419f79e0f3f6a34fd7a581da1a7a17d6",
+  "duration": 35.435435,
+  "videoClip": {
+    "asset": "sharedassets20.assets",
+    "pathID": 25,
+    "name": "Unlock_Video",
+    "frameRate": 29.970029830932617,
+    "frameCount": 1062
+  },
+  "fullDecodeVerified": true
+}
