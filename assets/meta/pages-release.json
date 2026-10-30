@@ -1,5 +1,5 @@
 {
-  "version": "4.0.1.2-pages-15",
+  "version": "4.0.1.2-pages-16",
   "maxBytes": 990000000,
   "baseBytes": 138035549,
   "selectedBundleBytes": 845795864,
@@ -260,5 +260,13 @@
     "atomic pointer to native touch handoff without stale fallback contacts"
   ],
   "independentVisionSwitch": true,
-  "originalInteractiveReplayComplete": false
+  "originalInteractiveReplayComplete": false,
+  "remoteAudioCompatibility": {
+    "format": "AAC",
+    "tracks": 173,
+    "bytes": 109437991,
+    "mediaCommit": "cda525e6d9e30a3cd7732e5b9978ee01e2a09e38",
+    "onlyWhenOriginalUnsupported": true,
+    "originalOGGPreserved": true
+  }
 }

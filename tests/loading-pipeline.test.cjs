@@ -34,7 +34,7 @@ test('stream buffering, skin, fonts, chart and matched effects begin together',a
   const chart=deferred(),skin=deferred(),font=deferred(),buffer=deferred(),effects=deferred(),steps=[];let result,started=false;
   class Stream{constructor(audio){steps.push('audio');this.audio=audio;this.controller=new AbortController();}wait(){steps.push('buffer');return buffer.promise;}destroy(){throw Error('unexpected destroy');}}
   const context=vm.createContext({Promise,AbortController,Audio:class{},songLoadToken:0,songLoadStream:null,libraryFocusBgBlob:new Blob(['cover']),
-    Engine:{_primedMusicElement:{}},PhiHostedMedia:{manifest:{audio:{music:{url:'./song.m4a'}}},Stream},
+    Engine:{_primedMusicElement:{}},PhiHostedMedia:{manifest:{audio:{music:{url:'./song.m4a'}}},selectAudio:spec=>spec,Stream},
     ensureBuiltinMaterialForPlay:()=>{steps.push('skin');return skin.promise;},loadSavedOrAdjacentOfficialFont:()=>{steps.push('font');return font.promise;},
     materializeBuiltinPack:()=>{steps.push('chart');return chart.promise;},beginLoadingPresentation:async()=>{},
     prepareChapter8CommunityEffect:()=>{steps.push('effects');return effects.promise;},

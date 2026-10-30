@@ -20,6 +20,18 @@ const checked=new Map(), remoteChecked=new Map();
 // the compiled allowlist here, and their actual bytes are hashed on download.
 const remoteManifestPath=path.join(root,'assets/meta/online-manifest.json');
 const remoteManifest=fs.existsSync(remoteManifestPath)?JSON.parse(fs.readFileSync(remoteManifestPath,'utf8')):{};
+const aacSourcePath=path.join(root,'assets/meta/remote-aac-source.json');
+const aacSource=fs.existsSync(aacSourcePath)?JSON.parse(fs.readFileSync(aacSourcePath,'utf8')):null;
+const aacAssets=new Map();
+if(aacSource){
+  check(aacSource.complete&&/^[a-f0-9]{40}$/.test(aacSource.mediaCommit),'Invalid AAC media commit');
+  for(const item of Object.values(aacSource.assets)){
+    check(/^music\/[A-Za-z0-9._-]+\.m4a$/.test(item.path),'Invalid AAC media path');
+    const address=`https://raw.githubusercontent.com/tycofficial/phigros/${aacSource.mediaCommit}/${item.path}`;
+    check(!aacAssets.has(address),'Duplicate AAC media path');aacAssets.set(address,item);
+  }
+  check(aacAssets.size===aacSource.fileCount,'Incomplete AAC source index');
+}
 if(Object.keys(remoteManifest).length){
   const code=read('js/remote-assets.js'), prefix='const known = Object.freeze(', suffix='), allowed = new Map();';
   const start=code.indexOf(prefix),end=code.indexOf(suffix,start);
@@ -29,9 +41,12 @@ if(Object.keys(remoteManifest).length){
   const commits=new Set(['5d40bfdf05bee53f5107a6ea5620ca0e953de815','5142ba2673ccbeb23173886f3bd851e9c881e6ec','0c7e90ee5d8ffaaa756d79d8aef879338fdde423']);
   for(const [address,spec] of Object.entries(remoteManifest)){
     const u=new URL(address),parts=u.pathname.split('/');
-    check(u.origin==='https://raw.githubusercontent.com'&&!u.search&&!u.hash&&!u.username&&!u.password&&parts[1]==='7aGiven'&&parts[2]==='Phigros_Resource'&&commits.has(parts[3])&&parts.length>=5,'Invalid online origin '+address);
+    const aac=aacAssets.get(address);
+    const upstream=parts[1]==='7aGiven'&&parts[2]==='Phigros_Resource'&&commits.has(parts[3])&&parts.length>=5;
+    check(u.origin==='https://raw.githubusercontent.com'&&!u.search&&!u.hash&&!u.username&&!u.password&&(upstream||aac),'Invalid online origin '+address);
     check(Number.isSafeInteger(spec.bytes)&&spec.bytes>0&&/^[a-f0-9]{64}$/.test(spec.sha256),'Invalid online metadata '+address);
-    const mirror='https://cdn.jsdelivr.net/gh/7aGiven/Phigros_Resource@'+parts[3]+'/'+parts.slice(4).join('/');
+    if(aac)check(spec.bytes===aac.bytes&&spec.sha256===aac.sha256&&spec.mime==='audio/mp4','Wrong AAC metadata '+address);
+    const mirror='https://cdn.jsdelivr.net/gh/'+parts[1]+'/'+parts[2]+'@'+parts[3]+'/'+parts.slice(4).join('/');
     check(spec.mirror===mirror,'Invalid online mirror '+address);
   }
 }
@@ -65,6 +80,11 @@ for(const entry of entries){
   const audio=context.PhiHostedManifest.audio[music.asset];
   const artwork=context.PhiHostedManifest.artwork[art.asset];
   check(audio?.duration>0&&artwork,'Incomplete song '+entry.id);
+  if(audio.remote&&aacSource){
+    const item=aacSource.assets[music.asset];check(item&&audio.lowFallback,'Missing compatible AAC '+entry.id);
+    check(audio.original===item.sourceOGG.url&&audio.url===item.sourceOGG.url&&audio.sha256===item.sourceOGG.sha256,'Original OGG changed '+entry.id);
+    check(audio.lowFallback.url===`https://raw.githubusercontent.com/tycofficial/phigros/${aacSource.mediaCommit}/${item.path}`,'Wrong AAC association '+entry.id);
+  }
   for(const variant of [audio,audio.high,audio.low,audio.lowFallback].filter(Boolean))
     resource(variant.url,variant.bytes,variant.sha256);
   resource(audio.original);resource(artwork.original);

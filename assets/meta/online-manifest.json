@@ -5506,5 +5506,1043 @@
     "sha256": "a927a66d46915b68bdf75379e4eec986414d0136910c93baa04eeab5b04d19ec",
     "mime": "audio/ogg; codecs=\"vorbis\"",
     "mirror": "https://cdn.jsdelivr.net/gh/7aGiven/Phigros_Resource@5142ba2673ccbeb23173886f3bd851e9c881e6ec/Komplexe.%E9%9B%84%E4%B9%8B%E5%8A%A9featSennzai.ogg"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-00e9577e556ae899-music.m4a": {
+    "bytes": 690551,
+    "sha256": "02457f57d947234f0294fe74fdbde94404e8ee12eb6c8cddf889bb9aebb2d852",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-00e9577e556ae899-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-01464e15f0ec695e-music.m4a": {
+    "bytes": 611560,
+    "sha256": "e582c7207963a7bf680d42f131010d71f778eff95b3121bffb44b5700b0b7dff",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-01464e15f0ec695e-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-025dbd21e401dbac-music.m4a": {
+    "bytes": 674474,
+    "sha256": "6c6b24fad3f35eef6ff5cd6a6dd2fc4475679208359ab6f0b87371b43b83b009",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-025dbd21e401dbac-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-03b9fcd17ade3794-music.m4a": {
+    "bytes": 560687,
+    "sha256": "b9c2b4e049574331884bca922577f99fca82a7c4ed82e99415eec6cc4ba2f64a",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-03b9fcd17ade3794-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-03efb5f262c4fdcd-music.m4a": {
+    "bytes": 532081,
+    "sha256": "7863fbdd569cca38e9f68ca6d0575a1b611dcc4fb523377abe8492485cb17333",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-03efb5f262c4fdcd-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-0f84d6f4682820e0-music.m4a": {
+    "bytes": 709431,
+    "sha256": "0301a6c65f55398fb00377e08ce9bded608a2c625918ecf54f30b378a6915dee",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-0f84d6f4682820e0-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-101d3e917d380900-music.m4a": {
+    "bytes": 691782,
+    "sha256": "bc1491b4ebc718ced5990ee9a2b255cc0cdb19e952e3a28c4e395b3fc172260d",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-101d3e917d380900-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1204f1e60a7e79b4-music.m4a": {
+    "bytes": 625706,
+    "sha256": "41553db481d7799e961fe7853ea7171ddfc7d0bc77656b1ec8db3ffdbb76bc2b",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1204f1e60a7e79b4-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1375aaaacdb2cb1f-music.m4a": {
+    "bytes": 694211,
+    "sha256": "fee4ae9570510d5dedfe12725b4d4bd518651b5e26e9819021c63023a19fc0d9",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1375aaaacdb2cb1f-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-16be8126b61857a7-music.m4a": {
+    "bytes": 567069,
+    "sha256": "5e492d9e46e26beeaf1f65b6768e569547e3148842d7ab3f525ca04fff036d83",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-16be8126b61857a7-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-16e2e1f4ab402d41-music.m4a": {
+    "bytes": 656024,
+    "sha256": "f650872e9bb7460fe7ce33add51ef40b0e99a9cec33b45456ecb963574be0c9c",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-16e2e1f4ab402d41-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1749c98d23f65b42-music.m4a": {
+    "bytes": 654804,
+    "sha256": "bc1fbb2b223c75714a58f6043cca29842b28fa8f6b145a3967c580e8771fdbd9",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1749c98d23f65b42-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1a428260ee840401-music.m4a": {
+    "bytes": 543107,
+    "sha256": "4f9f7d95e4e73810bcaad35e3347ca271bfb9a2335d6f3ff22927d0435912f5a",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1a428260ee840401-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1b8851df41cf72e8-music.m4a": {
+    "bytes": 594840,
+    "sha256": "540cad041293c7c0b9df5824f0265a604d849e5dd9991191463987cf9f9caa73",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1b8851df41cf72e8-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1dc6c10fd6664d05-music.m4a": {
+    "bytes": 583617,
+    "sha256": "b020206bd1478bd56805794745ecba4bb7a0acc6a4a1df6bd2a5e087750256f4",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1dc6c10fd6664d05-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1e051b83c629b9ec-music.m4a": {
+    "bytes": 617109,
+    "sha256": "87323b7e51f99b8227b2f65642892a70f432ceb34159c3215f4585aff713b489",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1e051b83c629b9ec-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1e0e2d706bc08785-music.m4a": {
+    "bytes": 692407,
+    "sha256": "d0ed741c1e9a47903ab9146c60bc35231e95751640a4a1ce493ac5f1aedf2dbc",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1e0e2d706bc08785-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1ff132d62a3c0510-music.m4a": {
+    "bytes": 528300,
+    "sha256": "0ca389c304f4e847dcb0dc96e5a3e8d498c22300fe5f34fa56eff66b3f048296",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-1ff132d62a3c0510-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-203229d7390968ac-music.m4a": {
+    "bytes": 599426,
+    "sha256": "4872339e8254817bf19518c32186890f91b61c00b8d9b694bd09d43a204bffe6",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-203229d7390968ac-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2345d7c3a752756a-music.m4a": {
+    "bytes": 717795,
+    "sha256": "5c057ed84b6ce53698d3c2387b8b3299d188a2e0300d063d0a43b8059d138431",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2345d7c3a752756a-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2912662707ad11c0-music.m4a": {
+    "bytes": 591695,
+    "sha256": "4c8d9c3579114889de800ce61e4799d05dd60165f6f9bc6f06885e4b7216028d",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2912662707ad11c0-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2a627c8dacfe95c4-music.m4a": {
+    "bytes": 660071,
+    "sha256": "2967b08dee5bdff2e0acc919a85936023d4324407e166f5d7b08977eb324cb6a",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2a627c8dacfe95c4-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2a683a75e6cfcfa3-music.m4a": {
+    "bytes": 645255,
+    "sha256": "faad1ef8cbf37d132bd82edd4f13ef492becfbd62c81a64c7c114304e33a4a9a",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2a683a75e6cfcfa3-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2b2cf9fa2a49afff-music.m4a": {
+    "bytes": 506289,
+    "sha256": "26cc4d265248ab2491344c1b7c01375819fcd361e233557e86a6cfcc91d3b40f",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2b2cf9fa2a49afff-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2b7b1b277092f551-music.m4a": {
+    "bytes": 614925,
+    "sha256": "845cebec17f8fac12ef361075809d52c5d680b1f16d7bd86123007d3975b91f1",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2b7b1b277092f551-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2bd25eaa9c1f1ecc-music.m4a": {
+    "bytes": 642121,
+    "sha256": "0ab00ac32465ab8df211c82379443961e0db9b29c82bd4eb45bb8f8979876803",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2bd25eaa9c1f1ecc-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2c06c3a7c4c0c72f-music.m4a": {
+    "bytes": 659677,
+    "sha256": "47d23b18d6e0c4df10e048a6f2c4d079b8559ff8db1648251c86b692bc5cc6c9",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2c06c3a7c4c0c72f-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2cd2362e6703ee21-music.m4a": {
+    "bytes": 696514,
+    "sha256": "4ffcc541c4c8e0eb354ae78bcd70ace434f5a21ecc3c44bd24c55223077aef4a",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2cd2362e6703ee21-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2ce417b57c9c01a0-music.m4a": {
+    "bytes": 606192,
+    "sha256": "680911ad2f6114b432a17829b933ba74e9b1477a67ef738cf73a3b113dd030e6",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2ce417b57c9c01a0-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2f01cf1433868a3f-music.m4a": {
+    "bytes": 582705,
+    "sha256": "b8c91dbea202f958472290aa414a5aba05da7551848dfa651f12c96ed3c09d29",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-2f01cf1433868a3f-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-309c55dbf957239c-music.m4a": {
+    "bytes": 665934,
+    "sha256": "ab6afb6561ff1e68d95796444b3f83c4e9f724e8d5e0cbd53c14e37d3511bfe5",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-309c55dbf957239c-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-3108fdd63e50c9cc-music.m4a": {
+    "bytes": 796954,
+    "sha256": "192cb1c6e2bdbd5c398b6fd49184097d3533e81f2e86fc0a370dfe19783cee0a",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-3108fdd63e50c9cc-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-319ddd59e1e111a7-music.m4a": {
+    "bytes": 590707,
+    "sha256": "75c2bba1084f53ce1c15500b8e527d29d7606f56535930919b8bde57c665db0e",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-319ddd59e1e111a7-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-323609475c1b8b49-music.m4a": {
+    "bytes": 556412,
+    "sha256": "97446be5a7470de3dd8ab4599fad6080ec9bef661e659bd309449dc78dd04596",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-323609475c1b8b49-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-33443bfd584cdf10-music.m4a": {
+    "bytes": 632408,
+    "sha256": "f184c8e87d2ccdbdfd384fb82c8bbafca2cb4be7e79af08f29c6240df1448405",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-33443bfd584cdf10-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-34ef462f27ebaf4c-music.m4a": {
+    "bytes": 606869,
+    "sha256": "6928d3d7c73983de4c9757286dc93b76dd5a2a6b17392780e28d0340fcf79941",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-34ef462f27ebaf4c-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-3a645cf4e19d0be5-music.m4a": {
+    "bytes": 606160,
+    "sha256": "0016c8d6d071e08af41d5d805f0bd6102c62faa9a0602a53b48a56307b78682a",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-3a645cf4e19d0be5-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-3ad08d7a5e882ee9-music.m4a": {
+    "bytes": 585391,
+    "sha256": "6f424b7a03d7b86c6eb5d70b7801a96ce8d26fd10e9e911c39c6a65c975f968c",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-3ad08d7a5e882ee9-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-3fa5bc375b4de612-music.m4a": {
+    "bytes": 614307,
+    "sha256": "e0c116d8800b89aa18d329595b0584955eb0e71cffcee86164ea1c800c7edcef",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-3fa5bc375b4de612-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-41d724bc77080847-music.m4a": {
+    "bytes": 736498,
+    "sha256": "cdd1aa96b105422a7a6a2b2ba9c7fdd8613fddf58976f2daea93318590da3332",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-41d724bc77080847-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-43e2945f32f681da-music.m4a": {
+    "bytes": 648528,
+    "sha256": "18c85fa2ff9a2def1944099085c41585ab39fc5f4973952a8b8d7fc919f2dbe5",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-43e2945f32f681da-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-4499a10489ddbee2-music.m4a": {
+    "bytes": 711519,
+    "sha256": "d4a4f1c94bfb971d9008872ddb77fde79edae066f25a194394adb163f6c9120a",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-4499a10489ddbee2-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-45be6441a0869300-music.m4a": {
+    "bytes": 627257,
+    "sha256": "a3e2771372fd9e6dbeebd33c5552888486932078d6c9bd3566b09fd3139c9058",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-45be6441a0869300-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-48675a8e9a084ab3-music.m4a": {
+    "bytes": 548592,
+    "sha256": "77ec06e5066160826ad309df1c9cd2ee02a95ede5c39ca6bcead2defe09e0349",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-48675a8e9a084ab3-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-48d23c2b4183116c-music.m4a": {
+    "bytes": 663209,
+    "sha256": "e3a25df41d2867db0bda1d5ee27d423028cb46522f7411b07c6edc7317ad0b00",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-48d23c2b4183116c-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-4f26e7b3e4ca9fe2-music.m4a": {
+    "bytes": 721075,
+    "sha256": "f783c54550d5e59ee7097ebf6745cf4d20cf2b4577511ac34e3d83d5ac0aada2",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-4f26e7b3e4ca9fe2-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-512a0d916e13ea27-music.m4a": {
+    "bytes": 652221,
+    "sha256": "01651dc9476278b0369783b4cf2c06e75f20a2978661ef044395d4c85d0bd5e6",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-512a0d916e13ea27-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-514c70031ea2eb42-music.m4a": {
+    "bytes": 781487,
+    "sha256": "4924c80445ea43d8944e450fb1b3d2eb679385f9c5d4dbb16df0a575b2e788d4",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-514c70031ea2eb42-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-51becfa8da72f0f8-music.m4a": {
+    "bytes": 707664,
+    "sha256": "ee37c9699b72c7f10e79ad7a06ab73349ae387d026ca70c12a1a019cd227a3f0",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-51becfa8da72f0f8-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-55aa41635cc082cb-music.m4a": {
+    "bytes": 687319,
+    "sha256": "d2f81bde9ffc82257735359597853b3b262ce4cbfa68d090cb0129c22ce25ef0",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-55aa41635cc082cb-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-55ae2e09fa83d113-music.m4a": {
+    "bytes": 497717,
+    "sha256": "04417fcd07a84d85a65f36cfbc7bcc7f1ccc5e19c64c333ebfcebba4ef468f37",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-55ae2e09fa83d113-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-55d3c18ac50fff25-music.m4a": {
+    "bytes": 688079,
+    "sha256": "c08c63b5728ff2e90e98ce563633a8eeb72928f26c7ea6015f43a7b0b89349fd",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-55d3c18ac50fff25-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-590124645ef9fc62-music.m4a": {
+    "bytes": 692587,
+    "sha256": "f7d5bac4f9cdefbfa5bcbd2bb44fc101ac3f2d7267e1867f63bb50c8ded430a9",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-590124645ef9fc62-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-5917f05540ed6137-music.m4a": {
+    "bytes": 624052,
+    "sha256": "9e5c5cce3e29acaeff22dae0c659d2fae66f6530c711a0603f5af19a19cfccd3",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-5917f05540ed6137-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-5aab5beb446cb42b-music.m4a": {
+    "bytes": 638020,
+    "sha256": "f3d8ce3caeaf365dfbbe5b82ce6c0b191c654cdfe5ae5281510134f28b94728d",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-5aab5beb446cb42b-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-5d43894c21a13c93-music.m4a": {
+    "bytes": 611245,
+    "sha256": "6b99fec7f1e126c7a463061e63704697838d48dde280ef04b4c95be645c72564",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-5d43894c21a13c93-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-60cc0598b153a662-music.m4a": {
+    "bytes": 686357,
+    "sha256": "b0b46cde66580b76ff05d40cfb2a944ba1adaa16eedbe3715a04526adbfb7816",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-60cc0598b153a662-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-63785b7928d7dfb6-music.m4a": {
+    "bytes": 560110,
+    "sha256": "6fa665df5032a2cc335a8cbd2a82530525cf1a6b6d0cf9d35bfef065196fa4cb",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-63785b7928d7dfb6-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-68abb7a97e35799f-music.m4a": {
+    "bytes": 622045,
+    "sha256": "75738f7615b77b5086945d804da2daf6cae2ce7300bc77ebfad8a3b968d11d1d",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-68abb7a97e35799f-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-68c2b6dafad3f338-music.m4a": {
+    "bytes": 736236,
+    "sha256": "6d07e0894eda710f9c4b0e56ccc1473ea1d96b69b21b13e92e7dc48394756c37",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-68c2b6dafad3f338-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-696dca6ffcf785a7-music.m4a": {
+    "bytes": 661060,
+    "sha256": "8c7a90299a751be84c0db3ada9f8b5f69267034c4dc0ee5a5b5b1b96f31441cd",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-696dca6ffcf785a7-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-6b073813893084e8-music.m4a": {
+    "bytes": 657827,
+    "sha256": "987393e8aa89d139c5fc31fc3790c504cf9ff0f22a56d92d927796c9595803f0",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-6b073813893084e8-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-6c94e7086aebd4b6-music.m4a": {
+    "bytes": 554028,
+    "sha256": "03297e0b7b4cb21e37f904fdf20d6dc1efabfcfd8f1adda6e02767c1c0aeff80",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-6c94e7086aebd4b6-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-715b55d2aa98a2b7-music.m4a": {
+    "bytes": 655450,
+    "sha256": "174b36aa47c3dbef732bb52c89d1e88427096491bbf210009fb1c26e01f3e4ef",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-715b55d2aa98a2b7-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-7255bb034743796b-music.m4a": {
+    "bytes": 557554,
+    "sha256": "f1c05b1947b3863472f2b14b20d7b0645c73c93bd22e02e2c9d725a9673819be",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-7255bb034743796b-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-73323b3b5ad8bf1b-music.m4a": {
+    "bytes": 594662,
+    "sha256": "9a11dd466d0bcd8157b153b593df1c714f945902658364e80158c537a2ef6776",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-73323b3b5ad8bf1b-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-7339fbdd5274f07b-music.m4a": {
+    "bytes": 737721,
+    "sha256": "bfe5faf821afe913e9e02a7c86fa20f1727deb0ba466f5c70359b38f09cbb2b3",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-7339fbdd5274f07b-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-7468a8fe56e848ca-music.m4a": {
+    "bytes": 690268,
+    "sha256": "f0a9b33b8672cd8bb323b2a05dd9966cf947326985c0387cc954230b0e609c7a",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-7468a8fe56e848ca-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-75d58198ec3ee2cc-music.m4a": {
+    "bytes": 532907,
+    "sha256": "6860e76e03f8cf446a6e920493a732107a10b66db1241488edc329ca8534ca1d",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-75d58198ec3ee2cc-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-76dc5b3809e4a093-music.m4a": {
+    "bytes": 522221,
+    "sha256": "a69ab996e1c343557fc45344fd9ceb7538520a0d3c7a91732cd4f412c546b7dc",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-76dc5b3809e4a093-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-77761d7d824d3f28-music.m4a": {
+    "bytes": 608867,
+    "sha256": "85d2533b61f25bc93e4b2aa808eca88d3bd058ffbc146b595ce4410e9988f1f6",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-77761d7d824d3f28-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-798ca7948aa16298-music.m4a": {
+    "bytes": 637800,
+    "sha256": "bd024a6bc2aabf554e65bcdd2b29d11216e9e4e182af07730659a79bf8bb1ed7",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-798ca7948aa16298-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-7b109a34159e32dc-music.m4a": {
+    "bytes": 554796,
+    "sha256": "a2de85bf7ade03f00304fe6e565b9f215bc82a2a0b3cc8ba2928beeb72370ecc",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-7b109a34159e32dc-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-7b54f681edefbdd6-music.m4a": {
+    "bytes": 565255,
+    "sha256": "feb96b815a182a9e1b91db52d0b35758dad8d9bd5baaf47ccf2564afb9c1a6a0",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-7b54f681edefbdd6-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-7df185f77ecbb722-music.m4a": {
+    "bytes": 638925,
+    "sha256": "0a7df404c59113f6f457d0b96cbdbb00bd2e4bb76d6e4c6d8e613a7a59cb57a2",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-7df185f77ecbb722-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-81e339f406bf584b-music.m4a": {
+    "bytes": 674988,
+    "sha256": "ec37a8d5eaf12faced5b937ee6cb06789ed9b94c96a107e9e05631e9c83d7406",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-81e339f406bf584b-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-82d954dd5a7ec28c-music.m4a": {
+    "bytes": 538443,
+    "sha256": "98969c5e84f77bbab5e1435ea0747a250352b6c371c92bea86f8a1c29615f217",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-82d954dd5a7ec28c-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-841e2272cb74839c-music.m4a": {
+    "bytes": 682750,
+    "sha256": "bb24cc95b2eccaffa3fdc7ebbb42bca05a27e65fa00f4ba0339c51555ed61b8b",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-841e2272cb74839c-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-854d00d393dc127d-music.m4a": {
+    "bytes": 630564,
+    "sha256": "ccc3f84ce6b49c3024f445d89f04d038cf6ed595eb50d9663db963eab9838b57",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-854d00d393dc127d-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-85dc6194dd1951c3-music.m4a": {
+    "bytes": 563563,
+    "sha256": "2bae08821b66ca7f940716ff7d03b4f2474db067c0fb31c8803341aae612342e",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-85dc6194dd1951c3-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-86dd4ed291eeabd8-music.m4a": {
+    "bytes": 612618,
+    "sha256": "b1523790b4a72712e1d47135587d5e4ad104721f58648fc5f7ad64c5a4374396",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-86dd4ed291eeabd8-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-87b169162c9a5ac8-music.m4a": {
+    "bytes": 737869,
+    "sha256": "4d92f76508407432681c8bf06fcb7b548fd06008a23f8eddde4b17b3d6814c6b",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-87b169162c9a5ac8-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-88330c07fd3d6596-music.m4a": {
+    "bytes": 606098,
+    "sha256": "7a859df428eb7efea670b3af6864b51c651ba7331b5f304b3d734c3363191cdb",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-88330c07fd3d6596-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-8b7a3482f053f456-music.m4a": {
+    "bytes": 683785,
+    "sha256": "cfec96cffbf5847e1ac0152c7a89556c006cab31304574f2bee04c2167f19fc7",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-8b7a3482f053f456-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-8be74449d30d78f9-music.m4a": {
+    "bytes": 662456,
+    "sha256": "3c58221c3562c24334806beaf487fe728941654486ea0a2e1bd0190e23ccce54",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-8be74449d30d78f9-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-8c237537d8769cf9-music.m4a": {
+    "bytes": 643145,
+    "sha256": "50f905cbc7e5c1b9dd18a822a8c55dc5eceb3f75be1877cc7bfa13bc29ec599a",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-8c237537d8769cf9-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-8d2b376c294c491f-music.m4a": {
+    "bytes": 703457,
+    "sha256": "0ce6739cf9631f663fa5146005da860cc681453ac3fb48942df84a5173fb4ea7",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-8d2b376c294c491f-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-8e12871eef6e97b4-music.m4a": {
+    "bytes": 585456,
+    "sha256": "fe486332a90334b0a773e5bf12c6ce5a8d04a095c3486a1d4366de270d929111",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-8e12871eef6e97b4-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-8efd11db8f34a9c8-music.m4a": {
+    "bytes": 696025,
+    "sha256": "e86412b763555002d63e4ed132224d53646e0f1fcaf473179fd9f0e336920232",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-8efd11db8f34a9c8-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-901eebc183107aac-music.m4a": {
+    "bytes": 676923,
+    "sha256": "072dca19a993622edbf9af1087cf4cdf566f48a915bb6cf7cf9b115e603bddc9",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-901eebc183107aac-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-944377e6b21b081a-music.m4a": {
+    "bytes": 549836,
+    "sha256": "391b924a04aa45798d33b26b4948df6367003a18958ca708e0327a387a3bf79c",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-944377e6b21b081a-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-9443d92f96330140-music.m4a": {
+    "bytes": 607114,
+    "sha256": "7e4d3c0c294021336a95e360a182c3624271179c9f9fa6d155921575149b3439",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-9443d92f96330140-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-950ecfc70fbebd34-music.m4a": {
+    "bytes": 653822,
+    "sha256": "e7404f119c074453000c12c111c865e8290c73b7cad9d98f5c274581ae626092",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-950ecfc70fbebd34-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-960659289ae667b2-music.m4a": {
+    "bytes": 564104,
+    "sha256": "03084719e8c230800c305246860ef3a4fd3e7f6cfc2acee4dd9cc53742956e15",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-960659289ae667b2-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-962dce95824b60a3-music.m4a": {
+    "bytes": 612386,
+    "sha256": "4c3c29a07ae4ac56a5b83373a1db8c3e610b40251deced4ac4f3e310295c232f",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-962dce95824b60a3-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-991b43303e3fc19a-music.m4a": {
+    "bytes": 641830,
+    "sha256": "ccc0fd27e095afdd68cd0b0cd12ea2c626ca8f01f89bfd099c4114a68297bf56",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-991b43303e3fc19a-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-9b1e94de04dbae56-music.m4a": {
+    "bytes": 547270,
+    "sha256": "e8cc7c6130cd8449c0e4fca80b457f777183f5d280da7d9dae1b8e9fbfdb8c8a",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-9b1e94de04dbae56-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-9c36f5cd44eb621a-music.m4a": {
+    "bytes": 600167,
+    "sha256": "f3af6ec904b438747be9d311f10a8fa82e2bb39632bb6a2249e9eb7b711935a7",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-9c36f5cd44eb621a-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-9d67430a04010585-music.m4a": {
+    "bytes": 616775,
+    "sha256": "2bae510e9087724a1343a16de098d46f402e4c2432900cd3e2f88d7b88b08e5e",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-9d67430a04010585-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-9e689d5c779d129f-music.m4a": {
+    "bytes": 639479,
+    "sha256": "0ddb7d48a9279e351eb7dd5eb1de30be626642f2b5d92f76594488b91ec2a378",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-9e689d5c779d129f-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-a19a08415a49724b-music.m4a": {
+    "bytes": 658311,
+    "sha256": "5d205a423c90de82f8626ad7c3e2265de664b43996c3915454e924b86dcf42c7",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-a19a08415a49724b-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-a519338625e302d0-music.m4a": {
+    "bytes": 604209,
+    "sha256": "b098ab5caebb8a14f6e1267cef704e6f6ff92f98bf31b6f92d0d0c67c395e463",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-a519338625e302d0-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-a5960753b799b49d-music.m4a": {
+    "bytes": 652814,
+    "sha256": "33dcfa4f48c8eb4ae80d20983bf73e68953e92ab9ca9f98ff1549d6b5f20c161",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-a5960753b799b49d-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-a7a22898c1b79b65-music.m4a": {
+    "bytes": 785635,
+    "sha256": "783dcf0d5ede7f2709af7e6e43974f99ad317823d5eeaa0a6fbeae4b1498b64f",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-a7a22898c1b79b65-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-aa0279bc56e1b4b3-music.m4a": {
+    "bytes": 642948,
+    "sha256": "7a0bd2521128b7c9526348bd95d6d796338d7063edad3c4847da737270d72e54",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-aa0279bc56e1b4b3-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ab586cbaba5c7683-music.m4a": {
+    "bytes": 620325,
+    "sha256": "0eadf339e85beceb56d78103a555d5296ac45c39aad8f00cb987fbcd7f6e46eb",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ab586cbaba5c7683-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ac37bd1f8580b7cb-music.m4a": {
+    "bytes": 687644,
+    "sha256": "5437852126506826c9a66cacf4528e2e3dd96022aef94277aea1b3b4d9a015ec",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ac37bd1f8580b7cb-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ac6ba0408593592c-music.m4a": {
+    "bytes": 560612,
+    "sha256": "c88c76ad969717be20cb6bc9a116dd5a9cca20b0bafdaac8a8db24e199446f6f",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ac6ba0408593592c-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ad18f5080c40db61-music.m4a": {
+    "bytes": 625652,
+    "sha256": "361d02f0f10af9d9ddf0a1c35759bb9ad6037ecded2e4c55b5966b61e1431ffc",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ad18f5080c40db61-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ada9125b875c33af-music.m4a": {
+    "bytes": 516862,
+    "sha256": "462549c1f1e90983da9c062fa464a32ccf9f4ae6a9191fffed9260a252c20c8c",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ada9125b875c33af-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-adc20ea1a19d3ab0-music.m4a": {
+    "bytes": 566289,
+    "sha256": "783217b1e3fd2b3f4bc89e02dc6b677c43a69093a414d0806cd019c1f4551321",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-adc20ea1a19d3ab0-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ae11db24ee3a6b1f-music.m4a": {
+    "bytes": 499717,
+    "sha256": "b6d54416b2da4c63024235fb0b4387aa2544ea7b222d95efba9886520970f5b8",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ae11db24ee3a6b1f-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-afef7fee2c6ac5aa-music.m4a": {
+    "bytes": 772194,
+    "sha256": "48671e8a99e450a3bf576c08c5fdee2612fe3f365489d65bb1adeca0fa47d1f8",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-afef7fee2c6ac5aa-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b15253cfcbef7eca-music.m4a": {
+    "bytes": 735568,
+    "sha256": "4fa55430d3f1185c1fdd6494f4c78f63bac25c6990e82da184f77be8c5c245c2",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b15253cfcbef7eca-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b1c2633601789f14-music.m4a": {
+    "bytes": 630606,
+    "sha256": "06a0e03a16a37cda7cb994453b53b313930be01f9432908ccef66b3259f110a3",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b1c2633601789f14-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b3fa304bb9fb211b-music.m4a": {
+    "bytes": 693088,
+    "sha256": "3daf7d61cf5add63ee3da38b95d0bf00fb05e9f623735db4bf2aae79a049c2d5",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b3fa304bb9fb211b-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b6efe63551564120-music.m4a": {
+    "bytes": 625467,
+    "sha256": "9b5d3b6300cad1c6dbddab1ae711afc46e38893c8f78eec5492c499401879f18",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b6efe63551564120-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b72935c743156565-music.m4a": {
+    "bytes": 738635,
+    "sha256": "b266d6c0998278e1a5695b366cef594cd93b27ff1e322ff8f8a033e62b8560ec",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b72935c743156565-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b7d9739b9d627e7b-music.m4a": {
+    "bytes": 632170,
+    "sha256": "e63ad1961b046c7587d5fc708cc64c3c541d8b773d2ae07260318f6f7c63e464",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b7d9739b9d627e7b-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b8bff808e6e4adce-music.m4a": {
+    "bytes": 700612,
+    "sha256": "90df90a51e9ecdefaae7c6a0b120c62f6b5a4977865439cce09a547a051e7917",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b8bff808e6e4adce-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b8d7127518c41630-music.m4a": {
+    "bytes": 556903,
+    "sha256": "654738308297cb8b2569ae5dcb1c483ac67293c3573879e2a995bab5c55aa01c",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-b8d7127518c41630-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-bbfc68e2a7b7de08-music.m4a": {
+    "bytes": 525845,
+    "sha256": "505767ba5528493185a8ff263c9324b9aea548972f9dacbe1a65c4800e039779",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-bbfc68e2a7b7de08-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-bc67a0cbdc5904d1-music.m4a": {
+    "bytes": 552831,
+    "sha256": "31528f4739ac9fb4fe83b4f31a3feba823236d8c47d90094ad7ad6ff2b2f6b5c",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-bc67a0cbdc5904d1-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-bcb2a2f9490b883f-music.m4a": {
+    "bytes": 635103,
+    "sha256": "110e0b6fdaa54a18df60b91392f6a138d40e9444a1ec78a16f7142f57ca105d8",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-bcb2a2f9490b883f-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-bdf1a81c75c1bfc6-music.m4a": {
+    "bytes": 689412,
+    "sha256": "25ff553863dfcc943ce5ce8bac57986935bf2085b46a17bad4953ba0e4ee21d7",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-bdf1a81c75c1bfc6-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-be83a464207e49fd-music.m4a": {
+    "bytes": 629577,
+    "sha256": "63d89baf13658705345ae2903cac866ed33bf0a063183bb922da323d24beaf09",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-be83a464207e49fd-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c0f33ecfd6d21622-music.m4a": {
+    "bytes": 696999,
+    "sha256": "425f2455de588cf00a41c603dd4a6aa2c559d9b524ca5cb8d0403257ba59f6e4",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c0f33ecfd6d21622-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c16d42cc360838a0-music.m4a": {
+    "bytes": 514361,
+    "sha256": "3d7f0b8792dcecfde8ebaa9b20fcbd48408a431c8b5cfd39e555c4d6293e00c0",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c16d42cc360838a0-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c20e5f37b0dd409f-music.m4a": {
+    "bytes": 665702,
+    "sha256": "677b5b00511802bc80bc69a3f02411bd536b6129339d9e49cd5540bc1f4bb71f",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c20e5f37b0dd409f-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c403d1817f37b59c-music.m4a": {
+    "bytes": 630918,
+    "sha256": "6e8422f8c6edf0c87401a69da5236fec04fd2767f98a701c699d1fe0b41272fa",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c403d1817f37b59c-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c42eda17c0ce72dc-music.m4a": {
+    "bytes": 611096,
+    "sha256": "aef843da7a3f452cc7229343997ecbb30f838e83defab28638ed9a32eace102c",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c42eda17c0ce72dc-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c4f6a72be4507d20-music.m4a": {
+    "bytes": 569812,
+    "sha256": "54f4d4746c96616bc892a6abc5d6a2096aeb7e980a13b6d8f052734c465523f3",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c4f6a72be4507d20-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c5ffdd7f21a10ae9-music.m4a": {
+    "bytes": 617447,
+    "sha256": "ee2bb35e7e2aa5e6beb0f4a4284af0ae6789c7f26852286630cdebf75549c714",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c5ffdd7f21a10ae9-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c7250d2f0e2e32be-music.m4a": {
+    "bytes": 642834,
+    "sha256": "f317d0e1167c2489e3ec9608e5f58ebb76738792e688606a9018bd491cc2127e",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c7250d2f0e2e32be-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c9c5add0da44b1b9-music.m4a": {
+    "bytes": 576309,
+    "sha256": "acf8e72ab6ffc94e10845bf30535b11072982e6d6e03391131fde0f225c0cdbd",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-c9c5add0da44b1b9-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ca18a67c6ec912a6-music.m4a": {
+    "bytes": 654277,
+    "sha256": "203535a2232c791cd58a318b235b8f6d9e3bc76d8cfda0ca79a8542ff8157318",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ca18a67c6ec912a6-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-cb8d347e86e47916-music.m4a": {
+    "bytes": 547196,
+    "sha256": "52c62a89b8f09b244074d3b9706ac124129afbcfc9444fe33e3d1f62cd7b4064",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-cb8d347e86e47916-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-cbd11e32f10a1168-music.m4a": {
+    "bytes": 644714,
+    "sha256": "4d8a89dda8a4980f74c31aecea6ebb9701d8bb9770c854ca046cc56c358e3315",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-cbd11e32f10a1168-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-cc13552546513a58-music.m4a": {
+    "bytes": 579731,
+    "sha256": "971f47a545975f38b1bb855ad7d9fb7110c9a05ba63a8f9663a2500dc3e291f1",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-cc13552546513a58-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ccdbfc2e58607898-music.m4a": {
+    "bytes": 660693,
+    "sha256": "a6cae1037d77065c4541e3774a2859d66779f598946af3070e83ff3aeb56f327",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ccdbfc2e58607898-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ce5bf042c69a7996-music.m4a": {
+    "bytes": 697818,
+    "sha256": "ac18cab41619c31e0d6dd6899d43cd754e331d98f003d0919e87a38c661885b2",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ce5bf042c69a7996-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d0bb262f6646fc28-music.m4a": {
+    "bytes": 603372,
+    "sha256": "f81307959f6bdd4499f5c96b69560802fdd46870b9f4b8c497b8beed032a361d",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d0bb262f6646fc28-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d2ba0996a3a34d44-music.m4a": {
+    "bytes": 567623,
+    "sha256": "970af6b83808042f7c25c3f23a988520e735c11b168d7e8dc7e3cbd627441d10",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d2ba0996a3a34d44-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d3bb964e14310e92-music.m4a": {
+    "bytes": 561760,
+    "sha256": "a7690d8c488ad470d3a7165d459174ff4e4343a8c1d292c394087ed2fc324fe0",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d3bb964e14310e92-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d4a5735ccbfa6c5e-music.m4a": {
+    "bytes": 582641,
+    "sha256": "c491a8d28f2099c1a3817eeb7759364b11f80a52759c9c142be70c921e3d181d",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d4a5735ccbfa6c5e-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d4edd0907e84c935-music.m4a": {
+    "bytes": 831877,
+    "sha256": "31aa7e854b729d8f2e416145cbe2b8f25e54b2b4014cba4ee51a4fcdcfaef245",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d4edd0907e84c935-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d5bd442183a97d43-music.m4a": {
+    "bytes": 729623,
+    "sha256": "b1d7f749b52e61497e776b5e42aa42263a561118087e9d435898508ff809d655",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d5bd442183a97d43-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d5e359f367f7791c-music.m4a": {
+    "bytes": 689650,
+    "sha256": "3c69616ff674e1c4cfc9d5873d74d7babe373b82d1e63ae83cc23287bf71e182",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d5e359f367f7791c-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d65a03568f9bd593-music.m4a": {
+    "bytes": 667658,
+    "sha256": "549a34e340d9a75147a5a13417fbdd638fd784f207705aa72c85adcba9a03bc9",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-d65a03568f9bd593-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-da2e62c3971bb4fe-music.m4a": {
+    "bytes": 658970,
+    "sha256": "bbf788d658fa669a72819a2fe1dcac89f0c00fb2e91fb753c9a0ea325596dbb0",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-da2e62c3971bb4fe-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-dd9d286088623384-music.m4a": {
+    "bytes": 648735,
+    "sha256": "398d7988a61ada1da4b7fb536241eecf0e24830c2b7feec9ead566af7334d240",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-dd9d286088623384-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ddf57765c5a4bd36-music.m4a": {
+    "bytes": 612391,
+    "sha256": "6c9e3edfc0c2fc339635382e71c1cefe3b12590bcb21e71601222867d36dbbe4",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ddf57765c5a4bd36-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-dfaee39043b7af4f-music.m4a": {
+    "bytes": 679498,
+    "sha256": "0ee05099104eabb99f2f49c25f1244b82169568cda46aea0d12fc8b036c6db1b",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-dfaee39043b7af4f-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-dfb23e065cab4583-music.m4a": {
+    "bytes": 643519,
+    "sha256": "e5b82e5c71607f729d9cf67e7fa0d6d30f916a49225bc7f287f633268e9a15bb",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-dfb23e065cab4583-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-dffb7b2c983e5f96-music.m4a": {
+    "bytes": 706024,
+    "sha256": "2562750919e5d97267cf54edd0fcd860890a165c6d03aaefdea52341282c0b4b",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-dffb7b2c983e5f96-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-e2b180ab261c548f-music.m4a": {
+    "bytes": 603430,
+    "sha256": "c095f863f836179283a763d00f7d1f47576c91ddd0ff2ae6abc87f06727b36aa",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-e2b180ab261c548f-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-e2f5fdb1b95df9f5-music.m4a": {
+    "bytes": 639931,
+    "sha256": "c369932b638ddb66a22b649530453b092fe0d4c83a912055e4298c1086c201ca",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-e2f5fdb1b95df9f5-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-e7d52c5420f50206-music.m4a": {
+    "bytes": 619195,
+    "sha256": "0ff83c83b6428aa3a9a273aa6aab4284463bc6afb3c3465dd61befe47fa31903",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-e7d52c5420f50206-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-e7d8858a8f269c37-music.m4a": {
+    "bytes": 593477,
+    "sha256": "67692896117aa1108eaf036a6d886afa6a355e2653504c37224f335032c36bce",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-e7d8858a8f269c37-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-e9095c6467352441-music.m4a": {
+    "bytes": 657371,
+    "sha256": "7740e4f3c83e562e3f40230a55d13a3d6cb6de3451ccafa33c4e4c4fc1f77a9f",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-e9095c6467352441-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-e96aa9146deb2881-music.m4a": {
+    "bytes": 549652,
+    "sha256": "1b120de48f862a0f9a6d19d43cda80fb80fac397a583f2340a47cd20e39a7d78",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-e96aa9146deb2881-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-eafcbf3aefb787e4-music.m4a": {
+    "bytes": 660095,
+    "sha256": "f72da5387a2b02922691fa782a9a07dd16a0d7f33c5fb68266598e80d52b6668",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-eafcbf3aefb787e4-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-eb10a599e2af14fb-music.m4a": {
+    "bytes": 546342,
+    "sha256": "2caeab5da1f19395bbd39acc7202b723f0438c1c1598d6c98c8d4a9c43a1e619",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-eb10a599e2af14fb-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ebaf914bc241eaa0-music.m4a": {
+    "bytes": 624325,
+    "sha256": "217a57ddf6a460b0e0e5a48f5a171030ba03b65c4a279d9f34563c550943aa49",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-ebaf914bc241eaa0-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-f2171263b7cf3686-music.m4a": {
+    "bytes": 602687,
+    "sha256": "cf1db553ff4fd4df6ccdfd0f5fab1ebcc950be5539dcd2b14af258206526d8b4",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-f2171263b7cf3686-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-f26a58ccfbeaecc3-music.m4a": {
+    "bytes": 572522,
+    "sha256": "ddd41c79c124679f7bcb7136605a739ca24dbac480c66ff559d90dfeb3a46818",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-f26a58ccfbeaecc3-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-f2a61d7250651abd-music.m4a": {
+    "bytes": 622574,
+    "sha256": "e236074824876eaa0571e579cda57dcfb6fb3c9b8d65ee282f4364187489a932",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-f2a61d7250651abd-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-f3b1c5336e13b154-music.m4a": {
+    "bytes": 674070,
+    "sha256": "1b7b906b57f22971c2809b4d1253f3c3f76b6834166f5d6708f9881ba9b10c73",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-f3b1c5336e13b154-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-f6ff9c2992a28b9d-music.m4a": {
+    "bytes": 710396,
+    "sha256": "6d564956872a247b40ea20a0241213c8454d28157877e95e0483adbe3e29a7ff",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-f6ff9c2992a28b9d-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-fa5c3891175d6090-music.m4a": {
+    "bytes": 817706,
+    "sha256": "41354c11e1b1506de5cd87b1e8701a3a00590271bd5bc7264c789a89df382e92",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-fa5c3891175d6090-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-fb6ce695214371ea-music.m4a": {
+    "bytes": 608444,
+    "sha256": "73d1b5fc8767fafff317fcd7ec66978ddf1f5385fda63bf198417240591962c9",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-fb6ce695214371ea-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-fbb14a6f8a9c873d-music.m4a": {
+    "bytes": 567340,
+    "sha256": "4ec8fc945232cd499d6efa26f317d9eb64b0a0a0fe5e004052870e5af6530f15",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-fbb14a6f8a9c873d-music.m4a"
+  },
+  "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-fcb1f5a9083b936d-music.m4a": {
+    "bytes": 588509,
+    "sha256": "7bf8a0c8f463f7b5db4664ecb891145a1988e75e0f854aed9cdfc164ad671c94",
+    "mime": "audio/mp4",
+    "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-fcb1f5a9083b936d-music.m4a"
   }
 }
