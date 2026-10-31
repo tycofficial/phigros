@@ -1,0 +1,54 @@
+{
+  "chart": "Desultory Signals AT 18",
+  "noteCount": 2026,
+  "fullSongJointSamples": 18092,
+  "maxContactReachErrorCm": 2.2315206618374916e-15,
+  "handPlan": {
+    "notes": 2026,
+    "contacts": 1813,
+    "sharedNotes": 224,
+    "holdSamples": 12588,
+    "avoided": 161,
+    "verifiedSamples": 42827,
+    "handoffs": 11,
+    "fingerUsage": [
+      373,
+      182,
+      114,
+      222,
+      0,
+      371,
+      190,
+      128,
+      233,
+      0
+    ]
+  },
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "seconds": 4,
+    "frames": 240,
+    "codec": "h264",
+    "audio": "aac",
+    "sampleRate": 44100,
+    "channels": 2,
+    "sha256": "f06b2f1134c3c6f0c643182ffb824d6401eb5b7644dee9bff33152687fbfe7f8"
+  },
+  "unitTests": {
+    "passed": 306,
+    "failed": 0
+  },
+  "cleanup": {
+    "directFrames": 3,
+    "directScene": "gameplay",
+    "cancelled": true,
+    "active": false,
+    "restored": true,
+    "retained": true
+  },
+  "compressedAssetsBrowserCheck": "passed",
+  "browser": "Chromium 153 headless, software WebGL",
+  "physicalIPadSafariTested": false
+}

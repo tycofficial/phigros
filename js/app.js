@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-20';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-21';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,10 +26,10 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-20",
+    runtime: "4.0.1.2-pages-21",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
-    buildTimestamp: "2026-10-31T02:56:08Z",
+    buildTimestamp: "2026-10-31T10:40:00Z",
     coreSha256: "dcae237af6ee34b393b4ceea31605c87aaf0d0b737c95da89cc12e9cd5dbe677",
   });
   const PHI_SECURITY_LIMITS = Object.freeze({
@@ -16033,7 +16033,7 @@ function withTimeout(promise, ms, message = "操作超时") {
   };
   let videoExportSaving=false,videoHistoryGeneration=0;
   function videoNeedsDownload(entry){return entry.size>32*1048576||(entry.height>=2160&&entry.fps>=120);}
-  function videoExportDescription(entry){return`${entry.aspect?entry.aspect+' · ':''}${entry.width?entry.width+'×'+entry.height+' / '+entry.fps+' fps · ':''}${(entry.size/1048576).toFixed(1)} MB`;}
+  function videoExportDescription(entry){return`${entry.scene==='ipad'?'iPad Pro · ':''}${entry.aspect?entry.aspect+' · ':''}${entry.width?entry.width+'×'+entry.height+' / '+entry.fps+' fps · ':''}${(entry.size/1048576).toFixed(1)} MB`;}
   function showVideoExportActions(){
     const save=$('#videoExportSave'),share=$('#videoExportShare'),entry=videoExportLast;
     if(!save||!share)return;
@@ -16235,7 +16235,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     constructor(e,width,height){
       this.e=e;this.step=0;this.time=0;this.width=width;this.height=height;
       this.scale=width/e.surfaceW;this.left=0;this.top=0;
-      if(Math.abs(e.surfaceW/e.surfaceH-width/height)>1e-5)throw Error('视频布局比例校验失败。');
+      if(Math.abs(e.surfaceW/e.surfaceH-width/height)>Math.max(1e-5,1/height))throw Error('视频布局比例校验失败。');
       this.canvas=document.createElement('canvas');this.canvas.width=width;this.canvas.height=height;this.ctx=this.canvas.getContext('2d',{alpha:false});
       e._exportMusicTime=0;e._offlineExport=true;e.autoplay=true;e.usedAutoplay=true;e.invincibleMode=false;e.usedInvincible=false;e.musicRate=1;e.musicPlaying=false;
       e.musicCurrentTime=()=>e._exportMusicTime;e.audioTime=()=>e._exportMusicTime;e.playSound=()=>null;
@@ -16281,12 +16281,12 @@ function withTimeout(promise, ms, message = "操作超时") {
     const el=$('#videoExportStatus');if(el)el.textContent=text;
     if(progress!=null){const p=$('#videoExportProgress');if(p){p.value=clamp(progress,0,1);p.hidden=false;}}
   }
-  function cancelVideoExport(){if(videoExportJob){videoExportJob.cancelled=true;videoExportJob.client?.close();setVideoExportStatus('正在取消并释放编码资源…');}}
+  function cancelVideoExport(){if(videoExportJob){videoExportJob.cancelled=true;videoExportJob.abort?.abort();videoExportJob.client?.close();setVideoExportStatus('正在取消并释放编码资源…');}}
   async function runVideoExport(record,options={}){
     if(videoExportJob||videoExportSaving)throw Error('请等待当前视频操作完成。');
     if(!isSecureContext||typeof VideoFrame!=='function'||!navigator.storage?.getDirectory)throw Error('此浏览器没有提供视频编码和本地文件空间，请通过 HTTPS 或 localhost 在支持 WebCodecs 的浏览器打开。');
-    const spec=videoExportSpec(options),{width,height,fps,aspect}=spec;
-    const job={cancelled:false,client:null,path:`phi-video-${Date.now()}-${crypto.randomUUID()}.mp4`,session:null,viewport:null,wake:null,phase:'读取原谱'};videoExportJob=job;
+    const spec=videoExportSpec(options),{width,height,fps,aspect}=spec,tabletop=options.scene==='ipad';
+    const job={cancelled:false,client:null,path:`phi-video-${Date.now()}-${crypto.randomUUID()}.mp4`,session:null,viewport:null,wake:null,abort:new AbortController(),phase:'读取原谱'};videoExportJob=job;
     let exportEngine=null,success=false,finished=null;
     const check=()=>{if(job.cancelled)throw new DOMException('已取消导出','AbortError');if(job.failure)throw job.failure;if(job.interrupted)throw Error(job.interrupted);};
     try{
@@ -16299,23 +16299,42 @@ function withTimeout(promise, ms, message = "操作超时") {
       // Name the native disk file up front, avoiding a second File wrapper at
       // the end. Never replace/delete a previous successful export.
       job.path=`${safeExportStem(full.name)}_${width}x${height}_${fps}fps_${crypto.randomUUID().slice(0,8)}.mp4`;
-      const draft={path:job.path,name:`${safeExportStem(full.name)}_${difficultyInfoFor(full).tier||'CHART'}_${width}x${height}_${fps}fps_AutoPlay.mp4`,created:Date.now(),state:'encoding',width,height,fps,aspect};
+      const draft={path:job.path,name:`${safeExportStem(full.name)}_${difficultyInfoFor(full).tier||'CHART'}_${width}x${height}_${fps}fps_${tabletop?'iPadPro_':''}AutoPlay.mp4`,created:Date.now(),state:'encoding',width,height,fps,aspect,scene:tabletop?'ipad':'gameplay'};
       await PhiVideoStore.put(draft);check();
       check();if(engine)await backToLibrary();
       // Use a stable logical CSS height at every output resolution. Pixel
       // density increases detail without changing relative font/Note sizes.
-      const logicalHeight=720,logicalWidth=720*width/height;
+      const screenAspect=tabletop?26.34622478485108/19.807105189400612:width/height;
+      const gameHeight=tabletop?Math.max(720,Math.round(height*.82)):height,gameWidth=tabletop?Math.round(gameHeight*screenAspect):width;
+      const logicalHeight=720,logicalWidth=720*gameWidth/gameHeight;
       job.phase='准备画面和原字体';job.viewport=await PhiExportViewport.create(logicalWidth,logicalHeight);
       check();
       job.phase='加载音乐与原始材质';
-      await startChart(full,true,{mode:options.mode||dualMenuMode,lanes:options.lanes||12,offlineExport:true,exportDpr:height/logicalHeight});
+      await startChart(full,true,{mode:options.mode||dualMenuMode,lanes:options.lanes||12,offlineExport:true,exportDpr:gameHeight/logicalHeight});
       exportEngine=engine;
       if(!exportEngine?.record||!exportEngine.musicBuffer)throw Error('谱面或音乐初始化失败，无法导出。');
       await job.viewport.loadFonts();check();
-      const duration=exportEngine.musicBuffer.duration,start=clamp(Number(options.start)||0,0,duration),end=clamp(Number(options.end)||duration,start,duration);
+      const duration=exportEngine.musicBuffer.duration,start=clamp(Number(options.start)||0,0,duration);
+      const requestedEnd=options.end!=null&&Number.isFinite(Number(options.end))?Number(options.end):Number(options.clipSeconds)>0?start+Number(options.clipSeconds):duration,end=clamp(requestedEnd,start,duration);
       if(end<=start)throw Error('导出时长无效。');
       const totalFrames=Math.ceil((end-start)*fps-1e-8),audioFrames=Math.round(end*exportEngine.musicBuffer.sampleRate)-Math.round(start*exportEngine.musicBuffer.sampleRate);
-      const mixer=new PhiExportAudioMixer(exportEngine,start,end),session=job.session=new PhiOfflineRenderSession(exportEngine,width,height);
+      const mixer=new PhiExportAudioMixer(exportEngine,start,end),baseSession=job.session=new PhiOfflineRenderSession(exportEngine,gameWidth,gameHeight);
+      let session=baseSession,handPlan=null;
+      if(tabletop){
+        job.phase='规划手部动作与噪域避让';setVideoExportStatus('正在规划双手演奏与噪域避让…',0);
+        await loadHostedScript('./js/tabletop-planner.js');check();
+        handPlan=new PhiTabletopPlanner.ContactPlanner(exportEngine,{blocked:nativeBlockTouchBlocked},{progress:p=>setVideoExportStatus(`正在规划双手演奏 · ${Math.round(p*100)}%`,0)});
+        await handPlan.build(check);check();
+        job.phase='校验手部触点';await handPlan.verify(check);check();
+        job.phase='加载 iPad Pro 实景';setVideoExportStatus('正在加载 iPad Pro 主体与手部材质…',0);
+        const {TabletopScene}=await import('./tabletop-renderer.mjs');check();
+        session=job.session=await TabletopScene.create({engine:exportEngine,session:baseSession,planner:handPlan,width,height,signal:job.abort.signal});check();
+        job.phase='校验全曲关节与触点';setVideoExportStatus('正在校验全曲关节与触点…',0);
+        const audit=await session.audit(check,120);check();
+        session.diagnostics.audit=audit;
+        if(audit.maxReach>.04)throw Error(`实景手部在 ${audit.worstTime.toFixed(3)} 秒超出自然伸展范围。`);
+        if(options.onScene)await options.onScene(session);check();
+      }
       try{await Engine.sharedAudioContext().suspend();}catch{}
       const firstCanvas=session.render(start),codecKey=`phi-fast-codec-v2:${navigator.userAgent}:${width}x${height}:${fps}`;
       let preferredCodec,preferredLatencyMode;try{const saved=JSON.parse(localStorage.getItem(codecKey)||'null');if(saved&&Date.now()-saved.at<7*86400000){preferredCodec=saved.codec;preferredLatencyMode=saved.latencyMode;}}catch{}
@@ -16357,7 +16376,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       if(blob.size<128)throw Error('编码文件为空。');
       // From this point the finalized file must survive even if a metadata or
       // UI operation fails. Recovery can recognize its final MP4 footer.
-      const entry={...draft,...result,state:'complete',size:blob.size,verified:true,expectedFrames:totalFrames,seconds:end-start,elapsed:(performance.now()-began)/1000,codec:info.codec,encoderScores:info.encoderScores,audioEncoder:info.audioEncoder,layout:[exportEngine.surfaceW,exportEngine.surfaceH],counts:exportEngine.counts.slice(),total:exportEngine.total};
+      const entry={...draft,...result,state:'complete',size:blob.size,verified:true,expectedFrames:totalFrames,seconds:end-start,elapsed:(performance.now()-began)/1000,codec:info.codec,encoderScores:info.encoderScores,audioEncoder:info.audioEncoder,layout:[exportEngine.surfaceW,exportEngine.surfaceH],counts:exportEngine.counts.slice(),total:exportEngine.total,handPlan:handPlan?{...handPlan.stats}:null,model:tabletop?session.model.source:null,handDiagnostics:tabletop?{...session.diagnostics}:null};
       try{await PhiVideoStore.put(entry);}catch(e){Diagnostics.warn('VideoExport.catalog',e.message);}
       if(videoExportLast?.url)URL.revokeObjectURL(videoExportLast.url);
       finished=videoExportLast={...entry,file:blob,url:URL.createObjectURL(blob)};
@@ -16371,7 +16390,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       if(!success){await removeVideoExportTemp(job.path);try{const dir=await(await navigator.storage.getDirectory()).getDirectoryHandle('phi-video-exports');await dir.removeEntry(job.path+'.json');}catch{}}
       videoExportJob=null;
       const begin=$('#videoExportStart'),cancel=$('#videoExportCancel');if(begin)begin.disabled=false;if(cancel){cancel.disabled=false;cancel.textContent='关闭';}
-      for(const el of document.querySelectorAll('#videoExportDialog select'))el.disabled=false;
+      for(const el of document.querySelectorAll('#videoExportDialog select,#videoExportDialog input'))el.disabled=false;
       if(finished)setVideoExportStatus(`编码完成并已保存 · ${videoExportDescription(finished)} · ${finished.frames} 帧全部校验通过。可刷新或下次打开本网站后继续下载。${videoNeedsDownload(finished)?' 大视频请先下载到“文件”后分享。':''}`,1);
       showVideoExportActions();await refreshSavedVideos();
     }
@@ -16387,7 +16406,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     videoExportSelection={record,mode:engine?.chart?.kind==='pjsk'?'pjsk':dualMenuMode,lanes:engine?.chart?.pjskLaneCount||12};
     ensureVideoExportDialog();$('#videoExportSong').textContent=cleanGameplaySongName(record.name)+' · '+difficultyInfoFor(record).caption;
     $('#videoExportDialog').classList.remove('hidden');$('#videoExportStart').disabled=false;$('#videoExportProgress').hidden=true;
-    setVideoExportStatus('从头以 AutoPlay 导出完整游玩画面。');showVideoExportActions();refreshSavedVideos(true);
+    setVideoExportStatus('选择 iPad Pro 双手演奏，或导出原始游戏画面。');showVideoExportActions();refreshSavedVideos(true);
   }
   function openSavedVideoLibrary(){
     if(videoExportJob||videoExportSaving)return;
@@ -16397,15 +16416,15 @@ function withTimeout(promise, ms, message = "操作超时") {
   function ensureVideoExportDialog(){
     if($('#videoExportDialog'))return;
     const panel=document.createElement('section');panel.id='videoExportDialog';panel.className='hidden';
-    panel.innerHTML=`<div class="videoExportBox" role="dialog" aria-modal="true" aria-labelledby="videoExportTitle"><h2 id="videoExportTitle">导出视频</h2><p id="videoExportSong"></p><div class="videoExportOptions"><label>画面比例<select id="videoExportAspect"><option value="4:3" selected>4:3 · 默认</option><option value="9:16">9:16 · 竖屏</option><option value="16:9">16:9 · 横屏</option></select></label><label>分辨率<select id="videoExportResolution"><option value="1080">1080P · 1440×1080</option><option value="1440">1440P · 1920×1440</option><option value="2160">2160P · 2880×2160</option></select></label><label>帧率<select id="videoExportFps"><option value="30">30 fps</option><option value="60" selected>60 fps</option><option value="120">120 fps</option></select></label></div><p class="videoExportHint">MP4 · 自动游玩 · 音乐与打击音。按所选比例完整排版，逐帧编码；速度取决于设备性能。导出会结束当前游玩，完成后回到选歌。</p><progress id="videoExportProgress" max="1" value="0" hidden></progress><p id="videoExportStatus" role="status"></p><div class="videoExportActions"><button id="videoExportCancel" type="button">关闭</button><button id="videoExportStart" type="button">开始编码</button><a id="videoExportSave" hidden>下载 MP4</a><button id="videoExportShare" type="button" hidden>分享／存储</button></div><details id="videoExportSaved" open><summary>已保存的视频</summary><p class="videoExportHint">视频保留在本设备的本网站中，刷新或下次打开仍可下载。大视频先下载到“文件”后再分享。清除网站数据会删除这些视频。</p><div id="videoExportHistory" role="list" aria-label="已保存的视频">正在读取…</div><button id="videoExportRefresh" type="button">刷新列表</button></details></div>`;
+    panel.innerHTML=`<div class="videoExportBox" role="dialog" aria-modal="true" aria-labelledby="videoExportTitle"><h2 id="videoExportTitle">导出视频</h2><p id="videoExportSong"></p><div class="videoExportOptions"><label>视频场景<select id="videoExportScene"><option value="ipad" selected>iPad Pro · 双手演奏</option><option value="gameplay">原始游戏画面</option></select></label><label>画面比例<select id="videoExportAspect"><option value="4:3">4:3</option><option value="9:16">9:16 · 竖屏</option><option value="16:9" selected>16:9 · 横屏</option></select></label><label>分辨率<select id="videoExportResolution"><option value="1080">1080P · 1920×1080</option><option value="1440">1440P · 2560×1440</option><option value="2160">2160P · 3840×2160</option></select></label><label>帧率<select id="videoExportFps"><option value="30">30 fps</option><option value="60" selected>60 fps</option><option value="120">120 fps</option></select></label><label>导出范围<select id="videoExportClip"><option value="0">完整歌曲</option><option value="8">试导出 8 秒</option><option value="20">20 秒片段</option></select></label><label>起始秒数<input id="videoExportFrom" type="number" min="0" step="0.1" value="0" inputmode="decimal"></label></div><p class="videoExportHint">iPad Pro 居中平放，保留模型原始圆角；双手按谱面演奏并避让噪域。MP4 含音乐与打击音，可导出全曲或片段。导出后回到选歌。</p><progress id="videoExportProgress" max="1" value="0" hidden></progress><p id="videoExportStatus" role="status"></p><div class="videoExportActions"><button id="videoExportCancel" type="button">关闭</button><button id="videoExportStart" type="button">开始编码</button><a id="videoExportSave" hidden>下载 MP4</a><button id="videoExportShare" type="button" hidden>分享／存储</button></div><details id="videoExportSaved" open><summary>已保存的视频</summary><p class="videoExportHint">视频保留在本设备的本网站中，刷新或下次打开仍可下载。大视频先下载到“文件”后再分享。清除网站数据会删除这些视频。</p><div id="videoExportHistory" role="list" aria-label="已保存的视频">正在读取…</div><button id="videoExportRefresh" type="button">刷新列表</button></details></div>`;
     const style=document.createElement('style');style.textContent='#videoExportSaved{margin-top:20px;border-top:1px solid #ffffff30;padding-top:16px}#videoExportSaved summary{cursor:pointer;font-weight:600}.videoSavedRow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;border-bottom:1px solid #ffffff20;padding:12px 0}.videoSavedRow span{flex:1 1 220px;overflow-wrap:anywhere;font-size:14px}.videoSavedRow button,#videoExportRefresh{font-size:14px;padding:8px 10px}#videoExportHistory{max-height:32vh;overflow:auto}';panel.append(style);
     document.body.appendChild(panel);
     $('#videoExportAspect').onchange=()=>{for(const option of $('#videoExportResolution').options){const s=videoExportSpec({aspect:$('#videoExportAspect').value,resolution:Number(option.value)});option.textContent=`${option.value}P · ${s.width}×${s.height}`;}};
     $('#videoExportStart').onclick=async()=>{
       if(videoExportJob||videoExportSaving||!videoExportSelection)return;Engine.primeAudioFromGesture();
-      const options={mode:videoExportSelection.mode,lanes:videoExportSelection.lanes,aspect:$('#videoExportAspect').value,resolution:Number($('#videoExportResolution').value),fps:Number($('#videoExportFps').value)};
+      const options={scene:$('#videoExportScene').value,start:Number($('#videoExportFrom').value)||0,clipSeconds:Number($('#videoExportClip').value)||0,mode:videoExportSelection.mode,lanes:videoExportSelection.lanes,aspect:$('#videoExportAspect').value,resolution:Number($('#videoExportResolution').value),fps:Number($('#videoExportFps').value)};
       $('#videoExportStart').disabled=true;$('#videoExportCancel').textContent='取消导出';$('#videoExportSave').hidden=true;$('#videoExportShare').hidden=true;
-      for(const el of panel.querySelectorAll('select,.videoSavedRow button'))el.disabled=true;
+      for(const el of panel.querySelectorAll('select,input,.videoSavedRow button'))el.disabled=true;
       try{await runVideoExport(videoExportSelection.record,options);}catch(e){Diagnostics.warn('VideoExport',e?.message||String(e));}
       finally{$('#videoExportCancel').textContent='关闭';}
     };
