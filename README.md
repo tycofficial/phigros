@@ -1,5 +1,15 @@
 # TYCPHIGROS 4.0.1.2 · GitHub Pages 发布曲库
 
+## 互动重演与第八章曲中演出 · pages-17
+
+开启独立的“意象重演”后，选择 Spasmodic、Igallta、Rrhar’il 或第八章相关歌曲，将进入真实的章节控制流程。已接入时钟长按／松手后 Play、DF 启动画面点击、Retribution 双阶段与 HP 分支、321 卡顿和结束对话、DF 终幕及可长按跳过的制作名单。游戏判定、分数和实际音视频时钟驱动分支，不再仅切换背景或播放独立影片。
+
+Luminescence 的成功／失败条件连接到原生素材烟花；DF 的约 25 秒倒计时、曝光／饱和度／对比度、网格、噪点、扫描线与暗角已接入，普通游玩保留其已实现的曲中演出。新增 Rr 解锁与 QD 影片、制作名单音乐，全部从固定提交按需读取并校验。重演单独标记，不覆盖正常最佳成绩。
+
+规则和素材依据第三方修改版 3.0.0.1 历史存档复核，尚未验证与官方 4.x 逐帧一致。Bloom、径向模糊、边缘光、Glitch 及 Rr 历史音符皮肤仍未完整还原；第九章完整互动也未完成。来源、已验证范围与缺口见 `assets/meta/chapter8-replay-control-source.md`、`assets/meta/chapter8-replay-renderer.md`、`assets/meta/chapter8-stage-effects.md`。
+
+285 项回归测试通过；Chromium 验证真实章节控制、烟花成功／失败与暂停／回退，以及颜色和着色纹理输出。真实 iPad Safari 仍待验证。
+
 ## 联网曲库旧 Safari 兼容 · pages-16
 
 173 首联网曲目新增独立媒体分支的 AAC 兼容音轨；仅在浏览器不支持原 OGG 时选择，支持 OGG 的设备仍使用原音轨。原 OGG 导出与谱面不变。AAC 是已有的有损兼容版本，并非无损转码；固定提交、字节数及 SHA-256 见 `assets/meta/remote-aac-source.json`。

@@ -32,6 +32,6 @@ test('only trusted matching SHA triggers the module and changed chart bytes neve
   const abort=new AbortController();abort.abort();await assert.rejects(c.prepareEffect(entry('good'),abort.signal),{name:'AbortError'});
 });
 
-test('independent replay switch removes and restores supported HUD at the current music position',()=>{
-  const {p,values,context,seek}=presentation();context.PhiVisionMode={enabled:true};seek(130);assert(p.sampleChapter8CommunityPresentation().showCountdown);assert.equal(values.size,2);context.PhiVisionMode.enabled=false;assert.equal(p.sampleChapter8CommunityPresentation(),null);assert.equal(values.size,0);context.PhiVisionMode.enabled=true;assert(p.sampleChapter8CommunityPresentation().showCountdown);assert.equal(values.size,2);
+test('chapter replay mode does not suppress ordinary in-song visuals',()=>{
+  const {p,values,context,seek}=presentation();context.PhiVisionMode={enabled:true};seek(130);assert(p.sampleChapter8CommunityPresentation().showCountdown);assert.equal(values.size,2);context.PhiVisionMode.enabled=false;assert(p.sampleChapter8CommunityPresentation().showCountdown);assert.equal(values.size,2);seek(40);assert(!p.sampleChapter8CommunityPresentation().showCountdown);assert.equal(values.size,0);
 });

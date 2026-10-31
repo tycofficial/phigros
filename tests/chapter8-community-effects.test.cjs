@@ -14,14 +14,15 @@ test('only the source-matched built-in difficulties receive community profiles',
     return [entry.meta.name,entry.meta.difficultyClass,fx.select(byId.get(file.asset).sha256)];
   });
   assert.deepEqual(JSON.parse(JSON.stringify(selected.filter(row=>row[2]).map(row=>[row[0],row[1]]))),[
-    ['DESTRUCTION 3,2,1','IN'],['Distorted Fate','EZ'],['Distorted Fate','HD'],['Distorted Fate','IN'],
+    ['DESTRUCTION 3,2,1','EZ'],['DESTRUCTION 3,2,1','HD'],['DESTRUCTION 3,2,1','IN'],['DESTRUCTION 3,2,1','AT'],['Distorted Fate','EZ'],['Distorted Fate','HD'],['Distorted Fate','IN'],['Distorted Fate','AT'],
   ]);
 });
-test('effect selection accepts only four source chart hashes, never a similar title or other chart version',()=>{
+test('effect selection accepts only eight trusted chart hashes, never a similar title or modified version',()=>{
   assert.equal(fx.select(df),'distorted-fate');assert.equal(fx.select(df.toUpperCase()),'distorted-fate');
   assert.equal(fx.select(d321),'destruction-321');
   assert.equal(fx.select('Distorted Fate'),null);
-  assert.equal(fx.select('009a9822e6c2d0f216895d7215835cfd0b06022bba5b3c9217f7468ece41c53d'),null);
+  assert.equal(fx.select('009a9822e6c2d0f216895d7215835cfd0b06022bba5b3c9217f7468ece41c53d'),'distorted-fate');
+  assert.equal(fx.select('009a9822e6c2d0f216895d7215835cfd0b06022bba5b3c9217f7468ece41c530'),null);
   assert.equal(fx.sample('unknown',90),null);assert.equal(fx.sample('distorted-fate',NaN),null);
 });
 test('Distorted Fate community curve and countdown respect music time and event boundaries',()=>{

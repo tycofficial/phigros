@@ -1,0 +1,44 @@
+{
+  "source": "Third-party modified historical 3.0.0.1 archive; not verified official current 4.x",
+  "bundle": "1c13a4d74d41617f2f85a93b319ea68e.bundle",
+  "bundleSha256": "55674af2eadd49c09e7783d9ae9a07c35ebf079f5019da3836fc946e8042634d",
+  "extraction": "UnityPy AudioClip.samples decoded the bundled FSB audio into PCM WAV. No resampling, time stretching or trimming. m4a files are optional AAC64k derivatives.",
+  "clips": [
+    {
+      "clipName": "Ambient_Retri",
+      "pathID": "8083020114438394559",
+      "wav": "chapter8-ambient-retri.wav",
+      "bytes": 2861112,
+      "sha256": "7270e375da7e0718699b55180f5fcf81a294610c4e8a09221517c24a0b6f00e1",
+      "channels": 2,
+      "sampleWidth": 2,
+      "sampleRate": 44100,
+      "frames": 715267,
+      "duration": 16.21920634920635
+    },
+    {
+      "clipName": "Ambient",
+      "pathID": "5896973436383789224",
+      "wav": "chapter8-message-ambient.wav",
+      "bytes": 2646044,
+      "sha256": "f4990571d01df499490ef06d0e88beb570396e34fd9b2eb10e1e330fcda97cde",
+      "channels": 2,
+      "sampleWidth": 2,
+      "sampleRate": 44100,
+      "frames": 661500,
+      "duration": 15.0
+    },
+    {
+      "clipName": "Message",
+      "pathID": "1496323622456250407",
+      "wav": "chapter8-message.wav",
+      "bytes": 176444,
+      "sha256": "a2c8fa876d9dc525be41bfe77c7b28b4793f6172dc4298d190bc4811f812dc1d",
+      "channels": 2,
+      "sampleWidth": 2,
+      "sampleRate": 44100,
+      "frames": 44100,
+      "duration": 1.0
+    }
+  ]
+}

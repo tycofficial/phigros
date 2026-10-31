@@ -17,3 +17,5 @@ shader that is not present in the published repository; consequently the full
 original filters, postprocessing and story/replay animation are not supplied.
 Upstream's repository explicitly excludes multimedia assets from its software
 license; no additional art, audio or game assets are copied here.
+
+The native music-clock timelines are also applied to the exact pinned current DF AT and DESTRUCTION 3,2,1 EZ/HD/AT chart hashes. This extends the upstream chart whitelist; it does not claim upstream supplied or verified those difficulty mappings. Modified chart bytes are still rejected. DF countdown data is 125.2s:24.8 through 150s:0.

@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const MAX_VIDEO_BYTES = 48 * 1024 * 1024;
-  let byURL = new Map(), clips = [];
+  let byURL = new Map(), audioByURL = new Map(), clips = [];
   const abortError = () => new DOMException('已取消', 'AbortError');
   function installManifest(manifest) {
     if (!manifest || manifest.version !== 1 || !Array.isArray(manifest.videos) || manifest.videos.length > 100)
@@ -28,8 +28,21 @@
     try {
       const u = new URL(String(value?.url || value), location.href);
       if (u.protocol !== 'https:' || u.username || u.password || u.port || u.search || u.hash) return null;
-      return byURL.get(u.href) || null;
+      return byURL.get(u.href) || audioByURL.get(u.href) || null;
     } catch { return null; }
+  }
+  function installAudioManifest(manifest){
+    if(!manifest||manifest.version!==1||!Array.isArray(manifest.audios)||manifest.audios.length>16)throw Error('重演音频清单无效');
+    const next=new Map(),items=[],ids=new Set();
+    for(const item of manifest.audios){
+      if(!item||!/^[a-z0-9_]{1,60}$/.test(item.id||'')||ids.has(item.id)||!Number.isSafeInteger(item.bytes)||item.bytes<=0||item.bytes>MAX_VIDEO_BYTES||!/^[a-f0-9]{64}$/.test(item.sha256||''))throw Error('重演音频条目无效');
+      const url=new URL(item.url),match=/^\/tycofficial\/phigros\/([a-f0-9]{40})\/vision\/audio\/([A-Za-z0-9][A-Za-z0-9._-]*\.(flac|m4a))$/.exec(url.pathname);
+      if(url.origin!=='https://raw.githubusercontent.com'||url.href!==item.url||url.username||url.password||url.port||url.search||url.hash||!match||item.mime!==(match[3]==='flac'?'audio/flac':'audio/mp4'))throw Error('重演音频来源无效');
+      const mirror=`https://cdn.jsdelivr.net/gh/tycofficial/phigros@${match[1]}/vision/audio/${match[2]}`;
+      if(item.mirror!==mirror||next.has(url.href))throw Error('重演音频备用来源无效');
+      const spec=Object.freeze({...item,url:url.href,mirror});ids.add(spec.id);next.set(spec.url,spec);next.set(spec.mirror,spec);items.push(spec);
+    }
+    audioByURL=next;return Object.freeze(items);
   }
   async function request(address, spec, signal, onProgress, timeout) {
     const controller = new AbortController(), abort = () => controller.abort();
@@ -80,7 +93,7 @@
     }
     throw Error('影片来源不可访问或校验失败，请检查网络后重试'+(last?.message?'（'+last.message+'）':''));
   }
-  globalThis.PhiVisionReplay = Object.freeze({info,installManifest,download});
+  globalThis.PhiVisionReplay = Object.freeze({info,installManifest,installAudioManifest,download});
   if (typeof document === 'undefined') return;
   const panel=document.getElementById('visionReplayPanel'), open=document.getElementById('visionReplayOpen'), close=document.getElementById('visionReplayClose');
   const list=document.getElementById('visionReplayList'), video=document.getElementById('visionReplayVideo'), status=document.getElementById('visionReplayStatus'), progress=document.getElementById('visionReplayProgress');

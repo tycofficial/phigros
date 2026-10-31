@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-16';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-17';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,10 +26,10 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-16",
+    runtime: "4.0.1.2-pages-17",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
-    buildTimestamp: "2026-10-27T10:16:39Z",
+    buildTimestamp: "2026-10-31T02:41:53Z",
     coreSha256: "dcae237af6ee34b393b4ceea31605c87aaf0d0b737c95da89cc12e9cd5dbe677",
   });
   const PHI_SECURITY_LIMITS = Object.freeze({
@@ -6342,14 +6342,18 @@ function withTimeout(promise, ms, message = "操作超时") {
     if (!Array.isArray(entry.files)) document.getElementById(`phiBuiltin_${entry.id}`)?.remove();
     return rec;
   }
-  // Only these exact original chart bytes have an upstream community timeline.
+  // Exact trusted charts sharing the native song-clock event timeline.
   // Check the decompressed bytes as well as the catalogue declaration so a
   // modified chart, imported chart, or different difficulty never inherits it.
   const CHAPTER8_COMMUNITY_HASHES = new Set([
     "b13ed5ccefc29fcbfec55c0d8437c6baade3b2889604d579e5ce9ae58d8297d6",
     "b9da6d696354486a7f3dc62b531edc0489d874fb99eee29a18cd393b7079d2eb",
     "9f4508d425c0c241e9cfca064256a54b2509aa5e9169c12b6f131b848a1f828b",
+    "009a9822e6c2d0f216895d7215835cfd0b06022bba5b3c9217f7468ece41c53d",
+    "e1b82ddf9d17ff816943b7d223dc7fa9b91adb247f4826b05ffba4c0a02bfa3d",
+    "50613e8fb0fbc09e8e5eda858e4b9174f43d032a8d59e6f37abe7d32b6dcaf97",
     "52c749bec3353160c6c0bb14c145e2bc7d708f44e9e3d5c49220ffb372d3b91e",
+    "eed7606761ec57a9344ce7eb5142fa47db1f9e3a2a981fe62e40f95ec31af70a",
   ]);
   let chapter8CommunityModulePromise = null;
   function loadChapter8CommunityModule() {
@@ -6377,7 +6381,7 @@ function withTimeout(promise, ms, message = "操作超时") {
   async function prepareChapter8CommunityEffect(entry, signal) {
     const file = entry?.files?.find(item => item.name === entry.meta?.chart);
     const declared = BUILTIN_ASSET_MAP.get(String(file?.asset))?.sha256;
-    if (!file || !CHAPTER8_COMMUNITY_HASHES.has(declared) || globalThis.PhiVisionMode?.enabled === false) return null;
+    if (!file || !CHAPTER8_COMMUNITY_HASHES.has(declared)) return null;
     try {
       const [api, blob] = await Promise.all([
         loadChapter8CommunityModule(), materializeBuiltinAsset(file.asset, file.name, { signal }),
@@ -6393,6 +6397,9 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
   }
   async function startBuiltinPack(entry, playOptions = null) {
+    if (globalThis.PhiVisionMode?.enabled && globalThis.PhiInteractiveReplay?.routeForSong(entry) && !playOptions?.visionContinuation && !playOptions?.courseSessionId && !playOptions?.offlineExport && playOptions?.mode !== 'pjsk' && dualMenuMode !== 'pjsk') {
+      return PhiInteractiveReplay.begin(entry);
+    }
     const token = ++songLoadToken,course=!!playOptions?.courseSessionId;
     const fallbackArtwork=course?null:libraryFocusBgBlob;
     let stream=null,streamReady=null,courseArtwork=null,courseArtworkReady=null;
@@ -6415,7 +6422,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       const preparation=Promise.all([ensureBuiltinMaterialForPlay(),loadSavedOrAdjacentOfficialFont()]);
       preparation.catch(()=>{});
       const [record,,chapter8CommunityProfile] = await Promise.all([materializeBuiltinPack(entry,{streaming:!playOptions?.offlineExport,signal:stream?.controller.signal}),beginLoadingPresentation(entry, fallbackArtwork),prepareChapter8CommunityEffect(entry,stream?.controller.signal)]);
-      const rec = {...record,chapter8CommunityProfile,bgBlob:record.bgBlob||courseArtwork||fallbackArtwork,_preparedStream:stream,_streamReady:streamReady,
+      const rec = {...record,chapter8CommunityProfile,visionReplay:playOptions?.visionReplay||null,bgBlob:record.bgBlob||courseArtwork||fallbackArtwork,_preparedStream:stream,_streamReady:streamReady,
         _courseArtworkReady:courseArtworkReady};
       assertSongLoad(token);
       updateLoadingPresentation(rec, fallbackArtwork);
@@ -6699,7 +6706,9 @@ function withTimeout(promise, ms, message = "操作超时") {
     card.dataset.videoRank = bestGrade || "—";
     if (play) {
       play.disabled = !card.querySelector(".play") || card.querySelector(".play").disabled;
-      play.textContent = dualMenuMode === "pjsk" ? "Select" : `START · ${sourceDiffs[selected]?.textContent || "PLAY"}`;
+      const replay=dualMenuMode!=='pjsk'&&globalThis.PhiVisionMode?.enabled&&globalThis.PhiInteractiveReplay?.routeForSong(selectedRecord);
+      play.textContent = dualMenuMode === "pjsk" ? "Select" : `${replay?'重演':'START'} · ${sourceDiffs[selected]?.textContent || "PLAY"}`;
+      if(replay&&meta)meta.textContent+=` · 第 ${replay.chapter} 章意象入口`;
       if (online && !onlineAudioSupported) { play.disabled = true; play.textContent = "不支持该音轨"; }
       play.onclick = () => card.querySelector(".play")?.click();
     }
@@ -10827,6 +10836,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     reset() {
       this.streamRecoveryAbort?.abort();this.streamBuffering=false;
       this.clearChapter8CommunityPresentation();
+      this.chapter8StageRenderer?.dispose();this.chapter8StageRenderer=null;
       this.inputFrameTime=NaN;
       clearTimeout(this.referenceFinishTimer);this.referenceFinishing=false;
       $("#gameView")?.classList.remove("phiStageIntro","phiStageOutro");
@@ -10897,6 +10907,9 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.updateHUD();
     }
     stop(reason = "stop") {
+      globalThis.PhiInteractiveReplay?.detach(this);
+      this.chapter8StageRenderer?.dispose();this.chapter8StageRenderer=null;
+      if(this.visionStutterSource){try{this.visionStutterSource.stop();this.visionStutterSource.disconnect();}catch{}this.visionStutterSource=null;}
       this.hostedArtworkAbort?.abort();
       this.clearChapter8CommunityPresentation();
       this.streamRecoveryAbort?.abort();this.streamBuffering=false;$('#streamBufferStatus')?.classList.add('hidden');
@@ -11138,6 +11151,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     async restart() {
       if(this.courseSessionId && globalThis.PhiCourse)return PhiCourse.retry();
+      if(this.record?.visionReplay&&globalThis.PhiInteractiveReplay?.current)return PhiInteractiveReplay.begin(BUILTIN_PACKS.find(entry=>entry.id===this.record.builtinEntryId)||this.record);
       if (!this.record || !this.chart) throw new Error("当前谱面已经释放，无法重新开始");
       if (this.restartPending) return;
       this.restartPending = true;
@@ -11321,6 +11335,10 @@ function withTimeout(promise, ms, message = "操作超时") {
         workStart = samplePerf ? performance.now() : 0;
       this.prepareFrame(visualT);
       this.currentVisualTime = visualT;
+      if(this.record.visionReplay){
+        globalThis.PhiInteractiveReplay?.updateSong(this,t,frameInterval/1000);
+        if(!this.running||this.paused)return;
+      }
       this.update(t, now, visualT);
       // Materialize hit visuals once per rAF, outside TouchEvent callbacks.
       this.flushHitEffects();
@@ -12935,6 +12953,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.pendingJudge.delete(n._item);
       this.activeHolds.delete(n._item);
       this.actualCounts[actualJudge]++;
+      if(this.record.visionReplay)globalThis.PhiInteractiveReplay?.judge(this,['Perfect','Good','Bad','Miss'][actualJudge]);
       if (actualJudge <= 1) { this.actualCombo++; this.actualMaxCombo = Math.max(this.actualMaxCombo, this.actualCombo); } else this.actualCombo = 0;
       if (this.invincibleMode) {
         this.usedInvincible = true;
@@ -13158,6 +13177,11 @@ function withTimeout(promise, ms, message = "操作超时") {
           (0.1 * this.maxCombo) / Math.max(1, this.total)) *
           1000000,
       );
+    }
+    rawScore() {
+      const api=globalThis.PhiChapter8ReplayRules;
+      if(api)return api.rawScore(this.counts[0],this.counts[1],this.maxCombo,this.total,this.courseStrict||this.chart.kind==='pjsk');
+      return this.score();
     }
     paintProgress(value) {
       const original=this.chart.kind!=='pjsk'&&!!this.pack?.progressIconURL,
@@ -13825,7 +13849,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     sampleChapter8CommunityPresentation() {
       const api = globalThis.PhiChapter8CommunityEffects;
-      const frame = this.chart.kind === 'pgr' && this.chapter8CommunityProfile && api && globalThis.PhiVisionMode?.enabled !== false
+      const frame = this.chart.kind === 'pgr' && this.chapter8CommunityProfile && api
         ? api.sample(this.chapter8CommunityProfile, this.musicCurrentTime(), this.chapter8CommunityFrame)
         : null;
       const hideMetadata = !!frame?.hideMetadata, hideCombo = !!frame?.hideCombo;
@@ -13851,6 +13875,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       // Canvas-first background: this remains visible even when WebKit promotes
       // the gameplay Canvas to an opaque surface.
       this.drawGameplayBackground(c,t);
+      if(this.record.visionReplay)globalThis.PhiInteractiveReplay?.drawSong(this,'background');
       // The source timeline follows the actual music position, independent of
       // chart offset, render latency, pause/seek and playback rate.
       const chapter8Frame = this.sampleChapter8CommunityPresentation();
@@ -14007,6 +14032,11 @@ function withTimeout(promise, ms, message = "操作超时") {
         this.hideForegroundFxUnderlay();
       }
       drawNativeNoiseOverlay(this,t);
+      if(this.record.visionReplay)globalThis.PhiInteractiveReplay?.drawSong(this);
+      else if(chapter8Frame?.profile==='distorted-fate'&&globalThis.PhiChapter8StageEffects){
+        if(!this.chapter8StageRenderer)this.chapter8StageRenderer=PhiChapter8StageEffects.create(this.canvas);
+        this.chapter8StageRenderer.sample({songKey:chapter8Frame.profile,time:this.musicCurrentTime()});
+      }
     }
     drawNote(L, n, t, coverEnabled = true, appearBefore = Infinity) {
       const isHold = n.type === 3,
@@ -14223,6 +14253,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     finish() {
       if (!this.running || this.referenceFinishing) return;
       this.settleResultJudgements();
+      if(this.record.visionReplay&&globalThis.PhiInteractiveReplay?.finishSong(this))return;
       performanceMonitor.refresh(this);
       const token=++this.transitionToken;
       this.referenceFinishing=true;
@@ -14292,7 +14323,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     return Math.round((0.9 * accuracy + 0.1 * maxCombo / Math.max(1, total)) * 1000000);
   }
   function qualificationFor(engine) {
-    const assistFlags = { autoplay: !!engine.usedAutoplay, invincible: !!engine.usedInvincible, reveal: !!engine.usedReveal, keyboard: !!engine.usedKeyboard, modeSwitch: !!engine.usedModeSwitch, pjskMode: engine.chart?.kind === "pjsk" };
+    const assistFlags = { autoplay: !!engine.usedAutoplay, invincible: !!engine.usedInvincible, reveal: !!engine.usedReveal, keyboard: !!engine.usedKeyboard, modeSwitch: !!engine.usedModeSwitch, pjskMode: engine.chart?.kind === "pjsk", visionReplay:!!engine.record?.visionReplay };
     const ranked = !Object.values(assistFlags).some(Boolean);
     return { ranked, assistFlags, rulesetVersion: RULESET_VERSION, inputClass: assistFlags.keyboard ? "keyboard" : "pointer" };
   }
@@ -15268,6 +15299,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     observeResultGeometry();
   }
   async function backToLibrary() {
+    if(globalThis.PhiInteractiveReplay?.current)PhiInteractiveReplay.cancel();
     globalThis.PhiCourse?.cancel();
     performanceMonitor.setGameActive(false);
     try { engine?.stop("back-to-library"); }
@@ -16412,6 +16444,51 @@ function withTimeout(promise, ms, message = "操作超时") {
     });
     registerModule("CourseMode",PhiCourse);
   }
+
+  let replayLoadId=null;
+  if(globalThis.PhiInteractiveReplay)PhiInteractiveReplay.configure({
+    prepare:async()=>{},
+    findEntry(key,tier){
+      const wanted=PhiInteractiveReplay.songKey(key),matches=BUILTIN_PACKS.filter(entry=>PhiInteractiveReplay.songKey(entry)===wanted);
+      return matches.find(entry=>entry.meta?.difficultyClass===tier)||matches.find(entry=>entry.meta?.difficultyClass==='IN')||matches[0];
+    },
+    async startSong(entry,options){
+      replayLoadId=options.visionReplay.id;
+      firstPlayAudioPrime=Engine.primeAudioFromGesture();
+      try{
+        await startBuiltinPack(entry,options);
+        if(engine?.record?.visionReplay?.id!==options.visionReplay.id||!engine.running)throw Error('重演曲目未能启动');
+        return engine;
+      }finally{if(replayLoadId===options.visionReplay.id)replayLoadId=null;}
+    },
+    cancelPreparation(id){
+      if(replayLoadId!==id)return;
+      ++songLoadToken;songLoadStream?.destroy();if(songLoadStream){songLoadStream.audio.pause();songLoadStream.audio.removeAttribute('src');songLoadStream.audio.load();songLoadStream=null;}cancelLoadingPresentation();
+    },
+    stopSong(id){
+      if(engine?.record?.visionReplay?.id!==id)return;
+      engine.stop('vision-transition');engine=null;window.__phiEngine=null;performanceMonitor.setGameActive(false);
+      $('#gameView').classList.add('hidden');$('#pausePanel').classList.add('hidden');
+      document.body.classList.remove('phiGameplayActive','phiResultActive');
+    },
+    settleSong(target){target.settleResultJudgements();},
+    fadeAudio(target,duration){
+      if(target.musicGain?.gain){const time=Engine.sharedAudioContext().currentTime;target.musicGain.gain.cancelScheduledValues(time);target.musicGain.gain.setValueAtTime(target.musicGain.gain.value,time);target.musicGain.gain.linearRampToValueAtTime(0,time+duration);}
+      else target.audio.volume=0;
+    },
+    stutterAudio(target,event){
+      const time=target.musicCurrentTime(),buffer=target.musicBuffer;
+      target.pauseMusic();
+      if(buffer){
+        const ac=Engine.sharedAudioContext(),source=ac.createBufferSource();source.buffer=buffer;source.loop=true;source.loopStart=Math.min(time,buffer.duration-.01);source.loopEnd=Math.min(buffer.duration,source.loopStart+event.interval*event.pitch);source.playbackRate.value=event.pitch;source.connect(target.ensureMusicGain());source.start();source.stop(ac.currentTime+event.duration);target.visionStutterSource=source;
+      }
+    },
+    stopAudio(target){target.pauseMusic();if(target.visionStutterSource){try{target.visionStutterSource.stop();target.visionStutterSource.disconnect();}catch{}target.visionStutterSource=null;}},
+    onFailure(){toast('重演条件未达成，已返回选曲。',false,4500);},
+    onExit(){void backToLibrary();},
+    onChange(){if(libraryFocusCard?.isConnected)syncLibraryFocus(libraryFocusCard);}
+  });
+  window.addEventListener('phi:vision-mode',()=>{if(libraryFocusCard?.isConnected)syncLibraryFocus(libraryFocusCard);});
 
   const PHI_SELF_TEST_MODE = new URLSearchParams(location.search).get("phiSelfTest") === "1";
   if (PHI_SELF_TEST_MODE) setTimeout(runPhiSelfTests, 0);

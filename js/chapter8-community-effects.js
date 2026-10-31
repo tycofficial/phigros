@@ -13,7 +13,11 @@
     "b13ed5ccefc29fcbfec55c0d8437c6baade3b2889604d579e5ce9ae58d8297d6":"distorted-fate",
     "b9da6d696354486a7f3dc62b531edc0489d874fb99eee29a18cd393b7079d2eb":"distorted-fate",
     "9f4508d425c0c241e9cfca064256a54b2509aa5e9169c12b6f131b848a1f828b":"distorted-fate",
-    "52c749bec3353160c6c0bb14c145e2bc7d708f44e9e3d5c49220ffb372d3b91e":"destruction-321"
+    "009a9822e6c2d0f216895d7215835cfd0b06022bba5b3c9217f7468ece41c53d":"distorted-fate",
+    "e1b82ddf9d17ff816943b7d223dc7fa9b91adb247f4826b05ffba4c0a02bfa3d":"destruction-321",
+    "50613e8fb0fbc09e8e5eda858e4b9174f43d032a8d59e6f37abe7d32b6dcaf97":"destruction-321",
+    "52c749bec3353160c6c0bb14c145e2bc7d708f44e9e3d5c49220ffb372d3b91e":"destruction-321",
+    "eed7606761ec57a9344ce7eb5142fa47db1f9e3a2a981fe62e40f95ec31af70a":"destruction-321"
   });
   const tween = [
     t=>t, t=>1-Math.cos(t*Math.PI/2), t=>Math.sin(t*Math.PI/2), t=>(1-Math.cos(t*Math.PI))/2,

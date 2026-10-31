@@ -151,5 +151,43 @@
         "validation": "complete ffmpeg H.264 video and AAC audio decode passed"
       }
     ]
+  },
+  "rrharilUnlock": {
+    "file": "Rr_Unlock.mp4",
+    "originalPath": "Assets/TrackEventFile/RrharilEvent/Unlock_Video.mp4",
+    "resource": "assets/bin/Data/sharedassets20.resource",
+    "zipCRC32": "b3b5c9a6",
+    "zipOffset": 1268686636,
+    "resourceOffset": 0,
+    "bytes": 15910589,
+    "sha256": "671e2862af83d5629aad91cfc764a4bd419f79e0f3f6a34fd7a581da1a7a17d6",
+    "duration": 35.435435,
+    "videoClip": {
+      "asset": "sharedassets20.assets",
+      "pathID": 25,
+      "name": "Unlock_Video",
+      "frameRate": 29.970029830932617,
+      "frameCount": 1062
+    },
+    "fullDecodeVerified": true
+  },
+  "chapter8Ending": {
+    "source": "https://github.com/SteveZMTstudios/Phigros-history/releases/download/v3.0.0.1/Phigros_3.0.0.1.apk",
+    "sourceNote": "third-party modified historical 3.0.0.1 archive; current official equivalence unverified",
+    "file": "QD.mp4",
+    "resource": "assets/bin/Data/sharedassets26.resource",
+    "zipOffset": 1302189219,
+    "zipCRC32": "2fd3d392",
+    "resourceOffset": 1769984,
+    "bytes": 14588474,
+    "sha256": "ab1cfefa5b2a6358bbb125002d6010a19f9edb58df72625274ae638548a15c02",
+    "videoClip": {
+      "asset": "sharedassets26.assets",
+      "pathID": 7,
+      "name": "QD",
+      "duration": 24.1,
+      "frames": 723
+    },
+    "fullDecodeVerified": true
   }
 }

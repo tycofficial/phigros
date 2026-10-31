@@ -1,6 +1,6 @@
 {
-  "version": "4.0.1.2-pages-16",
-  "maxBytes": 990000000,
+  "version": "4.0.1.2-pages-17",
+  "maxBytes": 1000000000,
   "baseBytes": 138035549,
   "selectedBundleBytes": 845795864,
   "selectedNewSongVersions": 150,
@@ -268,5 +268,17 @@
     "mediaCommit": "cda525e6d9e30a3cd7732e5b9978ee01e2a09e38",
     "onlyWhenOriginalUnsupported": true,
     "originalOGGPreserved": true
+  },
+  "interactiveReplay": {
+    "sourceBasis": "third-party modified historical 3.0.0.1",
+    "chapters": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "regressionTests": 285,
+    "currentOfficialPixelIdentityVerified": false,
+    "publishedAt": "2026-10-31T02:41:53Z"
   }
 }

@@ -1,0 +1,467 @@
+{
+  "provenance": "third-party modified historical 3.0.0.1",
+  "source": "assets/bin/Data/level21",
+  "sha256": "0264f49f2703f47eb2ba9e9694be0f3933b51519246b8b745be6d113cdef4ab5",
+  "scrollDuration": 321,
+  "clip1": "TrackFile/AboutUs0",
+  "clip1Time": 127,
+  "clip2": "TrackFile/AboutUs1",
+  "clip2Time": 194,
+  "automaticBackAfter": 327,
+  "startPosition": [
+    0,
+    -10
+  ],
+  "serializedEndPosition": [
+    0,
+    307.70001220703125
+  ],
+  "sections": [
+    {
+      "pathID": 76,
+      "role": "staff",
+      "text": "Original Director / 原作\r\n\r\nSoullies（Liu Wen） \r\n“\r\n作为《Phigros》的作者，我将在此——\r\n\r\n感谢 Pigeon Games 的所有成员，是大家无私的精诚合作造就了《Phigros》这一奇迹。\r\n\r\n感谢所有给予过 Pigeon Games 帮助的组织与公司，我们非常荣幸能够得到你们的关心和支持。\r\n\r\n感谢一直以来支持着《Phigros》的所有玩家，你们的每一次关注，每一个赞许，以及每一条意见，都深刻地影响了这份企划。\r\n\r\n更重要的是，感谢此时此刻正在看着这块屏幕的——\r\n\r\n你。\r\n\r\nAs the author of Phigros, I would like to—\r\n\r\nAppreciate all the members of PigeonGames. It is our selflessness, sincerity, and cooperation that  has created this miracle.\r\n\r\nAppreciate all the organizations and companies that helped PigeonGames. We are very honored to receive your attention and support.\r\n\r\nAppreciate all the players who always have been supporting Phigros. Your attention, compliment, and advice have profoundly influenced our project.\r\n\r\nMore importantly, appreciate the person who is staring at the screen unblinkingly at the moment—\r\n\r\nYOU.\r\n”\r\n\r\nProducer / 制作人\r\nCN_115（杜锐）\r\n“愿这款游戏也能被留在你的记忆中。”\r\n\r\nDirector / 策划\r\nBarbarianerman（李茂昌）\r\n“Phigros从发布之初逐步成长，在这段时间内我们得到了无数玩家的鼓励与支持，我在这里对各位表示诚挚的感谢。希望Phigros能够带给各位欢乐，并成为各位心中一份美好的象征。”\r\n\r\nLeaders / 部门负责人\r\n\r\nProgramming / 程序组\r\nCN_115（杜锐）\r\n月下樱（李天勤）\r\n“我们在Phigros中使用了一些有趣的技术，也在各种细节上做出了大胆的尝试，希望能给各位玩家带来更好的体验。同时我们也会不断优化，让Phigros变得更好！”\r\n\r\nChart Design / 谱师组\r\n阿爽（周锐）\r\n“希望大家可以喜欢我们的脑洞（划掉）！”\r\n\r\nIllustration / 美术组\r\n喵n葵（刘贝瑜）\r\n“虽然是鸽游美术组，却是最不咕咕的组。一直感谢各位组员的爆肝（？）付出！我们会继续绘制精美的曲绘的！”\r\n\r\nVisual & UI Design / 视觉 & UI 设计组\r\nV17AMax（马煜）\r\n“Phigros一路走来，我们各方面的制作水平一直在不断提升，这一点大家有目共睹。视觉设计组仍会尽力给大家带来更多惊喜！”\r\n\r\nMusic / 音乐组\r\n姜米條（青杰）\r\n“我是姜米條，是 Pigeon Games 的曲师组长，感谢大家支持 Phigros，同时也希望大家喜欢我们游戏的原创音乐。我们会在之后的更新里添加我们制作的音乐！”\r\n\r\nPlots Design / 剧情组\r\nDeathMark（赵芫华）\r\n“只要有你们在，名为phigros的奇迹就是不可磨灭的，未来种种，山河表里，大浪凌空，险阻艰难，锦绣衰隆，我们一起度过。”\r\n\r\nAdvertising / 宣传组\r\nSparkFred_17（周泓怿）\r\n“愿鸽游给大家创造无限快乐，在未来我们一起努力、共同进步，成为每个人心中多彩的世界！”\r\n\r\nPigeon Animation Team / 动画组\r\n汉堡（覃瀚钰）\r\n“感谢各位和我们一起见证Phigros的成长（磕头），不要的显卡统统可以到我这换不锈钢脸盆。”\r\n\r\nExternal Communications / 外部联络\r\nCtymax\r\n“主要负责了版权商务相关大大小小的事宜，尽可能为玩家们搜罗来优质的音乐与美术作品。希望大家喜欢！”\r\n\r\n（以下所有排名不分先后顺序）\r\n\r\nChart Design / 谱师组\r\nCatcats（王子恒）\r\nCtymax\r\nGausbon\r\nJKy\r\nStupiGGy\r\nUvernight\r\nSnorkel\r\n阿爽（周锐）\r\nRikko\r\n晨（林晨曦）\r\n鲲\r\n小鹏（周怡鹏）\r\n百九十八\r\n月下樱\r\nCN_115\r\n亜樹見希子\r\nEaimo\r\nSillyp\r\nTangScend\r\nBarbarianerman（李茂昌）\r\nNerSAN\r\nHarakuma\r\nPcat\r\nTimiTini\r\nXMT小咩兔\r\nJ.R\r\nJeitie\r\nBlindForest\r\nClutter\r\nSu1fuR\r\nVikingNexus\r\n_鉄\r\nHomeee\r\nLikey\r\nM3d1uM\r\nLumiere\r\niv\r\nMyna\r\nrN\r\n陈天宇\r\n钱汉铭\r\n官忠鑫\r\n骆新程\r\n\r\nMusic / 音乐组\r\nBelieverInYou\r\nCtymax\r\nRinth_Live\r\n佑木いずみ(TNiK)\r\nElousΛ.-FZ\r\n姜米條（青杰）\r\nA-39\r\nNceS\r\n陈天宇\r\n\r\nSound Design / 音效设计\r\n姜米條（青杰）\r\n\r\nIllustration / 美术组\r\nCH\r\nCycats\r\nDoublePian\r\nIvyTowers\r\nJeffery\r\nKaryon\r\nknife美工刀\r\nKToyo\r\nL-sp4\r\nNEKO\r\nSparkFred_17（周泓怿）\r\n佑木いずみ(TNiK)\r\nxperz\r\n艾是Abby\r\n坂东\r\n笔记RE\r\n赤芽\r\n雏凉\r\n翠冷兮\r\n鸫鸫\r\n诡异童话\r\n海产\r\n何呵\r\n混乱の艾若拉\r\nCtymax\r\n老张\r\n林语\r\n喵n葵（刘贝瑜）\r\n塔塔\r\n无良灬无惑\r\n昔璃\r\n英英英\r\n御坂果子\r\n冰绘\r\n青鸟\r\n幽灵星\r\nRallxkurara\r\n天天\r\n犀牛坨动画工坊\r\nNerSAN\r\nTsuioku\r\n圆规compasses\r\nNico\r\n子狼\r\n谭清心\r\n高倩茹\r\n陈天宇\r\n\r\nVisual & UI Design / 视觉 & UI 设计组\r\nCN_115（杜锐）\r\nEndlessZero（郭旭）\r\nNico\r\nSparkFred_17（周泓怿）\r\n佑木いずみ(TNiK)\r\nV17AMax（马煜）\r\n汉堡（覃瀚钰）\r\n喵n葵（刘贝瑜）\r\n小鹏（周怡鹏）\r\nJizici\r\n\r\nPlots Design / 剧情组\r\nDeathMark（赵芫华）\r\n关若文\r\n漓染玄柒\r\n关河梦\r\n\r\nLocalization / 翻译组\r\n312321432（吳安仁）\r\nhwanyeom\r\njack\r\nKitty\r\nNice Player\r\nSaimu桜夢（徐泽城）\r\nSakuyou\r\nMai（Tan Chin Wan）\r\nTurretOmega\r\nViscerΔ\r\nYurim\r\nはなちゃん/はなまる\r\n徊奏\r\n鲲\r\n亘川锌酸猫\r\n梓澄\r\n漆伊澄\r\nReFyo\r\n\r\nPigeon Animation Team / 动画组\r\n汉堡（覃瀚钰）\r\nrN\r\nAiLANE\r\n小鹏（周怡鹏）\r\nV17AMax（马煜）\r\n\r\nAdvertising / 宣传组\r\nBarbarianerman\r\nCtymax\r\nEndlessZero（郭旭）\r\nFindstr\r\nSparkFred_17（周泓怿）\r\n佑木いずみ(TNiK)\r\nV17AMax（马煜）\r\n东方不buy菌\r\n华莱士\r\n七奏\r\nSagilio\r\n小菊花\r\n小鹏（周怡鹏）\r\n312321432\r\n陈天宇\r\nMai（Tan Chin Wan）\r\n阿爽\r\nrN\r\nReFyo\r\n\r\nCustomer Service / 客服组\r\nCN_115\r\nCtymax\r\njoiec\r\nSparkfred_17（周泓怿）\r\nJizici\r\n阿爽\r\n喵n葵（刘贝瑜）\r\n月下樱\r\n陈天宇\r\n\r\nExternal Communications / 外部联络\r\nCtymax\r\n\r\nSpecial Thanks / 特别鸣谢\r\nomegaPi\r\nTigerHix\r\nSoul Notes\r\nRising Sun Traxx\r\nI-Inferno 《同步音律喵赛克》\r\nA-ZERO Entertainment 《WAVEAT ReLIGHT》\r\nPeroPeroGames 《Muse Dash 喵斯快跑》\r\nQueseraGames 《KALPA》\r\nCEM Records\r\nSUBBASE\r\nNoxy Games 《Lanota》\r\nBeo Meker Studio 《茶鸣拾贰律》\r\nAbyss Idols\r\nOshiribeat\r\nSoT Records\r\n\r\n以及其他所有帮助过我们的人或组织\r\n\r\n\r\nBeta tester / 测试组\r\n98F\r\nC爆\r\nLikey\r\nNxnfly\r\nSoul小东东\r\nUraniumW\r\n冰淇淋\r\n打火机D.H.Jack\r\n困锁Lockeder\r\n葉之Leviz\r\nAttack_cat\r\n比我还帅的地球人\r\nCaiyv\r\n赤赤菌\r\n垂星\r\nExcaive\r\nfanIST\r\nFrozenX\r\n晴岚\r\nHikari\r\n哈拿捏口\r\n坚果\r\nKirina\r\n切切\r\nSka\r\n散唳\r\n石皮幼鸟\r\n三色绘本°\r\nSupa7onyz\r\nThirdQuadrant\r\nVOII\r\n我爱吃肉wacr\r\n汐\r\n晓风竹林\r\nСУМÎС\r\nY1cat\r\n一游\r\nZxyD218\r\n温柔的小狮子\r\nPhoenix`palsar\r\n于铠歌\r\n肖斌文\r\n\r\nAnd all participants from Taptap's beta program!\r\n\r\n\r\n\r\nMusic Credits / 音乐\r\n\r\n",
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "font": {
+        "m_Font": {
+          "m_FileID": 8,
+          "m_PathID": 48
+        },
+        "m_FontSize": 25,
+        "m_FontStyle": 0,
+        "m_BestFit": 0,
+        "m_MinSize": 2,
+        "m_MaxSize": 40,
+        "m_Alignment": 1,
+        "m_AlignByGeometry": 0,
+        "m_RichText": 1,
+        "m_HorizontalOverflow": 0,
+        "m_VerticalOverflow": 0,
+        "m_LineSpacing": 1.0
+      },
+      "layout": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 450.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 55
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 62
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 60
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 450.0
+        },
+        "m_SizeDelta": {
+          "x": 1200.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "pathID": 73,
+      "role": "tracks-left",
+      "text": "Glaciaxion - SunsetRay\r\nIllustrator: 艾若拉\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: Barbarianerman、NerSAN\r\n\r\nEradication Catastrophe - NceS\r\nIllustrator: 海产\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Barbarianerman\r\n\r\nCredits - Frums\r\nIllustrator: Ctymax\r\nLevel EZ Designer: Ctymax\r\nLevel HD Designer: Ctymax\r\nLevel IN Designer: Ctymax\r\n\r\nDlyrotz - Likey\r\nIllustrator: DoublePian\r\nLevel EZ Designer: Su1fuR\r\nLevel HD Designer: Su1fuR\r\nLevel IN Designer: XMT小咩兔、Barbarianerman\r\n\r\nEngine x Start!! (melody mix) - CrossingSound\r\nIllustrator: 赤芽\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: 阿爽\r\n\r\n光 - 姜米條\r\nIllustrator: winder\r\nLevel EZ Designer: Catcats\r\nLevel HD Designer: Catcats\r\nLevel IN Designer: Catcats、百九十八\r\n\r\nWinter ↑cube↓ - Ctymax feat. NceS\r\nIllustrator: 翠冷兮\r\nLevel EZ Designer: 小鹏、Barbarianerman\r\nLevel HD Designer: 小鹏、Barbarianerman\r\nLevel IN Designer: 百九十八\r\nLevel SP Designer: 小鹏\r\n\r\nCipher : /2&//<|0 - Tetrajectory feat.Ctymax\r\nIllustrator: IvyTowers\r\nLevel EZ Designer: M3d1uM\r\nLevel HD Designer: M3d1uM\r\nLevel IN Designer: Barbarianerman、Gausbon\r\n\r\n混乱-Confusion - OnlyMyBlackScore\r\nIllustrator: L-sp4\r\nLevel EZ Designer: 月下樱、CN_115\r\nLevel HD Designer: 月下樱、CN_115\r\nLevel IN Designer: XMT小咩兔\r\n\r\nFULi AUTO SHOOTER - MYUKKE.\r\nIllustrator: ViscerA & Psycholine\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: 阿爽、Ctymax\r\n\r\nHumaN - SOTUI\r\nIllustrator: CH\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: CN_115、TangScend\r\n\r\n[PRAW] - Bluewind\r\nIllustrator: 老张\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: 晨、阿爽\r\n\r\nPixel Rebelz - Normal1zer\r\nIllustrator: 艾是Abby\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: NerSAN\r\n\r\nCereris - SunsetRay/NceS\r\nIllustrator: IvyTowers\r\nLevel EZ Designer: Su1fuR\r\nLevel HD Designer: Su1fuR\r\nLevel IN Designer: StupiGGy\r\n\r\nNon-Melodic Ragez (MUG Edit) - Normal1zer\r\nIllustrator: cycats\r\nLevel EZ Designer: Clutter\r\nLevel HD Designer: Clutter\r\nLevel IN Designer: 阿爽、Barbarianerman\r\n\r\nSultan Rage - MonstDeath\r\nIllustrator: 笔记RE\r\nLevel EZ Designer: 百九十八\r\nLevel HD Designer: 百九十八\r\nLevel IN Designer: 百九十八\r\n\r\nClass Memories - Antistar feat. Ctymax\r\nIllustrator: xperz\r\nLevel EZ Designer: M3d1uM\r\nLevel HD Designer: M3d1uM\r\nLevel IN Designer: JKy\r\n\r\n-SURREALISM- - Itsuki\r\nIllustrator: 喵n葵\r\nLevel EZ Designer: Su1fuR\r\nLevel HD Designer: Su1fuR\r\nLevel IN Designer: StupiGGy、晨\r\n\r\nBonus Time - Megalo_PaleWhite\r\nIllustrator: 笔记RE\r\nLevel EZ Designer: Uvernight、Barbarianerman\r\nLevel HD Designer: Uvernight、Barbarianerman\r\nLevel IN Designer: Uvernight\r\n\r\nENERGY SYNERGY MATRIX - Tanchiky\r\nIllustrator: Karameru\r\nLevel EZ Designer: Su1fuR\r\nLevel HD Designer: Su1fuR\r\nLevel IN Designer: Barbarianerman\r\n\r\nNYA!!! (Phigros ver.) - FLuoRiTe/姜米條\r\nIllustrator: NEKO&海产\r\nLevel EZ Designer: Catcats\r\nLevel HD Designer: Catcats\r\nLevel IN Designer: Catcats\r\n\r\nJunXion Between Life And Death(VIP Mix) - 1N6Fs\r\nIllustrator: IvyTowers\r\nLevel EZ Designer: 鲲、百九十八\r\nLevel HD Designer: 鲲、百九十八\r\nLevel IN Designer: 鲲、百九十八\r\n\r\ncryout - Ju_E\r\nIllustrator: Haight\r\nLevel EZ Designer: Ctymax\r\nLevel HD Designer: Ctymax\r\nLevel IN Designer: Ctymax\r\n\r\nReimei - 影虎。\r\nIllustrator: 英英英\r\nLevel EZ Designer: 百九十八\r\nLevel HD Designer: 百九十八\r\nLevel IN Designer: 百九十八\r\n\r\n尊師 ～The Guru～ - rider\r\nIllustrator: 1B\r\nLevel EZ Designer: M3d1uM\r\nLevel HD Designer: M3d1uM\r\nLevel IN Designer: 阿爽\r\n\r\nSpasmodic - 姜米條\r\nIllustrator: 昔璃\r\nLevel EZ Designer: Catcats\r\nLevel HD Designer: Catcats\r\nLevel IN Designer: Catcats\r\nLevel AT Designer: Catcats\r\n\r\nLeave All Behind - rider\r\nIllustrator: 笔记RE\r\nLevel EZ Designer: 亚树见希子、百九十八\r\nLevel HD Designer: 亚树见希子、百九十八\r\nLevel IN Designer: 亚树见希子、百九十八\r\n\r\nColorful Days♪ - P4koo feat. つゆり花鈴\r\nIllustrator: Doro-nyong & Ratif\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: 阿爽\r\n\r\nmicro.wav - dandeless\r\nIllustrator: snake.ribs\r\nLevel EZ Designer: 百九十八\r\nLevel HD Designer: 百九十八\r\nLevel IN Designer: 百九十八\r\n\r\n重生 - 姜米條\r\nIllustrator: 昔璃&佑木いずみ(TNiK)\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Barbarianerman\r\n\r\nNO ONE YES MAN - MYUKKE.\r\nIllustrator: 青鸟\r\nLevel EZ Designer: Ctymax\r\nLevel HD Designer: 晨\r\nLevel IN Designer: Ctymax、晨\r\n\r\n望影の方舟Six - Se-U-Ra\r\nIllustrator: 鲸弑\r\nLevel EZ Designer: TangScend\r\nLevel HD Designer: TangScend\r\nLevel IN Designer: TangScend\r\n\r\nIgallta - Se-U-Ra\r\nIllustrator: Se-U-Ra\r\nLevel EZ Designer: Barbarianerman、Ctymax\r\nLevel HD Designer: Barbarianerman、Ctymax\r\nLevel IN Designer: StupiGGy\r\nLevel AT Designer: Catcats、Gausbon、阿爽\r\n\r\nClock Paradox - WyvernP\r\nIllustrator: IvyTowers\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Barbarianerman\r\n\r\nChronologika - Hundotte\r\nIllustrator: 幽灵星\r\nLevel EZ Designer: TimiTini\r\nLevel HD Designer: XMT小咩兔\r\nLevel IN Designer: Barbarianerman、Ctymax\r\n\r\nNick of Time - P4koo\r\nIllustrator: 青鸟\r\nLevel EZ Designer: XMT小咩兔、晨\r\nLevel HD Designer: XMT小咩兔、晨\r\nLevel IN Designer: NerSAN\r\n\r\nChronomia - Lime\r\nIllustrator: inukoro\r\nLevel EZ Designer: Pcat\r\nLevel HD Designer: Rikko\r\nLevel IN Designer: 百九十八、亚树见希子\r\n\r\nChronos Collapse - La Campanella - SunsetRay\r\nIllustrator: 老张\r\nLevel EZ Designer: Pcat\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: 阿爽、NerSAN\r\n\r\nRrhar'il - Team Grimoire\r\nIllustrator: 犀牛坨动画工坊\r\nLevel EZ Designer: 鲲\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: 晨、NerSAN、Sillyp\r\nLevel AT Designer: TangScend、Barbarianerman\r\n\r\nCrave Wave - LandRoot\r\nIllustrator: 笔记RE\r\nLevel EZ Designer: Likey\r\nLevel HD Designer: Likey\r\nLevel IN Designer: Likey、百九十八\r\n\r\nThe Chariot ~REVIIVAL~ - Attoclef\r\nIllustrator: 翠冷兮\r\nLevel EZ Designer: M3d1uM\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Ctymax、BlindForest\r\n\r\nLuminescence - 米虾Fomiki & 初云CLoudie\r\nIllustrator: 子狼\r\nLevel EZ Designer: XMT小咩兔\r\nLevel HD Designer: XMT小咩兔\r\nLevel IN Designer: Pcat、百九十八\r\n\r\nRetribution - nm-y & Kry.exe\r\nIllustrator: NerSAN\r\nLevel EZ Designer: NerSAN\r\nLevel HD Designer: NerSAN\r\nLevel IN Designer: NerSAN\r\n\r\nDESTRUCTION 3,2,1 - Normal1zer vs. Broken Nerdz\r\nIllustrator: rN\r\nLevel EZ Designer: Su1fuR\r\nLevel HD Designer: XMT小咩兔\r\nLevel IN Designer: Uvernight\r\nLevel AT Designer: Barbarianerman、阿爽\r\n\r\nDistorted Fate - Sakuzyo\r\nIllustrator: knife美工刀\r\nLevel EZ Designer: Clutter\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: XMT小咩兔\r\nLevel AT Designer: JKy、NerSAN、Rikko、_鉄、百九十八、晨\r\n\r\nΠοσειδών - 1112 vs. Star＊\r\nIllustrator: 老张\r\nLevel EZ Designer: JKy\r\nLevel HD Designer: JKy\r\nLevel IN Designer: JKy、Barbarianerman\r\n\r\nWATER - A-39/沙包P\r\nIllustrator: knife美工刀\r\nLevel EZ Designer: JKy\r\nLevel HD Designer: StupiGGy\r\nLevel IN Designer: JKy、Barbarianerman、StupiGGy\r\n\r\nMiracle Forest (VIP Mix) - Rinth_live\r\nIllustrator: L-sp4\r\nLevel EZ Designer: 亚树见希子\r\nLevel HD Designer: 亚树见希子\r\nLevel IN Designer: 亚树见希子、Barbarianerman\r\n\r\nMOBILYS - Dachs\r\nIllustrator: わっふゑ\r\nLevel EZ Designer: 百九十八\r\nLevel HD Designer: 百九十八\r\nLevel IN Designer: 百九十八、StupiGGy、Barbarianerman\r\n\r\nLyrith -迷宮リリス- - ユメミド\r\nIllustrator: 何呵\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: 阿爽、Barbarianerman\r\nLevel AT Designer: CN_115\r\n\r\nDemonkin - Forged Reigns\r\nIllustrator: Jeffery\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Sillyp、Barbarianerman\r\n\r\nRe_Nascence (Psystyle Ver.) - Rinth_live\r\nIllustrator: Tsuioku\r\nLevel EZ Designer: NerSAN\r\nLevel HD Designer: NerSAN\r\nLevel IN Designer: NerSAN、百九十八\r\n\r\nArk - kanoryo\r\nIllustrator: MOAI WORKS\r\nLevel EZ Designer: TimiTini\r\nLevel HD Designer: TimiTini\r\nLevel IN Designer: 阿爽、Ctymax\r\n\r\nAfter Dawn - S9ryne\r\nIllustrator: 月亮酱\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: NerSAN、Pcat\r\nLevel IN Designer: Barbarianerman、NerSAN、Snorkel\r\n\r\nINFiNiTE ENERZY -Overdoze- - Reku Mochizuki\r\nIllustrator: knife美工刀\r\nLevel EZ Designer: TangScend\r\nLevel HD Designer: TangScend\r\nLevel IN Designer: TangScend\r\nLevel AT Designer: TangScend\r\n\r\nDoppelganger - LeaF\r\nIllustrator: 海产\r\nLevel EZ Designer: Lumiere\r\nLevel HD Designer: Lumiere\r\nLevel IN Designer: Gausbon\r\n\r\nもぺもぺ - LeaF\r\nIllustrator: cycat\r\nLevel EZ Designer: 阿爽、Barbarianerman\r\nLevel HD Designer: 阿爽、Barbarianerman\r\nLevel IN Designer: 阿爽\r\nLevel AT Designer: 阿爽\r\nLevel SP Designer: 阿爽\r\n\r\nMARENOL - LeaF\r\nIllustrator: 喵n葵\r\nLevel EZ Designer: Catcats、Barbarianerman\r\nLevel HD Designer: Catcats、Barbarianerman\r\nLevel IN Designer: 百九十八\r\n\r\n萤火虫の怨 - 闫东炜\r\nIllustrator: L-sp4\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: 阿爽、百九十八\r\n\r\n万吨匿名信 - 闫东炜\r\nIllustrator: IvyTowers\r\nLevel EZ Designer: Catcats\r\nLevel HD Designer: Catcats\r\nLevel IN Designer: Catcats、百九十八\r\n\r\n风屿 - 闫东炜\r\nIllustrator: cycats\r\nLevel EZ Designer: Catcats、阿爽、百九十八\r\nLevel HD Designer: Catcats、阿爽、百九十八\r\nLevel IN Designer: Catcats、阿爽、百九十八\r\nLevel AT Designer: JKy\r\n\r\ndB doll - YUE.STEVEN/uen\r\nIllustrator: 何呵\r\nLevel EZ Designer: 阿爽、Barbarianerman\r\nLevel HD Designer: 阿爽、Barbarianerman\r\nLevel IN Designer: 阿爽\r\nLevel AT Designer: NerSAN、百九十八\r\n\r\nDash - 小红Akane，李祥晖\r\nIllustrator: 艾是Abby\r\nLevel EZ Designer: 阿爽、Barbarianerman\r\nLevel HD Designer: 阿爽、Barbarianerman\r\nLevel IN Designer: JKy\r\n\r\n云女孩 - 符白牙/SiYFics\r\nIllustrator: 御坂果子\r\nLevel EZ Designer: Catcats\r\nLevel HD Designer: Catcats\r\nLevel IN Designer: JKy\r\n\r\nDrop It - Asuka\r\nIllustrator: 佑木いずみ(TNiK)\r\nLevel EZ Designer: Catcats\r\nLevel HD Designer: Catcats\r\nLevel IN Designer: NerSAN、百九十八\r\n\r\nRIPPER - Friedwav\r\nIllustrator: 何呵\r\nLevel EZ Designer: Catcats\r\nLevel HD Designer: Catcats\r\nLevel IN Designer: 晨、Barbarianerman\r\n\r\nAphasia - 闫东炜\r\nIllustrator: 笔记RE\r\nLevel EZ Designer: 百九十八\r\nLevel HD Designer: 百九十八\r\nLevel IN Designer: 百九十八\r\n\r\n开心病 - 闫东炜\r\nIllustrator: 喵n葵\r\nLevel EZ Designer: HaraKuma\r\nLevel HD Designer: HaraKuma\r\nLevel IN Designer: Barbarianerman、晨\r\n\r\n華灯爱 - 闫东炜\r\nIllustrator: IvyTowers\r\nLevel EZ Designer: HaraKuma\r\nLevel HD Designer: HaraKuma\r\nLevel IN Designer: Barbarianerman\r\n\r\nFind_Me - K-forest\r\nIllustrator: YuKiMuMa\r\nLevel EZ Designer: Ctymax\r\nLevel HD Designer: Ctymax\r\nLevel IN Designer: Ctymax\r\n\r\nSein - 朔(Apo11o program vs. お月さま交響曲) ft. kuroa×荒巻\r\nIllustrator: hideo\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: 阿爽、晨\r\n\r\n狂喜蘭舞 - LeaF\r\nIllustrator: DoublePian\r\nLevel EZ Designer: Catcats、晨\r\nLevel HD Designer: Catcats、Pcat\r\nLevel IN Designer: Catcats、晨\r\nLevel AT Designer: Catcats、晨、Barbarianerman\r\n\r\nSparkle New Life - rider\r\nIllustrator: 1B\r\nLevel EZ Designer: Ctymax\r\nLevel HD Designer: Ctymax\r\nLevel IN Designer: Ctymax\r\n\r\nKhronostasis Katharsis - Halv\r\nIllustrator: utosao\r\nLevel EZ Designer: XMT小咩兔、Myna\r\nLevel HD Designer: XMT小咩兔、Myna\r\nLevel IN Designer: 百九十八\r\n\r\nSnow Desert - WyvernP\r\nIllustrator: knife美工刀\r\nLevel EZ Designer: VikingNexus\r\nLevel HD Designer: VikingNexus\r\nLevel IN Designer: VikingNexus\r\n\r\nBurn - NceS\r\nIllustrator: knife美工刀\r\nLevel EZ Designer: Ctymax\r\nLevel HD Designer: Catcats\r\nLevel IN Designer: Catcats、Ctymax\r\n\r\nAleph-0 - LeaF\r\nIllustrator: Optie\r\nLevel EZ Designer: Clutter\r\nLevel HD Designer: Clutter\r\nLevel IN Designer: Clutter\r\n\r\nNext Time - SaMZIng\r\nIllustrator: 叶藤\r\nLevel EZ Designer: Gausbon\r\nLevel HD Designer: Gausbon\r\nLevel IN Designer: Gausbon\r\n\r\nRubbish Sorting - Ctymax vs. NceS\r\nIllustrator: knife美工刀\r\nLevel EZ Designer: 阿爽、Ctymax\r\nLevel HD Designer: 阿爽、Ctymax\r\nLevel IN Designer: 阿爽、Ctymax\r\nLevel SP Designer: Gausbon\r\n\r\nAnother Me - Neutral Moon\r\nIllustrator: IvyTowers\r\nLevel EZ Designer: M3d1uM\r\nLevel HD Designer: M3d1uM\r\nLevel IN Designer: NerSAN\r\n\r\nmechanted - rareguy\r\nIllustrator: IvyTowers\r\nLevel EZ Designer: Ctymax\r\nLevel HD Designer: Ctymax\r\nLevel IN Designer: Ctymax\r\n\r\nlife flashes before weeb eyes - BilliumMoto\r\nIllustrator: 百九十八\r\nLevel EZ Designer: 百九十八\r\nLevel HD Designer: 百九十八\r\nLevel IN Designer: 百九十八\r\n\r\nBreak Through The Barrier - lixound\r\nIllustrator: Xquid\r\nLevel EZ Designer: Su1fuR\r\nLevel HD Designer: Su1fuR\r\nLevel IN Designer: 百九十八\r\n\r\nChronostasis - 黒皇帝\r\nIllustrator: Sand\r\nLevel EZ Designer: Uvernight\r\nLevel HD Designer: Uvernight\r\nLevel IN Designer: Gausbon\r\n\r\nDead Soul - Sound Souler\r\nIllustrator: Photonskyto\r\nLevel EZ Designer: Ctymax\r\nLevel HD Designer: StupiGGy\r\nLevel IN Designer: 小鹏\r\nLevel SP Designer: 阿爽\r\n\r\nInfinity Heaven - HyuN\r\nIllustrator: DoublePian\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: 晨、阿爽\r\n\r\nDisorder - HyuN feat. YURI\r\nIllustrator: Nabom\r\nLevel EZ Designer: Gausbon\r\nLevel HD Designer: Gausbon\r\nLevel IN Designer: Gausbon\r\n\r\nCROSS†SOUL - HyuN feat. Syepias\r\nIllustrator: knife美工刀\r\nLevel EZ Designer: Catcats\r\nLevel HD Designer: Catcats、Rikko\r\nLevel IN Designer: Catcats",
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "font": {
+        "m_Font": {
+          "m_FileID": 8,
+          "m_PathID": 48
+        },
+        "m_FontSize": 18,
+        "m_FontStyle": 0,
+        "m_BestFit": 0,
+        "m_MinSize": 0,
+        "m_MaxSize": 40,
+        "m_Alignment": 2,
+        "m_AlignByGeometry": 0,
+        "m_RichText": 1,
+        "m_HorizontalOverflow": 0,
+        "m_VerticalOverflow": 0,
+        "m_LineSpacing": 1.0
+      },
+      "layout": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 1
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": -325.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 57
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 56
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": -25.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -50.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "pathID": 87,
+      "role": "tracks-right",
+      "text": "Speed Up! - DarTokki\r\nIllustrator: 佑木いずみ(TNiK)\r\nLevel EZ Designer: Ctymax、百九十八\r\nLevel HD Designer: Ctymax、百九十八\r\nLevel IN Designer: Ctymax、百九十八\r\n\r\nMagenta Potion - EmoCo.\r\nIllustrator: NOISER\r\nLevel EZ Designer: Ctymax、晨\r\nLevel HD Designer: Ctymax、晨\r\nLevel IN Designer: Ctymax、晨\r\n\r\nGet Back - CAP3\r\nIllustrator: 佑木いずみ(TNiK)\r\nLevel EZ Designer: JKy\r\nLevel HD Designer: JKy\r\nLevel IN Designer: JKy\r\n\r\nPalescreen - WyvernP feat. Madol\r\nIllustrator: GAMEBAKA\r\nLevel EZ Designer: Jeitie\r\nLevel HD Designer: Jeitie\r\nLevel IN Designer: Jeitie\r\n\r\nGOODTEK - EBIMAYO\r\nIllustrator: Ctymax feat. EBIMAYO\r\nLevel EZ Designer: 百九十八\r\nLevel HD Designer: 百九十八\r\nLevel IN Designer: 百九十八\r\n\r\nGOODBOUNCE - EBIMAYO\r\nIllustrator: EBIMAYO\r\nLevel EZ Designer: Gausbon、晨\r\nLevel HD Designer: Gausbon\r\nLevel IN Designer: Ctymax、Gausbon\r\n\r\nGOODWORLD - EBIMAYO\r\nIllustrator: EBIMAYO\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: StupiGGy\r\nLevel IN Designer: 阿爽、StupiGGy\r\n\r\nGOODFORTUNE - EBIMAYO\r\nIllustrator: Ctymax\r\nLevel EZ Designer: 晨\r\nLevel HD Designer: 晨\r\nLevel IN Designer: 晨\r\n\r\nGOODRAGE - EBIMAYO\r\nIllustrator: Ctymax feat. EBIMAYO\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: 阿爽、Ctymax\r\n\r\nThe Mountain Eater - Paul Bazooka\r\nIllustrator: START SEED\r\nLevel EZ Designer: 百九十八\r\nLevel HD Designer: 百九十八\r\nLevel IN Designer: 百九十八\r\n\r\nOrthodox - tokiwa\r\nIllustrator: cycats\r\nLevel EZ Designer: Uvernight\r\nLevel HD Designer: Uvernight\r\nLevel IN Designer: Uvernight\r\n\r\nEnd Me - ZxNX as \"Delaina\"\r\nIllustrator: 何呵\r\nLevel EZ Designer: 鲲\r\nLevel HD Designer: 鲲\r\nLevel IN Designer: 鲲、百九十八\r\n\r\nParallel Retrogression(Game Ver.) - Tetrajectory\r\nIllustrator: 青鸟\r\nLevel EZ Designer: Harakuma\r\nLevel HD Designer: Harakuma\r\nLevel IN Designer: Harakuma\r\n\r\nStarduster - Quree\r\nIllustrator: IvyTowers\r\nLevel EZ Designer: NerSAN\r\nLevel HD Designer: NerSAN\r\nLevel IN Designer: NerSAN\r\n\r\nElectron - ElousΛ.-FZ\r\nIllustrator: DoublePian\r\nLevel EZ Designer: 百九十八\r\nLevel HD Designer: 百九十八\r\nLevel IN Designer: 百九十八\r\n\r\nSIGMA - Kry.exe\r\nIllustrator: 塔塔\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Barbarianerman\r\n\r\nHardcore Kwaya - EnFr\r\nIllustrator: EnFr\r\nLevel EZ Designer: Ctymax\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Ctymax、晨\r\n\r\nÄventyr - Grand Thaw / Rigël Theatre\r\nIllustrator: Grand Thaw / Rigël Theatre\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Snorkel\r\nLevel IN Designer: Barbarianerman、Snorkel\r\n\r\nTräne - MALVA.\r\nIllustrator: しえろ\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Barbarianerman\r\n\r\n雪降り、メリクリ - A-39\r\nIllustrator: 犀牛坨动画工坊\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: 阿爽、Ctymax\r\nLevel IN Designer: NerSAN\r\nLevel SP Designer: NerSAN、百九十八、Barbarianerman\r\n\r\nCervelle Connexion - SCTL\r\nIllustrator: SCTL\r\nLevel EZ Designer: TangScend\r\nLevel HD Designer: TangScend\r\nLevel IN Designer: TangScend\r\n\r\nmodulus - PTB10\r\nIllustrator: geralt\r\nLevel EZ Designer: Ctymax\r\nLevel HD Designer: Ctymax\r\nLevel IN Designer: Ctymax\r\n\r\nShadow - 姜米條&SumaiLight\r\nIllustrator: 御坂果子\r\nLevel EZ Designer: 晨\r\nLevel HD Designer: 晨\r\nLevel IN Designer: 晨、Sillyp\r\nLevel AT Designer: JKy\r\n\r\nWavetapper - Frums\r\nIllustrator: 百九十八\r\nLevel EZ Designer: Sillyp\r\nLevel HD Designer: Sillyp\r\nLevel IN Designer: 百九十八、Barbarianerman\r\nLevel SP Designer：百九十八、NerSAN\r\n\r\n大和撫子 -Wild Dances- - adaptor vs DRIVE.\r\nIllustrator: りゅうら\r\nLevel EZ Designer: Eaimo、NerSAN\r\nLevel HD Designer: Eaimo、NerSAN\r\nLevel IN Designer: Eaimo、Ctymax、NerSAN\r\n\r\nEltaw - Fl00t\r\nIllustrator: xperz\r\nLevel EZ Designer: JKy\r\nLevel HD Designer: Jky\r\nLevel IN Designer: Jky、NerSAN、Barbarianerman\r\n\r\nInitialize - iF\r\nIllustrator: あおお/A-ZERO, morph\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: NerSAN\r\nLevel IN Designer: NerSAN、阿爽\r\n\r\n桜樹街道 - kozato snow\r\nIllustrator: あおお/A-ZERO, morph\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: 百九十八\r\n\r\nGet Ready!!  - iF\r\nIllustrator: あおお/A-ZERO, morph\r\nLevel EZ Designer: StupiGGy\r\nLevel HD Designer: StupiGGy\r\nLevel IN Designer: StupiGGy\r\n\r\nvolcanic - DETRO a.k.a. ルゼ\r\nIllustrator: あおお/A-ZERO, morph\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Rikko\r\nLevel IN Designer: Ctymax\r\nLevel AT Designer: Barbarianerman\r\n\r\nBetter Graphic Animation - ルゼ\r\nIllustrator: A-Zero Project\r\nLevel EZ Designer: NerSAN\r\nLevel HD Designer: NerSAN\r\nLevel IN Designer: Catcats\r\n\r\nXING - ginkiha\r\nIllustrator: 打雷打人（青鸟 modified）\r\nLevel EZ Designer: StupiGGy\r\nLevel HD Designer: StupiGGy\r\nLevel IN Designer: Sillyp、阿爽\r\n\r\nFinal Step! - Lime\r\nIllustrator: 谷地（青鸟 modified）\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Barbarianerman、Uvernight\r\n\r\nCthugha - USAO\r\nIllustrator: 谷地（青鸟 modified）\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Gausbon\r\nLevel AT Designer: 百九十八、NerSAN\r\n\r\nWith You - Cashew\r\nIllustrator: ADZUKI\r\nLevel EZ Designer: Uvernight\r\nLevel HD Designer: Uvernight\r\nLevel IN Designer: Uvernight\r\n\r\nUnorthodox Thoughts - Joulez\r\nIllustrator: ASXX\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Harakuma\r\nLevel IN Designer: Barbarianerman、Harakuma\r\n\r\nApocalyptic - Z ClaxX & SumaiLight\r\nIllustrator: 佑木いずみ & Ctymax\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer: NerSAN\r\nLevel IN Designer: NerSAN、阿爽\r\n\r\n游园地 - 椒盐菠萝\r\nIllustrator: CEM\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: NerSAN\r\n\r\nenergy trixxx - KAH\r\nIllustrator: 手鞠鈴 & 自動車 原付\r\nLevel EZ Designer: NerSAN\r\nLevel HD Designer: NerSAN\r\nLevel IN Designer: NerSAN\r\n\r\nNhelv - Silentroom\r\nIllustrator: 駿\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: StupiGGy\r\nLevel IN Designer: TangScend、百九十八\r\n\r\n-Arkhei- - Sera Amagi\r\nIllustrator: Hachimitsu☆Boy\r\nLevel EZ Designer: JKy\r\nLevel HD Designer: JKy\r\nLevel IN Designer: JKy\r\n\r\nKerberos - Zris\r\nIllustrator: Eridani\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: NerSAN\r\nLevel IN Designer: Snorkel、NerSAN\r\n\r\nρars/ey - siqlo\r\nIllustrator: 出前 x nekomiya\r\nLevel EZ Designer: Rikko\r\nLevel HD Designer: Rikko、TangScend\r\nLevel IN Designer: TangScend\r\n\r\nConcvssion - Halv\r\nIllustrator: 汉堡\r\nLevel EZ Designer: J.R\r\nLevel HD Designer: 晨\r\nLevel IN Designer: Barbarianerman、NerSAN、TimiTini、百九十八\r\n\r\nジングルベル(Jingle Bell) - A-39/沙包P\r\nIllustrator: 爱39的Konya\r\nLevel EZ Designer: CN115、TimiTini\r\nLevel HD Designer: 阿爽、XMT小咩兔\r\nLevel IN Designer: NerSAN、Barbarianerman\r\n\r\nTime to Night Sky (feat. Lee Yu Jin) - HyuN & KLYDIX\r\nIllustrator: ZG\r\nLevel EZ Designer: Rikko\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Likey、百九十八、Barbarianerman\r\n\r\nHAZARD - Limpid\r\nIllustrator: ZG\r\nLevel EZ Designer: NerSAN\r\nLevel HD Designer: NerSAN\r\nLevel IN Designer: 阿爽\r\nLevel SP Designer: Gausbon\r\n\r\nAnother Me - D_AAN\r\nIllustrator: ZG\r\nLevel EZ Designer: Pcat\r\nLevel HD Designer: Pcat\r\nLevel IN Designer: NerSAN、Ctymax\r\n\r\nDon't Never Around - HAMA\r\nIllustrator: Arahosi\r\nLevel EZ Designer: XMT小咩兔\r\nLevel HD Designer: XMT小咩兔\r\nLevel IN Designer: XMT小咩兔\r\n\r\nRESSiSTANCE - ぐるたみん\r\nIllustrator: LINUS\r\nLevel EZ Designer: JKy\r\nLevel HD Designer: JKy\r\nLevel IN Designer: TangScend\r\n\r\nDreamland - z1on & kyrrin\r\nIllustrator: 海产\r\nLevel EZ Designer: iv\r\nLevel HD Designer: iv\r\nLevel IN Designer: XMT小咩兔、百九十八\r\n\r\nAnother Round - Justin Dai\r\nIllustrator: 艾是Abby\r\nLevel EZ Designer: 阿爽\r\nLevel HD Designer:阿爽\r\nLevel IN Designer: TimiTini、阿爽\r\n\r\n996 - 李化禹\r\nIllustrator: 笔记RE\r\nLevel EZ Designer: Rinth_live\r\nLevel HD Designer: Likey\r\nLevel IN Designer: Barbarianerman、NerSAN\r\n\r\nFuture Mind - Ray Nautica & Reku Mochizuki\r\nIllustrator: Keiby.comics\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: XMT小咩兔\r\nLevel IN Designer: Barbarianerman、XMT小咩兔\r\n\r\nLuminescent - Daison\r\nIllustrator: 鲸弑\r\nLevel EZ Designer: Uvernight\r\nLevel HD Designer: Uvernight\r\nLevel IN Designer: 百九十八\r\n\r\nFULi AUTO BUSTER - MYUKKE.\r\nIllustrator: cycats\r\nLevel EZ Designer: M3d1uM、百九十八\r\nLevel HD Designer: M3d1uM、百九十八\r\nLevel IN Designer: 百九十八、阿爽\r\n\r\nI Must Say No - TangJuan\r\nIllustrator: cycats\r\nLevel EZ Designer: Likey\r\nLevel HD Designer: JKy\r\nLevel IN Designer: Likey、百九十八\r\n\r\nopia - rN\r\nIllustrator: rN @ 湯元画伯\r\nLevel EZ Designer: BlindForest\r\nLevel HD Designer: BlindForest\r\nLevel IN Designer: Jeitie、BlindForest、rN\r\n\r\nApocalypse - アリスシャッハと魔法の楽団\r\nIllustrator: Lanota © Noxy Games Inc.\r\nLevel EZ Designer: Rikko\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Rikko、百九十八\r\n\r\nProtoflicker - Silentroom\r\nIllustrator: Lanota © Noxy Games Inc.\r\nLevel EZ Designer: Barbarianerman、J.R\r\nLevel HD Designer: Rinth_live\r\nLevel IN Designer: Gausbon\r\n\r\nHorizon Blue - Nothing But Requiem feat. Aikapin & Chiyoko\r\nIllustrator: Lanota © Noxy Games Inc.\r\nLevel EZ Designer: Uvernight\r\nLevel HD Designer: Likey\r\nLevel IN Designer: NerSAN、Pcat\r\n\r\nYou are the Miserable - t+pazolite\r\nIllustrator: Lanota © Noxy Games Inc.\r\nLevel EZ Designer: M3d1uM\r\nLevel HD Designer: M3d1uM\r\nLevel IN Designer: NerSAN、Barbarianerman、BlindForest、百九十八\r\nLevel AT Designer: Ctymax、Barbarianerman\r\n\r\nStasis - Maozon\r\nIllustrator: Lanota © Noxy Games Inc.\r\nLevel EZ Designer: 亚树见希子\r\nLevel HD Designer: 亚树见希子\r\nLevel IN Designer: StupiGGy、阿爽、XMT小咩兔\r\nLevel AT Designer: 百九十八\r\n\r\nいざ、参ります - U-ske feat. 棗いつき\r\nIllustrator: 緑風マルト\r\nLevel EZ Designer: Clutter、Barbarianerman\r\nLevel HD Designer: Clutter、Barbarianerman\r\nLevel IN Designer: XMT小咩兔\r\n\r\n月下缭乱 - 月見静華 vs. LUNARiUM\r\nIllustrator: TNiK\r\nLevel EZ Designer: XMT小咩兔\r\nLevel HD Designer: XMT小咩兔\r\nLevel IN Designer: iv\r\n\r\nOn And On!! - ETIA. feat. Jenga\r\nIllustrator: わっふゑ\r\nLevel EZ Designer: Rikko\r\nLevel HD Designer: Rikko\r\nLevel IN Designer: NerSAN、Rikko\r\n\r\nDataErr0r - Cosmograph\r\nIllustrator: Photonskyto\r\nLevel EZ Designer: Rikko\r\nLevel HD Designer: Rikko\r\nLevel IN Designer: TangScend\r\n\r\n心之所向 - 姜米條\r\nIllustrator: 笔记RE\r\nLevel EZ Designer: Clutter\r\nLevel HD Designer: Clutter\r\nLevel IN Designer: 阿爽、NerSAN\r\n\r\ninferior - 姜米條\r\nIllustrator: 群青kurara\r\nLevel EZ Designer: Ner\r\nLevel HD Designer: Ner\r\nLevel IN Designer: JKy\r\n\r\nc.s.q.n. - Aoi\r\nIllustrator: Ctymax vs. TNiK feat. 出前\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Homeee\r\nLevel IN Designer: StupiGGy\r\n\r\nBrave Notes - Turquoise(DRIVE.+Nota)\r\nIllustrator: 林语\r\nLevel EZ Designer: Eaimo\r\nLevel HD Designer: Eaimo\r\nLevel IN Designer: Eaimo\r\n\r\n盏茗 - 茶鸣拾贰律\r\nIllustrator: 茶鸣拾贰律\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: NerSAN、XMT小咩兔\r\n\r\n青芽 - 茶鸣拾贰律\r\nIllustrator: 茶鸣拾贰律\r\nLevel EZ Designer: XMT小咩兔\r\nLevel HD Designer: XMT小咩兔\r\nLevel IN Designer: 阿爽、_鉄\r\n\r\nEternal Snow - Abyss Idols\r\nIllustrator: Sak\r\nLevel EZ Designer: M3d1uM\r\nLevel HD Designer: M3d1uM\r\nLevel IN Designer: JKy\r\n\r\nRainy Season - Abyss Idols\r\nIllustrator: Robin\r\nLevel EZ Designer: StupiGGy\r\nLevel HD Designer: StupiGGy\r\nLevel IN Designer: Likey\r\n\r\nEl Condor Pasa (Phigros Edit) - Plastic Fruits\r\nIllustrator: 青鸟\r\nLevel EZ Designer: TimiTini\r\nLevel HD Designer: TimiTini\r\nLevel IN Designer: XMT小咩兔\r\n\r\nBreak Over - K-forest\r\nIllustrator: 圆规compasses\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: 百九十八、Barbarianerman\r\nLevel AT Designer: 百九十八\r\n\r\nBelieve Light (feat. 果丸哒呦) - Scaler & Mestie & 果丸哒呦\r\nIllustrator: 圆规compasses\r\nLevel EZ Designer: Ctymax\r\nLevel HD Designer: TimiTini\r\nLevel IN Designer: Ctymax、TimiTini\r\n\r\nPont des souvenirs - VeetaCrush vs. [itsu(feat.itsu)]\r\nIllustrator: 林语\r\nLevel EZ Designer: JKy\r\nLevel HD Designer: JKy\r\nLevel IN Designer: 晨\r\n\r\n青丘 - BLACK 0\r\nIllustrator: BLACK 0\r\nLevel EZ Designer: Ctymax\r\nLevel HD Designer: Su1fuR\r\nLevel IN Designer: JKy\r\n\r\n瓷岁 - 茶鸣拾贰律\r\nIllustrator: 茶鸣拾贰律\r\nLevel EZ Designer: Su1fuR\r\nLevel HD Designer: Su1fuR\r\nLevel IN Designer: XMT小咩兔\r\n\r\nFeast远东之宴 - 茶鸣拾贰律\r\nIllustrator: 茶鸣拾贰律\r\nLevel EZ Designer: Barbarianerman\r\nLevel HD Designer: Barbarianerman\r\nLevel IN Designer: Barbarianerman\r\n\r\nインフェルノシティ - Ponchi♪ feat. はぁち\r\nIllustrator: LESYEF & 藍瀬 まなみ\r\nLevel EZ Designer: Su1fuR\r\nLevel HD Designer: Barbarianerman、Uvernight\r\nLevel IN Designer: Barbarianerman\r\n\r\nUpshift - Iriss-Frantzz\r\nIllustrator: Iriss=Frantzz=s-don\r\nLevel EZ Designer: Lumiere\r\nLevel HD Designer: Barbarianerman、BlindForest、rN\r\nLevel IN Designer: _鉄\r\n\r\nPoison AND÷OR Affection  - LeaF\r\nIllustrator: 笔记RE/海产\r\nLevel EZ Designer: Rikko\r\nLevel HD Designer: Rikko\r\nLevel IN Designer: 百九十八\r\n\r\nRandom  - Sobrem × Silentroom\r\nIllustrator: Harkiadel\r\nLevel EZ Designer: Barbarianerman、V17AMax/Pcat/TimiTini/Clutter/阿爽/J.R\r\nLevel HD Designer: Rikko、JKy/Ctymax/Gausbon/Uvernight/晨/Likey\r\nLevel IN Designer: _鉄、Rikko/NerSAN/Myna/Su1fuR/百九十八/XMT小咩兔\r\n\r\n零號車輛  - seatrus\r\nIllustrator: 2AI4wU4\r\nLevel EZ Designer: Uvernight\r\nLevel HD Designer: 阿爽\r\nLevel IN Designer: 百九十八、Pcat\r\n",
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "font": {
+        "m_Font": {
+          "m_FileID": 8,
+          "m_PathID": 48
+        },
+        "m_FontSize": 18,
+        "m_FontStyle": 0,
+        "m_BestFit": 0,
+        "m_MinSize": 0,
+        "m_MaxSize": 40,
+        "m_Alignment": 0,
+        "m_AlignByGeometry": 0,
+        "m_RichText": 1,
+        "m_HorizontalOverflow": 0,
+        "m_VerticalOverflow": 0,
+        "m_LineSpacing": 1.0
+      },
+      "layout": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 10
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 325.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 56
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 25.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -50.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "pathID": 78,
+      "role": "footer",
+      "text": "感谢所有为Phigros提供帮助的个人或团体！\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nAnd\r\nYou.",
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "font": {
+        "m_Font": {
+          "m_FileID": 8,
+          "m_PathID": 48
+        },
+        "m_FontSize": 25,
+        "m_FontStyle": 0,
+        "m_BestFit": 0,
+        "m_MinSize": 2,
+        "m_MaxSize": 40,
+        "m_Alignment": 1,
+        "m_AlignByGeometry": 0,
+        "m_RichText": 1,
+        "m_HorizontalOverflow": 0,
+        "m_VerticalOverflow": 0,
+        "m_LineSpacing": 1.0
+      },
+      "layout": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 325.0,
+          "y": -80.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 66
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 55
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 2.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 50.0,
+          "y": -80.0
+        },
+        "m_SizeDelta": {
+          "x": 100.0,
+          "y": 796.9755859375
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "pathID": 79,
+      "role": "skip",
+      "text": "Hold to skip",
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.0
+      },
+      "font": {
+        "m_Font": {
+          "m_FileID": 8,
+          "m_PathID": 48
+        },
+        "m_FontSize": 36,
+        "m_FontStyle": 0,
+        "m_BestFit": 0,
+        "m_MinSize": 3,
+        "m_MaxSize": 40,
+        "m_Alignment": 3,
+        "m_AlignByGeometry": 0,
+        "m_RichText": 1,
+        "m_HorizontalOverflow": 0,
+        "m_VerticalOverflow": 0,
+        "m_LineSpacing": 1.0
+      },
+      "layout": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": -706.0557250976562,
+          "y": 450.97760009765625,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 61
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 306.999755859375,
+          "y": -70.0
+        },
+        "m_SizeDelta": {
+          "x": 510.79998779296875,
+          "y": 104.9000015258789
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    }
+  ],
+  "skipAnimation": {
+    "duration": 1.5,
+    "opacityKeys": [
+      {
+        "time": 0.0,
+        "value": 0.0,
+        "inSlope": 0.0,
+        "outSlope": 8.0,
+        "weightedMode": 0,
+        "inWeight": 0.3333333432674408,
+        "outWeight": 0.3333333432674408
+      },
+      {
+        "time": 0.05000000074505806,
+        "value": 0.4000000059604645,
+        "inSlope": 8.0,
+        "outSlope": 0.0,
+        "weightedMode": 0,
+        "inWeight": 0.3333333432674408,
+        "outWeight": 0.3333333432674408
+      },
+      {
+        "time": 0.5,
+        "value": 0.4000000059604645,
+        "inSlope": -0.0,
+        "outSlope": 0.6000000238418579,
+        "weightedMode": 0,
+        "inWeight": 0.3333333432674408,
+        "outWeight": 0.3333333432674408
+      },
+      {
+        "time": 1.5,
+        "value": 1.0,
+        "inSlope": 0.6000000238418579,
+        "outSlope": 0.0,
+        "weightedMode": 0,
+        "inWeight": 0.3333333432674408,
+        "outWeight": 0.3333333432674408
+      }
+    ],
+    "backThreshold": 0.9900000095367432,
+    "releaseNormalizedBoundary": 0.33000001311302185,
+    "releaseSpeed": [
+      -1,
+      -6
+    ]
+  },
+  "startInput": {
+    "button": "StartPlay",
+    "earliestSceneTime": 1,
+    "sourceButtonPathID": 89
+  }
+}
