@@ -1,5 +1,5 @@
 {
-  "version": "4.0.1.2-pages-17",
+  "version": "4.0.1.2-pages-18",
   "maxBytes": 1000000000,
   "baseBytes": 138035549,
   "selectedBundleBytes": 845795864,
@@ -277,8 +277,9 @@
       7,
       8
     ],
-    "regressionTests": 285,
+    "regressionTests": 290,
     "currentOfficialPixelIdentityVerified": false,
-    "publishedAt": "2026-10-31T02:41:53Z"
+    "publishedAt": "2026-10-31T02:49:04Z",
+    "ordinaryLuminescenceEffects": true
   }
 }

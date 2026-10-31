@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-17';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-18';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,10 +26,10 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-17",
+    runtime: "4.0.1.2-pages-18",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
-    buildTimestamp: "2026-10-31T02:41:53Z",
+    buildTimestamp: "2026-10-31T02:49:04Z",
     coreSha256: "dcae237af6ee34b393b4ceea31605c87aaf0d0b737c95da89cc12e9cd5dbe677",
   });
   const PHI_SECURITY_LIMITS = Object.freeze({
@@ -9003,6 +9003,10 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.chapter8CommunityFrame = {};
       this.chapter8HideMetadata = false;
       this.chapter8HideCombo = false;
+      this.lumiInSongController = null;
+      this.lumiInSongRenderer = null;
+      this.lumiInSongFrame = null;
+      this.lumiInSongTime = NaN;
       this.packageNoteScale = clamp(Number(record?.meta?.noteScale ?? 1) || 1, 0.05, 8);
       this.customHitSounds = new Map();
       this.canvas = $("#gameCanvas");
@@ -9447,6 +9451,8 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.prepareAutoplayScheduler(chartTime);
       this.prepareAutoJudge(chartTime);
       this.seekJudgeFeed(chartTime);
+      this.resetLumiInSongPresentation();
+      this.sampleLumiInSongPresentation();
       this.visualTime = NaN;
       this.lastHudScore = this.lastHudCombo = "";
       this.lastProgressPct = -1;
@@ -10836,6 +10842,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     reset() {
       this.streamRecoveryAbort?.abort();this.streamBuffering=false;
       this.clearChapter8CommunityPresentation();
+      this.resetLumiInSongPresentation();
       this.chapter8StageRenderer?.dispose();this.chapter8StageRenderer=null;
       this.inputFrameTime=NaN;
       clearTimeout(this.referenceFinishTimer);this.referenceFinishing=false;
@@ -10908,6 +10915,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     }
     stop(reason = "stop") {
       globalThis.PhiInteractiveReplay?.detach(this);
+      this.clearLumiInSongPresentation();
       this.chapter8StageRenderer?.dispose();this.chapter8StageRenderer=null;
       if(this.visionStutterSource){try{this.visionStutterSource.stop();this.visionStutterSource.disconnect();}catch{}this.visionStutterSource=null;}
       this.hostedArtworkAbort?.abort();
@@ -11339,6 +11347,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         globalThis.PhiInteractiveReplay?.updateSong(this,t,frameInterval/1000);
         if(!this.running||this.paused)return;
       }
+      if(this.lumiInSongController)this.sampleLumiInSongPresentation(frameInterval/1000);
       this.update(t, now, visualT);
       // Materialize hit visuals once per rAF, outside TouchEvent callbacks.
       this.flushHitEffects();
@@ -12954,6 +12963,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.activeHolds.delete(n._item);
       this.actualCounts[actualJudge]++;
       if(this.record.visionReplay)globalThis.PhiInteractiveReplay?.judge(this,['Perfect','Good','Bad','Miss'][actualJudge]);
+      if(this.lumiInSongController)this.lumiInSongController.judge(['Perfect','Good','Bad','Miss'][actualJudge],this.musicCurrentTime());
       if (actualJudge <= 1) { this.actualCombo++; this.actualMaxCombo = Math.max(this.actualMaxCombo, this.actualCombo); } else this.actualCombo = 0;
       if (this.invincibleMode) {
         this.usedInvincible = true;
@@ -13847,6 +13857,39 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.chapter8HideMetadata = false;
       this.chapter8HideCombo = false;
     }
+    clearLumiInSongPresentation() {
+      this.lumiInSongRenderer?.dispose();this.lumiInSongRenderer=null;
+      this.lumiInSongController=null;this.lumiInSongFrame=null;this.lumiInSongTime=NaN;
+      if(this.lumiInSongDimmed){
+        const view=$('#gameView');view?.classList.remove('visionReplayDimUI');view?.style.removeProperty('--vision-hud-opacity');
+      }
+      this.lumiInSongDimmed=false;
+    }
+    resetLumiInSongPresentation() {
+      this.clearLumiInSongPresentation();
+      const rules=globalThis.PhiChapter8ReplayRules,tier=String(this.record?.meta?.difficultyClass||'').toUpperCase();
+      if(this.chart.kind==='pgr'&&this.record?.builtin&&!this.record.visionReplay&&
+         this.record.audioHash==='reference-song:Luminescence.米虾Fomiki初云CLoudie'&&rules?.LUMI.targets[tier])
+        this.lumiInSongController=rules.createController('luminescence',tier);
+    }
+    sampleLumiInSongPresentation(deltaTime=0) {
+      if(!this.lumiInSongController)return null;
+      const time=this.musicCurrentTime();
+      if(time<this.lumiInSongTime)this.resetLumiInSongPresentation();
+      // Ordinary play uses the actual source conditions but consumes no chapter
+      // transitions, dialogue, unlock writes or result events from the controller.
+      this.lumiInSongController.update({time,rawScore:this.rawScore(),deltaTime:Math.max(0,Math.min(.1,deltaTime))});
+      this.lumiInSongTime=time;this.lumiInSongFrame=this.lumiInSongController.snapshot();
+      const opacity=Number.isFinite(this.lumiInSongFrame.hudOpacity)?this.lumiInSongFrame.hudOpacity:1,view=$('#gameView');
+      if(opacity<1||this.lumiInSongDimmed){view?.style.setProperty('--vision-hud-opacity',opacity);view?.classList.toggle('visionReplayDimUI',opacity<1);this.lumiInSongDimmed=opacity<1;}
+      return this.lumiInSongFrame;
+    }
+    drawLumiInSongPresentation() {
+      const state=this.lumiInSongFrame,visuals=globalThis.PhiChapter8ReplayVisuals;
+      if(!state||!visuals)return;
+      if(!this.lumiInSongRenderer)this.lumiInSongRenderer=visuals.create(this.canvas,{background:true});
+      this.lumiInSongRenderer.sample({time:this.musicCurrentTime(),phase:'luminescence',branch:state.stage1Failed||state.stage2Failed?'failed':state.timeTag>0?'success':'pending',width:this.canvas.width,height:this.canvas.height,clear:false,background:true});
+    }
     sampleChapter8CommunityPresentation() {
       const api = globalThis.PhiChapter8CommunityEffects;
       const frame = this.chart.kind === 'pgr' && this.chapter8CommunityProfile && api
@@ -13876,6 +13919,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       // the gameplay Canvas to an opaque surface.
       this.drawGameplayBackground(c,t);
       if(this.record.visionReplay)globalThis.PhiInteractiveReplay?.drawSong(this,'background');
+      else if(this.lumiInSongController)this.drawLumiInSongPresentation();
       // The source timeline follows the actual music position, independent of
       // chart offset, render latency, pause/seek and playback rate.
       const chapter8Frame = this.sampleChapter8CommunityPresentation();
