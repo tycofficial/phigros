@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-19';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-20';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,10 +26,10 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-19",
+    runtime: "4.0.1.2-pages-20",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
-    buildTimestamp: "2026-10-31T02:52:47Z",
+    buildTimestamp: "2026-10-31T02:56:08Z",
     coreSha256: "dcae237af6ee34b393b4ceea31605c87aaf0d0b737c95da89cc12e9cd5dbe677",
   });
   const PHI_SECURITY_LIMITS = Object.freeze({

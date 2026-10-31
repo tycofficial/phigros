@@ -1,5 +1,5 @@
 {
-  "version": "4.0.1.2-pages-19",
+  "version": "4.0.1.2-pages-20",
   "maxBytes": 1000000000,
   "baseBytes": 138035549,
   "selectedBundleBytes": 845795864,
@@ -277,9 +277,10 @@
       7,
       8
     ],
-    "regressionTests": 292,
+    "regressionTests": 294,
     "currentOfficialPixelIdentityVerified": false,
-    "publishedAt": "2026-10-31T02:52:47Z",
-    "ordinaryLuminescenceEffects": true
+    "publishedAt": "2026-10-31T02:56:08Z",
+    "ordinaryLuminescenceEffects": true,
+    "versionedMediaManifest": true
   }
 }

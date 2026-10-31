@@ -165,7 +165,7 @@
     }
     async function startCreditsAudio(track,options){
       const token=++creditsGeneration;audioLoading=true;creditsAudio.pause();status.textContent='正在加载制作名单音乐…';
-      if(!creditsManifest)creditsManifest=fetch('./assets/meta/vision-audio.json',{signal:options.signal}).then(r=>{if(!r.ok)throw Error('重演音频清单暂不可用');return r.json();}).then(value=>env.PhiVisionReplay.installAudioManifest(value)).catch(error=>{creditsManifest=null;throw error;});
+      if(!creditsManifest)creditsManifest=fetch('./assets/meta/vision-audio.json?v=4.0.1.2-pages-20',{signal:options.signal}).then(r=>{if(!r.ok)throw Error('重演音频清单暂不可用');return r.json();}).then(value=>env.PhiVisionReplay.installAudioManifest(value)).catch(error=>{creditsManifest=null;throw error;});
       const specs=await creditsManifest,variants=specs.filter(s=>s.track===track),spec=variants.find(s=>s.mime==='audio/flac'&&creditsAudio.canPlayType(s.mime))||variants.find(s=>creditsAudio.canPlayType(s.mime));
       if(!spec)throw Error('此浏览器不支持制作名单音频');
       const bytes=await env.PhiVisionReplay.download(spec.url,{signal:options.signal,onProgress:(n,total)=>{if(token===creditsGeneration)status.textContent=`正在加载制作名单音乐 ${Math.round(n/total*100)}%`;}});
@@ -177,7 +177,7 @@
       const requested=aliases[id]||id;
       if(requested===clipId&&url){if(Number.isFinite(options.seek))video.currentTime=options.seek;try{await video.play();mediaBlocked=false;}catch{mediaBlocked=true;resume.hidden=false;}return;}
       stop();const token=generation;clipId=requested;mediaLoading=true;status.textContent='正在加载异像…';
-      if(!manifestPromise)manifestPromise=fetch('./assets/meta/vision-media.json',{signal:options.signal}).then(r=>{if(!r.ok)throw Error('异像资源清单暂不可用');return r.json();}).then(value=>({value,clips:env.PhiVisionReplay.installManifest(value)})).catch(error=>{manifestPromise=null;throw error;});
+      if(!manifestPromise)manifestPromise=fetch('./assets/meta/vision-media.json?v=4.0.1.2-pages-20',{signal:options.signal}).then(r=>{if(!r.ok)throw Error('异像资源清单暂不可用');return r.json();}).then(value=>({value,clips:env.PhiVisionReplay.installManifest(value)})).catch(error=>{manifestPromise=null;throw error;});
       const {clips}=await manifestPromise;const clip=clips.find(item=>item.id===clipId);if(!clip)throw Error('缺少异像场景资源：'+clipId);
       const bytes=await env.PhiVisionReplay.download(clip.url,{signal:options.signal,onProgress:(done,total)=>{if(token===generation)status.textContent=`正在加载异像 ${Math.round(done/total*100)}%`;}});
       if(token!==generation||options.signal.aborted||!options.isCurrent())return;

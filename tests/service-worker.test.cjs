@@ -28,6 +28,22 @@ test('media from the previous release remains available in the shared media cach
   await cache.put(r.req('/phigros/assets/cover.jpg'),new Response('cover'));
   assert.equal(await (await r.fetch(r.req('/phigros/assets/cover.jpg'))).text(),'cover');assert.equal(r.calls,0);
 });
+test('updated replay manifests never reuse the prior binary-media cache',async()=>{
+  const options=[],r=runtime(async(_req,opts)=>{options.push(opts);return new Response('new replay manifest');}),old=await r.caches.open(r.name);
+  for(const path of ['/phigros/assets/meta/vision-media.json','/phigros/assets/meta/vision-audio.json','/phigros/assets/vision-replay/chapter8-about-us.json']){
+    await old.put(r.req(path),new Response('old replay manifest'));
+    assert.equal(await(await r.fetch(r.req(path))).text(),'new replay manifest');
+    assert.equal(await(await r.fetch(r.req(path))).text(),'new replay manifest');
+    assert.equal(await(await old.match(r.req(path))).text(),'old replay manifest');
+  }
+  assert.equal(r.calls,3);assert(options.every(x=>x.cache==='no-cache'));
+});
+test('versioned replay manifest URL also bypasses a cached pre-upgrade address',async()=>{
+  const r=runtime(async()=>new Response('new clips')),old=await r.caches.open(r.name),path='/phigros/assets/meta/vision-media.json';
+  await old.put(r.req(path),new Response('only seven old clips'));
+  assert.equal(await(await r.fetch(r.req(path+'?v=new-replay-build'))).text(),'new clips');
+  assert.equal(r.calls,1);
+});
 test('native audio ranges retain exact byte offsets including suffixes',async()=>{
   const r=runtime(),cache=await r.caches.open(r.name),path='/phigros/assets/song.m4a';
   await cache.put(r.req(path),new Response('0123456789',{headers:{'Content-Type':'audio/mp4','Content-Length':'10'}}));

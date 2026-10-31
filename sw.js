@@ -1,6 +1,6 @@
 /* Code is versioned separately from unchanged media. Never cache partial audio. */
 'use strict';
-const APP_CACHE='tycphigros-app-pages-19';
+const APP_CACHE='tycphigros-app-pages-20';
 // Reuse the existing media store across this code-only release.
 const MEDIA_CACHE='tycphigros-4.0.1.2-stability-2';
 let nextMaintenance=0;
@@ -36,7 +36,10 @@ self.addEventListener('fetch',event=>{
   if(request.method!=='GET'||url.origin!==self.location.origin)return;
   const lifetime={network:Promise.resolve()};
   const response=(async()=>{
-    const media=/\/assets\//.test(url.pathname),cache=await caches.open(media?MEDIA_CACHE:APP_CACHE);
+    // Manifests follow the runtime version. Reusing a previous film list can
+    // hide a newly added replay even when all new JavaScript has loaded.
+    const metadata=/\/assets\/meta\//.test(url.pathname)||/\/assets\/vision-replay\/[^/]+\.json$/.test(url.pathname);
+    const media=/\/assets\//.test(url.pathname)&&!metadata,cache=await caches.open(media?MEDIA_CACHE:APP_CACHE);
     const range=request.headers.get('Range');
     if(range){
       const full=await cache.match(request.url);

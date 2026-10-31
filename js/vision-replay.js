@@ -140,7 +140,7 @@
     manifestController?.abort();manifestController=new AbortController();const local=manifestController;
     list.replaceChildren();status.textContent='正在读取片段列表…';
     try {
-      const response=await fetch('./assets/meta/vision-media.json',{signal:local.signal});
+      const response=await fetch('./assets/meta/vision-media.json?v=4.0.1.2-pages-20',{signal:local.signal});
       if(!response.ok)throw Error('片段列表暂不可用');const text=await response.text();if(text.length>100000)throw Error('片段列表过大');
       if(local.signal.aborted)return;installManifest(JSON.parse(text));fillList();status.textContent='选择片段后按需加载。';
     } catch(error) {if(!local.signal.aborted)status.textContent=`无法读取片段列表：${error.message}`;}
