@@ -6,7 +6,8 @@
     const value=clean(typeof entry==='string'?entry:entry?.meta?.name||entry?.name||entry?.songKey);
     if(value.includes('haocore')||entry?.meta?.difficultyClass==='SP')return null;
     const names=[['distortedfate','distorted-fate'],['destruction321','destruction-321'],['thechariot','the-chariot'],['luminescence','luminescence'],['retribution','retribution'],['spasmodic','spasmodic'],['igallta','igallta'],['rrharil','rrharil'],['clockparadox','clock-paradox'],['chronostasis','chronostasis'],['glaciaxion','glaciaxion']];
-    return names.find(([name])=>value.startsWith(name))?.[1]||null;
+    const canonical=/^retributionphase[12]$/.test(value)?'retribution':value;
+    return names.find(([name])=>canonical===name)?.[1]||null;
   }
   function routeForSong(entry) {
     const key=songKey(entry),tier=String(entry?.meta?.difficultyClass||'IN').toUpperCase();
@@ -63,7 +64,8 @@
       const token=++s.trackSerial;s.loading=true;s.engine=null;surface().stop();surface().scene('Level');surface().hide();
       adapter.stopSong?.(s.id);surface().disposeGame();surface().stopAmbient?.();
       try{
-        const next=adapter.findEntry?.(event.songKey,event.difficulty||event.tier||s.route.tier,s.entry);
+        const tier=songKey(event.songKey)===s.route.key?s.route.tier:event.difficulty||event.tier||s.route.tier;
+        const next=adapter.findEntry?.(event.songKey,tier,s.entry);
         if(!next)throw Error('重演所需谱面暂不可用：'+event.songKey);
         s.currentSong=songKey(next);s.currentPhase=event.phase||s.rule.snapshot().phase;s.scene='Level';
         const engine=await adapter.startSong(next,{visionContinuation:true,visionReplay:{id:s.id,chapter:s.route.chapter,phase:s.currentPhase,songKey:s.currentSong}});
@@ -115,8 +117,9 @@
           if(type==='audio-fade'&&s.engine)adapter.fadeAudio?.(s.engine,event.duration);
           if(type==='audio-stutter'&&s.engine)adapter.stutterAudio?.(s.engine,event);
           if(type==='audio-stop'&&s.engine)adapter.stopAudio?.(s.engine);
-          const meta=type==='music-info'?adapter.findEntry?.(event.songKey,event.difficulty||s.route.tier,s.entry)?.meta:undefined;
-          const task=surface().effect({...event,meta,time:s.lastSongFrame?.time,signal:s.abort.signal,isCurrent:()=>isCurrent(s)});
+          const difficulty=type==='music-info'&&songKey(event.songKey)===s.route.key?s.route.tier:event.difficulty;
+          const meta=type==='music-info'?adapter.findEntry?.(event.songKey,difficulty||s.route.tier,s.entry)?.meta:undefined;
+          const task=surface().effect({...event,difficulty,meta,time:s.lastSongFrame?.time,signal:s.abort.signal,isCurrent:()=>isCurrent(s)});
           task?.catch?.(error=>fail(s,error));
         }
       }

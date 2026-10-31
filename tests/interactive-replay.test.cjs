@@ -21,6 +21,21 @@ test('only actual chapter songs route; SP remixes and ordinary charts remain ord
   assert.equal(api.routeForSong({name:"Rrhar’il · 联网",meta:{difficultyClass:'IN'}}).chapter,7);
   assert.equal(api.routeForSong({name:'Distorted Fate',meta:{difficultyClass:'IN'}}).controller,'df-unlock');
 });
+test('other tracks sharing a title prefix do not become chapter replay entries',()=>{
+  assert.equal(api.routeForSong({name:'Retribution ~ Cycle of Redemption ~ · 联网',meta:{difficultyClass:'IN'}}),null);
+  assert.equal(api.songKey('retribution-phase2'),'retribution');
+  assert.equal(api.songKey('Luminescence · 联网'),'luminescence');
+});
+test('chapter eight direct AT selections keep the chosen playable tier after native scenes',async()=>{
+  for(const name of ['Distorted Fate','DESTRUCTION 3,2,1']){
+    const f=fixture();await f.runtime.begin({name,meta:{difficultyClass:'AT'}});
+    if(name==='Distorted Fate'){await f.tick(5);f.runtime.input('activate');await f.tick(54);}
+    else await f.tick(40);
+    assert.equal(f.tracks.length,1,name);
+    assert.equal(f.tracks[0].entry.meta.difficultyClass,'AT',name);
+    assert(f.effects.filter(e=>e.type==='music-info').every(e=>e.difficulty==='AT'));
+  }
+});
 test('DF starts its real scene, waits for the actual touch gate, then enters the selected chart',async()=>{
   const f=fixture();await f.runtime.begin({name:'Distorted Fate',meta:{difficultyClass:'HD'}});
   assert.deepEqual(f.scenes,['DFUnlock']);assert.equal(f.tracks.length,0);
