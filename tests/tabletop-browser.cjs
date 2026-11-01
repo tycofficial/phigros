@@ -27,11 +27,11 @@ async function main(){
     await page.waitForSelector('#videoExportScene');
     assert.equal(await page.locator('#videoExportScene').inputValue(),'ipad');
     await page.screenshot({path:process.env.TABLETOP_OUTPUT+'/export-dialog.png'});
-    console.log('DIALOG_READY');await page.evaluate(value=>Object.assign(tabletopTest,value),{seconds:process.env.TABLETOP_AUDIT_ONLY?.04:Number(process.env.TABLETOP_SECONDS)||2,fps:Number(process.env.TABLETOP_FPS)||30});
+    console.log('DIALOG_READY');await page.evaluate(value=>Object.assign(tabletopTest,value),{seconds:process.env.TABLETOP_AUDIT_ONLY?.04:Number(process.env.TABLETOP_SECONDS)||2,fps:Number(process.env.TABLETOP_FPS)||30,start:Number.isFinite(Number(process.env.TABLETOP_START))?Number(process.env.TABLETOP_START):35});
     await page.exposeFunction('saveTabletopFrame',async(data,index)=>{fs.writeFileSync(process.env.TABLETOP_OUTPUT+`/frame-${index}.png`,Buffer.from(data.split(',')[1],'base64'));});
     const result=await page.evaluate(async()=>{
       const exporter=PhiOfflineNext.modules.VideoExporter;
-      let result;try{result=await exporter.run(tabletopTest.record,{scene:'ipad',mode:'phigros',aspect:'16:9',resolution:1080,fps:tabletopTest.fps,start:35,clipSeconds:tabletopTest.seconds,
+      let result;try{result=await exporter.run(tabletopTest.record,{scene:'ipad',mode:'phigros',aspect:'16:9',resolution:1080,fps:tabletopTest.fps,start:tabletopTest.start,clipSeconds:tabletopTest.seconds,
         onScene:async scene=>{const audit=scene.diagnostics.audit;console.log('HAND_AUDIT',JSON.stringify(audit));tabletopTest.audit=audit;},
         onFrame:async(canvas,index)=>{if(index%60===0)console.log('ENCODE_FRAME',index);if(index===0||index===15||index===30)await window.saveTabletopFrame(canvas.toDataURL('image/png'),index);}});}catch(e){throw Error(e.name+': '+e.message+' STATUS: '+document.querySelector('#videoExportStatus')?.textContent+' STACK '+e.stack);}
       window.tabletopTest.result=result;

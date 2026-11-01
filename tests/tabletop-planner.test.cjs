@@ -35,6 +35,18 @@ test('sampling order and export FPS cannot accumulate animation drift',async()=>
   const p=fixture([{time:1,px:300},{time:1.2,px:700},{time:1.4,px:350}]);await p.build();
   const before=p.poses(1.18);for(let t=0;t<2;t+=1/120)p.poses(t);assert.deepEqual(p.poses(1.18),before);
 });
+test('short hover phases meet their travel phase without a midpoint jump',()=>{
+  const p=fixture([{}]),item=p.engine.noteItems[0],event=(start,end,x)=>({start,end,item,items:[item],samples:[{time:start,x,y:.5}],hold:false});
+  p.tracks[0].events=[event(1,1.016,.3),event(1.5,1.516,.8)];
+  const seam=1.5-.42,a=p.pose(0,seam-1e-7),b=p.pose(0,seam+1e-7);
+  assert(Math.hypot(a.x-b.x,a.y-b.y)<1e-5,'a short dwell must finish at the midpoint before travel starts');
+});
+test('lift-off and landing start at the glass without a fixed height jump',()=>{
+  const p=fixture([{}]),item=p.engine.noteItems[0];item.n.time=1;
+  p.tracks[0].events=[{start:1,end:1.016,item,items:[item],samples:[{time:1,x:.5,y:.5}],hold:false}];
+  assert(p.pose(0,1.016+1e-7).z<1e-6);
+  assert(p.pose(0,1-1e-7).z<1e-6);
+});
 test('an existing valid Hold contact can trigger a later Drag without an extra overlapping finger',async()=>{
   const p=fixture([{type:3,time:1,end:2,px:500,py:100},{type:2,time:1.5,end:1.5,px:500,py:650}]);
   await p.build();assert.equal(p.events.length,1);assert.equal(p.stats.sharedNotes,1);
@@ -42,7 +54,10 @@ test('an existing valid Hold contact can trigger a later Drag without an extra o
 });
 test('a changing disconnected noise mask uses an overlapping handoff with no invalid contact',async()=>{
   const blocked=(e,x,y,t)=>t<1.5?y>=500:y<=400;
-  const p=fixture([{type:3,time:1,end:2}],blocked);await p.build();
+  const p=fixture([{type:3,time:1,end:2}],blocked);
+  // Fixed-lane mode keeps its initial contact; free Phigros depth placement
+  // can otherwise choose the overlap before the noise changes.
+  p.engine.chart.kind='pjsk';await p.build();
   assert(p.stats.handoffs>0);
   for(let t=1;t<2;t+=1/240){const contacts=p.poses(t).filter(pose=>pose.contact);assert(contacts.length);for(const pose of contacts)assert(!blocked(p.engine,pose.x*1000,pose.y*750,t));}
 });
@@ -75,6 +90,12 @@ test('analytic finger IK preserves all bone lengths and reaches near-full-extens
     for(let k=0;k<3;k++)assert(Math.abs(result.points[k+1].distanceTo(result.points[k])-lengths[k])<1e-8);
   }
 });
+test('finger bend stays continuous when a target crosses directly below the knuckle',async()=>{
+  const {solveFinger}=await import('../js/tabletop-hand.mjs'),{Vector3}=await import('../js/vendor/three/three.module.js');
+  const base=new Vector3(0,5,0),a=solveFinger(base,new Vector3(-.00001,1,0),[4.2,2.5,1.3]),b=solveFinger(base,new Vector3(.00001,1,0),[4.2,2.5,1.3]);
+  assert(a.points[1].distanceTo(b.points[1])<.0001,'the elbow must not flip to the other side of the finger');
+  for(const result of [a,b])assert(result.error<1e-9);
+});
 test('subdivided continuous hand skins keep 25 joints and normalized bone weights',()=>{
   for(const name of ['left','right']){
     const raw=zlib.gunzipSync(fs.readFileSync('assets/tabletop/hands/'+name+'.glb.gz')),size=raw.readUInt32LE(12),doc=JSON.parse(raw.subarray(20,20+size));
@@ -83,4 +104,63 @@ test('subdivided continuous hand skins keep 25 joints and normalized bone weight
     assert.equal(a.count,18514);
     for(let i=0;i<a.count;i++){let sum=0;for(let k=0;k<4;k++)sum+=raw.readFloatLE(28+size+v.byteOffset+i*16+k*4);assert(Math.abs(sum-1)<1e-6);}
   }
+});
+
+test('short dwell intervals cannot squeeze half the move into a few milliseconds',()=>{
+  const p=fixture([{}]),item=p.engine.noteItems[0],event=(start,end,x,y)=>({start,end,item,items:[item],samples:[{time:start,x,y}],hold:false});
+  p.tracks[0].events=[event(1,1.016,.1,.1),event(1.443,1.459,.9,.9)];
+  const a=p.pose(0,1.017),b=p.pose(0,1.025);
+  assert(Math.hypot(a.x-b.x,a.y-b.y)<.01);
+});
+test('palm projection satisfies every simultaneous reach constraint and rejects disjoint reach',async()=>{
+  const {projectReachDisks}=await import('../js/tabletop-hand.mjs');
+  const disks=[{x:-2,z:0,r:3},{x:2,z:0,r:3},{x:0,z:1,r:2.5}],desired={x:10,z:8};
+  const projected=projectReachDisks(desired,disks);assert(projected);
+  for(const disk of disks)assert(Math.hypot(projected.x-disk.x,projected.z-disk.z)<=disk.r+1e-6);
+  assert.deepEqual(projectReachDisks(projected,disks),projected);
+  assert.equal(projectReachDisks(desired,[{x:-3,z:0,r:1},{x:3,z:0,r:1}]),null);
+});
+test('real hand surfaces have nail regions and join their open wrists to the forearms',async()=>{
+  const T=await import('../js/vendor/three/three.module.js'),{GLTFLoader}=await import('../js/vendor/three/GLTFLoader.js'),{SkinnedHand}=await import('../js/tabletop-hand.mjs');
+  for(const [name,side]of [['left',-1],['right',1]]){
+    const bytes=zlib.gunzipSync(fs.readFileSync('assets/tabletop/hands/'+name+'.glb.gz'));
+    const gltf=await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'');
+    const hand=new SkinnedHand(side,new T.Scene(),new T.MeshPhysicalMaterial(),.1);hand.initialize(gltf.scene);
+    assert(hand.nailVertices.every(n=>n>20));
+    const mask=hand.mesh.geometry.attributes.phiNail.array;assert([...mask].every(n=>n>=0&&n<=1));
+    const c=hand.forearm.cuff;assert(c.ring.length>20);
+    for(const wrist of [new T.Vector3(0,3.55,15),new T.Vector3(side*8,4,21)]){
+      hand.forearm.update(wrist,.1);
+      const p=hand.forearm.geometry.attributes.position;
+      for(let i=0;i<c.ring.length;i++){
+        const actual=new T.Vector3().fromBufferAttribute(p,i),expected=c.ring[i].clone().add(wrist);
+        assert(actual.distanceTo(expected)<1e-5,'the forearm must start on the exact open wrist ring');
+      }
+    }
+  }
+});
+
+test('whole-clip wrist planning anticipates contacts and stays identical when seeking backwards',async()=>{
+  const T=await import('../js/vendor/three/three.module.js'),{GLTFLoader}=await import('../js/vendor/three/GLTFLoader.js'),{SkinnedHand}=await import('../js/tabletop-hand.mjs'),{WristTrajectory}=await import('../js/tabletop-motion.mjs');
+  const hands=[];
+  for(const [name,side]of [['left',-1],['right',1]]){
+    const bytes=zlib.gunzipSync(fs.readFileSync('assets/tabletop/hands/'+name+'.glb.gz'));
+    const gltf=await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'');
+    const hand=new SkinnedHand(side,new T.Scene(),new T.MeshPhysicalMaterial(),.1);hand.initialize(gltf.scene);hands.push(hand);
+  }
+  const planner=fixture([{time:.6,px:100},{time:.8,px:900},{time:1,px:200},{time:1.2,px:800},{time:1.5,px:500}]);await planner.build();
+  const screen={width:26.35,height:19.81},trajectory=await WristTrajectory.create(hands,planner,screen,.1,2),snapshots=[];
+  let previous=null,maxStep=0;
+  for(let tick=0;tick<=240;tick++){
+    const time=tick/120,poses=planner.poses(time),wrists=[];
+    for(let h=0;h<2;h++){
+      const part=poses.slice(h*5,h*5+5),plan=hands[h].plan(part,screen,.1,0,trajectory.at(h,time));hands[h].update(part,screen,.1,plan);
+      assert(hands[h].reachError<.04);wrists.push(plan.wrist);
+    }
+    if(previous)for(let h=0;h<2;h++)maxStep=Math.max(maxStep,wrists[h].distanceTo(previous[h]));
+    previous=wrists;snapshots.push(trajectory.at(0,time).toArray());
+  }
+  assert(maxStep<.9,'preposition the wrist before contact instead of snapping at the tap');
+  for(let tick=240;tick>=0;tick--)assert.deepEqual(trajectory.at(0,tick/120).toArray(),snapshots[tick]);
+  await assert.rejects(()=>WristTrajectory.create(hands,planner,screen,.1,2,AbortSignal.abort()),{name:'AbortError'});
 });

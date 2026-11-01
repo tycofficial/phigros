@@ -40,9 +40,19 @@
           (!future||!this.blocked(q,time+future));
       };
       if(previous){const q=this.world(previous);if(valid(q))return this.normalize(q);}
+      let home=p;
+      if(!previous&&e.chart.kind!=='pjsk'){
+        // Phigros accepts contact anywhere in its real judgement strip. Keep
+        // idle hands near a comfortable lower play area, rather than chasing
+        // every decorative line's vertical position across the whole display.
+        const desired=this.world({x:clamp(this.normalize(p).x,.035,.965),y:.78});
+        const along=(desired.x-p.x)*p.ux+(desired.y-p.y)*p.uy;
+        home={x:desired.x-p.ux*along,y:desired.y-p.uy*along};
+        if(valid(home)){if(this.blocked(p,time))this.stats.avoided++;return this.normalize(home);}
+      }
       if(!previous&&valid(p))return this.normalize(p);
       let best=null,bestCost=Infinity;
-      const preferred=previous?this.world(previous):p;
+      const preferred=previous?this.world(previous):home;
       // Native Phigros contact validity is a strip along the judgement line.
       // Search that real strip, including its normal, rather than changing notes.
       for(const n of [0,-.025,.025,-.06,.06,-.12,.12,-.22,.22,-.38,.38,-.6,.6,-.9,.9,-1.3,1.3]){
@@ -81,17 +91,21 @@
           const right=candidate.id>=5,id=candidate.id%5,home=rest(candidate.id);
           const jump=distance(point,candidate.point)/Math.max(.06,start-candidate.last);
           const value=jump*.035+Math.abs(point.x-home.x)*.7+
-            (right?Math.max(0,.46-point.x):Math.max(0,point.x-.54))*3+(id===4?5:0)+id*.006;
+            (right?Math.max(0,.46-point.x):Math.max(0,point.x-.54))*12+(id===4?5:0)+id*.006;
           let penalty=0;
           for(const other of this.tracks){
             if((other.id<5)!==(candidate.id<5)||other.id===candidate.id)continue;
             const event=other.events[other.events.length-1];if(!event||event.end<start)continue;
             const active=this.sample(event,start),expected=(id-other.id%5)*(right?1:-1);
-            if(id<4&&other.id%5<4&&(point.x-active.x)*expected<-.005)penalty+=8;
+            if(id<4&&other.id%5<4&&(point.x-active.x)*expected<-.005)penalty+=2;
             if(distance(point,active)>.43)penalty+=6;
           }
           if(value+penalty<cost){track=candidate;cost=value+penalty;}
         }
+        // Stagger the play areas in depth. A hand following a rotating Hold
+        // can cross the other side without putting both palms on one spot.
+        // safe() still enforces the native judge strip and noise masks.
+        if(this.engine.chart.kind!=='pjsk')point=this.separatePoint(item,start,this.safe(item,start,{x:point.x,y:track.id<5?.86:.65}));
         const samples=[{...point,time:start}],step=1/this.hz;
         if(end>start){
           for(let at=start+step;at<end-1e-7;at+=step){
@@ -191,15 +205,22 @@
       const from=previous?previous.end:time-.32,to=next?next.start:time+.32;
       const gap=to-from,travel=Math.min(.42,Math.max(.085,distance(departure,arrival)*.85));
       let a=departure,b=arrival,u;
-      if(next&&time<to-travel){
+      if(next&&gap-travel<.16){
+        // A very short dwell cannot carry 45% of the entire move. Use the whole
+        // gap for one continuous travel instead of squeezing it into a few ms.
+        u=smooth((time-from)/Math.max(1e-9,gap));
+      }else if(next&&time<to-travel){
         a=departure;b={x:mix(departure.x,arrival.x,.45),y:mix(departure.y,arrival.y,.45)};
-        u=smooth((time-from)/Math.max(.16,gap-travel));
+        // The first phase must reach its midpoint at the exact start of the
+        // second phase. A minimum .16 s denominator left short gaps unfinished
+        // and teleported the finger (and palm) to that midpoint at the boundary.
+        u=smooth((time-from)/Math.max(1e-9,gap-travel));
       }else if(next){
         a=gap>travel?{x:mix(departure.x,arrival.x,.45),y:mix(departure.y,arrival.y,.45)}:departure;
         u=smooth((time-Math.max(from,to-travel))/Math.min(travel,gap));
       }else u=smooth((time-from)/.38);
       const raise=smooth(Math.min(1,(time-from)/.045)),lower=next?smooth(Math.min(1,(to-time)/.065)):1;
-      return{x:mix(a.x,b.x,u),y:mix(a.y,b.y,u),z:.16+1.7*raise*lower,until:next?to-time:Infinity,since:previous?time-from:Infinity,contact:false};
+      return{x:mix(a.x,b.x,u),y:mix(a.y,b.y,u),z:1.7*raise*lower,until:next?to-time:Infinity,since:previous?time-from:Infinity,contact:false};
     }
     poses(time){
       const poses=this.tracks.map(track=>this.pose(track.id,time)),minimum=.048;

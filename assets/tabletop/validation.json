@@ -1,26 +1,48 @@
 {
+  "runtime": "4.0.1.2-pages-22",
   "chart": "Desultory Signals AT 18",
   "noteCount": 2026,
   "fullSongJointSamples": 18092,
-  "maxContactReachErrorCm": 2.2315206618374916e-15,
+  "maxContactReachErrorCm": 2.094764613337708e-15,
+  "motion": {
+    "sampleHz": 120,
+    "maxWristStepCm": 0.3419232562176118,
+    "worstTime": 41.88333333333333,
+    "previousReleaseMaxWristStepCm": 7.677707527702039
+  },
+  "keyframes": [
+    0,
+    4.75,
+    14.99,
+    27,
+    35,
+    50,
+    74.111,
+    87.125,
+    103.37,
+    104.04,
+    125.94,
+    143.6,
+    150
+  ],
   "handPlan": {
     "notes": 2026,
-    "contacts": 1813,
-    "sharedNotes": 224,
-    "holdSamples": 12588,
-    "avoided": 161,
-    "verifiedSamples": 42827,
-    "handoffs": 11,
+    "contacts": 1758,
+    "sharedNotes": 291,
+    "holdSamples": 12500,
+    "avoided": 450,
+    "verifiedSamples": 56300,
+    "handoffs": 23,
     "fingerUsage": [
-      373,
-      182,
+      325,
+      214,
       114,
-      222,
+      213,
       0,
-      371,
-      190,
-      128,
-      233,
+      329,
+      210,
+      138,
+      215,
       0
     ]
   },
@@ -28,16 +50,21 @@
     "width": 1920,
     "height": 1080,
     "fps": 60,
-    "seconds": 4,
-    "frames": 240,
+    "start": 70,
+    "seconds": 12,
+    "frames": 720,
     "codec": "h264",
     "audio": "aac",
     "sampleRate": 44100,
     "channels": 2,
-    "sha256": "f06b2f1134c3c6f0c643182ffb824d6401eb5b7644dee9bff33152687fbfe7f8"
+    "sourceAudioSamples": 529200,
+    "aacTrackSeconds": 12.027937,
+    "fullDecode": "passed",
+    "bytes": 44961089,
+    "sha256": "913b7549ddf8a75ce20f87a5d68c49afe202965bac925b02396a61ebbb36a4a6"
   },
   "unitTests": {
-    "passed": 306,
+    "passed": 313,
     "failed": 0
   },
   "cleanup": {
@@ -49,6 +76,6 @@
     "retained": true
   },
   "compressedAssetsBrowserCheck": "passed",
-  "browser": "Chromium 153 headless, software WebGL",
+  "browser": "Chromium 153.0.8010.0 headless, software WebGL",
   "physicalIPadSafariTested": false
 }

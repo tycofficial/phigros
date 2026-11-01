@@ -36,6 +36,27 @@ are spaced using valid judgement-strip positions; thumbs remain in their rest
 pose. Hand index/joint formats are packed losslessly, and smooth normals are
 reconstructed from the unchanged indexed surface on load.
 
+Wrist paths are solved over the complete song at 120 Hz before encoding.
+Bidirectional projected relaxation preserves the real contact reach disks while
+spreading movement into the approach and release. Palm clearance and a planned
+passing height reduce hand overlap. The renderer samples this absolute timeline,
+then projects interpolated frames back onto the current contact constraints.
+Sampling or seeking in a different order cannot accumulate motion drift.
+
+The wrist cap is removed at its real mesh intersection ring and joined to a
+continuous forearm. Nail color and roughness use a vertex mask on the original
+skinned surface, so they cannot detach from the fingers. The bend plane is
+transported from the neutral finger direction to avoid a vertical-target flip.
+Short dwell phases use the whole travel interval, and contact height approaches
+zero continuously at both lift-off and landing.
+
+Reproduce the CPU checks with `node --test tests/tabletop-planner.test.cjs`.
+Run `tests/tabletop-visual-browser.cjs` for full-song motion and 13 keyframes;
+`tests/tabletop-browser.cjs` performs an actual MP4 export and cleanup checks.
+Set `NODE_PATH` to Playwright's module directory, `CHROMIUM_PATH` to Chromium,
+and `TABLETOP_OUTPUT` to a writable output directory. The encoder test accepts
+`TABLETOP_START`, `TABLETOP_SECONDS`, and `TABLETOP_FPS` for reproducible clips.
+
 Validation is performed with Node unit tests, the real Desultory Signals AT 18
 chart, full-song contact / joint sampling, and an actual browser MP4 export. This
 does not substitute for testing on a physical iPad Safari device. Photorealistic

@@ -1,5 +1,6 @@
 import * as T from './vendor/three/three.module.js';
 import {SkinnedHand} from './tabletop-hand.mjs';
+import {WristTrajectory} from './tabletop-motion.mjs';
 
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 const mix=(a,b,t)=>a+(b-a)*t;
@@ -74,8 +75,7 @@ export class TabletopScene {
     floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;floor.position.y=-.015;this.scene.add(floor);
     const skinMap=skinTextures();this.skinMap=skinMap;
     const skin=new T.MeshPhysicalMaterial({map:skinMap,bumpMap:skinMap,bumpScale:.022,roughness:.55,metalness:0,clearcoat:.06,clearcoatRoughness:.6});
-    const nail=new T.MeshPhysicalMaterial({color:'#bd9384',roughness:.32,clearcoat:.25,clearcoatRoughness:.3});
-    this.materials=[skin,nail];this.device=new T.Group();this.scene.add(this.device);this.textures=[];
+    this.materials=[skin];this.device=new T.Group();this.scene.add(this.device);this.textures=[];
     this.screenTexture=new T.CanvasTexture(this.base.canvas);this.screenTexture.colorSpace=T.SRGBColorSpace;this.screenTexture.minFilter=T.LinearFilter;this.screenTexture.generateMipmaps=false;
     const loader=new T.TextureLoader(),loaded=new Map();
     for(const entry of this.model.meshes){
@@ -101,37 +101,37 @@ export class TabletopScene {
       const mesh=new T.Mesh(g,material);mesh.name=entry.name;mesh.castShadow=true;mesh.receiveShadow=true;this.device.add(mesh);
     }
     if(!this.screenMesh)throw Error('模型中没有原始圆角屏幕。');
-    this.hands=await Promise.all([-1,1].map(side=>SkinnedHand.create(side,this.scene,skin,nail,this.model.screen.y+.006,this.options.signal)));
+    this.hands=await Promise.all([-1,1].map(side=>SkinnedHand.create(side,this.scene,skin,this.model.screen.y+.006,this.options.signal)));
+    this.motion=await WristTrajectory.create(this.hands,this.planner,this.model.screen,this.model.screen.y+.006,this.engine.musicBuffer.duration,this.options.signal);
     this.renderer.compile(this.scene,this.camera);
   }
   render(time){
     if(this.closed||this.lost)throw Error('实景渲染 GPU 已中断，请重新导出。');
     this.base.render(time);this.screenTexture.needsUpdate=true;
     const poses=this.planner.poses(time),floor=this.model.screen.y+.006;
-    this.poseHands(poses,floor);
+    this.poseHands(poses,floor,time);
+    for(const hand of this.hands)hand.updateSurface();
     this.renderer.render(this.scene,this.camera);this.diagnostics.reachError=Math.max(this.diagnostics.reachError||0,...this.hands.map(hand=>hand.reachError));this.diagnostics.frames++;return this.canvas;
   }
-  poseHands(poses,floor){
-    const screen=this.model.screen,plans=this.hands.map((hand,h)=>hand.plan(poses.slice(h*5,h*5+5),screen,floor));
-    const a=plans[0].wrist,b=plans[1].wrist;
-    const separation=((a.x-b.x-2.4)/6.8)**2+((a.z-b.z)/10.4)**2;
-    const u=clamp((1.5-separation)/1.5,0,1),lift=3.1*u*u*(3-2*u);
-    if(lift>.0001)plans[1]=this.hands[1].plan(poses.slice(5),screen,floor,lift);
+  poseHands(poses,floor,time){
+    const screen=this.model.screen,plans=this.hands.map((hand,h)=>hand.plan(poses.slice(h*5,h*5+5),screen,floor,0,this.motion.at(h,time)));
     for(let h=0;h<2;h++)this.hands[h].update(poses.slice(h*5,h*5+5),screen,floor,plans[h]);
   }
   async audit(check=()=>{},hz=120){
-    let maxReach=0,worstTime=0,worst=null,samples=0;
+    let maxReach=0,worstTime=0,worst=null,samples=0,maxWristStep=0,worstMotionTime=0,previous=null;
     const floor=this.model.screen.y+.006,duration=this.engine.musicBuffer.duration;
     for(let frame=0;frame<=Math.ceil(duration*hz);frame++){
       check();const time=Math.min(duration,frame/hz),poses=this.planner.poses(time);
       for(let h=0;h<2;h++){
-        if(h===0)this.poseHands(poses,floor);
-        if(this.hands[h].reachError>maxReach){maxReach=this.hands[h].reachError;worstTime=time;worst={hand:h,poses:poses.slice(h*5,h*5+5).filter(p=>p.contact).map(p=>({x:p.x,y:p.y,type:p.event.item.n.type,start:p.event.start,end:p.event.end,track:p.event.track}))};}
+        if(h===0)this.poseHands(poses,floor,time);
+        if(this.hands[h].reachError>maxReach){maxReach=this.hands[h].reachError;worstTime=time;worst={hand:h,details:this.hands[h].contactError,poses:poses.slice(h*5,h*5+5).filter(p=>p.contact).map(p=>({x:p.x,y:p.y,type:p.event.item.n.type,start:p.event.start,end:p.event.end,track:p.event.track}))};}
       }
-      samples++;
+      const wrists=this.hands.map(hand=>hand.lastWrist.clone());
+      if(previous)for(let h=0;h<2;h++){const step=wrists[h].distanceTo(previous[h]);if(step>maxWristStep){maxWristStep=step;worstMotionTime=time;}}
+      previous=wrists;samples++;
       if(frame%120===0)await new Promise(r=>setTimeout(r,0));
     }
-    return{samples,maxReach,worstTime,worst};
+    return{samples,maxReach,worstTime,worst,maxWristStepCm:maxWristStep,worstMotionTime,motionSampleHz:hz};
   }
   close(){
     if(this.closed)return;this.closed=true;
@@ -140,7 +140,7 @@ export class TabletopScene {
     for(const g of geometries)g.dispose();for(const m of new Set([...materials,...this.materials||[]]))m.dispose();this.scene?.traverse(o=>o.skeleton?.dispose());
     this.screenTexture?.dispose();this.skinMap?.dispose();for(const t of this.textures||[])t.dispose();this.environment?.dispose();
     this.renderer?.dispose();this.renderer?.forceContextLoss();if(this.canvas)this.canvas.width=this.canvas.height=1;
-    this.base?.close();this.planner=null;this.engine=null;
+    this.base?.close();this.motion=null;this.planner=null;this.engine=null;
   }
 }
 
