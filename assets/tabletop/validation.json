@@ -1,81 +1,366 @@
 {
-  "runtime": "4.0.1.2-pages-22",
+  "runtime": "4.0.1.2-pages-24",
+  "validatedAt": "2026-11-01T12:07:13+00:00",
   "chart": "Desultory Signals AT 18",
   "noteCount": 2026,
-  "fullSongJointSamples": 18092,
-  "maxContactReachErrorCm": 2.094764613337708e-15,
-  "motion": {
-    "sampleHz": 120,
-    "maxWristStepCm": 0.3419232562176118,
-    "worstTime": 41.88333333333333,
-    "previousReleaseMaxWristStepCm": 7.677707527702039
+  "authoredHitsCovered": 2026,
+  "planner": {
+    "notes": 2026,
+    "contacts": 1442,
+    "sharedNotes": 294,
+    "holdSamples": 12509,
+    "avoided": 45982,
+    "verifiedSamples": 42876,
+    "handoffs": 17,
+    "glides": 238,
+    "linkedFlicks": 69,
+    "fingerUsage": [
+      434,
+      185,
+      40,
+      2,
+      0,
+      477,
+      222,
+      76,
+      6,
+      0
+    ],
+    "coveredHits": 2026
   },
-  "keyframes": [
+  "indexContactFraction": 0.6317614424410541,
+  "audit": {
+    "minJointHeightCm": 0.23999999999999877,
+    "worstJointHeightTime": 4.783333333333333,
+    "worstJointHeight": {
+      "hand": 1,
+      "finger": 0,
+      "joint": 3,
+      "point": [
+        3.793856369018556,
+        1.0030044426364046,
+        6.338273660608199
+      ]
+    },
+    "capsules": {
+      "sampleHz": 30,
+      "minInterHandClearanceCm": -3.229224701989356,
+      "minSelfClearanceCm": -2.9157809036027698,
+      "minInterHandCoreClearanceCm": -0.9512158368658613,
+      "minSelfCoreClearanceCm": -1.3257809036027695,
+      "worst": {
+        "time": 139.63333333333333,
+        "pairs": [
+          {
+            "first": {
+              "hand": 0,
+              "finger": 4,
+              "segment": 0,
+              "contact": false
+            },
+            "second": {
+              "hand": 1,
+              "finger": 1,
+              "segment": 0,
+              "contact": true
+            },
+            "clearance": -3.229224701989356,
+            "coreClearance": -0.35922470198935563,
+            "distance": 1.1707752980106443,
+            "closest": [
+              {
+                "x": 4.551355393066964,
+                "y": 3.793774316933472,
+                "z": 6.3184854980127465
+              },
+              {
+                "x": 5.7106996486117305,
+                "y": 3.830745745840444,
+                "z": 6.477447156949235
+              }
+            ]
+          },
+          {
+            "first": {
+              "hand": 0,
+              "finger": 4,
+              "segment": 0,
+              "contact": false
+            },
+            "second": {
+              "hand": 1,
+              "finger": 1,
+              "segment": 1,
+              "contact": true
+            },
+            "clearance": -2.9682005427008633,
+            "coreClearance": -0.7382005427008632,
+            "distance": 0.7017994572991367,
+            "closest": [
+              {
+                "x": 4.49864829195592,
+                "y": 3.6624883279522122,
+                "z": 6.589421187277825
+              },
+              {
+                "x": 4.960801921378495,
+                "y": 3.157532563973406,
+                "z": 6.434643354557878
+              }
+            ]
+          },
+          {
+            "first": {
+              "hand": 0,
+              "finger": 4,
+              "segment": 1,
+              "contact": false
+            },
+            "second": {
+              "hand": 1,
+              "finger": 1,
+              "segment": 0,
+              "contact": true
+            },
+            "clearance": -1.821541218893403,
+            "coreClearance": -0.23154121889340273,
+            "distance": 1.1684587811065972,
+            "closest": [
+              {
+                "x": 4.565011375271379,
+                "y": 3.812514286880062,
+                "z": 6.24861989157272
+              },
+              {
+                "x": 5.7106996486117305,
+                "y": 3.830745745840444,
+                "z": 6.477447156949235
+              }
+            ]
+          }
+        ]
+      },
+      "conservativeProxies": true
+    },
+    "samples": 18092,
+    "maxReach": 0,
+    "worstTime": 0,
+    "worst": null,
+    "maxWristStepCm": 0.8029613971620327,
+    "worstMotionTime": 100.71666666666667,
+    "motionSampleHz": 120,
+    "minContactDistanceCm": 3.1959951238284643,
+    "maxJointStepCm": 1.7068944110002138,
+    "worstJointMotion": {
+      "time": 111.90833333333333,
+      "hand": 0,
+      "finger": 1,
+      "joint": 2,
+      "before": [
+        [
+          -8.568298606402813,
+          4.058688932244217,
+          4.344816808003145
+        ],
+        [
+          -4.037713241056369,
+          3.610245440479269,
+          5.466184996712798
+        ],
+        [
+          -5.623544617627587,
+          1.4025170771681132,
+          5.914383317782047
+        ],
+        [
+          -6.800767296955017,
+          1.1173392886016726,
+          5.765822845151845
+        ]
+      ],
+      "after": [
+        [
+          -8.52611471132098,
+          4.058688932244217,
+          4.361388560108489
+        ],
+        [
+          -3.863149344406961,
+          4.548539428609903,
+          4.401042195734657
+        ],
+        [
+          -4.829841776451344,
+          1.9712398097680697,
+          4.514355181051729
+        ],
+        [
+          -5.927744095263684,
+          1.4385710641014784,
+          4.525505408518777
+        ]
+      ],
+      "poses": [
+        {
+          "x": 0.2360528210593111,
+          "y": 0.8120001252118737,
+          "z": 0.053746962975151746,
+          "contact": false,
+          "until": 0.9362871287128627,
+          "since": 0.007188118811896516
+        },
+        {
+          "x": 0.23605316294864673,
+          "y": 0.8120012422646303,
+          "z": 0.38647257936126983,
+          "contact": false,
+          "until": 0.9279537953795369,
+          "since": 0.01552145214522227
+        }
+      ]
+    },
+    "minContactSeparationCm": 1.50165544387281
+  },
+  "keyframeTimes": [
     0,
     4.75,
+    12.5,
+    14.703,
     14.99,
     27,
     35,
     50,
+    54.108,
     74.111,
     87.125,
     103.37,
     104.04,
+    111.958,
+    114.95,
     125.94,
+    139.625,
     143.6,
     150
   ],
-  "handPlan": {
-    "notes": 2026,
-    "contacts": 1758,
-    "sharedNotes": 291,
-    "holdSamples": 12500,
-    "avoided": 450,
-    "verifiedSamples": 56300,
-    "handoffs": 23,
-    "fingerUsage": [
-      325,
-      214,
-      114,
-      213,
-      0,
-      329,
-      210,
-      138,
-      215,
-      0
-    ]
-  },
-  "video": {
-    "width": 1920,
-    "height": 1080,
-    "fps": 60,
-    "start": 70,
-    "seconds": 12,
-    "frames": 720,
-    "codec": "h264",
-    "audio": "aac",
-    "sampleRate": 44100,
-    "channels": 2,
-    "sourceAudioSamples": 529200,
-    "aacTrackSeconds": 12.027937,
-    "fullDecode": "passed",
-    "bytes": 44961089,
-    "sha256": "913b7549ddf8a75ce20f87a5d68c49afe202965bac925b02396a61ebbb36a4a6"
-  },
   "unitTests": {
-    "passed": 313,
+    "passed": 346,
     "failed": 0
   },
-  "cleanup": {
-    "directFrames": 3,
-    "directScene": "gameplay",
-    "cancelled": true,
-    "active": false,
-    "restored": true,
-    "retained": true
+  "flickAudit": {
+    "count": 134,
+    "minimumTravelPixels": 10.44,
+    "minimumPeakSpeedPixelsPerSecond": 911.43,
+    "nativeTravelThresholdPixels": 5.5,
+    "nativeSpeedThresholdPixelsPerSecond": 138
   },
-  "compressedAssetsBrowserCheck": "passed",
-  "browser": "Chromium 153.0.8010.0 headless, software WebGL",
-  "physicalIPadSafariTested": false
+  "model": {
+    "source": "ipad-pro-m5-13in-spaceblack-mgk-black-pencil-pro-ios26-33F49B60F49CE47A.usdz",
+    "sourceSha256": "48098daf7c49117c81a4e4e1808899b93fad081faeba6c8b65124946b83b5ac6",
+    "binarySha256": "9417fc816d2a57ab37fc8939895cd80595b6637863daa60ce92dd88ef34ab69d",
+    "screen": {
+      "min": [
+        -13.17311239242554,
+        0.7570027188228732,
+        -9.903552594700308
+      ],
+      "max": [
+        13.17311239242554,
+        0.757006252828913,
+        9.903552594700304
+      ],
+      "width": 26.34622478485108,
+      "height": 19.807105189400612,
+      "y": 0.7570044426364059,
+      "originalRoundedMesh": true
+    },
+    "removedComponents": [
+      "PoBqSMmyhhcJsBX (Magic Keyboard)",
+      "UlaXKoqepypaGMQ (Apple Pencil)"
+    ]
+  },
+  "exports": [
+    {
+      "startSeconds": 103,
+      "clipSeconds": 1,
+      "fps": 60,
+      "width": 1920,
+      "height": 1080,
+      "frames": 60,
+      "packets": 60,
+      "audioSamples": 44100,
+      "bytes": 3529736,
+      "sha256": "98fbe69ce97fb6c20b25e610a0a05a00d79c4ee67bd2d9a23ef4f47b8b509c0a",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "60/1",
+            "nb_read_frames": "60"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100",
+            "channels": 2,
+            "avg_frame_rate": "0/0",
+            "nb_read_frames": "44"
+          }
+        ],
+        "format": {
+          "duration": "1.044898",
+          "size": "3529736"
+        }
+      },
+      "cleanupPassed": true
+    },
+    {
+      "startSeconds": 103,
+      "clipSeconds": 1,
+      "fps": 30,
+      "width": 1920,
+      "height": 1080,
+      "frames": 30,
+      "packets": 30,
+      "audioSamples": 44100,
+      "bytes": 1792435,
+      "sha256": "78285b773c4464eaba18b442e38769d1d684b951f9d653301e9ed41e611648f4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "30/1",
+            "nb_read_frames": "30"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100",
+            "channels": 2,
+            "avg_frame_rate": "0/0",
+            "nb_read_frames": "44"
+          }
+        ],
+        "format": {
+          "duration": "1.044898",
+          "size": "1792435"
+        }
+      },
+      "cleanupPassed": true
+    }
+  ],
+  "limits": [
+    "Hand geometry is procedural generic skin, not a scanned photorealistic hand.",
+    "Capsule overlaps are conservative diagnostic warnings, not a triangle mesh collision proof.",
+    "Physical iPad Safari device testing has not been performed."
+  ]
 }

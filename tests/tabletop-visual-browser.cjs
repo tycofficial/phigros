@@ -15,7 +15,7 @@ const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript'
     await page.exposeFunction('qaSaveFrame',(png,time)=>fs.writeFileSync(path.join(dir,`at-${time.toFixed(3)}.png`),Buffer.from(png.split(',')[1],'base64')));
     await page.goto(`http://127.0.0.1:${server.address().port}/?skipIntro`);
     await page.waitForFunction(()=>window.PhiOfflineNext);
-    const report=await page.evaluate(async()=>{
+    const report=await page.evaluate(async(auditOnly)=>{
       const m=PhiOfflineNext.modules,record=m.BuiltinCatalog.entries.find(e=>e.id==='chapter9-DesultorySignals.technoplanet-at');
       const frames=[],motion={maxWristStep:0,time:0},output={frames,motion};
       const height=886,width=Math.round(height*26.34622478485108/19.807105189400612);
@@ -27,13 +27,23 @@ const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript'
         const e=m.GameStateManager.current(),base=new m.VideoExporter.OfflineSession(e,width,height);
         await import('./js/tabletop-planner.js');const planner=await new PhiTabletopPlanner.ContactPlanner(e,{blocked:m.LandscapeLayout.blocked}).build();
         await planner.verify();
+        let coveredHits=0;
+        for(const item of e.noteItems.filter(item=>!item.n.fake)){
+          const hit=item.n.time+planner.offset;
+          const contacts=planner.poses(hit).filter(p=>p.contact&&p.event.items.includes(item));
+          if(!contacts.length)throw Error(`Missing actual note contact at ${hit}`);
+          for(const contact of contacts){const p=planner.world(contact);if(!e.touchCoordinatesMatchNote(item.L,item.n,p.x,p.y,hit-planner.offset))throw Error(`Invalid actual note contact at ${hit}`);}
+          coveredHits++;
+        }
+        output.planner={...planner.stats,coveredHits};
         const {TabletopScene}=await import('./js/tabletop-renderer.mjs');
         scene=await TabletopScene.create({engine:e,session:base,planner,width:1920,height:1080});
         output.audit=await scene.audit();
+        if(auditOnly)return output;
         const T=await import('./js/vendor/three/three.module.js'),floor=scene.model.screen.y+.006;
         motion.maxWristStep=output.audit.maxWristStepCm;motion.time=output.audit.worstMotionTime;
         scene.renderer.setSize(1280,720,false);
-        for(const time of [0,4.75,14.99,27,35,50,74.111,87.125,103.37,104.04,125.94,143.6,150]){
+        for(const time of [0,4.75,12.5,14.703,14.99,27,35,50,54.108,74.111,87.125,103.37,104.04,111.958,114.95,125.94,139.625,143.6,150]){
           scene.render(time);const row={time,hands:[],wrists:scene.hands.map(h=>h.lastWrist.toArray()),contacts:scene.planner.poses(time).flatMap((p,i)=>p.contact?[{track:i,x:p.x,y:p.y,start:p.event.start,end:p.event.end,type:p.event.item.n.type}]:[])};
           for(const hand of scene.hands){
             const p=new T.Vector3(),g=hand.mesh.geometry;let minY=Infinity,deep=0;
@@ -44,8 +54,8 @@ const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript'
         }
       }finally{scene?.close();await m.GameStateManager.backToLibrary();viewport.close();}
       return output;
-    });
+    },process.env.TABLETOP_AUDIT_ONLY==='1');
     fs.writeFileSync(path.join(dir,'report.json'),JSON.stringify(report,null,2));
-    assert.equal(report.frames.length,13);assert(report.audit.maxReach<.04);assert(report.motion.maxWristStep<1,'AT 18 wrist movement must stay below 1 cm per 120 Hz sample');assert.deepEqual(errors,[]);console.log(JSON.stringify(report));
+    assert.equal(report.frames.length,process.env.TABLETOP_AUDIT_ONLY==='1'?0:19);assert(report.audit.maxReach<.04);assert(report.audit.minJointHeightCm>=0,'all AT 18 finger joints must stay above the glass');assert(report.audit.maxWristStepCm<1,'AT 18 wrist movement must stay below 1 cm per 120 Hz sample');assert(report.audit.maxJointStepCm<2,'all AT 18 joints must remain continuous');assert(report.audit.minContactSeparationCm>=1.4);assert.deepEqual(errors,[]);console.log(JSON.stringify(report));
   }finally{await browser.close();await new Promise(r=>server.close(r));}
 })().catch(e=>{console.error(e);process.exitCode=1;});

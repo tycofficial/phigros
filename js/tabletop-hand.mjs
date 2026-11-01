@@ -1,11 +1,23 @@
 import * as T from './vendor/three/three.module.js';
 import {GLTFLoader} from './vendor/three/GLTFLoader.js';
-import {openWrist,buildNailMask,Forearm} from './tabletop-anatomy.mjs';
+import {openWrist,buildNailMask,buildSkinDetail,Forearm} from './tabletop-anatomy.mjs';
+import {resolveIdleFingerTargets,thumbAvoidanceInfluence} from './tabletop-collision.mjs';
 
 const V=(x=0,y=0,z=0)=>new T.Vector3(x,y,z);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const smooth=v=>{v=clamp(v,0,1);return v*v*(3-2*v);};
 const names=['index-finger','middle-finger','ring-finger','pinky-finger','thumb'];
+
+// The thumb lies on the radial (index finger) side of each hand. `side` is
+// the wrist's side of the table, so its radial direction has the opposite sign.
+// Rotate the complete rest chain, rather than folding a fingertip back through
+// the thenar eminence or interpolating joint positions and shortening bones.
+export function relaxedThumb(finger,side){
+  const source=finger.positions[3].clone().sub(finger.positions[0]);
+  const desired=V(-side*.48,.08,-.87).normalize();
+  const rotation=new T.Quaternion().setFromUnitVectors(source.normalize(),desired);
+  return{rotation,points:finger.positions.map(p=>p.clone().sub(finger.positions[0]).applyQuaternion(rotation))};
+}
 
 // Exact closest-point projection onto a convex intersection of reach disks.
 // Unlike a fixed number of iterative pushes, this does not leave one finger
@@ -30,20 +42,70 @@ export function projectReachDisks(desired,disks){
   return best;
 }
 
-// Analytic PIP bend with an extended distal pair: exact bone lengths and
-// deterministic contact, including near-full extension where iterative IK drifts.
-export function solveFinger(base,target,lengths,up=1){
-  const first=lengths[0],second=lengths[1]+lengths[2],total=first+second;
+// Coupled PIP/DIP flexion. The distal joint now curls with the middle joint;
+// a monotone bend profile retains the full geometric reach of the old solver.
+export function solveFinger(base,target,lengths,up=1,poleHint=null,minimumHeight=-Infinity){
+  const [first,middle,last]=lengths,second=middle+last,total=first+second;
   const delta=target.clone().sub(base),actual=delta.length(),dir=delta.normalize();
   if(actual<1e-9)dir.set(0,0,-1);
   const d=clamp(actual,Math.abs(first-second)+1e-5,total-1e-5);
-  const along=(first*first-second*second+d*d)/(2*d),height=Math.sqrt(Math.max(0,first*first-along*along));
-  // Transport the anatomical bend plane from a forward finger. Projecting UP
-  // onto a nearly vertical direction flips its sign across that singularity.
-  const pole=V(0,up,0).applyQuaternion(new T.Quaternion().setFromUnitVectors(V(0,0,-1),dir));
-  const elbow=base.clone().addScaledVector(dir,along).addScaledVector(pole,height);
-  const tip=base.clone().addScaledVector(dir,d),distal=elbow.clone().lerp(tip,lengths[1]/second);
-  return{points:[base.clone(),elbow,distal,tip],error:tip.distanceTo(target)};
+  const profile=coupling=>{
+    let low=0,high=Math.PI;
+    for(let i=0;i<40;i++){
+      const pip=(low+high)/2,dip=coupling*Math.sin(pip);
+      const squared=first*first+middle*middle+last*last+2*first*middle*Math.cos(pip)+2*middle*last*Math.cos(dip)+2*first*last*Math.cos(pip+dip);
+      if(squared>d*d)low=pip;else high=pip;
+    }
+    const pip=(low+high)/2,dip=coupling*Math.sin(pip);
+    const x=first+middle*Math.cos(pip)+last*Math.cos(pip+dip),y=-middle*Math.sin(pip)-last*Math.sin(pip+dip);
+    return{pip,dip,angle:Math.atan2(-y,x)};
+  };
+  let {pip,dip,angle}=profile(.85);
+  let pole=poleHint?.clone().addScaledVector(dir,-poleHint.dot(dir));
+  if(!pole||pole.lengthSq()<1e-10)pole=V(0,up,0).applyQuaternion(new T.Quaternion().setFromUnitVectors(V(0,0,-1),dir));
+  pole.normalize();
+  if(Number.isFinite(minimumHeight)){
+    // For a fixed endpoint, each intermediate joint is base + A*dir + B*pole.
+    // Raise only the bend plane enough to keep the actual joints above glass;
+    // endpoint and all three bone lengths remain unchanged.
+    const requiredHeight=(value,height=minimumHeight)=>{
+      let along=0,bend=0,required=-Infinity;
+      for(let i=0;i<2;i++){
+        const a=value.angle-(i>0?value.pip:0);along+=lengths[i]*Math.cos(a);bend+=lengths[i]*Math.sin(a);
+        if(bend>1e-8)required=Math.max(required,(height-base.y-dir.y*along)/bend);
+      }
+      return required;
+    };
+    const upward=V(0,1,0).addScaledVector(dir,-dir.y),maximum=upward.length();
+    const comfortHeight=minimumHeight+.25;
+    if(requiredHeight({pip,dip,angle},comfortHeight)>pole.y){
+      // Preserve the transported bend plane first. Near a downward endpoint,
+      // uncurling the distal joint keeps its skin clear without spinning the
+      // finger toward the singular upward projection of a vertical direction.
+      // Begin with a small clearance cushion so this adjustment is gradual.
+      let low=0,high=.85;
+      for(let i=0;i<14;i++){
+        const middle=(low+high)/2;
+        if(requiredHeight(profile(middle),comfortHeight)<=pole.y)low=middle;else high=middle;
+      }
+      ({pip,dip,angle}=profile(low));
+    }
+    const required=requiredHeight({pip,dip,angle});
+    if(required>pole.y&&maximum>1e-8){
+      upward.multiplyScalar(1/maximum);
+      const tangent=pole.clone().addScaledVector(upward,-pole.dot(upward));
+      if(tangent.lengthSq()<1e-10)tangent.crossVectors(dir,upward);tangent.normalize();
+      const cosine=clamp(required/maximum,-1,1);
+      pole.copy(upward).multiplyScalar(cosine).addScaledVector(tangent,Math.sqrt(Math.max(0,1-cosine*cosine))).normalize();
+    }
+  }
+  const points=[base.clone()];
+  for(let i=0;i<3;i++){
+    const a=angle-(i>0?pip:0)-(i>1?dip:0);
+    points.push(points[i].clone().addScaledVector(dir,lengths[i]*Math.cos(a)).addScaledVector(pole,lengths[i]*Math.sin(a)));
+  }
+  points[3].copy(base).addScaledVector(dir,d);
+  return{points,error:Math.abs(actual-d),flexion:[pip,dip]};
 }
 
 function constrainSkin(material,inverse,floor,nails=false){
@@ -56,14 +118,19 @@ function constrainSkin(material,inverse,floor,nails=false){
       phiHandWorld.y = max(phiGlassY + 0.003, phiHandWorld.y);
       transformed = (phiHandInverse * phiHandWorld).xyz;`);
     if(nails){
-      shader.vertexShader='attribute float phiNail;\nvarying float vPhiNail;\n'+shader.vertexShader;
-      shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvPhiNail = phiNail;');
-      shader.fragmentShader='varying float vPhiNail;\n'+shader.fragmentShader;
-      shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\ndiffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.64, 0.40, 0.33), vPhiNail);');
-      shader.fragmentShader=shader.fragmentShader.replace('#include <roughnessmap_fragment>','#include <roughnessmap_fragment>\nroughnessFactor = mix(roughnessFactor, 0.28, vPhiNail);');
+      shader.vertexShader='attribute float phiNail;\nattribute vec3 phiSkinDetail;\nvarying float vPhiNail;\nvarying vec3 vPhiSkinDetail;\n'+shader.vertexShader;
+      shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvPhiNail = phiNail;\nvPhiSkinDetail = phiSkinDetail;');
+      shader.fragmentShader='varying float vPhiNail;\nvarying vec3 vPhiSkinDetail;\n'+shader.fragmentShader;
+      shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
+        diffuseColor.rgb *= mix(vec3(1.0), vec3(1.035, 0.958, 0.946), vPhiSkinDetail.y);
+        diffuseColor.rgb *= 1.0 - 0.115 * vPhiSkinDetail.x;
+        vec3 phiNailPlate = diffuseColor.rgb * vec3(1.06, 1.16, 1.25);
+        vec3 phiNailColor = mix(phiNailPlate, vec3(0.65, 0.56, 0.48), vPhiSkinDetail.z * 0.38);
+        diffuseColor.rgb = mix(diffuseColor.rgb, phiNailColor, vPhiNail * 0.88);`);
+      shader.fragmentShader=shader.fragmentShader.replace('#include <roughnessmap_fragment>','#include <roughnessmap_fragment>\nroughnessFactor = mix(roughnessFactor, 0.32, vPhiNail);');
     }
   };
-  result.customProgramCacheKey=()=> 'phi-hand-contact-nails-v2-'+nails;return result;
+  result.customProgramCacheKey=()=> 'phi-hand-contact-anatomy-v3-'+nails;return result;
 }
 
 export class SkinnedHand {
@@ -96,6 +163,8 @@ export class SkinnedHand {
     });
     const cuff=openWrist(this.mesh.geometry,this.origin,this.rotation,this.mesh.skeleton.bones.indexOf(this.wrist));
     this.nailVertices=buildNailMask(this.mesh.geometry,this.origin,this.rotation,this.fingers);
+    buildSkinDetail(this.mesh.geometry,this.origin,this.rotation,this.fingers);
+    this.thumbRest=relaxedThumb(this.fingers[4],side);
     this.forearm=new Forearm(this.side,this.skin,cuff);this.scene.add(this.forearm.mesh);
     group.quaternion.copy(this.rotation);group.scale.setScalar(100);group.updateMatrixWorld(true);
     this.inverseMatrix=new T.Matrix4();
@@ -143,11 +212,23 @@ export class SkinnedHand {
     if(point){wrist.x=point.x;wrist.z=point.z;}
     return{targets,weights,wrist};
   }
-  update(poses,screen,floor,plan=null){
-    const {targets,wrist}=plan||this.plan(poses,screen,floor);this.lastWrist=wrist;
+  fingerTargets(poses,floor,plan){
+    const {targets,wrist}=plan;
     // The palm anticipates the whole phrase; idle fingers stay relaxed until
     // the actual approach, instead of reaching through the other hand early.
     const weights=poses.map(p=>p.contact?1:Math.max(smooth(1-(p.until??Infinity)/.12),smooth(1-(p.since??Infinity)/.07)));
+    return this.fingers.map((f,i)=>{
+      const base=f.positions[0].clone().add(wrist),neutral=f.positions[3].clone().add(wrist);
+      // A relaxed hand has a mild flexion cascade toward the little finger;
+      // the index stays ready while unused ring/little fingers curl naturally.
+      const relaxed=base.clone().lerp(neutral,[.86,.82,.76,.71,1][i]);relaxed.y=floor+[2.35,2.45,2.55,2.65,1.8][i];
+      if(i===4){base.y=Math.max(base.y,floor+1.3);relaxed.copy(this.thumbRest.points[3]).add(base);}
+      return{base,target:relaxed.lerp(targets[i],weights[i]),weight:weights[i]};
+    });
+  }
+  update(poses,screen,floor,plan=null,fingerState=null,obstacles=[]){
+    plan=plan||this.plan(poses,screen,floor);
+    const {wrist}=plan,targets=this.fingerTargets(poses,floor,plan);this.lastWrist=wrist;
     const originWorld=this.origin.clone().applyQuaternion(this.rotation).multiplyScalar(100);
     this.group.position.copy(wrist).sub(originWorld);
     // Reset every joint from the neutral template on every frame: seek, FPS and
@@ -155,30 +236,55 @@ export class SkinnedHand {
     for(const [name,bone]of this.bones){
       const rest=this.rest.get(name);bone.position.copy(rest.position).multiplyScalar(.01).applyQuaternion(this.inverseRotation).add(this.origin);bone.quaternion.copy(rest.quaternion);
     }
-    this.reachError=0;this.contactError=null;
+    this.reachError=0;this.contactError=null;this.joints=[];
+    for(let i=0;i<4;i++)if(fingerState&&!poses[i].contact){
+      const original=targets[i].target.clone();
+      targets[i].target.copy(targets[i].base).add(fingerState.offsets[i]);
+      // A note can start between the precomputed 120 Hz samples. Meet its
+      // exact authored contact at both seams instead of snapping from an
+      // interpolated hover offset to the exact target on the contact frame.
+      const seam=Math.max(smooth(1-(poses[i].until??Infinity)*60),smooth(1-(poses[i].since??Infinity)*60));
+      targets[i].target.lerp(original,seam);
+    }
+    const solveClear=(base,target,lengths,up,pole)=>solveFinger(base,target,lengths,up,pole,floor+.02);
+    this.idleAvoidance=fingerState?.bakedAvoidance?{baked:true}:resolveIdleFingerTargets({hand:this,poses,targets,poles:fingerState?.poles,floor,solve:solveClear,obstacles});
     for(let i=0;i<5;i++){
-      const f=this.fingers[i],base=f.positions[0].clone().add(wrist),neutral=f.positions[3].clone().add(wrist);
-      const relaxed=base.clone().lerp(neutral,.80);relaxed.y=floor+2.6;
-      if(i===4){base.y=Math.max(base.y,floor+1.3);relaxed.x=base.x+this.side*.7;relaxed.z=base.z-5.8;relaxed.y=floor+1.8;}
-      const target=relaxed.lerp(targets[i],weights[i]);
-      const {points,error}=solveFinger(base,target,f.lengths);
-      let rigidThumb=null;
-      if(i===4&&weights[i]<1){
-        const source=f.positions[3].clone().sub(f.positions[0]),length=source.length();
-        const desired=V(this.side*.7,.4,-Math.sqrt(length*length-.65));
-        rigidThumb=new T.Quaternion().setFromUnitVectors(source.normalize(),desired.normalize());
-        for(let j=0;j<4;j++){
-          const relaxedPoint=f.positions[j].clone().sub(f.positions[0]).applyQuaternion(rigidThumb).add(base);
-          points[j].lerp(relaxedPoint,1-weights[i]);
+      const f=this.fingers[i],{base,target,weight}=targets[i];
+      let pole=fingerState?.poles[i];
+      if(pole&&i<4){
+        // The exact note may fall between trajectory samples. Transport its
+        // bend plane with the corrected fingertip direction; projecting a
+        // nearly parallel hint magnifies tiny offsets into a knuckle spin.
+        const from=fingerState.offsets[i].clone().normalize(),to=target.clone().sub(base).normalize();
+        pole=pole.clone().applyQuaternion(new T.Quaternion().setFromUnitVectors(from,to));
+      }
+      const {points,error}=solveClear(base,target,f.lengths,1,pole);
+      let thumbRotations=null;
+      if(i===4&&weight===0){
+        const resting=this.thumbRest.points.map(point=>point.clone().add(base));
+        this.thumbAvoidance=Number.isFinite(fingerState?.thumbAvoidance)?fingerState.thumbAvoidance:thumbAvoidanceInfluence(resting,obstacles);
+        const direction=this.side<0?V(.18,.30,-.936):V(-.08,.80,-.595);
+        const extent=f.positions[3].distanceTo(f.positions[0]);
+        const passing=solveClear(base,base.clone().addScaledVector(direction.normalize(),extent),f.lengths,1,V(0,1,0)).points;
+        // Articulate the CMC and phalanges together. A rigid rotation toward
+        // an upward fingertip can leave the source metacarpal pointing down
+        // into the opposite hand. Segment rotations preserve exact lengths.
+        thumbRotations=[];points[0].copy(base);
+        for(let j=0;j<3;j++){
+          const source=f.positions[j+1].clone().sub(f.positions[j]);
+          const desired=passing[j+1].clone().sub(passing[j]).normalize();
+          const rotation=this.thumbRest.rotation.clone().slerp(new T.Quaternion().setFromUnitVectors(source.clone().normalize(),desired),this.thumbAvoidance);
+          thumbRotations.push(rotation);points[j+1].copy(points[j]).add(source.applyQuaternion(rotation));
         }
       }
+      this.joints.push(points);
       if(poses[i].contact)this.reachError=Math.max(this.reachError,error);
       if(poses[i].contact&&error>1e-5)this.contactError={finger:i,base:base.toArray(),target:target.toArray(),lengths:f.lengths,wrist:wrist.toArray()};
       for(let j=0;j<4;j++){
         const bone=f.chain[j],rest=this.rest.get(bone.name),k=Math.min(j,2);
         const before=f.positions[k+1].clone().sub(f.positions[k]).normalize(),after=points[k+1].clone().sub(points[k]).normalize();
         const delta=new T.Quaternion().setFromUnitVectors(before,after);
-        if(rigidThumb)delta.copy(rigidThumb).slerp(new T.Quaternion().setFromUnitVectors(before,after),weights[i]);
+        if(thumbRotations)delta.copy(thumbRotations[k]);
         bone.position.copy(points[j]).sub(wrist).multiplyScalar(.01).applyQuaternion(this.inverseRotation).add(this.origin);
         bone.quaternion.copy(this.inverseRotation).multiply(delta).multiply(this.rotation).multiply(rest.quaternion);
       }

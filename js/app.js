@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-22';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-24';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,10 +26,10 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-22",
+    runtime: "4.0.1.2-pages-24",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
-    buildTimestamp: "2026-10-31T10:40:00Z",
+    buildTimestamp: "2026-11-01T12:06:27Z",
     coreSha256: "dcae237af6ee34b393b4ceea31605c87aaf0d0b737c95da89cc12e9cd5dbe677",
   });
   const PHI_SECURITY_LIMITS = Object.freeze({
@@ -16282,6 +16282,14 @@ function withTimeout(promise, ms, message = "操作超时") {
     if(progress!=null){const p=$('#videoExportProgress');if(p){p.value=clamp(progress,0,1);p.hidden=false;}}
   }
   function cancelVideoExport(){if(videoExportJob){videoExportJob.cancelled=true;videoExportJob.abort?.abort();videoExportJob.client?.close();setVideoExportStatus('正在取消并释放编码资源…');}}
+  function validateTabletopAudit(audit){
+    if(!audit||audit.motionSampleHz!==120||!Number.isFinite(audit.maxReach)||!Number.isFinite(audit.maxWristStepCm)||!Number.isFinite(audit.maxJointStepCm)||!Number.isFinite(audit.minJointHeightCm))throw Error('实景手部运动校验未完成。');
+    if(audit.minJointHeightCm<0)throw Error(`实景指节在 ${(audit.worstJointHeightTime||0).toFixed(3)} 秒低于屏幕，已停止导出。`);
+    if(audit.maxReach>.04)throw Error(`实景手部在 ${audit.worstTime.toFixed(3)} 秒超出自然伸展范围。`);
+    if(audit.maxWristStepCm>=1)throw Error(`实景手腕在 ${audit.worstMotionTime.toFixed(3)} 秒移动过快，已停止导出。`);
+    if(audit.maxJointStepCm>=2)throw Error(`实景指节在 ${(audit.worstJointMotion?.time||0).toFixed(3)} 秒动作不连续，已停止导出。`);
+    if(audit.minContactSeparationCm!=null&&(!Number.isFinite(audit.minContactSeparationCm)||audit.minContactSeparationCm<1.4-1e-4))throw Error('实景同时触点间距不足，已停止导出。');
+  }
   async function runVideoExport(record,options={}){
     if(videoExportJob||videoExportSaving)throw Error('请等待当前视频操作完成。');
     if(!isSecureContext||typeof VideoFrame!=='function'||!navigator.storage?.getDirectory)throw Error('此浏览器没有提供视频编码和本地文件空间，请通过 HTTPS 或 localhost 在支持 WebCodecs 的浏览器打开。');
@@ -16332,7 +16340,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         job.phase='校验全曲关节与触点';setVideoExportStatus('正在校验全曲关节与触点…',0);
         const audit=await session.audit(check,120);check();
         session.diagnostics.audit=audit;
-        if(audit.maxReach>.04)throw Error(`实景手部在 ${audit.worstTime.toFixed(3)} 秒超出自然伸展范围。`);
+        validateTabletopAudit(audit);
         if(options.onScene)await options.onScene(session);check();
       }
       try{await Engine.sharedAudioContext().suspend();}catch{}

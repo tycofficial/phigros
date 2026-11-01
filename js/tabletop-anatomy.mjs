@@ -49,7 +49,7 @@ export function buildNailMask(geometry,origin,rotation,fingers){
   const regions=fingers.map(f=>{
     const a=f.positions[2],b=f.positions[3],along=b.clone().sub(a).normalize();
     const dorsal=V(0,1,0).addScaledVector(along,-along.y).normalize(),across=V().crossVectors(along,dorsal).normalize();
-    return{center:a.clone().lerp(b,.55),along,dorsal,across,length:a.distanceTo(b)*.55,width:f.name==='thumb'?.38:.30};
+    return{center:a.clone().lerp(b,.55),along,dorsal,across,length:a.distanceTo(b)*.46,width:f.name==='thumb'?.52:.42};
   });
   for(let i=0;i<values.length;i++){
     p.fromBufferAttribute(geometry.attributes.position,i).sub(origin).applyQuaternion(rotation).multiplyScalar(100);
@@ -62,6 +62,40 @@ export function buildNailMask(geometry,origin,rotation,fingers){
     }
   }
   geometry.setAttribute('phiNail',new T.BufferAttribute(values,1));return counts;
+}
+
+// Surface detail is anchored in the rest geometry and then skinned with it.
+// This puts the subtle folds and warmer knuckles on the actual joints instead
+// of drawing a repeating stripe texture across unrelated parts of the hand.
+// Channels are fold depth, knuckle warmth and the nail's short free edge.
+export function buildSkinDetail(geometry,origin,rotation,fingers){
+  const count=geometry.attributes.position.count,values=new Float32Array(count*3),p=V(),n=V();
+  const regions=fingers.flatMap(f=>[1,2].map((joint)=>{
+    const center=f.positions[joint],direction=f.positions[joint+1].clone().sub(center).normalize();
+    const dorsal=V(0,1,0).addScaledVector(direction,-direction.y).normalize();
+    return{center,direction,dorsal,width:f.name==='thumb'?.85:.66};
+  }));
+  for(let i=0;i<count;i++){
+    p.fromBufferAttribute(geometry.attributes.position,i).sub(origin).applyQuaternion(rotation).multiplyScalar(100);
+    n.fromBufferAttribute(geometry.attributes.normal,i).applyQuaternion(rotation);
+    let fold=0,warmth=0,edge=0;
+    for(const region of regions){
+      const delta=p.clone().sub(region.center),along=delta.dot(region.direction),dorsal=Math.max(0,n.dot(region.dorsal));
+      const acrossSq=Math.max(0,delta.lengthSq()-along*along);
+      const envelope=Math.exp(-acrossSq/(region.width*region.width))*dorsal;
+      warmth=Math.max(warmth,Math.exp(-along*along/1.1)*envelope);
+      const band=Math.exp(-(((along-.10)/.065)**2))+.45*Math.exp(-(((along+.13)/.055)**2));
+      fold=Math.max(fold,Math.min(1,band)*envelope);
+    }
+    for(const f of fingers){
+      const a=f.positions[2],b=f.positions[3],delta=p.clone().sub(a),axis=b.clone().sub(a),length=axis.length();axis.divideScalar(length);
+      const along=delta.dot(axis)/length,radial=delta.clone().addScaledVector(axis,-along*length).length();
+      if(radial<.9&&along>.88&&along<1.2)edge=Math.max(edge,smooth((along-.88)/.09));
+    }
+    values[i*3]=fold;values[i*3+1]=warmth;values[i*3+2]=edge;
+  }
+  geometry.setAttribute('phiSkinDetail',new T.BufferAttribute(values,3));
+  return values;
 }
 
 export class Forearm {
