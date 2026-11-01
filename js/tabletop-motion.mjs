@@ -4,6 +4,14 @@ import {resolveIdleFingerTargets,thumbAvoidanceInfluence,FINGER_CORE_RADII} from
 
 const phase=value=>{const u=Math.max(0,Math.min(1,value));return u*u*(3-2*u);};
 
+export function anticipateWristHeight(data,hz){
+  const count=data.length/3,step=6/hz;
+  // A finite lookahead jumps upward when its limiting contact leaves the
+  // window. Propagate the reach ceiling across the entire timeline instead.
+  for(let i=1;i<count;i++)data[i*3+1]=Math.min(data[i*3+1],data[(i-1)*3+1]+step);
+  for(let i=count-2;i>=0;i--)data[i*3+1]=Math.min(data[i*3+1],data[(i+1)*3+1]+step);
+}
+
 // Solve the entire wrist path before rendering. Projected bidirectional relaxation
 // spreads each real contact's constraint into its approach and departure; a
 // frame never depends on the previous rendered frame or the export FPS.
@@ -29,8 +37,35 @@ export class WristTrajectory {
     }
     const ergonomic=result.paths.map(path=>path.slice()),attraction=.0035;
     const disksAt=(h,i,y)=>constraints[h][i].map(c=>({x:c.x,z:c.z,r:Math.abs(c.dy-y)>c.length?-1:Math.sqrt(Math.max(0,c.length*c.length-(c.dy-y)**2))}));
+    const temporalDisks=(h,i,y)=>{
+      const disks=[];
+      for(const offset of [0,-1,1]){
+        const at=i+offset;if(at<0||at>=count)continue;
+        for(const source of disksAt(h,at,y)){
+          const disk={...source,r:source.r<0?-1:source.r+Math.abs(offset)/hz*120};
+          if(disk.r<0)return[disk];
+          if(disks.some(other=>Math.hypot(disk.x-other.x,disk.z-other.z)+other.r<=disk.r))continue;
+          for(let n=disks.length-1;n>=0;n--)if(Math.hypot(disk.x-disks[n].x,disk.z-disks[n].z)+disk.r<=disks[n].r)disks.splice(n,1);
+          disks.push(disk);
+        }
+      }
+      return disks;
+    };
+    // Reserve a feasible height for adjacent contact changes before raising a
+    // palm to pass the other hand. A height feasible for one frame alone can
+    // shrink its reach to a tangent and cause a lateral snap at the next note.
+    for(let h=0;h<2;h++)for(let i=0;i<count;i++){
+      const data=result.paths[h],k=i*3,desired={x:data[k],z:data[k+2]};
+      if(projectReachDisks(desired,temporalDisks(h,i,data[k+1])))continue;
+      let low=floor+2.3,high=data[k+1];
+      for(let n=0;n<10;n++){const middle=(low+high)/2;if(projectReachDisks(desired,temporalDisks(h,i,middle)))low=middle;else high=middle;}
+      data[k+1]=low;
+    }
     const optimize=async(h,iterations,separate=false)=>{
-      const data=result.paths[h],sets=constraints[h].map((_,i)=>disksAt(h,i,data[i*3+1]));
+      const data=result.paths[h],sets=constraints[h].map((_,i)=>{
+        const disks=temporalDisks(h,i,data[i*3+1]);
+        return projectReachDisks({x:data[i*3],z:data[i*3+2]},disks)?disks:disksAt(h,i,data[i*3+1]);
+      });
       for(let iteration=0;iteration<iterations;iteration++){
         check();let largest=0;
         for(let direction=0;direction<2;direction++)for(let j=1;j<count-1;j++){
@@ -66,13 +101,7 @@ export class WristTrajectory {
         if(iteration%8===0)await new Promise(r=>setTimeout(r,0));
       }
     };
-    const anticipateHeight=h=>{
-      const data=result.paths[h],ceilings=Float64Array.from({length:count},(_,i)=>data[i*3+1]);
-      for(let i=0;i<count;i++){
-        let y=ceilings[i];for(let j=Math.max(0,i-24);j<=Math.min(count-1,i+24);j++)y=Math.min(y,ceilings[j]+Math.abs(j-i)/24*1.2);
-        data[i*3+1]=y;
-      }
-    };
+    const anticipateHeight=h=>anticipateWristHeight(result.paths[h],hz);
     for(let h=0;h<2;h++){anticipateHeight(h);await optimize(h,200);}
     // Plan the passing height before the second constrained smoothing pass.
     // Raising a hand only at render time otherwise makes the next contact snap
@@ -86,8 +115,8 @@ export class WristTrajectory {
       const u=Math.max(0,Math.min(1,(1.5-separation)/1.5));
       const baseHeight=ergonomic[1][k+1];let low=floor+2.3,high=baseHeight+4.2*u*u*(3-2*u);
       const desired={x:b[k],z:b[k+2]};
-      if(!projectReachDisks(desired,disksAt(1,i,high))){
-        for(let n=0;n<12;n++){const middle=(low+high)/2;if(projectReachDisks(desired,disksAt(1,i,middle)))low=middle;else high=middle;}
+      if(!projectReachDisks(desired,temporalDisks(1,i,high))){
+        for(let n=0;n<12;n++){const middle=(low+high)/2;if(projectReachDisks(desired,temporalDisks(1,i,middle)))low=middle;else high=middle;}
         high=low;
       }
       // Keep headroom inside the feasible reach envelope. A tangent disk
@@ -96,6 +125,40 @@ export class WristTrajectory {
     }
     anticipateHeight(1);};
     for(let pass=0;pass<4;pass++){passingHeight();for(let h=0;h<2;h++)await optimize(h,80,true);}
+    // Enforce motion on the solved wrists themselves, not only on contact
+    // reach envelopes. A feasible envelope still has many possible corners;
+    // selecting different corners on adjacent frames can otherwise snap.
+    for(let iteration=0;iteration<120;iteration++){
+      check();let largest=0;
+      for(let h=0;h<2;h++){
+        const data=result.paths[h];
+        for(let direction=0;direction<2;direction++)for(let j=1;j<count-1;j++){
+          const i=direction?count-1-j:j,k=i*3,disks=disksAt(h,i,data[k+1]);
+          for(const at of [i-1,i+1]){
+            const n=at*3,dy=data[k+1]-data[n+1];
+            disks.push({x:data[n],z:data[n+2],r:Math.sqrt(Math.max(0,.95*.95-dy*dy))});
+          }
+          const point=projectReachDisks({x:data[k],z:data[k+2]},disks);
+          if(point){largest=Math.max(largest,Math.abs(point.x-data[k]),Math.abs(point.z-data[k+2]));data[k]=point.x;data[k+2]=point.z;}
+        }
+      }
+      if(iteration>12&&largest<1e-5)break;
+      if(iteration%12===0)await new Promise(resolve=>setTimeout(resolve,0));
+    }
+    const reachSets=result.paths.map((data,h)=>constraints[h].map((_,i)=>disksAt(h,i,data[i*3+1])));
+    for(let iteration=0;iteration<240;iteration++){
+      check();let excess=0;
+      for(let h=0;h<2;h++)for(let direction=0;direction<2;direction++)for(let j=1;j<count;j++){
+        const i=direction?count-j:j,a=(i-1)*3,b=i*3,data=result.paths[h],dx=data[b]-data[a],dz=data[b+2]-data[a+2],dy=data[b+1]-data[a+1];
+        const limit=Math.sqrt(Math.max(0,.98*.98-dy*dy)),distance=Math.hypot(dx,dz);
+        if(distance<=limit+1e-5)continue;
+        excess=Math.max(excess,distance-limit);const step=(distance-limit)/Math.max(1e-9,distance)*.5;
+        const first=projectReachDisks({x:data[a]+dx*step,z:data[a+2]+dz*step},reachSets[h][i-1]);
+        const second=projectReachDisks({x:data[b]-dx*step,z:data[b+2]-dz*step},reachSets[h][i]);
+        if(first){data[a]=first.x;data[a+2]=first.z;}if(second){data[b]=second.x;data[b+2]=second.z;}
+      }
+      if(excess<1e-4)break;if(iteration%24===0)await new Promise(resolve=>setTimeout(resolve,0));
+    }
     return result;
   }
   constructor(hz,count){this.hz=hz;this.count=count;this.paths=[new Float64Array(count*3),new Float64Array(count*3)];}
@@ -170,9 +233,14 @@ export class FingerTrajectory {
         }
       }
       for(let h=0;h<2;h++)for(let f=0;f<5;f++){
+        // Retain a release endpoint in the baked path when the authored end
+        // falls between grid samples. Relax the following hover around that
+        // anchor instead of correcting a distant smoothed offset at render time.
+        const pose=parts[h][f],anchor=f<4&&!pose.contact&&(pose.since??Infinity)<=1/motion.hz;
+        if(anchor){targets[h][f].target.copy(plans[h].targets[f]);targets[h][f].target.y=floor+.24;}
         const offset=targets[h][f].target.clone().sub(targets[h][f].base),radius=offset.length(),k=i*5+f;
         result.directions[h].set(offset.normalize().toArray(),k*3);result.radii[h][k]=radius;
-        fixed[h][k]=parts[h][f].contact?1:0;clearance[h][k]=floor+.24+parts[h][f].z-targets[h][f].base.y;
+        fixed[h][k]=pose.contact||anchor?1:0;clearance[h][k]=(targets[h][f].minimumHeight??floor+.24+pose.z)-targets[h][f].base.y;
       }
       if(i%240===0)await new Promise(r=>setTimeout(r,0));
     }

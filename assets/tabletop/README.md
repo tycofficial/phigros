@@ -23,6 +23,13 @@ Contacts use real `noteJudgePointInto`, `touchCoordinatesMatchNote`, native
 noise-area transforms and subtractive-mask parity. Fake notes are excluded;
 coincident notes and Drag notes can share a physically valid contact, as in the
 native judgement rules. Disconnected Hold routes use validated finger handoffs.
+Hold contact duration and reacquisition grace come from the engine's native
+scoring policy, including Phigros's completed tail window. Non-overlapping
+handoffs may use that grace without inventing simultaneous fingertip contacts.
+Rotated judgement strips retain their valid free normal position; contact
+planning is not restricted to the decorative note centre. Bounded backtracking
+can revisit earlier finger choices, and a conservative independent-contact
+retry handles shared contacts invalidated by a later route change.
 Animated movement uses absolute music time rather than integrated wall-clock
 motion. Idle-finger collision responses are baked into the whole-song direction
 and extension tracks before relaxation, so proximity changes cannot suddenly
@@ -44,6 +51,9 @@ reconstructed from the unchanged indexed surface on load.
 
 Wrist paths are solved over the complete song at 120 Hz before encoding.
 Their clearance envelope includes the full forward finger span. Passing height
+uses a global bidirectional slope envelope, avoiding jumps at a finite
+lookahead boundary. Symmetric velocity projection preserves both neighbouring
+contact reach sets instead of snapping one wrist frame to the next. Height
 is recomputed together with lateral motion, with headroom inside the exact reach
 disks. Idle directions, extension and thumb passing envelopes are also solved
 before rendering; the bend plane is transported through exact subframe contacts.
@@ -73,6 +83,12 @@ Run `tests/tabletop-visual-browser.cjs` for full-song motion and 19 keyframes;
 Set `NODE_PATH` to Playwright's module directory, `CHROMIUM_PATH` to Chromium,
 and `TABLETOP_OUTPUT` to a writable output directory. The encoder test accepts
 `TABLETOP_START`, `TABLETOP_SECONDS`, and `TABLETOP_FPS` for reproducible clips.
+Use `TABLETOP_CHART_ID` and `TABLETOP_FILENAME` to select a different built-in
+chart and output name. `tests/tabletop-multichart-browser.cjs` checks six boss
+AT charts with the real engine; `TABLETOP_CHARTS` filters their names and
+`TABLETOP_3D=1` adds each whole-song motion audit. The pages-25 results are in
+`planner-validation.json`; the original AT 18 visual record remains in
+`validation.json`.
 
 Validation is performed with Node unit tests, the real Desultory Signals AT 18
 chart, full-song contact / joint sampling, and an actual browser MP4 export. This

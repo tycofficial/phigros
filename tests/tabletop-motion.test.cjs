@@ -55,3 +55,15 @@ test('near-vertical contact corrections cannot snap the transported bend azimuth
   assert(next.distanceTo(pole)<.02,'a tiny fingertip direction change cannot rotate the knuckle around the vertical axis');
   assert(Math.abs(next.dot(after))<1e-8);
 });
+
+test('a brief low wrist contact cannot cause a height jump beyond the lookahead window',async()=>{
+  const {anticipateWristHeight}=await import('../js/tabletop-motion.mjs');
+  const path=new Float64Array(121*3);for(let i=0;i<121;i++)path[i*3+1]=8;
+  path[60*3+1]=3;const original=path.slice();anticipateWristHeight(path,120);
+  assert.equal(path[60*3+1],3);
+  for(let i=0;i<121;i++){
+    assert(path[i*3+1]<=original[i*3+1],'smoothing preserves the contact reach ceiling');
+    if(i)assert(Math.abs(path[i*3+1]-path[(i-1)*3+1])<=.05000001,'the height bound also applies outside the old 24-frame window');
+  }
+  assert.deepEqual([path[0],path[2]],[0,0]);
+});

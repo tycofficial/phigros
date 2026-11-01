@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-24';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-25';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,10 +26,10 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-24",
+    runtime: "4.0.1.2-pages-25",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
-    buildTimestamp: "2026-11-01T12:06:27Z",
+    buildTimestamp: "2026-11-01T23:53:26Z",
     coreSha256: "dcae237af6ee34b393b4ceea31605c87aaf0d0b737c95da89cc12e9cd5dbe677",
   });
   const PHI_SECURITY_LIMITS = Object.freeze({
@@ -11532,6 +11532,18 @@ function withTimeout(promise, ms, message = "操作超时") {
     noteJudgePoint(L, n, t) {
       return this.noteJudgePointInto(L, n, t, this.pointScratchB);
     }
+    holdContactEndTime(n) {
+      // Phigros scoring completes before the visual tail; PJSK keeps its tail.
+      // Export planning uses the same chart-time boundary as native scoring.
+      const end = n.end || n.time;
+      return this.chart.kind === "pjsk" ? end : end - HOLD_TAIL_EARLY;
+    }
+    holdContactGrace(n) {
+      // The Phigros release clock uses performance seconds. PJSK contact
+      // history uses chart-time tick windows, converted here to the same unit.
+      if (this.chart.kind === "pjsk") return (5 / 60) / (Number(this.musicRate) || 1);
+      return Math.max(HOLD_GRACE, clamp(Number(n.holdGrace) || HOLD_GRACE, 0.04, 0.5)) * clamp(touchSensitivity, 0.9, 1.45);
+    }
     touchLineX(L, x, y, t = this.time) {
       const ls = this.lineScreen(L, t);
       return (x - ls.cx) * ls.ux + (y - ls.cy) * ls.uy;
@@ -11734,14 +11746,14 @@ function withTimeout(promise, ms, message = "操作超时") {
           this.activeHolds.delete(item);
           continue;
         }
-        const end = n.end || n.time;
+        const contactEnd = this.holdContactEndTime(n);
         if (n.autoStarted) {
-          if (t >= n.holdFxAt && t < end - HOLD_TAIL_EARLY) {
+          if (t >= n.holdFxAt && t < contactEnd) {
             this.hitEffect(L, n, 0, t);
             n.holdFxAt += this.chart.kind === "pjsk" ? PJSK_HOLD_FX_INTERVAL : HOLD_HIT_FX_INTERVAL;
             if (n.holdFxAt <= t) n.holdFxAt = t + (this.chart.kind === "pjsk" ? PJSK_HOLD_FX_INTERVAL : HOLD_HIT_FX_INTERVAL);
           }
-          if (t >= end - HOLD_TAIL_EARLY) this.commit(n, 0, 0, L);
+          if (t >= contactEnd) this.commit(n, 0, 0, L);
           continue;
         }
         const touch = this.findTouchForNote(
@@ -11750,15 +11762,11 @@ function withTimeout(promise, ms, message = "操作超时") {
           // Never let chart/BPM-derived Hold grace fall below the global short
           // release tolerance. A tiny all-fingers-up gap (for example during a
           // fast hand swap) therefore resumes normally instead of becoming Miss.
-          grace =
-            Math.max(
-              HOLD_GRACE,
-              clamp(Number(n.holdGrace) || HOLD_GRACE, 0.04, 0.5),
-            ) * clamp(touchSensitivity, 0.9, 1.45);
+          grace = this.holdContactGrace(n);
         if (touch) {
           n.holdPointer = touch.id;
           n.releaseAt = Infinity;
-          if (t >= n.holdFxAt && t < end - HOLD_TAIL_EARLY) {
+          if (t >= n.holdFxAt && t < contactEnd) {
             this.hitEffect(L, n, n.judge === "good" ? 1 : 0, t);
             n.holdFxAt += this.chart.kind === "pjsk" ? PJSK_HOLD_FX_INTERVAL : HOLD_HIT_FX_INTERVAL;
             if (n.holdFxAt <= t) n.holdFxAt = t + (this.chart.kind === "pjsk" ? PJSK_HOLD_FX_INTERVAL : HOLD_HIT_FX_INTERVAL);
@@ -11770,10 +11778,10 @@ function withTimeout(promise, ms, message = "操作超时") {
           // A slow frame can cross the tail window after a much earlier lift.
           // Test the release's audio position rather than letting the current
           // frame's tail position erase an already expired contact gap.
-          jt-Math.max(0,nowSec-n.releaseAt)*(Number(this.musicRate)||1) < end-HOLD_TAIL_EARLY
+          jt-Math.max(0,nowSec-n.releaseAt)*(Number(this.musicRate)||1) < contactEnd
         )
           this.commit(n, 3, 0, L);
-        else if (jt >= end - HOLD_TAIL_EARLY)
+        else if (jt >= contactEnd)
           this.commit(n, n.judge === "good" ? 1 : 0, finiteNumber(n.holdHeadDiff, 0), L);
       }
       for (const [id, p] of this.pointer)
@@ -16329,7 +16337,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       const mixer=new PhiExportAudioMixer(exportEngine,start,end),baseSession=job.session=new PhiOfflineRenderSession(exportEngine,gameWidth,gameHeight);
       let session=baseSession,handPlan=null;
       if(tabletop){
-        job.phase='规划手部动作与噪域避让';setVideoExportStatus('正在规划双手演奏与噪域避让…',0);
+        job.phase='规划双手演奏';setVideoExportStatus('正在规划双手演奏…',0);
         await loadHostedScript('./js/tabletop-planner.js');check();
         handPlan=new PhiTabletopPlanner.ContactPlanner(exportEngine,{blocked:nativeBlockTouchBlocked},{progress:p=>setVideoExportStatus(`正在规划双手演奏 · ${Math.round(p*100)}%`,0)});
         await handPlan.build(check);check();

@@ -23,7 +23,7 @@ async function main(){
     await page.waitForFunction(()=>!!window.PhiOfflineNext,{},{timeout:30000});
     console.log('APP_READY');
     if(process.env.TABLETOP_SMOKE==='1'){console.log(await page.evaluate(()=>Object.keys(PhiOfflineNext.modules)));return;}
-    await page.evaluate(()=>{const m=PhiOfflineNext.modules;window.tabletopTest={record:m.BuiltinCatalog.entries.find(e=>e.id==='chapter9-DesultorySignals.technoplanet-at')};if(!tabletopTest.record)throw Error('Missing AT 18');m.VideoExporter.open(tabletopTest.record);});
+    await page.evaluate(id=>{const m=PhiOfflineNext.modules;window.tabletopTest={record:m.BuiltinCatalog.entries.find(e=>e.id===id)};if(!tabletopTest.record)throw Error('Missing requested chart: '+id);m.VideoExporter.open(tabletopTest.record);},process.env.TABLETOP_CHART_ID||'chapter9-DesultorySignals.technoplanet-at');
     await page.waitForSelector('#videoExportScene');
     assert.equal(await page.locator('#videoExportScene').inputValue(),'ipad');
     await page.screenshot({path:process.env.TABLETOP_OUTPUT+'/export-dialog.png'});
@@ -35,11 +35,11 @@ async function main(){
         onScene:async scene=>{const audit=scene.diagnostics.audit;console.log('HAND_AUDIT',JSON.stringify(audit));tabletopTest.audit=audit;},
         onFrame:async(canvas,index)=>{if(index%60===0)console.log('ENCODE_FRAME',index);if(index===0||index===15||index===30)await window.saveTabletopFrame(canvas.toDataURL('image/png'),index);}});}catch(e){throw Error(e.name+': '+e.message+' STATUS: '+document.querySelector('#videoExportStatus')?.textContent+' STACK '+e.stack);}
       window.tabletopTest.result=result;
-      return{frames:result.frames,packets:result.packets,counts:result.counts,handPlan:result.handPlan,model:result.model,path:result.path,scene:result.scene,width:result.width,height:result.height,seconds:result.seconds,audioSamples:result.audioSamples,handDiagnostics:result.handDiagnostics};
+      return{frames:result.frames,packets:result.packets,counts:result.counts,handPlan:result.handPlan,model:result.model,path:result.path,scene:result.scene,width:result.width,height:result.height,seconds:result.seconds,audioSamples:result.audioSamples,handDiagnostics:result.handDiagnostics,expectedNotes:tabletopTest.record.notes};
     });
-    console.log('EXPORT_RESULT',JSON.stringify(result));assert.equal(result.frames,Math.ceil((process.env.TABLETOP_AUDIT_ONLY?.04:Number(process.env.TABLETOP_SECONDS)||2)*(Number(process.env.TABLETOP_FPS)||30)-1e-8));assert(result.handDiagnostics.audit.maxReach<.04);assert.equal(result.scene,'ipad');assert.equal(result.handPlan.notes,2026);
+    console.log('EXPORT_RESULT',JSON.stringify(result));assert.equal(result.frames,Math.ceil((process.env.TABLETOP_AUDIT_ONLY?.04:Number(process.env.TABLETOP_SECONDS)||2)*(Number(process.env.TABLETOP_FPS)||30)-1e-8));assert(result.handDiagnostics.audit.maxReach<.04);assert.equal(result.scene,'ipad');assert.equal(result.handPlan.notes,result.expectedNotes);
     const b64=await page.evaluate(async()=>{const file=tabletopTest.result.file;return await new Promise(r=>{const reader=new FileReader();reader.onload=()=>r(reader.result);reader.readAsDataURL(file);});});
-    fs.writeFileSync(process.env.TABLETOP_OUTPUT+'/Desultory-Signals-AT18-iPad-test.mp4',Buffer.from(b64.split(',')[1],'base64'));
+    fs.writeFileSync(path.join(process.env.TABLETOP_OUTPUT,process.env.TABLETOP_FILENAME||'Desultory-Signals-AT18-iPad-test.mp4'),Buffer.from(b64.split(',')[1],'base64'));
     const cleanup=await page.evaluate(async()=>{
       const exporter=PhiOfflineNext.modules.VideoExporter;
       const first=tabletopTest.result.path;

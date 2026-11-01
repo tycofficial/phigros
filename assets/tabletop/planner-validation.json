@@ -1,0 +1,347 @@
+{
+  "runtime": "4.0.1.2-pages-25",
+  "validatedAt": "2026-11-01T23:53:26Z",
+  "reportedFailure": {
+    "chart": "Entrance to the Chaos AT",
+    "time": 72.464,
+    "noiseAreas": 0
+  },
+  "unitTests": {
+    "passed": 365,
+    "failed": 0
+  },
+  "wholeSongCharts": [
+    {
+      "id": "chapter9-EntrancetotheChaos.打打だいずvssiromaru-at",
+      "name": "Entrance to the Chaos",
+      "notes": 1249,
+      "noiseAreas": 0,
+      "authoredHitsCovered": 1249,
+      "planner": {
+        "notes": 1249,
+        "contacts": 1104,
+        "sharedNotes": 42,
+        "holdSamples": 10295,
+        "avoided": 62978,
+        "verifiedSamples": 96771,
+        "handoffs": 105,
+        "glides": 144,
+        "linkedFlicks": 64,
+        "adaptiveStarts": 0,
+        "tailReleases": 12,
+        "fingerUsage": [
+          352,
+          93,
+          40,
+          12,
+          0,
+          415,
+          141,
+          41,
+          10,
+          0
+        ],
+        "holdGaps": 93,
+        "maxHoldGapSeconds": 0.11666666666667247
+      },
+      "audit": {
+        "samples": 17324,
+        "motionSampleHz": 120,
+        "maxReach": 0,
+        "maxWristStepCm": 0.9800879641700989,
+        "maxJointStepCm": 1.8928831729711146,
+        "minJointHeightCm": 0.01999999999999902,
+        "minContactSeparationCm": 1.5019362623343095
+      },
+      "capsuleProxy": {
+        "sampleHz": 30,
+        "minInterHandClearanceCm": -4.3789420133222015,
+        "minSelfClearanceCm": -3.4463198686490824,
+        "minInterHandCoreClearanceCm": -1.5089420133222013,
+        "minSelfCoreClearanceCm": -1.3838257309155613,
+        "conservativeProxies": true
+      }
+    },
+    {
+      "id": "chapter9-DesultorySignals.technoplanet-at",
+      "name": "Desultory Signals",
+      "notes": 2026,
+      "noiseAreas": 160,
+      "authoredHitsCovered": 2026,
+      "planner": {
+        "notes": 2026,
+        "contacts": 1473,
+        "sharedNotes": 115,
+        "holdSamples": 8929,
+        "avoided": 99490,
+        "verifiedSamples": 106317,
+        "handoffs": 33,
+        "glides": 411,
+        "linkedFlicks": 60,
+        "adaptiveStarts": 1,
+        "fingerUsage": [
+          535,
+          128,
+          32,
+          4,
+          0,
+          562,
+          174,
+          32,
+          6,
+          0
+        ],
+        "holdGaps": 25,
+        "maxHoldGapSeconds": 0.03333333333333144
+      },
+      "audit": {
+        "samples": 18092,
+        "motionSampleHz": 120,
+        "maxReach": 0,
+        "maxWristStepCm": 0.6967699366111244,
+        "maxJointStepCm": 1.9721872014055015,
+        "minJointHeightCm": 0.2399995376087286,
+        "minContactSeparationCm": 1.5014919378317106
+      },
+      "capsuleProxy": {
+        "sampleHz": 30,
+        "minInterHandClearanceCm": -3.9272023856275964,
+        "minSelfClearanceCm": -2.4478637125372553,
+        "minInterHandCoreClearanceCm": -1.2578145795190459,
+        "minSelfCoreClearanceCm": -1.2378637125372551,
+        "conservativeProxies": true
+      }
+    },
+    {
+      "id": "catalog-079ae2e44785387c-at",
+      "name": "Igallta",
+      "notes": 1114,
+      "noiseAreas": 0,
+      "authoredHitsCovered": 1114,
+      "planner": {
+        "notes": 1114,
+        "contacts": 963,
+        "sharedNotes": 53,
+        "holdSamples": 4330,
+        "avoided": 68374,
+        "verifiedSamples": 49476,
+        "handoffs": 1,
+        "glides": 64,
+        "linkedFlicks": 35,
+        "adaptiveStarts": 0,
+        "fingerUsage": [
+          378,
+          83,
+          4,
+          0,
+          0,
+          398,
+          82,
+          10,
+          8,
+          0
+        ],
+        "holdGaps": 0,
+        "maxHoldGapSeconds": 0
+      },
+      "audit": {
+        "samples": 14656,
+        "motionSampleHz": 120,
+        "maxReach": 0,
+        "maxWristStepCm": 0.28773797617898855,
+        "maxJointStepCm": 1.5943665836674867,
+        "minJointHeightCm": 0.2399996611990941,
+        "minContactSeparationCm": 1.5056647053314585
+      },
+      "capsuleProxy": {
+        "sampleHz": 30,
+        "minInterHandClearanceCm": -1.3593820026543328,
+        "minSelfClearanceCm": -2.3602107061353585,
+        "minInterHandCoreClearanceCm": 0.31735260587000436,
+        "minSelfCoreClearanceCm": -1.162365551027502,
+        "conservativeProxies": true
+      }
+    },
+    {
+      "id": "catalog-5cc92af80e1ec083-at",
+      "name": "Distorted Fate",
+      "notes": 1283,
+      "noiseAreas": 0,
+      "authoredHitsCovered": 1283,
+      "planner": {
+        "notes": 1283,
+        "contacts": 1151,
+        "sharedNotes": 48,
+        "holdSamples": 7226,
+        "avoided": 77509,
+        "verifiedSamples": 71234,
+        "handoffs": 6,
+        "glides": 62,
+        "linkedFlicks": 28,
+        "adaptiveStarts": 0,
+        "fingerUsage": [
+          486,
+          77,
+          2,
+          4,
+          0,
+          498,
+          74,
+          7,
+          3,
+          0
+        ],
+        "holdGaps": 8,
+        "maxHoldGapSeconds": 0.008333333333339965
+      },
+      "audit": {
+        "samples": 19444,
+        "motionSampleHz": 120,
+        "maxReach": 0,
+        "maxWristStepCm": 0.3213158205247827,
+        "maxJointStepCm": 1.4534171149101853,
+        "minJointHeightCm": 0.23999978389728882,
+        "minContactSeparationCm": 1.5024467289520966
+      },
+      "capsuleProxy": {
+        "sampleHz": 30,
+        "minInterHandClearanceCm": -1.4129800616543502,
+        "minSelfClearanceCm": -2.4619438247842793,
+        "minInterHandCoreClearanceCm": 0.744189849684894,
+        "minSelfCoreClearanceCm": -1.2519438247842791,
+        "conservativeProxies": true
+      }
+    },
+    {
+      "id": "catalog-48675a8e9a084ab3-at",
+      "name": "Rrhar'il · 联网",
+      "notes": 1300,
+      "noiseAreas": 0,
+      "authoredHitsCovered": 1300,
+      "planner": {
+        "notes": 1300,
+        "contacts": 1152,
+        "sharedNotes": 2,
+        "holdSamples": 6052,
+        "avoided": 83988,
+        "verifiedSamples": 66399,
+        "handoffs": 0,
+        "glides": 41,
+        "linkedFlicks": 105,
+        "adaptiveStarts": 0,
+        "fingerUsage": [
+          513,
+          47,
+          3,
+          2,
+          0,
+          523,
+          57,
+          4,
+          3,
+          0
+        ],
+        "holdGaps": 0,
+        "maxHoldGapSeconds": 0
+      },
+      "audit": {
+        "samples": 15918,
+        "motionSampleHz": 120,
+        "maxReach": 0,
+        "maxWristStepCm": 0.30644274885285294,
+        "maxJointStepCm": 1.636785387688825,
+        "minJointHeightCm": 0.23999953593578327,
+        "minContactSeparationCm": 1.5092591692825676
+      },
+      "capsuleProxy": {
+        "sampleHz": 30,
+        "minInterHandClearanceCm": -1.168401479165237,
+        "minSelfClearanceCm": -2.4677701097036637,
+        "minInterHandCoreClearanceCm": 0.8020356477262413,
+        "minSelfCoreClearanceCm": -1.2577701097036635,
+        "conservativeProxies": true
+      }
+    },
+    {
+      "id": "catalog-3ad08d7a5e882ee9-at",
+      "name": "Re：End of a Dream · 联网",
+      "notes": 1377,
+      "noiseAreas": 0,
+      "authoredHitsCovered": 1377,
+      "planner": {
+        "notes": 1377,
+        "contacts": 1109,
+        "sharedNotes": 1,
+        "holdSamples": 1965,
+        "avoided": 85146,
+        "verifiedSamples": 43515,
+        "handoffs": 0,
+        "glides": 244,
+        "linkedFlicks": 23,
+        "adaptiveStarts": 0,
+        "fingerUsage": [
+          498,
+          22,
+          0,
+          0,
+          0,
+          546,
+          40,
+          3,
+          0,
+          0
+        ],
+        "holdGaps": 0,
+        "maxHoldGapSeconds": 0
+      },
+      "audit": {
+        "samples": 16986,
+        "motionSampleHz": 120,
+        "maxReach": 0,
+        "maxWristStepCm": 0.20153034216029317,
+        "maxJointStepCm": 1.3064166123581125,
+        "minJointHeightCm": 0.23999969747669725,
+        "minContactSeparationCm": 1.5026534601742914
+      },
+      "capsuleProxy": {
+        "sampleHz": 30,
+        "minInterHandClearanceCm": -0.8840080338153342,
+        "minSelfClearanceCm": -2.232471204438314,
+        "minInterHandCoreClearanceCm": 0.7525035259532672,
+        "minSelfCoreClearanceCm": -1.0276456722845864,
+        "conservativeProxies": true
+      }
+    }
+  ],
+  "actualExport": {
+    "chart": "Entrance to the Chaos AT",
+    "start": 72.4,
+    "contentSeconds": 0.20000000000000284,
+    "frames": 6,
+    "packets": 6,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "videoCodec": "H.264",
+    "audioCodec": "AAC",
+    "audioSampleRate": 44100,
+    "audioSamples": 8820,
+    "bytes": 164821,
+    "sha256": "538d1f352ea8d139ffcf651384b535afbad68c4f6dde47be2aa0e720050a76da",
+    "cleanup": {
+      "directFrames": 3,
+      "directScene": "gameplay",
+      "cancelled": true,
+      "active": false,
+      "restored": true,
+      "retained": true
+    }
+  },
+  "sourceSha256": {
+    "js/tabletop-planner.js": "9a2dc592e538b60a63df37b541a56849db231b94b6c8f2e436df267e2561ba9d",
+    "js/tabletop-hand.mjs": "d8ba6bff62e3f9701d0803212bfebfb4feff4ce694453ad4fde8e1b8a5f23514",
+    "js/tabletop-motion.mjs": "f6f6b02e7da8481880d9874dd8ff7a6d135e4675e0cd55e3928865413d9dd108",
+    "js/app.js": "eeadcef7b55156011712aa629ed5cba6fb4cfa8dad3a1d0a0c5aeb817c4523a0"
+  },
+  "scope": "Full-song real-engine contact and kinematic checks at 120 Hz; actual video encoding covers the reported failure. Conservative capsule diagnostics are not a universal skin-mesh collision proof."
+}

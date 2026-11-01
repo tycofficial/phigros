@@ -216,14 +216,25 @@ export class SkinnedHand {
     const {targets,wrist}=plan;
     // The palm anticipates the whole phrase; idle fingers stay relaxed until
     // the actual approach, instead of reaching through the other hand early.
-    const weights=poses.map(p=>p.contact?1:Math.max(smooth(1-(p.until??Infinity)/.12),smooth(1-(p.since??Infinity)/.07)));
+    const weights=poses.map(p=>p.contact?1:Math.max(smooth(1-(p.until??Infinity)/.12),smooth(1-(p.since??Infinity)/.12)));
     return this.fingers.map((f,i)=>{
       const base=f.positions[0].clone().add(wrist),neutral=f.positions[3].clone().add(wrist);
       // A relaxed hand has a mild flexion cascade toward the little finger;
       // the index stays ready while unused ring/little fingers curl naturally.
       const relaxed=base.clone().lerp(neutral,[.86,.82,.76,.71,1][i]);relaxed.y=floor+[2.35,2.45,2.55,2.65,1.8][i];
       if(i===4){base.y=Math.max(base.y,floor+1.3);relaxed.copy(this.thumbRest.points[3]).add(base);}
-      return{base,target:relaxed.lerp(targets[i],weights[i]),weight:weights[i]};
+      const target=relaxed.lerp(targets[i],weights[i]);let minimumHeight=floor+.24+poses[i].z;
+      if(i<4&&!poses[i].contact){
+        const until=poses[i].until??Infinity,since=poses[i].since??Infinity;
+        const moving=Math.max(smooth(1-until/.30),smooth(1-since/.30));
+        const lifted=smooth(Math.min(1,until/.06,since/.10))*moving;
+        // Reposition over the knuckle instead of curling below it. A low
+        // hovering fingertip passing directly under the MCP makes the bend
+        // plane singular even though both authored contacts are reachable.
+        minimumHeight=(floor+.24)*(1-lifted)+(base.y+1)*lifted;
+        target.y=Math.max(target.y,minimumHeight);
+      }
+      return{base,target,weight:weights[i],minimumHeight};
     });
   }
   update(poses,screen,floor,plan=null,fingerState=null,obstacles=[]){
@@ -238,12 +249,14 @@ export class SkinnedHand {
     }
     this.reachError=0;this.contactError=null;this.joints=[];
     for(let i=0;i<4;i++)if(fingerState&&!poses[i].contact){
-      const original=targets[i].target.clone();
+      const original=plan.targets[i].clone();original.y=floor+.24;
       targets[i].target.copy(targets[i].base).add(fingerState.offsets[i]);
       // A note can start between the precomputed 120 Hz samples. Meet its
-      // exact authored contact at both seams instead of snapping from an
+      // exact authored contact on approach instead of snapping from an
       // interpolated hover offset to the exact target on the contact frame.
-      const seam=Math.max(smooth(1-(poses[i].until??Infinity)*60),smooth(1-(poses[i].since??Infinity)*60));
+      // The baked release endpoint keeps its short bridge at glass height;
+      // never mix the raw lifted hover back into the smoothed trajectory.
+      const seam=Math.max(smooth(1-(poses[i].until??Infinity)*60),smooth(1-(poses[i].since??Infinity)*120));
       targets[i].target.lerp(original,seam);
     }
     const solveClear=(base,target,lengths,up,pole)=>solveFinger(base,target,lengths,up,pole,floor+.02);

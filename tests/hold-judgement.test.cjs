@@ -89,3 +89,35 @@ test('brief genuine hand-swap gaps retain the existing Hold release tolerance',(
   const {p,at}=playable([{holdPointer:1,releaseAt:1.1}]);at(40.2,1200);assert.equal(p.commits.length,0);
   p.pointer.set(2,touch(2));at(40.22,1220);assert.equal(p.noteItems[0].n.holdPointer,2);assert.equal(p.noteItems[0].n.releaseAt,Infinity);
 });
+
+
+test('export contact boundary uses the exact native Hold completion window',()=>{
+  const {p}=playable([{}]);
+  assert.equal(p.holdContactEndTime({time:40,end:42}),41.82);
+  assert.equal(p.holdContactEndTime({time:40,end:40.1}),39.92);
+  assert.equal(p.holdContactEndTime({time:40,end:0}),39.82);
+  p.chart.kind="pjsk";assert.equal(p.holdContactEndTime({time:40,end:42}),42,"PJSK still needs its real tail contact");
+});
+test('a physical Hold can release at the shared completion boundary before the visual tail',()=>{
+  const {p,at}=playable([{holdPointer:1}]);p.pointer.set(1,touch(1));
+  const contactEnd=p.holdContactEndTime(p.noteItems[0].n);
+  at(contactEnd-.001,2819);assert.equal(p.commits.length,0);
+  p.pointer.clear();p.noteItems[0].n.releaseAt=2.82;
+  at(contactEnd,2820);assert.equal(p.commits.length,1);assert.equal(p.commits[0].j,0);
+});
+test('very short Holds retain their native early-head completion behavior',()=>{
+  const {p,at}=playable([{time:40,end:40.1,holdPointer:1}]);p.pointer.set(1,touch(1));
+  at(39.95,950);assert.equal(p.commits.length,1);assert.equal(p.commits[0].j,0);
+});
+
+
+test('export Hold reacquisition uses the native release allowance and clock units',()=>{
+  const {p,context}=playable([{}]);
+  assert.equal(p.holdContactGrace({holdGrace:.04}),.16);
+  assert.equal(p.holdContactGrace({holdGrace:.3}),.3);
+  assert.equal(p.holdContactGrace({holdGrace:.9}),.5);
+  context.touchSensitivity=2;
+  assert(Math.abs(p.holdContactGrace({holdGrace:.3})-.435)<1e-10);
+  p.chart.kind="pjsk";p.musicRate=2;
+  assert.equal(p.holdContactGrace({}),5/120,"PJSK chart-time contact history converts to performance seconds");
+});
