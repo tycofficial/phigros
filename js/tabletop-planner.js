@@ -8,9 +8,6 @@
   const mix=(a,b,t)=>a+(b-a)*t;
   const smooth=t=>{t=clamp(t,0,1);return t*t*t*(10+t*(-15+6*t));};
   const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
-  // Centimetres on the supplied iPad's original display, not square UV units.
-  const screenWidth=26.34622478485108,screenHeight=19.807105189400612;
-  const padDistance=(a,b)=>Math.hypot((a.x-b.x)*screenWidth,(a.y-b.y)*screenHeight);
   const rest=id=>({x:id<5?.31-(id%5)*.038:.69+(id%5)*.038,y:1.09,z:1.7});
   class ContactPlanner {
     constructor(engine,geometry,options={}){
@@ -129,7 +126,7 @@
     }
     separatePoint(item,time,point){
       const occupied=this.events.filter(event=>event.start<=time&&event.end>=time).map(event=>this.sample(event,time));
-      const clear=p=>occupied.every(q=>padDistance(p,q)>1.4);
+      const clear=p=>occupied.every(q=>distance(p,q)>.037);
       if(clear(point))return point;
       for(const radius of [.04,.055,.08,.11,.16])for(const [dx,dy]of [[-1,0],[1,0],[0,-1],[0,1],[-.7,-.7],[.7,.7],[-.7,.7],[.7,-.7]]){
         try{const p=this.safe(item,time,{x:point.x+dx*radius,y:point.y+dy*radius},0);if(clear(p))return p;}catch{}
@@ -226,22 +223,22 @@
       return{x:mix(a.x,b.x,u),y:mix(a.y,b.y,u),z:1.7*raise*lower,until:next?to-time:Infinity,since:previous?time-from:Infinity,contact:false};
     }
     poses(time){
-      const poses=this.tracks.map(track=>this.pose(track.id,time)),minimum=1.5;
+      const poses=this.tracks.map(track=>this.pose(track.id,time)),minimum=.048;
       for(let pass=0;pass<12;pass++){
         let moved=false;
         for(let i=0;i<poses.length;i++)for(let j=i+1;j<poses.length;j++){
           const a=poses[i],b=poses[j];if(!a.contact||!b.contact)continue;
-          const d=padDistance(a,b);if(d>=minimum)continue;
-          const dx=d>1e-9?(a.x-b.x)*screenWidth/d:(i%2?1:-1),dy=d>1e-9?(a.y-b.y)*screenHeight/d:0;
+          const d=distance(a,b);if(d>=minimum)continue;
+          const dx=d>1e-9?(a.x-b.x)/d:(i%2?1:-1),dy=d>1e-9?(a.y-b.y)/d:0;
           for(const [p,sign]of [[a,1],[b,-1]]){
-            const q={x:p.x+dx*sign*(minimum-d+.001)*.6/screenWidth,y:p.y+dy*sign*(minimum-d+.001)*.6/screenHeight};
+            const q={x:p.x+dx*sign*(minimum-d+.0001)*.6,y:p.y+dy*sign*(minimum-d+.0001)*.6};
             if(q.x>.013&&q.x<.987&&q.y>.018&&q.y<.982&&this.valid(p.event,time,q)){p.x=q.x;p.y=q.y;moved=true;}
           }
         }
         if(!moved)break;
       }
       for(let i=0;i<poses.length;i++)for(let j=i+1;j<poses.length;j++)
-        if(poses[i].contact&&poses[j].contact&&padDistance(poses[i],poses[j])<1.4)
+        if(poses[i].contact&&poses[j].contact&&distance(poses[i],poses[j])<.037)
           throw Error(`实景手部在 ${time.toFixed(3)} 秒无法分离独立指尖。`);
       return poses;
     }

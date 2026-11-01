@@ -1,83 +1,14 @@
 {
-  "runtime": "4.0.1.2-pages-23",
+  "runtime": "4.0.1.2-pages-22",
   "chart": "Desultory Signals AT 18",
   "noteCount": 2026,
   "fullSongJointSamples": 18092,
-  "maxContactReachErrorCm": 0,
+  "maxContactReachErrorCm": 2.094764613337708e-15,
   "motion": {
     "sampleHz": 120,
     "maxWristStepCm": 0.3419232562176118,
-    "maxJointStepCm": 1.8007352872472708,
-    "worstJointMotion": {
-      "time": 134.075,
-      "hand": 0,
-      "finger": 1,
-      "joint": 3,
-      "before": [
-        [
-          -5.672796527554365,
-          4.058688932244217,
-          9.640185722170347
-        ],
-        [
-          -3.372408769066925,
-          4.609292261171188,
-          5.591750954581354
-        ],
-        [
-          -3.535382348339439,
-          1.8819389596825284,
-          5.238493261935276
-        ],
-        [
-          -4.031054959206963,
-          1.00783561307591,
-          5.9309539641612306
-        ]
-      ],
-      "after": [
-        [
-          -5.686622672886939,
-          4.058688932244217,
-          9.606032621178368
-        ],
-        [
-          -4.043290999585272,
-          3.9059805928401787,
-          5.217306939702288
-        ],
-        [
-          -4.9121299245788,
-          1.4337938293665202,
-          6.067729743381341
-        ],
-        [
-          -5.4011419266208245,
-          1.0030044426364064,
-          7.099494051728783
-        ]
-      ],
-      "poses": [
-        {
-          "x": 0.32749476832625496,
-          "y": 0.8429015722529632,
-          "z": 0.004831333949766693,
-          "contact": false,
-          "until": 0.0072442244224362184,
-          "since": 0.01601320132013484
-        },
-        {
-          "x": 0.2949937051426644,
-          "y": 0.8584316831683177,
-          "z": 0,
-          "contact": true,
-          "start": 134.0739108910891,
-          "end": 134.1109108910891
-        }
-      ]
-    },
-    "previousReleaseMaxJointStepCm": 4.506985490374262,
-    "minContactSeparationCm": 1.508874833334246
+    "worstTime": 41.88333333333333,
+    "previousReleaseMaxWristStepCm": 7.677707527702039
   },
   "keyframes": [
     0,
@@ -99,57 +30,23 @@
     "contacts": 1758,
     "sharedNotes": 291,
     "holdSamples": 12500,
-    "avoided": 462,
-    "verifiedSamples": 70182,
+    "avoided": 450,
+    "verifiedSamples": 56300,
     "handoffs": 23,
     "fingerUsage": [
-      324,
+      325,
       214,
       114,
       213,
       0,
       329,
-      211,
-      137,
-      216,
+      210,
+      138,
+      215,
       0
     ]
   },
   "video": {
-    "width": 1920,
-    "height": 1080,
-    "fps": 60,
-    "start": 54.65,
-    "seconds": 0.5,
-    "frames": 30,
-    "codec": "h264",
-    "audio": "aac",
-    "sampleRate": 44100,
-    "channels": 2,
-    "sourceAudioSamples": 22050,
-    "aacTrackSeconds": 0.534059,
-    "fullDecode": "passed",
-    "scope": "targeted regression around the prior 54.85-second joint flip",
-    "sha256": "4c5ed0090b98f78679a8548416832f08879fab8077652528a784bf8cca380e9f"
-  },
-  "unitTests": {
-    "scope": "tests/tabletop-planner.test.cjs",
-    "passed": 21,
-    "failed": 0
-  },
-  "cleanup": {
-    "directFrames": 3,
-    "directScene": "gameplay",
-    "cancelled": true,
-    "active": false,
-    "restored": true,
-    "retained": true
-  },
-  "compressedAssetsBrowserCheck": "passed",
-  "browser": "Chromium 153.0.8010.0 headless, software WebGL",
-  "physicalIPadSafariTested": false,
-  "previousReleaseVideo": {
-    "runtime": "4.0.1.2-pages-22",
     "width": 1920,
     "height": 1080,
     "fps": 60,
@@ -166,5 +63,19 @@
     "bytes": 44961089,
     "sha256": "913b7549ddf8a75ce20f87a5d68c49afe202965bac925b02396a61ebbb36a4a6"
   },
-  "broadRegressionSuite": "summary incomplete; no new full-suite pass count claimed"
+  "unitTests": {
+    "passed": 313,
+    "failed": 0
+  },
+  "cleanup": {
+    "directFrames": 3,
+    "directScene": "gameplay",
+    "cancelled": true,
+    "active": false,
+    "restored": true,
+    "retained": true
+  },
+  "compressedAssetsBrowserCheck": "passed",
+  "browser": "Chromium 153.0.8010.0 headless, software WebGL",
+  "physicalIPadSafariTested": false
 }

@@ -18,7 +18,7 @@ test('six coincident blue taps use six separate presses and spaced fingertips',a
   const p=fixture(Array.from({length:6},()=>({type:1,px:500,py:375})));await p.build();
   assert.equal(p.events.length,6);assert.equal(p.stats.sharedNotes,0);
   const contacts=p.poses(1).filter(p=>p.contact);assert.equal(contacts.length,6);
-  for(let i=0;i<contacts.length;i++)for(let j=i+1;j<contacts.length;j++)assert(Math.hypot((contacts[i].x-contacts[j].x)*26.34622478485108,(contacts[i].y-contacts[j].y)*19.807105189400612)>=1.4);
+  for(let i=0;i<contacts.length;i++)for(let j=i+1;j<contacts.length;j++)assert(Math.hypot(contacts[i].x-contacts[j].x,contacts[i].y-contacts[j].y)>.037);
 });
 test('moving holds stay in their real judge strip and avoid an active noise rectangle',async()=>{
   const blocked=(e,x,y,t)=>t>=1&&t<2&&x>=420&&x<=580&&y>=280&&y<=470;
@@ -96,24 +96,6 @@ test('finger bend stays continuous when a target crosses directly below the knuc
   assert(a.points[1].distanceTo(b.points[1])<.0001,'the elbow must not flip to the other side of the finger');
   for(const result of [a,b])assert(result.error<1e-9);
 });
-test('distal finger joints curl while preserving the exact planned touch',async()=>{
-  const {solveFinger}=await import('../js/tabletop-hand.mjs'),{Vector3}=await import('../js/vendor/three/three.module.js');
-  const result=solveFinger(new Vector3(0,5,0),new Vector3(0,1,-3),[4.2,2.5,1.3]),p=result.points;
-  const distal=p[3].clone().sub(p[2]),middle=p[2].clone().sub(p[1]);
-  assert(middle.angleTo(distal)>.3,'the final two phalanges must not remain one rigid rod');
-  assert(middle.angleTo(distal)<1);assert(result.error<1e-9);
-});
-test('transported bend planes do not flip when a finger passes the backward direction',async()=>{
-  const {solveFinger}=await import('../js/tabletop-hand.mjs'),{transportBend}=await import('../js/tabletop-motion.mjs'),T=await import('../js/vendor/three/three.module.js');
-  const base=new T.Vector3(0,5,0);let previousDirection=null,pole=new T.Vector3(0,1,0),previous=null;
-  for(let i=0;i<=120;i++){
-    const angle=-.12+i*.002,direction=new T.Vector3(Math.sin(angle),-.03,Math.cos(angle)).normalize();
-    if(previousDirection)pole=transportBend(previousDirection,pole,direction);else pole.addScaledVector(direction,-pole.dot(direction)).normalize();
-    const result=solveFinger(base,base.clone().addScaledVector(direction,4),[4.2,2.5,1.3],1,pole);
-    if(previous)assert(result.points[1].distanceTo(previous)<.2,'the knuckle cannot jump across its bend plane');
-    assert(result.error<1e-9);previous=result.points[1];previousDirection=direction;
-  }
-});
 test('subdivided continuous hand skins keep 25 joints and normalized bone weights',()=>{
   for(const name of ['left','right']){
     const raw=zlib.gunzipSync(fs.readFileSync('assets/tabletop/hands/'+name+'.glb.gz')),size=raw.readUInt32LE(12),doc=JSON.parse(raw.subarray(20,20+size));
@@ -159,7 +141,7 @@ test('real hand surfaces have nail regions and join their open wrists to the for
 });
 
 test('whole-clip wrist planning anticipates contacts and stays identical when seeking backwards',async()=>{
-  const T=await import('../js/vendor/three/three.module.js'),{GLTFLoader}=await import('../js/vendor/three/GLTFLoader.js'),{SkinnedHand}=await import('../js/tabletop-hand.mjs'),{WristTrajectory,FingerTrajectory}=await import('../js/tabletop-motion.mjs');
+  const T=await import('../js/vendor/three/three.module.js'),{GLTFLoader}=await import('../js/vendor/three/GLTFLoader.js'),{SkinnedHand}=await import('../js/tabletop-hand.mjs'),{WristTrajectory}=await import('../js/tabletop-motion.mjs');
   const hands=[];
   for(const [name,side]of [['left',-1],['right',1]]){
     const bytes=zlib.gunzipSync(fs.readFileSync('assets/tabletop/hands/'+name+'.glb.gz'));
@@ -168,22 +150,17 @@ test('whole-clip wrist planning anticipates contacts and stays identical when se
   }
   const planner=fixture([{time:.6,px:100},{time:.8,px:900},{time:1,px:200},{time:1.2,px:800},{time:1.5,px:500}]);await planner.build();
   const screen={width:26.35,height:19.81},trajectory=await WristTrajectory.create(hands,planner,screen,.1,2),snapshots=[];
-  const fingers=await FingerTrajectory.create(hands,planner,screen,.1,trajectory,2),jointSnapshots=[];
   let previous=null,maxStep=0;
   for(let tick=0;tick<=240;tick++){
     const time=tick/120,poses=planner.poses(time),wrists=[];
     for(let h=0;h<2;h++){
-      const part=poses.slice(h*5,h*5+5),plan=hands[h].plan(part,screen,.1,0,trajectory.at(h,time));hands[h].update(part,screen,.1,plan,fingers.at(h,time));
+      const part=poses.slice(h*5,h*5+5),plan=hands[h].plan(part,screen,.1,0,trajectory.at(h,time));hands[h].update(part,screen,.1,plan);
       assert(hands[h].reachError<.04);wrists.push(plan.wrist);
     }
     if(previous)for(let h=0;h<2;h++)maxStep=Math.max(maxStep,wrists[h].distanceTo(previous[h]));
-    previous=wrists;snapshots.push(trajectory.at(0,time).toArray());jointSnapshots.push(hands[0].joints.map(f=>f.map(p=>p.toArray())));
+    previous=wrists;snapshots.push(trajectory.at(0,time).toArray());
   }
   assert(maxStep<.9,'preposition the wrist before contact instead of snapping at the tap');
-  for(let tick=240;tick>=0;tick--){
-    const time=tick/120,part=planner.poses(time).slice(0,5),plan=hands[0].plan(part,screen,.1,0,trajectory.at(0,time));hands[0].update(part,screen,.1,plan,fingers.at(0,time));
-    assert.deepEqual(trajectory.at(0,time).toArray(),snapshots[tick]);assert.deepEqual(hands[0].joints.map(f=>f.map(p=>p.toArray())),jointSnapshots[tick]);
-  }
+  for(let tick=240;tick>=0;tick--)assert.deepEqual(trajectory.at(0,tick/120).toArray(),snapshots[tick]);
   await assert.rejects(()=>WristTrajectory.create(hands,planner,screen,.1,2,AbortSignal.abort()),{name:'AbortError'});
-  await assert.rejects(()=>FingerTrajectory.create(hands,planner,screen,.1,trajectory,2,AbortSignal.abort()),{name:'AbortError'});
 });

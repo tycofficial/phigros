@@ -30,31 +30,20 @@ export function projectReachDisks(desired,disks){
   return best;
 }
 
-// Coupled PIP/DIP flexion. The distal joint now curls with the middle joint;
-// a monotone bend profile retains the full geometric reach of the old solver.
-export function solveFinger(base,target,lengths,up=1,poleHint=null){
-  const [first,middle,last]=lengths,second=middle+last,total=first+second;
+// Analytic PIP bend with an extended distal pair: exact bone lengths and
+// deterministic contact, including near-full extension where iterative IK drifts.
+export function solveFinger(base,target,lengths,up=1){
+  const first=lengths[0],second=lengths[1]+lengths[2],total=first+second;
   const delta=target.clone().sub(base),actual=delta.length(),dir=delta.normalize();
   if(actual<1e-9)dir.set(0,0,-1);
   const d=clamp(actual,Math.abs(first-second)+1e-5,total-1e-5);
-  let low=0,high=Math.PI;
-  for(let i=0;i<40;i++){
-    const pip=(low+high)/2,dip=.85*Math.sin(pip);
-    const squared=first*first+middle*middle+last*last+2*first*middle*Math.cos(pip)+2*middle*last*Math.cos(dip)+2*first*last*Math.cos(pip+dip);
-    if(squared>d*d)low=pip;else high=pip;
-  }
-  const pip=(low+high)/2,dip=.85*Math.sin(pip);
-  const x=first+middle*Math.cos(pip)+last*Math.cos(pip+dip),y=-middle*Math.sin(pip)-last*Math.sin(pip+dip),angle=Math.atan2(-y,x);
-  let pole=poleHint?.clone().addScaledVector(dir,-poleHint.dot(dir));
-  if(!pole||pole.lengthSq()<1e-10)pole=V(0,up,0).applyQuaternion(new T.Quaternion().setFromUnitVectors(V(0,0,-1),dir));
-  pole.normalize();
-  const points=[base.clone()];
-  for(let i=0;i<3;i++){
-    const a=angle-(i>0?pip:0)-(i>1?dip:0);
-    points.push(points[i].clone().addScaledVector(dir,lengths[i]*Math.cos(a)).addScaledVector(pole,lengths[i]*Math.sin(a)));
-  }
-  points[3].copy(base).addScaledVector(dir,d);
-  return{points,error:Math.abs(actual-d),flexion:[pip,dip]};
+  const along=(first*first-second*second+d*d)/(2*d),height=Math.sqrt(Math.max(0,first*first-along*along));
+  // Transport the anatomical bend plane from a forward finger. Projecting UP
+  // onto a nearly vertical direction flips its sign across that singularity.
+  const pole=V(0,up,0).applyQuaternion(new T.Quaternion().setFromUnitVectors(V(0,0,-1),dir));
+  const elbow=base.clone().addScaledVector(dir,along).addScaledVector(pole,height);
+  const tip=base.clone().addScaledVector(dir,d),distal=elbow.clone().lerp(tip,lengths[1]/second);
+  return{points:[base.clone(),elbow,distal,tip],error:tip.distanceTo(target)};
 }
 
 function constrainSkin(material,inverse,floor,nails=false){
@@ -154,21 +143,11 @@ export class SkinnedHand {
     if(point){wrist.x=point.x;wrist.z=point.z;}
     return{targets,weights,wrist};
   }
-  fingerTargets(poses,floor,plan){
-    const {targets,wrist}=plan;
+  update(poses,screen,floor,plan=null){
+    const {targets,wrist}=plan||this.plan(poses,screen,floor);this.lastWrist=wrist;
     // The palm anticipates the whole phrase; idle fingers stay relaxed until
     // the actual approach, instead of reaching through the other hand early.
     const weights=poses.map(p=>p.contact?1:Math.max(smooth(1-(p.until??Infinity)/.12),smooth(1-(p.since??Infinity)/.07)));
-    return this.fingers.map((f,i)=>{
-      const base=f.positions[0].clone().add(wrist),neutral=f.positions[3].clone().add(wrist);
-      const relaxed=base.clone().lerp(neutral,.80);relaxed.y=floor+2.6;
-      if(i===4){base.y=Math.max(base.y,floor+1.3);relaxed.x=base.x+this.side*.7;relaxed.z=base.z-5.8;relaxed.y=floor+1.8;}
-      return{base,target:relaxed.lerp(targets[i],weights[i]),weight:weights[i]};
-    });
-  }
-  update(poses,screen,floor,plan=null,fingerState=null){
-    plan=plan||this.plan(poses,screen,floor);
-    const {wrist}=plan,targets=this.fingerTargets(poses,floor,plan);this.lastWrist=wrist;
     const originWorld=this.origin.clone().applyQuaternion(this.rotation).multiplyScalar(100);
     this.group.position.copy(wrist).sub(originWorld);
     // Reset every joint from the neutral template on every frame: seek, FPS and
@@ -176,29 +155,30 @@ export class SkinnedHand {
     for(const [name,bone]of this.bones){
       const rest=this.rest.get(name);bone.position.copy(rest.position).multiplyScalar(.01).applyQuaternion(this.inverseRotation).add(this.origin);bone.quaternion.copy(rest.quaternion);
     }
-    this.reachError=0;this.contactError=null;this.joints=[];
+    this.reachError=0;this.contactError=null;
     for(let i=0;i<5;i++){
-      const f=this.fingers[i],{base,target,weight}=targets[i];
-      if(fingerState&&i<4&&!poses[i].contact)target.copy(base).add(fingerState.offsets[i]);
-      const {points,error}=solveFinger(base,target,f.lengths,1,fingerState?.poles[i]);
+      const f=this.fingers[i],base=f.positions[0].clone().add(wrist),neutral=f.positions[3].clone().add(wrist);
+      const relaxed=base.clone().lerp(neutral,.80);relaxed.y=floor+2.6;
+      if(i===4){base.y=Math.max(base.y,floor+1.3);relaxed.x=base.x+this.side*.7;relaxed.z=base.z-5.8;relaxed.y=floor+1.8;}
+      const target=relaxed.lerp(targets[i],weights[i]);
+      const {points,error}=solveFinger(base,target,f.lengths);
       let rigidThumb=null;
-      if(i===4&&weight<1){
+      if(i===4&&weights[i]<1){
         const source=f.positions[3].clone().sub(f.positions[0]),length=source.length();
         const desired=V(this.side*.7,.4,-Math.sqrt(length*length-.65));
         rigidThumb=new T.Quaternion().setFromUnitVectors(source.normalize(),desired.normalize());
         for(let j=0;j<4;j++){
           const relaxedPoint=f.positions[j].clone().sub(f.positions[0]).applyQuaternion(rigidThumb).add(base);
-          points[j].lerp(relaxedPoint,1-weight);
+          points[j].lerp(relaxedPoint,1-weights[i]);
         }
       }
-      this.joints.push(points);
       if(poses[i].contact)this.reachError=Math.max(this.reachError,error);
       if(poses[i].contact&&error>1e-5)this.contactError={finger:i,base:base.toArray(),target:target.toArray(),lengths:f.lengths,wrist:wrist.toArray()};
       for(let j=0;j<4;j++){
         const bone=f.chain[j],rest=this.rest.get(bone.name),k=Math.min(j,2);
         const before=f.positions[k+1].clone().sub(f.positions[k]).normalize(),after=points[k+1].clone().sub(points[k]).normalize();
         const delta=new T.Quaternion().setFromUnitVectors(before,after);
-        if(rigidThumb)delta.copy(rigidThumb).slerp(new T.Quaternion().setFromUnitVectors(before,after),weight);
+        if(rigidThumb)delta.copy(rigidThumb).slerp(new T.Quaternion().setFromUnitVectors(before,after),weights[i]);
         bone.position.copy(points[j]).sub(wrist).multiplyScalar(.01).applyQuaternion(this.inverseRotation).add(this.origin);
         bone.quaternion.copy(this.inverseRotation).multiply(delta).multiply(this.rotation).multiply(rest.quaternion);
       }

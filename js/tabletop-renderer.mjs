@@ -1,6 +1,6 @@
 import * as T from './vendor/three/three.module.js';
 import {SkinnedHand} from './tabletop-hand.mjs';
-import {WristTrajectory,FingerTrajectory} from './tabletop-motion.mjs';
+import {WristTrajectory} from './tabletop-motion.mjs';
 
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 const mix=(a,b,t)=>a+(b-a)*t;
@@ -103,7 +103,6 @@ export class TabletopScene {
     if(!this.screenMesh)throw Error('模型中没有原始圆角屏幕。');
     this.hands=await Promise.all([-1,1].map(side=>SkinnedHand.create(side,this.scene,skin,this.model.screen.y+.006,this.options.signal)));
     this.motion=await WristTrajectory.create(this.hands,this.planner,this.model.screen,this.model.screen.y+.006,this.engine.musicBuffer.duration,this.options.signal);
-    this.fingerMotion=await FingerTrajectory.create(this.hands,this.planner,this.model.screen,this.model.screen.y+.006,this.motion,this.engine.musicBuffer.duration,this.options.signal);
     this.renderer.compile(this.scene,this.camera);
   }
   render(time){
@@ -116,12 +115,10 @@ export class TabletopScene {
   }
   poseHands(poses,floor,time){
     const screen=this.model.screen,plans=this.hands.map((hand,h)=>hand.plan(poses.slice(h*5,h*5+5),screen,floor,0,this.motion.at(h,time)));
-    for(let h=0;h<2;h++)this.hands[h].update(poses.slice(h*5,h*5+5),screen,floor,plans[h],this.fingerMotion.at(h,time));
+    for(let h=0;h<2;h++)this.hands[h].update(poses.slice(h*5,h*5+5),screen,floor,plans[h]);
   }
   async audit(check=()=>{},hz=120){
     let maxReach=0,worstTime=0,worst=null,samples=0,maxWristStep=0,worstMotionTime=0,previous=null;
-    let minContactDistance=Infinity,maxJointStep=0,worstJointMotion=null,previousJoints=null,previousPoses=null;
-    let minContactSeparation=Infinity;
     const floor=this.model.screen.y+.006,duration=this.engine.musicBuffer.duration;
     for(let frame=0;frame<=Math.ceil(duration*hz);frame++){
       check();const time=Math.min(duration,frame/hz),poses=this.planner.poses(time);
@@ -131,24 +128,10 @@ export class TabletopScene {
       }
       const wrists=this.hands.map(hand=>hand.lastWrist.clone());
       if(previous)for(let h=0;h<2;h++){const step=wrists[h].distanceTo(previous[h]);if(step>maxWristStep){maxWristStep=step;worstMotionTime=time;}}
-      const joints=this.hands.map(hand=>hand.joints);
-      const contacts=poses.flatMap((p,i)=>p.contact?[joints[Math.floor(i/5)][i%5][3]]:[]);
-      for(let a=0;a<contacts.length;a++)for(let b=a+1;b<contacts.length;b++)minContactSeparation=Math.min(minContactSeparation,contacts[a].distanceTo(contacts[b]));
-      for(let h=0;h<2;h++)for(let f=0;f<5;f++){
-        if(poses[h*5+f].contact)minContactDistance=Math.min(minContactDistance,joints[h][f][0].distanceTo(joints[h][f][3]));
-        if(previousJoints)for(let j=0;j<4;j++){
-          const step=joints[h][f][j].distanceTo(previousJoints[h][f][j]);
-          if(step>maxJointStep){
-            const describe=p=>({x:p.x,y:p.y,z:p.z,contact:p.contact,until:p.until,since:p.since,start:p.event?.start,end:p.event?.end});
-            maxJointStep=step;worstJointMotion={time,hand:h,finger:f,joint:j,before:previousJoints[h][f].map(p=>p.toArray()),after:joints[h][f].map(p=>p.toArray()),poses:[describe(previousPoses[h*5+f]),describe(poses[h*5+f])]};
-          }
-        }
-      }
-      previousJoints=joints;previousPoses=poses;
       previous=wrists;samples++;
       if(frame%120===0)await new Promise(r=>setTimeout(r,0));
     }
-    return{samples,maxReach,worstTime,worst,maxWristStepCm:maxWristStep,worstMotionTime,motionSampleHz:hz,minContactDistanceCm:minContactDistance,maxJointStepCm:maxJointStep,worstJointMotion,minContactSeparationCm:Number.isFinite(minContactSeparation)?minContactSeparation:null};
+    return{samples,maxReach,worstTime,worst,maxWristStepCm:maxWristStep,worstMotionTime,motionSampleHz:hz};
   }
   close(){
     if(this.closed)return;this.closed=true;
@@ -157,7 +140,7 @@ export class TabletopScene {
     for(const g of geometries)g.dispose();for(const m of new Set([...materials,...this.materials||[]]))m.dispose();this.scene?.traverse(o=>o.skeleton?.dispose());
     this.screenTexture?.dispose();this.skinMap?.dispose();for(const t of this.textures||[])t.dispose();this.environment?.dispose();
     this.renderer?.dispose();this.renderer?.forceContextLoss();if(this.canvas)this.canvas.width=this.canvas.height=1;
-    this.base?.close();this.motion=null;this.fingerMotion=null;this.planner=null;this.engine=null;
+    this.base?.close();this.motion=null;this.planner=null;this.engine=null;
   }
 }
 

@@ -46,6 +46,6 @@ const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript'
       return output;
     });
     fs.writeFileSync(path.join(dir,'report.json'),JSON.stringify(report,null,2));
-    assert.equal(report.frames.length,13);assert(report.audit.maxReach<.04);assert(report.motion.maxWristStep<1,'AT 18 wrist movement must stay below 1 cm per 120 Hz sample');assert(report.audit.maxJointStepCm<2,'all AT 18 joints must remain continuous');assert(report.audit.minContactSeparationCm>=1.4);assert.deepEqual(errors,[]);console.log(JSON.stringify(report));
+    assert.equal(report.frames.length,13);assert(report.audit.maxReach<.04);assert(report.motion.maxWristStep<1,'AT 18 wrist movement must stay below 1 cm per 120 Hz sample');assert.deepEqual(errors,[]);console.log(JSON.stringify(report));
   }finally{await browser.close();await new Promise(r=>server.close(r));}
 })().catch(e=>{console.error(e);process.exitCode=1;});

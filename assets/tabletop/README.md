@@ -45,10 +45,8 @@ Sampling or seeking in a different order cannot accumulate motion drift.
 
 The wrist cap is removed at its real mesh intersection ring and joined to a
 continuous forearm. Nail color and roughness use a vertex mask on the original
-skinned surface, so they cannot detach from the fingers. The middle and distal joints use a coupled bend profile with exact bone lengths.
-Bend planes are parallel-transported over the whole song with bounded upward
-correction. Hover directions and extension distances are smoothed separately,
-with real contacts held fixed, so hovering cannot collapse through an MCP joint.
+skinned surface, so they cannot detach from the fingers. The bend plane is
+transported from the neutral finger direction to avoid a vertical-target flip.
 Short dwell phases use the whole travel interval, and contact height approaches
 zero continuously at both lift-off and landing.
 
@@ -64,9 +62,3 @@ chart, full-song contact / joint sampling, and an actual browser MP4 export. Thi
 does not substitute for testing on a physical iPad Safari device. Photorealistic
 scanned hands and universal mesh-to-mesh collision proofs are outside the current
 implementation.
-
-Touch separation is measured in centimetres on the original display instead of
-square UV distance. Full-song diagnostics record every joint's largest step
-and the minimum separation of simultaneous contacts, in addition to wrist
-continuity and fingertip reach. These are contact and kinematic checks; they
-remain distinct from a universal skinned triangle collision proof.
