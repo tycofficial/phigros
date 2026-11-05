@@ -14,3 +14,39 @@
 .libraryCollectionEmpty{position:relative;z-index:4;padding:20px;color:#dcebf4;background:#07131cbf;font-size:14px;line-height:1.7}
 body[data-menu-mode="pjsk"] .libraryCollectionLabel{top:auto;bottom:10px;left:12px;max-width:75%}
 @media(orientation:portrait){#refCollection .refCollectionStrip{top:22%;height:48%;padding:0 4%;gap:10px}#refCollection .refCollectionCard{flex-basis:82%;min-width:260px}#refCollection .catalogGroup{flex-basis:60%;min-width:210px;padding:20px 32px}.libraryCollectionLabel{left:12%;max-width:34%;font-size:10px}}
+
+/* Keep importing available above the local list, including after songs exist. */
+.libraryLocalImport{position:absolute;z-index:13;left:4%;top:calc(11% + 42px);width:40%;display:flex;flex-direction:column;gap:8px;box-sizing:border-box}
+.libraryLocalImport[hidden]{display:none}
+.libraryLocalImportButton{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;height:clamp(48px,8vh,64px);padding:10px 12px;border:1px solid #a6f5ff;background:linear-gradient(120deg,#b5f6ff,#62dce9);color:#102c37;box-shadow:0 5px 20px #0003;border-radius:6px;font:600 clamp(16px,1.8vw,22px)/1.25 var(--phi-global-font);cursor:pointer;touch-action:manipulation}
+.libraryLocalImportButton>span{font-size:1.4em;line-height:1;font-weight:400}
+.libraryLocalImportButton>strong{font:inherit}
+.libraryLocalImportButton:hover{background:#d7fbff}
+.libraryLocalImportButton:active{transform:translateY(1px)}
+.libraryLocalImportButton:focus-visible{outline:3px solid white;outline-offset:4px}
+.libraryLocalImport>small{color:#d8eaf3;font:400 12px/1.45 var(--phi-global-font);overflow-wrap:anywhere}
+body[data-menu-mode="phi"] #libraryView.libraryLocalCollection #chartList{top:calc(11% + 150px);padding-top:12px}
+body[data-menu-mode="pjsk"] .libraryLocalImport{top:max(140px,20vh);width:53%}
+body[data-menu-mode="pjsk"] .libraryLocalImport>small{color:#635a76}
+body[data-menu-mode="pjsk"] #libraryView.libraryLocalCollection #chartList{top:calc(max(140px,20vh) + 108px)}
+body[data-menu-mode="pjsk"] .libraryCollectionEmpty{grid-column:1/-1;background:#ffffffcf;color:#635a76}
+@media(orientation:portrait){
+ .libraryLocalImportButton{gap:8px;padding:10px;font-size:16px}
+ body[data-menu-mode="pjsk"] .libraryLocalImport{top:140px;width:44%}
+ body[data-menu-mode="pjsk"] #libraryView.libraryLocalCollection #chartList{top:248px}
+}
+@media(max-width:540px) and (orientation:portrait){
+ .libraryLocalImportButton{font-size:14px;height:auto;min-height:56px}
+ .libraryLocalImport>small{font-size:11px}
+ body[data-menu-mode="pjsk"] .libraryLocalImport{width:36%}
+}
+@media(max-height:540px) and (orientation:landscape){
+ .libraryLocalImport{top:calc(11% + 34px)}
+ .libraryLocalImportButton{height:48px;font-size:16px}
+ .libraryLocalImport>small{font-size:11px}
+ body[data-menu-mode="phi"] #libraryView.libraryLocalCollection #chartList{top:calc(11% + 128px)}
+}
+@media(max-width:700px) and (orientation:landscape){
+ body[data-menu-mode="pjsk"] .libraryLocalImport{top:103px}
+ body[data-menu-mode="pjsk"] #libraryView.libraryLocalCollection #chartList{top:197px}
+}

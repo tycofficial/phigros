@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-25';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-26';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,10 +26,10 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-25",
+    runtime: "4.0.1.2-pages-26",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
-    buildTimestamp: "2026-11-01T23:53:26Z",
+    buildTimestamp: "2026-11-04T11:27:12Z",
     coreSha256: "dcae237af6ee34b393b4ceea31605c87aaf0d0b737c95da89cc12e9cd5dbe677",
   });
   const PHI_SECURITY_LIMITS = Object.freeze({
@@ -2106,6 +2106,9 @@
       brandNote = document.querySelector(".brand>div>small");
     if (importCharts)
       importCharts.textContent = temporary ? "＋ 导入临时谱面" : "＋ 导入谱面";
+    const localImportLabel = $("#importLocalCharts strong");
+    if (localImportLabel)
+      localImportLabel.textContent = temporary ? "导入临时谱面" : "导入本地谱面";
     if (importPack)
       importPack.textContent = temporary ? "临时材质包" : "材质包";
     if (brandNote)
@@ -7016,6 +7019,10 @@ function withTimeout(promise, ms, message = "操作超时") {
       groups = new Set(),
       nameGroups = new Map(),
       hashGroups = new Map();
+    const localCollection = libraryCollectionId === 'local';
+    $('#libraryView')?.classList.toggle('libraryLocalCollection', localCollection);
+    const localImport = $('#libraryLocalImport');
+    if (localImport) localImport.hidden = !localCollection;
     libraryLastRenderedQuery = q;
     setStorageModeUI();
     resetLibraryFocusShell();
@@ -7131,7 +7138,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     libraryLocalSongCount=localSongs.size;renderCollectionNavigation();
     if(!visibleGroups){
       const empty=document.createElement('div');empty.className='libraryCollectionEmpty';empty.setAttribute('role','status');
-      empty.textContent=q?'当前分类没有匹配的曲目':libraryCollectionId==='local'?'还没有导入谱面，可在“更多”中导入。':'当前分类暂无可用曲目';list.append(empty);
+      empty.textContent=q?'当前分类没有匹配的曲目':libraryCollectionId==='local'?'还没有导入谱面，点击上方导入按钮开始。':'当前分类暂无可用曲目';list.append(empty);
     }
     loadState.classList.add("complete");
     setTimeout(() => { if (token === libraryRenderToken && loadState.isConnected) loadState.remove(); }, 900);
@@ -15551,6 +15558,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     $("#pickChartFolder").onclick = () => { $("#dialog").classList.add("hidden"); $("#chartFolderInput").click(); };
   }
   $("#importCharts").onclick = openChartImportDialog;
+  $('#importLocalCharts')?.addEventListener('click', () => $('#chartInput').click());
   $("#libraryTransfer").onclick = openLibraryTransferDialog;
   $("#importOfficialFont").onclick = () => toast("本版本已将 Saira Regular 嵌入 HTML；无需单独导入，也不会受 file:// 或 URL 存储来源影响。", false, 5000);
   $("#officialFontInput").onchange = (e) => { e.target.value = ""; };
