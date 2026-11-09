@@ -217,6 +217,17 @@
       "result": "Single-chart and summary writes, and deletes, publish cache changes only after persistent commit; temporary-mode and bulk-import compatibility tests pass",
       "officialFidelityStatus": "not_applicable",
       "limitation": "Controlled completion tests do not replace real-browser IndexedDB rollback/reopen or device tests"
+    },
+    {
+      "id": "audio-wake-session-guard",
+      "implementation": [
+        "js/app.js",
+        "tests/audio-wake-lifecycle.test.cjs"
+      ],
+      "verificationMethod": "Execute shipped Engine.start/resume with deferred audio activation; four cancellation/supersession cases fail before fix and pass after; active resume still reaches playback",
+      "result": "Revalidate transition token and running state before touching UI or starting music after audio session activation",
+      "officialFidelityStatus": "not_applicable",
+      "limitation": "Tests isolate activation boundary; real Safari audio lifecycle and other asynchronous playback boundaries remain outside this result"
     }
   ],
   "blockingEvidence": [
