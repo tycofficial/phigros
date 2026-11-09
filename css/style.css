@@ -1291,19 +1291,19 @@ body[data-menu-mode="phi"] #chartList .card.librarySelected h3{font-size:calc(va
 body[data-menu-mode="phi"] #chartList .card.librarySelected .meta{display:block;font:400 calc(var(--ref-u)*10)/1 var(--phi-global-font);color:#aaa;margin-top:calc(var(--ref-y)*5);max-height:12px;overflow:hidden;white-space:nowrap}
 body[data-menu-mode="phi"] #chartList .card.librarySelected::before{display:none}
 body[data-menu-mode="phi"] #chartList .card.librarySelected::after{content:attr(data-video-level) "\A" attr(data-video-tier);right:calc(var(--ref-u)*8);width:calc(var(--ref-u)*66);height:100%;padding-top:calc(var(--ref-y)*12);display:block;white-space:pre;text-align:center;font:400 calc(var(--ref-u)*24)/.67 var(--phi-global-font);color:#111;background:#fff;clip-path:polygon(calc(var(--ref-y)*13.75) 0,100% 0,calc(100% - var(--ref-y)*13.75) 100%,0 100%);line-height:1.1;box-sizing:border-box}
-body[data-menu-mode="phi"] #libraryView .libraryFocus{position:absolute;inset:0;z-index:2;pointer-events:none;margin:0;padding:0;width:100%;height:100%;background:none;border:0}
-body[data-menu-mode="phi"] #libraryView .libraryFocusArt{position:absolute;left:43.7%;top:27.73%;width:50.73%;height:35.75%;background-size:cover;background-position:center;border:0;box-shadow:none;clip-path:polygon(calc(var(--ref-y)*45.75) 0,100% 0,calc(100% - var(--ref-y)*45.75) 100%,0 100%);transform:none}
+body[data-menu-mode="phi"] #libraryView .libraryFocus{position:absolute;inset:0;z-index:auto;pointer-events:none;margin:0;padding:0;width:100%;height:100%;background:none;border:0}
+body[data-menu-mode="phi"] #libraryView .libraryFocusArt{position:absolute;z-index:2;left:43.7%;top:27.73%;width:50.73%;height:35.75%;background-size:cover;background-position:center;border:0;box-shadow:none;clip-path:polygon(calc(var(--ref-y)*45.75) 0,100% 0,calc(100% - var(--ref-y)*45.75) 100%,0 100%);transform:none}
 body[data-menu-mode="phi"] #libraryView .libraryFocusArt>span,body[data-menu-mode="phi"] #libraryView .libraryFocusKicker,body[data-menu-mode="phi"] #libraryView .libraryFocusInfo h2,body[data-menu-mode="phi"] #libraryView .libraryFocusLevelBox,body[data-menu-mode="phi"] #libraryView .libraryFocusMeta,body[data-menu-mode="phi"] #libraryView .libraryFocusPills{display:none}
 body[data-menu-mode="phi"] #libraryView .libraryFocusArt::after{content:"";position:absolute;left:0;bottom:0;width:50%;height:45%;background:linear-gradient(45deg,#0006,transparent)}
-body[data-menu-mode="phi"] #libraryView .libraryFocusDifficulty{position:absolute;left:41.8%;top:66.6%;display:flex;gap:0;margin:0;padding:0;height:calc(var(--ref-y)*29);pointer-events:auto}
+body[data-menu-mode="phi"] #libraryView .libraryFocusDifficulty{position:absolute;z-index:4;left:41.8%;top:66.6%;display:flex;gap:0;margin:0;padding:0;height:calc(var(--ref-y)*29);pointer-events:auto}
 body[data-menu-mode="phi"] #libraryView .libraryFocusDifficulty button{width:calc(var(--ref-u)*38);height:100%;min-width:0;padding:calc(var(--ref-y)*4) 0 0;appearance:none;border:0;background:#eee;color:#16171a;font:400 calc(var(--ref-u)*14)/1 var(--phi-global-font);clip-path:polygon(calc(var(--ref-y)*7.25) 0,100% 0,calc(100% - var(--ref-y)*7.25) 100%,0 100%);cursor:pointer;position:relative}
 body[data-menu-mode="phi"] #libraryView .libraryFocusDifficulty button::after{content:attr(data-tier);display:block;font-size:calc(var(--ref-u)*6);line-height:1;margin-top:calc(var(--ref-y)*2)}
 body[data-menu-mode="phi"] #libraryView .libraryFocusDifficulty button.active{background:#3b282e;color:#fff;border-left:calc(var(--ref-u)*4) solid #fff}
 body[data-menu-mode="phi"] #libraryView .libraryFocusDifficulty button.active[data-tier="IN"]{background:#bb052f}
-body[data-menu-mode="phi"] #libraryView .libraryFocusRecord{position:absolute;left:63.5%;top:66.6%;height:calc(var(--ref-y)*29);width:24%;display:flex;align-items:center;justify-content:space-between;padding:0 calc(var(--ref-u)*7);margin:0;color:white;background:#0007;font-family:var(--phi-global-font);clip-path:polygon(calc(var(--ref-y)*7.25) 0,100% 0,calc(100% - var(--ref-y)*7.25) 100%,0 100%)}
+body[data-menu-mode="phi"] #libraryView .libraryFocusRecord{position:absolute;z-index:2;left:63.5%;top:66.6%;height:calc(var(--ref-y)*29);width:24%;display:flex;align-items:center;justify-content:space-between;padding:0 calc(var(--ref-u)*7);margin:0;color:white;background:#0007;font-family:var(--phi-global-font);clip-path:polygon(calc(var(--ref-y)*7.25) 0,100% 0,calc(100% - var(--ref-y)*7.25) 100%,0 100%)}
 body[data-menu-mode="phi"] #libraryView .libraryFocusRecord span{font-size:calc(var(--ref-u)*20);letter-spacing:0;font-weight:400}
 body[data-menu-mode="phi"] #libraryView .libraryFocusRecord b{font-size:calc(var(--ref-u)*38);font-weight:400;line-height:1}
-body[data-menu-mode="phi"] #libraryView .libraryFocusActions{position:absolute;left:85.5%;right:0;top:82%;height:12.5%;margin:0;padding:0;display:block;pointer-events:auto}
+body[data-menu-mode="phi"] #libraryView .libraryFocusActions{position:absolute;z-index:4;left:85.5%;right:0;top:82%;height:12.5%;margin:0;padding:0;display:block;pointer-events:auto}
 body[data-menu-mode="phi"] #libraryView .libraryFocusPlay{display:block;width:100%;height:100%;min-width:0;min-height:0;border:0;padding:0;background:#fff;color:transparent;font-size:0;box-shadow:none;clip-path:polygon(16% 0,100% 0,100% 100%,0 100%);position:relative;cursor:pointer}
 body[data-menu-mode="phi"] #libraryView .libraryFocusPlay::after{content:"";position:absolute;width:calc(var(--ref-u)*28);height:calc(var(--ref-u)*28);left:39%;top:calc(50% - var(--ref-u)*14);background:center/contain no-repeat var(--ref-play-outline);border:0;transform:none}
 body[data-menu-mode="phi"] #libraryView .libraryFocusPlay:disabled{opacity:.45}
@@ -1312,9 +1312,6 @@ body[data-menu-mode="phi"] #libraryView .libraryOfficialProfileArt{grid-column:2
 body[data-menu-mode="phi"] #libraryView .libraryOfficialProfileText{grid-column:1;grid-row:1;display:grid;place-items:center;padding:0}
 body[data-menu-mode="phi"] #libraryView .libraryOfficialProfileText b{font:400 calc(var(--ref-u)*18)/1 var(--phi-global-font)}
 body[data-menu-mode="phi"] #libraryView .libraryOfficialProfileText span{display:none}
-.refPlayerLevel{grid-column:3;grid-row:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font:400 calc(var(--ref-u)*12)/1.2 var(--phi-global-font);color:#eee}
-.refPlayerLevel b{font-weight:400;background:#152c1d;width:100%;text-align:center;padding:2px 0}
-.refPlayerLevel span{background:#eee;color:#111;width:100%;text-align:center}
 body[data-menu-mode="phi"] #libraryView .libraryMoreBtn{position:absolute;right:calc(var(--ref-u)*7);bottom:calc(var(--ref-y)*5);top:auto;width:calc(var(--ref-u)*30);height:calc(var(--ref-u)*22);padding:0;z-index:20;border:0;background:transparent;color:#fff9;display:block}
 body[data-menu-mode="phi"] #libraryView .libraryMoreBtn>span{display:none}
 body[data-menu-mode="phi"] #libraryView .libraryMoreBtn>i{display:flex;gap:4px;justify-content:center}
@@ -1345,13 +1342,12 @@ body[data-menu-mode="phi"] #libraryView .libraryMoreSheet .libraryMoreChartActio
 .loadingMeta span{display:block;margin:0 0 calc(var(--ref-y)*12)}
 .loadingMeta span::before{content:"Chart";display:block;color:#bfc5cd;font-size:calc(var(--ref-u)*8);margin-bottom:calc(var(--ref-y)*3)}
 .loadingMeta span:last-child::before{content:"Illustration"}
-.loadingTip{position:absolute;left:5.1%;bottom:3.8%;max-width:77%;font:400 calc(var(--ref-u)*12)/1.2 var(--phi-global-font);color:#ffffff70;margin:0}
 .loadingStatus{position:absolute;right:5.1%;bottom:4%;width:calc(var(--ref-u)*72);height:calc(var(--ref-y)*18);margin:0;padding:0;display:grid;place-items:center;background:#eee;color:#191b20;font:400 calc(var(--ref-u)*10)/1 var(--phi-global-font)}
 #loadingView.loadingEnter .loadingCard{animation:refLoadIn .45s cubic-bezier(.16,.8,.26,1) both}
 #loadingView.loadingExit .loadingArtwork{animation:refArtworkOut .52s cubic-bezier(.4,0,.9,.4) both}
 #loadingView.loadingExit .loadingTitlePanel{animation:refTitleOut .52s .12s cubic-bezier(.4,0,.9,.4) both}
 #loadingView.loadingExit .loadingMeta{animation:refTitleOut .52s .15s cubic-bezier(.4,0,.9,.4) both}
-#loadingView.loadingExit .loadingTip,#loadingView.loadingExit .loadingStatus{animation:refFadeOut .22s .18s linear both}
+#loadingView.loadingExit .loadingStatus{animation:refFadeOut .22s .18s linear both}
 @keyframes refLoadIn{from{opacity:0;translate:0 8%}to{opacity:1;translate:0 0}}
 @keyframes refArtworkOut{to{translate:65vw 0}}
 @keyframes refTitleOut{to{translate:110vw 0}}

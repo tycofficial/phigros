@@ -86,8 +86,7 @@
     } catch(error) {if(token!==generation)return;box.appendChild(el('p',error.message));box.appendChild(button('返回',()=>cancel()));}
   }
   function renderSelection(query='') {
-    const box=title('课题模式'),hint=el('p','选择三张不同谱面，依次挑战。Tap 使用 Perfect ±40ms、Good ±90ms、Bad ±140ms，Hold 无 Bad；按准确率计分。','phiCourseHint');
-    box.appendChild(hint);
+    const box=title('课题模式');
     const slots=el('ol',null,'phiCourseSlots');
     selection.forEach((id,i)=>{const li=el('li'),item=entries.find(item=>key(item)===id);li.append(el('span',caption(item)),button('移除',()=>{selection.splice(i,1);renderSelection(query);}));slots.appendChild(li);});
     for(let i=selection.length;i<3;i++)slots.appendChild(el('li',`第 ${i+1} 首 · 待选择`));

@@ -20,8 +20,8 @@
     let active=null,serial=0,raf=0,lastFrame=0,ui=null;
     const notify=()=>adapter.onChange?.(active?{...active.route,id:active.id,scene:active.scene,phase:active.rule?.snapshot().phase}:null);
     const isCurrent=s=>active===s&&!s.abort.signal.aborted;
-    const fail=(s,error)=>{if(isCurrent(s)){s.error=String(error?.message||error);surface().status(s.error,true);}};
-    function surface(){return ui||=(adapter.ui||createSurface({input,cancel,restart:()=>active&&begin(active.entry)},env));}
+    const fail=(s,error)=>{if(isCurrent(s)){s.error=String(error?.message||error);env.console?.error?.('Chapter replay failed',error);adapter.onError?.(error);cancel(true);}};
+    function surface(){return ui||=(adapter.ui||createSurface({input,cancel,error:error=>{if(active)fail(active,error);}},env));}
     function cancel(returnToLibrary=true){
       const previous=active;active=null;serial++;lastFrame=0;
       if(raf)env.cancelAnimationFrame?.(raf);raf=0;
@@ -44,7 +44,7 @@
     async function begin(entry){
       const route=routeForSong(entry);if(!route)return false;
       cancel(false);const s={id:++serial,entry,route,abort:new AbortController(),scene:'',sceneTime:0,held:false,engine:null,loading:false,trackSerial:0};active=s;
-      surface().show(route);surface().status('正在准备异像…');
+      surface().show(route);surface().status('');
       try{
         await adapter.prepare?.(route,s.abort.signal);if(!isCurrent(s))return false;
         const tier=route.tier==='AT'?'IN':route.tier;
@@ -107,7 +107,7 @@
         }else if(type==='exit'){
           cancel(true);break;
         }else if(type==='failed'){
-          s.failed=true;adapter.onFailure?.(s.engine,event);surface().status('重演条件未达成，可重新开始。');
+          s.failed=true;adapter.onFailure?.(s.engine,event);surface().status('');
         }else{
           if(type==='dialog'){
             if(s.engine){s.lastSongFrame={...s.lastSongFrame,audioPlaying:false};adapter.stopSong?.(s.id);s.engine=null;}
@@ -146,17 +146,64 @@
   }
   function createSurface(actions,env){
     const doc=env.document,root=doc.createElement('section');root.id='interactiveVisionScene';root.className='interactiveVisionScene hidden';root.setAttribute('aria-label','章节异像重演');
-    root.innerHTML='<video playsinline preload="none" aria-label="异像场景"></video><canvas class="visionSceneCanvas" aria-hidden="true"></canvas><div class="visionNativeScene"></div><div class="visionSceneSubtitle"></div><div class="visionCreditsViewport hidden"><div></div><span>按住画面跳过</span><i></i></div><div class="visionNativeDialog hidden" role="alertdialog"><h2></h2><p></p><button type="button"></button></div><div class="visionSceneToolbar"><span></span><button type="button" data-action="restart">重新重演</button><button type="button" data-action="exit">返回选曲</button></div><p class="visionSceneStatus" role="status"></p><button type="button" class="visionResumeMedia" hidden>继续演出</button>';
+    root.innerHTML='<video playsinline preload="none" aria-label="异像场景"></video><canvas class="visionSceneCanvas" aria-hidden="true"></canvas><div class="visionNativeScene"></div><div class="visionSceneSubtitle"></div><div class="visionCreditsViewport hidden"><div></div><i></i></div><div class="visionNativeDialog hidden" role="alertdialog"><h2></h2><p></p><button type="button"></button></div><div class="visionSceneToolbar"><button type="button" data-action="exit">返回选曲</button></div>';
     doc.body.appendChild(root);
-    const video=root.querySelector('video'),status=root.querySelector('.visionSceneStatus'),resume=root.querySelector('.visionResumeMedia'),native=root.querySelector('.visionNativeScene'),canvas=root.querySelector('canvas'),subtitle=root.querySelector('.visionSceneSubtitle'),credits=root.querySelector('.visionCreditsViewport'),dialog=root.querySelector('.visionNativeDialog');
-    let generation=0,url='',clipId='',manifestPromise=null,scene='',renderer=null,rendererCanvas=null,mediaLoading=false,mediaBlocked=false,bossRenderer=null,stageRenderer=null,stageCanvas=null,postEffects={},hudFade=null;
-    let creditsData=null,creditsManifest=null,creditsURL='',creditsGeneration=0,audioLoading=false,fadeLast=0;
-    const fades=[];
+    const video=root.querySelector('video'),native=root.querySelector('.visionNativeScene'),canvas=root.querySelector('canvas'),subtitle=root.querySelector('.visionSceneSubtitle'),credits=root.querySelector('.visionCreditsViewport'),dialog=root.querySelector('.visionNativeDialog');
+    let generation=0,url='',clipId='',scene='',renderer=null,rendererCanvas=null,mediaLoading=false,mediaBlocked=false,bossRenderer=null,stageRenderer=null,stageCanvas=null,postEffects={},hudFade=null;
+    let creditsData=null,creditsURL='',creditsGeneration=0,audioLoading=false,fadeLast=0;
+    const fades=[],videoManifest={value:null,pending:null},audioManifest={value:null,pending:null};
+    function loadSessionManifest(cache,path,signal,install,message){
+      if(signal.aborted)return Promise.reject(new DOMException('Replay cancelled','AbortError'));
+      if(cache.value!==null)return Promise.resolve(cache.value);
+      if(cache.pending?.signal===signal)return cache.pending.promise;
+      const request={signal,promise:null};
+      request.promise=(async()=>{
+        const response=await fetch(path,{signal});
+        if(!response.ok)throw Error(message);
+        const raw=await response.json();
+        if(signal.aborted)throw new DOMException('Replay cancelled','AbortError');
+        const value=install(raw);
+        if(cache.pending===request)cache.value=value;
+        return value;
+      })().finally(()=>{if(cache.pending===request)cache.pending=null;});
+      cache.pending=request;return request.promise;
+    }
     const ambient=new Audio(),message=new Audio('./assets/vision-replay/chapter8-message.wav'),messageAmbient=new Audio('./assets/vision-replay/chapter8-message-ambient.wav'),creditsAudio=new Audio();ambient.preload='none';message.preload='none';messageAmbient.preload='none';messageAmbient.loop=true;creditsAudio.preload='none';
     for(const audio of [ambient,message,messageAmbient,creditsAudio])audio.setAttribute('playsinline','');
+    let activationEpoch=0;const blockedMedia=new Set(),pendingMedia=new Map();
+    const allMedia=[video,ambient,message,messageAmbient,creditsAudio];
+    function mediaFailure(error){if(actions.error)actions.error(error);else{env.console?.error?.('Chapter media failed',error);actions.cancel();}}
+    for(const media of allMedia)media.addEventListener('error',()=>{if(media.getAttribute('src')&&media.error)mediaFailure(Error(media.error.message||`Media decoding failed (${media.error.code})`));});
+    function clearBlocked(media){blockedMedia.delete(media);pendingMedia.delete(media);mediaBlocked=blockedMedia.size>0;}
+    function blockMedia(media){blockedMedia.add(media);mediaBlocked=true;}
+    async function activateMedia(media,valid=()=>true){
+      const epoch=activationEpoch,attempt=Symbol();pendingMedia.set(media,attempt);
+      try{
+        if(doc.hidden){if(valid())blockMedia(media);return;}
+        await media.play();
+        if(!valid()||pendingMedia.get(media)!==attempt)return;
+        if(doc.hidden){media.pause();blockMedia(media);return;}
+        if(epoch===activationEpoch){blockedMedia.delete(media);mediaBlocked=blockedMedia.size>0;}
+      }catch(error){
+        if(valid()&&epoch===activationEpoch&&pendingMedia.get(media)===attempt){
+          if(error?.name==='NotAllowedError')blockMedia(media);
+          else if(error?.name!=='AbortError')mediaFailure(error);
+        }
+      }
+      finally{if(pendingMedia.get(media)===attempt)pendingMedia.delete(media);}
+    }
+    function resumeMedia(){
+      if(!mediaBlocked)return false;
+      const epoch=++activationEpoch;
+      for(const media of [...blockedMedia]){
+        if(!media.getAttribute('src')||media.ended){clearBlocked(media);continue;}
+        void activateMedia(media,()=>epoch===activationEpoch);
+      }
+      return true;
+    }
     const aliases={DF_Touch2Start:'df_touch',DF_Unlock:'df_unlock','321_Unlock':'321_unlock',Unlock321:'321_unlock','321Unlock':'321_unlock',RrharilUnlock:'rr_unlock',QD:'qd',QD_Video:'qd'};
-    function stop(){generation++;mediaLoading=false;mediaBlocked=false;video.pause();video.removeAttribute('src');video.load();if(url)URL.revokeObjectURL(url);url='';clipId='';resume.hidden=true;}
-    function stopAmbient(){creditsGeneration++;audioLoading=false;fades.length=0;for(const audio of [ambient,message,messageAmbient,creditsAudio]){audio.pause();audio.removeAttribute('src');audio.load();}if(creditsURL)URL.revokeObjectURL(creditsURL);creditsURL='';}
+    function stop(){generation++;mediaLoading=false;clearBlocked(video);video.pause();video.removeAttribute('src');video.load();if(url)URL.revokeObjectURL(url);url='';clipId='';}
+    function stopAmbient(){creditsGeneration++;audioLoading=false;fades.length=0;for(const audio of [ambient,message,messageAmbient,creditsAudio]){clearBlocked(audio);audio.pause();audio.removeAttribute('src');audio.load();}if(creditsURL)URL.revokeObjectURL(creditsURL);creditsURL='';}
     function fade(audio,target,duration){fades.push({audio,from:audio.volume,target,duration,elapsed:0});}
     function mediaState(){
       const now=performance.now(),dt=fadeLast?Math.max(0,Math.min(.1,(now-fadeLast)/1000)):0;fadeLast=now;
@@ -164,51 +211,57 @@
       return {clipId,videoTime:Number(video.currentTime)||0,videoPlaying:!video.paused&&!video.ended,videoEnded:video.ended,videoDuration:Number.isFinite(video.duration)?video.duration:0,videoPrepared:video.readyState>=1||!clipId,mediaLoading,audioLoading,mediaBlocked,ambientTime:Number(ambient.currentTime)||0,ambientPlaying:!!ambient.getAttribute('src')&&!ambient.paused&&!ambient.ended};
     }
     async function startCreditsAudio(track,options){
-      const token=++creditsGeneration;audioLoading=true;creditsAudio.pause();status.textContent='正在加载制作名单音乐…';
-      if(!creditsManifest)creditsManifest=fetch('./assets/meta/vision-audio.json?v=4.0.1.2-pages-20',{signal:options.signal}).then(r=>{if(!r.ok)throw Error('重演音频清单暂不可用');return r.json();}).then(value=>env.PhiVisionReplay.installAudioManifest(value)).catch(error=>{creditsManifest=null;throw error;});
-      const specs=await creditsManifest,variants=specs.filter(s=>s.track===track),spec=variants.find(s=>s.mime==='audio/flac'&&creditsAudio.canPlayType(s.mime))||variants.find(s=>creditsAudio.canPlayType(s.mime));
+      const token=++creditsGeneration;audioLoading=true;clearBlocked(creditsAudio);creditsAudio.pause();
+      const specs=await loadSessionManifest(audioManifest,'./assets/meta/vision-audio.json?v=4.0.1.2-pages-20',options.signal,value=>env.PhiVisionReplay.installAudioManifest(value),'重演音频清单暂不可用');if(token!==creditsGeneration||options.signal.aborted||!options.isCurrent())return;const variants=specs.filter(s=>s.track===track),spec=variants.find(s=>s.mime==='audio/flac'&&creditsAudio.canPlayType(s.mime))||variants.find(s=>creditsAudio.canPlayType(s.mime));
       if(!spec)throw Error('此浏览器不支持制作名单音频');
-      const bytes=await env.PhiVisionReplay.download(spec.url,{signal:options.signal,onProgress:(n,total)=>{if(token===creditsGeneration)status.textContent=`正在加载制作名单音乐 ${Math.round(n/total*100)}%`;}});
+      const bytes=await env.PhiVisionReplay.download(spec.url,{signal:options.signal});
       if(token!==creditsGeneration||options.signal.aborted||!options.isCurrent())return;
-      if(creditsURL)URL.revokeObjectURL(creditsURL);creditsURL=URL.createObjectURL(new Blob([bytes],{type:spec.mime}));creditsAudio.src=creditsURL;creditsAudio.volume=1;creditsAudio.load();status.textContent='';
-      try{await creditsAudio.play();}catch{mediaBlocked=true;resume.hidden=false;}audioLoading=false;
+      if(creditsURL)URL.revokeObjectURL(creditsURL);creditsURL=URL.createObjectURL(new Blob([bytes],{type:spec.mime}));creditsAudio.src=creditsURL;creditsAudio.volume=1;creditsAudio.load();
+      await activateMedia(creditsAudio,()=>token===creditsGeneration&&!options.signal.aborted&&options.isCurrent());
+      if(token===creditsGeneration&&!options.signal.aborted&&options.isCurrent())audioLoading=false;
     }
     async function play(id,options){
       const requested=aliases[id]||id;
-      if(requested===clipId&&url){if(Number.isFinite(options.seek))video.currentTime=options.seek;try{await video.play();mediaBlocked=false;}catch{mediaBlocked=true;resume.hidden=false;}return;}
-      stop();const token=generation;clipId=requested;mediaLoading=true;status.textContent='正在加载异像…';
-      if(!manifestPromise)manifestPromise=fetch('./assets/meta/vision-media.json?v=4.0.1.2-pages-20',{signal:options.signal}).then(r=>{if(!r.ok)throw Error('异像资源清单暂不可用');return r.json();}).then(value=>({value,clips:env.PhiVisionReplay.installManifest(value)})).catch(error=>{manifestPromise=null;throw error;});
-      const {clips}=await manifestPromise;const clip=clips.find(item=>item.id===clipId);if(!clip)throw Error('缺少异像场景资源：'+clipId);
-      const bytes=await env.PhiVisionReplay.download(clip.url,{signal:options.signal,onProgress:(done,total)=>{if(token===generation)status.textContent=`正在加载异像 ${Math.round(done/total*100)}%`;}});
+      if(requested===clipId&&url){const token=generation;if(Number.isFinite(options.seek))video.currentTime=options.seek;await activateMedia(video,()=>token===generation&&!options.signal.aborted&&options.isCurrent());return;}
+      stop();const token=generation;clipId=requested;mediaLoading=true;
+      const {clips}=await loadSessionManifest(videoManifest,'./assets/meta/vision-media.json?v=4.0.1.2-pages-20',options.signal,value=>({value,clips:env.PhiVisionReplay.installManifest(value)}),'异像资源清单暂不可用');if(token!==generation||options.signal.aborted||!options.isCurrent())return;const clip=clips.find(item=>item.id===requested);if(!clip)throw Error('缺少异像场景资源：'+clipId);
+      const bytes=await env.PhiVisionReplay.download(clip.url,{signal:options.signal});
       if(token!==generation||options.signal.aborted||!options.isCurrent())return;
       url=URL.createObjectURL(new Blob([bytes],{type:clip.mime}));video.src=url;video.loop=!!options.loop;video.muted=!!options.muted;video.load();if(Number.isFinite(options.seek))video.currentTime=options.seek;
-      status.textContent='';mediaLoading=false;try{await video.play();}catch{if(token===generation){mediaBlocked=true;resume.hidden=false;}}
+      mediaLoading=false;await activateMedia(video,()=>token===generation&&!options.signal.aborted&&options.isCurrent());
     }
     const excluded=target=>target?.closest?.('button'),contacts=new Map();
     root.addEventListener('pointerdown',event=>{
       if(excluded(event.target))return;if(event.cancelable)event.preventDefault();root.setPointerCapture?.(event.pointerId);
+      if(resumeMedia()){contacts.set(event.pointerId,{resume:true});return;}
       const entry={phase:root.dataset.phase,scene:root.dataset.scene,activated:root.dataset.scene==='DFUnlock'};contacts.set(event.pointerId,entry);
       if(contacts.size===1)actions.input('hold-start');if(entry.activated)actions.input('activate');
     });
     root.addEventListener('pointerup',event=>{
       if(excluded(event.target))return;const entry=contacts.get(event.pointerId);contacts.delete(event.pointerId);if(!contacts.size)actions.input('hold-end');
-      if(!entry||entry.activated||entry.phase==='clock')return;
+      if(!entry||entry.resume||entry.activated||entry.phase==='clock')return;
       const rect=root.getBoundingClientRect(),point={x:event.clientX-rect.left,y:event.clientY-rect.top,width:rect.width,height:rect.height};
       if(root.dataset.replayFamily!=='boss'||!bossRenderer?.hitTest||bossRenderer.hitTest(point))actions.input('activate');
     });
     root.addEventListener('pointercancel',event=>{contacts.delete(event.pointerId);if(!contacts.size)actions.input('hold-end');});
     let keyPhase=null;
-    root.addEventListener('keydown',event=>{if([' ','Enter'].includes(event.key)&&!excluded(event.target)){event.preventDefault();if(!event.repeat){keyPhase=root.dataset.phase;actions.input('hold-start');if(root.dataset.scene==='DFUnlock')actions.input('activate');}}});
-    root.addEventListener('keyup',event=>{if([' ','Enter'].includes(event.key)&&!excluded(event.target)){event.preventDefault();actions.input('hold-end');if(keyPhase!=='clock'&&root.dataset.scene!=='DFUnlock')actions.input('activate');keyPhase=null;}});
-    root.querySelector('[data-action=exit]').onclick=()=>actions.cancel();root.querySelector('[data-action=restart]').onclick=()=>actions.restart();
-    resume.onclick=async()=>{try{if(video.src)await video.play();for(const audio of [ambient,messageAmbient,creditsAudio])if(audio.getAttribute('src')&&!audio.ended)await audio.play();mediaBlocked=false;resume.hidden=true;}catch{status.textContent='请再次点击以开启声音并继续演出。';}};
-    doc.addEventListener('visibilitychange',()=>{if(doc.hidden&&!root.classList.contains('hidden')){video.pause();resume.hidden=false;actions.input('hold-end');}});
+    root.addEventListener('keydown',event=>{if([' ','Enter'].includes(event.key)&&!excluded(event.target)){event.preventDefault();if(!event.repeat){if(resumeMedia()){keyPhase='media-resume';return;}keyPhase=root.dataset.phase;actions.input('hold-start');if(root.dataset.scene==='DFUnlock')actions.input('activate');}}});
+    root.addEventListener('keyup',event=>{if([' ','Enter'].includes(event.key)&&!excluded(event.target)){event.preventDefault();actions.input('hold-end');if(keyPhase!=='clock'&&keyPhase!=='media-resume'&&root.dataset.scene!=='DFUnlock')actions.input('activate');keyPhase=null;}});
+    root.querySelector('[data-action=exit]').onclick=()=>actions.cancel();
+    doc.addEventListener('keydown',event=>{if(event.key==='Escape'&&!root.classList.contains('hidden')){event.preventDefault();event.stopImmediatePropagation();actions.cancel();}},{capture:true});
+    doc.getElementById('loadingBack')?.addEventListener('click',()=>{if(!root.classList.contains('hidden'))actions.cancel();});
+    doc.addEventListener('visibilitychange',()=>{
+      if(!doc.hidden||root.classList.contains('hidden'))return;
+      activationEpoch++;
+      for(const media of allMedia)if(!media.paused&&!media.ended||pendingMedia.has(media)){blockMedia(media);media.pause();}
+      contacts.clear();keyPhase=null;actions.input('hold-end');
+    });
     function disposeGame(){renderer?.dispose();renderer=null;rendererCanvas=null;stageRenderer?.dispose();stageRenderer=null;stageCanvas=null;postEffects={};hudFade=null;const view=doc.querySelector('#gameView');view?.classList.remove('visionReplayHideUI','visionReplayDimUI');view?.style.removeProperty('--vision-hud-opacity');for(const id of ['visionReplayHP','visionReplayBlackout','visionReplayMessage'])doc.getElementById(id)?.remove();}
     return {
-      show(route){root.dataset.replayFamily=route.family;root.classList.remove('hidden');root.querySelector('.visionSceneToolbar span').textContent=`第 ${route.chapter} 章 · 意象重演`;root.tabIndex=-1;root.focus({preventScroll:true});},hide(){root.classList.add('hidden');contacts.clear();keyPhase=null;},stop,play,mediaState,stopAmbient,
-      status(message,error=false){status.textContent=message;status.classList.toggle('error',error);},
+      show(route){root.dataset.replayFamily=route.family;root.classList.remove('hidden');root.tabIndex=-1;root.focus({preventScroll:true});},hide(){root.classList.add('hidden');contacts.clear();keyPhase=null;},stop,play,mediaState,stopAmbient,
+      status(message,error=false){if(error&&message)env.console?.error?.('Chapter replay:',message);},
       scene(value){scene=value;contacts.clear();keyPhase=null;root.querySelector('.visionSceneMusicInfo')?.remove();root.dataset.scene=value;root.classList.remove('visionBlackMask');root.style.removeProperty('--vision-scene-black');native.replaceChildren();subtitle.textContent='';dialog.classList.add('hidden');credits.classList.toggle('hidden',value!=='AboutUs');canvas.getContext('2d')?.clearRect(0,0,canvas.width,canvas.height);},
-      seek(time,shouldPlay=true){video.currentTime=time;if(shouldPlay)video.play().catch(()=>{resume.hidden=false;});},pause(){video.pause();},resume(){return video.play();},
+      seek(time,shouldPlay=true){video.currentTime=time;if(shouldPlay){const token=generation;void activateMedia(video,()=>token===generation);}},pause(){video.pause();},resume(){const token=generation;return activateMedia(video,()=>token===generation);},
       effect(event){
         if(event.type==='music-info'){
           let info=root.querySelector('.visionSceneMusicInfo');
@@ -223,9 +276,9 @@
         if(event.type==='hide-ui')doc.querySelector('#gameView')?.classList.add('visionReplayHideUI');
         if(event.type==='hud')hudFade={time:event.time||0,visible:event.visible,duration:event.duration||0};
         if(event.type==='show-ui')doc.querySelector('#gameView')?.classList.remove('visionReplayHideUI');
-        if(event.type==='ambient-play'){ambient.src='./assets/vision-replay/chapter8-ambient-retri.wav';ambient.volume=event.fadeIn?0:1;if(event.fadeIn)fade(ambient,1,event.fadeIn);ambient.play().catch(()=>{mediaBlocked=true;resume.hidden=false;});}
-        if(event.type==='message-ambient-play'){messageAmbient.src='./assets/vision-replay/chapter8-message-ambient.wav';messageAmbient.volume=0;fade(messageAmbient,event.volume??1,event.fadeIn||1);messageAmbient.play().catch(()=>{mediaBlocked=true;resume.hidden=false;});}
-        if(event.type==='message'){native.textContent=event.text;let box=doc.getElementById('visionReplayMessage');if(!box){box=doc.createElement('p');box.id='visionReplayMessage';doc.getElementById('gameView').appendChild(box);}box.textContent=event.text;message.src='./assets/vision-replay/chapter8-message.wav';message.volume=.5;message.currentTime=0;message.play().catch(()=>{});}
+        if(event.type==='ambient-play'){ambient.src='./assets/vision-replay/chapter8-ambient-retri.wav';ambient.volume=event.fadeIn?0:1;if(event.fadeIn)fade(ambient,1,event.fadeIn);const token=creditsGeneration;void activateMedia(ambient,()=>token===creditsGeneration);}
+        if(event.type==='message-ambient-play'){messageAmbient.src='./assets/vision-replay/chapter8-message-ambient.wav';messageAmbient.volume=0;fade(messageAmbient,event.volume??1,event.fadeIn||1);const token=creditsGeneration;void activateMedia(messageAmbient,()=>token===creditsGeneration);}
+        if(event.type==='message'){native.textContent=event.text;let box=doc.getElementById('visionReplayMessage');if(!box){box=doc.createElement('p');box.id='visionReplayMessage';doc.getElementById('gameView').appendChild(box);}box.textContent=event.text;message.src='./assets/vision-replay/chapter8-message.wav';message.volume=.5;message.currentTime=0;const token=creditsGeneration;void activateMedia(message,()=>token===creditsGeneration);}
         if(event.type==='messages-end'){native.textContent='';doc.getElementById('visionReplayMessage')?.remove();}
         if(event.type==='message-ambient-stop')fade(messageAmbient,0,event.duration||0);
         if(event.type==='credits-start'){

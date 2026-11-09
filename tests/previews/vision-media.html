@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><base href="../../"><title>重演资源检查（开发工具）</title><link rel="stylesheet" href="./css/vision-replay.css"><style>.hidden{display:none!important}body{background:#050912;color:#eef5fa;font-family:sans-serif}</style></head><body>
+<button id="visionReplayOpen" class="visionReplayOpen" type="button">主线过场片段</button>
+  <section id="visionReplayPanel" class="visionReplayPanel hidden" role="dialog" aria-modal="true" aria-labelledby="visionReplayTitle">
+    <div class="visionReplayBox">
+      <header><div><h2 id="visionReplayTitle">主线过场片段</h2><p>片段来自第三方 3.0 历史修改版，未验证与最新官方一致；不含完整交互重演。</p></div><button id="visionReplayClose" type="button">返回</button></header>
+      <div class="visionReplayBody">
+        <div id="visionReplayList" class="visionReplayList" aria-label="章节片段列表"></div>
+        <div class="visionReplayPlayer"><video id="visionReplayVideo" controls playsinline preload="none" hidden></video><p id="visionReplayStatus" role="status" aria-live="polite">选择片段后按需加载。</p><progress id="visionReplayProgress" max="100" value="0" hidden></progress></div>
+      </div>
+    </div>
+  </section>
+
+<script src="./js/vision-replay.js"></script></body></html>

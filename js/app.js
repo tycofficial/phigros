@@ -4,7 +4,7 @@
   // Older cached HTML can request the new app before it knows about this small
   // dependency. Load it once so an update cannot strand an existing player.
   if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-26';
+    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-27';
     script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
   });
   let phiExportViewport=null;
@@ -26,7 +26,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-26",
+    runtime: "4.0.1.2-pages-27",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-11-04T11:27:12Z",
@@ -2059,6 +2059,10 @@
         transaction = db.transaction(storeName, "readwrite");
         request = operation(transaction.objectStore(storeName));
       } catch (error) {
+        // A later put can throw synchronously (for example DataCloneError)
+        // after earlier writes were queued. Rejecting alone would still let
+        // those writes commit, leaving a failed import partially persisted.
+        try { transaction?.abort(); } catch (abortError) { Diagnostics.warn("Runtime.recoverable", abortError?.message || String(abortError)); }
         reject(error);
         return;
       }
@@ -2166,7 +2170,13 @@
       try {
         transaction = db.transaction(storeNames, "readwrite");
         result = operation(transaction);
-      } catch (error) { reject(error); return; }
+      } catch (error) {
+        // Keep all stores atomic when the operation throws before handlers are
+        // installed; IndexedDB does not abort for a caught synchronous error.
+        try { transaction?.abort(); } catch (abortError) { Diagnostics.warn("Runtime.recoverable", abortError?.message || String(abortError)); }
+        reject(error);
+        return;
+      }
       transaction.oncomplete = () => resolve(result);
       transaction.onerror = () => reject(transaction.error || new Error("数据库写入失败"));
       transaction.onabort = () => reject(transaction.error || new Error("数据库写入已中止"));
@@ -2361,6 +2371,34 @@
       toast(`已生成迁移包：${chartManifest.length} 个谱面。请在 URL 版本点击“库迁移 → 导入迁移包”。`, false, 8000);
     } finally { if (button) { button.disabled = false; button.textContent = original; } }
   }
+  async function dbImportLibraryAtomically(records, settings, scores) {
+    const charts = [...new Map(records.map((record) => [record.id, record])).values()],
+      settingRecords = [...new Map(settings.map((record) => [record.key, record])).values()],
+      scoreRecords = [...new Map(scores.map((record) => [record.key, record])).values()];
+    if (!isTemporaryStorage()) {
+      await retryPersistentOperation(() => idbWriteMany(["charts", "chartIndex", "settings", "scores"], (transaction) => {
+        for (const record of charts) {
+          transaction.objectStore("charts").put(record);
+          transaction.objectStore("chartIndex").put(chartSummaryFromRecord(record));
+        }
+        for (const record of settingRecords) transaction.objectStore("settings").put(record);
+        for (const record of scoreRecords) transaction.objectStore("scores").put(record);
+      }), "StorageManager.library.atomicImport");
+    }
+    // Reflect the new library only after the persistent transaction commits.
+    // No existing records are cleared; temporary mode keeps its existing maps.
+    for (const record of charts) {
+      if (isTemporaryStorage()) sessionStore.charts.set(record.id, record);
+      librarySummaryCache.set(record.id, chartSummaryFromRecord(record));
+    }
+    for (const record of settingRecords) sessionStore.settings.set(record.key, record);
+    for (const record of scoreRecords) {
+      sessionStore.scores.set(record.key, record);
+      scoreCache.set(record.key, record);
+    }
+    libraryDirty = true;
+    return charts;
+  }
   async function importLibraryMigrationPackage(file, button = null) {
     if (!file) return;
     const original = button?.textContent || "导入迁移包";
@@ -2371,12 +2409,36 @@
       if (!manifestEntry) throw new Error("不是 Phi Offline 本机库迁移包");
       const manifest = JSON.parse(await manifestEntry.blob.text());
       if (manifest?.format !== LIBRARY_BACKUP_FORMAT) throw new Error("迁移包格式不匹配");
-      for (const setting of manifest.settings || []) if (setting?.key != null) await dbPutSetting(setting);
-      for (const score of manifest.scores || []) if (score?.key && score?.ranked) await dbPutScore(score);
-      const nested = entries.filter((x) => /(^|\/)charts\/.*\.zip$/i.test(x.name)).map((x) => makeNamedBlob(x.blob, basename(x.name)));
+      if (manifest.version != null && (!Number.isInteger(manifest.version) || manifest.version < 1 || manifest.version > LIBRARY_BACKUP_VERSION))
+        throw new Error("迁移包版本不受支持");
+      const settings = manifest.settings ?? [], scores = manifest.scores ?? [];
+      if (!Array.isArray(settings) || !Array.isArray(scores) ||
+          settings.some((record) => !record || typeof record !== "object" || record.key == null) ||
+          scores.some((record) => !record || typeof record !== "object" || !record.key))
+        throw new Error("迁移包设置或成绩清单无效");
+      const nestedEntries = entries.filter((x) => /(^|\/)charts\/.*\.zip$/i.test(x.name)),
+        nested = nestedEntries.map((x) => makeNamedBlob(x.blob, basename(x.name)));
       if (!nested.length) throw new Error("迁移包中没有谱面 ZIP");
+      if (manifest.charts != null) {
+        if (!Array.isArray(manifest.charts)) throw new Error("迁移包谱面清单无效");
+        const declared = new Set();
+        for (const chart of manifest.charts) {
+          const name = typeof chart?.file === "string" ? chart.file.toLowerCase() : "";
+          if (!name || declared.has(name) || !nestedEntries.some((entry) => entry.name.toLowerCase() === name))
+            throw new Error(`迁移包谱面缺失或重复：${chart?.file || "未知文件"}`);
+          declared.add(name);
+        }
+        if (declared.size !== nestedEntries.length) throw new Error("迁移包谱面与清单不一致");
+      }
       if (button) button.textContent = `导入 0/${nested.length}`;
-      await importChartFiles(nested);
+      // Use the same recursive ZIP/PEZ/loose-file parser as ordinary import,
+      // but stage every record before touching any chart, setting or score.
+      const staged = await importChartFiles(nested, { stageOnly: true });
+      if (staged.errors.length || !staged.records.length)
+        throw new Error(staged.errors.join("\n") || "迁移包中没有可导入的谱面");
+      const added = await dbImportLibraryAtomically(staged.records, settings, scores.filter((score) => score.ranked));
+      await renderLibrary();
+      reportChartImport(added, [], staged.discovered);
       toast(`迁移完成：已处理 ${nested.length} 个谱面 ZIP。固定 URL 同源后会长期保存在 ${location.origin || "file://"}。`, false, 9000);
     } finally { if (button) { button.disabled = false; button.textContent = original; } }
   }
@@ -5537,6 +5599,9 @@ function withTimeout(promise, ms, message = "操作超时") {
       }
     }
 
+    if (publishOptions?.stageOnly)
+      return { records: errors.length ? [] : staged, errors, discovered };
+
     if (errors.length) {
       staged.length = 0;
     } else {
@@ -5557,6 +5622,9 @@ function withTimeout(promise, ms, message = "操作超时") {
       added.push(...new Map(staged.map((record) => [record.id, record])).values());
     }
     await renderLibrary();
+    return reportChartImport(added, errors, discovered, !!publishOptions?.suppressReport);
+  }
+  function reportChartImport(added, errors, discovered, suppressReport = false) {
     const temporary = isTemporaryStorage(),
       modeNote = temporary
         ? "\n存储方式：临时谱面库（刷新或关闭页面后清空）"
@@ -5571,7 +5639,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         .join("\n\n");
     if (errors.length)
       report += `\n\n失败明细：\n${errors.map((x) => "✗ " + x).join("\n\n")}`;
-    if (!publishOptions?.suppressReport) showDialog("谱面导入报告", report, true);
+    if (!suppressReport) showDialog("谱面导入报告", report, true);
     toast(
       added.length
         ? temporary
@@ -6068,6 +6136,7 @@ function withTimeout(promise, ms, message = "操作超时") {
   // Static hosting: load only resources from this site's own origin.
   const phiHostedBundleCache = new PhiPerformance.ResourceCache(12*1024*1024,32);
   async function phiHostedBytes(relativePath, {signal} = {}) {
+    if (signal?.aborted) throw new DOMException('资源读取已取消', 'AbortError');
     const url = new URL(relativePath, document.baseURI);
     if ((url.origin !== location.origin || !/^https?:$/.test(url.protocol)) && !globalThis.PhiRemoteAssets?.info(url.href))
       throw new Error('资源来源未获允许。');
@@ -6077,21 +6146,22 @@ function withTimeout(promise, ms, message = "操作超时") {
       }};
       return globalThis.PhiHostedMedia ? PhiHostedMedia.bytes(relativePath, options) : PhiRemoteAssets.download(url.href, options);
     }
-    let pending = phiHostedBundleCache.get(url.href);
-    if (!pending) {
-      pending = (async () => {
-        if (globalThis.PhiHostedMedia) return PhiHostedMedia.bytes(relativePath, {onProgress:(done,total)=>{
-          if (!$('#loadingView')?.classList.contains('hidden')) setLoadingStatus(total ? `谱面 ${Math.min(100,Math.round(done/total*100))}%` : `已读取 ${Math.ceil(done/1024)} KB`);
-        }});
-        const response = await fetch(url.href, { credentials:'same-origin' });
-        if (!response.ok) throw new Error('资源加载失败：' + relativePath + '（HTTP ' + response.status + '）');
-        return new Uint8Array(await response.arrayBuffer());
-      })();
-      phiHostedBundleCache.set(url.href, pending);
-      pending.then(bytes=>phiHostedBundleCache.setWeight(url.href,bytes.byteLength),()=>{});
-      pending.catch(() => phiHostedBundleCache.delete(url.href));
-    }
-    return pending;
+    // Let the hosted loader track each consumer and cancel only when all leave.
+    // An outer shared promise would hide individual signals from that loader.
+    if (globalThis.PhiHostedMedia) return PhiHostedMedia.bytes(relativePath, {signal,onProgress:(done,total)=>{
+      if (!$('#loadingView')?.classList.contains('hidden')) setLoadingStatus(total ? `谱面 ${Math.min(100,Math.round(done/total*100))}%` : `已读取 ${Math.ceil(done/1024)} KB`);
+    }});
+    const cached = phiHostedBundleCache.get(url.href);
+    if (cached) return cached;
+    // The fallback has no consumer tracking: cache completed data, never a
+    // pending request owned by another caller's cancellation signal.
+    const response = await fetch(url.href, { credentials:'same-origin', signal });
+    if (!response.ok) throw new Error('资源加载失败：' + relativePath + '（HTTP ' + response.status + '）');
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    if (signal?.aborted) throw new DOMException('资源读取已取消', 'AbortError');
+    phiHostedBundleCache.set(url.href, bytes);
+    phiHostedBundleCache.setWeight(url.href, bytes.byteLength);
+    return bytes;
   }
   async function phiHostedAssetBytes(spec, {signal} = {}) {
     const bytes = await phiHostedBytes(spec.url, {signal}), start = Number(spec.offset) || 0;
@@ -6711,7 +6781,6 @@ function withTimeout(promise, ms, message = "操作超时") {
       play.disabled = !card.querySelector(".play") || card.querySelector(".play").disabled;
       const replay=dualMenuMode!=='pjsk'&&globalThis.PhiVisionMode?.enabled&&globalThis.PhiInteractiveReplay?.routeForSong(selectedRecord);
       play.textContent = dualMenuMode === "pjsk" ? "Select" : `${replay?'重演':'START'} · ${sourceDiffs[selected]?.textContent || "PLAY"}`;
-      if(replay&&meta)meta.textContent+=` · 第 ${replay.chapter} 章意象入口`;
       if (online && !onlineAudioSupported) { play.disabled = true; play.textContent = "不支持该音轨"; }
       play.onclick = () => card.querySelector(".play")?.click();
     }
@@ -14714,11 +14783,6 @@ function withTimeout(promise, ms, message = "操作超时") {
     $("#phiVideoSort b").textContent="等级降序";
     $("#rEarly").parentElement.classList.add("refEarly");
     $("#rLate").parentElement.classList.add("refLate");
-    for (const profile of [$(".libraryOfficialProfile"),$(".resultProfile")]) {
-      const name=profile.querySelector("b");if(name)name.textContent="TYC";
-      const level=document.createElement("div");level.className="refPlayerLevel";
-      level.innerHTML="<b>50</b><span>15.62</span>";profile.appendChild(level);
-    }
     $("#resultRetry").innerHTML='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M24 9a11 11 0 1 0 2 12M24 2v9H15"/></svg>';
     $("#resultBack").innerHTML='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 16h22M19 7l9 9-9 9"/></svg>';
     $("#chartList").addEventListener("scroll",()=>{
@@ -16571,7 +16635,8 @@ function withTimeout(promise, ms, message = "操作超时") {
       }
     },
     stopAudio(target){target.pauseMusic();if(target.visionStutterSource){try{target.visionStutterSource.stop();target.visionStutterSource.disconnect();}catch{}target.visionStutterSource=null;}},
-    onFailure(){toast('重演条件未达成，已返回选曲。',false,4500);},
+    onFailure(){Diagnostics.warn('Replay.condition','重演条件未达成');},
+    onError(error){Diagnostics.warn('Replay.media',error?.message||String(error));},
     onExit(){void backToLibrary();},
     onChange(){if(libraryFocusCard?.isConnected)syncLibraryFocus(libraryFocusCard);}
   });
