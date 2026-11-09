@@ -206,6 +206,17 @@
       "method": "执行真实模块，以两个可控异步目录请求复现交错；修改前选择曲目抛出 TypeError，修改后通过",
       "result": "6 项课题状态／取消／过期响应测试通过；旧响应不再覆盖当前选曲数据",
       "officialEquivalence": "not-verified"
+    },
+    {
+      "id": "local-import-cache-commit",
+      "implementation": [
+        "js/app.js",
+        "tests/local-import-cache.test.cjs"
+      ],
+      "verificationMethod": "Node VM executes shipped helpers with controlled transaction completion/rejection; six failures reproduced before fix, eight tests pass after fix",
+      "result": "Single-chart and summary writes, and deletes, publish cache changes only after persistent commit; temporary-mode and bulk-import compatibility tests pass",
+      "officialFidelityStatus": "not_applicable",
+      "limitation": "Controlled completion tests do not replace real-browser IndexedDB rollback/reopen or device tests"
     }
   ],
   "blockingEvidence": [

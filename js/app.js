@@ -6,7 +6,7 @@
   for(const [name,path] of [['PhiPerformance','performance-policy.js'],['PhiLoadingPresentation','loading-presentation.js']]){
     if(globalThis[name])continue;
     await new Promise((resolve,reject)=>{
-      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-29';
+      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-30';
       script.onload=()=>globalThis[name]?resolve():reject(Error('组件未初始化：'+path));
       script.onerror=()=>reject(Error('组件加载失败，请刷新页面：'+path));document.head.appendChild(script);
     });
@@ -30,7 +30,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-29",
+    runtime: "4.0.1.2-pages-30",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-11-04T11:27:12Z",
@@ -2220,30 +2220,33 @@
   }
   async function dbPutChartSummary(summary) {
     if (!summary?.id) return summary?.id;
+    if (!isTemporaryStorage()) {
+      await retryPersistentOperation(
+        () => idbWrite("chartIndex", (store) => store.put(summary)),
+        "StorageManager.chartIndex.write",
+      );
+    }
+    // Publish the cached view only once the persistent write has committed.
     librarySummaryCache.set(summary.id, summary);
-    if (isTemporaryStorage()) return summary?.id;
-    return await retryPersistentOperation(
-      () => idbWrite("chartIndex", (store) => store.put(summary)),
-      "StorageManager.chartIndex.write",
-    );
+    return summary.id;
   }
   async function dbPutChart(v) {
-    libraryDirty = true;
+    const summary = chartSummaryFromRecord(v);
     if (isTemporaryStorage()) {
       sessionStore.charts.set(v.id, v);
-      librarySummaryCache.set(v.id, chartSummaryFromRecord(v));
-      return v.id;
+    } else {
+      await retryPersistentOperation(
+        () => idbWriteMany(["charts", "chartIndex"], (transaction) => {
+          transaction.objectStore("charts").put(v);
+          transaction.objectStore("chartIndex").put(summary);
+          return v.id;
+        }),
+        "StorageManager.charts.write",
+      );
     }
-    const summary = chartSummaryFromRecord(v);
     librarySummaryCache.set(v.id, summary);
-    return await retryPersistentOperation(
-      () => idbWriteMany(["charts", "chartIndex"], (transaction) => {
-        transaction.objectStore("charts").put(v);
-        transaction.objectStore("chartIndex").put(summary);
-        return v.id;
-      }),
-      "StorageManager.charts.write",
-    );
+    libraryDirty = true;
+    return v.id;
   }
   async function dbPutChartsAtomically(records) {
     const unique = [...new Map((records || []).filter((record) => record?.id).map((record) => [record.id, record])).values()];
@@ -2261,17 +2264,18 @@
     return unique.length;
   }
   async function dbDeleteChart(id) {
+    if (!isTemporaryStorage()) {
+      await retryPersistentOperation(
+        () => idbWriteMany(["charts", "chartIndex"], (transaction) => {
+          transaction.objectStore("charts").delete(id);
+          transaction.objectStore("chartIndex").delete(id);
+        }),
+        "StorageManager.charts.delete",
+      );
+    }
     sessionStore.charts.delete(id);
     librarySummaryCache.delete(id);
     libraryDirty = true;
-    if (isTemporaryStorage()) return;
-    return await retryPersistentOperation(
-      () => idbWriteMany(["charts", "chartIndex"], (transaction) => {
-        transaction.objectStore("charts").delete(id);
-        transaction.objectStore("chartIndex").delete(id);
-      }),
-      "StorageManager.charts.delete",
-    );
   }
   async function dbGetSetting(k) {
     if (isTemporaryStorage()) return sessionStore.settings.get(k);
