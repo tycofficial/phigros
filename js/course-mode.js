@@ -79,8 +79,8 @@
     cancel(); const token=generation;
     const box=title('课题模式');box.appendChild(el('p','正在读取谱面目录…'));
     try {
-      entries=await adapter.entries();if(token!==generation)return;
-      entries=entries.filter(item=>item.parser!=='sus');
+      const loadedEntries=await adapter.entries();if(token!==generation)return;
+      entries=loadedEntries.filter(item=>item.parser!=='sus');
       selection=selection.filter(id=>entries.some(item=>key(item)===id)).slice(0,3);
       renderSelection();
     } catch(error) {if(token!==generation)return;box.appendChild(el('p',error.message));box.appendChild(button('返回',()=>cancel()));}
