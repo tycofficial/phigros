@@ -292,7 +292,7 @@
         if(event.type==='black-mask')root.classList.toggle('visionBlackMask',!!event.visible);
         if(event.type==='red-flash'){const view=doc.querySelector('#gameView');view?.classList.remove('visionRedFlash');void view?.offsetWidth;view?.classList.add('visionRedFlash');}
       },
-      paint(state){root.dataset.phase=state.phase||state.stage||'';if(scene==='Level'&&Number.isFinite(state.blackOpacity))root.style.setProperty('--vision-scene-black',state.blackOpacity);if(state.instruction)native.textContent=state.instruction;if(scene==='AboutUs'){
+      paint(state){root.dataset.phase=state.phase||state.stage||'';if(scene==='Level'&&Number.isFinite(state.blackOpacity))root.style.setProperty('--vision-scene-black',state.blackOpacity);if(Object.prototype.hasOwnProperty.call(state,'instruction'))native.textContent=state.instruction||'';if(scene==='AboutUs'){
         if(state.stage==='credits-wait')native.textContent='touch to start';else native.textContent='';
         if(creditsData){const y=(creditsData.startPosition[1]+(creditsData.serializedEndPosition[1]-creditsData.startPosition[1])*state.creditsProgress)*root.clientHeight/18.75;credits.querySelector('div').style.transform=`translateY(${-y}px)`;}
         credits.querySelector('i').style.transform=`scaleX(${state.skipOpacity||0})`;

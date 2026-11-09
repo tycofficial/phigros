@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "scope": "初始逐模块验收台账，不是完整页面清单或完成声明",
+  "officialBaseline": {
+    "version": null,
+    "build": null,
+    "platform": null,
+    "settings": null,
+    "referenceSource": null
+  },
+  "overallStatus": "blocked",
+  "officialFidelityPercent": null,
+  "baseCommit": "cd07039b7f75fb85852d0eec5ff01b72cde4baf1",
+  "items": [
+    {
+      "id": "opening",
+      "criterion": "开场／标题",
+      "reference": null,
+      "implementation": [
+        "js/opening.js",
+        "index.html"
+      ],
+      "verificationMethod": "同版本原版录屏逐帧对齐",
+      "result": "未进行官方对照",
+      "remainingDifference": "现有程序粒子和网格近似，不是官方逐帧验证",
+      "status": "blocked"
+    },
+    {
+      "id": "loading",
+      "criterion": "加载页面／动画",
+      "reference": null,
+      "implementation": [
+        "js/loading-presentation.js",
+        "js/app.js"
+      ],
+      "verificationMethod": "原版同尺寸进入／退出时序对照",
+      "result": "未进行官方对照",
+      "remainingDifference": "保留模拟器现有 850ms/300ms 时序，尚无官方依据",
+      "status": "blocked"
+    },
+    {
+      "id": "tips",
+      "criterion": "Tips 全集与出现规则",
+      "reference": null,
+      "implementation": [
+        "index.html"
+      ],
+      "verificationMethod": "目标构建文本清单及触发规则核对",
+      "result": "未进行官方对照",
+      "remainingDifference": "缺少官方语料与出现规则；删除旧自写提示不等于还原",
+      "status": "blocked"
+    },
+    {
+      "id": "selection",
+      "criterion": "选歌与章节封面／导航",
+      "reference": null,
+      "implementation": [
+        "js/app.js",
+        "js/catalog-runtime.js"
+      ],
+      "verificationMethod": "逐页面截图、滚动、难度切换与触点对照",
+      "result": "未进行官方对照",
+      "remainingDifference": "当前元数据卡片与原版导航未完成对照",
+      "status": "blocked"
+    },
+    {
+      "id": "catalog",
+      "criterion": "全曲目／谱面／音乐／曲绘",
+      "reference": null,
+      "implementation": [
+        "js/full-catalog.js",
+        "CATALOG-SOURCES.md"
+      ],
+      "verificationMethod": "目标构建资源清单与当前素材哈希、版本、权限核对",
+      "result": "未进行官方对照",
+      "remainingDifference": "335 版本条目不是全曲目证明，历史 SP 和远程依赖仍有缺口",
+      "status": "blocked"
+    },
+    {
+      "id": "gameplay",
+      "criterion": "判定／音画同步／计分",
+      "reference": null,
+      "implementation": [
+        "js/app.js"
+      ],
+      "verificationMethod": "原版受控输入、时钟和判定边界对照",
+      "result": "未进行官方对照",
+      "remainingDifference": "内部回归测试不能证明官方判定参数",
+      "status": "blocked"
+    },
+    {
+      "id": "course",
+      "criterion": "课题模式",
+      "reference": null,
+      "implementation": [
+        "js/course-mode.js"
+      ],
+      "verificationMethod": "官方选曲、规则、约束、失败与结果流程对照",
+      "result": "未进行官方对照",
+      "remainingDifference": "社区规则和自定义 UI 尚未官方验收",
+      "status": "blocked"
+    },
+    {
+      "id": "replay",
+      "criterion": "章节重演与分支",
+      "reference": null,
+      "implementation": [
+        "js/interactive-replay.js",
+        "js/boss-replay-rules.js",
+        "js/chapter8-replay-rules.js"
+      ],
+      "verificationMethod": "逐章节成功／失败／退出路径录像与状态对照",
+      "result": "未进行官方对照",
+      "remainingDifference": "保留现有文本内容；额外标签清理及历史修改版来源均不能当作官方通过",
+      "status": "blocked"
+    },
+    {
+      "id": "effects",
+      "criterion": "全部演出后处理",
+      "reference": null,
+      "implementation": [
+        "js/chapter8-stage-effects.js",
+        "js/chapter8-replay-visuals.js"
+      ],
+      "verificationMethod": "同帧官方原图与输出的空间／时序差异测量",
+      "result": "未进行官方对照",
+      "remainingDifference": "Bloom、径向模糊等已知缺口；未选择官方版本",
+      "status": "blocked"
+    },
+    {
+      "id": "chapter9",
+      "criterion": "第九章完整交互",
+      "reference": null,
+      "implementation": [
+        "CATALOG-SOURCES.md"
+      ],
+      "verificationMethod": "官方全流程录像与资源关联",
+      "result": "未进行官方对照",
+      "remainingDifference": "完整原版交互仍未实现",
+      "status": "blocked"
+    },
+    {
+      "id": "settings-results",
+      "criterion": "设置／暂停／结算及隐藏流程",
+      "reference": null,
+      "implementation": [
+        "index.html",
+        "js/app.js"
+      ],
+      "verificationMethod": "建立所有页面和状态清单后逐项对照",
+      "result": "未进行官方对照",
+      "remainingDifference": "清单未穷尽，缺少统一官方参考，不可宣称全覆盖",
+      "status": "blocked"
+    },
+    {
+      "id": "local-import",
+      "criterion": "本地导入（扩展功能，非官方复刻）",
+      "reference": null,
+      "implementation": [
+        "js/app.js",
+        "tests/local-import-storage.test.cjs"
+      ],
+      "verificationMethod": "ZIP/PEZ/散文件/文件夹/旧成绩持久化回归",
+      "result": "未进行官方对照",
+      "remainingDifference": "当前改动不触及导入或存储；浏览器运行受环境限制，未在本轮全验收",
+      "status": "blocked"
+    }
+  ],
+  "engineeringChanges": [
+    {
+      "id": "loading-module",
+      "implementation": [
+        "js/loading-presentation.js",
+        "tests/loading-presentation.test.cjs"
+      ],
+      "method": "可控时钟、DOM、rAF、URL 依赖的生命周期回归",
+      "result": "12 项新增测试通过；提取模块并修复已取消／替代请求的旧进度回写",
+      "officialEquivalence": "not-verified"
+    },
+    {
+      "id": "replay-stale-caption",
+      "implementation": [
+        "js/interactive-replay.js",
+        "tests/replay-instruction-presentation.test.cjs"
+      ],
+      "method": "执行真实私有 surface，修改前复现失败，修改后通过",
+      "result": "3 项新增测试通过；空 instruction 清空旧标签，未提供该字段的叙事帧保留文本",
+      "officialEquivalence": "not-verified"
+    },
+    {
+      "id": "runtime-bootstrap",
+      "implementation": [
+        "js/app.js",
+        "tests/runtime-bootstrap.test.cjs"
+      ],
+      "method": "执行真实启动前导代码的依赖存在／缺失／失败场景与版本一致性测试",
+      "result": "4 项新增测试通过；旧缓存 HTML 可补载新提取模块",
+      "officialEquivalence": "not-verified"
+    }
+  ],
+  "blockingEvidence": [
+    "缺少唯一可核实官方版本、平台、设置与完整原版参考",
+    "Chromium 在当前环境启动失败：socket() failed: Operation not permitted；浏览器／真实 iPad 未验证"
+  ],
+  "minimalUserInput": [
+    "官方客户端的版本／构建号、平台与显示／游戏设置截图",
+    "同一构建的完整参考录像，先覆盖加载、选歌、重演；原始文件优于压缩二传",
+    "用户有权提供或使用的目标版本原始素材与来源许可信息"
+  ]
+}

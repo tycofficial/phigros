@@ -1,12 +1,16 @@
 
 "use strict";
 (async () => {
-  // Older cached HTML can request the new app before it knows about this small
-  // dependency. Load it once so an update cannot strand an existing player.
-  if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-27';
-    script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
-  });
+  // Cached HTML may load a newer app without newly extracted dependencies.
+  // Resolve these before constructing any UI, for both old and current entries.
+  for(const [name,path] of [['PhiPerformance','performance-policy.js'],['PhiLoadingPresentation','loading-presentation.js']]){
+    if(globalThis[name])continue;
+    await new Promise((resolve,reject)=>{
+      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-28';
+      script.onload=()=>globalThis[name]?resolve():reject(Error('组件未初始化：'+path));
+      script.onerror=()=>reject(Error('组件加载失败，请刷新页面：'+path));document.head.appendChild(script);
+    });
+  }
   let phiExportViewport=null;
   const $ = (s) => document.querySelector(s)||phiExportViewport?.document?.querySelector(s)||null;
   const gameplayDocument = () => phiExportViewport?.document||document;
@@ -26,7 +30,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-27",
+    runtime: "4.0.1.2-pages-28",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-11-04T11:27:12Z",
@@ -6581,69 +6585,29 @@ function withTimeout(promise, ms, message = "操作超时") {
       .replace(/\s+\[(?:EZ|HD|IN|AT|SP)\]$/i, "")
       .trim();
   }
-  let loadingArtworkURL = "", referenceLoadingAt=0, songLoadToken=0, songLoadStream=null;
+  // Loading view owns its DOM, artwork URLs and timing; the loader retains cancellation and media ownership.
+  let songLoadToken=0, songLoadStream=null, loadingPresentation=null;
   function assertSongLoad(token){if(token!==songLoadToken)throw new DOMException('已返回选歌','AbortError');}
-  function setLoadingStatus(text){const node=$('#loadingProgress');if(node)node.textContent=text;}
-  function clearLoadingArtwork() {
-    if (loadingArtworkURL) { try { URL.revokeObjectURL(loadingArtworkURL); } catch {} }
-    loadingArtworkURL = "";
-    for (const id of ["#loadingBackdrop", "#loadingArtwork"]) { const el=$(id); if (el) el.style.backgroundImage=""; }
+  function loadingViewController(){
+    return loadingPresentation ||= PhiLoadingPresentation.create({
+      lookup:$,difficultyInfoFor,cleanSongName:cleanGameplaySongName,applyLengthClass,
+      Blob,URL,now:()=>performance.now(),frame:requestAnimationFrame,sleep,
+      reducedMotion:()=>matchMedia('(prefers-reduced-motion: reduce)').matches,
+      assertCurrent:assertSongLoad
+    });
   }
-  function setLoadingArtwork(blob) {
-    clearLoadingArtwork();
-    if (!(blob instanceof Blob)) return;
-    loadingArtworkURL = URL.createObjectURL(blob);
-    const image = `url("${loadingArtworkURL}")`;
-    $("#loadingBackdrop").style.backgroundImage = image;
-    $("#loadingArtwork").style.backgroundImage = image;
-  }
-  function updateLoadingPresentation(record, fallbackBlob = null) {
-    const info = difficultyInfoFor(record), m = record?.meta || {};
-    const loadingName = cleanGameplaySongName(record?.name || m.name || "未命名曲目");
-    $("#loadingSongTitle").textContent = loadingName;
-    applyLengthClass($("#loadingSongTitle"), loadingName);
-    $("#loadingLevel").textContent = info.level >= 0 ? String(info.level) : "?";
-    $("#loadingLevel").dataset.tier=info.tier;
-    $("#loadingTitleComposer").textContent=String(m.composer||m.artist||"");
-    $("#loadingIllustrator").textContent=String(m.illustrator||"");
-    $("#loadingComposer").textContent = String(m.composer || m.artist || "");
-    $("#loadingCharter").textContent = String(m.charter || m.chartDesigner || "");
-    const blob = record?.bgBlob instanceof Blob ? record.bgBlob : fallbackBlob;
-    if (blob instanceof Blob) setLoadingArtwork(blob);
-  }
-  async function beginLoadingPresentation(record, fallbackBlob = null) {
-    const view = $("#loadingView"), library = $("#libraryView");
+  function setLoadingStatus(text){loadingViewController().setStatus(text);}
+  function clearLoadingArtwork(){loadingViewController().clearArtwork();}
+  function setLoadingArtwork(blob){loadingViewController().setArtwork(blob);}
+  function updateLoadingPresentation(record,fallbackBlob=null){loadingViewController().update(record,fallbackBlob);}
+  async function beginLoadingPresentation(record,fallbackBlob=null){
     clearTimeout(focusedArtworkTimer);focusedArtworkAbort?.abort();focusedArtworkGeneration++;
-    referenceLoadingAt=performance.now();
-    updateLoadingPresentation(record, fallbackBlob);
-    view.classList.remove("hidden", "loadingExit");
-    view.classList.add("loadingEnter");
-    library?.classList.add("libraryLeavingForLoad");
-    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-    setLoadingStatus('正在准备谱面…');
+    await loadingViewController().begin(record,fallbackBlob);
   }
-  async function finishLoadingPresentation(token=songLoadToken) {
-    const view = $("#loadingView");
-    if (!view || view.classList.contains("hidden")) return;
-    await sleep(Math.max(0,850-(performance.now()-referenceLoadingAt)));
-    assertSongLoad(token);
-    view.classList.remove("loadingEnter");
-    view.classList.add("loadingExit");
-    // Reference keeps the blurred loading background briefly after the card has left.
-    await sleep(matchMedia('(prefers-reduced-motion: reduce)').matches?20:300);
-    assertSongLoad(token);
-    view.classList.add("hidden");
-    view.classList.remove("loadingExit");
-    $("#libraryView")?.classList.remove("libraryLeavingForLoad");
-    clearLoadingArtwork();
-  }
-  function cancelLoadingPresentation() {
+  async function finishLoadingPresentation(token=songLoadToken){await loadingViewController().finish(token);}
+  function cancelLoadingPresentation(){
     Engine._primedMusicElement?.pause();Engine._primedMusicElement=null;
-    const view=$("#loadingView");
-    view?.classList.add("hidden");
-    view?.classList.remove("loadingEnter","loadingExit");
-    $("#libraryView")?.classList.remove("libraryLeavingForLoad");
-    clearLoadingArtwork();
+    loadingViewController().cancel();
   }
 
   let libraryFocusCard = null,

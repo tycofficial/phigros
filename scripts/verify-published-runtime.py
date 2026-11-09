@@ -12,7 +12,7 @@ import urllib.request
 
 FILES = (
     'index.html', 'sw.js', 'css/style.css', 'css/interactive-replay.css',
-    'js/app.js', 'js/course-mode.js', 'js/interactive-replay.js',
+    'js/app.js', 'js/loading-presentation.js', 'js/course-mode.js', 'js/interactive-replay.js',
 )
 
 
