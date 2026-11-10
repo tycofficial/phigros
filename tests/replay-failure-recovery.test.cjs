@@ -32,3 +32,21 @@ test('late failure from an earlier playback cannot cancel the replacement sessio
  rejectOld(Error('cancelled media'));await flush();assert.equal(f.runtime.current.id,next);
  assert.equal(f.calls.exit,0);assert.deepEqual(f.calls.errors,[]);f.runtime.cancel();
 });
+test('cancel settles the entry caller before an uncooperative preparation returns',async()=>{
+ let release,first=true,result='pending';const gate=new Promise(resolve=>{release=resolve;});
+ const f=fixture({prepare:()=>first?(first=false,gate):Promise.resolve()});
+ const pending=f.runtime.begin(entry).then(value=>{result=value;});await flush();f.runtime.cancel();await flush();
+ try{
+  assert.equal(result,false,'the cancelled entry caller must release its UI lock immediately');
+  assert.equal(await f.runtime.begin(entry),true);const current=f.runtime.current.id;
+  release();await pending;await flush();assert.equal(f.runtime.current.id,current);assert.deepEqual(f.calls.errors,[]);
+ }finally{release();f.runtime.cancel();}
+});
+test('public cancellation lets an existing navigation handler own the return',async()=>{
+ let exits=0;const ui={show(){},status(){},stop(){},hide(){},disposeGame(){},stopAmbient(){}};
+ api.configure({ui,prepare:()=>new Promise(()=>{}),onExit:()=>exits++});
+ try{
+  const first=api.begin(entry);api.cancel(false);assert.equal(await first,false);assert.equal(api.current,null);assert.equal(exits,0);
+  const second=api.begin(entry);api.cancel();assert.equal(await second,false);assert.equal(exits,1);
+ }finally{api.cancel(false);}
+});

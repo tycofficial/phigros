@@ -1,0 +1,20 @@
+✔ Lumi → fresh Retribution phase 2 → touch unlock → DF → QD → AboutUs → hold skip (66.501554ms)
+✔ The Chariot → phase 1 death → 321 unlock → 4-second stutter → visible native crash confirmation (30.634633ms)
+✔ cancel during deferred chart preparation stops a late engine without reviving the session (0.813947ms)
+✔ cancel releases the chart entry caller while its old chart callback is still pending (0.358892ms)
+✔ a stale video failure after cancel cannot poison a new chapter session (1.40659ms)
+✔ credits audio loading freezes scroll but still permits original hold-to-skip (29.081191ms)
+✔ hidden-document RAF time never counts toward the touch preparation gate (9.924492ms)
+✔ a preparation error releases replay ownership and returns through the existing selection adapter (2.644768ms)
+✔ a current clip failure closes the replay and permits a clean retry (2.253818ms)
+✔ late failure from an earlier playback cannot cancel the replacement session (0.726285ms)
+✔ cancel settles the entry caller before an uncooperative preparation returns (1.675345ms)
+✔ public cancellation lets an existing navigation handler own the return (0.68383ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 202.7852

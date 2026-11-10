@@ -375,6 +375,21 @@
       "officialFidelityStatus": "not_applicable",
       "evidence": "docs/evidence/2026-11-10-replay-flow/verification.json",
       "limitation": "Only specified entry/lifecycle paths. Full chapter play/results/all branches, Rrharil hold clock, credits chain, physical audio/input, Safari and official identity/timelines remain unverified or blocked."
+    },
+    {
+      "id": "rrharil-key-and-chart-cancellation-ownership",
+      "implementation": [
+        "js/interactive-replay.js",
+        "js/app.js",
+        "index.html",
+        "sw.js",
+        "scripts/audit-replay-ownership.cjs"
+      ],
+      "verificationMethod": "Actual Rrharil keyboard/pointer hold-release-reentry, native 1x media and chart start; Luminescence real chart completion delayed until after cancel and new HD engine start. Original failures, callback settlement and new engine clock recorded. Focused browser and 496 Node regressions pass locally; exact new SHA CI pending.",
+      "result": "Old scene key release no longer confirms clock-ready; Loading Back cancels ownership and entry caller settles before a late loader completion, releasing Play. Late original adapter settlement cannot revive old session or stop new HD engine. Runtime cache bumped to pages-38; no resources, rules or timing parameters changed.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-replay-ownership/verification.json",
+      "limitation": "Only recorded Rrharil and EZ-to-HD preparation paths. Same-difficulty shared pending record, complete gameplay/results, credits, all branches and physical/Safari/official comparison remain unverified. Dated network applicability only; denied mirrors remain blocked."
     }
   ],
   "blockingEvidence": [
@@ -397,5 +412,5 @@
     "scope": "Public store metadata only; not client equivalence"
   },
   "lastCheckedDate": "2026-11-10",
-  "latestEngineeringEvidence": "docs/evidence/2026-11-10-replay-flow/verification.json"
+  "latestEngineeringEvidence": "docs/evidence/2026-11-10-replay-ownership/verification.json"
 }

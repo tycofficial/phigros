@@ -14,5 +14,36 @@
     "scripts/audit-vision-cors.cjs": "6cfa248c31634cb2bb0a004ebd7f2b573d32fe2afa71143824a6d82a31bbc96f",
     "docs/evidence/2026-11-10-vision-resources/plan.json": "a1d691a91d4fbb2d7463a8b99cf4e71bf97d187b3a487ac4b353c4c3230f5f6a",
     "docs/evidence/2026-11-10-vision-resources/content-results.jsonl": "4f13e22bc6e2e4080a8e18a2f3570c6a3745f3070b9c205884c4da3b1fe61823"
+  },
+  "scopedSourceChanges": {
+    "index.html": {
+      "currentSHA256": "6e08dfcb342d1b660c5114eca113b6429454d99a798e51dcb2a95d19f9a4e658",
+      "measuredSHA256": "601aeaa15cd9e76c6130faf6208cbe73516d32f33a1d7ae27cdba6dc54bac91a",
+      "reverseEdits": [
+        {
+          "before": "pages-38",
+          "after": "pages-37",
+          "count": 28
+        }
+      ],
+      "auditImpact": "Only cache release tokens and, in app.js, loading Back replay cancellation. The archived probes call downloaders directly and never this UI handler; request code, fixed resource addresses, manifests and CSP are unchanged. Runtime UI/input/cancellation changes have separate real-browser regressions. This is dated scope applicability, never fresh availability."
+    },
+    "js/app.js": {
+      "currentSHA256": "7fb7b89bf137b6e8ba45fc2e7c3c2a42a62541f96e7875393316315c4e493acc",
+      "measuredSHA256": "9a89c7bb6d749489809a0dbceb139a4437021eb629c14e07ad10bc92ccc8b527",
+      "reverseEdits": [
+        {
+          "before": "pages-38",
+          "after": "pages-37",
+          "count": 2
+        },
+        {
+          "before": "      if(globalThis.PhiInteractiveReplay?.current)PhiInteractiveReplay.cancel(false);\n",
+          "after": "",
+          "count": 1
+        }
+      ],
+      "auditImpact": "Only cache release tokens and, in app.js, loading Back replay cancellation. The archived probes call downloaders directly and never this UI handler; request code, fixed resource addresses, manifests and CSP are unchanged. Runtime UI/input/cancellation changes have separate real-browser regressions. This is dated scope applicability, never fresh availability."
+    }
   }
 }

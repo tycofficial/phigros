@@ -66,6 +66,7 @@ jobs:
           node tests/audio-gesture-prime-browser.cjs http://127.0.0.1:4180 work/audio-gesture-prime
           node tests/audio-session-ownership-browser.cjs http://127.0.0.1:4180 work/audio-session-ownership
           node tests/loading-cancel-browser.cjs http://127.0.0.1:4180 work/loading-cancel
+          PHI_REPLAY_OWNERSHIP_CASE=preparation node scripts/audit-replay-ownership.cjs http://127.0.0.1:4180 work/replay-preparation
           PHI_TEST_SW_PRECLAIM=1 node tests/service-worker-browser.cjs work/service-worker
           node tests/folder-import-browser.cjs http://127.0.0.1:4180 work/folder-import
           node tests/library-migration-browser.cjs | tee work/library-migration.log
@@ -83,6 +84,8 @@ jobs:
             node scripts/audit-remote-cors-batch.cjs http://127.0.0.1:4180 work/remote-cors docs/evidence/2026-11-10-remote-resources/plan.json.gz || audit_status=$?
           elif [[ "$main_cors_action" == "reuse" ]]; then
             echo "Reusing dated CI #8 main CORS evidence: exact tested sources unchanged; no 1091-URL re-audit."
+          elif [[ "$main_cors_action" == "reuse-scoped" ]]; then
+            echo "Reusing dated CI #8 main CORS evidence: recorded UI/cache-only edits reconstruct tested bootstrap bytes; network loaders/manifests unchanged; no fresh availability claim or network re-audit."
           else
             echo "Main CORS checkpoint failed; preserving its failure and continuing independent vision checks."
           fi
@@ -91,6 +94,9 @@ jobs:
             node scripts/audit-vision-cors.cjs http://127.0.0.1:4180 work/vision-cors || audit_status=$?
           elif [[ "$vision_cors_action" == "reuse-blocked" ]]; then
             echo "Reusing dated CI #10 vision evidence: tested sources unchanged; no repeated network audit; two mirrors remain blocked."
+            audit_status=1
+          elif [[ "$vision_cors_action" == "reuse-blocked-scoped" ]]; then
+            echo "Reusing dated CI #10 vision evidence: recorded UI/cache-only edits reconstruct tested bootstrap bytes; downloaders/manifests unchanged; no fresh network claim; two mirrors remain blocked."
             audit_status=1
           else
             echo "Vision checkpoint failed; preserving nonzero status."

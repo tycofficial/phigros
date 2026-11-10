@@ -3,6 +3,7 @@
 import hashlib
 import json
 from pathlib import Path
+from checkpoint_sources import source_state
 
 root = Path(__file__).resolve().parents[1]
 directory = root / 'docs/evidence/2026-11-10-vision-resources'
@@ -28,7 +29,5 @@ if (evidence['head'] != checkpoint['head'] or evidence['run']['id'] != 428702345
         or any(row['status'] != 'passed' for row in
                network['fullLoaderResults'] + network['controlledChecks'])):
     raise ValueError('Incomplete or misclassified vision evidence')
-changed = any(not (root / name).is_file()
-              or hashlib.sha256((root / name).read_bytes()).hexdigest() != expected
-              for name, expected in checkpoint['sourceHashes'].items())
-print('run' if changed else 'reuse-blocked')
+state = source_state(root, checkpoint)
+print({'changed': 'run', 'exact': 'reuse-blocked', 'scoped': 'reuse-blocked-scoped'}[state])

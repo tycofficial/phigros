@@ -6,7 +6,7 @@
   for(const [name,path] of [['PhiPerformance','performance-policy.js'],['PhiLoadingPresentation','loading-presentation.js']]){
     if(globalThis[name])continue;
     await new Promise((resolve,reject)=>{
-      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-37';
+      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-38';
       script.onload=()=>globalThis[name]?resolve():reject(Error('组件未初始化：'+path));
       script.onerror=()=>reject(Error('组件加载失败，请刷新页面：'+path));document.head.appendChild(script);
     });
@@ -30,7 +30,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-37",
+    runtime: "4.0.1.2-pages-38",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-11-04T11:27:12Z",
@@ -14790,6 +14790,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     };
     $("#refCollectionBack").onclick=()=>{++referenceRouteToken;referenceScene("home");};
     $('#loadingBack').onclick=()=>{
+      if(globalThis.PhiInteractiveReplay?.current)PhiInteractiveReplay.cancel(false);
       ++songLoadToken;
       songLoadStream?.destroy();
       if(songLoadStream){songLoadStream.audio.pause();songLoadStream.audio.removeAttribute('src');songLoadStream.audio.load();songLoadStream=null;}

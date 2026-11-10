@@ -1,0 +1,80 @@
+{
+  "scope": "Current repository catalog and strict route only; not official catalog proof",
+  "source": "js/full-catalog.js",
+  "SHA256": "2e0c2999217d3a7de05accc652400d12b45451aaf0d810d37839fc02d96bc19e",
+  "entries": [
+    {
+      "name": "The Chariot ~REVIIVAL~",
+      "tier": "EZ",
+      "replayKey": null,
+      "id": "catalog-56a9d91952f168ed-ez"
+    },
+    {
+      "name": "The Chariot ~REVIIVAL~",
+      "tier": "HD",
+      "replayKey": null,
+      "id": "catalog-56a9d91952f168ed-hd"
+    },
+    {
+      "name": "The Chariot ~REVIIVAL~",
+      "tier": "IN",
+      "replayKey": null,
+      "id": "catalog-56a9d91952f168ed-in"
+    },
+    {
+      "name": "Luminescence",
+      "tier": "EZ",
+      "replayKey": "luminescence",
+      "id": "catalog-41c50afe2d44ef97-ez"
+    },
+    {
+      "name": "Luminescence",
+      "tier": "HD",
+      "replayKey": "luminescence",
+      "id": "catalog-41c50afe2d44ef97-hd"
+    },
+    {
+      "name": "Luminescence",
+      "tier": "IN",
+      "replayKey": "luminescence",
+      "id": "catalog-41c50afe2d44ef97-in"
+    },
+    {
+      "name": "Retribution",
+      "tier": "EZ",
+      "replayKey": "retribution",
+      "id": "catalog-b88b31c34f15712b-ez"
+    },
+    {
+      "name": "Retribution",
+      "tier": "HD",
+      "replayKey": "retribution",
+      "id": "catalog-b88b31c34f15712b-hd"
+    },
+    {
+      "name": "Retribution",
+      "tier": "IN",
+      "replayKey": "retribution",
+      "id": "catalog-b88b31c34f15712b-in"
+    },
+    {
+      "name": "Retribution ~ Cycle of Redemption ~  · 联网",
+      "tier": "EZ",
+      "replayKey": null,
+      "id": "catalog-2345d7c3a752756a-ez"
+    },
+    {
+      "name": "Retribution ~ Cycle of Redemption ~  · 联网",
+      "tier": "HD",
+      "replayKey": null,
+      "id": "catalog-2345d7c3a752756a-hd"
+    },
+    {
+      "name": "Retribution ~ Cycle of Redemption ~  · 联网",
+      "tier": "IN",
+      "replayKey": null,
+      "id": "catalog-2345d7c3a752756a-in"
+    }
+  ],
+  "note": "The Chariot ~REVIIVAL~ and Retribution ~ Cycle of Redemption ~ are distinct variants, not historical replay route aliases. No speculative alias or rule added."
+}

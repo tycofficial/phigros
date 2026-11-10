@@ -1,0 +1,260 @@
+{
+  "scope": "Real app Rrharil hold/release/re-entry and preparation ownership; verified cached bytes through controlled transport. No fresh CORS, official fidelity or physical-device comparison.",
+  "startedAt": "2026-11-10T20:59:51.732Z",
+  "sourceHashes": {
+    "js/app.js": "7fb7b89bf137b6e8ba45fc2e7c3c2a42a62541f96e7875393316315c4e493acc",
+    "js/interactive-replay.js": "fd81c993d3d44ee16497ff8a4a5eccd746a01ce3b3a03da4d55ea230073b635f",
+    "js/boss-replay-rules.js": "374dd9bb9494af79d5bd7c4257f4ae9d8f86dc2214aa0d887704340ccd790b16",
+    "js/boss-replay-visuals.js": "5643738682b8eb4b8a2611584c83935f91e003b504e0a35761db890322d935c4"
+  },
+  "steps": [
+    {
+      "name": "actual-chart-preparation-held-after-transfer",
+      "at": "2026-11-10T20:59:54.525Z",
+      "state": {
+        "replay": {
+          "id": 2,
+          "route": {
+            "key": "luminescence",
+            "chapter": 8,
+            "family": "chapter8",
+            "tier": "EZ",
+            "controller": "luminescence"
+          },
+          "scene": "Level",
+          "loading": true,
+          "snapshot": {
+            "songKey": "luminescence",
+            "difficulty": "EZ",
+            "scene": "Level",
+            "phase": null,
+            "stage": "playing",
+            "time": 0,
+            "rawScore": 0,
+            "sceneTime": 0,
+            "hp": null,
+            "totalNoteAffect": 0,
+            "dead": false,
+            "locked": false,
+            "awaitingInput": false,
+            "eventActive": false,
+            "stage1Failed": false,
+            "stage2Failed": false,
+            "scoreCheckComplete": false,
+            "timeTag": 0,
+            "targetScore": 684796.5,
+            "complete": false,
+            "outro": 1.7999999523162842,
+            "videoTime": 0,
+            "clip": null,
+            "flags": {},
+            "messageIndex": 0,
+            "subtitle": "",
+            "creditsProgress": 0,
+            "creditsTime": 0,
+            "skipOpacity": 0
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": true,
+        "library": true
+      },
+      "prepared": {
+        "url": "./assets/catalog-charts/41c50afe2d44ef97-ez-bc051f9f49.json.gz",
+        "bytes": 319174
+      }
+    },
+    {
+      "name": "loading-back-releases-replay-ownership",
+      "at": "2026-11-10T20:59:54.614Z",
+      "state": {
+        "replay": null,
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      }
+    },
+    {
+      "name": "late-preparation-cannot-revive-or-stop-new-session",
+      "at": "2026-11-10T20:59:58.850Z",
+      "before": {
+        "replay": {
+          "id": 5,
+          "route": {
+            "key": "luminescence",
+            "chapter": 8,
+            "family": "chapter8",
+            "tier": "HD",
+            "controller": "luminescence"
+          },
+          "scene": "Level",
+          "loading": false,
+          "snapshot": {
+            "songKey": "luminescence",
+            "difficulty": "HD",
+            "scene": "Level",
+            "phase": null,
+            "stage": "playing",
+            "time": 0.2539569139480591,
+            "rawScore": 0,
+            "sceneTime": 0.30000000000000004,
+            "hp": null,
+            "totalNoteAffect": 0,
+            "dead": false,
+            "locked": false,
+            "awaitingInput": false,
+            "eventActive": false,
+            "stage1Failed": false,
+            "stage2Failed": false,
+            "scoreCheckComplete": false,
+            "timeTag": 0,
+            "targetScore": 677965.5,
+            "complete": false,
+            "outro": 1.7999999523162842,
+            "videoTime": 0,
+            "clip": null,
+            "flags": {},
+            "messageIndex": 0,
+            "subtitle": "",
+            "creditsProgress": 0,
+            "creditsTime": 0,
+            "skipOpacity": 0
+          }
+        },
+        "engine": {
+          "name": "Luminescence",
+          "running": true,
+          "paused": false,
+          "time": 0.2655668934240367,
+          "replay": {
+            "id": 5,
+            "chapter": 8,
+            "phase": "luminescence",
+            "songKey": "luminescence"
+          }
+        },
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": false
+      },
+      "after": {
+        "replay": {
+          "id": 5,
+          "route": {
+            "key": "luminescence",
+            "chapter": 8,
+            "family": "chapter8",
+            "tier": "HD",
+            "controller": "luminescence"
+          },
+          "scene": "Level",
+          "loading": false,
+          "snapshot": {
+            "songKey": "luminescence",
+            "difficulty": "HD",
+            "scene": "Level",
+            "phase": null,
+            "stage": "playing",
+            "time": 0.3932766318321228,
+            "rawScore": 0,
+            "sceneTime": 0.43330000000000035,
+            "hp": null,
+            "totalNoteAffect": 0,
+            "dead": false,
+            "locked": false,
+            "awaitingInput": false,
+            "eventActive": false,
+            "stage1Failed": false,
+            "stage2Failed": false,
+            "scoreCheckComplete": false,
+            "timeTag": 0,
+            "targetScore": 677965.5,
+            "complete": false,
+            "outro": 1.7999999523162842,
+            "videoTime": 0,
+            "clip": null,
+            "flags": {},
+            "messageIndex": 0,
+            "subtitle": "",
+            "creditsProgress": 0,
+            "creditsTime": 0,
+            "skipOpacity": 0
+          }
+        },
+        "engine": {
+          "name": "Luminescence",
+          "running": true,
+          "paused": false,
+          "time": 0.3932766439909301,
+          "replay": {
+            "id": 5,
+            "chapter": 8,
+            "phase": "luminescence",
+            "songKey": "luminescence"
+          }
+        },
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": false
+      },
+      "oldSignalAborted": true,
+      "settlements": [
+        {
+          "id": 5,
+          "at": 6386.300000000745
+        },
+        {
+          "id": 2,
+          "error": "重演曲目未能启动",
+          "at": 6714
+        }
+      ]
+    },
+    {
+      "name": "replacement-quit-clears-ownership",
+      "at": "2026-11-10T20:59:58.972Z"
+    }
+  ],
+  "requests": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "unknownExternal": [],
+  "selectedCase": "preparation",
+  "browser": "156.0.8078.79",
+  "selections": [
+    {
+      "key": "luminescence",
+      "tier": "EZ",
+      "name": "Luminescence",
+      "at": "2026-11-10T20:59:53.854Z"
+    },
+    {
+      "key": "luminescence",
+      "tier": "HD",
+      "name": "Luminescence",
+      "at": "2026-11-10T20:59:54.795Z"
+    }
+  ],
+  "status": "passed",
+  "finishedAt": "2026-11-10T20:59:58.973Z",
+  "uniqueCachedFiles": 0,
+  "uniqueCachedBytes": 0
+}

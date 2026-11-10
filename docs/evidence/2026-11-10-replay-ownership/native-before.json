@@ -1,0 +1,273 @@
+{
+  "scope": "Real app Rrharil hold/release/re-entry and preparation ownership; verified cached bytes through controlled transport. No fresh CORS, official fidelity or physical-device comparison.",
+  "startedAt": "2026-11-10T20:43:24.502Z",
+  "sourceHashes": {
+    "js/app.js": "9a89c7bb6d749489809a0dbceb139a4437021eb629c14e07ad10bc92ccc8b527",
+    "js/interactive-replay.js": "07de625163d4a010c64840f6995d4416a395c5ef6b81d753a52fc656283ed8eb",
+    "js/boss-replay-rules.js": "374dd9bb9494af79d5bd7c4257f4ae9d8f86dc2214aa0d887704340ccd790b16",
+    "js/boss-replay-visuals.js": "5643738682b8eb4b8a2611584c83935f91e003b504e0a35761db890322d935c4"
+  },
+  "steps": [
+    {
+      "name": "native-reverse-reaches-fresh-clock",
+      "at": "2026-11-10T20:43:36.290Z",
+      "state": {
+        "replay": {
+          "id": 2,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "EZ"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "EZ",
+            "phase": "clock",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 0,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": false,
+            "cameraZ": -10,
+            "cameraSpeed": 0,
+            "clockProgress": 0,
+            "elapsed": 0,
+            "introElapsed": 0,
+            "instruction": "按住画面，继续前进"
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      }
+    },
+    {
+      "name": "real-keyboard-hold-and-release-decelerate",
+      "at": "2026-11-10T20:43:39.015Z",
+      "held": {
+        "replay": {
+          "id": 2,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "EZ"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "EZ",
+            "phase": "clock",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 1.3167000000000018,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": true,
+            "cameraZ": 30.226348472628864,
+            "cameraSpeed": 61.31726977713839,
+            "clockProgress": 0.04104729435982537,
+            "elapsed": 1.3166999999999813,
+            "introElapsed": 0,
+            "instruction": "按住画面，继续前进"
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      },
+      "released": {
+        "replay": {
+          "id": 2,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "EZ"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "EZ",
+            "phase": "clock",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 2.8333,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": false,
+            "cameraZ": 45.51250303267709,
+            "cameraSpeed": 0.17261700482567008,
+            "clockProgress": 0.05664541125783376,
+            "elapsed": 2.8332999999999586,
+            "introElapsed": 0,
+            "instruction": "按住画面，继续前进"
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      }
+    },
+    {
+      "name": "release-after-clock-ready",
+      "at": "2026-11-10T20:43:46.745Z",
+      "ready": {
+        "replay": {
+          "id": 2,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "EZ"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "EZ",
+            "phase": "clock-ready",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 0,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": true,
+            "cameraZ": 970,
+            "cameraSpeed": 179.67553730473728,
+            "clockProgress": 1,
+            "elapsed": 0,
+            "introElapsed": 0,
+            "instruction": "Play"
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      },
+      "afterRelease": {
+        "replay": {
+          "id": 2,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "EZ"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "EZ",
+            "phase": "clock-exit",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 0.11659999999999855,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": false,
+            "cameraZ": 970,
+            "cameraSpeed": 179.67553730473728,
+            "clockProgress": 1,
+            "elapsed": 0.11659999999999116,
+            "introElapsed": 0,
+            "instruction": ""
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      }
+    }
+  ],
+  "requests": [
+    {
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/TimeReverse_Video.mp4",
+      "hash": "691eae099af269b4fe2ec928b1cee3ab43916166aa11135700421d7e11c94b5e",
+      "status": "cached-original"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/0c7e90ee5d8ffaaa756d79d8aef879338fdde423/Rrharil.TeamGrimoire.png",
+      "hash": "4dac809af51fe2737bd0ef34c5ca4f1026e5a32771e254e1fd9c829c431ba8e7",
+      "status": "cached-original"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "unknownExternal": [],
+  "browser": "156.0.8078.79",
+  "status": "failed",
+  "error": "AssertionError [ERR_ASSERTION]: the old clock hold release must not confirm the next scene\n+ actual - expected\n\n+ 'clock-exit'\n- 'clock-ready'\n         ^\n\n    at /workspace/phigros/scripts/audit-replay-ownership.cjs:41:98",
+  "failureState": {
+    "replay": {
+      "id": 2,
+      "route": {
+        "key": "rrharil",
+        "chapter": 7,
+        "family": "boss",
+        "tier": "EZ"
+      },
+      "scene": "RrharilEventLevelStart001",
+      "loading": false,
+      "snapshot": {
+        "boss": "rrharil",
+        "tier": "EZ",
+        "phase": "clock-exit",
+        "scene": "RrharilEventLevelStart001",
+        "sceneTime": 0.11659999999999855,
+        "clip": null,
+        "cancelled": false,
+        "result": null,
+        "held": false,
+        "cameraZ": 970,
+        "cameraSpeed": 179.67553730473728,
+        "clockProgress": 1,
+        "elapsed": 0.11659999999999116,
+        "introElapsed": 0,
+        "instruction": ""
+      }
+    },
+    "engine": null,
+    "video": {
+      "time": 0,
+      "src": null,
+      "rate": 1
+    },
+    "loading": false,
+    "library": true
+  },
+  "finishedAt": "2026-11-10T20:43:46.792Z",
+  "uniqueCachedFiles": 2,
+  "uniqueCachedBytes": 5218825
+}
