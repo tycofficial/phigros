@@ -1,0 +1,87 @@
+{
+  "scope": "Shared context/mixer lifecycle checks with native music/worklets and controlled completion/failure observation; no official-equivalence claim",
+  "date": "2026-11-10",
+  "parentCommit": "890c3989d2a217959b91514025cad829a249bddc",
+  "runtime": "4.0.1.2-pages-37",
+  "officialAcceptance": "blocked",
+  "officialFidelityPercent": null,
+  "sourceHashes": {
+    "index.html": "601aeaa15cd9e76c6130faf6208cbe73516d32f33a1d7ae27cdba6dc54bac91a",
+    "js/app.js": "9a89c7bb6d749489809a0dbceb139a4437021eb629c14e07ad10bc92ccc8b527",
+    "sw.js": "b66c7cd6cb119cb74e5d442cbe7e8565f35eb8559a5d4b2ebfb05650e6d1b36f",
+    "tests/audio-session-failure.test.cjs": "7154061398c65e296e4484b7cea4751b4fc26eeff978810a954b431c386db8e3",
+    "tests/hit-mixer-ownership.test.cjs": "5ad655dc8b89905d80ec9a7d650444c272aa69924faa6c244c04954845fcb875",
+    "tests/audio-session-ownership-browser.cjs": "6ecf97b47d6a5a2205d3cd1e4daa67667bfb8be0b786e3e41ed31c6a83c926af",
+    ".github/workflows/engineering-regression.yml": "8cb200e007c2b1586250614b4bb11122034cf86754f0ea595e0ad25908384e6b"
+  },
+  "reproduced": [
+    "An obsolete ensureAudioSessionReady context/mixer failure still executes stopMusic and switches replacement playback to HTML media. Native before evidence shows both boundaries clear the new AudioBufferSource and move music time from 0.303299... to 0.",
+    "After reset and native AudioContext replacement, a late completed native AudioWorklet mixer overwrites the active mixer with one from the closed context and is not disconnected.",
+    "An obsolete mixer finally clears the newer pending factory. The native before pending scenario then starts a third factory instead of sharing the second."
+  ],
+  "changes": [
+    "Check the engine transition/running state before context preparation, after each asynchronous boundary, and before error fallback. Current failures retain the existing fallback behavior.",
+    "Associate a pending mixer factory with its AudioContext and promise identity. Only its active owner may publish, report a fallback or clear pending state.",
+    "Disconnect a discarded completed mixer and return null to obsolete callers; never return or register samples into a mixer from another context.",
+    "Preserve current same-context factory sharing, sample deduplication/reset/flush, current-error retry and all existing judgment/assets/import/save behavior."
+  ],
+  "commands": [
+    {
+      "command": "git show 890c398:js/app.js > /tmp/phigros-session-before.js; PHI_TEST_APP_SOURCE=/tmp/phigros-session-before.js node --test tests/audio-session-failure.test.cjs tests/hit-mixer-ownership.test.cjs",
+      "result": "failed-as-expected",
+      "tests": 20,
+      "pass": 5,
+      "fail": 15,
+      "evidence": "unit-before.log"
+    },
+    {
+      "command": "node tests/audio-session-ownership-browser.cjs http://127.0.0.1:4180 work/audio-session-ownership-before (parent source, before production edits)",
+      "result": "failed-as-expected",
+      "scenarios": 4,
+      "evidence": "browser-before.json",
+      "replayCommand": "PHI_TEST_APP_SOURCE=/tmp/phigros-session-before.js node tests/audio-session-ownership-browser.cjs http://127.0.0.1:4180 work/audio-session-ownership-before"
+    },
+    {
+      "command": "node --test tests/audio-session-failure.test.cjs tests/hit-mixer-ownership.test.cjs tests/audio-gesture-prime.test.cjs tests/audio-wake-lifecycle.test.cjs tests/audio-transport-lifecycle.test.cjs tests/stream-recovery-lifecycle.test.cjs",
+      "result": "passed",
+      "tests": 64
+    },
+    {
+      "command": "node tests/audio-session-ownership-browser.cjs http://127.0.0.1:4180 work/audio-session-ownership-after",
+      "result": "passed",
+      "scenarios": 4,
+      "evidence": "browser-after.json"
+    },
+    {
+      "command": "node --test tests/*.test.cjs",
+      "result": "passed",
+      "tests": 487,
+      "failures": 0,
+      "skipped": 0,
+      "evidence": "node-tests.log"
+    },
+    {
+      "command": "python3 scripts/build-runtime-release.py --output /tmp/phigros-runtime-pages37 --report work/runtime-pages37.json",
+      "result": "passed",
+      "bytes": 999580190,
+      "evidence": "runtime-package-summary.json"
+    },
+    {
+      "command": "node --check js/app.js; node --check tests/audio-session-ownership-browser.cjs; git diff --check; git diff 890c398 -- assets/ css/ js/hosted-media.js js/resource-transfer.js",
+      "result": "passed; no asset/import module changes"
+    }
+  ],
+  "browserMethod": "Real Chromium AudioContext, original PhiHitAudioMixer.create/AudioWorkletNode and decoded Leave All Behind EZ music run. Delay native factory completion observation, reset the shared context through the shipped method, then test ready/pending replacements. Separately inject an obsolete error after native context/mixer preparation completes, using original resume/countdown/restart paths. These are controlled fault/ordering tests, not naturally observed native failures, network frequency, device output or Safari measurements.",
+  "browserOutcomes": [
+    "Before: both obsolete session failures remove the replacement source and switch transport; both mixer scenarios lose ownership, with three creations in the pending case.",
+    "After: both session failures retain the actual new AudioBufferSource, Web Audio mode and advancing clock; both native mixer scenarios retain the new promise/mixer, create only two factories, return null for old calls and disconnect the old mixer once.",
+    "No browser pageErrors in either before or after evidence. Pending mixer=null before publication is intentional, not a missing final mixer."
+  ],
+  "limitations": [
+    "Faults and completion delays are injected around actual operations; no claim that this records organic browser/Safari failure frequency.",
+    "No physical audio output/latency, real iPad Safari, real-user save or official audiovisual/judgment equivalence measurement.",
+    "Other asynchronous resource preparation, first-play activation and device/context interruption combinations are not exhausted by these tests.",
+    "Unique official baseline/settings/resources and complete visual/animation/Tips/chapter/replay acceptance remain blocked or unverified as recorded in docs/fidelity-acceptance.json."
+  ],
+  "remoteCI": "The workflow runs this native worklet/session regression; final head SHA and raw logs must be checked after pushing."
+}

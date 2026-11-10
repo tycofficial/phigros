@@ -1,0 +1,60 @@
+{
+  "scope": "Controlled obsolete failures and native worklet creation completion order; official/Safari/physical latency unverified",
+  "browser": "156.0.8078.79",
+  "appSHA256": "9a89c7bb6d749489809a0dbceb139a4437021eb629c14e07ad10bc92ccc8b527",
+  "pageErrors": [],
+  "mixers": [
+    {
+      "mode": "ready",
+      "retained": {
+        "promise": true,
+        "mixer": true,
+        "staleIsNull": true,
+        "oldDestroyed": 1,
+        "oldState": "closed"
+      },
+      "creationCount": 2,
+      "finalCurrent": true
+    },
+    {
+      "mode": "pending",
+      "retained": {
+        "promise": true,
+        "mixer": false,
+        "staleIsNull": true,
+        "oldDestroyed": 1,
+        "oldState": "closed"
+      },
+      "creationCount": 2,
+      "finalCurrent": true
+    }
+  ],
+  "sessions": [
+    {
+      "boundary": "context",
+      "before": 0.29749433106576006,
+      "after": 0.6370861678004545,
+      "retained": {
+        "source": true,
+        "webAudio": true,
+        "playing": true,
+        "running": true,
+        "paused": false
+      }
+    },
+    {
+      "boundary": "mixer",
+      "before": 0.2858843537414959,
+      "after": 0.6138662131519261,
+      "retained": {
+        "source": true,
+        "webAudio": true,
+        "playing": true,
+        "running": true,
+        "paused": false
+      }
+    }
+  ],
+  "failures": [],
+  "status": "passed"
+}

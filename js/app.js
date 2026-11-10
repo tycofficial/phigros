@@ -6,7 +6,7 @@
   for(const [name,path] of [['PhiPerformance','performance-policy.js'],['PhiLoadingPresentation','loading-presentation.js']]){
     if(globalThis[name])continue;
     await new Promise((resolve,reject)=>{
-      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-36';
+      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-37';
       script.onload=()=>globalThis[name]?resolve():reject(Error('组件未初始化：'+path));
       script.onerror=()=>reject(Error('组件加载失败，请刷新页面：'+path));document.head.appendChild(script);
     });
@@ -30,7 +30,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-36",
+    runtime: "4.0.1.2-pages-37",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-11-04T11:27:12Z",
@@ -8945,6 +8945,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     static _hitOut = null;
     static _hitMixer = null;
     static _hitMixerPromise = null;
+    static _hitMixerPendingContext = null;
     static _hitMixerSamples = [];
     static sharedAudioContext() {
       if (this._ac && this._ac.state !== "closed") return this._ac;
@@ -8960,6 +8961,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       this._hitOut = null;
       this._hitMixer = null;
       this._hitMixerPromise = null;
+      this._hitMixerPendingContext = null;
       this._hitMixerSamples = [];
       this._hitVolume = -1;
       if (old && old.state !== "closed") {
@@ -9001,19 +9003,31 @@ function withTimeout(promise, ms, message = "操作超时") {
       const ac = this.sharedAudioContext();
       if (!ac?.audioWorklet?.addModule || typeof AudioWorkletNode !== "function") return null;
       if (!this._hitMixer || this._hitMixer.context !== ac) {
-        if (!this._hitMixerPromise) {
-          this._hitMixerPromise = PhiHitAudioMixer.create(ac, this.hitSoundOutput())
-            .then((mixer) => (this._hitMixer = mixer))
+        if (!this._hitMixerPromise || this._hitMixerPendingContext !== ac) {
+          const owns = () => this._ac === ac && this._hitMixerPromise === pending;
+          const pending = PhiHitAudioMixer.create(ac, this.hitSoundOutput())
+            .then((mixer) => {
+              if (!owns()) { mixer?.destroy?.(); return null; }
+              return (this._hitMixer = mixer);
+            })
             .catch((error) => {
-              Diagnostics.warn("AudioEngine.worklet", error?.message || String(error), { fallback: "AudioBufferSourceNode" });
+              if (owns()) Diagnostics.warn("AudioEngine.worklet", error?.message || String(error), { fallback: "AudioBufferSourceNode" });
               return null;
             })
-            .finally(() => { this._hitMixerPromise = null; });
+            .finally(() => {
+              if (this._hitMixerPromise === pending) {
+                this._hitMixerPromise = null;
+                this._hitMixerPendingContext = null;
+              }
+            });
+          this._hitMixerPromise = pending;
+          this._hitMixerPendingContext = ac;
         }
         await this._hitMixerPromise;
       }
+      if (this._ac !== ac) return null;
       const mixer = this._hitMixer;
-      if (!mixer) return null;
+      if (!mixer || mixer.context !== ac) return null;
       const unique = new Set();
       for (const buffer of Object.values(pack?.sounds || {})) if (buffer) unique.add(buffer);
       if (customHitSounds?.values)
@@ -11115,6 +11129,8 @@ function withTimeout(promise, ms, message = "操作超时") {
       return result;
     }
     async ensureAudioSessionReady(primePromise = null) {
+      const token = this.transitionToken,
+        active = () => token === this.transitionToken && this.running;
       if (primePromise) {
         try { await withTimeout(primePromise, 2200, '音频唤醒超时'); } catch {}
         finally {
@@ -11122,13 +11138,16 @@ function withTimeout(promise, ms, message = "操作超时") {
           if (prime?.promise === primePromise) this.finishAudioWake(prime);
         }
       }
+      if (!active()) return false;
       try{
         await Engine.ensureAudioContextRunning(1600,false);
+        if (!active()) return false;
         // Do not test currentTime before scheduling music. Safari may not render
         // an idle graph yet; that was a false failure and caused the old loop.
         await withTimeout(Engine.ensureHitMixer(this.pack,this.customHitSounds),6000,'判定音准备超时');
-        return true;
+        return active();
       }catch(error){
+        if (!active()) return false;
         Diagnostics.warn('AudioEngine.session',error.message,{playback:'gesture-primed media element'});
         this.stopMusic(false);this.musicUsingWebAudio=false;
         this.ensureMediaAudioSource();return true;

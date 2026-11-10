@@ -1,0 +1,65 @@
+{
+  "scope": "Controlled obsolete failures and native worklet creation completion order; official/Safari/physical latency unverified",
+  "browser": "156.0.8078.79",
+  "appSHA256": "049584167d43b93cc4fc6213cfe711e710750fac1501b12161973eab791a64b3",
+  "pageErrors": [],
+  "mixers": [
+    {
+      "mode": "ready",
+      "retained": {
+        "promise": true,
+        "mixer": false,
+        "staleIsNull": false,
+        "oldDestroyed": 0,
+        "oldState": "closed"
+      },
+      "creationCount": 2,
+      "finalCurrent": false
+    },
+    {
+      "mode": "pending",
+      "retained": {
+        "promise": false,
+        "mixer": false,
+        "staleIsNull": false,
+        "oldDestroyed": 0,
+        "oldState": "closed"
+      },
+      "creationCount": 3,
+      "finalCurrent": true
+    }
+  ],
+  "sessions": [
+    {
+      "boundary": "context",
+      "before": 0.30329931972789126,
+      "after": 0,
+      "retained": {
+        "source": false,
+        "webAudio": false,
+        "playing": false,
+        "running": true,
+        "paused": false
+      }
+    },
+    {
+      "boundary": "mixer",
+      "before": 0.30329931972789126,
+      "after": 0,
+      "retained": {
+        "source": false,
+        "webAudio": false,
+        "playing": false,
+        "running": true,
+        "paused": false
+      }
+    }
+  ],
+  "failures": [
+    "obsolete ready mixer changed replacement ownership",
+    "obsolete pending mixer changed replacement ownership",
+    "obsolete context failure stopped replacement playback",
+    "obsolete mixer failure stopped replacement playback"
+  ],
+  "status": "failed"
+}

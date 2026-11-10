@@ -319,6 +319,20 @@
       "officialFidelityStatus": "not_applicable",
       "evidence": "docs/evidence/2026-11-10-audio-gesture-prime/verification.json",
       "limitation": "Actual media, resume/countdown and timeout with delayed promise observation; no organic network/Safari, physical latency or official-equivalence conclusion."
+    },
+    {
+      "id": "shared-audio-session-mixer-ownership",
+      "implementation": [
+        "js/app.js",
+        "tests/audio-session-failure.test.cjs",
+        "tests/hit-mixer-ownership.test.cjs",
+        "tests/audio-session-ownership-browser.cjs"
+      ],
+      "verificationMethod": "Before: 15/20 new cases fail; native worklet creation loses replacement ownership and obsolete context/mixer failures stop replacement Web Audio. After: 64 combined lifecycle cases, four native controlled scenarios and full 487-test suite pass.",
+      "result": "Only active session preparation may trigger media fallback; pending/ready mixers remain scoped to their context and factory, with stale mixers disconnected and newer ownership retained.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-audio-session/verification.json",
+      "limitation": "Actual contexts/worklets/music with controlled completion observation and injected obsolete errors; organic failures, device output/latency, Safari and official consistency unverified."
     }
   ],
   "blockingEvidence": [
@@ -341,5 +355,5 @@
     "scope": "Public store metadata only; not client equivalence"
   },
   "lastCheckedDate": "2026-11-10",
-  "latestEngineeringEvidence": "docs/evidence/2026-11-10-audio-gesture-prime/verification.json"
+  "latestEngineeringEvidence": "docs/evidence/2026-11-10-audio-session/verification.json"
 }

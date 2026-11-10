@@ -53,6 +53,7 @@ jobs:
           node tests/audio-transport-browser.cjs http://127.0.0.1:4180 work/audio-transport
           node tests/stream-recovery-browser.cjs http://127.0.0.1:4180 work/stream-recovery
           node tests/audio-gesture-prime-browser.cjs http://127.0.0.1:4180 work/audio-gesture-prime
+          node tests/audio-session-ownership-browser.cjs http://127.0.0.1:4180 work/audio-session-ownership
           node tests/loading-cancel-browser.cjs http://127.0.0.1:4180 work/loading-cancel
           node tests/service-worker-browser.cjs work/service-worker
           node tests/folder-import-browser.cjs http://127.0.0.1:4180 work/folder-import

@@ -79,5 +79,14 @@
     "Other shared context/hit-mixer activation failures and static first-play priming are not exhausted by this regression.",
     "All official visual/animation/Tips/resource/game-rule/chapter/replay acceptance and real-user save compatibility remain blocked or unverified in docs/fidelity-acceptance.json."
   ],
-  "remoteCI": "The workflow includes the new native-media prime test; check this commit head and final raw logs after pushing."
+  "remoteCI": {
+    "result": "passed",
+    "rawLogVerified": true,
+    "tests": 467,
+    "failures": 0,
+    "skipped": 0,
+    "details": "ci-final.json",
+    "run": "https://github.com/tycofficial/phigros/actions/runs/42848716026",
+    "head": "890c3989d2a217959b91514025cad829a249bddc"
+  }
 }
