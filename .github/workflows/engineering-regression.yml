@@ -47,6 +47,12 @@ jobs:
           python3 scripts/audit-remote-resources.py
           --plan docs/evidence/2026-11-10-remote-resources/plan.json.gz
           --verify-journal docs/evidence/2026-11-10-remote-resources/results.jsonl.gz
+      - name: Verify vision measurements including recorded source limits
+        run: >-
+          python3 scripts/audit-remote-resources.py
+          --plan docs/evidence/2026-11-10-vision-resources/plan.json
+          --verify-journal docs/evidence/2026-11-10-vision-resources/content-results.jsonl
+          --allow-blocked
       - name: Run actual app and persistent storage browser checks
         env:
           PHI_FLOW_VIDEO: '1'
@@ -64,7 +70,13 @@ jobs:
           node tests/folder-import-browser.cjs http://127.0.0.1:4180 work/folder-import
           node tests/library-migration-browser.cjs | tee work/library-migration.log
           node tests/interactive-replay-media-browser.cjs | tee work/replay-media.log
-          node scripts/audit-remote-cors-batch.cjs http://127.0.0.1:4180 work/remote-cors docs/evidence/2026-11-10-remote-resources/plan.json.gz
+          main_cors_action=$(python3 scripts/main-cors-checkpoint.py)
+          if [[ "$main_cors_action" == "run" ]]; then
+            node scripts/audit-remote-cors-batch.cjs http://127.0.0.1:4180 work/remote-cors docs/evidence/2026-11-10-remote-resources/plan.json.gz
+          else
+            echo "Reusing dated CI #8 main CORS evidence: exact tested sources unchanged; no 1091-URL re-audit."
+          fi
+          node scripts/audit-vision-cors.cjs http://127.0.0.1:4180 work/vision-cors
       - name: Keep engineering evidence
         if: always()
         uses: actions/upload-artifact@v4

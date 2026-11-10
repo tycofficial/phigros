@@ -1,0 +1,105 @@
+{
+  "scope": "Historical third-party vision/replay resource integrity and compatibility; not official 4.0.1.2 correspondence",
+  "date": "2026-11-10",
+  "parentCommit": "bc2271c06578efbe022537eab03bdb3aaa4794f2",
+  "officialAcceptance": "blocked",
+  "officialFidelityPercent": null,
+  "uniqueContents": 13,
+  "primary": {
+    "passed": 13,
+    "bytes": 135705896
+  },
+  "mirror": {
+    "passed": 11,
+    "blocked": 2,
+    "failed": 0,
+    "blockedBytesNotMeasured": 49816256,
+    "reason": "Actual HTTP 403: File size exceeded the configured limit of 20 MB.",
+    "targets": [
+      "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4",
+      "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.flac"
+    ]
+  },
+  "URLMeasurements": 26,
+  "verifiedBodyBytesAcrossBothOrigins": 221595536,
+  "cacheFiles": 13,
+  "cacheBytes": 135705896,
+  "cacheSubstitutionForUnmeasuredMirror": false,
+  "runtimeResourcesModified": false,
+  "main1091ResourcesRedownloaded": false,
+  "mainCORSCheckpoint": "Reuse CI #8 while all exact tested source fingerprints remain unchanged; not a fresh availability claim",
+  "decode": {
+    "status": "passed",
+    "files": 13,
+    "method": "ffprobe metadata and full ffmpeg -xerror decode to null",
+    "networkRequests": 0,
+    "evidence": "decode.json"
+  },
+  "nativePlayback": {
+    "uniqueMedia": 13,
+    "scope": "Nine native videos start/end or loop, three audio start/end seeks, one FLAC full natural playback; original createSurface with verified cached-byte transport",
+    "naturalFlacDuration": 194.821224,
+    "naturalPlaybackRate": 1,
+    "networkRequests": 0,
+    "controlledCodecTest": "AAC selection is forced by reporting FLAC unsupported on the credits audio instance; playback/decoder remain native",
+    "evidence": "native-playback-summary.json"
+  },
+  "retainedFailure": {
+    "resource": "about_us_1_flac",
+    "operation": "seek to duration minus .18 seconds",
+    "error": "PipelineStatus::PIPELINE_ERROR_READ: FFmpegDemuxer: demuxer seek failed",
+    "status": "failed diagnostic; not erased or relabelled",
+    "sourceWorkflow": "Existing credits path does not seek this audio; natural original-surface playback completed. No production workaround added.",
+    "evidence": "native-flac-seek-diagnostic.json"
+  },
+  "remoteBrowserCI": {
+    "status": "pending",
+    "method": "24 allowed address CORS probes with first chunks; four small full original-loader primary/mirror probes; seven cancellation/failure/recovery checks",
+    "knownDeniedAddresses": "Two already measured size-denied URLs are not retried",
+    "gate": "The audit exits nonzero for the external source blocks even if all executable checks pass. Overall remains blocked."
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/audit-remote-resources.py --plan docs/evidence/2026-11-10-vision-resources/plan.json --output work/vision-resource-audit --workers 2",
+      "result": "exit 1, 24 passed / 2 externally blocked / 0 failed / 0 skipped; no mirror/primary cache substitution"
+    },
+    {
+      "command": "python3 scripts/audit-vision-decode.py --plan docs/evidence/2026-11-10-vision-resources/plan.json --cache work/vision-resource-audit/cache --output work/vision-resource-audit/decode.json",
+      "result": "passed 13/13; zero network requests"
+    },
+    {
+      "command": "node scripts/audit-vision-playback.cjs http://127.0.0.1:4180 work/vision-resource-audit/playback",
+      "result": "11 sampled media passed, then explicit FLAC seek diagnostic failed; remaining independent AAC tested separately"
+    },
+    {
+      "command": "PHI_VISION_MEDIA_IDS=about_us_1_flac node scripts/audit-vision-playback.cjs http://127.0.0.1:4180 work/vision-resource-audit/playback-flac1",
+      "result": "same native seek failure reproduced with media error captured"
+    },
+    {
+      "command": "PHI_VISION_MEDIA_IDS=about_us_1_m4a node scripts/audit-vision-playback.cjs http://127.0.0.1:4180 work/vision-resource-audit/playback-aac1",
+      "result": "passed native AAC start/end"
+    },
+    {
+      "command": "PHI_VISION_MEDIA_IDS=about_us_1_flac PHI_VISION_NATURAL_END=1 node scripts/audit-vision-playback.cjs http://127.0.0.1:4180 work/vision-resource-audit/playback-flac1-natural",
+      "result": "passed actual 1x natural playback through 194.821224 seconds, ended=true, no media/page errors"
+    },
+    {
+      "command": "python3 scripts/audit-remote-resources.py --plan docs/evidence/2026-11-10-vision-resources/plan.json --verify-journal docs/evidence/2026-11-10-vision-resources/content-results.jsonl --allow-blocked",
+      "result": "evidence consistency passed; content 24 passed / 2 externally blocked, zero requests"
+    }
+  ],
+  "remainingBlocks": [
+    "The two current CDN URLs cannot serve complete 23085541-byte MP4 and 26730715-byte FLAC under their actual configured 20 MB limit. No retries, splitting, re-encoding, substitute host or certificate changes were used.",
+    "Chromium 156 FLAC1 end seek fails; only its natural non-seeking playback is demonstrated.",
+    "Full chapter event/input/transition timelines, physical output/sync, Safari and unique official build/resource correspondence remain unverified or blocked."
+  ],
+  "minimumExternalNeed": "Provider-supported complete-file capacity or a separately authorized original-byte backup source for the two denied files; same-version official reference material for official acceptance.",
+  "toolSourceHashes": {
+    "scripts/audit-remote-resources.py": "40cc5aae337e79dee4689d244c69cb87da871c5d6081bbf7bbdb94866172f736",
+    "scripts/audit-vision-cors.cjs": "6cfa248c31634cb2bb0a004ebd7f2b573d32fe2afa71143824a6d82a31bbc96f",
+    "scripts/audit-vision-decode.py": "1722128c6a9f269987c58c9dd7bbe32a6f0aab3767db9a4e3c215a0c50162f82",
+    "scripts/audit-vision-playback.cjs": "db0300056e9ac72d68e900681a62d74b734cb93f3c09d8ab18da004799df3d16",
+    "scripts/main-cors-checkpoint.py": "c2ca9d481f6b755575d05a7cf074e02e7ee04562a92c7db9a70c5eb1af6e146f",
+    ".github/workflows/engineering-regression.yml": "bc394733eee6d76e6880ce0610584de88e7fa2c547cf8dfe23fac11a701ab829"
+  }
+}

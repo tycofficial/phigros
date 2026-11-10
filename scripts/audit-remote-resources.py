@@ -40,12 +40,20 @@ def audit(args):
     plan_hash = hashlib.sha256(plan_bytes).hexdigest()
     resources = plan['resources']
     root = Path(__file__).resolve().parents[1]
-    manifest_bytes = (root / 'js/remote-assets.js').read_bytes()
+    if plan.get('scopeKind') == 'vision':
+        paths = ['assets/meta/vision-media.json', 'assets/meta/vision-audio.json']
+        manifest_bytes = b'\0'.join((root / p).read_bytes() for p in paths)
+        known = {}
+        for p, key in zip(paths, ['videos', 'audios']):
+            for entry in json.loads((root / p).read_text())[key]:
+                known[entry['url']] = known[entry['mirror']] = entry
+    else:
+        manifest_bytes = (root / 'js/remote-assets.js').read_bytes()
+        source_text = manifest_bytes.decode()
+        marker = 'const known = Object.freeze('
+        known = json.JSONDecoder().raw_decode(source_text.split(marker, 1)[1])[0]
     if hashlib.sha256(manifest_bytes).hexdigest() != plan['manifestSHA256']:
         raise ValueError('Current remote manifest differs from the evidence plan')
-    source_text = manifest_bytes.decode()
-    marker = 'const known = Object.freeze('
-    known = json.JSONDecoder().raw_decode(source_text.split(marker, 1)[1])[0]
     assert len({r['url'] for r in resources}) == len(resources)
     assert sum(r['expectedBytes'] for r in resources) == plan['expectedTotalBytes']
     if {r['url'] for r in resources} != set(known):
@@ -64,12 +72,16 @@ def audit(args):
             raise ValueError('Journal has duplicate or missing fixed URLs')
         for spec in resources:
             row = by_url[spec['url']]
-            if row['planSHA256'] != plan_hash or row['status'] != 'passed' or (
-                    row['actualBytes'], row['actualSHA256'], row['actualGitBlobSHA']) != (
-                    spec['expectedBytes'], spec['expectedSHA256'], spec['expectedGitBlobSHA']):
+            if row['planSHA256'] != plan_hash:
+                raise ValueError('Journal plan fingerprint differs')
+            if args.allow_blocked and row['status'] == 'blocked' and row.get('httpStatus') in (401, 403, 429, 451) and row.get('reason'):
+                continue
+            if row['status'] != 'passed' or (row['actualBytes'], row['actualSHA256'], row['actualGitBlobSHA']) != (spec['expectedBytes'], spec['expectedSHA256'], spec['expectedGitBlobSHA']):
                 raise ValueError('Journal measurement does not match the fixed plan')
         print(json.dumps({'scope': 'Consistency of historical measured evidence, no network requests',
                           'passed': True, 'resources': len(rows), 'bytes': plan['expectedTotalBytes'],
+                          'contentPassed': sum(x['status'] == 'passed' for x in rows),
+                          'externallyBlocked': sum(x['status'] == 'blocked' for x in rows),
                           'networkRequests': 0, 'browserCORS': 'not_checked_by_this_validator'}))
         return 0
     output = args.output.resolve()
@@ -88,6 +100,7 @@ def audit(args):
             existing[row['url']] = row
     lock = threading.Lock()
     stopped_hosts = {}
+    stopped_refs = {}
     session_started = utc()
     previously_recorded = len(existing)
 
@@ -127,7 +140,7 @@ def audit(args):
     def one(spec):
         host = urllib.parse.urlsplit(spec['url']).hostname
         with lock:
-            denied = stopped_hosts.get(host)
+            denied = stopped_hosts.get(host) or stopped_refs.get((host, spec['source']['fixedRef']))
         base = {'url': spec['url'], 'source': spec['source'], 'references': spec['references'],
                 'expectedBytes': spec['expectedBytes'], 'expectedSHA256': spec['expectedSHA256'],
                 'expectedGitBlobSHA': spec['expectedGitBlobSHA'], 'checkedAt': utc(),
@@ -138,7 +151,9 @@ def audit(args):
         temporary = cache / (spec['expectedSHA256'] + '.' + uuid.uuid4().hex + '.part')
         began = time.monotonic()
         try:
-            cached = target.exists()
+            # A primary byte cache never substitutes for a first independent
+            # mirror measurement. Previously passed URL rows are skipped above.
+            cached = target.exists() and spec.get('allowSharedCacheReuse', True)
             sha256 = hashlib.sha256()
             sha1 = hashlib.sha1(b'blob ' + str(spec['expectedBytes']).encode() + b'\0')
             received = 0
@@ -188,12 +203,18 @@ def audit(args):
                     'elapsedSeconds': round(time.monotonic() - began, 3)}
         except urllib.error.HTTPError as error:
             blocked = error.code in (401, 403, 451, 429)
-            reason = str(error)
+            detail = error.read(1024).decode('utf-8', 'replace')
+            reason = str(error) + '; ' + detail
             if error.code == 429:
                 reason += '; Retry-After=' + str(error.headers.get('Retry-After'))
             if blocked:
                 with lock:
-                    stopped_hosts[host] = 'Source paused after ' + reason + '; no mirror or automatic retry'
+                    if error.code == 403 and 'file size' in detail.lower():
+                        pass  # Explicit file-size denial: other files are independent.
+                    elif error.code == 403 and 'package size' in detail.lower():
+                        stopped_refs[(host, spec['source']['fixedRef'])] = reason
+                    else:
+                        stopped_hosts[host] = 'Source paused after ' + reason + '; no mirror or automatic retry'
             return {**base, 'status': 'blocked' if blocked else 'failed', 'httpStatus': error.code,
                     'reason': reason, 'elapsedSeconds': round(time.monotonic() - began, 3)}
         except (OSError, ValueError, TimeoutError) as error:
@@ -237,6 +258,7 @@ def main():
     parser.add_argument('--plan', required=True, type=Path)
     parser.add_argument('--output', type=Path)
     parser.add_argument('--verify-journal', type=Path, help='Validate archived measurements without downloads')
+    parser.add_argument('--allow-blocked', action='store_true', help='Validate denial evidence without accepting blocked content as passed')
     parser.add_argument('--workers', type=int, choices=range(1, 5), default=3)
     parser.add_argument('--limit', type=int, default=0, help='Maximum new resources, zero means all pending')
     parser.add_argument('--retry-failed', action='store_true')

@@ -1,0 +1,321 @@
+{
+  "scope": "Verified cache bytes, original createSurface, native muted playback at start/end and loop/codec-selection checks; not remote CORS, full real-time playthrough or official reference matching",
+  "browser": "156.0.8078.79",
+  "startedAt": "2026-11-10T17:21:18.453Z",
+  "sourceSHA256": "07de625163d4a010c64840f6995d4416a395c5ef6b81d753a52fc656283ed8eb",
+  "externalRequests": [],
+  "pageErrors": [],
+  "results": [
+    {
+      "id": "spas_unlock",
+      "checkedAt": "2026-11-10T17:21:21.150Z",
+      "mime": "video/mp4",
+      "selected": {
+        "id": "spas_unlock",
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Spas_Unlock.mp4"
+      },
+      "start": {
+        "before": 0.0005,
+        "after": 0.360663,
+        "paused": false,
+        "duration": 27.666667,
+        "width": 1920,
+        "height": 1080,
+        "frames": 16
+      },
+      "end": {
+        "time": 27.666667,
+        "ended": true,
+        "loop": false,
+        "paused": true
+      },
+      "controlledFlacUnsupported": false,
+      "nativeCanPlay": "maybe",
+      "status": "passed",
+      "mediaErrors": []
+    },
+    {
+      "id": "iga_loop",
+      "checkedAt": "2026-11-10T17:21:22.065Z",
+      "mime": "video/mp4",
+      "selected": {
+        "id": "iga_loop",
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Loop.mp4"
+      },
+      "start": {
+        "before": 0.002437,
+        "after": 0.362621,
+        "paused": false,
+        "duration": 4.771438,
+        "width": 1920,
+        "height": 1080,
+        "frames": 16
+      },
+      "end": {
+        "time": 0.009865,
+        "ended": false,
+        "loop": true,
+        "paused": false
+      },
+      "controlledFlacUnsupported": false,
+      "nativeCanPlay": "maybe",
+      "status": "passed",
+      "mediaErrors": []
+    },
+    {
+      "id": "iga_main",
+      "checkedAt": "2026-11-10T17:21:22.951Z",
+      "mime": "video/mp4",
+      "selected": {
+        "id": "iga_main",
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Main.mp4"
+      },
+      "start": {
+        "before": 0.00054,
+        "after": 0.360686,
+        "paused": false,
+        "duration": 18.551885,
+        "width": 1920,
+        "height": 1080,
+        "frames": 16
+      },
+      "end": {
+        "time": 18.551885,
+        "ended": true,
+        "loop": false,
+        "paused": true
+      },
+      "controlledFlacUnsupported": false,
+      "nativeCanPlay": "maybe",
+      "status": "passed",
+      "mediaErrors": []
+    },
+    {
+      "id": "time_reverse",
+      "checkedAt": "2026-11-10T17:21:23.841Z",
+      "mime": "video/mp4",
+      "selected": {
+        "id": "time_reverse",
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/TimeReverse_Video.mp4"
+      },
+      "start": {
+        "before": 0.00057,
+        "after": 0.360613,
+        "paused": false,
+        "duration": 7.018005,
+        "width": 1920,
+        "height": 1080,
+        "frames": 16
+      },
+      "end": {
+        "time": 7.018005,
+        "ended": true,
+        "loop": false,
+        "paused": true
+      },
+      "controlledFlacUnsupported": false,
+      "nativeCanPlay": "maybe",
+      "status": "passed",
+      "mediaErrors": []
+    },
+    {
+      "id": "321_unlock",
+      "checkedAt": "2026-11-10T17:21:24.580Z",
+      "mime": "video/mp4",
+      "selected": {
+        "id": "321_unlock",
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/321_Unlock.mp4"
+      },
+      "start": {
+        "before": 0.001129,
+        "after": 0.361196,
+        "paused": false,
+        "duration": 27.5,
+        "width": 1920,
+        "height": 960,
+        "frames": 16
+      },
+      "end": {
+        "time": 27.5,
+        "ended": true,
+        "loop": false,
+        "paused": true
+      },
+      "controlledFlacUnsupported": false,
+      "nativeCanPlay": "maybe",
+      "status": "passed",
+      "mediaErrors": []
+    },
+    {
+      "id": "df_touch",
+      "checkedAt": "2026-11-10T17:21:25.320Z",
+      "mime": "video/mp4",
+      "selected": {
+        "id": "df_touch",
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4"
+      },
+      "start": {
+        "before": 0.002566,
+        "after": 0.362634,
+        "paused": false,
+        "duration": 3.166667,
+        "width": 1920,
+        "height": 960,
+        "frames": 16
+      },
+      "end": {
+        "time": 3.166667,
+        "ended": true,
+        "loop": false,
+        "paused": true
+      },
+      "controlledFlacUnsupported": false,
+      "nativeCanPlay": "maybe",
+      "status": "passed",
+      "mediaErrors": []
+    },
+    {
+      "id": "df_unlock",
+      "checkedAt": "2026-11-10T17:21:26.129Z",
+      "mime": "video/mp4",
+      "selected": {
+        "id": "df_unlock",
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4"
+      },
+      "start": {
+        "before": 0.004185,
+        "after": 0.364274,
+        "paused": false,
+        "duration": 47,
+        "width": 1920,
+        "height": 960,
+        "frames": 16
+      },
+      "end": {
+        "time": 47,
+        "ended": true,
+        "loop": false,
+        "paused": true
+      },
+      "controlledFlacUnsupported": false,
+      "nativeCanPlay": "maybe",
+      "status": "passed",
+      "mediaErrors": []
+    },
+    {
+      "id": "rr_unlock",
+      "checkedAt": "2026-11-10T17:21:26.995Z",
+      "mime": "video/mp4",
+      "selected": {
+        "id": "rr_unlock",
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/1a9df85d38fca17cce1f1d62f4b348054c180d24/vision/Rr_Unlock.mp4"
+      },
+      "start": {
+        "before": 0.003683,
+        "after": 0.363753,
+        "paused": false,
+        "duration": 35.435435,
+        "width": 1920,
+        "height": 1080,
+        "frames": 16
+      },
+      "end": {
+        "time": 35.435435,
+        "ended": true,
+        "loop": false,
+        "paused": true
+      },
+      "controlledFlacUnsupported": false,
+      "nativeCanPlay": "maybe",
+      "status": "passed",
+      "mediaErrors": []
+    },
+    {
+      "id": "qd",
+      "checkedAt": "2026-11-10T17:21:27.785Z",
+      "mime": "video/mp4",
+      "selected": {
+        "id": "qd",
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/d72db57ac90f5dc650fec2cbbe876f0d16d834f7/vision/QD.mp4"
+      },
+      "start": {
+        "before": 0.019827,
+        "after": 0.387032,
+        "paused": false,
+        "duration": 24.066667,
+        "width": 1920,
+        "height": 960,
+        "frames": 17
+      },
+      "end": {
+        "time": 24.066667,
+        "ended": true,
+        "loop": false,
+        "paused": true
+      },
+      "controlledFlacUnsupported": false,
+      "nativeCanPlay": "maybe",
+      "status": "passed",
+      "mediaErrors": []
+    },
+    {
+      "id": "about_us_0_flac",
+      "checkedAt": "2026-11-10T17:21:28.485Z",
+      "mime": "audio/flac",
+      "selected": {
+        "id": "about_us_0_flac",
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.flac"
+      },
+      "start": {
+        "before": 0.000186,
+        "after": 0.360287,
+        "paused": false,
+        "duration": 127.137959,
+        "width": null,
+        "height": null,
+        "frames": null
+      },
+      "end": {
+        "time": 127.137959,
+        "ended": true,
+        "loop": false,
+        "paused": true
+      },
+      "controlledFlacUnsupported": false,
+      "nativeCanPlay": "probably",
+      "status": "passed",
+      "mediaErrors": []
+    },
+    {
+      "id": "about_us_0_m4a",
+      "checkedAt": "2026-11-10T17:21:29.122Z",
+      "mime": "audio/mp4",
+      "selected": {
+        "id": "about_us_0_m4a",
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a"
+      },
+      "start": {
+        "before": 0.000185,
+        "after": 0.36033,
+        "paused": false,
+        "duration": 127.138005,
+        "width": null,
+        "height": null,
+        "frames": null
+      },
+      "end": {
+        "time": 127.138005,
+        "ended": true,
+        "loop": false,
+        "paused": true
+      },
+      "controlledFlacUnsupported": true,
+      "nativeCanPlay": "maybe",
+      "status": "passed",
+      "mediaErrors": []
+    }
+  ],
+  "status": "failed",
+  "error": "page.evaluate: Error: Native media boundary timed out: about_us_1_flac\n    at until (eval at evaluate (:311:30), <anonymous>:2:123)\n    at async eval (eval at evaluate (:311:30), <anonymous>:11:92)\n    at async <anonymous>:337:30\n    at /workspace/phigros/scripts/audit-vision-playback.cjs:24:28",
+  "finishedAt": "2026-11-10T17:21:35.562Z"
+}

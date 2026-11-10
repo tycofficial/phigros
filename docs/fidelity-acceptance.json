@@ -346,6 +346,21 @@
       "officialFidelityStatus": "not_applicable",
       "evidence": "docs/evidence/2026-11-10-remote-resources/verification.json",
       "limitation": "Current allowlist integrity only; official authenticity, separate vision resources, exhaustive mirror/fallback, decoding/physical-device behavior remain unaccepted."
+    },
+    {
+      "id": "vision-resource-audit",
+      "implementation": [
+        "scripts/audit-remote-resources.py",
+        "scripts/audit-vision-cors.cjs",
+        "scripts/audit-vision-decode.py",
+        "scripts/audit-vision-playback.cjs",
+        "scripts/main-cors-checkpoint.py"
+      ],
+      "verificationMethod": "13 primary and 11 mirror full body lengths/SHA256/Git blob match; two CDN mirrors return actual HTTP403 file-size denial. All 13 cached files fully decode. Original native surface start/end/loop or natural playback measured for 13 unique media; FLAC end-seek diagnostic retained as failed.",
+      "result": "Overall resource audit blocked by two declared mirrors. No production resource/player changes; other independent browser/cancellation/fallback checks continue in CI.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-vision-resources/verification.json",
+      "limitation": "These manifests declare third-party modified historical 3.0 sources. Not official 4.0.1.2 attribution, full event timeline or physical/Safari validation."
     }
   ],
   "blockingEvidence": [
@@ -368,5 +383,5 @@
     "scope": "Public store metadata only; not client equivalence"
   },
   "lastCheckedDate": "2026-11-10",
-  "latestEngineeringEvidence": "docs/evidence/2026-11-10-remote-resources/verification.json"
+  "latestEngineeringEvidence": "docs/evidence/2026-11-10-vision-resources/verification.json"
 }
