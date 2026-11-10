@@ -67,21 +67,27 @@ jobs:
           node tests/audio-session-ownership-browser.cjs http://127.0.0.1:4180 work/audio-session-ownership
           node tests/loading-cancel-browser.cjs http://127.0.0.1:4180 work/loading-cancel
           PHI_REPLAY_OWNERSHIP_CASE=preparation node scripts/audit-replay-ownership.cjs http://127.0.0.1:4180 work/replay-preparation
+          node scripts/audit-same-chart-preparation.cjs http://127.0.0.1:4180 work/same-chart-preparation
           PHI_TEST_SW_PRECLAIM=1 node tests/service-worker-browser.cjs work/service-worker
           node tests/folder-import-browser.cjs http://127.0.0.1:4180 work/folder-import
           node tests/library-migration-browser.cjs | tee work/library-migration.log
           node tests/interactive-replay-media-browser.cjs | tee work/replay-media.log
-      - name: Audit vision networking independently
+      - name: Audit current preparation networking
         if: ${{ always() && !cancelled() }}
         run: |
           mkdir -p work
           python3 -m http.server 4180 --bind 127.0.0.1 > work/vision-server.log 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
+          node scripts/audit-preparation-network.cjs http://127.0.0.1:4180 work/preparation-network
+      - name: Retain network scope and blocked mirror gates
+        if: ${{ always() && !cancelled() }}
+        run: |
           audit_status=0
           main_cors_action=$(python3 scripts/main-cors-checkpoint.py) || { audit_status=$?; main_cors_action=checkpoint-failed; }
           if [[ "$main_cors_action" == "run" ]]; then
-            node scripts/audit-remote-cors-batch.cjs http://127.0.0.1:4180 work/remote-cors docs/evidence/2026-11-10-remote-resources/plan.json.gz || audit_status=$?
+            echo "Current preparation/cache source changed. The old whole-bootstrap main CORS checkpoint is NOT reused. Full 1091-address current matrix is NOT RUN in this bounded batch; see the independent current preparation network sample."
+            audit_status=1
           elif [[ "$main_cors_action" == "reuse" ]]; then
             echo "Reusing dated CI #8 main CORS evidence: exact tested sources unchanged; no 1091-URL re-audit."
           elif [[ "$main_cors_action" == "reuse-scoped" ]]; then
@@ -91,7 +97,8 @@ jobs:
           fi
           vision_cors_action=$(python3 scripts/vision-cors-checkpoint.py) || { audit_status=$?; vision_cors_action=checkpoint-failed; }
           if [[ "$vision_cors_action" == "run" ]]; then
-            node scripts/audit-vision-cors.cjs http://127.0.0.1:4180 work/vision-cors || audit_status=$?
+            echo "Current preparation/cache source is outside the old UI-only vision proof. The old whole-bootstrap checkpoint is NOT reused. Full current vision network matrix is NOT RUN; the two recorded HTTP403 mirrors remain blocked and are not retried."
+            audit_status=1
           elif [[ "$vision_cors_action" == "reuse-blocked" ]]; then
             echo "Reusing dated CI #10 vision evidence: tested sources unchanged; no repeated network audit; two mirrors remain blocked."
             audit_status=1

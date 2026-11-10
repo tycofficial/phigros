@@ -5,7 +5,17 @@ const directory='docs/evidence/2026-11-10-vision-resources',checkpointPath=direc
 function fixture(t){
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'phi-vision-checkpoint-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));
  const cp=JSON.parse(fs.readFileSync(checkpointPath));
- for(const name of [...Object.keys(cp.sourceHashes),checkpointPath,evidencePath,script,'scripts/checkpoint_sources.py']){fs.mkdirSync(path.dirname(path.join(root,name)),{recursive:true});fs.copyFileSync(name,path.join(root,name));}
+ // Synthetic source bytes isolate the checkpoint classifier. They never alter
+ // real evidence or pretend that the changed app still has the old UI proof.
+ const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
+ cp.scopedSourceChanges={};
+ for(const name of Object.keys(cp.sourceHashes)){
+  const measured='measured source: '+name+' cache-old',current=name==='index.html'?measured.replace('cache-old','cache-new'):measured;
+  cp.sourceHashes[name]=hash(measured);fs.mkdirSync(path.dirname(path.join(root,name)),{recursive:true});fs.writeFileSync(path.join(root,name),current);
+  if(name==='index.html')cp.scopedSourceChanges[name]={currentSHA256:hash(current),measuredSHA256:hash(measured),reverseEdits:[{before:'cache-new',after:'cache-old',count:1}]};
+ }
+ for(const name of [checkpointPath,evidencePath,script,'scripts/checkpoint_sources.py']){fs.mkdirSync(path.dirname(path.join(root,name)),{recursive:true});fs.copyFileSync(name,path.join(root,name));}
+ fs.writeFileSync(path.join(root,checkpointPath),JSON.stringify(cp));
  return {root,run:()=>spawnSync('python3',[path.join(root,script)],{encoding:'utf8'}),read:name=>JSON.parse(fs.readFileSync(path.join(root,name))),write:(name,value)=>fs.writeFileSync(path.join(root,name),JSON.stringify(value))};
 }
 test('unchanged vision evidence reuses its dated results and explicitly retains blocked status',t=>{
@@ -31,4 +41,7 @@ test('an additional bootstrap or policy edit cannot use a recorded UI/cache-only
 test('a scoped change must reconstruct the exact measured baseline bytes',t=>{
  const f=fixture(t),cp=f.read(checkpointPath);cp.scopedSourceChanges['index.html'].reverseEdits[0].after='pages-invalid';f.write(checkpointPath,cp);
  const r=f.run();assert.notEqual(r.status,0);assert.match(r.stderr,/do not reconstruct measured source/);
+});
+test('the current preparation implementation is outside the previous UI-only checkpoint',()=>{
+ const r=spawnSync('python3',[script],{encoding:'utf8'});assert.equal(r.status,0,r.stderr);assert.equal(r.stdout.trim(),'run');
 });

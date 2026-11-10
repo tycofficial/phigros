@@ -6,7 +6,7 @@
   for(const [name,path] of [['PhiPerformance','performance-policy.js'],['PhiLoadingPresentation','loading-presentation.js']]){
     if(globalThis[name])continue;
     await new Promise((resolve,reject)=>{
-      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-38';
+      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-39';
       script.onload=()=>globalThis[name]?resolve():reject(Error('组件未初始化：'+path));
       script.onerror=()=>reject(Error('组件加载失败，请刷新页面：'+path));document.head.appendChild(script);
     });
@@ -30,7 +30,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-38",
+    runtime: "4.0.1.2-pages-39",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-11-04T11:27:12Z",
@@ -6143,6 +6143,42 @@ function withTimeout(promise, ms, message = "操作超时") {
   const builtinAssetBlobCache = new PhiPerformance.ResourceCache(24*1024*1024,32);
   // Static hosting: load only resources from this site's own origin.
   const phiHostedBundleCache = new PhiPerformance.ResourceCache(12*1024*1024,32);
+  const builtinPreparationRequests = new WeakMap();
+  function prepareBuiltinResource(cache,key,signal,load,weight){
+    if(signal?.aborted)return Promise.reject(new DOMException('资源准备已取消','AbortError'));
+    if(cache.has(key))return Promise.resolve(cache.get(key));
+    let requests=builtinPreparationRequests.get(cache);
+    if(!requests){requests=new Map();builtinPreparationRequests.set(cache,requests);}
+    let request=requests.get(key);
+    if(!request||request.controller.signal.aborted){
+      request={controller:new AbortController(),consumers:0,settled:false,promise:null};
+      requests.set(key,request);
+      request.promise=Promise.resolve().then(()=>load(request.controller.signal)).then(value=>{
+        request.settled=true;
+        if(requests.get(key)===request&&!request.controller.signal.aborted){
+          const size=weight(value);cache.set(key,value);cache.setWeight(key,size);
+        }
+        return value;
+      },error=>{request.settled=true;throw error;}).finally(()=>{
+        if(requests.get(key)===request)requests.delete(key);
+      });
+    }
+    request.consumers++;
+    return new Promise((resolve,reject)=>{
+      let finished=false;
+      const finish=(error,value)=>{
+        if(finished)return;finished=true;signal?.removeEventListener('abort',abort);
+        if(--request.consumers===0&&!request.settled){
+          request.controller.abort();if(requests.get(key)===request)requests.delete(key);
+        }
+        if(error)reject(error);else resolve(value);
+      };
+      const abort=()=>finish(new DOMException('资源准备已取消','AbortError'));
+      signal?.addEventListener('abort',abort,{once:true});
+      request.promise.then(value=>finish(null,value),error=>finish(error));
+      if(signal?.aborted)abort();
+    });
+  }
   async function phiHostedBytes(relativePath, {signal} = {}) {
     if (signal?.aborted) throw new DOMException('资源读取已取消', 'AbortError');
     const url = new URL(relativePath, document.baseURI);
@@ -6244,8 +6280,7 @@ function withTimeout(promise, ms, message = "操作超时") {
   }
   async function materializeBuiltinAsset(assetId, name = "", {signal} = {}) {
     const key = String(assetId);
-    if (builtinAssetBlobCache.has(key)) return builtinAssetBlobCache.get(key);
-    const pending = (async () => {
+    return prepareBuiltinResource(builtinAssetBlobCache,key,signal,async signal=>{
       const spec = BUILTIN_ASSET_MAP.get(key);
       if (!spec) throw new Error(`内置去重资源索引不存在：${key}`);
       let workerUnavailable=false;
@@ -6279,14 +6314,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         console.warn("内置资源尺寸校验不一致", key, blob.size, spec.usize);
       if (spec.offset == null) phiHostedBundleCache.delete(new URL(spec.url, document.baseURI).href);
       return blob;
-    })();
-    builtinAssetBlobCache.set(key, pending);
-    try {
-      const blob=await pending;builtinAssetBlobCache.setWeight(key,blob.size);return blob;
-    } catch (e) {
-      builtinAssetBlobCache.delete(key);
-      throw e;
-    }
+    },blob=>blob.size);
   }
   async function materializePackedFiles(list) {
     const out = [];
@@ -6368,8 +6396,7 @@ function withTimeout(promise, ms, message = "操作超时") {
   const builtinLoadPromises = new Map();
   const builtinStreamingRecords = new PhiPerformance.ResourceCache(8*1024*1024,6);
   async function materializeStreamingBuiltinPack(entry, {signal} = {}) {
-    if (builtinStreamingRecords.has(entry.id)) return builtinStreamingRecords.get(entry.id);
-    const pending = (async () => {
+    return prepareBuiltinResource(builtinStreamingRecords,entry.id,signal,async signal=>{
       const chartFile=entry.files.find(file=>file.name===entry.meta?.chart),
         audioFile=entry.files.find(file=>file.name===entry.meta?.music),
         artFile=entry.files.find(file=>file.name===entry.meta?.illustration),
@@ -6384,9 +6411,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         audioBlob:null,audioName:audioFile.name,streamAudioURL:stream.url,streamSpec:stream,
         bgBlob,bgName:artFile?.name||'',artworkAsset:artFile?.asset,assets:[],supplementalFiles:[],
         lineTextureSpecs:[],extraText:'',duration:stream.duration,notes:entry.notes,lines:entry.lines,importedAt:0};
-    })();
-    builtinStreamingRecords.set(entry.id,pending);
-    try { const record=await pending;builtinStreamingRecords.setWeight(entry.id,record.chartText.length*2+(record.bgBlob?.size||0));return record; } catch(error) { builtinStreamingRecords.delete(entry.id); throw error; }
+    },record=>record.chartText.length*2+(record.bgBlob?.size||0));
   }
   async function materializeBuiltinPack(entry, options = null) {
     if(options?.streaming && globalThis.PhiHostedMedia && Array.isArray(entry.files))return materializeStreamingBuiltinPack(entry,options);

@@ -1,0 +1,2030 @@
+{
+  "scope": "Same Luminescence EZ entry cancel/re-enter, original cache/transfer/engine, controlled original completion order; not official fidelity",
+  "startedAt": "2026-11-10T21:36:06.475Z",
+  "sourceSHA256": "2cbb9675c1c8381a611b01f1c5c3b6afce251272ccf981a72786f9276e2857fb",
+  "results": [
+    {
+      "scenario": "immediate-abort",
+      "steps": [
+        {
+          "name": "old-original-preparation-pending",
+          "at": "2026-11-10T21:36:11.682Z",
+          "state": {
+            "session": {
+              "id": 2,
+              "route": {
+                "key": "luminescence",
+                "chapter": 8,
+                "family": "chapter8",
+                "tier": "EZ",
+                "controller": "luminescence"
+              },
+              "scene": "Level",
+              "loading": true,
+              "snapshot": {
+                "songKey": "luminescence",
+                "difficulty": "EZ",
+                "scene": "Level",
+                "phase": null,
+                "stage": "playing",
+                "time": 0,
+                "rawScore": 0,
+                "sceneTime": 0,
+                "hp": null,
+                "totalNoteAffect": 0,
+                "dead": false,
+                "locked": false,
+                "awaitingInput": false,
+                "eventActive": false,
+                "stage1Failed": false,
+                "stage2Failed": false,
+                "scoreCheckComplete": false,
+                "timeTag": 0,
+                "targetScore": 684796.5,
+                "complete": false,
+                "outro": 1.7999999523162842,
+                "videoTime": 0,
+                "clip": null,
+                "flags": {},
+                "messageIndex": 0,
+                "subtitle": "",
+                "creditsProgress": 0,
+                "creditsTime": 0,
+                "skipOpacity": 0
+              }
+            },
+            "engine": null,
+            "playDisabled": true,
+            "loading": true,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": false,
+                "outcome": "pending",
+                "returned": false
+              }
+            ],
+            "settlements": [],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 4413
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 4415.60000000149
+              }
+            ]
+          }
+        },
+        {
+          "name": "cancelled-before-original-completion",
+          "at": "2026-11-10T21:36:12.099Z",
+          "state": {
+            "session": null,
+            "engine": null,
+            "playDisabled": false,
+            "loading": false,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "AbortError",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 5065.699999999255
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 4413
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 4415.60000000149
+              }
+            ]
+          }
+        },
+        {
+          "name": "same-entry-started-before-old-result",
+          "at": "2026-11-10T21:36:12.620Z",
+          "state": {
+            "session": {
+              "id": 5,
+              "route": {
+                "key": "luminescence",
+                "chapter": 8,
+                "family": "chapter8",
+                "tier": "EZ",
+                "controller": "luminescence"
+              },
+              "scene": "Level",
+              "loading": true,
+              "snapshot": {
+                "songKey": "luminescence",
+                "difficulty": "EZ",
+                "scene": "Level",
+                "phase": null,
+                "stage": "playing",
+                "time": 0,
+                "rawScore": 0,
+                "sceneTime": 0,
+                "hp": null,
+                "totalNoteAffect": 0,
+                "dead": false,
+                "locked": false,
+                "awaitingInput": false,
+                "eventActive": false,
+                "stage1Failed": false,
+                "stage2Failed": false,
+                "scoreCheckComplete": false,
+                "timeTag": 0,
+                "targetScore": 684796.5,
+                "complete": false,
+                "outro": 1.7999999523162842,
+                "videoTime": 0,
+                "clip": null,
+                "flags": {},
+                "messageIndex": 0,
+                "subtitle": "",
+                "creditsProgress": 0,
+                "creditsTime": 0,
+                "skipOpacity": 0
+              }
+            },
+            "engine": null,
+            "playDisabled": true,
+            "loading": true,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "AbortError",
+                "returned": true
+              },
+              {
+                "call": 2,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 5065.699999999255
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 4413
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 4415.60000000149
+              },
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5380
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5381.300000000745
+              },
+              {
+                "method": "delete",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5569.900000002235
+              },
+              {
+                "method": "set",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 1,
+                "at": 5569.900000002235
+              },
+              {
+                "method": "delete",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5584.5
+              },
+              {
+                "method": "set",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 2,
+                "at": 5584.5
+              }
+            ]
+          }
+        },
+        {
+          "name": "new-session-after-old-settlement",
+          "at": "2026-11-10T21:36:16.257Z",
+          "state": {
+            "session": {
+              "id": 5,
+              "route": {
+                "key": "luminescence",
+                "chapter": 8,
+                "family": "chapter8",
+                "tier": "EZ",
+                "controller": "luminescence"
+              },
+              "scene": "Level",
+              "loading": false,
+              "snapshot": {
+                "songKey": "luminescence",
+                "difficulty": "EZ",
+                "scene": "Level",
+                "phase": null,
+                "stage": "playing",
+                "time": 0.2568594217300415,
+                "rawScore": 0,
+                "sceneTime": 0.28329999999999933,
+                "hp": null,
+                "totalNoteAffect": 0,
+                "dead": false,
+                "locked": false,
+                "awaitingInput": false,
+                "eventActive": false,
+                "stage1Failed": false,
+                "stage2Failed": false,
+                "scoreCheckComplete": false,
+                "timeTag": 0,
+                "targetScore": 684796.5,
+                "complete": false,
+                "outro": 1.7999999523162842,
+                "videoTime": 0,
+                "clip": null,
+                "flags": {},
+                "messageIndex": 0,
+                "subtitle": "",
+                "creditsProgress": 0,
+                "creditsTime": 0,
+                "skipOpacity": 0
+              }
+            },
+            "engine": {
+              "name": "Luminescence",
+              "id": 5,
+              "tier": "EZ",
+              "running": true,
+              "time": 0.25685941043083993
+            },
+            "playDisabled": false,
+            "loading": false,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "AbortError",
+                "returned": true
+              },
+              {
+                "call": 2,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 5065.699999999255
+              },
+              {
+                "id": 5,
+                "at": 8945.10000000149
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 4413
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 4415.60000000149
+              },
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5380
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5381.300000000745
+              },
+              {
+                "method": "delete",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5569.900000002235
+              },
+              {
+                "method": "set",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 1,
+                "at": 5569.900000002235
+              },
+              {
+                "method": "delete",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5584.5
+              },
+              {
+                "method": "set",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 2,
+                "at": 5584.5
+              }
+            ]
+          }
+        },
+        {
+          "name": "new-music-clock-continues",
+          "at": "2026-11-10T21:36:16.460Z",
+          "state": {
+            "session": {
+              "id": 5,
+              "route": {
+                "key": "luminescence",
+                "chapter": 8,
+                "family": "chapter8",
+                "tier": "EZ",
+                "controller": "luminescence"
+              },
+              "scene": "Level",
+              "loading": false,
+              "snapshot": {
+                "songKey": "luminescence",
+                "difficulty": "EZ",
+                "scene": "Level",
+                "phase": null,
+                "stage": "playing",
+                "time": 0.4571315050125122,
+                "rawScore": 0,
+                "sceneTime": 0.4832999999999995,
+                "hp": null,
+                "totalNoteAffect": 0,
+                "dead": false,
+                "locked": false,
+                "awaitingInput": false,
+                "eventActive": false,
+                "stage1Failed": false,
+                "stage2Failed": false,
+                "scoreCheckComplete": false,
+                "timeTag": 0,
+                "targetScore": 684796.5,
+                "complete": false,
+                "outro": 1.7999999523162842,
+                "videoTime": 0,
+                "clip": null,
+                "flags": {},
+                "messageIndex": 0,
+                "subtitle": "",
+                "creditsProgress": 0,
+                "creditsTime": 0,
+                "skipOpacity": 0
+              }
+            },
+            "engine": {
+              "name": "Luminescence",
+              "id": 5,
+              "tier": "EZ",
+              "running": true,
+              "time": 0.46583900226757446
+            },
+            "playDisabled": false,
+            "loading": false,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "AbortError",
+                "returned": true
+              },
+              {
+                "call": 2,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 5065.699999999255
+              },
+              {
+                "id": 5,
+                "at": 8945.10000000149
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 4413
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 4415.60000000149
+              },
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5380
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5381.300000000745
+              },
+              {
+                "method": "delete",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5569.900000002235
+              },
+              {
+                "method": "set",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 1,
+                "at": 5569.900000002235
+              },
+              {
+                "method": "delete",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5584.5
+              },
+              {
+                "method": "set",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 2,
+                "at": 5584.5
+              }
+            ]
+          }
+        },
+        {
+          "name": "normal-quit-clears-ownership",
+          "at": "2026-11-10T21:36:16.600Z",
+          "state": {
+            "session": null,
+            "engine": null,
+            "playDisabled": false,
+            "loading": false,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "AbortError",
+                "returned": true
+              },
+              {
+                "call": 2,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 5065.699999999255
+              },
+              {
+                "id": 5,
+                "at": 8945.10000000149
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 4413
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 4415.60000000149
+              },
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5380
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5381.300000000745
+              },
+              {
+                "method": "delete",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5569.900000002235
+              },
+              {
+                "method": "set",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 1,
+                "at": 5569.900000002235
+              },
+              {
+                "method": "delete",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 5584.5
+              },
+              {
+                "method": "set",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 2,
+                "at": 5584.5
+              }
+            ]
+          }
+        }
+      ],
+      "requests": [
+        {
+          "at": "2026-11-10T21:36:11.438Z",
+          "url": "http://127.0.0.1:4191/assets/catalog-charts/41c50afe2d44ef97-ez-bc051f9f49.json.gz"
+        },
+        {
+          "at": "2026-11-10T21:36:12.403Z",
+          "url": "http://127.0.0.1:4191/assets/catalog-charts/41c50afe2d44ef97-ez-bc051f9f49.json.gz"
+        }
+      ],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "externalRequests": [],
+      "status": "passed",
+      "finishedAt": "2026-11-10T21:36:16.601Z"
+    },
+    {
+      "scenario": "late-resolve",
+      "steps": [
+        {
+          "name": "old-original-preparation-pending",
+          "at": "2026-11-10T21:36:18.414Z",
+          "state": {
+            "session": {
+              "id": 2,
+              "route": {
+                "key": "luminescence",
+                "chapter": 8,
+                "family": "chapter8",
+                "tier": "EZ",
+                "controller": "luminescence"
+              },
+              "scene": "Level",
+              "loading": true,
+              "snapshot": {
+                "songKey": "luminescence",
+                "difficulty": "EZ",
+                "scene": "Level",
+                "phase": null,
+                "stage": "playing",
+                "time": 0,
+                "rawScore": 0,
+                "sceneTime": 0,
+                "hp": null,
+                "totalNoteAffect": 0,
+                "dead": false,
+                "locked": false,
+                "awaitingInput": false,
+                "eventActive": false,
+                "stage1Failed": false,
+                "stage2Failed": false,
+                "scoreCheckComplete": false,
+                "timeTag": 0,
+                "targetScore": 684796.5,
+                "complete": false,
+                "outro": 1.7999999523162842,
+                "videoTime": 0,
+                "clip": null,
+                "flags": {},
+                "messageIndex": 0,
+                "subtitle": "",
+                "creditsProgress": 0,
+                "creditsTime": 0,
+                "skipOpacity": 0
+              }
+            },
+            "engine": null,
+            "playDisabled": true,
+            "loading": true,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": false
+              }
+            ],
+            "settlements": [],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1572.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1573.0999999977648
+              }
+            ]
+          }
+        },
+        {
+          "name": "cancelled-before-original-completion",
+          "at": "2026-11-10T21:36:18.472Z",
+          "state": {
+            "session": null,
+            "engine": null,
+            "playDisabled": false,
+            "loading": false,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "resolved",
+                "returned": false
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 1713.0999999977648
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1572.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1573.0999999977648
+              }
+            ]
+          }
+        },
+        {
+          "name": "same-entry-started-before-old-result",
+          "at": "2026-11-10T21:36:18.884Z",
+          "state": {
+            "session": {
+              "id": 5,
+              "route": {
+                "key": "luminescence",
+                "chapter": 8,
+                "family": "chapter8",
+                "tier": "EZ",
+                "controller": "luminescence"
+              },
+              "scene": "Level",
+              "loading": true,
+              "snapshot": {
+                "songKey": "luminescence",
+                "difficulty": "EZ",
+                "scene": "Level",
+                "phase": null,
+                "stage": "playing",
+                "time": 0,
+                "rawScore": 0,
+                "sceneTime": 0,
+                "hp": null,
+                "totalNoteAffect": 0,
+                "dead": false,
+                "locked": false,
+                "awaitingInput": false,
+                "eventActive": false,
+                "stage1Failed": false,
+                "stage2Failed": false,
+                "scoreCheckComplete": false,
+                "timeTag": 0,
+                "targetScore": 684796.5,
+                "complete": false,
+                "outro": 1.7999999523162842,
+                "videoTime": 0,
+                "clip": null,
+                "flags": {},
+                "messageIndex": 0,
+                "subtitle": "",
+                "creditsProgress": 0,
+                "creditsTime": 0,
+                "skipOpacity": 0
+              }
+            },
+            "engine": null,
+            "playDisabled": true,
+            "loading": true,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "resolved",
+                "returned": false
+              },
+              {
+                "call": 2,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 1713.0999999977648
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1572.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1573.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1950.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1951.0999999977648
+              },
+              {
+                "method": "delete",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2077.599999997765
+              },
+              {
+                "method": "set",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 1,
+                "at": 2077.599999997765
+              },
+              {
+                "method": "delete",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2094.2999999970198
+              },
+              {
+                "method": "set",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 2,
+                "at": 2094.2999999970198
+              }
+            ]
+          }
+        },
+        {
+          "name": "new-session-after-old-settlement",
+          "at": "2026-11-10T21:36:22.638Z",
+          "state": {
+            "session": {
+              "id": 5,
+              "route": {
+                "key": "luminescence",
+                "chapter": 8,
+                "family": "chapter8",
+                "tier": "EZ",
+                "controller": "luminescence"
+              },
+              "scene": "Level",
+              "loading": false,
+              "snapshot": {
+                "songKey": "luminescence",
+                "difficulty": "EZ",
+                "scene": "Level",
+                "phase": null,
+                "stage": "playing",
+                "time": 0.2539569139480591,
+                "rawScore": 0,
+                "sceneTime": 0.3,
+                "hp": null,
+                "totalNoteAffect": 0,
+                "dead": false,
+                "locked": false,
+                "awaitingInput": false,
+                "eventActive": false,
+                "stage1Failed": false,
+                "stage2Failed": false,
+                "scoreCheckComplete": false,
+                "timeTag": 0,
+                "targetScore": 684796.5,
+                "complete": false,
+                "outro": 1.7999999523162842,
+                "videoTime": 0,
+                "clip": null,
+                "flags": {},
+                "messageIndex": 0,
+                "subtitle": "",
+                "creditsProgress": 0,
+                "creditsTime": 0,
+                "skipOpacity": 0
+              }
+            },
+            "engine": {
+              "name": "Luminescence",
+              "id": 5,
+              "tier": "EZ",
+              "running": true,
+              "time": 0.25395691609977344
+            },
+            "playDisabled": false,
+            "loading": false,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "resolved",
+                "returned": true
+              },
+              {
+                "call": 2,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 1713.0999999977648
+              },
+              {
+                "id": 5,
+                "at": 5580.099999997765
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1572.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1573.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1950.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1951.0999999977648
+              },
+              {
+                "method": "delete",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2077.599999997765
+              },
+              {
+                "method": "set",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 1,
+                "at": 2077.599999997765
+              },
+              {
+                "method": "delete",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2094.2999999970198
+              },
+              {
+                "method": "set",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 2,
+                "at": 2094.2999999970198
+              }
+            ]
+          }
+        },
+        {
+          "name": "new-music-clock-continues",
+          "at": "2026-11-10T21:36:22.843Z",
+          "state": {
+            "session": {
+              "id": 5,
+              "route": {
+                "key": "luminescence",
+                "chapter": 8,
+                "family": "chapter8",
+                "tier": "EZ",
+                "controller": "luminescence"
+              },
+              "scene": "Level",
+              "loading": false,
+              "snapshot": {
+                "songKey": "luminescence",
+                "difficulty": "EZ",
+                "scene": "Level",
+                "phase": null,
+                "stage": "playing",
+                "time": 0.4542290270328522,
+                "rawScore": 0,
+                "sceneTime": 0.5,
+                "hp": null,
+                "totalNoteAffect": 0,
+                "dead": false,
+                "locked": false,
+                "awaitingInput": false,
+                "eventActive": false,
+                "stage1Failed": false,
+                "stage2Failed": false,
+                "scoreCheckComplete": false,
+                "timeTag": 0,
+                "targetScore": 684796.5,
+                "complete": false,
+                "outro": 1.7999999523162842,
+                "videoTime": 0,
+                "clip": null,
+                "flags": {},
+                "messageIndex": 0,
+                "subtitle": "",
+                "creditsProgress": 0,
+                "creditsTime": 0,
+                "skipOpacity": 0
+              }
+            },
+            "engine": {
+              "name": "Luminescence",
+              "id": 5,
+              "tier": "EZ",
+              "running": true,
+              "time": 0.4542290249433112
+            },
+            "playDisabled": false,
+            "loading": false,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "resolved",
+                "returned": true
+              },
+              {
+                "call": 2,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 1713.0999999977648
+              },
+              {
+                "id": 5,
+                "at": 5580.099999997765
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1572.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1573.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1950.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1951.0999999977648
+              },
+              {
+                "method": "delete",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2077.599999997765
+              },
+              {
+                "method": "set",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 1,
+                "at": 2077.599999997765
+              },
+              {
+                "method": "delete",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2094.2999999970198
+              },
+              {
+                "method": "set",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 2,
+                "at": 2094.2999999970198
+              }
+            ]
+          }
+        },
+        {
+          "name": "normal-quit-clears-ownership",
+          "at": "2026-11-10T21:36:22.967Z",
+          "state": {
+            "session": null,
+            "engine": null,
+            "playDisabled": false,
+            "loading": false,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "resolved",
+                "returned": true
+              },
+              {
+                "call": 2,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 1713.0999999977648
+              },
+              {
+                "id": 5,
+                "at": 5580.099999997765
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1572.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1573.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1950.0999999977648
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1951.0999999977648
+              },
+              {
+                "method": "delete",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2077.599999997765
+              },
+              {
+                "method": "set",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 1,
+                "at": 2077.599999997765
+              },
+              {
+                "method": "delete",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2094.2999999970198
+              },
+              {
+                "method": "set",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 2,
+                "at": 2094.2999999970198
+              }
+            ]
+          }
+        }
+      ],
+      "requests": [
+        {
+          "at": "2026-11-10T21:36:18.336Z",
+          "url": "http://127.0.0.1:4191/assets/catalog-charts/41c50afe2d44ef97-ez-bc051f9f49.json.gz"
+        }
+      ],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "externalRequests": [],
+      "status": "passed",
+      "finishedAt": "2026-11-10T21:36:22.967Z"
+    },
+    {
+      "scenario": "late-abort",
+      "steps": [
+        {
+          "name": "old-original-preparation-pending",
+          "at": "2026-11-10T21:36:24.844Z",
+          "state": {
+            "session": {
+              "id": 2,
+              "route": {
+                "key": "luminescence",
+                "chapter": 8,
+                "family": "chapter8",
+                "tier": "EZ",
+                "controller": "luminescence"
+              },
+              "scene": "Level",
+              "loading": true,
+              "snapshot": {
+                "songKey": "luminescence",
+                "difficulty": "EZ",
+                "scene": "Level",
+                "phase": null,
+                "stage": "playing",
+                "time": 0,
+                "rawScore": 0,
+                "sceneTime": 0,
+                "hp": null,
+                "totalNoteAffect": 0,
+                "dead": false,
+                "locked": false,
+                "awaitingInput": false,
+                "eventActive": false,
+                "stage1Failed": false,
+                "stage2Failed": false,
+                "scoreCheckComplete": false,
+                "timeTag": 0,
+                "targetScore": 684796.5,
+                "complete": false,
+                "outro": 1.7999999523162842,
+                "videoTime": 0,
+                "clip": null,
+                "flags": {},
+                "messageIndex": 0,
+                "subtitle": "",
+                "creditsProgress": 0,
+                "creditsTime": 0,
+                "skipOpacity": 0
+              }
+            },
+            "engine": null,
+            "playDisabled": true,
+            "loading": true,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": false,
+                "outcome": "pending",
+                "returned": false
+              }
+            ],
+            "settlements": [],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1662.5
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1664.6000000014901
+              }
+            ]
+          }
+        },
+        {
+          "name": "cancelled-before-original-completion",
+          "at": "2026-11-10T21:36:24.892Z",
+          "state": {
+            "session": null,
+            "engine": null,
+            "playDisabled": false,
+            "loading": false,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "AbortError",
+                "returned": false
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 1796.699999999255
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1662.5
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1664.6000000014901
+              }
+            ]
+          }
+        },
+        {
+          "name": "same-entry-started-before-old-result",
+          "at": "2026-11-10T21:36:25.240Z",
+          "state": {
+            "session": {
+              "id": 5,
+              "route": {
+                "key": "luminescence",
+                "chapter": 8,
+                "family": "chapter8",
+                "tier": "EZ",
+                "controller": "luminescence"
+              },
+              "scene": "Level",
+              "loading": true,
+              "snapshot": {
+                "songKey": "luminescence",
+                "difficulty": "EZ",
+                "scene": "Level",
+                "phase": null,
+                "stage": "playing",
+                "time": 0,
+                "rawScore": 0,
+                "sceneTime": 0,
+                "hp": null,
+                "totalNoteAffect": 0,
+                "dead": false,
+                "locked": false,
+                "awaitingInput": false,
+                "eventActive": false,
+                "stage1Failed": false,
+                "stage2Failed": false,
+                "scoreCheckComplete": false,
+                "timeTag": 0,
+                "targetScore": 684796.5,
+                "complete": false,
+                "outro": 1.7999999523162842,
+                "videoTime": 0,
+                "clip": null,
+                "flags": {},
+                "messageIndex": 0,
+                "subtitle": "",
+                "creditsProgress": 0,
+                "creditsTime": 0,
+                "skipOpacity": 0
+              }
+            },
+            "engine": null,
+            "playDisabled": true,
+            "loading": true,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "AbortError",
+                "returned": false
+              },
+              {
+                "call": 2,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 1796.699999999255
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1662.5
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1664.6000000014901
+              },
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2021
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2021.9000000022352
+              },
+              {
+                "method": "delete",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2148.400000002235
+              },
+              {
+                "method": "set",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 1,
+                "at": 2148.800000000745
+              }
+            ]
+          }
+        },
+        {
+          "name": "new-session-after-old-settlement",
+          "at": "2026-11-10T21:36:28.823Z",
+          "state": {
+            "session": {
+              "id": 5,
+              "route": {
+                "key": "luminescence",
+                "chapter": 8,
+                "family": "chapter8",
+                "tier": "EZ",
+                "controller": "luminescence"
+              },
+              "scene": "Level",
+              "loading": false,
+              "snapshot": {
+                "songKey": "luminescence",
+                "difficulty": "EZ",
+                "scene": "Level",
+                "phase": null,
+                "stage": "playing",
+                "time": 0.2568594217300415,
+                "rawScore": 0,
+                "sceneTime": 0.30000000000000004,
+                "hp": null,
+                "totalNoteAffect": 0,
+                "dead": false,
+                "locked": false,
+                "awaitingInput": false,
+                "eventActive": false,
+                "stage1Failed": false,
+                "stage2Failed": false,
+                "scoreCheckComplete": false,
+                "timeTag": 0,
+                "targetScore": 684796.5,
+                "complete": false,
+                "outro": 1.7999999523162842,
+                "videoTime": 0,
+                "clip": null,
+                "flags": {},
+                "messageIndex": 0,
+                "subtitle": "",
+                "creditsProgress": 0,
+                "creditsTime": 0,
+                "skipOpacity": 0
+              }
+            },
+            "engine": {
+              "name": "Luminescence",
+              "id": 5,
+              "tier": "EZ",
+              "running": true,
+              "time": 0.2655668934240367
+            },
+            "playDisabled": false,
+            "loading": false,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "AbortError",
+                "returned": true
+              },
+              {
+                "call": 2,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 1796.699999999255
+              },
+              {
+                "id": 5,
+                "at": 5430
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1662.5
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1664.6000000014901
+              },
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2021
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2021.9000000022352
+              },
+              {
+                "method": "delete",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2148.400000002235
+              },
+              {
+                "method": "set",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 1,
+                "at": 2148.800000000745
+              },
+              {
+                "method": "delete",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2176.800000000745
+              },
+              {
+                "method": "set",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 2,
+                "at": 2176.800000000745
+              }
+            ]
+          }
+        },
+        {
+          "name": "new-music-clock-continues",
+          "at": "2026-11-10T21:36:29.043Z",
+          "state": {
+            "session": {
+              "id": 5,
+              "route": {
+                "key": "luminescence",
+                "chapter": 8,
+                "family": "chapter8",
+                "tier": "EZ",
+                "controller": "luminescence"
+              },
+              "scene": "Level",
+              "loading": false,
+              "snapshot": {
+                "songKey": "luminescence",
+                "difficulty": "EZ",
+                "scene": "Level",
+                "phase": null,
+                "stage": "playing",
+                "time": 0.47454649209976196,
+                "rawScore": 0,
+                "sceneTime": 0.5166000000000005,
+                "hp": null,
+                "totalNoteAffect": 0,
+                "dead": false,
+                "locked": false,
+                "awaitingInput": false,
+                "eventActive": false,
+                "stage1Failed": false,
+                "stage2Failed": false,
+                "scoreCheckComplete": false,
+                "timeTag": 0,
+                "targetScore": 684796.5,
+                "complete": false,
+                "outro": 1.7999999523162842,
+                "videoTime": 0,
+                "clip": null,
+                "flags": {},
+                "messageIndex": 0,
+                "subtitle": "",
+                "creditsProgress": 0,
+                "creditsTime": 0,
+                "skipOpacity": 0
+              }
+            },
+            "engine": {
+              "name": "Luminescence",
+              "id": 5,
+              "tier": "EZ",
+              "running": true,
+              "time": 0.48615646258503453
+            },
+            "playDisabled": false,
+            "loading": false,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "AbortError",
+                "returned": true
+              },
+              {
+                "call": 2,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 1796.699999999255
+              },
+              {
+                "id": 5,
+                "at": 5430
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1662.5
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1664.6000000014901
+              },
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2021
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2021.9000000022352
+              },
+              {
+                "method": "delete",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2148.400000002235
+              },
+              {
+                "method": "set",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 1,
+                "at": 2148.800000000745
+              },
+              {
+                "method": "delete",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2176.800000000745
+              },
+              {
+                "method": "set",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 2,
+                "at": 2176.800000000745
+              }
+            ]
+          }
+        },
+        {
+          "name": "normal-quit-clears-ownership",
+          "at": "2026-11-10T21:36:29.191Z",
+          "state": {
+            "session": null,
+            "engine": null,
+            "playDisabled": false,
+            "loading": false,
+            "calls": [
+              {
+                "call": 1,
+                "signalAborted": true,
+                "outcome": "AbortError",
+                "returned": true
+              },
+              {
+                "call": 2,
+                "signalAborted": false,
+                "outcome": "resolved",
+                "returned": true
+              }
+            ],
+            "settlements": [
+              {
+                "id": 2,
+                "error": "重演曲目未能启动",
+                "at": 1796.699999999255
+              },
+              {
+                "id": 5,
+                "at": 5430
+              }
+            ],
+            "cache": [
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1662.5
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 1664.6000000014901
+              },
+              {
+                "method": "has",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2021
+              },
+              {
+                "method": "has",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2021.9000000022352
+              },
+              {
+                "method": "delete",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2148.400000002235
+              },
+              {
+                "method": "set",
+                "capacity": 32,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 1,
+                "at": 2148.800000000745
+              },
+              {
+                "method": "delete",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": null,
+                "at": 2176.800000000745
+              },
+              {
+                "method": "set",
+                "capacity": 6,
+                "key": "catalog-41c50afe2d44ef97-ez",
+                "previous": null,
+                "value": 2,
+                "at": 2176.800000000745
+              }
+            ]
+          }
+        }
+      ],
+      "requests": [
+        {
+          "at": "2026-11-10T21:36:24.756Z",
+          "url": "http://127.0.0.1:4191/assets/catalog-charts/41c50afe2d44ef97-ez-bc051f9f49.json.gz"
+        },
+        {
+          "at": "2026-11-10T21:36:25.110Z",
+          "url": "http://127.0.0.1:4191/assets/catalog-charts/41c50afe2d44ef97-ez-bc051f9f49.json.gz"
+        }
+      ],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "externalRequests": [],
+      "status": "passed",
+      "finishedAt": "2026-11-10T21:36:29.191Z"
+    }
+  ],
+  "browser": "156.0.8078.79",
+  "finishedAt": "2026-11-10T21:36:29.216Z",
+  "status": "passed"
+}

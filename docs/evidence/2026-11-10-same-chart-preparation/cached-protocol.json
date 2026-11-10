@@ -1,0 +1,84 @@
+{
+  "scope": "Current preparation cache and native CORS for one fixed real chart; not the 1091-address matrix or official fidelity",
+  "startedAt": "2026-11-10T21:36:03.622Z",
+  "appSHA256": "2cbb9675c1c8381a611b01f1c5c3b6afce251272ccf981a72786f9276e2857fb",
+  "TLSVerificationDisabled": false,
+  "sample": {
+    "id": "catalog-2bd25eaa9c1f1ecc-ez",
+    "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/InfinityHeaven.HyuN.0/EZ.json",
+    "bytes": 23413,
+    "SHA256": "f5b3551c678d632ad7a24b78f3f1e92530048d711cdd1831e37a488ee5423c14"
+  },
+  "results": [
+    {
+      "mode": "surviving-consumer",
+      "status": "passed",
+      "cancelled": {
+        "outcome": "AbortError"
+      },
+      "transportAbortedAfterFirst": false,
+      "preparedSHA256": "f5b3551c678d632ad7a24b78f3f1e92530048d711cdd1831e37a488ee5423c14",
+      "preparedCharacters": 23413,
+      "cacheReused": true,
+      "requests": [
+        {
+          "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/InfinityHeaven.HyuN.0/EZ.json",
+          "status": 200,
+          "type": "cors",
+          "bytes": 23413,
+          "SHA256": "f5b3551c678d632ad7a24b78f3f1e92530048d711cdd1831e37a488ee5423c14",
+          "options": {
+            "method": "GET",
+            "mode": "cors",
+            "credentials": "omit",
+            "redirect": "error"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "replacement-after-abort",
+      "status": "passed",
+      "cancelled": {
+        "outcome": "AbortError"
+      },
+      "transportAbortedAfterFirst": true,
+      "preparedSHA256": "f5b3551c678d632ad7a24b78f3f1e92530048d711cdd1831e37a488ee5423c14",
+      "preparedCharacters": 23413,
+      "cacheReused": true,
+      "requests": [
+        {
+          "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/InfinityHeaven.HyuN.0/EZ.json",
+          "status": 200,
+          "type": "cors",
+          "bytes": 23413,
+          "SHA256": "f5b3551c678d632ad7a24b78f3f1e92530048d711cdd1831e37a488ee5423c14",
+          "options": {
+            "method": "GET",
+            "mode": "cors",
+            "credentials": "omit",
+            "redirect": "error"
+          }
+        },
+        {
+          "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/InfinityHeaven.HyuN.0/EZ.json",
+          "status": 200,
+          "type": "cors",
+          "bytes": 23413,
+          "SHA256": "f5b3551c678d632ad7a24b78f3f1e92530048d711cdd1831e37a488ee5423c14",
+          "options": {
+            "method": "GET",
+            "mode": "cors",
+            "credentials": "omit",
+            "redirect": "error"
+          }
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "transport": "Controlled previously measured cache; NOT external native CORS",
+  "browser": "156.0.8078.79",
+  "status": "passed",
+  "finishedAt": "2026-11-10T21:36:07.781Z"
+}
