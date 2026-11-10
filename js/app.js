@@ -6,7 +6,7 @@
   for(const [name,path] of [['PhiPerformance','performance-policy.js'],['PhiLoadingPresentation','loading-presentation.js']]){
     if(globalThis[name])continue;
     await new Promise((resolve,reject)=>{
-      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-35';
+      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-36';
       script.onload=()=>globalThis[name]?resolve():reject(Error('组件未初始化：'+path));
       script.onerror=()=>reject(Error('组件加载失败，请刷新页面：'+path));document.head.appendChild(script);
     });
@@ -30,7 +30,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-35",
+    runtime: "4.0.1.2-pages-36",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-11-04T11:27:12Z",
@@ -9695,6 +9695,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       const transition = this.transitionToken,
         active = () => transition === this.transitionToken && this.running;
       if (!active()) return;
+      this.finishAudioWake();
       if (!this.musicUsingWebAudio) {
         this.ensureMediaAudioSource();
         if(this.streamSession){
@@ -9759,6 +9760,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       if (this.autoplay) this.startAudioPump();
     }
     pauseMusic() {
+      this.finishAudioWake();
       this.stopAudioPump();
       if (!this.musicUsingWebAudio) {
         this.audio.pause();
@@ -9776,6 +9778,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.cancelAutoplayAudio();
     }
     stopMusic(reset = false) {
+      this.finishAudioWake();
       clearTimeout(this.audioStartWatchdog);
       this.stopAudioPump();
       if (!this.musicUsingWebAudio) {
@@ -11079,29 +11082,46 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.foregroundFxCtx = null;
       this.foregroundFxVisible = false;
     }
+    finishAudioWake(prime = this.audioGesturePrime, restorePosition = true) {
+      if (!prime || this.audioGesturePrime !== prime) return;
+      this.audioGesturePrime = null;
+      if (restorePosition) {
+        prime.audio.pause();
+        try { prime.audio.currentTime = prime.time; } catch {}
+      }
+      prime.audio.muted = prime.muted;
+    }
     beginAudioWakeFromGesture() {
       // This method is called before the first await in a click handler. Safari
       // therefore receives the AudioContext.resume() request while user activation
       // is still valid, rather than after the 3-2-1 countdown.
-      const preservedTime = Number(this.audio.currentTime) || 0,
-        preservedMuted = !!this.audio.muted;
-      let mediaPrime = Promise.resolve();
+      this.finishAudioWake();
+      let mediaPrime = Promise.resolve(), prime = null;
       if (!this.musicUsingWebAudio) {
+        prime = { audio: this.audio, time: Number(this.audio.currentTime) || 0, muted: !!this.audio.muted };
+        this.audioGesturePrime = prime;
         try {
           this.audio.muted = true;
           const playResult = this.audio.play();
-          mediaPrime = Promise.resolve(playResult).then(() => {
-            this.audio.pause();
-            try { this.audio.currentTime = preservedTime; } catch {}
-            this.audio.muted = preservedMuted;
-          }, () => { this.audio.muted = preservedMuted; });
-        } catch { this.audio.muted = preservedMuted; }
+          mediaPrime = Promise.resolve(playResult).then(
+            () => this.finishAudioWake(prime),
+            () => this.finishAudioWake(prime, false),
+          );
+        } catch { this.finishAudioWake(prime, false); }
       }
       const contextPrime = Engine.ensureAudioContextRunning(1400, true);
-      return Promise.allSettled([contextPrime, mediaPrime]);
+      const result = Promise.allSettled([contextPrime, mediaPrime]);
+      if (prime) prime.promise = result;
+      return result;
     }
     async ensureAudioSessionReady(primePromise = null) {
-      if(primePromise)await withTimeout(primePromise,2200,'音频唤醒超时').catch(()=>null);
+      if (primePromise) {
+        try { await withTimeout(primePromise, 2200, '音频唤醒超时'); } catch {}
+        finally {
+          const prime = this.audioGesturePrime;
+          if (prime?.promise === primePromise) this.finishAudioWake(prime);
+        }
+      }
       try{
         await Engine.ensureAudioContextRunning(1600,false);
         // Do not test currentTime before scheduling music. Safari may not render

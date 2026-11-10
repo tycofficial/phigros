@@ -306,6 +306,19 @@
       "officialFidelityStatus": "not_applicable",
       "evidence": "docs/evidence/2026-11-10-stream-recovery/verification.json",
       "limitation": "Actual media and Engine methods with controlled fallback/readiness/promise ordering; no live-network frequency, physical latency, Safari or official rule equivalence result."
+    },
+    {
+      "id": "gesture-prime-ownership",
+      "implementation": [
+        "js/app.js",
+        "tests/audio-gesture-prime.test.cjs",
+        "tests/audio-gesture-prime-browser.cjs"
+      ],
+      "verificationMethod": "Before: 9/11 controlled cases fail and native HTML media resumes muted, then old fulfillment pauses/rewinds it. After: 44 combined lifecycle cases, three real-media ordered scenarios and full 467-test suite pass.",
+      "result": "Current transport cancels its owned temporary prime state before reuse; only the matching prime completion/timeout may restore mute/position.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-audio-gesture-prime/verification.json",
+      "limitation": "Actual media, resume/countdown and timeout with delayed promise observation; no organic network/Safari, physical latency or official-equivalence conclusion."
     }
   ],
   "blockingEvidence": [
@@ -328,5 +341,5 @@
     "scope": "Public store metadata only; not client equivalence"
   },
   "lastCheckedDate": "2026-11-10",
-  "latestEngineeringEvidence": "docs/evidence/2026-11-10-stream-recovery/verification.json"
+  "latestEngineeringEvidence": "docs/evidence/2026-11-10-audio-gesture-prime/verification.json"
 }

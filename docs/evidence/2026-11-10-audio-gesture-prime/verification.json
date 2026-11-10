@@ -1,0 +1,83 @@
+{
+  "scope": "Native HTML media with controlled gesture-prime observation ordering; no official or Safari fidelity claim",
+  "date": "2026-11-10",
+  "parentCommit": "03eb1f1ad7d4b1934477d3bf539d43dc71fdd037",
+  "runtime": "4.0.1.2-pages-36",
+  "officialAcceptance": "blocked",
+  "officialFidelityPercent": null,
+  "sourceHashes": {
+    "index.html": "2f9d94140654288f142e39b6548b06d92b908b95de88d7189db758b63aec6444",
+    "js/app.js": "049584167d43b93cc4fc6213cfe711e710750fac1501b12161973eab791a64b3",
+    "sw.js": "f86db84ad66d2330142281f9d537dd6902835f9f482f708ddd1c4c4b79ea1a74",
+    "tests/audio-gesture-prime.test.cjs": "f59e2efec26b2d4340f72b1e4db8771482aa508d3fb9c7f4bbadf85362b0aa9e",
+    "tests/audio-gesture-prime-browser.cjs": "e8aa099932d90979c6c055453e6cf364807763c6ddc097d0a89da350748a596e",
+    ".github/workflows/engineering-regression.yml": "4460a54f174ee58fe4ee29b585158982b357bb8df13b357e67e9e156117b78b3"
+  },
+  "reproduced": [
+    "After the existing 2200ms prime timeout, resume starts with the old temporary mute still enabled.",
+    "A late fulfilled gesture-prime callback pauses actual replacement HTML music and seeks it back to the old position (0.828424 -> 0.517615); its native clock then stops.",
+    "Pause/stop/start and a replacement prime have no ownership guard against late mute/seek/pause callbacks. Nine of eleven new controlled tests fail on the parent source."
+  ],
+  "changes": [
+    "Keep the primed media, original mute state and position in an owned object; late fulfilled/rejected callbacks can finish only their own object.",
+    "End the pending prime synchronously before current startMusic/pauseMusic/stopMusic or another prime reuses media.",
+    "End only the matching prime after session-preparation completion or timeout; an old timeout does not cancel a replacement prime.",
+    "Preserve normal gesture-bound context/media activation, countdown, hit-mixer preparation, existing import/data/asset behavior and judgment parameters."
+  ],
+  "commands": [
+    {
+      "command": "git show 03eb1f1:js/app.js > /tmp/phigros-gesture-before.js; PHI_TEST_APP_SOURCE=/tmp/phigros-gesture-before.js node --test tests/audio-gesture-prime.test.cjs",
+      "result": "failed-as-expected",
+      "tests": 11,
+      "pass": 2,
+      "fail": 9,
+      "evidence": "unit-before.log"
+    },
+    {
+      "command": "PHI_TEST_APP_SOURCE=/tmp/phigros-gesture-before.js node tests/audio-gesture-prime-browser.cjs http://127.0.0.1:4180 work/audio-gesture-prime-before",
+      "result": "failed-as-expected",
+      "evidence": "browser-before.json"
+    },
+    {
+      "command": "node --test tests/audio-gesture-prime.test.cjs tests/audio-wake-lifecycle.test.cjs tests/audio-transport-lifecycle.test.cjs tests/stream-recovery-lifecycle.test.cjs",
+      "result": "passed",
+      "tests": 44
+    },
+    {
+      "command": "node tests/audio-gesture-prime-browser.cjs http://127.0.0.1:4180 work/audio-gesture-prime-after",
+      "result": "passed",
+      "scenarios": 3,
+      "evidence": "browser-after.json"
+    },
+    {
+      "command": "node --test tests/*.test.cjs",
+      "result": "passed",
+      "tests": 467,
+      "failures": 0,
+      "skipped": 0,
+      "evidence": "node-tests.log"
+    },
+    {
+      "command": "python3 scripts/build-runtime-release.py --output /tmp/phigros-runtime-pages36 --report work/runtime-pages36.json",
+      "result": "passed",
+      "bytes": 999579346,
+      "evidence": "runtime-package-summary.json"
+    },
+    {
+      "command": "node --check js/app.js; node --check tests/audio-gesture-prime-browser.cjs; git diff --check",
+      "result": "passed"
+    }
+  ],
+  "browserMethod": "Force the existing HTML fallback through a controlled Web Audio prepare failure. Actual Leave All Behind EZ music, native play/pause/seek/clock, original resume/countdown, real 2200ms timeout and mixer still run. Delay only the observation of the first muted play promise after native playback begins. Fulfilled-after-timeout, rejected-after-timeout and cancelled-resume/replacement-prime scenarios pass. No simulation of output latency or organic Safari network timing is claimed.",
+  "browserOutcomes": [
+    "Before: resume carries muted=true; late fulfillment pauses media and rewinds 0.828424 -> 0.517615, then currentTime stays fixed.",
+    "After: all three scenarios keep muted=false and paused=false, do not rewind replacement music, and the native clock advances; pageErrors is empty."
+  ],
+  "limitations": [
+    "This tests controlled promise ordering on actual media, not naturally occurring network frequency or physical audio latency.",
+    "Actual iPad Safari and touch/audio synchronization are unverified.",
+    "Other shared context/hit-mixer activation failures and static first-play priming are not exhausted by this regression.",
+    "All official visual/animation/Tips/resource/game-rule/chapter/replay acceptance and real-user save compatibility remain blocked or unverified in docs/fidelity-acceptance.json."
+  ],
+  "remoteCI": "The workflow includes the new native-media prime test; check this commit head and final raw logs after pushing."
+}

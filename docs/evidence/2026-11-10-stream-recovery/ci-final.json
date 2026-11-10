@@ -1,0 +1,37 @@
+{
+  "runId": 42845968176,
+  "status": "completed",
+  "conclusion": "success",
+  "head": "03eb1f1ad7d4b1934477d3bf539d43dc71fdd037",
+  "tree": "9f4cce203e7680530579667c2718b462e9dce54d",
+  "merge": "9a0b8b123c20fc11a97d49a99ea3a16aa7f76a10",
+  "unit": [
+    "ℹ tests 456",
+    "ℹ suites 0",
+    "ℹ pass 456",
+    "ℹ fail 0",
+    "ℹ cancelled 0",
+    "ℹ skipped 0",
+    "ℹ todo 0"
+  ],
+  "jobId": 129933379739,
+  "artifact": {
+    "id": 13779221160,
+    "name": "engineering-regression-9a0b8b123c20fc11a97d49a99ea3a16aa7f76a10",
+    "size_in_bytes": 11049924,
+    "url": "https://api.github.com/repos/tycofficial/phigros/actions/artifacts/13779221160",
+    "archive_download_url": "https://api.github.com/repos/tycofficial/phigros/actions/artifacts/13779221160/zip",
+    "expired": false,
+    "created_at": "2026-11-10T15:39:53Z",
+    "expires_at": "2026-11-24T15:39:52Z",
+    "updated_at": "2026-11-10T15:39:53Z",
+    "digest": "sha256:c01a78089433a116eccce7cee294d5537ea8e4dc6b0a476e046ecc11565676b2",
+    "workflow_run": {
+      "id": 42845968176,
+      "repository_id": 1429539890,
+      "head_repository_id": 1429539890,
+      "head_branch": "dot/phigros-loading-refactor",
+      "head_sha": "03eb1f1ad7d4b1934477d3bf539d43dc71fdd037"
+    }
+  }
+}

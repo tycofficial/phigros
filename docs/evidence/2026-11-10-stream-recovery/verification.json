@@ -80,5 +80,14 @@
     "Other asynchronous gesture-prime, audio activation and optional transport paths are outside this regression.",
     "Official baseline, complete resources, visuals, animations, Tips, chapters/replay and real-user save compatibility remain unaccepted as recorded in docs/fidelity-acceptance.json."
   ],
-  "remoteCI": "PR CI now runs the native-media recovery regression; final head SHA and raw log result must be checked."
+  "remoteCI": {
+    "result": "passed",
+    "rawLogVerified": true,
+    "tests": 456,
+    "failures": 0,
+    "skipped": 0,
+    "details": "ci-final.json",
+    "run": "https://github.com/tycofficial/phigros/actions/runs/42845968176",
+    "head": "03eb1f1ad7d4b1934477d3bf539d43dc71fdd037"
+  }
 }

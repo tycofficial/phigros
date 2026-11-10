@@ -1,0 +1,36 @@
+{
+  "scope": "Controlled delayed gesture-prime observation on native HTML media; official/Safari timing unverified",
+  "browser": "156.0.8078.79",
+  "appSHA256": "e6955f9c4033ae27cfc900333db620002ef12b99537669f9e8121c10e2696834",
+  "pageErrors": [],
+  "scenarios": [
+    {
+      "mode": "timeout-fulfillment",
+      "preserved": 0.517615,
+      "before": {
+        "paused": false,
+        "muted": true,
+        "time": 0.828424,
+        "running": true,
+        "resumePending": false
+      },
+      "after": {
+        "paused": true,
+        "muted": false,
+        "time": 0.517615,
+        "running": true,
+        "resumePending": false
+      },
+      "later": {
+        "paused": true,
+        "muted": false,
+        "time": 0.517615,
+        "running": true,
+        "resumePending": false
+      },
+      "elapsed": 4812.600000000559
+    }
+  ],
+  "status": "failed",
+  "error": "AssertionError [ERR_ASSERTION]: resume still carries the prime temporary mute\n\ntrue !== false\n\n    at /workspace/phigros/tests/audio-gesture-prime-browser.cjs:38:11"
+}
