@@ -1,0 +1,380 @@
+{
+  "scope": "Actual app replay entry and lifecycle; controlled transport of verified cached originals, no fresh external availability or official equivalence",
+  "startedAt": "2026-11-10T18:21:39.628Z",
+  "sourceHashes": {
+    "js/app.js": "9a89c7bb6d749489809a0dbceb139a4437021eb629c14e07ad10bc92ccc8b527",
+    "js/interactive-replay.js": "07de625163d4a010c64840f6995d4416a395c5ef6b81d753a52fc656283ed8eb",
+    "js/chapter8-replay-rules.js": "cc6e32447b9215e3607c9337763b4b11300a2ccfc019b58dba1ee181233af55c",
+    "js/boss-replay-rules.js": "374dd9bb9494af79d5bd7c4257f4ae9d8f86dc2214aa0d887704340ccd790b16"
+  },
+  "steps": [
+    {
+      "name": "cancel-pending-original-media",
+      "at": "2026-11-10T18:21:46.079Z",
+      "cancelledId": 2
+    },
+    {
+      "name": "real-pointer-gate-starts-unlock",
+      "at": "2026-11-10T18:21:53.483Z",
+      "before": {
+        "replay": {
+          "id": 5,
+          "route": {
+            "key": "distorted-fate",
+            "chapter": 8,
+            "family": "chapter8",
+            "tier": "HD",
+            "controller": "df-unlock"
+          },
+          "scene": "DFUnlock",
+          "loading": false,
+          "snapshot": {
+            "songKey": "df-unlock",
+            "difficulty": "HD",
+            "scene": "DFUnlock",
+            "phase": null,
+            "stage": "df-touch-wait",
+            "time": 4.6331000328063965,
+            "rawScore": 0,
+            "sceneTime": 4.633100000000004,
+            "hp": null,
+            "totalNoteAffect": 0,
+            "dead": false,
+            "locked": false,
+            "awaitingInput": true,
+            "eventActive": false,
+            "stage1Failed": false,
+            "stage2Failed": false,
+            "scoreCheckComplete": false,
+            "timeTag": 0,
+            "targetScore": null,
+            "complete": false,
+            "outro": 1.7999999523162842,
+            "videoTime": 1.506133,
+            "clip": "DF_Touch2Start",
+            "flags": {},
+            "messageIndex": 0,
+            "subtitle": "",
+            "creditsProgress": 0,
+            "creditsTime": 0,
+            "skipOpacity": 0
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 1.506349,
+          "src": "blob:http://127.0.0.1:4180/3c57d6e1-8628-4d13-8b65-f16966f34ba1",
+          "paused": true
+        }
+      },
+      "after": {
+        "replay": {
+          "id": 5,
+          "route": {
+            "key": "distorted-fate",
+            "chapter": 8,
+            "family": "chapter8",
+            "tier": "HD",
+            "controller": "df-unlock"
+          },
+          "scene": "DFUnlock",
+          "loading": false,
+          "snapshot": {
+            "songKey": "df-unlock",
+            "difficulty": "HD",
+            "scene": "DFUnlock",
+            "phase": null,
+            "stage": "df-unlock-main",
+            "time": 6.2829999923706055,
+            "rawScore": 0,
+            "sceneTime": 6.283000000000021,
+            "hp": null,
+            "totalNoteAffect": 0,
+            "dead": false,
+            "locked": false,
+            "awaitingInput": false,
+            "eventActive": false,
+            "stage1Failed": false,
+            "stage2Failed": false,
+            "scoreCheckComplete": false,
+            "timeTag": 0,
+            "targetScore": null,
+            "complete": false,
+            "outro": 1.7999999523162842,
+            "videoTime": 0.00663,
+            "clip": "DF_Unlock",
+            "flags": {},
+            "messageIndex": 0,
+            "subtitle": "",
+            "creditsProgress": 0,
+            "creditsTime": 0,
+            "skipOpacity": 0
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0.009424,
+          "src": "blob:http://127.0.0.1:4180/7690321d-8b8a-48fb-ab2c-3f2f08659c21",
+          "paused": false
+        }
+      }
+    },
+    {
+      "name": "native-df-scene-to-real-chart",
+      "at": "2026-11-10T18:22:47.789Z",
+      "state": {
+        "replay": {
+          "id": 5,
+          "route": {
+            "key": "distorted-fate",
+            "chapter": 8,
+            "family": "chapter8",
+            "tier": "HD",
+            "controller": "df-unlock"
+          },
+          "scene": "Level",
+          "loading": false,
+          "snapshot": {
+            "songKey": "distorted-fate",
+            "difficulty": "HD",
+            "scene": "Level",
+            "phase": null,
+            "stage": "playing",
+            "time": 0.2568594217300415,
+            "rawScore": 0,
+            "sceneTime": 0.28330000000000294,
+            "hp": null,
+            "totalNoteAffect": 0,
+            "dead": false,
+            "locked": false,
+            "awaitingInput": false,
+            "eventActive": false,
+            "stage1Failed": false,
+            "stage2Failed": false,
+            "scoreCheckComplete": false,
+            "timeTag": 0,
+            "targetScore": null,
+            "complete": false,
+            "outro": 1.7999999523162842,
+            "videoTime": 0,
+            "clip": null,
+            "flags": {},
+            "messageIndex": 0,
+            "subtitle": "",
+            "creditsProgress": 0,
+            "creditsTime": 0,
+            "skipOpacity": 0
+          }
+        },
+        "engine": {
+          "running": true,
+          "paused": false,
+          "time": 0.2568594104308417,
+          "replay": {
+            "id": 5,
+            "chapter": 8,
+            "phase": null,
+            "songKey": "distorted-fate"
+          },
+          "name": "Distorted Fate"
+        },
+        "video": {
+          "time": 0,
+          "src": null,
+          "paused": true
+        }
+      },
+      "screenshot": "df-chart-start.png"
+    },
+    {
+      "name": "actual-retry-restarts-scene-and-releases-chart",
+      "at": "2026-11-10T18:22:48.055Z",
+      "state": {
+        "replay": {
+          "id": 7,
+          "route": {
+            "key": "distorted-fate",
+            "chapter": 8,
+            "family": "chapter8",
+            "tier": "HD",
+            "controller": "df-unlock"
+          },
+          "scene": "DFUnlock",
+          "loading": false,
+          "snapshot": {
+            "songKey": "df-unlock",
+            "difficulty": "HD",
+            "scene": "DFUnlock",
+            "phase": null,
+            "stage": "df-prepare",
+            "time": 0.01679999940097332,
+            "rawScore": 0,
+            "sceneTime": 0.01680000000000291,
+            "hp": null,
+            "totalNoteAffect": 0,
+            "dead": false,
+            "locked": false,
+            "awaitingInput": false,
+            "eventActive": false,
+            "stage1Failed": false,
+            "stage2Failed": false,
+            "scoreCheckComplete": false,
+            "timeTag": 0,
+            "targetScore": null,
+            "complete": false,
+            "outro": 1.7999999523162842,
+            "videoTime": 0,
+            "clip": null,
+            "flags": {},
+            "messageIndex": 0,
+            "subtitle": "",
+            "creditsProgress": 0,
+            "creditsTime": 0,
+            "skipOpacity": 0
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "paused": true
+        }
+      }
+    },
+    {
+      "name": "real-keyboard-starts-boss-intro",
+      "at": "2026-11-10T18:22:50.438Z",
+      "state": {
+        "replay": {
+          "id": 10,
+          "route": {
+            "key": "igallta",
+            "chapter": 6,
+            "family": "boss",
+            "tier": "EZ"
+          },
+          "scene": "IgalltaUnlock",
+          "loading": false,
+          "snapshot": {
+            "boss": "igallta",
+            "tier": "EZ",
+            "phase": "intro",
+            "scene": "IgalltaUnlock",
+            "sceneTime": 0,
+            "clip": "iga_main",
+            "cancelled": false,
+            "result": null,
+            "held": false,
+            "cameraZ": -10,
+            "cameraSpeed": 0,
+            "clockProgress": 0,
+            "elapsed": 0,
+            "introElapsed": 0,
+            "instruction": ""
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": "blob:http://127.0.0.1:4180/be5e17a1-754b-4e93-8a84-381b4028ffc6",
+          "paused": false
+        }
+      }
+    },
+    {
+      "name": "native-boss-scene-to-real-chart",
+      "at": "2026-11-10T18:23:14.037Z",
+      "state": {
+        "replay": {
+          "id": 10,
+          "route": {
+            "key": "igallta",
+            "chapter": 6,
+            "family": "boss",
+            "tier": "EZ"
+          },
+          "scene": "Level",
+          "loading": false,
+          "snapshot": {
+            "boss": "igallta",
+            "tier": "EZ",
+            "phase": "playing",
+            "scene": "Level",
+            "sceneTime": 0.29989999999999417,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": false,
+            "cameraZ": -10,
+            "cameraSpeed": 0,
+            "clockProgress": 0,
+            "elapsed": 0.2998999999999903,
+            "introElapsed": 20.31579999999986,
+            "instruction": ""
+          }
+        },
+        "engine": {
+          "running": true,
+          "paused": false,
+          "time": 0.2568594104308346,
+          "replay": {
+            "id": 10,
+            "chapter": 6,
+            "phase": "playing",
+            "songKey": "igallta"
+          },
+          "name": "Igallta"
+        },
+        "video": {
+          "time": 0,
+          "src": null,
+          "paused": true
+        }
+      }
+    },
+    {
+      "name": "real-quit-clears-replay-and-engine",
+      "at": "2026-11-10T18:23:14.228Z"
+    }
+  ],
+  "requests": [
+    {
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+      "cache": "work/vision-resource-audit/cache",
+      "hash": "18851074ef2e1675fb4c5c031a3aa536042a2d61e93d6903be4b026548abdaa9",
+      "controlledDelay": true,
+      "status": "cached-original"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+      "cache": "work/vision-resource-audit/cache",
+      "hash": "18851074ef2e1675fb4c5c031a3aa536042a2d61e93d6903be4b026548abdaa9",
+      "status": "cached-original"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4",
+      "cache": "work/vision-resource-audit/cache",
+      "hash": "f8141d25ecd18db2da97cfb6e33b6da87fb55282a7d9b2a7885bf1890481cfbe",
+      "status": "cached-original"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Loop.mp4",
+      "cache": "work/vision-resource-audit/cache",
+      "hash": "20616a52283193a45e0fd1ad58e8a117fea8076071860fd17805571e3c34b1b0",
+      "status": "cached-original"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Main.mp4",
+      "cache": "work/vision-resource-audit/cache",
+      "hash": "b1775f38ef55990aa97f755229aa700454d9e918a1ced2a8da0685720865d7e4",
+      "status": "cached-original"
+    }
+  ],
+  "pageErrors": [],
+  "unknownExternal": [],
+  "browser": "156.0.8078.79",
+  "status": "passed",
+  "finishedAt": "2026-11-10T18:23:14.229Z",
+  "uniqueCachedFiles": 4,
+  "uniqueCachedBytes": 34433244
+}

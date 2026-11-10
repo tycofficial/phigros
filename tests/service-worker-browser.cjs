@@ -43,14 +43,36 @@ const readSaved=page=>page.evaluate(async()=>{
  const score=await new Promise((resolve,reject)=>{const req=db.transaction('scores').objectStore('scores').get('sw-existing-score');req.onsuccess=()=>resolve(req.result.score);req.onerror=()=>reject(req.error);});db.close();
  return {id:r.id,chartText:r.chartText,audio:await r.audioBlob.text(),setting:setting.value,score,localScore:localStorage.getItem('phi.offline.bestScore.v1::sw-existing-score')};
 });
-const updateWorker=page=>page.evaluate(async()=>{
- const registration=await navigator.serviceWorker.ready;
- await new Promise(async(resolve,reject)=>{
-  const timer=setTimeout(()=>reject(Error('new worker did not take control')),20000);
-  navigator.serviceWorker.addEventListener('controllerchange',()=>{clearTimeout(timer);resolve();},{once:true});
-  try{await registration.update();}catch(error){clearTimeout(timer);reject(error);}
+async function updateWorker(page,transition){
+ // Navigation's load handler also registers the worker. Observe before making
+ // the recovered release reachable, not only before our own explicit update.
+ await page.evaluate(()=>{
+  const container=navigator.serviceWorker,previous=container.controller;
+  let timer,listener;
+  const wait={events:0,explicitUpdateStarted:false,claimedBeforeExplicitUpdate:false};
+  wait.dispose=()=>{clearTimeout(timer);container.removeEventListener('controllerchange',listener);};
+  wait.promise=new Promise((resolve,reject)=>{
+   listener=()=>{if(!container.controller||container.controller===previous)return;wait.events++;wait.claimedBeforeExplicitUpdate=!wait.explicitUpdateStarted;wait.dispose();resolve();};
+   container.addEventListener('controllerchange',listener);
+   timer=setTimeout(()=>{wait.dispose();reject(Error('new worker did not take control'));},20000);
+  });
+  wait.promise.catch(()=>{}); // It is still awaited below, including rejection.
+  window.__swUpdateWait=wait;
  });
-});
+ try{
+  await transition();
+  if(process.env.PHI_TEST_SW_PRECLAIM==='1'&&phase==='recovered'){
+   await page.evaluate(async()=>{const registration=await navigator.serviceWorker.ready;await registration.update();await __swUpdateWait.promise;});
+  }
+  const observation=await page.evaluate(async()=>{
+   const wait=window.__swUpdateWait;wait.explicitUpdateStarted=true;
+   const registration=await navigator.serviceWorker.ready;await registration.update();await wait.promise;
+   return {events:wait.events,claimedBeforeExplicitUpdate:wait.claimedBeforeExplicitUpdate,timeoutMs:20000};
+  });
+  (report.updateObservations||=[]).push({phase,...observation});
+  if(process.env.PHI_TEST_SW_PRECLAIM==='1'&&phase==='recovered')assert.equal(observation.claimedBeforeExplicitUpdate,true,'exercise the already-claimed ordering');
+ }finally{await page.evaluate(()=>{window.__swUpdateWait?.dispose();delete window.__swUpdateWait;});}
+}
 (async()=>{
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
  const base=`http://127.0.0.1:${server.address().port}/game/`;
@@ -75,8 +97,7 @@ const updateWorker=page=>page.evaluate(async()=>{
    return {id:'sw-existing-chart',chartText:'saved-original',audio:'saved-original-audio',setting:{offset:123},score:321,localScore:'321'};
   });
   step('previous-worker-warmed',{runtime:previous,caches:await page.evaluate(()=>caches.keys())});
-  phase='current';
-  await updateWorker(page);
+  await updateWorker(page,async()=>{phase='current';});
   step('updated-worker-claimed',{caches:await page.evaluate(()=>caches.keys())});
   await context.setOffline(true);
   const navigation=await page.reload({waitUntil:'domcontentloaded'});
@@ -107,7 +128,7 @@ const updateWorker=page=>page.evaluate(async()=>{
   assert.deepEqual(failure,{state:'redundant',sameController:true});step('missing-bootstrap-rejects-update',failure);
   phase='current';await context.setOffline(true);await page.goto(base+'?skipIntro=1',{waitUntil:'domcontentloaded'});
   await page.waitForFunction(runtime=>window.PhiOfflineNext?.versions.runtime===runtime,version);step('failed-install-keeps-offline-app',{runtime:version});
-  phase='recovered';await context.setOffline(false);await updateWorker(page);await context.setOffline(true);
+  await updateWorker(page,async()=>{phase='recovered';await context.setOffline(false);});await context.setOffline(true);
   await page.goto(base+'?skipIntro=1',{waitUntil:'domcontentloaded'});await page.waitForFunction(runtime=>window.PhiOfflineNext?.versions.runtime===runtime,nextVersion);
   const recovered=await readSaved(page);assert.deepEqual(recovered,expected);step('retry-installs-complete-release-and-preserves-saves',{runtime:nextVersion,restored:recovered});
   phase='current';

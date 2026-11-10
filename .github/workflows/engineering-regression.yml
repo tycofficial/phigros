@@ -66,7 +66,7 @@ jobs:
           node tests/audio-gesture-prime-browser.cjs http://127.0.0.1:4180 work/audio-gesture-prime
           node tests/audio-session-ownership-browser.cjs http://127.0.0.1:4180 work/audio-session-ownership
           node tests/loading-cancel-browser.cjs http://127.0.0.1:4180 work/loading-cancel
-          node tests/service-worker-browser.cjs work/service-worker
+          PHI_TEST_SW_PRECLAIM=1 node tests/service-worker-browser.cjs work/service-worker
           node tests/folder-import-browser.cjs http://127.0.0.1:4180 work/folder-import
           node tests/library-migration-browser.cjs | tee work/library-migration.log
           node tests/interactive-replay-media-browser.cjs | tee work/replay-media.log
@@ -86,7 +86,15 @@ jobs:
           else
             echo "Main CORS checkpoint failed; preserving its failure and continuing independent vision checks."
           fi
-          node scripts/audit-vision-cors.cjs http://127.0.0.1:4180 work/vision-cors || audit_status=$?
+          vision_cors_action=$(python3 scripts/vision-cors-checkpoint.py) || { audit_status=$?; vision_cors_action=checkpoint-failed; }
+          if [[ "$vision_cors_action" == "run" ]]; then
+            node scripts/audit-vision-cors.cjs http://127.0.0.1:4180 work/vision-cors || audit_status=$?
+          elif [[ "$vision_cors_action" == "reuse-blocked" ]]; then
+            echo "Reusing dated CI #10 vision evidence: tested sources unchanged; no repeated network audit; two mirrors remain blocked."
+            audit_status=1
+          else
+            echo "Vision checkpoint failed; preserving nonzero status."
+          fi
           exit "$audit_status"
       - name: Keep engineering evidence
         if: always()

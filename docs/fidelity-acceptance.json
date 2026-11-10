@@ -361,6 +361,20 @@
       "officialFidelityStatus": "not_applicable",
       "evidence": "docs/evidence/2026-11-10-vision-resources/verification.json",
       "limitation": "These manifests declare third-party modified historical 3.0 sources. Not official 4.0.1.2 attribution, full event timeline or physical/Safari validation."
+    },
+    {
+      "id": "native-replay-flow-and-worker-observer-order",
+      "implementation": [
+        "tests/service-worker-browser.cjs",
+        "scripts/audit-replay-flow.cjs",
+        "scripts/vision-cors-checkpoint.py",
+        "tests/vision-cors-checkpoint.test.cjs"
+      ],
+      "verificationMethod": "Real recovered worker preclaims before the old listener: original 20000 ms wait fails; observer now arms before reopening release/network and both normal and early-claim nine-scene checks pass. Actual full app DF HD and Igallta EZ entry/input/chart-start/retry/cancel/return measured using original cached bytes.",
+      "result": "491/491 local Node regressions, 9 normal and 9 preclaim SW scenarios, 7 native app flow checkpoints passed. No production fix or resource change. Exact CI9 root cause remains unverified. Dated CI10 network checkpoint retains two mirror blocks and nonzero workflow result without mechanical repeated requests.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-replay-flow/verification.json",
+      "limitation": "Only specified entry/lifecycle paths. Full chapter play/results/all branches, Rrharil hold clock, credits chain, physical audio/input, Safari and official identity/timelines remain unverified or blocked."
     }
   ],
   "blockingEvidence": [
@@ -383,5 +397,5 @@
     "scope": "Public store metadata only; not client equivalence"
   },
   "lastCheckedDate": "2026-11-10",
-  "latestEngineeringEvidence": "docs/evidence/2026-11-10-vision-resources/verification.json"
+  "latestEngineeringEvidence": "docs/evidence/2026-11-10-replay-flow/verification.json"
 }

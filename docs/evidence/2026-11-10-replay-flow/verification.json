@@ -1,0 +1,64 @@
+{
+  "scope": "Bounded SW harness diagnosis and real app historical replay lifecycle; no official fidelity score",
+  "parentCommit": "9e705999c2727d5a1aa0b4cae486ba987c240e9d",
+  "runtimeChanged": false,
+  "resourcesChanged": false,
+  "sourceHashes": {
+    "tests/service-worker-browser.cjs": "bf210e0931465983b85fc9850f6e2caf45bcb0629c398b47f2514ca5f41d2961",
+    "scripts/audit-replay-flow.cjs": "0bac3e57bf5de3ea246f0e92f3e881566bf73b1435ef6fcff6a15559b8a2002c",
+    "scripts/vision-cors-checkpoint.py": "ad4088bc6f354ab1d44747860afa4d6471e7e7331066365a6cdcb100da52aac8",
+    "tests/vision-cors-checkpoint.test.cjs": "657c45d9f5309d8bdf70c02634c867416d348d62bba6c46ab73a4dc64be087d7"
+  },
+  "commands": [
+    {
+      "command": "node --test tests/*.test.cjs",
+      "result": "491 passed / 0 failed / 0 skipped",
+      "logSHA256": "7f8710b02d8cc93d6a0d7caeaf94d463bb6250926cb9e80801e77adc8e188ca1"
+    },
+    {
+      "command": "node tests/service-worker-browser.cjs work/sw-normal-after",
+      "result": "passed 9 scenarios"
+    },
+    {
+      "command": "PHI_TEST_SW_PRECLAIM=1 node tests/service-worker-browser.cjs work/sw-preclaim-after",
+      "result": "passed 9 scenarios; real recovered claim before helper explicit update observed; unchanged 20000 ms timeout"
+    },
+    {
+      "command": "node scripts/audit-replay-flow.cjs http://127.0.0.1:4180 work/replay-flow-final",
+      "result": "passed 7 checkpoints; real input/entry/original rules/media/chart engine; clocks > .25 seconds; no page errors"
+    },
+    {
+      "command": "python3 scripts/vision-cors-checkpoint.py",
+      "result": "reuse-blocked, no requests; workflow retains exit 1"
+    }
+  ],
+  "cacheReuse": {
+    "uniqueFiles": 4,
+    "uniqueBytes": 34433244,
+    "externalNetworkRequests": 0,
+    "main3GBDownloadedAgain": false,
+    "knownDeniedMirrorsRetried": false
+  },
+  "nativeFlowLimitations": [
+    "Only DF HD and Igallta EZ entry/intro/chart-start/retry/cancel/return paths measured; not complete chapter gameplay, judgement equivalence or all branches.",
+    "Transport supplies independently verified original cache bytes under original URLs; not fresh network/CORS availability. Native media clocks, chapter rules and UI input remain unchanged.",
+    "CI cache is absent; this real cached-media flow is local evidence, not a claim that the CI reruns it.",
+    "Physical audio output, Safari and official 4.x identity/timing remain unverified."
+  ],
+  "sourceReview": {
+    "files": [
+      "assets/meta/vision-media.json",
+      "assets/meta/vision-audio.json",
+      "assets/meta/vision-media-source.json",
+      "js/vision-replay.js",
+      "README.md"
+    ],
+    "conclusion": "Declared manifests/loader specify only fixed raw GitHub primary and corresponding jsDelivr mirror. Existing historical APK reference does not establish an independently authorized original-byte backup. No source added; known two HTTP403 size blocks retained."
+  },
+  "remaining": [
+    "Exact CI9 failure cause remains unverified; a deterministic real preclaim ordering establishes and fixes a harness blind spot.",
+    "Real Rrharil hold-clock progression, chapter8 credits/event chains and cancellation during chart preparation remain uncovered in native full-app flow.",
+    "Two mirror full bodies remain externally blocked; unique official build/settings/resources/full recordings still missing."
+  ],
+  "CI": "pending latest SHA; no fresh audit claim; existing mirror gate must stay nonzero"
+}

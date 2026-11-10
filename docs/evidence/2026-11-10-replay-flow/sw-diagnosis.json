@@ -1,0 +1,19 @@
+{
+  "scope": "Real worker race ordering reproduction, not proof of the exact uninstrumented CI9 cause",
+  "before": {
+    "head": "9e705999c2727d5a1aa0b4cae486ba987c240e9d",
+    "driverSHA256": "3c852a311b01e53a6d551bec9e27975a5d28166d77626bacb938dc85dafcfa10",
+    "command": "node work/sw-preclaim-before.cjs work/sw-preclaim-before",
+    "result": "exit 1 at unchanged 20-second future-controllerchange wait, after real recovered worker already claimed",
+    "reproduce": "gzip -cd docs/evidence/2026-11-10-replay-flow/sw-preclaim-before.cjs.gz > work/sw-preclaim-before.cjs; node work/sw-preclaim-before.cjs work/sw-preclaim-before",
+    "controlledOrdering": "One real registration.update/claim occurs before the original updateWorker listener. No mocked worker, event or timer."
+  },
+  "after": {
+    "command": "PHI_TEST_SW_PRECLAIM=1 node tests/service-worker-browser.cjs work/sw-preclaim-after",
+    "result": "9 scenarios passed, real recovery claim before explicit helper update was observed",
+    "change": "Observe controllerchange before making next release reachable; same 20000 ms timer, same offline/cache/range/chart/audio/settings/score assertions",
+    "driverSHA256": "bf210e0931465983b85fc9850f6e2caf45bcb0629c398b47f2514ca5f41d2961"
+  },
+  "runtimeChanged": false,
+  "CI9RootCause": "Still unverified; original run had no controller-event trace. A reproducible harness blind spot has been fixed, not a claimed production service-worker fix."
+}

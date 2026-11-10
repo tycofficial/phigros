@@ -53,11 +53,15 @@
     "evidence": "native-flac-seek-diagnostic.json"
   },
   "remoteBrowserCI": {
-    "status": "pending",
+    "status": "blocked",
     "method": "24 allowed address CORS probes with first chunks; four small full original-loader primary/mirror probes; seven cancellation/failure/recovery checks",
     "knownDeniedAddresses": "Two already measured size-denied URLs are not retried",
     "gate": "The audit exits nonzero for the external source blocks even if all executable checks pass. Overall remains blocked.",
-    "execution": "Independent always/noncancelled step after other browser failures; both step failures remain visible and artifact upload remains always"
+    "execution": "Independent always/noncancelled step after other browser failures; both step failures remain visible and artifact upload remains always",
+    "finalEvidence": "ci10-final.json",
+    "run": "https://github.com/tycofficial/phigros/actions/runs/42870234551",
+    "result": "24 allowed native CORS / 4 full original loaders / 7 controlled boundary checks passed; pageErrors empty; two denied mirrors remain blocked; audit exit 1 and overall CI failure",
+    "freshness": "Dated CI10 result only; exact source hashes permit reuse, no repeat requests on unrelated changes"
   },
   "commands": [
     {
