@@ -333,6 +333,19 @@
       "officialFidelityStatus": "not_applicable",
       "evidence": "docs/evidence/2026-11-10-audio-session/verification.json",
       "limitation": "Actual contexts/worklets/music with controlled completion observation and injected obsolete errors; organic failures, device output/latency, Safari and official consistency unverified."
+    },
+    {
+      "id": "remote-allowlist-content-audit",
+      "implementation": [
+        "scripts/audit-remote-resources.py",
+        "scripts/audit-remote-cors.cjs",
+        "scripts/audit-remote-cors-batch.cjs"
+      ],
+      "verificationMethod": "All 1091 fixed primary resources measured for byte length, SHA256 and Git blob hash; four prior samples reused and 1087 new downloads cached. Resume schedules zero requests. Native local browser probe is TLS-blocked; complete primary CORS audit is configured in CI with partial bodies and four full-loader samples.",
+      "result": "Content integrity passed: 3014460209 bytes. No resource/ref mismatch found; no production fix. Browser CORS remains environment-specific and must use actual latest CI results.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-remote-resources/verification.json",
+      "limitation": "Current allowlist integrity only; official authenticity, separate vision resources, exhaustive mirror/fallback, decoding/physical-device behavior remain unaccepted."
     }
   ],
   "blockingEvidence": [
@@ -355,5 +368,5 @@
     "scope": "Public store metadata only; not client equivalence"
   },
   "lastCheckedDate": "2026-11-10",
-  "latestEngineeringEvidence": "docs/evidence/2026-11-10-audio-session/verification.json"
+  "latestEngineeringEvidence": "docs/evidence/2026-11-10-remote-resources/verification.json"
 }

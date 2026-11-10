@@ -42,6 +42,11 @@ jobs:
           python3 scripts/build-runtime-release.py
           --output "$RUNNER_TEMP/phigros-runtime"
           --report work/runtime-package.json
+      - name: Verify measured remote-resource evidence without downloads
+        run: >-
+          python3 scripts/audit-remote-resources.py
+          --plan docs/evidence/2026-11-10-remote-resources/plan.json.gz
+          --verify-journal docs/evidence/2026-11-10-remote-resources/results.jsonl.gz
       - name: Run actual app and persistent storage browser checks
         env:
           PHI_FLOW_VIDEO: '1'
@@ -59,6 +64,7 @@ jobs:
           node tests/folder-import-browser.cjs http://127.0.0.1:4180 work/folder-import
           node tests/library-migration-browser.cjs | tee work/library-migration.log
           node tests/interactive-replay-media-browser.cjs | tee work/replay-media.log
+          node scripts/audit-remote-cors-batch.cjs http://127.0.0.1:4180 work/remote-cors docs/evidence/2026-11-10-remote-resources/plan.json.gz
       - name: Keep engineering evidence
         if: always()
         uses: actions/upload-artifact@v4

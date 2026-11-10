@@ -1,0 +1,81 @@
+{
+  "scope": "Existing 1091-item remote allowlist byte integrity and availability audit; not official resource authenticity",
+  "date": "2026-11-10",
+  "parentCommit": "b44aca8b2f029a55ed009232c164e9b4294d4808",
+  "runtimeUnchanged": "4.0.1.2-pages-37",
+  "officialAcceptance": "blocked",
+  "officialFidelityPercent": null,
+  "sourceHashes": {
+    "scripts/audit-remote-resources.py": "2452aabd28a27b7d101a5e0406b85832bae8e9e1078e7a6493fd0225be6d961f",
+    "scripts/audit-remote-cors.cjs": "97b0aa39d74960e0880b595b9874718d6b9d9821ddd5496b22d9a48619dba08f",
+    "scripts/audit-remote-cors-batch.cjs": "7bb6d53ce931aa9180378759248a2f18ace42da6f603544fdd4f76dabdc1f75b",
+    ".github/workflows/engineering-regression.yml": "d157c903bf737f9896836ad922ce8545b4781f002e58a795f5ace8a27caf264f"
+  },
+  "manifestSHA256": "7943b98f7a6a9310024880cd51178abdc22f459769e02d6eda64b9a6018410b2",
+  "expectedResources": 1091,
+  "expectedTotalBytes": 3014460209,
+  "contentResult": {
+    "passed": 1091,
+    "failed": 0,
+    "blocked": 0,
+    "skipped": 0,
+    "historicalSamplesReused": 4,
+    "newDownloads": 1087,
+    "newCacheBytes": 3010152644,
+    "ledger": "results.jsonl.gz",
+    "plan": "plan.json.gz",
+    "summary": "summary-full.json",
+    "referenceCoverage": "live-reference-coverage.json.gz"
+  },
+  "resumeResult": {
+    "scheduledResources": 0,
+    "journalUnchanged": true,
+    "evidence": "consistency.json"
+  },
+  "localBrowserResult": {
+    "status": "blocked",
+    "CORSVerified": false,
+    "evidence": "browser-probe.json",
+    "reason": "ERR_CERT_AUTHORITY_INVALID at both production primary/fallback; TLS failed before CORS",
+    "unexecutedApprovalDependentStep": "CA import to /home/agent/.pki/nssdb skipped because it is outside writable roots; no approval requested/executed and TLS verification remains enabled",
+    "details": "browser-cors-blocked.json"
+  },
+  "remoteCORSPlan": {
+    "method": "Existing GitHub Actions Chromium with normal TLS trust, production GET/cors/omit/error options to all fixed primary URLs, read first chunk then cancel, plus four original PhiHostedMedia.bytes full-loader samples",
+    "whyPartialBody": "Avoid re-downloading the entire 3GB body set already measured by the content audit",
+    "concurrency": 3,
+    "minimumStartIntervalMs": 200,
+    "status": "pending; inspect latest head CI raw logs and artifact"
+  },
+  "commands": [
+    {
+      "command": "python3 scripts/audit-remote-resources.py --plan work/remote-resource-audit/plan.json --output work/remote-resource-audit --workers 3 --limit 32",
+      "result": "passed; 32 new items plus 4 reused samples"
+    },
+    {
+      "command": "python3 scripts/audit-remote-resources.py --plan work/remote-resource-audit/plan.json --output work/remote-resource-audit --workers 3",
+      "result": "passed; remaining 1055 items; totals 1091/1091 and 3014460209 bytes"
+    },
+    {
+      "command": "python3 scripts/audit-remote-resources.py --plan work/remote-resource-audit/plan.json --output work/remote-resource-audit --workers 3",
+      "result": "passed; resume scheduled zero resources and journal SHA256 stayed identical"
+    },
+    {
+      "command": "node scripts/audit-remote-cors.cjs http://127.0.0.1:4180 work/remote-resource-audit/browser-probe.json",
+      "result": "blocked by environment TLS trust; exit 1; not a product CORS failure conclusion"
+    },
+    {
+      "command": "python3 -m py_compile scripts/audit-remote-resources.py; node --check scripts/audit-remote-cors.cjs; node --check scripts/audit-remote-cors-batch.cjs; git diff --check",
+      "result": "passed"
+    }
+  ],
+  "limitations": [
+    "The 13 separately allowed vision/replay remote references are not included in this 1091-primary-URL audit; not silently accepted.",
+    "Mirror URLs are recorded but not independently byte-downloaded when primary passed; fallback CORS branches are not exhaustively tested.",
+    "Server-side CORS headers do not establish native browser CORS. Local probe failed at TLS; remote CI is a separate environment result.",
+    "Native CORS batch checks headers and the first body chunk; it is not full-body browser rehashing, decoding, playback, physical output/latency or Safari validation.",
+    "All unique official build/settings/capture/resource correspondence and overall official acceptance remain blocked."
+  ],
+  "runtimeChanges": "None; no resources, encoding, judging, import or save behavior changed; cache files remain only under ignored work/.",
+  "certificateReference": "https://chromium.googlesource.com/chromium/src/+/HEAD/docs/linux/cert_management.md"
+}

@@ -83,5 +83,14 @@
     "Other asynchronous resource preparation, first-play activation and device/context interruption combinations are not exhausted by these tests.",
     "Unique official baseline/settings/resources and complete visual/animation/Tips/chapter/replay acceptance remain blocked or unverified as recorded in docs/fidelity-acceptance.json."
   ],
-  "remoteCI": "The workflow runs this native worklet/session regression; final head SHA and raw logs must be checked after pushing."
+  "remoteCI": {
+    "result": "passed",
+    "rawLogVerified": true,
+    "head": "b44aca8b2f029a55ed009232c164e9b4294d4808",
+    "run": "https://github.com/tycofficial/phigros/actions/runs/42852324850",
+    "tests": 487,
+    "failures": 0,
+    "skipped": 0,
+    "details": "ci-final.json"
+  }
 }

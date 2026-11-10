@@ -1,0 +1,54 @@
+{
+  "scope": "One resource through original PhiHostedMedia.bytes/PhiRemoteAssets.download; not a full remote-resource or official audit",
+  "startedAt": "2026-11-10T16:36:25.813Z",
+  "browser": "156.0.8078.79",
+  "origin": "http://127.0.0.1:4180",
+  "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/Glaciaxion.SunsetRay.0/EZ.json",
+  "TLSVerificationDisabled": false,
+  "inheritedProxyUsed": true,
+  "requestFailures": [
+    {
+      "at": "2026-11-10T16:36:26.688Z",
+      "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/Glaciaxion.SunsetRay.0/EZ.json",
+      "error": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "at": "2026-11-10T16:36:26.712Z",
+      "url": "https://cdn.jsdelivr.net/gh/7aGiven/Phigros_Resource@5d40bfdf05bee53f5107a6ea5620ca0e953de815/Glaciaxion.SunsetRay.0/EZ.json",
+      "error": "net::ERR_CERT_AUTHORITY_INVALID"
+    }
+  ],
+  "pageErrors": [],
+  "sourceHashes": {
+    "js/remote-assets.js": "7943b98f7a6a9310024880cd51178abdc22f459769e02d6eda64b9a6018410b2",
+    "js/hosted-media.js": "479c231c136ce27e8c1a54b5a2b6466ef57964e5889f6860127da9511b2ef2d2",
+    "js/site-network-guard.js": "c8ae0e2ac7afa04572cfd8b20ec558d49ec2054129d5fc06340eeee38cecbdbd"
+  },
+  "result": {
+    "status": "failed",
+    "error": "联网曲目资源不可访问或校验失败，请检查网络后重试（Failed to fetch）",
+    "attempts": [
+      {
+        "at": "2026-11-10T16:36:26.510Z",
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/Glaciaxion.SunsetRay.0/EZ.json",
+        "method": "GET",
+        "mode": "cors",
+        "credentials": "omit",
+        "redirect": "error"
+      },
+      {
+        "at": "2026-11-10T16:36:26.686Z",
+        "url": "https://cdn.jsdelivr.net/gh/7aGiven/Phigros_Resource@5d40bfdf05bee53f5107a6ea5620ca0e953de815/Glaciaxion.SunsetRay.0/EZ.json",
+        "method": "GET",
+        "mode": "cors",
+        "credentials": "omit",
+        "redirect": "error"
+      }
+    ],
+    "responses": []
+  },
+  "status": "blocked",
+  "CORSVerified": false,
+  "blocker": "The supplied proxy CA is not trusted by this Chromium NSS database; TLS failed before a CORS result was available.",
+  "finishedAt": "2026-11-10T16:36:26.714Z"
+}
