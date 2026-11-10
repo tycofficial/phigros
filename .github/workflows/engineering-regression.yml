@@ -70,13 +70,24 @@ jobs:
           node tests/folder-import-browser.cjs http://127.0.0.1:4180 work/folder-import
           node tests/library-migration-browser.cjs | tee work/library-migration.log
           node tests/interactive-replay-media-browser.cjs | tee work/replay-media.log
-          main_cors_action=$(python3 scripts/main-cors-checkpoint.py)
+      - name: Audit vision networking independently
+        if: ${{ always() && !cancelled() }}
+        run: |
+          mkdir -p work
+          python3 -m http.server 4180 --bind 127.0.0.1 > work/vision-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          audit_status=0
+          main_cors_action=$(python3 scripts/main-cors-checkpoint.py) || { audit_status=$?; main_cors_action=checkpoint-failed; }
           if [[ "$main_cors_action" == "run" ]]; then
-            node scripts/audit-remote-cors-batch.cjs http://127.0.0.1:4180 work/remote-cors docs/evidence/2026-11-10-remote-resources/plan.json.gz
-          else
+            node scripts/audit-remote-cors-batch.cjs http://127.0.0.1:4180 work/remote-cors docs/evidence/2026-11-10-remote-resources/plan.json.gz || audit_status=$?
+          elif [[ "$main_cors_action" == "reuse" ]]; then
             echo "Reusing dated CI #8 main CORS evidence: exact tested sources unchanged; no 1091-URL re-audit."
+          else
+            echo "Main CORS checkpoint failed; preserving its failure and continuing independent vision checks."
           fi
-          node scripts/audit-vision-cors.cjs http://127.0.0.1:4180 work/vision-cors
+          node scripts/audit-vision-cors.cjs http://127.0.0.1:4180 work/vision-cors || audit_status=$?
+          exit "$audit_status"
       - name: Keep engineering evidence
         if: always()
         uses: actions/upload-artifact@v4

@@ -56,7 +56,8 @@
     "status": "pending",
     "method": "24 allowed address CORS probes with first chunks; four small full original-loader primary/mirror probes; seven cancellation/failure/recovery checks",
     "knownDeniedAddresses": "Two already measured size-denied URLs are not retried",
-    "gate": "The audit exits nonzero for the external source blocks even if all executable checks pass. Overall remains blocked."
+    "gate": "The audit exits nonzero for the external source blocks even if all executable checks pass. Overall remains blocked.",
+    "execution": "Independent always/noncancelled step after other browser failures; both step failures remain visible and artifact upload remains always"
   },
   "commands": [
     {
@@ -100,6 +101,14 @@
     "scripts/audit-vision-decode.py": "1722128c6a9f269987c58c9dd7bbe32a6f0aab3767db9a4e3c215a0c50162f82",
     "scripts/audit-vision-playback.cjs": "db0300056e9ac72d68e900681a62d74b734cb93f3c09d8ab18da004799df3d16",
     "scripts/main-cors-checkpoint.py": "c2ca9d481f6b755575d05a7cf074e02e7ee04562a92c7db9a70c5eb1af6e146f",
-    ".github/workflows/engineering-regression.yml": "bc394733eee6d76e6880ce0610584de88e7fa2c547cf8dfe23fac11a701ab829"
+    ".github/workflows/engineering-regression.yml": "b19ab27a2527bfc22a7a3e64befb7bbeefd66fe0f0e05070239f9f74dd0ee113"
+  },
+  "CI9": {
+    "status": "failed before vision network audit",
+    "details": "ci9-failure.json",
+    "failure": "Existing Service Worker retry worker did not take control within its test deadline; root cause unverified",
+    "visionAuditRan": false,
+    "followup": "Independent networking step now runs after other check failures without masking either failure.",
+    "localRecheck": "sw-ci9-local-recheck.json: 9 scenarios passed on Chromium 156; CI151 timeout root cause unverified"
   }
 }
