@@ -1,0 +1,30 @@
+{
+  "scope": "Complete unchanged runtime packaging, not official consistency",
+  "officialReferenceVersion": null,
+  "officialAcceptance": "阻塞",
+  "source": "/workspace/phigros",
+  "output": "/tmp/phigros-runtime-pages34",
+  "runtimeRoots": [
+    "index.html",
+    "sw.js",
+    ".nojekyll",
+    "assets",
+    "css",
+    "js",
+    "workers"
+  ],
+  "excludedDevelopmentPaths": [
+    "tests/",
+    "scripts/",
+    "work/",
+    ".git/",
+    "repository documentation"
+  ],
+  "runtimeFileCount": 1927,
+  "runtimeBytes": 999578136,
+  "resourceFilesRemoved": 0,
+  "resourceFilesReencoded": 0,
+  "validationExitCode": 0,
+  "validationStdout": "{\"passed\":true,\"songs\":335,\"charts\":1064,\"localSongs\":162,\"localCharts\":492,\"remoteSongs\":173,\"remoteCharts\":572,\"addedCharts\":1018,\"verifiedResources\":1719,\"remoteReferences\":1091,\"publishedBytes\":999578136}\n",
+  "validationStderr": ""
+}

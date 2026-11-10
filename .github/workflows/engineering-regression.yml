@@ -53,6 +53,7 @@ jobs:
           node tests/audio-transport-browser.cjs http://127.0.0.1:4180 work/audio-transport
           node tests/loading-cancel-browser.cjs http://127.0.0.1:4180 work/loading-cancel
           node tests/service-worker-browser.cjs work/service-worker
+          node tests/folder-import-browser.cjs http://127.0.0.1:4180 work/folder-import
           node tests/library-migration-browser.cjs | tee work/library-migration.log
           node tests/interactive-replay-media-browser.cjs | tee work/replay-media.log
       - name: Keep engineering evidence

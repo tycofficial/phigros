@@ -178,10 +178,10 @@
         "tests/local-import-storage.test.cjs"
       ],
       "verificationMethod": "ZIP/PEZ/散文件/文件夹/旧成绩持久化回归",
-      "result": "11 个 Chromium IndexedDB 导入／迁移场景通过；真实文件选择器导入 PEZ、自然播放与结算、刷新后数据恢复通过；无官方一致性结论。",
-      "remainingDifference": "保留既有入口与格式、数据和行为。文件夹选择器、实际用户存档与真实 iPad 未穷尽验证。",
+      "result": "11 个 Chromium 导入／迁移场景已通过；本批还通过真实完整文件夹选择器、三种视口菜单开关、嵌套同名文件的逐首音频映射、原数据保留及刷新恢复。",
+      "remainingDifference": "文件夹测试只覆盖三首 PGR／JSON 元数据／WAV 合成输入；实际用户存档、其他文件夹格式组合及真实 iPad 未穷尽验证。",
       "status": "unverified",
-      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+      "engineeringEvidence": "docs/evidence/2026-11-10-folder-import/verification.json"
     }
   ],
   "engineeringChanges": [
@@ -280,6 +280,19 @@
       "officialFidelityStatus": "not_applicable",
       "evidence": "docs/evidence/2026-11-10-service-worker/verification.json",
       "limitation": "Only program startup resources, not complete song/artwork/font/optional-resource offline coverage; real user/device/Safari and official UI fidelity unverified."
+    },
+    {
+      "id": "existing-folder-import-entry",
+      "implementation": [
+        "css/style.css",
+        "tests/folder-import-browser.cjs",
+        "tests/helpers/import-fixtures.cjs"
+      ],
+      "verificationMethod": "Actual More action exposes aria-expanded=true but import action remains hidden before the selector correction. Final Chromium checks three viewports and native directory chooser; nested same-name media are checked against independent Node SHA-256 expectations.",
+      "result": "Restore the existing import panel; nested folder import and prior-data/reload checks pass without changing importer logic, formats or menu contents.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-folder-import/verification.json",
+      "limitation": "Synthetic PGR folder and Chromium only; no exhaustive format/device/user-save or official-UI equivalence conclusion."
     }
   ],
   "blockingEvidence": [
@@ -302,5 +315,5 @@
     "scope": "Public store metadata only; not client equivalence"
   },
   "lastCheckedDate": "2026-11-10",
-  "latestEngineeringEvidence": "docs/evidence/2026-11-10-service-worker/verification.json"
+  "latestEngineeringEvidence": "docs/evidence/2026-11-10-folder-import/verification.json"
 }

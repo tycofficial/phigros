@@ -2,6 +2,7 @@ const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),vm=require('node:vm');
 const version=fs.readFileSync('js/app.js','utf8').match(/runtime:\s*"([^"]+)"/)[1];
+const futureVersion=version.replace(/pages-(\d+)/,(_,n)=>'pages-'+(Number(n)+1));
 const html=(label='page',build=version)=>`<script id="phiBuildMetadata" type="application/json">{"runtime":"${build}"}</script><script src="./js/app.js?v=${build}"></script><link href="./css/style.css?v=${build}"><p>${label}</p>`;
 function runtime(network=async()=>new Response('network'),overrides={}){
   const stores=new Map(),handlers={};let calls=0,keysCalls=0,skipCalls=0;
@@ -130,9 +131,9 @@ test('an installed shell supports offline root queries and the index alias',asyn
   await assert.rejects(r.fetch(r.req('/phigros/tests/missing.html',{mode:'navigate'})),/offline/);
 });
 test('a future entry cannot overwrite this worker\'s working offline shell',async()=>{
-  let generation=0;const r=runtime(async()=>{if(generation===2)throw Error('offline');return new Response(html('entry',generation===1?'4.0.1.2-pages-34':version));});
+  let generation=0;const r=runtime(async()=>{if(generation===2)throw Error('offline');return new Response(html('entry',generation===1?futureVersion:version));});
   const request=r.req('/phigros/',{mode:'navigate'});await r.fetch(request);generation=1;
-  assert.equal(await(await r.fetch(request)).text(),html('entry','4.0.1.2-pages-34'));
+  assert.equal(await(await r.fetch(request)).text(),html('entry',futureVersion));
   generation=2;assert.equal(await(await r.fetch(request)).text(),html('entry'));
 });
 test('installation drains an earlier response body before queued dependency headers arrive',async()=>{

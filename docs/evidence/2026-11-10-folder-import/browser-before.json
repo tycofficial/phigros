@@ -1,0 +1,21 @@
+{
+  "scope": "Engineering folder import and existing-menu visibility only; no official equivalence",
+  "styleSHA256": "b463ed7fa9023ffb3054caa8f7534844d01e2807a3b18478992846838987da29",
+  "pageErrors": [],
+  "steps": [
+    {
+      "name": "existing-more-menu-opens",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "expanded": "true",
+      "viewClasses": "view libraryToolsOpen",
+      "display": "none"
+    }
+  ],
+  "browser": "156.0.8078.79",
+  "runtime": "4.0.1.2-pages-34",
+  "status": "failed",
+  "error": "AssertionError [ERR_ASSERTION]: Existing import action is hidden after opening More\n\nfalse !== true\n\n    at /workspace/phigros/tests/folder-import-browser.cjs:33:64\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:541:9)"
+}
