@@ -1,23 +1,25 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),vm=require('node:vm');
+const version=fs.readFileSync('js/app.js','utf8').match(/runtime:\s*"([^"]+)"/)[1];
+const html=(label='page',build=version)=>`<script id="phiBuildMetadata" type="application/json">{"runtime":"${build}"}</script><script src="./js/app.js?v=${build}"></script><link href="./css/style.css?v=${build}"><p>${label}</p>`;
 function runtime(network=async()=>new Response('network'),overrides={}){
-  const stores=new Map(),handlers={};let calls=0,keysCalls=0;
+  const stores=new Map(),handlers={};let calls=0,keysCalls=0,skipCalls=0;
   const name='tycphigros-4.0.1.2-stability-2';
   const caches={async keys(){return [...stores.keys()];},async delete(key){return stores.delete(key);},async open(key){
     if(!stores.has(key))stores.set(key,new Map());const entries=stores.get(key);
     const keyFor=req=>typeof req==='string'?req:req.url;
-    return {async match(req){return entries.get(keyFor(req))?.clone();},async put(req,res){entries.set(keyFor(req),res);},async keys(){keysCalls++;return [...entries.keys()];},async delete(req){return entries.delete(keyFor(req));}};
+    return {async match(req){return entries.get(keyFor(req))?.clone();},async put(req,res){if(overrides.failPut?.(key,req))throw Error('quota');entries.set(keyFor(req),res);},async keys(){keysCalls++;return [...entries.keys()];},async delete(req){return entries.delete(keyFor(req));}};
   }};
   const context=vm.createContext({URL,Response,Headers,AbortController,setTimeout,clearTimeout,console,caches,Date,
-    self:{location:{origin:'https://example.test'},addEventListener:(name,fn)=>handlers[name]=fn,clients:{claim(){}},skipWaiting(){}},
+    self:{location:{origin:'https://example.test',href:'https://example.test/phigros/sw.js'},addEventListener:(name,fn)=>handlers[name]=fn,clients:{claim(){}},async skipWaiting(){skipCalls++;}},
     fetch:async(req,opts)=>{calls++;return network(req,opts);},...overrides});
-  vm.runInContext(fs.readFileSync('sw.js','utf8'),context);
+  vm.runInContext(fs.readFileSync(process.env.PHI_TEST_SW_SOURCE||'sw.js','utf8'),context);
   const codeName=vm.runInContext('APP_CACHE',context);
   const req=(path,{range,mode='same-origin'}={})=>({method:'GET',url:'https://example.test'+path,mode,headers:new Headers(range?{Range:range}:{})});
   function dispatch(request){let response;const pending=[];handlers.fetch({request,respondWith:p=>response=p,waitUntil:p=>pending.push(p)});return {response:Promise.resolve(response),settled:Promise.resolve(response).then(()=>Promise.all(pending),()=>Promise.allSettled(pending))};}
   async function fetch(request){const event=dispatch(request),result=await event.response;await event.settled;return result;}
-  return {fetch,dispatch,req,caches,name,codeName,get calls(){return calls;},get keysCalls(){return keysCalls;}};
+  return {fetch,dispatch,req,caches,name,codeName,install(){let pending;handlers.install({waitUntil:p=>pending=p});return pending;},get skipCalls(){return skipCalls;},get calls(){return calls;},get keysCalls(){return keysCalls;}};
 }
 test('repeat code loads use the current build cache and avoid another network trip',async()=>{
   const r=runtime();await r.fetch(r.req('/phigros/js/app.js?v=3'));await r.fetch(r.req('/phigros/js/app.js?v=3'));
@@ -58,9 +60,9 @@ test('network partial responses never poison the full audio cache',async()=>{
   const cache=await r.caches.open(r.name);assert.equal(await cache.match(r.req('/phigros/assets/song.m4a')),undefined);
 });
 test('navigation checks the network but falls back to the cached page during an outage',async()=>{
-  let offline=false;const r=runtime(async()=>{if(offline)throw Error('offline');return new Response('page');});
+  let offline=false;const r=runtime(async()=>{if(offline)throw Error('offline');return new Response(html('page'));});
   const req=r.req('/phigros/',{mode:'navigate'});await r.fetch(req);offline=true;
-  assert.equal(await (await r.fetch(req)).text(),'page');assert.equal(r.calls,2);
+  assert.equal(await (await r.fetch(req)).text(),html('page'));assert.equal(r.calls,2);
 });
 test('a batch of skin requests runs one cache maintenance sweep',async()=>{
   const r=runtime();await Promise.all([1,2,3,4].map(i=>r.fetch(r.req('/phigros/assets/skin/'+i+'.webp'))));
@@ -78,7 +80,7 @@ test('a slow entry request returns the cached page promptly and still updates it
   let finish,fail,second=false;const timers=[];
   const later=new Promise((resolve,reject)=>{finish=resolve;fail=reject;});
   const r=runtime(async(_req,opts)=>{
-    if(!second)return new Response('previous');
+    if(!second)return new Response(html('previous'));
     opts.signal?.addEventListener('abort',()=>fail(new DOMException('aborted','AbortError')),{once:true});
     return later;
   },{setTimeout:fn=>{timers.push(fn);return fn;},clearTimeout(){}});
@@ -86,8 +88,65 @@ test('a slow entry request returns the cached page promptly and still updates it
   await r.fetch(request);second=true;
   const event=r.dispatch(request);await new Promise(setImmediate);
   assert.equal(timers.length,1);timers[0]();
-  assert.equal(await (await event.response).text(),'previous');
-  finish(new Response('new release'));await event.settled;
+  assert.equal(await (await event.response).text(),html('previous'));
+  finish(new Response(html('new release')));await event.settled;
   const cache=await r.caches.open(r.codeName);
-  assert.equal(await (await cache.match(request)).text(),'new release');
+  assert.equal(await (await cache.match(request)).text(),html('new release'));
+});
+
+test('installation prepares the real entry and bootstrap dependencies before taking control',async()=>{
+  let complete;const delayed=new Promise(resolve=>complete=resolve),options=[];
+  const r=runtime(async(url,opts)=>{options.push(opts);if(url.endsWith('/phigros/'))return new Response(html());if(url.includes('/js/app.js'))return delayed;return new Response('style');});
+  const pending=r.install();await new Promise(setImmediate);assert.equal(r.skipCalls,0);
+  complete(new Response('app'));await pending;
+  assert.equal(r.skipCalls,1);assert(options.every(x=>x.cache==='no-cache'));
+  const cache=await r.caches.open(r.codeName);
+  assert.equal(await(await cache.match('https://example.test/phigros/')).text(),html());
+  assert.equal(await(await cache.match('https://example.test/phigros/index.html')).text(),html());
+  assert.equal(await(await cache.match('https://example.test/phigros/js/app.js?v='+version)).text(),'app');
+  assert.equal(await(await cache.match('https://example.test/phigros/css/style.css?v='+version)).text(),'style');
+});
+test('a missing bootstrap dependency rejects the installation and preserves existing caches',async()=>{
+  const r=runtime(async url=>url.endsWith('/phigros/')?new Response(html()):new Response('missing',{status:404}));
+  const old=await r.caches.open('tycphigros-app-previous');await old.put('https://example.test/phigros/',new Response('previous'));
+  await assert.rejects(r.install(),/dependency is not ready/);assert.equal(r.skipCalls,0);
+  assert.equal((await r.caches.keys()).includes(r.codeName),false);
+  assert.equal(await(await old.match('https://example.test/phigros/')).text(),'previous');
+});
+test('stale deployment metadata cannot activate a new worker',async()=>{
+  const r=runtime(async()=>new Response(html('old','4.0.1.2-pages-32')));
+  await assert.rejects(r.install(),/entry is not ready/);assert.equal(r.skipCalls,0);assert.equal(r.calls,1);
+});
+test('a shell write failure removes only the unfinished new cache',async()=>{
+  const r=runtime(async url=>new Response(url.endsWith('/phigros/')?html():'dependency'),{failPut:key=>key.startsWith('tycphigros-app-pages-')});
+  const media=await r.caches.open(r.name);await media.put('/saved-audio',new Response('audio'));
+  await assert.rejects(r.install(),/quota/);assert.equal(r.skipCalls,0);
+  assert.equal((await r.caches.keys()).includes(r.codeName),false);assert.equal(await(await media.match('/saved-audio')).text(),'audio');
+});
+test('an installed shell supports offline root queries and the index alias',async()=>{
+  let offline=false;const r=runtime(async url=>{if(offline)throw Error('offline');return new Response(url.endsWith('/phigros/')?html():'dependency');});
+  await r.install();offline=true;
+  for(const target of ['/phigros/?skipIntro=1','/phigros/index.html?skipIntro=1'])assert.equal(await(await r.fetch(r.req(target,{mode:'navigate'}))).text(),html());
+  await assert.rejects(r.fetch(r.req('/phigros/tests/missing.html',{mode:'navigate'})),/offline/);
+});
+test('a future entry cannot overwrite this worker\'s working offline shell',async()=>{
+  let generation=0;const r=runtime(async()=>{if(generation===2)throw Error('offline');return new Response(html('entry',generation===1?'4.0.1.2-pages-34':version));});
+  const request=r.req('/phigros/',{mode:'navigate'});await r.fetch(request);generation=1;
+  assert.equal(await(await r.fetch(request)).text(),html('entry','4.0.1.2-pages-34'));
+  generation=2;assert.equal(await(await r.fetch(request)).text(),html('entry'));
+});
+test('installation drains an earlier response body before queued dependency headers arrive',async()=>{
+  let release;const queued=new Promise(resolve=>release=resolve);
+  const r=runtime(async url=>{
+    if(url.endsWith('/phigros/'))return new Response(html());
+    if(url.includes('/js/app.js'))return new Response(new ReadableStream({pull(controller){controller.enqueue(new TextEncoder().encode('app'));controller.close();release(new Response('style'));}},{highWaterMark:0}));
+    return queued;
+  });
+  await r.install();assert.equal(r.skipCalls,1);
+  assert.equal(await(await(await r.caches.open(r.codeName)).match('https://example.test/phigros/css/style.css?v='+version)).text(),'style');
+});
+test('cached decoded bootstrap bytes have consistent encoding and length headers',async()=>{
+  const r=runtime(async url=>url.endsWith('/phigros/')?new Response(html()):new Response('decoded',{headers:{'Content-Encoding':'gzip','Content-Length':'999'}}));
+  await r.install();const response=await(await r.caches.open(r.codeName)).match('https://example.test/phigros/js/app.js?v='+version);
+  assert.equal(response.headers.get('Content-Encoding'),null);assert.equal(response.headers.get('Content-Length'),'7');assert.equal(await response.text(),'decoded');
 });

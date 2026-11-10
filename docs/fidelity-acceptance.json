@@ -267,6 +267,19 @@
       "verificationMethod": "Local equivalent commands and parsed workflow YAML; remote result must be read for the final SHA.",
       "result": "PR checks install browser tooling before the Node suite, use explicit bash pipefail, and upload browser evidence. Initial false-green run is recorded in docs/evidence/2026-11-10/ci-first-run.json; final SHA requires raw-log verification.",
       "officialFidelityStatus": "not_applicable"
+    },
+    {
+      "id": "service-worker-ready-before-claim",
+      "implementation": [
+        "sw.js",
+        "tests/service-worker.test.cjs",
+        "tests/service-worker-browser.cjs"
+      ],
+      "verificationMethod": "Original worker: eight new unit cases fail and actual updated-worker offline reload fails. Final worker: 18 SW tests and nine actual-worker browser steps pass with gzip transport, controlled missing bootstrap, retry, and isolated saved-data/range checks.",
+      "result": "Prepare entry and HTML-declared startup code before activating; keep the existing working worker on failed install; preserve shared media cache and test saves.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-service-worker/verification.json",
+      "limitation": "Only program startup resources, not complete song/artwork/font/optional-resource offline coverage; real user/device/Safari and official UI fidelity unverified."
     }
   ],
   "blockingEvidence": [
@@ -289,5 +302,5 @@
     "scope": "Public store metadata only; not client equivalence"
   },
   "lastCheckedDate": "2026-11-10",
-  "latestEngineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+  "latestEngineeringEvidence": "docs/evidence/2026-11-10-service-worker/verification.json"
 }
