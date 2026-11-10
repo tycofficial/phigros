@@ -1,0 +1,15 @@
+✔ valid callers share preparation while one cancellation leaves the other signal alive (2.554193ms)
+✔ last caller aborts; a late old resolve cannot commit over or evict a replacement (2.242411ms)
+✔ last caller aborts; a late old reject cannot commit over or evict a replacement (4.494976ms)
+✔ a current failure releases the request for a real retry (1.202287ms)
+✔ a falsey loader rejection remains a rejection and allows retry (1.50099ms)
+✔ a late failed owner cannot remove a replacement that has already been cached (1.000032ms)
+✔ an already cancelled reader cannot consume or remove a completed cached value (0.833731ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 76.736561

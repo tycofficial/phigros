@@ -400,7 +400,7 @@
         "tests/builtin-preparation-ownership.test.cjs"
       ],
       "verificationMethod": "Actual same Luminescence EZ UI cancel/re-entry with immediate original abort, delayed original success, delayed original AbortError; cache Promise tokens/signals and real engine recorded. Shared producer consumers and stale cleanup separately tested.",
-      "result": "Original late AbortError poisons the new session via reused pending Promise. Fixed both asset and streaming-record preparation with independent producer ownership, consumer cancellation and current-task commit/cleanup. Local 3 UI cases, 6 focused cache cases and 503 Node tests pass. Actual external protocol sample pending exact-SHA CI; local cached protocol is not CORS evidence.",
+      "result": "Original late AbortError poisons the new session via reused pending Promise. Fixed both asset and streaming-record preparation with independent producer ownership, consumer cancellation and current-task commit/cleanup. Local 3 UI cases, 7 focused cache cases and 504 Node tests pass. Actual external protocol sample pending exact-SHA CI; local cached protocol is not CORS evidence.",
       "officialFidelityStatus": "not_applicable",
       "evidence": "docs/evidence/2026-11-10-same-chart-preparation/verification.json",
       "limitation": "Current full main/vision network matrices not rerun. Old whole-bootstrap UI proof is invalidated, not expanded; scope and two mirror gates remain nonzero. Physical/official/full-chapter acceptance remains blocked."

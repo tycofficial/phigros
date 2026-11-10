@@ -1,7 +1,7 @@
 {
   "scope": "Current preparation cache and native CORS for one fixed real chart; not the 1091-address matrix or official fidelity",
-  "startedAt": "2026-11-10T21:36:03.622Z",
-  "appSHA256": "2cbb9675c1c8381a611b01f1c5c3b6afce251272ccf981a72786f9276e2857fb",
+  "startedAt": "2026-11-10T21:51:44.789Z",
+  "appSHA256": "796c23b12707506a2d953b6bbcc8b42ef60bfdc294e6ea401c58738b43f621cb",
   "TLSVerificationDisabled": false,
   "sample": {
     "id": "catalog-2bd25eaa9c1f1ecc-ez",
@@ -80,5 +80,5 @@
   "transport": "Controlled previously measured cache; NOT external native CORS",
   "browser": "156.0.8078.79",
   "status": "passed",
-  "finishedAt": "2026-11-10T21:36:07.781Z"
+  "finishedAt": "2026-11-10T21:51:47.225Z"
 }

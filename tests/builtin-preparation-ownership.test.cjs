@@ -28,6 +28,13 @@ test('a current failure releases the request for a real retry',async()=>{
  const f=fixture();let calls=0;const load=async()=>{if(++calls===1)throw Error('decode failed');return {size:5};};
  await assert.rejects(f.prepare(undefined,load),/decode failed/);assert.equal(f.cache.has('chart'),false);assert.equal((await f.prepare(undefined,load)).size,5);assert.equal(calls,2);
 });
+test('a falsey loader rejection remains a rejection and allows retry',async()=>{
+ const f=fixture();let calls=0,outcome;
+ const load=async()=>{if(++calls===1)throw null;return {size:4};};
+ await f.prepare(undefined,load).then(value=>{outcome={resolved:value};},reason=>{outcome={rejected:reason};});
+ assert.deepEqual(outcome,{rejected:null});assert.equal(f.cache.has('chart'),false);
+ assert.equal((await f.prepare(undefined,load)).size,4);assert.equal(calls,2);
+});
 test('a late failed owner cannot remove a replacement that has already been cached',async()=>{
  const f=fixture(),gate=deferred(),a=new AbortController();let calls=0;
  const load=async()=>{if(++calls===1)return gate.promise;return {size:6};};

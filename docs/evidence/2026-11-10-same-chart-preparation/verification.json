@@ -6,12 +6,12 @@
   "officialAcceptance": "blocked",
   "officialFidelityPercent": null,
   "sourceHashes": {
-    "js/app.js": "2cbb9675c1c8381a611b01f1c5c3b6afce251272ccf981a72786f9276e2857fb",
+    "js/app.js": "796c23b12707506a2d953b6bbcc8b42ef60bfdc294e6ea401c58738b43f621cb",
     "index.html": "68ed7242ef7009e692fa0dedac1c199512fb658520d54afe71f0ebbc62e51584",
     "sw.js": "22a28f5d40293121d06302f83176bb4d4c4b696900c53e54beb45d856c81072d",
     "scripts/audit-same-chart-preparation.cjs": "0cdd86311c1f4c6a42154e8992534f7c234b75b555214b22a5abeb882684f171",
     "scripts/audit-preparation-network.cjs": "17fbbbb82aef8089e2301c99a970645277b1ad6fa1c152a7b85378eefac37419",
-    "tests/builtin-preparation-ownership.test.cjs": "27e995fc21f6d45fa82880830d9772a9c6991e98a8de6975bc75f596e03b3d17",
+    "tests/builtin-preparation-ownership.test.cjs": "a14a6b91f7d56b7e7e021edf5c724762ffed5a0c90337bec40b89de41a5b0217",
     "tests/loading-pipeline.test.cjs": "4cbdb9282e37ca315c62cfc92ab3a38935120ddd06a03d903fe05750a6d379a3",
     "tests/vision-cors-checkpoint.test.cjs": "16dbb85a95c8a01fa448017c49c3d68448d25450c63ee6648deddc70809d5de2",
     ".github/workflows/engineering-regression.yml": "1c60c82c286ad8a8110f8f8354f8154b02f227141fba923030e7e4d05709ee7b"
@@ -50,15 +50,15 @@
     },
     {
       "command": "node --test tests/builtin-preparation-ownership.test.cjs",
-      "result": "6 cases pass: valid shared consumer, late old resolve/reject, retry, late failure after new commit, already-aborted reader"
+      "result": "7 focused cases pass, including preservation and retry after a falsey rejection"
     },
     {
       "command": "node --test tests/*.test.cjs",
-      "result": "503 passed / 0 failed / 0 skipped",
+      "result": "504 passed / 0 failed / 0 skipped",
       "evidence": "node-tests.log"
     },
     {
-      "command": "PHI_PREPARATION_NETWORK_CACHED=1 node scripts/audit-preparation-network.cjs http://127.0.0.1:4191 work/preparation-network-cached-final",
+      "command": "PHI_PREPARATION_NETWORK_CACHED=1 node scripts/audit-preparation-network.cjs http://127.0.0.1:4191 work/preparation-network-refined",
       "result": "2 current materialization cases / 3 complete 23413-byte original cached bodies pass. CONTROLLED TRANSPORT ONLY, not external native CORS.",
       "evidence": "cached-protocol.json"
     },
@@ -74,7 +74,7 @@
       "late-resolve": 1,
       "late-abort": 2
     },
-    "dedup": "Late success replacement reuses existing completed transfer bytes: two preparation consumers but one actual chart request. Active simultaneous consumers share one producer in the six focused unit tests and cached protocol case.",
+    "dedup": "Late success replacement reuses existing completed transfer bytes: two preparation consumers but one actual chart request. Active simultaneous consumers share one producer in the seven focused unit tests and cached protocol case.",
     "externalNetworkRequests": 0,
     "noRrharilOrFullMatrixRerun": true
   },
@@ -84,11 +84,18 @@
     "Checkpoint classifier unit fixtures now use explicitly synthetic source bytes. Actual prior checkpoint records remain unchanged; a new assertion proves the current real app returns run rather than reusing the old UI-only proof."
   ],
   "networkScope": "network-scope.json",
-  "CI": "Pending exact new SHA. Workflow adds actual same-entry UI and native protocol cases; old full-matrix gates remain nonzero/NOT RUN rather than treating this cache change as pure UI. Final raw results recorded in PR.",
+  "CI": "Pending final exact SHA after rejection-value preservation. No full network matrix or Rrharil rerun. Final actual native sample and all engineering checks must be read from the latest job; scope/mirror gate stays failed.",
   "remaining": [
     "Full current 1091-address/vision network matrices are not re-run; old dates are historical only and cannot establish current whole-bootstrap validation.",
     "Two >20MB CDN mirrors still blocked; no retry, alternate host, proxy, splitting, re-encoding or new hosting.",
     "Physical device/Safari, full chapters/results/credits and unique official build/settings/resource correspondence remain unverified or blocked."
   ],
-  "nextAction": "No separately reproduced new defect outside this repaired shared preparation boundary; end this bounded batch after exact-SHA CI evidence."
+  "nextAction": "No separately reproduced new defect outside this repaired shared preparation boundary; end this bounded batch after exact-SHA CI evidence.",
+  "implementationReview": {
+    "finding": "The first new helper used rejection truthiness to choose resolve/reject. A targeted unit reproduced that reject(null) was wrongly resolved. Corrected before final delivery with an explicit success flag; rejection values are preserved.",
+    "failureEvidence": "falsey-before.log.gz",
+    "uncompressedSHA256": "5db40d8ed4c2242549d30523160a244d3e01f7394393e04cb1091ed0b0055553",
+    "afterEvidence": "ownership-unit.log"
+  },
+  "intermediateCI": "ci13-intermediate.json: actual native sample and UI pass on 190c89f; scope/mirror gates remain failed. Final explicit-success-flag refinement still requires its own exact-SHA CI."
 }

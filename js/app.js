@@ -6166,16 +6166,16 @@ function withTimeout(promise, ms, message = "操作超时") {
     request.consumers++;
     return new Promise((resolve,reject)=>{
       let finished=false;
-      const finish=(error,value)=>{
+      const finish=(success,value)=>{
         if(finished)return;finished=true;signal?.removeEventListener('abort',abort);
         if(--request.consumers===0&&!request.settled){
           request.controller.abort();if(requests.get(key)===request)requests.delete(key);
         }
-        if(error)reject(error);else resolve(value);
+        if(success)resolve(value);else reject(value);
       };
-      const abort=()=>finish(new DOMException('资源准备已取消','AbortError'));
+      const abort=()=>finish(false,new DOMException('资源准备已取消','AbortError'));
       signal?.addEventListener('abort',abort,{once:true});
-      request.promise.then(value=>finish(null,value),error=>finish(error));
+      request.promise.then(value=>finish(true,value),error=>finish(false,error));
       if(signal?.aborted)abort();
     });
   }
