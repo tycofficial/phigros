@@ -1,7 +1,7 @@
 /* Code is versioned separately from unchanged media. Never cache partial audio. */
 'use strict';
-const RUNTIME='4.0.1.2-pages-34';
-const APP_CACHE='tycphigros-app-pages-34';
+const RUNTIME='4.0.1.2-pages-35';
+const APP_CACHE='tycphigros-app-pages-35';
 // Reuse the existing media store across this code-only release.
 const MEDIA_CACHE='tycphigros-4.0.1.2-stability-2';
 let nextMaintenance=0;

@@ -1,0 +1,27 @@
+{
+  "scope": "Controlled callback ordering on real HTML media and Engine lifecycles; no official or physical latency conclusion",
+  "browser": "156.0.8078.79",
+  "appSHA256": "353eaffc19fd365014fa550d737896768d47cee4f54b1e1f33088e7edbfdefb8",
+  "pageErrors": [],
+  "pendingStart": {
+    "mode": "pending-start",
+    "before": {
+      "paused": false,
+      "starting": true
+    },
+    "during": {
+      "paused": true,
+      "starting": true
+    },
+    "after": {
+      "paused": true,
+      "running": true,
+      "starting": false,
+      "timeBefore": 0.00687,
+      "timeAfter": 0.00687
+    },
+    "elapsed": 1965.3999999994412
+  },
+  "status": "failed",
+  "error": "AssertionError [ERR_ASSERTION]: old recovery paused the actual replacement media\n\ntrue !== false\n\n    at /workspace/phigros/tests/stream-recovery-browser.cjs:62:10"
+}

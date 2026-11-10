@@ -6,7 +6,7 @@
   for(const [name,path] of [['PhiPerformance','performance-policy.js'],['PhiLoadingPresentation','loading-presentation.js']]){
     if(globalThis[name])continue;
     await new Promise((resolve,reject)=>{
-      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-34';
+      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-35';
       script.onload=()=>globalThis[name]?resolve():reject(Error('组件未初始化：'+path));
       script.onerror=()=>reject(Error('组件加载失败，请刷新页面：'+path));document.head.appendChild(script);
     });
@@ -30,7 +30,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-34",
+    runtime: "4.0.1.2-pages-35",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-11-04T11:27:12Z",
@@ -9558,15 +9558,24 @@ function withTimeout(promise, ms, message = "操作超时") {
       }
       return this.audio;
     }
+    cancelStreamRecovery(){
+      const cancellation=this.streamRecoveryAbort;
+      this.streamRecoveryAbort=null;this.streamRecoveryPending=false;this.streamBuffering=false;
+      if(engine===this)$('#streamBufferStatus')?.classList.add('hidden');
+      cancellation?.abort();
+    }
     async recoverStreamBuffer(){
       if(!this.streamSession||!this.running||this.paused||this.starting||this.resumePending||this.streamRecoveryPending||this.musicDuration()-this.musicCurrentTime()<.3)return;
       if(this.audio.readyState>=3||PhiHostedMedia.bufferedAhead(this.audio)>.25)return;
       const session=this.streamSession,token=this.transitionToken,status=$('#streamBufferStatus'),cancellation=new AbortController();
-      const active=()=>this.running&&!this.paused&&!this.starting&&!this.resumePending&&this.transitionToken===token;
+      const active=()=>this.streamRecoveryAbort===cancellation&&!cancellation.signal.aborted&&this.streamSession===session&&this.running&&!this.paused&&!this.starting&&!this.resumePending&&this.transitionToken===token;
+      const progress=state=>{if(active()&&status)status.textContent=`正在缓冲音乐… ${state.ahead.toFixed(1)} 秒`;};
       this.streamRecoveryPending=true;this.streamRecoveryAbort=cancellation;
       let began=performance.now(),recovered=false;
       const pauses=this.inputClockPauses||=[],pauseInterval={start:began,end:Infinity};
       pauses.push(pauseInterval);if(pauses.length>64)pauses.shift();
+      const closeInterval=()=>{if(pauseInterval.end===Infinity)pauseInterval.end=performance.now();};
+      cancellation.signal.addEventListener('abort',closeInterval,{once:true});
       this.streamBuffering=true;this.cancelLoop();this.syncClock(true);
       if(status){status.textContent='音乐缓冲中（谱面同步暂停）';status.classList.remove('hidden');}
       try{
@@ -9576,14 +9585,14 @@ function withTimeout(promise, ms, message = "操作超时") {
         if(!active()||document.hidden||this.audio.readyState>=3||PhiHostedMedia.bufferedAhead(this.audio)>.25)return;
         this.pauseMusic();this.syncClock(true);this.draw(this.time);
         if(status){status.textContent='正在缓冲音乐…';status.classList.remove('hidden');}
-        session.onProgress=state=>{if(active()&&status)status.textContent=`正在缓冲音乐… ${state.ahead.toFixed(1)} 秒`;};
+        session.onProgress=progress;
         this.streamStalls=(this.streamStalls||0)+1;
         await session.wait(Math.min(12,4+this.streamStalls*2),{signal:cancellation.signal});
         if(!active()||document.hidden)return;
         // Keep the same media position and all live contacts. In particular this
         // must not use manual pause/resume, which clears fingers and seeks again.
         await withTimeout(this.audio.play(),5000,'音乐恢复播放未响应');
-        if(!active()||document.hidden){if(this.paused||!this.running)this.audio.pause();return;}
+        if(!active()||document.hidden)return;
         this.rebaseBufferedInput(began,performance.now());recovered=true;
         this.syncClock(true);this.visualTime=NaN;this.lastFramePerf=0;
       }catch(error){
@@ -9591,13 +9600,17 @@ function withTimeout(promise, ms, message = "操作超时") {
           this.pause('buffering-error');toast(error.message,true,6500);
         }
       }finally{
-        pauseInterval.end=performance.now();
+        closeInterval();cancellation.signal.removeEventListener('abort',closeInterval);
         if(!recovered&&active()){
           this.rebaseBufferedInput(began,performance.now());this.syncClock(true);this.visualTime=NaN;this.lastFramePerf=0;
         }
-        session.onProgress=null;this.streamRecoveryPending=false;this.streamBuffering=false;this.streamRecoveryAbort=null;
-        if(engine===this&&status)status.classList.add('hidden');
-        if(active()&&!document.hidden)this.scheduleLoop();
+        if(session.onProgress===progress)session.onProgress=null;
+        if(this.streamRecoveryAbort===cancellation){
+          const resumeLoop=active()&&!document.hidden;
+          this.streamRecoveryPending=false;this.streamBuffering=false;this.streamRecoveryAbort=null;
+          if(engine===this&&status)status.classList.add('hidden');
+          if(resumeLoop)this.scheduleLoop();
+        }
       }
     }
     rebaseBufferedInput(began,now){
@@ -10894,7 +10907,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.scheduleLoop();
     }
     reset() {
-      this.streamRecoveryAbort?.abort();this.streamBuffering=false;
+      this.cancelStreamRecovery();
       this.clearChapter8CommunityPresentation();
       this.resetLumiInSongPresentation();
       this.chapter8StageRenderer?.dispose();this.chapter8StageRenderer=null;
@@ -10974,7 +10987,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       if(this.visionStutterSource){try{this.visionStutterSource.stop();this.visionStutterSource.disconnect();}catch{}this.visionStutterSource=null;}
       this.hostedArtworkAbort?.abort();
       this.clearChapter8CommunityPresentation();
-      this.streamRecoveryAbort?.abort();this.streamBuffering=false;$('#streamBufferStatus')?.classList.add('hidden');
+      this.cancelStreamRecovery();
       clearTimeout(this.referenceFinishTimer);this.referenceFinishing=false;
       $("#gameView")?.classList.remove("phiStageIntro","phiStageOutro");
       keyboardInput?.clear("engine.stop");
@@ -11132,7 +11145,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       Diagnostics.info("GameState.lifecycle", "页面已返回前台，等待用户继续", { reason, offset: this.musicCurrentTime() });
     }
     pause(reason = "manual") {
-      this.streamRecoveryAbort?.abort();this.streamBuffering=false;$('#streamBufferStatus')?.classList.add('hidden');
+      this.cancelStreamRecovery();
       keyboardInput?.clear("engine.pause");
       if (!this.running) return;
       if (this.paused && !this.resumePending && !this.starting) return;

@@ -293,6 +293,19 @@
       "officialFidelityStatus": "not_applicable",
       "evidence": "docs/evidence/2026-11-10-folder-import/verification.json",
       "limitation": "Synthetic PGR folder and Chromium only; no exhaustive format/device/user-save or official-UI equivalence conclusion."
+    },
+    {
+      "id": "stream-recovery-ownership",
+      "implementation": [
+        "js/app.js",
+        "tests/stream-recovery-lifecycle.test.cjs",
+        "tests/stream-recovery-browser.cjs"
+      ],
+      "verificationMethod": "Before: 9/10 new controlled lifecycle cases fail and actual HTML media is paused by a late recovery completion. After: 19 combined buffer cases, real-media ordering checks and full 456-test suite pass.",
+      "result": "Cancellation releases the recovery slot and closes its input interval immediately; stale progress/finally callbacks cannot clear the new recovery or pause replacement music.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-stream-recovery/verification.json",
+      "limitation": "Actual media and Engine methods with controlled fallback/readiness/promise ordering; no live-network frequency, physical latency, Safari or official rule equivalence result."
     }
   ],
   "blockingEvidence": [
@@ -315,5 +328,5 @@
     "scope": "Public store metadata only; not client equivalence"
   },
   "lastCheckedDate": "2026-11-10",
-  "latestEngineeringEvidence": "docs/evidence/2026-11-10-folder-import/verification.json"
+  "latestEngineeringEvidence": "docs/evidence/2026-11-10-stream-recovery/verification.json"
 }

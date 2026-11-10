@@ -1,0 +1,84 @@
+{
+  "scope": "Controlled asynchronous buffer-recovery lifecycle checks; no official game equivalence or physical latency measurement",
+  "date": "2026-11-10",
+  "parentCommit": "3843d0b1d895a73561071d41e2f2bcb030aad5b6",
+  "runtime": "4.0.1.2-pages-35",
+  "officialAcceptance": "blocked",
+  "officialFidelityPercent": null,
+  "sourceHashes": {
+    "index.html": "7a160a54f7d1ef0bea2d3b7e767c55d67972ba05923c76556f0a8ba9a1236fa8",
+    "js/app.js": "e6955f9c4033ae27cfc900333db620002ef12b99537669f9e8121c10e2696834",
+    "sw.js": "89dea5f8b4b837accd396bef8ef2ac083559063713ec08d8f8cdeaf666b07bd5",
+    "tests/helpers/engine.cjs": "c18ac8ef24e5fc10fc8a648c65ecb52309476bb85f9e0a473ed30c8ccf505653",
+    "tests/stream-recovery-lifecycle.test.cjs": "c4c22cf5b515359d3d70966eda0600c09689903dc41bbeef8e8091573875c0d1",
+    "tests/stream-recovery-browser.cjs": "09910959dbcfde778e1df4998ab2ec17e0df841cd051d6c85a551b741761b087",
+    ".github/workflows/engineering-regression.yml": "8bade752c86cefc27bbe81cfeb287738561e17502ce34a587820d0728ba4ddf0"
+  },
+  "reproduced": [
+    "While an old media play observation remains pending, pause/restart leaves streamRecoveryPending set and blocks a later recovery.",
+    "An old recovery completion calls pause() on the actual replacement HTML media while its new start is pending; the before browser recording changes paused false -> true and the real clock stops.",
+    "An old open-ended inputClockPauses interval can classify resumed inputs as buffered, and its late finally closes it at the wrong time."
+  ],
+  "changes": [
+    "Synchronously release and abort recovery ownership on reset/pause/stop.",
+    "Close the owned input interval on cancellation and do not extend it when an old callback returns.",
+    "Restrict progress, final cleanup and scheduling to the owning controller/session; stale completion does not pause shared audio.",
+    "Keep current recovery errors visible through the existing manual-pause/error path; normal contact and timing regressions remain enabled."
+  ],
+  "commands": [
+    {
+      "command": "git show 3843d0b:js/app.js > /tmp/phigros-stream-before.js; PHI_TEST_APP_SOURCE=/tmp/phigros-stream-before.js node --test tests/stream-recovery-lifecycle.test.cjs",
+      "result": "failed-as-expected",
+      "tests": 10,
+      "pass": 1,
+      "fail": 9,
+      "evidence": "unit-before.log"
+    },
+    {
+      "command": "PHI_TEST_APP_SOURCE=/tmp/phigros-stream-before.js node tests/stream-recovery-browser.cjs http://127.0.0.1:4180 work/stream-recovery-before",
+      "result": "failed-as-expected",
+      "evidence": "browser-before.json"
+    },
+    {
+      "command": "node --test tests/stream-recovery-lifecycle.test.cjs tests/gameplay-stability.test.cjs",
+      "result": "passed",
+      "tests": 19
+    },
+    {
+      "command": "node tests/stream-recovery-browser.cjs http://127.0.0.1:4180 work/stream-recovery-after",
+      "result": "passed",
+      "evidence": "browser-after.json"
+    },
+    {
+      "command": "node --test tests/*.test.cjs",
+      "result": "passed",
+      "tests": 456,
+      "failures": 0,
+      "skipped": 0,
+      "evidence": "node-tests.log"
+    },
+    {
+      "command": "python3 scripts/build-runtime-release.py --output /tmp/phigros-runtime-pages35 --report work/runtime-pages35.json",
+      "result": "passed",
+      "bytes": 999578677,
+      "evidence": "runtime-package-summary.json"
+    },
+    {
+      "command": "git diff --check; node --check js/app.js; node --check tests/stream-recovery-browser.cjs",
+      "result": "passed"
+    }
+  ],
+  "browserMethod": "Force the existing HTML media fallback by a controlled Web Audio prepare failure. Play the real local Leave All Behind EZ audio. Simulate an underflow through readiness getters and delay only unmuted play-promise observations; the native play/pause, stream wait, actual Engine restart/resume and music clock still run. Muted gesture-prime calls are not delayed. This is a controlled I/O ordering regression, not an organic network/Safari reproduction.",
+  "browserOutcomes": [
+    "Before: native media playing before the overlap is paused by the old callback, and currentTime does not advance.",
+    "After: replacement remains unpaused and its native media clock advances.",
+    "After manual pause/resume, input is not classified in the old buffering interval; a new recovery keeps its own controller, progress handler and visible status when the old callback settles."
+  ],
+  "limitations": [
+    "No official judgment-window, timing, audiovisual-sync or physical device/Safari equivalence conclusion.",
+    "Controlled promises model late callbacks; this does not measure their frequency on a real network.",
+    "Other asynchronous gesture-prime, audio activation and optional transport paths are outside this regression.",
+    "Official baseline, complete resources, visuals, animations, Tips, chapters/replay and real-user save compatibility remain unaccepted as recorded in docs/fidelity-acceptance.json."
+  ],
+  "remoteCI": "PR CI now runs the native-media recovery regression; final head SHA and raw log result must be checked."
+}
