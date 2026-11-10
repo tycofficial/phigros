@@ -10,7 +10,8 @@
     "sw.js": "9b9d0d68e8be6d969888c5efa2dbf520e9147721d3e137a5aae7bcf31cab7ff2",
     "js/app.js": "e5d21bb69bfb159313b990a028cec9dc172e1207b05fe96d978e48e6e79c87eb",
     "tests/audio-transport-lifecycle.test.cjs": "44aebbbbe42cc9060c9e1f9054ff441570ac943fbaca384d92ca9ec038c1f3c3",
-    "tests/audio-transport-browser.cjs": "09c2116d0760d8b03d1abbaf319dc0bf1b5718211c18fdb202bc76e748b375ff"
+    "tests/audio-transport-browser.cjs": "09c2116d0760d8b03d1abbaf319dc0bf1b5718211c18fdb202bc76e748b375ff",
+    ".github/workflows/engineering-regression.yml": "9893225e1f3222f41b24717d48c538752e5231b40af561c15525b76c546a256d"
   },
   "commands": [
     {
@@ -19,7 +20,8 @@
       "tests": 438,
       "failures": 0,
       "skipped": 0,
-      "evidence": "node-tests.log"
+      "evidence": "node-tests.log",
+      "scope": "Local run includes four real Chromium IndexedDB transaction tests."
     },
     {
       "command": "PHI_TEST_APP_SOURCE=/tmp/phigros-app-before.js node tests/audio-transport-browser.cjs http://127.0.0.1:4180 work/audio-transport-before",
@@ -123,5 +125,6 @@
     "Folder picker, actual user save migrations, real iPad Safari and every local-format metadata combination have not been exhaustively tested.",
     "572 remote charts / 1104 unique remote URLs were not downloaded by the local resource audit.",
     "Official chapters/unlocks, all replay branches and effects, all Tips, exact animation timing, scoring/judgment boundaries and visual matching remain unaccepted."
-  ]
+  ],
+  "remoteFirstAttempt": "ci-first-run.json"
 }

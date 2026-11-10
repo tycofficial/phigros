@@ -16,20 +16,14 @@ jobs:
   regression:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Run unit and integration regressions
-        run: |
-          mkdir -p work
-          node --test tests/*.test.cjs | tee work/node-tests.log
-      - name: Verify complete runtime packaging
-        run: >-
-          python3 scripts/build-runtime-release.py
-          --output "$RUNNER_TEMP/phigros-runtime"
-          --report work/runtime-package.json
       - name: Prepare browser tooling
         run: |
           npm install --prefix "$RUNNER_TEMP/phigros-browser" --no-save --package-lock=false playwright@1.62.1
@@ -39,6 +33,15 @@ jobs:
         run: >-
           node -e "require('node:fs').appendFileSync(process.env.GITHUB_ENV,
           'CHROMIUM_PATH=' + require('playwright').chromium.executablePath() + '\n')"
+      - name: Run unit and integration regressions
+        run: |
+          mkdir -p work
+          node --test tests/*.test.cjs | tee work/node-tests.log
+      - name: Verify complete runtime packaging
+        run: >-
+          python3 scripts/build-runtime-release.py
+          --output "$RUNNER_TEMP/phigros-runtime"
+          --report work/runtime-package.json
       - name: Run actual app and persistent storage browser checks
         env:
           PHI_FLOW_VIDEO: '1'

@@ -1,0 +1,52 @@
+{
+  "run": "https://github.com/tycofficial/phigros/actions/runs/42827394411",
+  "headSHA": "0d14263e35e14e39f96f67554482f3f9b0434da7",
+  "reportedWorkflowConclusion": "success",
+  "acceptedEngineeringResult": "failed",
+  "nodeTests": {
+    "tests": 435,
+    "pass": 434,
+    "fail": 1,
+    "failedFile": "tests/local-import-storage.test.cjs",
+    "error": "Cannot find module 'playwright'",
+    "cause": "Node tests ran before browser dependencies were installed. This test file contains four actual Chromium IndexedDB tests."
+  },
+  "pipelineCause": "The implicit GitHub Actions shell was /usr/bin/bash -e {0}, without pipefail; tee hid the Node failure.",
+  "successfulSteps": [
+    "Runtime packaging",
+    "Real browser full flow",
+    "Audio transport lifecycle",
+    "Loading cancellation",
+    "11 migration scenarios",
+    "Replay media lifecycle",
+    "Evidence upload"
+  ],
+  "artifact": {
+    "id": 13769339493,
+    "name": "engineering-regression-a4a4a87a96e9580dc9ef235b957a13ba27733af8",
+    "size_in_bytes": 8788077,
+    "url": "https://api.github.com/repos/tycofficial/phigros/actions/artifacts/13769339493",
+    "archive_download_url": "https://api.github.com/repos/tycofficial/phigros/actions/artifacts/13769339493/zip",
+    "expired": false,
+    "created_at": "2026-11-10T13:52:58Z",
+    "expires_at": "2026-11-24T13:52:56Z",
+    "updated_at": "2026-11-10T13:52:58Z",
+    "digest": "sha256:35cf84005728e675aa03b09e1a1a5500d3cae5f082c2a664b1e7597f642e0908",
+    "workflow_run": {
+      "id": 42827394411,
+      "repository_id": 1429539890,
+      "head_repository_id": 1429539890,
+      "head_branch": "dot/phigros-loading-refactor",
+      "head_sha": "0d14263e35e14e39f96f67554482f3f9b0434da7"
+    }
+  },
+  "correction": [
+    "Install Playwright and Chromium and export NODE_PATH/CHROMIUM_PATH before running Node tests.",
+    "Set job defaults.run.shell to bash, enabling GitHub's explicit -e -o pipefail invocation.",
+    "Read raw test logs as well as job status before accepting a run."
+  ],
+  "localFailurePropagationProbe": {
+    "command": "bash with set -o pipefail; node -e 'process.exit(17)' | tee /tmp/phigros-ci-failure-probe.log",
+    "exitCode": 17
+  }
+}

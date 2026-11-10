@@ -265,7 +265,7 @@
         ".github/workflows/engineering-regression.yml"
       ],
       "verificationMethod": "Local equivalent commands and parsed workflow YAML; remote result must be read for the final SHA.",
-      "result": "PR-only checks run Node regressions and actual browser flows with screenshot/video/log artifacts; no deploy job.",
+      "result": "PR checks install browser tooling before the Node suite, use explicit bash pipefail, and upload browser evidence. Initial false-green run is recorded in docs/evidence/2026-11-10/ci-first-run.json; final SHA requires raw-log verification.",
       "officialFidelityStatus": "not_applicable"
     }
   ],
