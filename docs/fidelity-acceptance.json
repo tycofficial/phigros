@@ -6,7 +6,13 @@
     "build": null,
     "platform": null,
     "settings": null,
-    "referenceSource": null
+    "referenceSource": null,
+    "language": null,
+    "displayAspectRatio": null,
+    "resolution": null,
+    "displayScale": null,
+    "quality": null,
+    "gameSettings": null
   },
   "overallStatus": "blocked",
   "officialFidelityPercent": null,
@@ -23,7 +29,8 @@
       "verificationMethod": "同版本原版录屏逐帧对齐",
       "result": "未进行官方对照",
       "remainingDifference": "现有程序粒子和网格近似，不是官方逐帧验证",
-      "status": "blocked"
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
     },
     {
       "id": "loading",
@@ -36,7 +43,8 @@
       "verificationMethod": "原版同尺寸进入／退出时序对照",
       "result": "未进行官方对照",
       "remainingDifference": "保留模拟器现有 850ms/300ms 时序，尚无官方依据",
-      "status": "blocked"
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
     },
     {
       "id": "tips",
@@ -48,7 +56,8 @@
       "verificationMethod": "目标构建文本清单及触发规则核对",
       "result": "未进行官方对照",
       "remainingDifference": "缺少官方语料与出现规则；删除旧自写提示不等于还原",
-      "status": "blocked"
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
     },
     {
       "id": "selection",
@@ -61,7 +70,8 @@
       "verificationMethod": "逐页面截图、滚动、难度切换与触点对照",
       "result": "未进行官方对照",
       "remainingDifference": "当前元数据卡片与原版导航未完成对照",
-      "status": "blocked"
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
     },
     {
       "id": "catalog",
@@ -74,7 +84,8 @@
       "verificationMethod": "目标构建资源清单与当前素材哈希、版本、权限核对",
       "result": "未进行官方对照",
       "remainingDifference": "335 版本条目不是全曲目证明，历史 SP 和远程依赖仍有缺口",
-      "status": "blocked"
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
     },
     {
       "id": "gameplay",
@@ -86,7 +97,8 @@
       "verificationMethod": "原版受控输入、时钟和判定边界对照",
       "result": "未进行官方对照",
       "remainingDifference": "内部回归测试不能证明官方判定参数",
-      "status": "blocked"
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
     },
     {
       "id": "course",
@@ -98,7 +110,8 @@
       "verificationMethod": "官方选曲、规则、约束、失败与结果流程对照",
       "result": "未进行官方对照",
       "remainingDifference": "社区规则和自定义 UI 尚未官方验收",
-      "status": "blocked"
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
     },
     {
       "id": "replay",
@@ -112,7 +125,8 @@
       "verificationMethod": "逐章节成功／失败／退出路径录像与状态对照",
       "result": "未进行官方对照",
       "remainingDifference": "保留现有文本内容；额外标签清理及历史修改版来源均不能当作官方通过",
-      "status": "blocked"
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
     },
     {
       "id": "effects",
@@ -125,7 +139,8 @@
       "verificationMethod": "同帧官方原图与输出的空间／时序差异测量",
       "result": "未进行官方对照",
       "remainingDifference": "Bloom、径向模糊等已知缺口；未选择官方版本",
-      "status": "blocked"
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
     },
     {
       "id": "chapter9",
@@ -137,7 +152,8 @@
       "verificationMethod": "官方全流程录像与资源关联",
       "result": "未进行官方对照",
       "remainingDifference": "完整原版交互仍未实现",
-      "status": "blocked"
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
     },
     {
       "id": "settings-results",
@@ -150,7 +166,8 @@
       "verificationMethod": "建立所有页面和状态清单后逐项对照",
       "result": "未进行官方对照",
       "remainingDifference": "清单未穷尽，缺少统一官方参考，不可宣称全覆盖",
-      "status": "blocked"
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
     },
     {
       "id": "local-import",
@@ -161,9 +178,10 @@
         "tests/local-import-storage.test.cjs"
       ],
       "verificationMethod": "ZIP/PEZ/散文件/文件夹/旧成绩持久化回归",
-      "result": "未进行官方对照",
-      "remainingDifference": "当前改动不触及导入或存储；浏览器运行受环境限制，未在本轮全验收",
-      "status": "blocked"
+      "result": "11 个 Chromium IndexedDB 导入／迁移场景通过；真实文件选择器导入 PEZ、自然播放与结算、刷新后数据恢复通过；无官方一致性结论。",
+      "remainingDifference": "保留既有入口与格式、数据和行为。文件夹选择器、实际用户存档与真实 iPad 未穷尽验证。",
+      "status": "unverified",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
     }
   ],
   "engineeringChanges": [
@@ -228,12 +246,34 @@
       "result": "Revalidate transition token and running state before touching UI or starting music after audio session activation",
       "officialFidelityStatus": "not_applicable",
       "limitation": "Tests isolate activation boundary; real Safari audio lifecycle and other asynchronous playback boundaries remain outside this result"
+    },
+    {
+      "id": "audio-transport-session-guard",
+      "implementation": [
+        "js/app.js",
+        "tests/audio-transport-lifecycle.test.cjs",
+        "tests/audio-transport-browser.cjs"
+      ],
+      "verificationMethod": "18 transport regressions; original 12 cases had 10 failures before the fix. Real decoded Web Audio browser test fails on parent source and passes on final source.",
+      "result": "Cancelled or superseded context activation/buffer waits cannot start music or switch transport; old start/resume completions and watchdog callbacks cannot pause or mutate replacement playback.",
+      "officialFidelityStatus": "not_applicable",
+      "limitation": "Controlled asynchronous boundaries and real Chromium playback; no physical Safari latency or official timing equivalence measurement."
+    },
+    {
+      "id": "pr-engineering-ci",
+      "implementation": [
+        ".github/workflows/engineering-regression.yml"
+      ],
+      "verificationMethod": "Local equivalent commands and parsed workflow YAML; remote result must be read for the final SHA.",
+      "result": "PR-only checks run Node regressions and actual browser flows with screenshot/video/log artifacts; no deploy job.",
+      "officialFidelityStatus": "not_applicable"
     }
   ],
   "blockingEvidence": [
-    "公开商店版本 4.0.1.2 已核实；仍缺少统一参考平台／内部构建号、设置与完整原版流程录像",
-    "Chromium 在当前环境启动失败：socket() failed: Operation not permitted；浏览器／真实 iPad 未验证",
-    "替代云浏览器无法访问测试服务（ERR_CONNECTION_REFUSED），file: 协议被浏览器策略禁止；未绕过限制"
+    "公开商店候选仍为 4.0.1.2；TapTap build 160。缺少唯一官方平台／客户端内部构建号、语言、分辨率／比例／显示缩放、画质和游戏设置。",
+    "缺少同一构建的完整官方实机截图／录屏、Tips 全集与触发规则、原始资源清单和使用授权来源。",
+    "当前实现仍混有历史与社区规则；第九章完整交互、全部解锁和重演分支及演出未验收。",
+    "真实 iPad Safari、物理输入／音频延迟和实际用户存档未验证。"
   ],
   "minimalUserInput": [
     "官方客户端的版本／构建号、平台与显示／游戏设置截图",
@@ -247,5 +287,7 @@
     "verifiedIOSInternalBuild": null,
     "androidTapTapVersionCode": "160",
     "scope": "Public store metadata only; not client equivalence"
-  }
+  },
+  "lastCheckedDate": "2026-11-10",
+  "latestEngineeringEvidence": "docs/evidence/2026-11-10/verification.json"
 }

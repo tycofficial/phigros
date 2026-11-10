@@ -1,6 +1,6 @@
 {
-  "checkedDate": "2026-11-09",
-  "method": "Direct official-store page retrieval; search snippets were stale and were not used as current version evidence",
+  "checkedDate": "2026-11-10",
+  "method": "Direct official-store page retrieval on 2026-11-10; Apple version history and TapTap release metadata rechecked; no package or complete reference capture obtained",
   "sources": [
     {
       "url": "https://apps.apple.com/cn/app/phigros/id1454809109",
@@ -33,5 +33,6 @@
     "Store promotional screenshots do not verify every page, animation, timing, Tip, chart, unlock or replay branch.",
     "No official client interaction recording or package was acquired.",
     "Public listings do not grant blanket redistribution rights for music, artwork or other assets."
-  ]
+  ],
+  "selectedOfficialBaseline": null
 }

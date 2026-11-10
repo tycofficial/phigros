@@ -1,0 +1,136 @@
+{
+  "scope": "Browser media lifecycle only; official equivalence unverified",
+  "result": {
+    "exitActions": [
+      "cancel"
+    ],
+    "historicalContent": {
+      "subtitle": "鸠？！",
+      "title": "PhigrOS已崩溃",
+      "body": "模拟结束，谢谢你的参与。",
+      "button": "好"
+    },
+    "dialogConfirmed": true,
+    "fatalRecovered": true,
+    "paused": {
+      "clipId": "a",
+      "videoTime": 0,
+      "videoPlaying": false,
+      "videoEnded": false,
+      "videoDuration": 0,
+      "videoPrepared": false,
+      "mediaLoading": false,
+      "audioLoading": false,
+      "mediaBlocked": true,
+      "ambientTime": 0,
+      "ambientPlaying": false
+    },
+    "resumed": {
+      "clipId": "a",
+      "videoTime": 0,
+      "videoPlaying": true,
+      "videoEnded": false,
+      "videoDuration": 0,
+      "videoPrepared": false,
+      "mediaLoading": false,
+      "audioLoading": false,
+      "mediaBlocked": false,
+      "ambientTime": 0,
+      "ambientPlaying": true
+    },
+    "pointerActions": [
+      "hold-end"
+    ],
+    "gateStillPaused": true,
+    "afterStaleClip": {
+      "clipId": "b",
+      "videoTime": 0,
+      "videoPlaying": true,
+      "videoEnded": false,
+      "videoDuration": 0,
+      "videoPrepared": false,
+      "mediaLoading": false,
+      "audioLoading": false,
+      "mediaBlocked": false,
+      "ambientTime": 0,
+      "ambientPlaying": false
+    },
+    "duringNewAudio": {
+      "clipId": "b",
+      "videoTime": 0,
+      "videoPlaying": true,
+      "videoEnded": false,
+      "videoDuration": 0,
+      "videoPrepared": false,
+      "mediaLoading": false,
+      "audioLoading": true,
+      "mediaBlocked": false,
+      "ambientTime": 0,
+      "ambientPlaying": false
+    },
+    "afterNewAudio": {
+      "clipId": "b",
+      "videoTime": 0,
+      "videoPlaying": true,
+      "videoEnded": false,
+      "videoDuration": 0,
+      "videoPrepared": false,
+      "mediaLoading": false,
+      "audioLoading": false,
+      "mediaBlocked": false,
+      "ambientTime": 0,
+      "ambientPlaying": false
+    },
+    "blocked": {
+      "clipId": "a",
+      "videoTime": 0,
+      "videoPlaying": false,
+      "videoEnded": false,
+      "videoDuration": 0,
+      "videoPrepared": false,
+      "mediaLoading": false,
+      "audioLoading": false,
+      "mediaBlocked": true,
+      "ambientTime": 0,
+      "ambientPlaying": false
+    },
+    "keyboardActions": [
+      "hold-end"
+    ],
+    "afterKeyboard": {
+      "clipId": "a",
+      "videoTime": 0,
+      "videoPlaying": true,
+      "videoEnded": false,
+      "videoDuration": 0,
+      "videoPrepared": false,
+      "mediaLoading": false,
+      "audioLoading": false,
+      "mediaBlocked": false,
+      "ambientTime": 0,
+      "ambientPlaying": false
+    },
+    "noExtraUI": true,
+    "escapeCancelled": true
+  },
+  "manifestRaces": {
+    "video": {
+      "old": "AbortError",
+      "replacement": "resolved",
+      "sameSession": "resolved",
+      "countWhilePending": 2,
+      "fetchCount": 2,
+      "cached": "resolved",
+      "newSessionAborted": false
+    },
+    "credits": {
+      "old": "AbortError",
+      "replacement": "resolved",
+      "sameSession": "resolved",
+      "countWhilePending": 2,
+      "fetchCount": 2,
+      "cached": "resolved",
+      "newSessionAborted": false
+    }
+  }
+}

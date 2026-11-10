@@ -1,0 +1,60 @@
+name: Engineering regression
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: engineering-regression-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run unit and integration regressions
+        run: |
+          mkdir -p work
+          node --test tests/*.test.cjs | tee work/node-tests.log
+      - name: Verify complete runtime packaging
+        run: >-
+          python3 scripts/build-runtime-release.py
+          --output "$RUNNER_TEMP/phigros-runtime"
+          --report work/runtime-package.json
+      - name: Prepare browser tooling
+        run: |
+          npm install --prefix "$RUNNER_TEMP/phigros-browser" --no-save --package-lock=false playwright@1.62.1
+          node "$RUNNER_TEMP/phigros-browser/node_modules/playwright/cli.js" install --with-deps chromium
+          echo "NODE_PATH=$RUNNER_TEMP/phigros-browser/node_modules" >> "$GITHUB_ENV"
+      - name: Select installed Chromium
+        run: >-
+          node -e "require('node:fs').appendFileSync(process.env.GITHUB_ENV,
+          'CHROMIUM_PATH=' + require('playwright').chromium.executablePath() + '\n')"
+      - name: Run actual app and persistent storage browser checks
+        env:
+          PHI_FLOW_VIDEO: '1'
+        run: |
+          python3 -m http.server 4180 --bind 127.0.0.1 > work/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          node tests/full-flow-browser.cjs http://127.0.0.1:4180 work/browser-flow
+          node tests/audio-transport-browser.cjs http://127.0.0.1:4180 work/audio-transport
+          node tests/loading-cancel-browser.cjs http://127.0.0.1:4180 work/loading-cancel
+          node tests/library-migration-browser.cjs | tee work/library-migration.log
+          node tests/interactive-replay-media-browser.cjs | tee work/replay-media.log
+      - name: Keep engineering evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: engineering-regression-${{ github.sha }}
+          path: work/
+          retention-days: 14

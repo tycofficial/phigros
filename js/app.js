@@ -6,7 +6,7 @@
   for(const [name,path] of [['PhiPerformance','performance-policy.js'],['PhiLoadingPresentation','loading-presentation.js']]){
     if(globalThis[name])continue;
     await new Promise((resolve,reject)=>{
-      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-31';
+      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-32';
       script.onload=()=>globalThis[name]?resolve():reject(Error('组件未初始化：'+path));
       script.onerror=()=>reject(Error('组件加载失败，请刷新页面：'+path));document.head.appendChild(script);
     });
@@ -30,7 +30,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-31",
+    runtime: "4.0.1.2-pages-32",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-11-04T11:27:12Z",
@@ -9677,25 +9677,34 @@ function withTimeout(promise, ms, message = "操作超时") {
       return g;
     }
     async startMusic(offset = 0) {
+      // Audio activation and stream readiness can outlive pause, retry or exit.
+      // Only the transport's original transition may touch the shared audio.
+      const transition = this.transitionToken,
+        active = () => transition === this.transitionToken && this.running;
+      if (!active()) return;
       if (!this.musicUsingWebAudio) {
         this.ensureMediaAudioSource();
         if(this.streamSession){
           try{
             await Engine.ensureAudioContextRunning(1600,false);
+            if (!active()) return;
             if(!this.mediaMusicSource){this.mediaMusicSource=Engine.sharedAudioContext().createMediaElementSource(this.audio);this.mediaMusicSource.connect(this.ensureMusicGain());}
           }catch(error){Diagnostics.warn('AudioEngine.stream',error.message);}
         }
+        if (!active()) return;
         try {
           const position=clamp(offset,0,this.musicDuration());
           if(Math.abs(this.audio.currentTime-position)>.025)this.audio.currentTime=position;
         } catch (error) { Diagnostics.warn("Runtime.recoverable", error?.message || String(error)); }
         if(this.streamSession)await this.streamSession.wait();
+        if (!active()) return;
         await withTimeout(this.audio.play(),5000,'Safari 音乐播放未响应');
         return;
       }
       let ac;
       try{ac=await Engine.ensureAudioContextRunning(1600,false);}
-      catch(error){this.musicUsingWebAudio=false;return this.startMusic(offset);}
+      catch(error){if(!active())return;this.musicUsingWebAudio=false;return this.startMusic(offset);}
+      if (!active()) return;
       this.audio.pause();this.audio.loop=false;
       this.cancelAutoplayAudio();
       if (this.musicSource) {
@@ -9730,7 +9739,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         // An actually stalled context after start gets an automatic media retry.
         // No pre-play clock gate and no extra user-facing activation control.
         const at=this.musicOffset;this.pauseMusic();this.musicUsingWebAudio=false;
-        this.startMusic(at).then(()=>this.syncClock(true)).catch(error=>{this.pause('music-error');toast('音乐播放失败：'+error.message,true,7000);});
+        this.startMusic(at).then(()=>{if(active())this.syncClock(true);}).catch(error=>{if(active()){this.pause('music-error');toast('音乐播放失败：'+error.message,true,7000);}});
       },650);
       this.prepareAutoplayScheduler(offset - this.chart.offset);
       this.prepareAutoJudge(offset - this.chart.offset);
@@ -10855,6 +10864,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         }
         await this.startMusic(0);
       } catch (e) {
+        if (token !== this.transitionToken || !this.running) return;
         if (token === this.transitionToken) {
           this.starting = false;
           this.paused = true;
@@ -10863,7 +10873,6 @@ function withTimeout(promise, ms, message = "操作超时") {
         throw e;
       }
       if (token !== this.transitionToken || !this.running) {
-        this.pauseMusic();
         return;
       }
       this.paused = false;
@@ -11179,7 +11188,6 @@ function withTimeout(promise, ms, message = "操作超时") {
         return;
       }
       if (token !== this.transitionToken || !this.running) {
-        this.pauseMusic();
         return;
       }
       this.paused = false;
