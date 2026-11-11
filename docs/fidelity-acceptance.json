@@ -418,6 +418,20 @@
       "officialFidelityStatus": "not_applicable",
       "evidence": "docs/evidence/2026-11-11-hosted-cache/verification.json",
       "limitation": "Fulfillment cancellation and aligned browser bodies are controlled schedules, not physical-click/live failure frequency. Full current network matrices unverified, two mirror blocks and nonzero gate retained. Official reference remains blocked."
+    },
+    {
+      "id": "shared-progress-function-subscription-ownership",
+      "implementation": [
+        "js/hosted-media.js",
+        "tests/hosted-media.test.cjs",
+        "tests/hosted-progress-browser.cjs",
+        "scripts/audit-preparation-network.cjs"
+      ],
+      "verificationMethod": "Original same-function API callers, controlled original-byte native responses and pass-through producer progress. One/all/repeated cancellation, rejoin, shared failure/retry, distinct callbacks and completed-cache reuse. Current UI source callsites audited separately.",
+      "result": "Original 34 targeted Node checks: 32 pass / 2 fail; browser shared-cancel and shared-rejoin lose progress while bytes/download succeed. Reference-counted Map preserves one dispatch per function and releases only the final subscriber. Fixed targeted 34/34, final full Node 514/514, browser progress 5/cache 4/main flow 15, cancellation/reentry/SW/import/migration checks pass. Exact pushed SHA CI pending.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-11-shared-progress/verification.json",
+      "limitation": "Public API boundary only; existing UI callers create fresh callbacks, no observed player stall. Full network matrices unverified and two mirror blocks retained. Published site remains pages-40. Official baseline remains blocked."
     }
   ],
   "blockingEvidence": [
@@ -440,5 +454,5 @@
     "scope": "Public store metadata only; not client equivalence"
   },
   "lastCheckedDate": "2026-11-11",
-  "latestEngineeringEvidence": "docs/evidence/2026-11-11-hosted-cache/verification.json"
+  "latestEngineeringEvidence": "docs/evidence/2026-11-11-shared-progress/verification.json"
 }

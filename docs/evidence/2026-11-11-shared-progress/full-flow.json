@@ -1,0 +1,561 @@
+{
+  "scope": "Real browser engineering regression; no official consistency conclusion",
+  "referenceVersion": null,
+  "platform": "linux/x64",
+  "audioEvidence": "Decoded media duration and music clock only; physical device latency and audible output are not measured",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "deviceScaleFactor": 1,
+  "locale": "zh-CN",
+  "startedAt": "2026-11-11T11:50:01.643Z",
+  "implementationHashes": {
+    "index.html": "fc8fdc4ed057944e728afc4e92e3a8f5aac9a3e76b16f046a2376abf91287a25",
+    "js/app.js": "558ae841826fb03ca5ecae9392e4573a42285f24760d68bb727017ddb945ea01",
+    "js/course-mode.js": "21ea177954cdf444b8a75763cc8c2f3054e7b7b4ed3ca911cc0f6fc3e88a5276",
+    "js/interactive-replay.js": "fd81c993d3d44ee16497ff8a4a5eccd746a01ce3b3a03da4d55ea230073b635f",
+    "css/style.css": "02b2710e57475247f2129e092da6e2869641aafeb5d672762612074f99669244"
+  },
+  "steps": [
+    {
+      "name": "startup",
+      "at": "2026-11-11T11:50:04.049Z",
+      "stage": "studio",
+      "screenshot": "01-startup.png"
+    },
+    {
+      "name": "chapter-navigation",
+      "at": "2026-11-11T11:50:04.865Z",
+      "chapterButtons": 36
+    },
+    {
+      "name": "song-selection",
+      "at": "2026-11-11T11:50:08.992Z",
+      "title": "Leave All Behind",
+      "chartGroups": 332,
+      "screenshot": "02-song-selection.png"
+    },
+    {
+      "name": "visible-difficulty-buttons-receive-real-clicks",
+      "at": "2026-11-11T11:50:11.358Z",
+      "targets": [
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "tier": "EZ",
+          "selected": true
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "tier": "HD",
+          "selected": true
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "tier": "IN",
+          "selected": true
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "tier": "AT",
+          "selected": true
+        },
+        {
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "tier": "EZ",
+          "selected": true
+        },
+        {
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "tier": "HD",
+          "selected": true
+        },
+        {
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "tier": "IN",
+          "selected": true
+        },
+        {
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "tier": "AT",
+          "selected": true
+        },
+        {
+          "viewport": {
+            "width": 720,
+            "height": 1280
+          },
+          "tier": "EZ",
+          "selected": true
+        },
+        {
+          "viewport": {
+            "width": 720,
+            "height": 1280
+          },
+          "tier": "HD",
+          "selected": true
+        },
+        {
+          "viewport": {
+            "width": 720,
+            "height": 1280
+          },
+          "tier": "IN",
+          "selected": true
+        },
+        {
+          "viewport": {
+            "width": 720,
+            "height": 1280
+          },
+          "tier": "AT",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "name": "builtin-gameplay",
+      "at": "2026-11-11T11:50:18.419Z",
+      "engine": {
+        "name": "Leave All Behind",
+        "running": true,
+        "paused": false,
+        "starting": false,
+        "time": 2.4453401360544227,
+        "duration": 127.23519274376417,
+        "total": 210,
+        "counts": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "score": 0,
+        "autoplay": false,
+        "musicUsingWebAudio": true
+      },
+      "screenshot": "03-builtin-gameplay.png"
+    },
+    {
+      "name": "pause-freezes-music-clock",
+      "at": "2026-11-11T11:50:19.191Z",
+      "before": {
+        "name": "Leave All Behind",
+        "running": true,
+        "paused": true,
+        "starting": false,
+        "time": 2.5643424036281175,
+        "duration": 127.23519274376417,
+        "total": 210,
+        "counts": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "score": 0,
+        "autoplay": false,
+        "musicUsingWebAudio": true
+      },
+      "after": {
+        "name": "Leave All Behind",
+        "running": true,
+        "paused": true,
+        "starting": false,
+        "time": 2.5643424036281175,
+        "duration": 127.23519274376417,
+        "total": 210,
+        "counts": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "score": 0,
+        "autoplay": false,
+        "musicUsingWebAudio": true
+      },
+      "screenshot": "04-paused.png"
+    },
+    {
+      "name": "resume",
+      "at": "2026-11-11T11:50:21.662Z",
+      "engine": {
+        "name": "Leave All Behind",
+        "running": true,
+        "paused": false,
+        "starting": false,
+        "time": 2.9808390022675724,
+        "duration": 127.23519274376417,
+        "total": 210,
+        "counts": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "score": 0,
+        "autoplay": false,
+        "musicUsingWebAudio": true
+      }
+    },
+    {
+      "name": "retry",
+      "at": "2026-11-11T11:50:23.255Z",
+      "engine": {
+        "name": "Leave All Behind",
+        "running": true,
+        "paused": false,
+        "starting": false,
+        "time": 0,
+        "duration": 127.23519274376417,
+        "total": 210,
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "score": 0,
+        "autoplay": false,
+        "musicUsingWebAudio": true
+      }
+    },
+    {
+      "name": "return-to-library",
+      "at": "2026-11-11T11:50:23.483Z"
+    },
+    {
+      "name": "controlled-chart-download-failure",
+      "at": "2026-11-11T11:50:23.762Z",
+      "injectedFailures": 1,
+      "message": "内置谱面无法开始：资源加载失败（404）：http://127.0.0.1:4182/assets/charts/individual/ch9_0_hd.bin",
+      "fault": "Only ch9_0_hd.bin returned a controlled HTTP 404"
+    },
+    {
+      "name": "download-failure-retry-recovers",
+      "at": "2026-11-11T11:50:28.158Z",
+      "engine": {
+        "name": "Leave All Behind",
+        "running": true,
+        "paused": false,
+        "starting": false,
+        "time": 0.5151814058956923,
+        "duration": 127.23519274376417,
+        "total": 394,
+        "counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "score": 0,
+        "autoplay": false,
+        "musicUsingWebAudio": true
+      }
+    },
+    {
+      "name": "local-pez-import-through-existing-button",
+      "at": "2026-11-11T11:50:34.259Z",
+      "records": [
+        {
+          "id": "chart:82a0e3e289fbbfbf825d486c2403130d7fada5022efc136998d265dc73336dfd",
+          "name": "Browser regression fixture 3",
+          "parser": "pgr",
+          "notes": 4,
+          "duration": 4,
+          "audioHash": "sha256:982aaf5ad85c5a96989bca31ba95967c7f1543e3489a2bb4a3dac118d465a786:64044"
+        },
+        {
+          "id": "chart:b662f3208f67f2ff9748d9d9405df322e98a4e31d0cb6c227fd8c48fee4ae645",
+          "name": "Browser regression fixture 2",
+          "parser": "pgr",
+          "notes": 4,
+          "duration": 4,
+          "audioHash": "sha256:fa7b9145aa2354fcb3bd064ad11ed7022d6f2328362e9bf40b6628611e0fae0d:64044"
+        },
+        {
+          "id": "chart:d9bf92069ecc55348af276d6ab5fbcb5dbf35b9c5834174f40e8a794341580de",
+          "name": "Browser regression fixture 1",
+          "parser": "pgr",
+          "notes": 4,
+          "duration": 4,
+          "audioHash": "sha256:3800ef7d49043734f1211be4e39635ec8aab8e6b544beaa0229e259b1c78dc75:64044"
+        }
+      ],
+      "screenshot": "05-imported-library.png",
+      "fixture": "browser-course-fixture.pez"
+    },
+    {
+      "name": "local-natural-audio-end-result",
+      "at": "2026-11-11T11:50:45.391Z",
+      "engine": {
+        "name": "Browser regression fixture 3",
+        "running": false,
+        "paused": true,
+        "starting": false,
+        "time": 4,
+        "duration": 4,
+        "total": 4,
+        "counts": [
+          0,
+          0,
+          0,
+          4
+        ],
+        "score": 0,
+        "autoplay": false,
+        "musicUsingWebAudio": true
+      },
+      "displayedMisses": "4",
+      "screenshot": "06-local-natural-result.png"
+    },
+    {
+      "name": "three-stage-course-natural-completion",
+      "at": "2026-11-11T11:51:18.987Z",
+      "chosen": "Browser regression fixture 1 · EZ Lv.1\n移除\nBrowser regression fixture 2 · EZ Lv.2\n移除\nBrowser regression fixture 3 · EZ Lv.3\n移除",
+      "stages": [
+        {
+          "start": {
+            "name": "Browser regression fixture 1",
+            "running": true,
+            "paused": true,
+            "starting": true,
+            "time": 0,
+            "duration": 4,
+            "total": 4,
+            "counts": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "score": 0,
+            "autoplay": false,
+            "courseSessionId": "course-1794397846999-1",
+            "courseStageToken": "course-1794397846999-1:0",
+            "musicUsingWebAudio": true
+          },
+          "result": {
+            "id": "course-1794397846999-1",
+            "index": 0,
+            "state": "between",
+            "score": 0,
+            "counts": [
+              0,
+              0,
+              0,
+              4
+            ],
+            "assisted": false,
+            "results": [
+              {
+                "score": 0,
+                "counts": [
+                  0,
+                  0,
+                  0,
+                  4
+                ],
+                "total": 4,
+                "assisted": false
+              }
+            ],
+            "stageToken": "course-1794397846999-1:0"
+          }
+        },
+        {
+          "start": {
+            "name": "Browser regression fixture 2",
+            "running": true,
+            "paused": true,
+            "starting": true,
+            "time": 0,
+            "duration": 4,
+            "total": 4,
+            "counts": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "score": 0,
+            "autoplay": false,
+            "courseSessionId": "course-1794397846999-1",
+            "courseStageToken": "course-1794397846999-1:1",
+            "musicUsingWebAudio": true
+          },
+          "result": {
+            "id": "course-1794397846999-1",
+            "index": 1,
+            "state": "between",
+            "score": 0,
+            "counts": [
+              0,
+              0,
+              0,
+              8
+            ],
+            "assisted": false,
+            "results": [
+              {
+                "score": 0,
+                "counts": [
+                  0,
+                  0,
+                  0,
+                  4
+                ],
+                "total": 4,
+                "assisted": false
+              },
+              {
+                "score": 0,
+                "counts": [
+                  0,
+                  0,
+                  0,
+                  4
+                ],
+                "total": 4,
+                "assisted": false
+              }
+            ],
+            "stageToken": "course-1794397846999-1:1"
+          }
+        },
+        {
+          "start": {
+            "name": "Browser regression fixture 3",
+            "running": true,
+            "paused": true,
+            "starting": true,
+            "time": 0,
+            "duration": 4,
+            "total": 4,
+            "counts": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "score": 0,
+            "autoplay": false,
+            "courseSessionId": "course-1794397846999-1",
+            "courseStageToken": "course-1794397846999-1:2",
+            "musicUsingWebAudio": true
+          },
+          "result": {
+            "id": "course-1794397846999-1",
+            "index": 2,
+            "state": "complete",
+            "score": 0,
+            "counts": [
+              0,
+              0,
+              0,
+              12
+            ],
+            "assisted": false,
+            "results": [
+              {
+                "score": 0,
+                "counts": [
+                  0,
+                  0,
+                  0,
+                  4
+                ],
+                "total": 4,
+                "assisted": false
+              },
+              {
+                "score": 0,
+                "counts": [
+                  0,
+                  0,
+                  0,
+                  4
+                ],
+                "total": 4,
+                "assisted": false
+              },
+              {
+                "score": 0,
+                "counts": [
+                  0,
+                  0,
+                  0,
+                  4
+                ],
+                "total": 4,
+                "assisted": false
+              }
+            ],
+            "stageToken": "course-1794397846999-1:2"
+          }
+        }
+      ],
+      "screenshot": "07-course-complete.png"
+    },
+    {
+      "name": "imported-data-survives-reload",
+      "at": "2026-11-11T11:51:19.286Z",
+      "records": [
+        {
+          "id": "chart:82a0e3e289fbbfbf825d486c2403130d7fada5022efc136998d265dc73336dfd",
+          "name": "Browser regression fixture 3",
+          "audioHash": "sha256:982aaf5ad85c5a96989bca31ba95967c7f1543e3489a2bb4a3dac118d465a786:64044",
+          "notes": 4
+        },
+        {
+          "id": "chart:b662f3208f67f2ff9748d9d9405df322e98a4e31d0cb6c227fd8c48fee4ae645",
+          "name": "Browser regression fixture 2",
+          "audioHash": "sha256:fa7b9145aa2354fcb3bd064ad11ed7022d6f2328362e9bf40b6628611e0fae0d:64044",
+          "notes": 4
+        },
+        {
+          "id": "chart:d9bf92069ecc55348af276d6ab5fbcb5dbf35b9c5834174f40e8a794341580de",
+          "name": "Browser regression fixture 1",
+          "audioHash": "sha256:3800ef7d49043734f1211be4e39635ec8aab8e6b544beaa0229e259b1c78dc75:64044",
+          "notes": 4
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "requestFailures": [
+    {
+      "url": "http://127.0.0.1:4182/assets/charts/individual/ch9_0_hd.bin",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "browser": "156.0.8078.79",
+  "status": "passed-engineering-regression-only",
+  "finishedAt": "2026-11-11T11:51:19.286Z"
+}

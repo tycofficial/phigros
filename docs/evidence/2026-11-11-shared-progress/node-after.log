@@ -1,0 +1,43 @@
+✔ save-data, slow mobile hints and unknown Safari routes select small OGG (42.553584ms)
+✔ a strong route selects the original OGG and preserves actual lossless assets when provided (1.433856ms)
+✔ unsupported OGG codecs use small AAC on weak links and compatible AAC on strong links (3.034794ms)
+✔ measured same-origin bandwidth selects quality on browsers without network hints (10.997523ms)
+✔ an overoptimistic strong-network hint downgrades stalled music without ending the load (13.593374ms)
+✔ music cannot begin from an early partial buffer while the transfer is still pending (3.400747ms)
+✔ cancelling one subscriber preserves the resource needed by a second subscriber (2.693028ms)
+✔ a shared progress function survives one cancellation and remains deduplicated (3.499637ms)
+✔ rejoining the same progress function retains each remaining subscription once (2.477753ms)
+✔ all cancelled shared progress subscriptions ignore late old chunks and leave a fresh retry (2.670805ms)
+✔ failed shared progress subscriptions release before retry with the same function (1.978408ms)
+✔ different progress functions retain independent cancellation and delivery (1.997117ms)
+✔ a cancelled settled transfer cannot evict a valid cache after its URL is replaced (120.035837ms)
+✔ a cancelled settled transfer cannot replace the surviving route bandwidth sample (8.239237ms)
+✔ a cancelled settled transfer with no replacement cannot displace retained bytes (168.148597ms)
+✔ completed active downloads shrink to the original byte budget when consumers release (50.289198ms)
+✔ an aborted old transfer failure cannot remove its completed replacement (2.305723ms)
+✔ prepares a complete local music Blob before permitting playback (1.651434ms)
+✔ waits for audio readiness and then resolves as more audio arrives (1.194174ms)
+✔ returning to the library aborts a pending wait without hanging (1.121283ms)
+✔ under-speed links use bounded startup headroom instead of demanding most of a song (0.775631ms)
+✔ a fully buffered short tail can resume immediately (1.16489ms)
+[Artwork] 资源加载失败（404）：https://example.test/phigros/clear.jpg
+✔ failed fetches can be retried and never poison the cache (502.633803ms)
+✔ progressive artwork preserves the small image if the clear image fails (2.155667ms)
+✔ blocks cross-origin resource paths (1.111429ms)
+✔ a browser denying workers reports a compatibility fallback without mutating its DOMException (1.01307ms)
+✔ chart loading transfers a copy and terminates its worker after receiving the result (1.779478ms)
+✔ the chart worker owns its download, reports progress, and terminates on cancellation (1.58207ms)
+✔ a caller can cancel a recovery wait without destroying the stream (1.214285ms)
+✔ a fast first chunk followed by a slow link lowers the measured download rate (1.095425ms)
+✔ complete local music does not demand browser preload of the entire duration (1.783614ms)
+✔ an artwork deadline aborts its fetch instead of blocking song startup (1.560377ms)
+✔ opening cues follow the music clock, remain clear after looping, and stop on exit (2.291572ms)
+✔ progressive artwork assigns each JPEG and lossless WebP its true MIME type (1.159381ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1074.46132

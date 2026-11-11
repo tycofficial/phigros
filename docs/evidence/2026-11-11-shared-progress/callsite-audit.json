@@ -1,0 +1,36 @@
+{
+  "method": "Source review of shipped PhiHostedMedia references and its internal bytes() call sites, not an exhaustive runtime trace",
+  "result": "Current identified UI callers use fresh function instances or no progress callback. Same-function subscription failure is reproduced through the public bytes() API; no existing-player UI stall is claimed.",
+  "records": [
+    {
+      "file": "js/app.js",
+      "line": 6188,
+      "classification": "Fresh arrow inside each phiHostedBytes remote call",
+      "snippet": "const options={signal, onProgress:(done,total)=>{\n        if (!$('#loadingView')?.classList.contains('hidden')) setLoadingStatus(total ? `联网谱面 ${Math.min(100,Math.round(done/total*100))}%` : `联网谱面已读取 ${Math.ceil(done/1024)} KB`);\n      }};\n      return globalT"
+    },
+    {
+      "file": "js/app.js",
+      "line": 6195,
+      "classification": "Fresh arrow inside each phiHostedBytes same-origin call",
+      "snippet": "PhiHostedMedia.bytes(relativePath, {signal,onProgress:(done,total)=>{\n      if (!$('#loadingView')?.classList.contains('hidden')) setLoadingStatus(total ? `谱面 ${Math.min(100,Math.round(done/total*100))}%` : `已读取 ${Math.ceil(done/1024)} KB`);\n    }});\n    const"
+    },
+    {
+      "file": "js/hosted-media.js",
+      "line": 198,
+      "classification": "Fresh arrow for each Stream.readMusic attempt",
+      "snippet": "onProgress:(done,total)=>{this.loadedBytes=done;this.onProgress?.({...this.snapshot(),downloaded:done,total,downloading:true});}});\n        }catch(error){\n          if(!downgrade||this.controller.signal.aborted)throw error;\n          selected=selectAudio(this."
+    },
+    {
+      "file": "js/hosted-media.js",
+      "line": 86,
+      "classification": "artwork() byte call does not supply onProgress",
+      "snippet": "const data = await bytes(spec.stages[stage].url, { priority: stage === 0 ? 'high' : 'low',signal });\n        const blob = new Blob([data], { type: spec.stages[stage].mime || 'image/jpeg' });\n        if (!active()) break;\n        last = blob;\n        await onSt"
+    },
+    {
+      "file": "js/app.js",
+      "line": 6343,
+      "classification": "Skin byte call does not supply onProgress",
+      "snippet": "PhiHostedMedia.bytes(spec.url,{priority:'high',expectedSize:spec.bytes})], {type:name.endsWith('.png')?'image/webp':mimeForEmbeddedName(name)})};});\n      } else {\n        const blob = new Blob([await phiHostedBytes(\"./assets/packs/original-skin.zip\")], { type"
+    }
+  ]
+}

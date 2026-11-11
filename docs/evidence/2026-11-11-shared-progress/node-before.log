@@ -1,0 +1,98 @@
+✔ save-data, slow mobile hints and unknown Safari routes select small OGG (38.570687ms)
+✔ a strong route selects the original OGG and preserves actual lossless assets when provided (1.563581ms)
+✔ unsupported OGG codecs use small AAC on weak links and compatible AAC on strong links (2.621159ms)
+✔ measured same-origin bandwidth selects quality on browsers without network hints (9.748331ms)
+✔ an overoptimistic strong-network hint downgrades stalled music without ending the load (14.002456ms)
+✔ music cannot begin from an early partial buffer while the transfer is still pending (3.531333ms)
+✔ cancelling one subscriber preserves the resource needed by a second subscriber (2.692897ms)
+✖ a shared progress function survives one cancellation and remains deduplicated (4.612115ms)
+✖ rejoining the same progress function retains each remaining subscription once (3.519705ms)
+✔ all cancelled shared progress subscriptions ignore late old chunks and leave a fresh retry (2.632274ms)
+✔ failed shared progress subscriptions release before retry with the same function (1.865457ms)
+✔ different progress functions retain independent cancellation and delivery (3.496941ms)
+✔ a cancelled settled transfer cannot evict a valid cache after its URL is replaced (130.045441ms)
+✔ a cancelled settled transfer cannot replace the surviving route bandwidth sample (4.241776ms)
+✔ a cancelled settled transfer with no replacement cannot displace retained bytes (165.153447ms)
+✔ completed active downloads shrink to the original byte budget when consumers release (32.992784ms)
+✔ an aborted old transfer failure cannot remove its completed replacement (2.452242ms)
+✔ prepares a complete local music Blob before permitting playback (1.164798ms)
+✔ waits for audio readiness and then resolves as more audio arrives (1.081232ms)
+✔ returning to the library aborts a pending wait without hanging (0.925577ms)
+✔ under-speed links use bounded startup headroom instead of demanding most of a song (0.654668ms)
+✔ a fully buffered short tail can resume immediately (0.978366ms)
+[Artwork] 资源加载失败（404）：https://example.test/phigros/clear.jpg
+✔ failed fetches can be retried and never poison the cache (501.621172ms)
+✔ progressive artwork preserves the small image if the clear image fails (2.190937ms)
+✔ blocks cross-origin resource paths (0.727858ms)
+✔ a browser denying workers reports a compatibility fallback without mutating its DOMException (1.346252ms)
+✔ chart loading transfers a copy and terminates its worker after receiving the result (1.465793ms)
+✔ the chart worker owns its download, reports progress, and terminates on cancellation (1.028973ms)
+✔ a caller can cancel a recovery wait without destroying the stream (1.030175ms)
+✔ a fast first chunk followed by a slow link lowers the measured download rate (0.880569ms)
+✔ complete local music does not demand browser preload of the entire duration (1.23844ms)
+✔ an artwork deadline aborts its fetch instead of blocking song startup (1.467315ms)
+✔ opening cues follow the music clock, remain clear after looping, and stop on exit (2.501425ms)
+✔ progressive artwork assigns each JPEG and lossless WebP its true MIME type (1.194843ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 32
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1033.755708
+
+✖ failing tests:
+
+test at tests/hosted-media.test.cjs:114:1
+✖ a shared progress function survives one cancellation and remains deduplicated (4.612115ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      [
+        2,
+        6
+      ],
+  -   [
+  -     4,
+  -     6
+  -   ],
+  -   [
+  -     6,
+  -     6
+  -   ]
+    ]
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/hosted-media.test.cjs:122:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ [ 2, 6 ] ],
+    expected: [ [ 2, 6 ], [ 4, 6 ], [ 6, 6 ] ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/hosted-media.test.cjs:125:1
+✖ rejoining the same progress function retains each remaining subscription once (3.519705ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      2,
+      4,
+  -   6
+    ]
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/hosted-media.test.cjs:133:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 2, 4 ],
+    expected: [ 2, 4, 6 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

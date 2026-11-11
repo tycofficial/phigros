@@ -1,0 +1,374 @@
+{
+  "scope": "Shared progress callback API ownership; native original body is verified then re-streamed in controlled chunks. No current UI same-function path or physical network failure incidence is claimed.",
+  "startedAt": "2026-11-11T11:06:35.616Z",
+  "sourceSHA256": "626f748d65fc57b3755a18f00891c607b0b39a4fa1721ada3d8ce40a39ffb019",
+  "sample": {
+    "id": "catalog-a3c296e4da096d36-art",
+    "url": "./assets/catalog-media/a3c296e4da096d36-full-lossless.webp",
+    "bytes": 53750,
+    "SHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df"
+  },
+  "results": [
+    {
+      "mode": "shared-cancel",
+      "status": "failed",
+      "error": "Progress subscription ownership/deduplication differs",
+      "observations": {
+        "cancelled": "AbortError",
+        "sharedProgress": [
+          [
+            17916,
+            53750
+          ]
+        ],
+        "otherProgress": [],
+        "expectedShared": [
+          17916,
+          35833,
+          53750
+        ],
+        "actualRequests": 1,
+        "validSHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df",
+        "cacheReused": true
+      },
+      "sharedProgress": [
+        [
+          17916,
+          53750
+        ]
+      ],
+      "otherProgress": [],
+      "requests": [
+        {
+          "status": 200,
+          "url": "http://127.0.0.1:4180/assets/catalog-media/a3c296e4da096d36-full-lossless.webp",
+          "bytes": 53750,
+          "SHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df",
+          "signalAborted": false
+        }
+      ],
+      "producers": [
+        {
+          "progress": [
+            [
+              17916,
+              53750
+            ],
+            [
+              35833,
+              53750
+            ],
+            [
+              53750,
+              53750
+            ]
+          ],
+          "status": "resolved",
+          "signalAborted": false
+        }
+      ]
+    },
+    {
+      "mode": "shared-rejoin",
+      "status": "failed",
+      "error": "Progress subscription ownership/deduplication differs",
+      "observations": {
+        "cancelled": "AbortError",
+        "sharedProgress": [
+          [
+            17916,
+            53750
+          ],
+          [
+            35833,
+            53750
+          ]
+        ],
+        "otherProgress": [],
+        "expectedShared": [
+          17916,
+          35833,
+          53750
+        ],
+        "actualRequests": 1,
+        "validSHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df",
+        "cacheReused": true
+      },
+      "sharedProgress": [
+        [
+          17916,
+          53750
+        ],
+        [
+          35833,
+          53750
+        ]
+      ],
+      "otherProgress": [],
+      "requests": [
+        {
+          "status": 200,
+          "url": "http://127.0.0.1:4180/assets/catalog-media/a3c296e4da096d36-full-lossless.webp",
+          "bytes": 53750,
+          "SHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df",
+          "signalAborted": false
+        }
+      ],
+      "producers": [
+        {
+          "progress": [
+            [
+              17916,
+              53750
+            ],
+            [
+              35833,
+              53750
+            ],
+            [
+              53750,
+              53750
+            ]
+          ],
+          "status": "resolved",
+          "signalAborted": false
+        }
+      ]
+    },
+    {
+      "mode": "all-cancel",
+      "status": "passed",
+      "observations": {
+        "cancelled": "AbortError",
+        "cancelledSecond": "AbortError",
+        "afterLateOld": [
+          [
+            17916,
+            53750
+          ]
+        ],
+        "sharedProgress": [
+          [
+            17916,
+            53750
+          ],
+          [
+            17916,
+            53750
+          ],
+          [
+            35833,
+            53750
+          ],
+          [
+            53750,
+            53750
+          ]
+        ],
+        "otherProgress": [],
+        "expectedShared": [
+          17916,
+          17916,
+          35833,
+          53750
+        ],
+        "actualRequests": 2,
+        "validSHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df",
+        "cacheReused": true
+      },
+      "requests": [
+        {
+          "status": 200,
+          "url": "http://127.0.0.1:4180/assets/catalog-media/a3c296e4da096d36-full-lossless.webp",
+          "bytes": 53750,
+          "SHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df",
+          "signalAborted": true
+        },
+        {
+          "status": 200,
+          "url": "http://127.0.0.1:4180/assets/catalog-media/a3c296e4da096d36-full-lossless.webp",
+          "bytes": 53750,
+          "SHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df",
+          "signalAborted": false
+        }
+      ],
+      "producers": [
+        {
+          "progress": [
+            [
+              17916,
+              53750
+            ],
+            [
+              53750,
+              53750
+            ],
+            [
+              0,
+              53750
+            ]
+          ],
+          "status": "AbortError",
+          "signalAborted": true
+        },
+        {
+          "progress": [
+            [
+              17916,
+              53750
+            ],
+            [
+              35833,
+              53750
+            ],
+            [
+              53750,
+              53750
+            ]
+          ],
+          "status": "resolved",
+          "signalAborted": false
+        }
+      ]
+    },
+    {
+      "mode": "failure-retry",
+      "status": "passed",
+      "observations": {
+        "failed": [
+          "Error",
+          "Error"
+        ],
+        "failureWasInjected": true,
+        "sharedProgress": [
+          [
+            17916,
+            53750
+          ],
+          [
+            35833,
+            53750
+          ],
+          [
+            53750,
+            53750
+          ]
+        ],
+        "otherProgress": [],
+        "expectedShared": [
+          17916,
+          35833,
+          53750
+        ],
+        "actualRequests": 2,
+        "validSHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df",
+        "cacheReused": true
+      },
+      "requests": [
+        {
+          "status": 404,
+          "url": "http://127.0.0.1:4180/assets/catalog-media/a3c296e4da096d36-full-lossless.webp",
+          "signalAborted": true
+        },
+        {
+          "status": 200,
+          "url": "http://127.0.0.1:4180/assets/catalog-media/a3c296e4da096d36-full-lossless.webp",
+          "bytes": 53750,
+          "SHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df",
+          "signalAborted": false
+        }
+      ],
+      "producers": [
+        {
+          "progress": [],
+          "status": "Error",
+          "signalAborted": true
+        },
+        {
+          "progress": [
+            [
+              17916,
+              53750
+            ],
+            [
+              35833,
+              53750
+            ],
+            [
+              53750,
+              53750
+            ]
+          ],
+          "status": "resolved",
+          "signalAborted": false
+        }
+      ]
+    },
+    {
+      "mode": "distinct-callbacks",
+      "status": "passed",
+      "observations": {
+        "cancelled": "AbortError",
+        "sharedProgress": [
+          [
+            17916,
+            53750
+          ]
+        ],
+        "otherProgress": [
+          [
+            17916,
+            53750
+          ],
+          [
+            35833,
+            53750
+          ],
+          [
+            53750,
+            53750
+          ]
+        ],
+        "expectedShared": [
+          17916
+        ],
+        "actualRequests": 1,
+        "validSHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df",
+        "cacheReused": true
+      },
+      "requests": [
+        {
+          "status": 200,
+          "url": "http://127.0.0.1:4180/assets/catalog-media/a3c296e4da096d36-full-lossless.webp",
+          "bytes": 53750,
+          "SHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df",
+          "signalAborted": false
+        }
+      ],
+      "producers": [
+        {
+          "progress": [
+            [
+              17916,
+              53750
+            ],
+            [
+              35833,
+              53750
+            ],
+            [
+              53750,
+              53750
+            ]
+          ],
+          "status": "resolved",
+          "signalAborted": false
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "browser": "156.0.8078.79",
+  "status": "failed",
+  "finishedAt": "2026-11-11T11:06:37.348Z"
+}
