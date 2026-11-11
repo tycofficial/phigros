@@ -10,7 +10,7 @@ const report={scope:'Current preparation cache and native CORS for one fixed rea
 const cached=process.env.PHI_PREPARATION_NETWORK_CACHED==='1';report.transport=cached?'Controlled previously measured cache; NOT external native CORS':'Actual native external fetch; normal browser HTTP cache permitted';
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});report.browser=browser.version();
- try{for(const mode of ['surviving-consumer','replacement-after-abort']){
+ try{for(const mode of ['surviving-consumer','replacement-after-abort','hosted-settled-replacement']){
   const context=await browser.newContext({serviceWorkers:'block'}),page=await context.newPage();page.on('pageerror',e=>report.pageErrors.push(e.message));
   try{
    // Stop unexpected remote addresses rather than testing a fallback host.
@@ -24,10 +24,28 @@ const cached=process.env.PHI_PREPARATION_NETWORK_CACHED==='1';report.transport=c
      const address=new URL(url instanceof Request?url.url:url,location.href).href;if(address!==asset.url)return originalFetch(url,options);
      const response=await originalFetch(url,options),data=await response.clone().arrayBuffer(),row={url:response.url,status:response.status,type:response.type,bytes:data.byteLength,SHA256:await digest(data),options:{method:options?.method||'GET',mode:options?.mode,credentials:options?.credentials,redirect:options?.redirect}};requests.push(row);
      if(response.status!==200||response.type!=='cors'||row.bytes!==asset.byteLength||row.SHA256!==asset.sha256)throw Error('Native sample bytes/CORS differ');
-     if(requests.length===1){gate.signal=options.signal;await new Promise(resolve=>{gate.release=resolve;});gate.returned=true;}
+     if(requests.length===1&&mode!=='hosted-settled-replacement'){gate.signal=options.signal;await new Promise(resolve=>{gate.release=resolve;});gate.returned=true;}
      return response;
     };
     try{
+     if(mode==='hosted-settled-replacement'){
+      const remote=PhiRemoteAssets,caller=new AbortController();let observed=false,replacement,oldSignalAborted;
+      window.PhiRemoteAssets={...remote,download(...args){
+       const pending=remote.download(...args);
+       if(!observed){observed=true;pending.then(async()=>{
+        caller.abort();await Promise.resolve();oldSignalAborted=args[1].signal.aborted;
+        replacement=PhiHostedMedia.bytes(asset.url);
+       });}
+       return pending;
+      }};
+      try{
+       const cancelled=await PhiHostedMedia.bytes(asset.url,{signal:caller.signal}).then(()=> 'resolved',e=>e.name);
+       await until(()=>replacement);const bytes=await replacement,hash=await digest(bytes),beforeReuse=requests.length;
+       const reused=await PhiHostedMedia.bytes(asset.url);
+       if(cancelled!=='AbortError'||!oldSignalAborted||hash!==asset.sha256||reused!==bytes||requests.length!==2||requests.length!==beforeReuse)throw Error('Settled remote producer ownership differs');
+       return {mode,status:'passed',cancelled,oldSignalAborted,preparedSHA256:hash,cacheReused:true,schedule:'Programmatic abort at original fulfilled remote Promise; same producer Promise returned',requests};
+      }finally{window.PhiRemoteAssets=remote;}
+     }
      const catalog=PhiOfflineNext.modules.BuiltinCatalog,record=catalog.entries.find(e=>e.id===id);if(!record)throw Error('Actual entry missing');
      const a=new AbortController(),b=new AbortController();
      const first=catalog.materialize(record,{streaming:true,signal:a.signal}).then(()=>({outcome:'resolved'}),e=>({outcome:e.name}));

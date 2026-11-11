@@ -404,6 +404,20 @@
       "officialFidelityStatus": "not_applicable",
       "evidence": "docs/evidence/2026-11-10-same-chart-preparation/verification.json",
       "limitation": "Current full main/vision network matrices not rerun. Old whole-bootstrap UI proof is invalidated, not expanded; scope and two mirror gates remain nonzero. Physical/official/full-chapter acceptance remains blocked."
+    },
+    {
+      "id": "hosted-download-cache-ownership-and-release",
+      "implementation": [
+        "js/hosted-media.js",
+        "tests/hosted-media.test.cjs",
+        "tests/hosted-cache-browser.cjs",
+        "scripts/audit-preparation-network.cjs"
+      ],
+      "verificationMethod": "Original transfer Promise settlement observer and native original-byte component tests; concurrent completion/release tests; public cache re-read counts and audioQuality(), no private counter-only assertions.",
+      "result": "Original 29 targeted tests: 25 pass/4 fail. Fixed 29/29 and 509/509 total pass; 4 browser cases pass. Obsolete success cannot update bytes/sample or evict valid entries; idle completion cache trims on last release. Exact pushed commit CI and fresh native small sample pending.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-11-hosted-cache/verification.json",
+      "limitation": "Fulfillment cancellation and aligned browser bodies are controlled schedules, not physical-click/live failure frequency. Full current network matrices unverified, two mirror blocks and nonzero gate retained. Official reference remains blocked."
     }
   ],
   "blockingEvidence": [
@@ -425,6 +439,6 @@
     "androidTapTapVersionCode": "160",
     "scope": "Public store metadata only; not client equivalence"
   },
-  "lastCheckedDate": "2026-11-10",
-  "latestEngineeringEvidence": "docs/evidence/2026-11-10-same-chart-preparation/verification.json"
+  "lastCheckedDate": "2026-11-11",
+  "latestEngineeringEvidence": "docs/evidence/2026-11-11-hosted-cache/verification.json"
 }

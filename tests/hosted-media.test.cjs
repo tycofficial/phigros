@@ -15,7 +15,7 @@ function runtime(overrides = {}) {
   });
   vm.runInContext(fs.readFileSync('js/performance-policy.js','utf8'), context);
   vm.runInContext(fs.readFileSync('js/resource-transfer.js','utf8'), context);
-  vm.runInContext(fs.readFileSync('js/hosted-media.js','utf8'), context);
+  vm.runInContext(fs.readFileSync(process.env.PHI_TEST_HOSTED_MEDIA_SOURCE||'js/hosted-media.js','utf8'), context);
   return context;
 }
 class FakeAudio extends EventTarget {
@@ -99,6 +99,93 @@ test('cancelling one subscriber preserves the resource needed by a second subscr
   await new Promise(resolve=>setImmediate(resolve));controller.abort();
   await assert.rejects(first,{name:'AbortError'});assert.equal(aborted,false);
   complete(new Response('shared'));assert.equal(Buffer.from(await second).toString(),'shared');assert.equal(calls,1);
+});
+
+test('a cancelled settled transfer cannot evict a valid cache after its URL is replaced',async()=>{
+  const calls=[];
+  const context=runtime({fetch:async href=>{
+    calls.push(href);return new Response(new Uint8Array((href.endsWith('/marker')?4:5)*1024*1024));
+  }}),media=context.PhiHostedMedia,original=context.PhiTransfer.download;
+  await media.bytes('./marker');
+  const controller=new AbortController();let replacement,observed=false;
+  context.PhiTransfer={download(...args){
+    const pending=original(...args);
+    if(!observed){observed=true;pending.then(async()=>{
+      controller.abort();await Promise.resolve();replacement=media.bytes('./target');
+    });}
+    return pending; // Observe the original fulfilled producer, without replacing its result.
+  }};
+  await assert.rejects(media.bytes('./target',{signal:controller.signal}),{name:'AbortError'});
+  await new Promise(resolve=>setImmediate(resolve));
+  assert.equal((await replacement).byteLength,5*1024*1024);
+  await media.bytes('./marker');await media.bytes('./target');
+  assert.equal(calls.filter(href=>href.endsWith('/marker')).length,1,'4+5 MiB fits: obsolete bytes must not evict the marker');
+  assert.equal(calls.filter(href=>href.endsWith('/target')).length,2);
+});
+
+test('a cancelled settled transfer cannot replace the surviving route bandwidth sample',async()=>{
+  let now=0,complete,calls=0;
+  const context=runtime({performance:{now:()=>now},fetch:async href=>{
+    if(href.endsWith('/baseline'))now=2000;
+    else if(++calls===1)now+=100;
+    else return new Promise(resolve=>complete=resolve);
+    return new Response(new Uint8Array(100000));
+  }}),media=context.PhiHostedMedia,original=context.PhiTransfer.download;
+  await media.bytes('./baseline');assert.equal(media.audioQuality(),'low');
+  const controller=new AbortController();let replacement,observed=false;
+  context.PhiTransfer={download(...args){
+    const pending=original(...args);
+    if(!observed){observed=true;pending.then(async()=>{controller.abort();await Promise.resolve();replacement=media.bytes('./target');});}
+    return pending;
+  }};
+  await assert.rejects(media.bytes('./target',{signal:controller.signal}),{name:'AbortError'});
+  await new Promise(resolve=>setImmediate(resolve));
+  const qualityWhileReplacementPending=media.audioQuality();
+  now+=2000;complete(new Response(new Uint8Array(100000)));await replacement;
+  assert.equal(qualityWhileReplacementPending,'low','cancelled fast bytes must not select the large high-quality variant');
+  assert.equal(media.audioQuality(),'low');assert.equal(calls,2);
+});
+
+test('a cancelled settled transfer with no replacement cannot displace retained bytes',async()=>{
+  const calls=[];
+  const context=runtime({fetch:async href=>{
+    calls.push(href);return new Response(new Uint8Array((href.endsWith('/marker')?4:9)*1024*1024));
+  }}),media=context.PhiHostedMedia,original=context.PhiTransfer.download;
+  await media.bytes('./marker');
+  const controller=new AbortController();let observed=false;
+  context.PhiTransfer={download(...args){
+    const pending=original(...args);
+    if(!observed){observed=true;pending.then(()=>controller.abort());}return pending;
+  }};
+  await assert.rejects(media.bytes('./target',{signal:controller.signal}),{name:'AbortError'});
+  await new Promise(resolve=>setImmediate(resolve));await media.bytes('./marker');
+  assert.equal(calls.filter(href=>href.endsWith('/marker')).length,1);
+  assert.equal((await media.bytes('./target')).byteLength,9*1024*1024);
+  assert.equal(calls.filter(href=>href.endsWith('/target')).length,2,'cancelled bytes must require a new live producer');
+});
+
+test('completed active downloads shrink to the original byte budget when consumers release',async()=>{
+  const calls=[];
+  const {PhiHostedMedia:media}=runtime({fetch:async href=>{
+    calls.push(href);return new Response(new Uint8Array(8*1024*1024));
+  }});
+  await Promise.all([media.bytes('./older'),media.bytes('./newer')]);
+  await media.bytes('./newer');assert.equal(calls.length,2,'newest completed entry remains reusable');
+  await media.bytes('./older');assert.equal(calls.length,3,'two idle 8 MiB objects cannot both remain in a 12 MiB cache');
+});
+
+test('an aborted old transfer failure cannot remove its completed replacement',async()=>{
+  let complete,calls=0;
+  const {PhiHostedMedia:media}=runtime({fetch:async()=>{
+    if(++calls===1)return new Promise(resolve=>complete=resolve);
+    return new Response('replacement');
+  }});
+  const controller=new AbortController(),first=media.bytes('./same',{signal:controller.signal});
+  await new Promise(resolve=>setImmediate(resolve));controller.abort();
+  await assert.rejects(first,{name:'AbortError'});
+  const replacement=await media.bytes('./same');
+  complete(new Response('',{status:404}));await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(await media.bytes('./same'),replacement);assert.equal(calls,2);
 });
 
 test('prepares a complete local music Blob before permitting playback', async()=>{
