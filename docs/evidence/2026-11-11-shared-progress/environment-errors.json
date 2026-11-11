@@ -1,0 +1,72 @@
+{
+  "directoryOrchestration": {
+    "command": "PHI_PREPARATION_NETWORK_CACHED=1 node scripts/audit-preparation-network.cjs ...",
+    "stage": "Before script execution: shell output redirection",
+    "exitCode": 1,
+    "reason": "Output directory was created concurrently by a different command, so redirection failed before the test started.",
+    "productTestExecuted": false,
+    "correction": "Create the output directory before starting the independent command; same test/source/assertions."
+  },
+  "oldHTTPServer": {
+    "oldServer": "http://127.0.0.1:4180/",
+    "observation": {
+      "error": "RemoteDisconnected: Remote end closed connection without response"
+    },
+    "productStateReached": false,
+    "correction": "New local HTTP test server on port 4182; same source, cases and assertions"
+  },
+  "failedFullFlow": {
+    "scope": "Real browser engineering regression; no official consistency conclusion",
+    "referenceVersion": null,
+    "platform": "linux/x64",
+    "audioEvidence": "Decoded media duration and music clock only; physical device latency and audible output are not measured",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "deviceScaleFactor": 1,
+    "locale": "zh-CN",
+    "startedAt": "2026-11-11T11:48:23.638Z",
+    "implementationHashes": {
+      "index.html": "fc8fdc4ed057944e728afc4e92e3a8f5aac9a3e76b16f046a2376abf91287a25",
+      "js/app.js": "558ae841826fb03ca5ecae9392e4573a42285f24760d68bb727017ddb945ea01",
+      "js/course-mode.js": "21ea177954cdf444b8a75763cc8c2f3054e7b7b4ed3ca911cc0f6fc3e88a5276",
+      "js/interactive-replay.js": "fd81c993d3d44ee16497ff8a4a5eccd746a01ce3b3a03da4d55ea230073b635f",
+      "css/style.css": "02b2710e57475247f2129e092da6e2869641aafeb5d672762612074f99669244"
+    },
+    "steps": [],
+    "pageErrors": [],
+    "requestFailures": [
+      {
+        "url": "http://127.0.0.1:4180/",
+        "error": "net::ERR_EMPTY_RESPONSE"
+      }
+    ],
+    "browser": "156.0.8078.79",
+    "status": "failed",
+    "error": "page.goto: net::ERR_EMPTY_RESPONSE at http://127.0.0.1:4180/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4180/\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at /workspace/phigros/tests/full-flow-browser.cjs:22:16",
+    "failureState": null,
+    "finishedAt": "2026-11-11T11:48:25.737Z"
+  },
+  "failedCachedProtocol": {
+    "scope": "Current preparation cache and native CORS for one fixed real chart; not the 1091-address matrix or official fidelity",
+    "startedAt": "2026-11-11T11:48:53.273Z",
+    "appSHA256": "558ae841826fb03ca5ecae9392e4573a42285f24760d68bb727017ddb945ea01",
+    "TLSVerificationDisabled": false,
+    "sample": {
+      "id": "catalog-2bd25eaa9c1f1ecc-ez",
+      "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/InfinityHeaven.HyuN.0/EZ.json",
+      "bytes": 23413,
+      "SHA256": "f5b3551c678d632ad7a24b78f3f1e92530048d711cdd1831e37a488ee5423c14"
+    },
+    "results": [],
+    "pageErrors": [],
+    "transport": "Controlled previously measured cache; NOT external native CORS",
+    "browser": "156.0.8078.79",
+    "hostedMediaSHA256": "7361ec27654bd2759012d58f4e0396e7c5fd13b2d3819dc4587343cefe98676d",
+    "status": "failed",
+    "error": "page.goto: net::ERR_EMPTY_RESPONSE at http://127.0.0.1:4180/?skipIntro=1\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4180/?skipIntro=1\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at /workspace/phigros/scripts/audit-preparation-network.cjs:20:15",
+    "finishedAt": "2026-11-11T11:48:53.718Z"
+  },
+  "result": "Initial output-directory orchestration and old local HTTP server failed before product state was reached. Fresh port 4182 served exact pages-41 source; unchanged tests then passed. No product fix, assertion/time-limit reduction or new TLS configuration was used."
+}

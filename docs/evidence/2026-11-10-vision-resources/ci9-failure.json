@@ -1,0 +1,99 @@
+{
+  "head": "74325574d0433da7f2eda8c0b3493eb4cfe409c3",
+  "runId": 42868000405,
+  "jobId": 130011401723,
+  "url": "https://github.com/tycofficial/phigros/actions/runs/42868000405",
+  "conclusion": "failure",
+  "unit": {
+    "tests": 487,
+    "pass": 487,
+    "fail": 0,
+    "skipped": 0
+  },
+  "actualFailure": {
+    "status": "failed",
+    "error": "page.evaluate: Error: new worker did not take control\n    at eval (eval at evaluate (:311:30), <anonymous>:4:37)\n    at updateWorker (/home/runner/work/phigros/phigros/tests/service-worker-browser.cjs:46:31)\n    at /home/runner/work/phigros/phigros/tests/service-worker-browser.cjs:110:59",
+    "steps": [
+      {
+        "name": "previous-worker-warmed",
+        "runtime": "4.0.1.2-pages-32",
+        "caches": [
+          "tycphigros-4.0.1.2-stability-2",
+          "tycphigros-app-pages-32"
+        ]
+      },
+      {
+        "name": "updated-worker-claimed",
+        "caches": [
+          "tycphigros-4.0.1.2-stability-2",
+          "tycphigros-app-pages-32",
+          "tycphigros-app-pages-37"
+        ]
+      },
+      {
+        "name": "offline-after-update-restores-app-and-saves",
+        "runtime": "4.0.1.2-pages-37",
+        "restored": {
+          "id": "sw-existing-chart",
+          "chartText": "saved-original",
+          "audio": "saved-original-audio",
+          "setting": {
+            "offset": 123
+          },
+          "score": 321,
+          "localScore": "321"
+        },
+        "screenshot": "offline-after-update.png"
+      },
+      {
+        "name": "shared-media-range-survives-update",
+        "status": 206,
+        "range": "bytes 2-5/10",
+        "body": "2345"
+      },
+      {
+        "name": "offline-index-alias-loads",
+        "runtime": "4.0.1.2-pages-37"
+      },
+      {
+        "name": "missing-bootstrap-rejects-update",
+        "state": "redundant",
+        "sameController": true
+      },
+      {
+        "name": "failed-install-keeps-offline-app",
+        "runtime": "4.0.1.2-pages-37"
+      }
+    ]
+  },
+  "visionCORS": "not run; prior browser command stopped the shared step",
+  "mainCORSRefresh": "not run",
+  "artifact": {
+    "id": 13788381997,
+    "name": "engineering-regression-b4a74eea206fd15e9f55defc2e6ec579670b680e",
+    "size_in_bytes": 11304799,
+    "url": "https://api.github.com/repos/tycofficial/phigros/actions/artifacts/13788381997",
+    "archive_download_url": "https://api.github.com/repos/tycofficial/phigros/actions/artifacts/13788381997/zip",
+    "expired": false,
+    "created_at": "2026-11-10T17:49:40Z",
+    "expires_at": "2026-11-24T17:49:38Z",
+    "updated_at": "2026-11-10T17:49:40Z",
+    "digest": "sha256:d43bae516be9b1f11c67973b0dfab84ab50082395d12ebb273fefa81ba96decd",
+    "workflow_run": {
+      "id": 42868000405,
+      "repository_id": 1429539890,
+      "head_repository_id": 1429539890,
+      "head_branch": "dot/phigros-loading-refactor",
+      "head_sha": "74325574d0433da7f2eda8c0b3493eb4cfe409c3"
+    }
+  },
+  "followup": "Keep the failed evidence; split independent network checks into a separate always/noncancelled step. Do not lower SW assertions or relabel its timeout as a CDN block.",
+  "localRecheck": {
+    "status": "passed",
+    "scenarios": 9,
+    "browser": "156.0.8078.79",
+    "evidence": "sw-ci9-local-recheck.json",
+    "CIbrowser": "151.0.7922.34",
+    "conclusion": "CI timeout not reproduced locally; no SW production/assertion/timeout changes, root cause still unverified"
+  }
+}

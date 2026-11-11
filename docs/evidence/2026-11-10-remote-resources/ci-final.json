@@ -1,0 +1,82 @@
+{
+  "runId": 42857848906,
+  "url": "https://github.com/tycofficial/phigros/actions/runs/42857848906",
+  "status": "completed",
+  "conclusion": "success",
+  "head": "bc2271c06578efbe022537eab03bdb3aaa4794f2",
+  "merge": "b10b9a6fb12c86a1769153ee6ae79177c69a48c1",
+  "tree": "8691b9993bd7f22c83db7a85da888833a1804bf6",
+  "rawJobId": 129975648102,
+  "engineeringTests": {
+    "tests": 487,
+    "pass": 487,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "contentAudit": {
+    "resources": 1091,
+    "bytes": 3014460209,
+    "newDownloads": 1087,
+    "historicalSamplesReused": 4
+  },
+  "nativeBrowserCORS": {
+    "status": "passed",
+    "expected": 1091,
+    "passed": 1091,
+    "fullLoaderResults": [
+      {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/0c7e90ee5d8ffaaa756d79d8aef879338fdde423/TECHNOPOLIS2085.PRASTIKDANCEFLOOR.png",
+        "at": "2026-11-10T16:54:03.030Z",
+        "actualBytes": 737626,
+        "actualSHA256": "61d0aa059cf3ed22710d072e0c1622363127832502730e423cda089cf0e791c2",
+        "status": "passed",
+        "method": "Original PhiHostedMedia.bytes -> PhiRemoteAssets.download, full body"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/Glaciaxion.SunsetRay.0/EZ.json",
+        "at": "2026-11-10T16:54:03.046Z",
+        "actualBytes": 6778,
+        "actualSHA256": "8303c6bb407fa69780a90aed286038d3a00085606e46d9154ebc60dfb58bb8b1",
+        "status": "passed",
+        "method": "Original PhiHostedMedia.bytes -> PhiRemoteAssets.download, full body"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Realms.HinkikAHimitsu.ogg",
+        "at": "2026-11-10T16:54:03.048Z",
+        "actualBytes": 3065444,
+        "actualSHA256": "d31ace122e1da701c6e846e19fa03bca1f9899d4ae3ca496e3c87a6652b7553b",
+        "status": "passed",
+        "method": "Original PhiHostedMedia.bytes -> PhiRemoteAssets.download, full body"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38/music/catalog-55ae2e09fa83d113-music.m4a",
+        "at": "2026-11-10T16:54:03.090Z",
+        "actualBytes": 497717,
+        "actualSHA256": "04417fcd07a84d85a65f36cfbc7bcc7f1ccc5e19c64c333ebfcebba4ef468f37",
+        "status": "passed",
+        "method": "Original PhiHostedMedia.bytes -> PhiRemoteAssets.download, full body"
+      }
+    ],
+    "pageErrors": []
+  },
+  "artifact": {
+    "id": 13783009521,
+    "name": "engineering-regression-b10b9a6fb12c86a1769153ee6ae79177c69a48c1",
+    "size_in_bytes": 12262128,
+    "url": "https://api.github.com/repos/tycofficial/phigros/actions/artifacts/13783009521",
+    "archive_download_url": "https://api.github.com/repos/tycofficial/phigros/actions/artifacts/13783009521/zip",
+    "expired": false,
+    "created_at": "2026-11-10T16:54:04Z",
+    "expires_at": "2026-11-24T16:54:03Z",
+    "updated_at": "2026-11-10T16:54:04Z",
+    "digest": "sha256:fe176e14fc607e7fb9f736ee7c513d433e2eb82488af70e259d0eae6ced38f53",
+    "workflow_run": {
+      "id": 42857848906,
+      "repository_id": 1429539890,
+      "head_repository_id": 1429539890,
+      "head_branch": "dot/phigros-loading-refactor",
+      "head_sha": "bc2271c06578efbe022537eab03bdb3aaa4794f2"
+    }
+  }
+}

@@ -1,0 +1,398 @@
+✖ context resolved session preparation cannot alter superseded playback (9.708342ms)
+✖ context resolved session preparation cannot alter stopped playback (2.325837ms)
+✖ context rejected session preparation cannot alter superseded playback (1.840273ms)
+✖ context rejected session preparation cannot alter stopped playback (1.693831ms)
+✖ mixer resolved session preparation cannot alter superseded playback (2.413589ms)
+✖ mixer resolved session preparation cannot alter stopped playback (1.291223ms)
+✖ mixer rejected session preparation cannot alter superseded playback (1.563515ms)
+✖ mixer rejected session preparation cannot alter stopped playback (1.378916ms)
+✖ delayed prime in superseded preparation cannot request context or mixer (1.966874ms)
+✖ delayed prime in stopped preparation cannot request context or mixer (0.982195ms)
+✔ current context failure preserves the existing HTML fallback (1.761794ms)
+✔ current mixer failure preserves the existing HTML fallback (1.052271ms)
+✔ current session preparation still initializes context and mixer (1.468851ms)
+✖ old resolved mixer creation cannot overwrite or release the pending replacement (7.567545ms)
+✖ old resolved mixer creation cannot overwrite or release the ready replacement (1.331503ms)
+✖ old rejected mixer creation cannot overwrite or release the pending replacement (1.472707ms)
+✖ old rejected mixer creation cannot overwrite or release the ready replacement (1.585818ms)
+✖ a naturally closed context does not reuse a pending mixer from that context (1.879402ms)
+✔ current factory errors retain fallback and allow retry (0.891498ms)
+✔ same-context callers share a factory and retain deduplication, reset and flush behavior (1.106464ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 5
+ℹ fail 15
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 81.720579
+
+✖ failing tests:
+
+test at tests/audio-session-failure.test.cjs:13:133
+✖ context resolved session preparation cannot alter superseded playback (9.708342ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'context',
+  +   'mixer'
+    ]
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-session-failure.test.cjs:17:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'context', 'mixer' ],
+    expected: [ 'context' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-session-failure.test.cjs:13:133
+✖ context resolved session preparation cannot alter stopped playback (2.325837ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'context',
+  +   'mixer'
+    ]
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-session-failure.test.cjs:17:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'context', 'mixer' ],
+    expected: [ 'context' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-session-failure.test.cjs:13:133
+✖ context rejected session preparation cannot alter superseded playback (1.840273ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'context',
+  +   'stop',
+  +   'fallback'
+    ]
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-session-failure.test.cjs:17:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'context', 'stop', 'fallback' ],
+    expected: [ 'context' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-session-failure.test.cjs:13:133
+✖ context rejected session preparation cannot alter stopped playback (1.693831ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'context',
+  +   'stop',
+  +   'fallback'
+    ]
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-session-failure.test.cjs:17:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'context', 'stop', 'fallback' ],
+    expected: [ 'context' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-session-failure.test.cjs:13:133
+✖ mixer resolved session preparation cannot alter superseded playback (2.413589ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-session-failure.test.cjs:17:178)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-session-failure.test.cjs:13:133
+✖ mixer resolved session preparation cannot alter stopped playback (1.291223ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-session-failure.test.cjs:17:178)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-session-failure.test.cjs:13:133
+✖ mixer rejected session preparation cannot alter superseded playback (1.563515ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'context',
+      'mixer',
+  +   'stop',
+  +   'fallback'
+    ]
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-session-failure.test.cjs:17:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'context', 'mixer', 'stop', 'fallback' ],
+    expected: [ 'context', 'mixer' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-session-failure.test.cjs:13:133
+✖ mixer rejected session preparation cannot alter stopped playback (1.378916ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'context',
+      'mixer',
+  +   'stop',
+  +   'fallback'
+    ]
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-session-failure.test.cjs:17:36)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'context', 'mixer', 'stop', 'fallback' ],
+    expected: [ 'context', 'mixer' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-session-failure.test.cjs:19:46
+✖ delayed prime in superseded preparation cannot request context or mixer (1.966874ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-session-failure.test.cjs:22:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-session-failure.test.cjs:19:46
+✖ delayed prime in stopped preparation cannot request context or mixer (0.982195ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-session-failure.test.cjs:22:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/hit-mixer-ownership.test.cjs:13:89
+✖ old resolved mixer creation cannot overwrite or release the pending replacement (7.567545ms)
+  AssertionError [ERR_ASSERTION]: old preparation returned a mixer belonging to another context
+  + actual - expected
+  
+  + {
+  +   context: {
+  +     audioWorklet: {
+  +       addModule: [Function: addModule]
+  +     },
+  +     close: [Function: close],
+  +     state: 'closed'
+  +   },
+  +   destroy: [Function: destroy],
+  +   destroyed: 0,
+  +   flush: [Function: flush],
+  +   flushes: 0,
+  +   register: [Function: register],
+  +   registered: [
+  +     {
+  +       id: 'old'
+  +     }
+  +   ],
+  +   reset: [Function: reset],
+  +   resets: 1
+  + }
+  - null
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/hit-mixer-ownership.test.cjs:18:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/hit-mixer-ownership.test.cjs:13:89
+✖ old resolved mixer creation cannot overwrite or release the ready replacement (1.331503ms)
+  AssertionError [ERR_ASSERTION]: old preparation returned a mixer belonging to another context
+  + actual - expected
+  
+  + {
+  +   context: {
+  +     audioWorklet: {
+  +       addModule: [Function: addModule]
+  +     },
+  +     close: [Function: close],
+  +     state: 'closed'
+  +   },
+  +   destroy: [Function: destroy],
+  +   destroyed: 0,
+  +   flush: [Function: flush],
+  +   flushes: 0,
+  +   register: [Function: register],
+  +   registered: [
+  +     {
+  +       id: 'old'
+  +     }
+  +   ],
+  +   reset: [Function: reset],
+  +   resets: 1
+  + }
+  - null
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/hit-mixer-ownership.test.cjs:18:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/hit-mixer-ownership.test.cjs:13:89
+✖ old rejected mixer creation cannot overwrite or release the pending replacement (1.472707ms)
+  AssertionError [ERR_ASSERTION]: obsolete failure reported a fallback for the active context
+  + actual - expected
+  
+  + [
+  +   [
+  +     'AudioEngine.worklet',
+  +     'old module failed',
+  +     {
+  +       fallback: 'AudioBufferSourceNode'
+  +     }
+  +   ]
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/hit-mixer-ownership.test.cjs:18:98)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ [ 'AudioEngine.worklet', 'old module failed', [Object] ] ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/hit-mixer-ownership.test.cjs:13:89
+✖ old rejected mixer creation cannot overwrite or release the ready replacement (1.585818ms)
+  AssertionError [ERR_ASSERTION]: old preparation returned a mixer belonging to another context
+  + actual - expected
+  
+  + {
+  +   context: {
+  +     audioWorklet: {
+  +       addModule: [Function: addModule]
+  +     },
+  +     close: [Function: close],
+  +     state: 'running'
+  +   },
+  +   destroy: [Function: destroy],
+  +   destroyed: 0,
+  +   flush: [Function: flush],
+  +   flushes: 0,
+  +   register: [Function: register],
+  +   registered: [
+  +     {
+  +       id: 'next'
+  +     },
+  +     {
+  +       id: 'old'
+  +     }
+  +   ],
+  +   reset: [Function: reset],
+  +   resets: 2
+  + }
+  - null
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/hit-mixer-ownership.test.cjs:18:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/hit-mixer-ownership.test.cjs:27:1
+✖ a naturally closed context does not reuse a pending mixer from that context (1.879402ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 2
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/hit-mixer-ownership.test.cjs:30:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

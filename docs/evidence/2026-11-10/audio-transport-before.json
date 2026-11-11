@@ -1,0 +1,17 @@
+{
+  "scope": "Engineering audio transport lifecycle only; official equivalence unverified",
+  "browser": "156.0.8078.79",
+  "appSHA256": "0e40974c38cd9a51856c32a7bd49adead6858b9968e811b865e030fd7b7fb6b1",
+  "pageErrors": [],
+  "superseded": {
+    "retained": false,
+    "before": 0,
+    "after": 0.2945918367346936,
+    "playing": true,
+    "running": true,
+    "paused": false,
+    "autoplay": false
+  },
+  "status": "failed",
+  "error": "AssertionError [ERR_ASSERTION]: Stale activation replaced the new AudioBufferSource\n\nfalse !== true\n\n    at /workspace/phigros/tests/audio-transport-browser.cjs:30:10"
+}

@@ -1,0 +1,16 @@
+AssertionError [ERR_ASSERTION]: a previous scene key release cannot confirm clock-ready
++ actual - expected
+
+  [
+    'hold-end',
++   'activate'
+  ]
+
+    at /workspace/phigros/tests/interactive-replay-media-browser.cjs:130:10 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [Array],
+  expected: [Array],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}

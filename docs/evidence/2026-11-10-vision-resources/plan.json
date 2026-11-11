@@ -1,0 +1,1028 @@
+{
+  "scope": "Existing historical vision/replay references only; not official 4.0.1.2 authenticity",
+  "sourceCommit": "bc2271c06578efbe022537eab03bdb3aaa4794f2",
+  "date": "2026-11-10",
+  "resources": [
+    {
+      "id": "spas_unlock",
+      "chapter": 5,
+      "title": "Spasmodic · 历史解锁片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Spas_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Spas_Unlock.mp4",
+      "bytes": 9796619,
+      "sha256": "3702ea9825fa49ec77a14fecb038372df4b916eaac987d867bfd912fe698c4e1",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[0]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/Spas_Unlock.mp4"
+      },
+      "expectedGitBlobSHA": "d25555f07ac59287047b8749e538e0c59539af6a",
+      "expectedBytes": 9796619,
+      "expectedSHA256": "3702ea9825fa49ec77a14fecb038372df4b916eaac987d867bfd912fe698c4e1",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "spas_unlock",
+      "chapter": 5,
+      "title": "Spasmodic · 历史解锁片段",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Spas_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Spas_Unlock.mp4",
+      "bytes": 9796619,
+      "sha256": "3702ea9825fa49ec77a14fecb038372df4b916eaac987d867bfd912fe698c4e1",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[0]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/Spas_Unlock.mp4"
+      },
+      "expectedGitBlobSHA": "d25555f07ac59287047b8749e538e0c59539af6a",
+      "expectedBytes": 9796619,
+      "expectedSHA256": "3702ea9825fa49ec77a14fecb038372df4b916eaac987d867bfd912fe698c4e1",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "iga_loop",
+      "chapter": 6,
+      "title": "Igallta · 循环片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Loop.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Loop.mp4",
+      "bytes": 2079320,
+      "sha256": "20616a52283193a45e0fd1ad58e8a117fea8076071860fd17805571e3c34b1b0",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[1]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/Iga_Loop.mp4"
+      },
+      "expectedGitBlobSHA": "d23412be50b65d3f06e2741cabbe48c3b936f6c5",
+      "expectedBytes": 2079320,
+      "expectedSHA256": "20616a52283193a45e0fd1ad58e8a117fea8076071860fd17805571e3c34b1b0",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "iga_loop",
+      "chapter": 6,
+      "title": "Igallta · 循环片段",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Loop.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Loop.mp4",
+      "bytes": 2079320,
+      "sha256": "20616a52283193a45e0fd1ad58e8a117fea8076071860fd17805571e3c34b1b0",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[1]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/Iga_Loop.mp4"
+      },
+      "expectedGitBlobSHA": "d23412be50b65d3f06e2741cabbe48c3b936f6c5",
+      "expectedBytes": 2079320,
+      "expectedSHA256": "20616a52283193a45e0fd1ad58e8a117fea8076071860fd17805571e3c34b1b0",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "iga_main",
+      "chapter": 6,
+      "title": "Igallta · 主过场",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Main.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Main.mp4",
+      "bytes": 8198916,
+      "sha256": "b1775f38ef55990aa97f755229aa700454d9e918a1ced2a8da0685720865d7e4",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[2]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/Iga_Main.mp4"
+      },
+      "expectedGitBlobSHA": "12abb74ea509f9917f628111a6db011b1e1c4517",
+      "expectedBytes": 8198916,
+      "expectedSHA256": "b1775f38ef55990aa97f755229aa700454d9e918a1ced2a8da0685720865d7e4",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "iga_main",
+      "chapter": 6,
+      "title": "Igallta · 主过场",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Main.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Main.mp4",
+      "bytes": 8198916,
+      "sha256": "b1775f38ef55990aa97f755229aa700454d9e918a1ced2a8da0685720865d7e4",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[2]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/Iga_Main.mp4"
+      },
+      "expectedGitBlobSHA": "12abb74ea509f9917f628111a6db011b1e1c4517",
+      "expectedBytes": 8198916,
+      "expectedSHA256": "b1775f38ef55990aa97f755229aa700454d9e918a1ced2a8da0685720865d7e4",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "time_reverse",
+      "chapter": 7,
+      "title": "Rrhar’il · 时间倒转片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/TimeReverse_Video.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/TimeReverse_Video.mp4",
+      "bytes": 3412027,
+      "sha256": "691eae099af269b4fe2ec928b1cee3ab43916166aa11135700421d7e11c94b5e",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[3]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/TimeReverse_Video.mp4"
+      },
+      "expectedGitBlobSHA": "33f01f130920121abc3c681fd11540484ab20510",
+      "expectedBytes": 3412027,
+      "expectedSHA256": "691eae099af269b4fe2ec928b1cee3ab43916166aa11135700421d7e11c94b5e",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "time_reverse",
+      "chapter": 7,
+      "title": "Rrhar’il · 时间倒转片段",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/TimeReverse_Video.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/TimeReverse_Video.mp4",
+      "bytes": 3412027,
+      "sha256": "691eae099af269b4fe2ec928b1cee3ab43916166aa11135700421d7e11c94b5e",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[3]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/TimeReverse_Video.mp4"
+      },
+      "expectedGitBlobSHA": "33f01f130920121abc3c681fd11540484ab20510",
+      "expectedBytes": 3412027,
+      "expectedSHA256": "691eae099af269b4fe2ec928b1cee3ab43916166aa11135700421d7e11c94b5e",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "321_unlock",
+      "chapter": 8,
+      "title": "DESTRUCTION 3,2,1 · 历史解锁片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/321_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/321_Unlock.mp4",
+      "bytes": 12280482,
+      "sha256": "d2790db3b24888bba3faf7f9372af81d0ea3c1a439e82c47975bcaa049033885",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[4]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/321_Unlock.mp4"
+      },
+      "expectedGitBlobSHA": "3ad94450f790ed9d01f506d4a34aaf0b39ef5b2d",
+      "expectedBytes": 12280482,
+      "expectedSHA256": "d2790db3b24888bba3faf7f9372af81d0ea3c1a439e82c47975bcaa049033885",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "321_unlock",
+      "chapter": 8,
+      "title": "DESTRUCTION 3,2,1 · 历史解锁片段",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/321_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/321_Unlock.mp4",
+      "bytes": 12280482,
+      "sha256": "d2790db3b24888bba3faf7f9372af81d0ea3c1a439e82c47975bcaa049033885",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[4]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/321_Unlock.mp4"
+      },
+      "expectedGitBlobSHA": "3ad94450f790ed9d01f506d4a34aaf0b39ef5b2d",
+      "expectedBytes": 12280482,
+      "expectedSHA256": "d2790db3b24888bba3faf7f9372af81d0ea3c1a439e82c47975bcaa049033885",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "df_touch",
+      "chapter": 8,
+      "title": "Distorted Fate · 启动画面片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+      "bytes": 1069467,
+      "sha256": "18851074ef2e1675fb4c5c031a3aa536042a2d61e93d6903be4b026548abdaa9",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[5]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/DF_Touch2Start.mp4"
+      },
+      "expectedGitBlobSHA": "50d16268ef0b5ad54634a8b3116968ca8a10ec06",
+      "expectedBytes": 1069467,
+      "expectedSHA256": "18851074ef2e1675fb4c5c031a3aa536042a2d61e93d6903be4b026548abdaa9",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "df_touch",
+      "chapter": 8,
+      "title": "Distorted Fate · 启动画面片段",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+      "bytes": 1069467,
+      "sha256": "18851074ef2e1675fb4c5c031a3aa536042a2d61e93d6903be4b026548abdaa9",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[5]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/DF_Touch2Start.mp4"
+      },
+      "expectedGitBlobSHA": "50d16268ef0b5ad54634a8b3116968ca8a10ec06",
+      "expectedBytes": 1069467,
+      "expectedSHA256": "18851074ef2e1675fb4c5c031a3aa536042a2d61e93d6903be4b026548abdaa9",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "df_unlock",
+      "chapter": 8,
+      "title": "Distorted Fate · 历史解锁片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4",
+      "bytes": 23085541,
+      "sha256": "f8141d25ecd18db2da97cfb6e33b6da87fb55282a7d9b2a7885bf1890481cfbe",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[6]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/DF_Unlock.mp4"
+      },
+      "expectedGitBlobSHA": "7b1cc16f54158989056dd69b57289bf425b4e7dd",
+      "expectedBytes": 23085541,
+      "expectedSHA256": "f8141d25ecd18db2da97cfb6e33b6da87fb55282a7d9b2a7885bf1890481cfbe",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "df_unlock",
+      "chapter": 8,
+      "title": "Distorted Fate · 历史解锁片段",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4",
+      "bytes": 23085541,
+      "sha256": "f8141d25ecd18db2da97cfb6e33b6da87fb55282a7d9b2a7885bf1890481cfbe",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[6]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/DF_Unlock.mp4"
+      },
+      "expectedGitBlobSHA": "7b1cc16f54158989056dd69b57289bf425b4e7dd",
+      "expectedBytes": 23085541,
+      "expectedSHA256": "f8141d25ecd18db2da97cfb6e33b6da87fb55282a7d9b2a7885bf1890481cfbe",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "rr_unlock",
+      "chapter": 7,
+      "title": "Rrhar’il · 解锁场景",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/1a9df85d38fca17cce1f1d62f4b348054c180d24/vision/Rr_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@1a9df85d38fca17cce1f1d62f4b348054c180d24/vision/Rr_Unlock.mp4",
+      "bytes": 15910589,
+      "sha256": "671e2862af83d5629aad91cfc764a4bd419f79e0f3f6a34fd7a581da1a7a17d6",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[7]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "1a9df85d38fca17cce1f1d62f4b348054c180d24",
+        "path": "vision/Rr_Unlock.mp4"
+      },
+      "expectedGitBlobSHA": "3dc53603d207b437b3918601db8d4cf7191d5914",
+      "expectedBytes": 15910589,
+      "expectedSHA256": "671e2862af83d5629aad91cfc764a4bd419f79e0f3f6a34fd7a581da1a7a17d6",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "rr_unlock",
+      "chapter": 7,
+      "title": "Rrhar’il · 解锁场景",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@1a9df85d38fca17cce1f1d62f4b348054c180d24/vision/Rr_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@1a9df85d38fca17cce1f1d62f4b348054c180d24/vision/Rr_Unlock.mp4",
+      "bytes": 15910589,
+      "sha256": "671e2862af83d5629aad91cfc764a4bd419f79e0f3f6a34fd7a581da1a7a17d6",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[7]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "1a9df85d38fca17cce1f1d62f4b348054c180d24",
+        "path": "vision/Rr_Unlock.mp4"
+      },
+      "expectedGitBlobSHA": "3dc53603d207b437b3918601db8d4cf7191d5914",
+      "expectedBytes": 15910589,
+      "expectedSHA256": "671e2862af83d5629aad91cfc764a4bd419f79e0f3f6a34fd7a581da1a7a17d6",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "qd",
+      "chapter": 8,
+      "title": "Distorted Fate · 章节终幕",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/d72db57ac90f5dc650fec2cbbe876f0d16d834f7/vision/QD.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@d72db57ac90f5dc650fec2cbbe876f0d16d834f7/vision/QD.mp4",
+      "bytes": 14588474,
+      "sha256": "ab1cfefa5b2a6358bbb125002d6010a19f9edb58df72625274ae638548a15c02",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[8]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "d72db57ac90f5dc650fec2cbbe876f0d16d834f7",
+        "path": "vision/QD.mp4"
+      },
+      "expectedGitBlobSHA": "1a5b4f3f4f6fba783eac76030034545d752e1e13",
+      "expectedBytes": 14588474,
+      "expectedSHA256": "ab1cfefa5b2a6358bbb125002d6010a19f9edb58df72625274ae638548a15c02",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "qd",
+      "chapter": 8,
+      "title": "Distorted Fate · 章节终幕",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@d72db57ac90f5dc650fec2cbbe876f0d16d834f7/vision/QD.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@d72db57ac90f5dc650fec2cbbe876f0d16d834f7/vision/QD.mp4",
+      "bytes": 14588474,
+      "sha256": "ab1cfefa5b2a6358bbb125002d6010a19f9edb58df72625274ae638548a15c02",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[8]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "d72db57ac90f5dc650fec2cbbe876f0d16d834f7",
+        "path": "vision/QD.mp4"
+      },
+      "expectedGitBlobSHA": "1a5b4f3f4f6fba783eac76030034545d752e1e13",
+      "expectedBytes": 14588474,
+      "expectedSHA256": "ab1cfefa5b2a6358bbb125002d6010a19f9edb58df72625274ae638548a15c02",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "about_us_0_flac",
+      "track": 0,
+      "chapter": 8,
+      "title": "AboutUs 0 lossless",
+      "path": "vision/audio/AboutUs0.flac",
+      "mime": "audio/flac",
+      "bytes": 15899006,
+      "sha256": "22aed626420c67f94bba954cdd8a78598fb758b23b66955af607860b698e5af8",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.flac",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.flac",
+      "references": [
+        "assets/meta/vision-audio.json.audios[0]",
+        "js/interactive-replay.js:startCreditsAudio(track); FLAC preference then supported codec",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+        "path": "vision/audio/AboutUs0.flac"
+      },
+      "expectedGitBlobSHA": "e63e7618278e6ae8801db8c57b708cc93dad1018",
+      "expectedBytes": 15899006,
+      "expectedSHA256": "22aed626420c67f94bba954cdd8a78598fb758b23b66955af607860b698e5af8",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "about_us_0_flac",
+      "track": 0,
+      "chapter": 8,
+      "title": "AboutUs 0 lossless",
+      "path": "vision/audio/AboutUs0.flac",
+      "mime": "audio/flac",
+      "bytes": 15899006,
+      "sha256": "22aed626420c67f94bba954cdd8a78598fb758b23b66955af607860b698e5af8",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.flac",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.flac",
+      "references": [
+        "assets/meta/vision-audio.json.audios[0]",
+        "js/interactive-replay.js:startCreditsAudio(track); FLAC preference then supported codec",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+        "path": "vision/audio/AboutUs0.flac"
+      },
+      "expectedGitBlobSHA": "e63e7618278e6ae8801db8c57b708cc93dad1018",
+      "expectedBytes": 15899006,
+      "expectedSHA256": "22aed626420c67f94bba954cdd8a78598fb758b23b66955af607860b698e5af8",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "about_us_0_m4a",
+      "track": 0,
+      "chapter": 8,
+      "title": "AboutUs 0 AAC fallback",
+      "path": "vision/audio/AboutUs0.m4a",
+      "mime": "audio/mp4",
+      "bytes": 1051123,
+      "sha256": "0adf8f96d1f8aa4d2ba7cbab2c37a7468a7d15a4f97cabd472c1051a079f762f",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+      "references": [
+        "assets/meta/vision-audio.json.audios[1]",
+        "js/interactive-replay.js:startCreditsAudio(track); FLAC preference then supported codec",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+        "path": "vision/audio/AboutUs0.m4a"
+      },
+      "expectedGitBlobSHA": "0ec95f5d821b46627e307aeb52564dabf4e8569c",
+      "expectedBytes": 1051123,
+      "expectedSHA256": "0adf8f96d1f8aa4d2ba7cbab2c37a7468a7d15a4f97cabd472c1051a079f762f",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "about_us_0_m4a",
+      "track": 0,
+      "chapter": 8,
+      "title": "AboutUs 0 AAC fallback",
+      "path": "vision/audio/AboutUs0.m4a",
+      "mime": "audio/mp4",
+      "bytes": 1051123,
+      "sha256": "0adf8f96d1f8aa4d2ba7cbab2c37a7468a7d15a4f97cabd472c1051a079f762f",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+      "references": [
+        "assets/meta/vision-audio.json.audios[1]",
+        "js/interactive-replay.js:startCreditsAudio(track); FLAC preference then supported codec",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+        "path": "vision/audio/AboutUs0.m4a"
+      },
+      "expectedGitBlobSHA": "0ec95f5d821b46627e307aeb52564dabf4e8569c",
+      "expectedBytes": 1051123,
+      "expectedSHA256": "0adf8f96d1f8aa4d2ba7cbab2c37a7468a7d15a4f97cabd472c1051a079f762f",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "about_us_1_flac",
+      "track": 1,
+      "chapter": 8,
+      "title": "AboutUs 1 lossless",
+      "path": "vision/audio/AboutUs1.flac",
+      "mime": "audio/flac",
+      "bytes": 26730715,
+      "sha256": "4662bb4fd17d76bf49f5b23cff7b48d7d3430520455ee2d632bfdae7aece6dc9",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.flac",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.flac",
+      "references": [
+        "assets/meta/vision-audio.json.audios[2]",
+        "js/interactive-replay.js:startCreditsAudio(track); FLAC preference then supported codec",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+        "path": "vision/audio/AboutUs1.flac"
+      },
+      "expectedGitBlobSHA": "6052cb2b2a0b751590e71c7b5503cfb459e35e21",
+      "expectedBytes": 26730715,
+      "expectedSHA256": "4662bb4fd17d76bf49f5b23cff7b48d7d3430520455ee2d632bfdae7aece6dc9",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "about_us_1_flac",
+      "track": 1,
+      "chapter": 8,
+      "title": "AboutUs 1 lossless",
+      "path": "vision/audio/AboutUs1.flac",
+      "mime": "audio/flac",
+      "bytes": 26730715,
+      "sha256": "4662bb4fd17d76bf49f5b23cff7b48d7d3430520455ee2d632bfdae7aece6dc9",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.flac",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.flac",
+      "references": [
+        "assets/meta/vision-audio.json.audios[2]",
+        "js/interactive-replay.js:startCreditsAudio(track); FLAC preference then supported codec",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+        "path": "vision/audio/AboutUs1.flac"
+      },
+      "expectedGitBlobSHA": "6052cb2b2a0b751590e71c7b5503cfb459e35e21",
+      "expectedBytes": 26730715,
+      "expectedSHA256": "4662bb4fd17d76bf49f5b23cff7b48d7d3430520455ee2d632bfdae7aece6dc9",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "about_us_1_m4a",
+      "track": 1,
+      "chapter": 8,
+      "title": "AboutUs 1 AAC fallback",
+      "path": "vision/audio/AboutUs1.m4a",
+      "mime": "audio/mp4",
+      "bytes": 1603617,
+      "sha256": "2c861100d18a9dc0e8940b624ae77e590665dd851c4db52283537eff91c8b6f0",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.m4a",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.m4a",
+      "references": [
+        "assets/meta/vision-audio.json.audios[3]",
+        "js/interactive-replay.js:startCreditsAudio(track); FLAC preference then supported codec",
+        "assets/meta manifest primary address"
+      ],
+      "sourceDeclaration": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+        "path": "vision/audio/AboutUs1.m4a"
+      },
+      "expectedGitBlobSHA": "a584cbfbcbc852785ba8567ceee7412223cc0362",
+      "expectedBytes": 1603617,
+      "expectedSHA256": "2c861100d18a9dc0e8940b624ae77e590665dd851c4db52283537eff91c8b6f0",
+      "variant": "primary",
+      "allowSharedCacheReuse": false
+    },
+    {
+      "id": "about_us_1_m4a",
+      "track": 1,
+      "chapter": 8,
+      "title": "AboutUs 1 AAC fallback",
+      "path": "vision/audio/AboutUs1.m4a",
+      "mime": "audio/mp4",
+      "bytes": 1603617,
+      "sha256": "2c861100d18a9dc0e8940b624ae77e590665dd851c4db52283537eff91c8b6f0",
+      "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.m4a",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.m4a",
+      "references": [
+        "assets/meta/vision-audio.json.audios[3]",
+        "js/interactive-replay.js:startCreditsAudio(track); FLAC preference then supported codec",
+        "assets/meta manifest mirror address"
+      ],
+      "sourceDeclaration": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+        "path": "vision/audio/AboutUs1.m4a"
+      },
+      "expectedGitBlobSHA": "a584cbfbcbc852785ba8567ceee7412223cc0362",
+      "expectedBytes": 1603617,
+      "expectedSHA256": "2c861100d18a9dc0e8940b624ae77e590665dd851c4db52283537eff91c8b6f0",
+      "variant": "mirror",
+      "allowSharedCacheReuse": false
+    }
+  ],
+  "expectedUniqueContents": 13,
+  "expectedPrimaryBytes": 135705896,
+  "expectedMirrorBytes": 135705896,
+  "previousCacheMatches": 0,
+  "primaryResourceAuditUnchanged": "1091/1091, 3014460209 bytes previously checked; not re-downloaded by this audit",
+  "sourceHashes": {
+    "assets/meta/vision-media.json": "ed2a7ba95a22e854f5f2a6ad53129f618920b46b98ec030a6a1ad9d877fe45bb",
+    "assets/meta/vision-audio.json": "5e89f5983b97497d3a63024366df88d54060c75367b4c5270937b9fe349f2e41",
+    "js/vision-replay.js": "7d9729da36bb16b97d5b617e8e542f00aa64df538a0d95aabb326c2d149d4bc8",
+    "js/interactive-replay.js": "07de625163d4a010c64840f6995d4416a395c5ef6b81d753a52fc656283ed8eb",
+    "js/boss-replay-rules.js": "374dd9bb9494af79d5bd7c4257f4ae9d8f86dc2214aa0d887704340ccd790b16",
+    "js/chapter8-replay-rules.js": "cc6e32447b9215e3607c9337763b4b11300a2ccfc019b58dba1ee181233af55c"
+  },
+  "officialAcceptance": "blocked",
+  "officialFidelityPercent": null,
+  "scopeKind": "vision",
+  "manifestSHA256": "e6e94ad74309d9bb6ba352420f7e757dc263795b8c4b2479876a9cf61f0be0be",
+  "contents": [
+    {
+      "id": "spas_unlock",
+      "chapter": 5,
+      "title": "Spasmodic · 历史解锁片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Spas_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Spas_Unlock.mp4",
+      "bytes": 9796619,
+      "sha256": "3702ea9825fa49ec77a14fecb038372df4b916eaac987d867bfd912fe698c4e1",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[0]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/Spas_Unlock.mp4"
+      },
+      "expectedGitBlobSHA": "d25555f07ac59287047b8749e538e0c59539af6a",
+      "expectedBytes": 9796619,
+      "expectedSHA256": "3702ea9825fa49ec77a14fecb038372df4b916eaac987d867bfd912fe698c4e1"
+    },
+    {
+      "id": "iga_loop",
+      "chapter": 6,
+      "title": "Igallta · 循环片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Loop.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Loop.mp4",
+      "bytes": 2079320,
+      "sha256": "20616a52283193a45e0fd1ad58e8a117fea8076071860fd17805571e3c34b1b0",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[1]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/Iga_Loop.mp4"
+      },
+      "expectedGitBlobSHA": "d23412be50b65d3f06e2741cabbe48c3b936f6c5",
+      "expectedBytes": 2079320,
+      "expectedSHA256": "20616a52283193a45e0fd1ad58e8a117fea8076071860fd17805571e3c34b1b0"
+    },
+    {
+      "id": "iga_main",
+      "chapter": 6,
+      "title": "Igallta · 主过场",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Main.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/Iga_Main.mp4",
+      "bytes": 8198916,
+      "sha256": "b1775f38ef55990aa97f755229aa700454d9e918a1ced2a8da0685720865d7e4",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[2]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/Iga_Main.mp4"
+      },
+      "expectedGitBlobSHA": "12abb74ea509f9917f628111a6db011b1e1c4517",
+      "expectedBytes": 8198916,
+      "expectedSHA256": "b1775f38ef55990aa97f755229aa700454d9e918a1ced2a8da0685720865d7e4"
+    },
+    {
+      "id": "time_reverse",
+      "chapter": 7,
+      "title": "Rrhar’il · 时间倒转片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/TimeReverse_Video.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/TimeReverse_Video.mp4",
+      "bytes": 3412027,
+      "sha256": "691eae099af269b4fe2ec928b1cee3ab43916166aa11135700421d7e11c94b5e",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[3]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/TimeReverse_Video.mp4"
+      },
+      "expectedGitBlobSHA": "33f01f130920121abc3c681fd11540484ab20510",
+      "expectedBytes": 3412027,
+      "expectedSHA256": "691eae099af269b4fe2ec928b1cee3ab43916166aa11135700421d7e11c94b5e"
+    },
+    {
+      "id": "321_unlock",
+      "chapter": 8,
+      "title": "DESTRUCTION 3,2,1 · 历史解锁片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/321_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/321_Unlock.mp4",
+      "bytes": 12280482,
+      "sha256": "d2790db3b24888bba3faf7f9372af81d0ea3c1a439e82c47975bcaa049033885",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[4]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/321_Unlock.mp4"
+      },
+      "expectedGitBlobSHA": "3ad94450f790ed9d01f506d4a34aaf0b39ef5b2d",
+      "expectedBytes": 12280482,
+      "expectedSHA256": "d2790db3b24888bba3faf7f9372af81d0ea3c1a439e82c47975bcaa049033885"
+    },
+    {
+      "id": "df_touch",
+      "chapter": 8,
+      "title": "Distorted Fate · 启动画面片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+      "bytes": 1069467,
+      "sha256": "18851074ef2e1675fb4c5c031a3aa536042a2d61e93d6903be4b026548abdaa9",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[5]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/DF_Touch2Start.mp4"
+      },
+      "expectedGitBlobSHA": "50d16268ef0b5ad54634a8b3116968ca8a10ec06",
+      "expectedBytes": 1069467,
+      "expectedSHA256": "18851074ef2e1675fb4c5c031a3aa536042a2d61e93d6903be4b026548abdaa9"
+    },
+    {
+      "id": "df_unlock",
+      "chapter": 8,
+      "title": "Distorted Fate · 历史解锁片段",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4",
+      "bytes": 23085541,
+      "sha256": "f8141d25ecd18db2da97cfb6e33b6da87fb55282a7d9b2a7885bf1890481cfbe",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[6]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+        "path": "vision/DF_Unlock.mp4"
+      },
+      "expectedGitBlobSHA": "7b1cc16f54158989056dd69b57289bf425b4e7dd",
+      "expectedBytes": 23085541,
+      "expectedSHA256": "f8141d25ecd18db2da97cfb6e33b6da87fb55282a7d9b2a7885bf1890481cfbe"
+    },
+    {
+      "id": "rr_unlock",
+      "chapter": 7,
+      "title": "Rrhar’il · 解锁场景",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/1a9df85d38fca17cce1f1d62f4b348054c180d24/vision/Rr_Unlock.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@1a9df85d38fca17cce1f1d62f4b348054c180d24/vision/Rr_Unlock.mp4",
+      "bytes": 15910589,
+      "sha256": "671e2862af83d5629aad91cfc764a4bd419f79e0f3f6a34fd7a581da1a7a17d6",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[7]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "1a9df85d38fca17cce1f1d62f4b348054c180d24",
+        "path": "vision/Rr_Unlock.mp4"
+      },
+      "expectedGitBlobSHA": "3dc53603d207b437b3918601db8d4cf7191d5914",
+      "expectedBytes": 15910589,
+      "expectedSHA256": "671e2862af83d5629aad91cfc764a4bd419f79e0f3f6a34fd7a581da1a7a17d6"
+    },
+    {
+      "id": "qd",
+      "chapter": 8,
+      "title": "Distorted Fate · 章节终幕",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/d72db57ac90f5dc650fec2cbbe876f0d16d834f7/vision/QD.mp4",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@d72db57ac90f5dc650fec2cbbe876f0d16d834f7/vision/QD.mp4",
+      "bytes": 14588474,
+      "sha256": "ab1cfefa5b2a6358bbb125002d6010a19f9edb58df72625274ae638548a15c02",
+      "mime": "video/mp4",
+      "references": [
+        "assets/meta/vision-media.json.videos[8]",
+        "js/interactive-replay.js:play(id, options); aliases / chapter rule play-clip event"
+      ],
+      "sourceDeclaration": "第三方 3.0 修改版历史存档，未验证与官方版本一致",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "d72db57ac90f5dc650fec2cbbe876f0d16d834f7",
+        "path": "vision/QD.mp4"
+      },
+      "expectedGitBlobSHA": "1a5b4f3f4f6fba783eac76030034545d752e1e13",
+      "expectedBytes": 14588474,
+      "expectedSHA256": "ab1cfefa5b2a6358bbb125002d6010a19f9edb58df72625274ae638548a15c02"
+    },
+    {
+      "id": "about_us_0_flac",
+      "track": 0,
+      "chapter": 8,
+      "title": "AboutUs 0 lossless",
+      "path": "vision/audio/AboutUs0.flac",
+      "mime": "audio/flac",
+      "bytes": 15899006,
+      "sha256": "22aed626420c67f94bba954cdd8a78598fb758b23b66955af607860b698e5af8",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.flac",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.flac",
+      "references": [
+        "assets/meta/vision-audio.json.audios[0]",
+        "js/interactive-replay.js:startCreditsAudio(track); FLAC preference then supported codec"
+      ],
+      "sourceDeclaration": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+        "path": "vision/audio/AboutUs0.flac"
+      },
+      "expectedGitBlobSHA": "e63e7618278e6ae8801db8c57b708cc93dad1018",
+      "expectedBytes": 15899006,
+      "expectedSHA256": "22aed626420c67f94bba954cdd8a78598fb758b23b66955af607860b698e5af8"
+    },
+    {
+      "id": "about_us_0_m4a",
+      "track": 0,
+      "chapter": 8,
+      "title": "AboutUs 0 AAC fallback",
+      "path": "vision/audio/AboutUs0.m4a",
+      "mime": "audio/mp4",
+      "bytes": 1051123,
+      "sha256": "0adf8f96d1f8aa4d2ba7cbab2c37a7468a7d15a4f97cabd472c1051a079f762f",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+      "references": [
+        "assets/meta/vision-audio.json.audios[1]",
+        "js/interactive-replay.js:startCreditsAudio(track); FLAC preference then supported codec"
+      ],
+      "sourceDeclaration": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+        "path": "vision/audio/AboutUs0.m4a"
+      },
+      "expectedGitBlobSHA": "0ec95f5d821b46627e307aeb52564dabf4e8569c",
+      "expectedBytes": 1051123,
+      "expectedSHA256": "0adf8f96d1f8aa4d2ba7cbab2c37a7468a7d15a4f97cabd472c1051a079f762f"
+    },
+    {
+      "id": "about_us_1_flac",
+      "track": 1,
+      "chapter": 8,
+      "title": "AboutUs 1 lossless",
+      "path": "vision/audio/AboutUs1.flac",
+      "mime": "audio/flac",
+      "bytes": 26730715,
+      "sha256": "4662bb4fd17d76bf49f5b23cff7b48d7d3430520455ee2d632bfdae7aece6dc9",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.flac",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.flac",
+      "references": [
+        "assets/meta/vision-audio.json.audios[2]",
+        "js/interactive-replay.js:startCreditsAudio(track); FLAC preference then supported codec"
+      ],
+      "sourceDeclaration": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+        "path": "vision/audio/AboutUs1.flac"
+      },
+      "expectedGitBlobSHA": "6052cb2b2a0b751590e71c7b5503cfb459e35e21",
+      "expectedBytes": 26730715,
+      "expectedSHA256": "4662bb4fd17d76bf49f5b23cff7b48d7d3430520455ee2d632bfdae7aece6dc9"
+    },
+    {
+      "id": "about_us_1_m4a",
+      "track": 1,
+      "chapter": 8,
+      "title": "AboutUs 1 AAC fallback",
+      "path": "vision/audio/AboutUs1.m4a",
+      "mime": "audio/mp4",
+      "bytes": 1603617,
+      "sha256": "2c861100d18a9dc0e8940b624ae77e590665dd851c4db52283537eff91c8b6f0",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.m4a",
+      "mirror": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.m4a",
+      "references": [
+        "assets/meta/vision-audio.json.audios[3]",
+        "js/interactive-replay.js:startCreditsAudio(track); FLAC preference then supported codec"
+      ],
+      "sourceDeclaration": "third-party modified historical 3.0.0.1 archive; PCM decoded and losslessly FLAC encoded, AAC compatibility derivatives",
+      "source": {
+        "repository": "tycofficial/phigros",
+        "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+        "path": "vision/audio/AboutUs1.m4a"
+      },
+      "expectedGitBlobSHA": "a584cbfbcbc852785ba8567ceee7412223cc0362",
+      "expectedBytes": 1603617,
+      "expectedSHA256": "2c861100d18a9dc0e8940b624ae77e590665dd851c4db52283537eff91c8b6f0"
+    }
+  ],
+  "expectedResources": 26,
+  "expectedTotalBytes": 271411792,
+  "historicalSamples": []
+}

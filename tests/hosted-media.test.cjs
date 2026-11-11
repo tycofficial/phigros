@@ -15,7 +15,7 @@ function runtime(overrides = {}) {
   });
   vm.runInContext(fs.readFileSync('js/performance-policy.js','utf8'), context);
   vm.runInContext(fs.readFileSync('js/resource-transfer.js','utf8'), context);
-  vm.runInContext(fs.readFileSync('js/hosted-media.js','utf8'), context);
+  vm.runInContext(fs.readFileSync(process.env.PHI_TEST_HOSTED_MEDIA_SOURCE||'js/hosted-media.js','utf8'), context);
   return context;
 }
 class FakeAudio extends EventTarget {
@@ -26,6 +26,16 @@ class FakeAudio extends EventTarget {
   getAttribute(name){return name==='src'?this.src:null;}
   removeAttribute(name){if(name==='src')this.src='';}
   load(){}
+}
+const transferTurn=()=>new Promise(resolve=>setImmediate(resolve));
+function progressRuntime(){
+  const requests=[];
+  const context=runtime({fetch:async(href,{signal})=>{
+    const row={href,signal};requests.push(row);
+    const body=new ReadableStream({start(controller){row.body=controller;}});
+    return new Response(body,{headers:{'Content-Length':'6'}});
+  }});
+  return {media:context.PhiHostedMedia,requests};
 }
 
 const adaptiveSpec={url:'./high.m4a',bytes:100,duration:160,
@@ -99,6 +109,149 @@ test('cancelling one subscriber preserves the resource needed by a second subscr
   await new Promise(resolve=>setImmediate(resolve));controller.abort();
   await assert.rejects(first,{name:'AbortError'});assert.equal(aborted,false);
   complete(new Response('shared'));assert.equal(Buffer.from(await second).toString(),'shared');assert.equal(calls,1);
+});
+
+test('a shared progress function survives one cancellation and remains deduplicated',async()=>{
+  const {media,requests}=progressRuntime(),progress=[],onProgress=(done,total)=>progress.push([done,total]);
+  const a=new AbortController(),first=media.bytes('./shared-progress',{signal:a.signal,onProgress}),second=media.bytes('./shared-progress',{onProgress});
+  await transferTurn();requests[0].body.enqueue(new Uint8Array([1,2]));await transferTurn();
+  a.abort();a.abort();await assert.rejects(first,{name:'AbortError'});
+  requests[0].body.enqueue(new Uint8Array([3,4]));await transferTurn();
+  requests[0].body.enqueue(new Uint8Array([5,6]));requests[0].body.close();
+  assert.deepEqual([...await second],[1,2,3,4,5,6]);
+  assert.deepEqual(progress,[[2,6],[4,6],[6,6]]);assert.equal(requests.length,1);assert.equal(requests[0].signal.aborted,false);
+});
+
+test('rejoining the same progress function retains each remaining subscription once',async()=>{
+  const {media,requests}=progressRuntime(),progress=[],onProgress=done=>progress.push(done),a=new AbortController(),b=new AbortController();
+  const first=media.bytes('./rejoin',{signal:a.signal,onProgress}),second=media.bytes('./rejoin',{signal:b.signal,onProgress});
+  await transferTurn();requests[0].body.enqueue(new Uint8Array([1,2]));await transferTurn();
+  a.abort();await assert.rejects(first,{name:'AbortError'});
+  const third=media.bytes('./rejoin',{onProgress});requests[0].body.enqueue(new Uint8Array([3,4]));await transferTurn();
+  a.abort();b.abort();b.abort();await assert.rejects(second,{name:'AbortError'});
+  requests[0].body.enqueue(new Uint8Array([5,6]));requests[0].body.close();await third;
+  assert.deepEqual(progress,[2,4,6]);assert.equal(requests.length,1);assert.equal(requests[0].signal.aborted,false);
+});
+
+test('all cancelled shared progress subscriptions ignore late old chunks and leave a fresh retry',async()=>{
+  const {media,requests}=progressRuntime(),progress=[],onProgress=done=>progress.push(done),a=new AbortController(),b=new AbortController();
+  const first=media.bytes('./all-cancelled',{signal:a.signal,onProgress}),second=media.bytes('./all-cancelled',{signal:b.signal,onProgress});
+  await transferTurn();requests[0].body.enqueue(new Uint8Array([1,2]));await transferTurn();
+  a.abort();b.abort();a.abort();b.abort();
+  await Promise.all([assert.rejects(first,{name:'AbortError'}),assert.rejects(second,{name:'AbortError'})]);
+  assert.equal(requests[0].signal.aborted,true);
+  const next=media.bytes('./all-cancelled',{onProgress});await transferTurn();
+  requests[0].body.enqueue(new Uint8Array([3,4,5,6]));requests[0].body.close();await transferTurn();
+  const afterOld=progress.slice();requests[1].body.enqueue(new Uint8Array([7,8,9,10,11,12]));requests[1].body.close();
+  const result=await next;assert.deepEqual(afterOld,[2]);assert.deepEqual(progress,[2,6]);assert.deepEqual([...result],[7,8,9,10,11,12]);
+  assert.equal(requests.length,2);assert.equal(requests[1].signal.aborted,false);assert.equal(await media.bytes('./all-cancelled'),result);
+});
+
+test('failed shared progress subscriptions release before retry with the same function',async()=>{
+  let calls=0;const progress=[],signals=[],onProgress=done=>progress.push(done);
+  const {PhiHostedMedia:media}=runtime({fetch:async(_href,{signal})=>{
+    signals.push(signal);return ++calls===1?new Response('',{status:404}):new Response(new Uint8Array([1,2,3]));
+  }});
+  const failed=await Promise.allSettled([media.bytes('./failure',{onProgress}),media.bytes('./failure',{onProgress})]);
+  assert(failed.every(r=>r.status==='rejected'));assert.equal(calls,1);assert.equal(signals[0].aborted,true);
+  assert.deepEqual([...await media.bytes('./failure',{onProgress})],[1,2,3]);
+  assert.deepEqual(progress,[3]);assert.equal(calls,2);assert.equal(signals[1].aborted,false);
+});
+
+test('different progress functions retain independent cancellation and delivery',async()=>{
+  const {media,requests}=progressRuntime(),left=[],right=[],a=new AbortController();
+  const first=media.bytes('./distinct',{signal:a.signal,onProgress:done=>left.push(done)}),second=media.bytes('./distinct',{onProgress:done=>right.push(done)});
+  await transferTurn();requests[0].body.enqueue(new Uint8Array([1,2]));await transferTurn();
+  a.abort();await assert.rejects(first,{name:'AbortError'});
+  requests[0].body.enqueue(new Uint8Array([3,4]));await transferTurn();requests[0].body.enqueue(new Uint8Array([5,6]));requests[0].body.close();await second;
+  assert.deepEqual(left,[2]);assert.deepEqual(right,[2,4,6]);assert.equal(requests.length,1);assert.equal(requests[0].signal.aborted,false);
+});
+
+test('a cancelled settled transfer cannot evict a valid cache after its URL is replaced',async()=>{
+  const calls=[];
+  const context=runtime({fetch:async href=>{
+    calls.push(href);return new Response(new Uint8Array((href.endsWith('/marker')?4:5)*1024*1024));
+  }}),media=context.PhiHostedMedia,original=context.PhiTransfer.download;
+  await media.bytes('./marker');
+  const controller=new AbortController();let replacement,observed=false;
+  context.PhiTransfer={download(...args){
+    const pending=original(...args);
+    if(!observed){observed=true;pending.then(async()=>{
+      controller.abort();await Promise.resolve();replacement=media.bytes('./target');
+    });}
+    return pending; // Observe the original fulfilled producer, without replacing its result.
+  }};
+  await assert.rejects(media.bytes('./target',{signal:controller.signal}),{name:'AbortError'});
+  await new Promise(resolve=>setImmediate(resolve));
+  assert.equal((await replacement).byteLength,5*1024*1024);
+  await media.bytes('./marker');await media.bytes('./target');
+  assert.equal(calls.filter(href=>href.endsWith('/marker')).length,1,'4+5 MiB fits: obsolete bytes must not evict the marker');
+  assert.equal(calls.filter(href=>href.endsWith('/target')).length,2);
+});
+
+test('a cancelled settled transfer cannot replace the surviving route bandwidth sample',async()=>{
+  let now=0,complete,calls=0;
+  const context=runtime({performance:{now:()=>now},fetch:async href=>{
+    if(href.endsWith('/baseline'))now=2000;
+    else if(++calls===1)now+=100;
+    else return new Promise(resolve=>complete=resolve);
+    return new Response(new Uint8Array(100000));
+  }}),media=context.PhiHostedMedia,original=context.PhiTransfer.download;
+  await media.bytes('./baseline');assert.equal(media.audioQuality(),'low');
+  const controller=new AbortController();let replacement,observed=false;
+  context.PhiTransfer={download(...args){
+    const pending=original(...args);
+    if(!observed){observed=true;pending.then(async()=>{controller.abort();await Promise.resolve();replacement=media.bytes('./target');});}
+    return pending;
+  }};
+  await assert.rejects(media.bytes('./target',{signal:controller.signal}),{name:'AbortError'});
+  await new Promise(resolve=>setImmediate(resolve));
+  const qualityWhileReplacementPending=media.audioQuality();
+  now+=2000;complete(new Response(new Uint8Array(100000)));await replacement;
+  assert.equal(qualityWhileReplacementPending,'low','cancelled fast bytes must not select the large high-quality variant');
+  assert.equal(media.audioQuality(),'low');assert.equal(calls,2);
+});
+
+test('a cancelled settled transfer with no replacement cannot displace retained bytes',async()=>{
+  const calls=[];
+  const context=runtime({fetch:async href=>{
+    calls.push(href);return new Response(new Uint8Array((href.endsWith('/marker')?4:9)*1024*1024));
+  }}),media=context.PhiHostedMedia,original=context.PhiTransfer.download;
+  await media.bytes('./marker');
+  const controller=new AbortController();let observed=false;
+  context.PhiTransfer={download(...args){
+    const pending=original(...args);
+    if(!observed){observed=true;pending.then(()=>controller.abort());}return pending;
+  }};
+  await assert.rejects(media.bytes('./target',{signal:controller.signal}),{name:'AbortError'});
+  await new Promise(resolve=>setImmediate(resolve));await media.bytes('./marker');
+  assert.equal(calls.filter(href=>href.endsWith('/marker')).length,1);
+  assert.equal((await media.bytes('./target')).byteLength,9*1024*1024);
+  assert.equal(calls.filter(href=>href.endsWith('/target')).length,2,'cancelled bytes must require a new live producer');
+});
+
+test('completed active downloads shrink to the original byte budget when consumers release',async()=>{
+  const calls=[];
+  const {PhiHostedMedia:media}=runtime({fetch:async href=>{
+    calls.push(href);return new Response(new Uint8Array(8*1024*1024));
+  }});
+  await Promise.all([media.bytes('./older'),media.bytes('./newer')]);
+  await media.bytes('./newer');assert.equal(calls.length,2,'newest completed entry remains reusable');
+  await media.bytes('./older');assert.equal(calls.length,3,'two idle 8 MiB objects cannot both remain in a 12 MiB cache');
+});
+
+test('an aborted old transfer failure cannot remove its completed replacement',async()=>{
+  let complete,calls=0;
+  const {PhiHostedMedia:media}=runtime({fetch:async()=>{
+    if(++calls===1)return new Promise(resolve=>complete=resolve);
+    return new Response('replacement');
+  }});
+  const controller=new AbortController(),first=media.bytes('./same',{signal:controller.signal});
+  await new Promise(resolve=>setImmediate(resolve));controller.abort();
+  await assert.rejects(first,{name:'AbortError'});
+  const replacement=await media.bytes('./same');
+  complete(new Response('',{status:404}));await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(await media.bytes('./same'),replacement);assert.equal(calls,2);
 });
 
 test('prepares a complete local music Blob before permitting playback', async()=>{

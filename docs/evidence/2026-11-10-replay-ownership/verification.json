@@ -1,0 +1,124 @@
+{
+  "scope": "Real historical replay input/session ownership engineering regression, not official 1:1 or complete chapter acceptance",
+  "date": "2026-11-10",
+  "parentCommit": "b00ab58d4ce3fcb75aacee8a6b1539bf6c644f9b",
+  "runtime": "4.0.1.2-pages-38",
+  "officialAcceptance": "blocked",
+  "officialFidelityPercent": null,
+  "sourceHashes": {
+    "index.html": "6e08dfcb342d1b660c5114eca113b6429454d99a798e51dcb2a95d19f9a4e658",
+    "sw.js": "ba10de8b37edf3e38477c37ac2daf898d4409a30652cf15fcf01bfcd0206a6d8",
+    "js/app.js": "7fb7b89bf137b6e8ba45fc2e7c3c2a42a62541f96e7875393316315c4e493acc",
+    "js/interactive-replay.js": "fd81c993d3d44ee16497ff8a4a5eccd746a01ce3b3a03da4d55ea230073b635f",
+    "scripts/audit-replay-ownership.cjs": "432f133c80771827cbee4a1acbd3509557f69099a90bb53ce8009ede9cec0431",
+    "scripts/checkpoint_sources.py": "d3dcfed2856c853d0edf51b3cf121f829f10d48170c77232ba853161551a0f92",
+    "scripts/main-cors-checkpoint.py": "14eda9c777bc5020a5f7bde471a94519e46e65adfe327e35a2b1208cb30e48ba",
+    "scripts/vision-cors-checkpoint.py": "7fbff13887c72e77fda4163840321093511c08f24e30b437368028a3b3de4a70",
+    "tests/interactive-replay-media-browser.cjs": "ffd929bd2ec78027c3d466da8e36fc9dedb499e10df6de439370afb8cc470b98",
+    "tests/replay-failure-recovery.test.cjs": "69dc5ee4aa20fcabe70ee23621c50d842d656238de3d9f31a45598531e353b94",
+    "tests/chapter8-session-integration.test.cjs": "af96618dae4029761f3daab4da5df026b0003437f74115da993ef3ce96a794c6",
+    "tests/vision-cors-checkpoint.test.cjs": "8691affbe48a374493bea293e47e32c997b5eb41b0b330d161a9b96f1191e6e9"
+  },
+  "productionChanges": [
+    {
+      "problem": "Clock-ready scene reset cleared keyPhase; releasing an Enter hold from the old clock scene emitted activate in the next stage.",
+      "before": "native-before.json: clock-ready -> clock-exit on release; keyboard-before.log reproduces extra activate",
+      "fix": "Require a still-owned keydown before keyup can confirm; fresh Enter confirmation remains functional. No rule, rate or timeline changes."
+    },
+    {
+      "problem": "Loading Back navigated to the library while a delayed real chart completion kept replay ownership and loading=true.",
+      "before": "preparation-owner-before.json: old replay id 2 remains owned after returning",
+      "fix": "Loading Back cancels replay ownership immediately; public cancel forwards the existing runtime return-to-library option so this navigation handler owns the return."
+    },
+    {
+      "problem": "Cancelled begin kept awaiting an uncooperative chart/preparation task, leaving the same card Play button disabled.",
+      "before": "preparation-button-before.json: real HD Play remains disabled for the existing 20000 ms action deadline; entry-settlement-before.log.gz has both caller-settlement failures",
+      "fix": "Entry waits settle on session abort; existing late task ownership checks and rejection handlers stay active. Callback completion is checked independently of caller cancellation."
+    }
+  ],
+  "commands": [
+    {
+      "command": "node --test tests/*.test.cjs",
+      "result": "496 passed / 0 failed / 0 skipped",
+      "log": "node-tests.log"
+    },
+    {
+      "command": "node tests/interactive-replay-media-browser.cjs",
+      "result": "passed; old clock release emits only hold-end, fresh Enter still emits activate; existing media recovery checks remain",
+      "evidence": "keyboard-after.log"
+    },
+    {
+      "command": "node --test tests/replay-failure-recovery.test.cjs tests/chapter8-session-integration.test.cjs",
+      "result": "12 passed / 0 failed / 0 skipped",
+      "evidence": "entry-settlement-after.log"
+    },
+    {
+      "command": "node scripts/audit-replay-ownership.cjs http://127.0.0.1:4190 work/replay-ownership-final",
+      "result": "12 real app checkpoints passed; no page/console errors; actual 1x Rrharil scene/clock/Play/chart, and old preparation completion after a new HD session starts",
+      "evidence": "native-final.json"
+    },
+    {
+      "command": "PHI_REPLAY_OWNERSHIP_CASE=preparation node scripts/audit-replay-ownership.cjs http://127.0.0.1:4190 work/replay-preparation-observed",
+      "result": "4 real app checks passed using existing local assets only; zero external/cache-file requests",
+      "evidence": "preparation-after.json"
+    },
+    {
+      "command": "python3 scripts/main-cors-checkpoint.py",
+      "result": "reuse-scoped, no network requests"
+    },
+    {
+      "command": "python3 scripts/vision-cors-checkpoint.py",
+      "result": "reuse-blocked-scoped, no network requests; workflow retains exit 1"
+    }
+  ],
+  "cacheReuse": {
+    "uniqueFiles": 5,
+    "uniqueBytes": 26084700,
+    "externalNetworkRequests": 0,
+    "transport": "Original fixed addresses routed to measured original byte cache; each used file length/SHA256 rechecked. Not fresh CORS.",
+    "main3GBDownloadedAgain": false,
+    "deniedMirrorsRetried": false,
+    "runtimeResourcesModified": false
+  },
+  "instrumentation": {
+    "input": "Actual keyboard/mouse and existing UI; no synthetic controller progress, seeking, speedup or engine result injection.",
+    "lateCompletion": "Only delays the original chart bytes Promise after its real transfer; real decompression/record/engine paths continue. A pass-through observer around the actual configured startSong records final settlement; it preserves adapter arguments, rules and engines.",
+    "oldCompletionObserved": "native-final.json and preparation-after.json include the old adapter rejection after the new engine has started; no active-session error, same new id and advancing music clock.",
+    "callerVsTask": "A caller can settle cancelled before the old task. Existing late-engine cleanup test now drains that task separately and retains all cleanup assertions."
+  },
+  "networkApplicability": {
+    "scope": "Dated CI8 main and CI10 vision evidence only, never a fresh availability claim",
+    "proof": "scope-proof.json and original cors-checkpoint.json sourceHashes",
+    "method": "Keep measured hashes. For only two recorded current file hashes, reverse exactly 28 HTML cache tokens, two app cache tokens and the single loading Back cancellation line; reconstructed bytes must hash to the measured baseline. Other loader/manifest/CSP changes trigger fresh checks. Invalid edit counts or baseline reconstruction fail closed.",
+    "tests": "Six checkpoint tests preserve blocked state, reject incomplete/misclassified evidence and invalid reconstruction, and require a new audit for any additional bootstrap/loader edit.",
+    "mirrorGate": "Two real HTTP403 size-denied mirrors remain externally blocked and keep overall workflow nonzero."
+  },
+  "probeSetupNotes": [
+    {
+      "issue": "Initial preparation probe targeted historical The Chariot, but current catalog only supplies The Chariot ~REVIIVAL~, which intentionally does not match the strict replay route.",
+      "resolution": "Use the actually routed Luminescence EZ/HD entries. Do not map the newer variant to unverified historical rules.",
+      "evidence": "catalog-scope.json"
+    },
+    {
+      "issue": "A first preparation hook waited on loadChart, but the actual local Luminescence record uses method 9 gzip through bytes.",
+      "resolution": "Observe and gate its real bytes path; the wrong-hook timeout is setup failure, not a product defect or passed test."
+    },
+    {
+      "issue": "Refilling an unchanged search started a fresh debounced render and changed the test selection before play.",
+      "resolution": "Do not emit a redundant search when the query is already correct; after real query changes wait for the prior result card to detach, then assert requested difficulty selection. No product search behavior changed."
+    }
+  ],
+  "CI": "Pending exact new SHA. Preparation-only actual app regression is added to CI with local assets. Full cached Rrharil flow remains local evidence; CI does not redownload its media. Final CI result is recorded in PR metadata.",
+  "remaining": [
+    "Same-difficulty re-entry while the identical materialized-record Promise is pending is not covered by the EZ-to-HD handoff.",
+    "Full song play/results, complete credits and all chapter branches remain unverified.",
+    "CI9 precise uninstrumented SW timeout cause remains unverified.",
+    "Two CDN mirrors remain blocked; unique official build/platform/settings/full reference and resource attribution remain missing."
+  ],
+  "encodedFailureLog": {
+    "file": "entry-settlement-before.log.gz",
+    "encoding": "gzip",
+    "uncompressedSHA256": "a71b315723ba142d5c12d6de3b1b433b6c3cd565c4536aaee49e9b7732783cee",
+    "reason": "Preserve original assertion-output whitespace exactly without whitespace-only diff errors"
+  }
+}

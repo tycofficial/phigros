@@ -1,0 +1,148 @@
+name: Engineering regression
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: engineering-regression-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  native-noise:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PHI_NOISE_EXPECTED_RUNTIME: '4.0.1.2-pages-41'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Prepare native-noise browser
+        run: |
+          npm install --prefix "$RUNNER_TEMP/phigros-noise-browser" --no-save --package-lock=false playwright@1.62.1
+          node "$RUNNER_TEMP/phigros-noise-browser/node_modules/playwright/cli.js" install chromium
+          export NODE_PATH="$RUNNER_TEMP/phigros-noise-browser/node_modules"
+          node -e "require('node:fs').appendFileSync(process.env.GITHUB_ENV, 'NODE_PATH='+process.env.NODE_PATH+'\nCHROMIUM_PATH='+require('playwright').chromium.executablePath()+'\n')"
+      - name: Verify original-site native noise pixels
+        run: |
+          node scripts/audit-native-noise.cjs https://tycofficial.github.io/phigros/ work/native-noise/leave-at 'Leave All Behind' AT
+          node scripts/audit-native-noise.cjs https://tycofficial.github.io/phigros/ work/native-noise/message-in Message IN
+      - name: Keep native-noise diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-noise-${{ github.sha }}
+          path: work/native-noise/
+          retention-days: 14
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Prepare browser tooling
+        run: |
+          npm install --prefix "$RUNNER_TEMP/phigros-browser" --no-save --package-lock=false playwright@1.62.1
+          node "$RUNNER_TEMP/phigros-browser/node_modules/playwright/cli.js" install chromium
+          echo "NODE_PATH=$RUNNER_TEMP/phigros-browser/node_modules" >> "$GITHUB_ENV"
+      - name: Select installed Chromium
+        run: >-
+          node -e "require('node:fs').appendFileSync(process.env.GITHUB_ENV,
+          'CHROMIUM_PATH=' + require('playwright').chromium.executablePath() + '\n')"
+      - name: Run unit and integration regressions
+        run: |
+          mkdir -p work
+          node --test tests/*.test.cjs | tee work/node-tests.log
+      - name: Verify complete runtime packaging
+        run: >-
+          python3 scripts/build-runtime-release.py
+          --output "$RUNNER_TEMP/phigros-runtime"
+          --report work/runtime-package.json
+      - name: Verify measured remote-resource evidence without downloads
+        run: >-
+          python3 scripts/audit-remote-resources.py
+          --plan docs/evidence/2026-11-10-remote-resources/plan.json.gz
+          --verify-journal docs/evidence/2026-11-10-remote-resources/results.jsonl.gz
+      - name: Verify vision measurements including recorded source limits
+        run: >-
+          python3 scripts/audit-remote-resources.py
+          --plan docs/evidence/2026-11-10-vision-resources/plan.json
+          --verify-journal docs/evidence/2026-11-10-vision-resources/content-results.jsonl
+          --allow-blocked
+      - name: Run actual app and persistent storage browser checks
+        env:
+          PHI_FLOW_VIDEO: '1'
+        run: |
+          python3 -m http.server 4180 --bind 127.0.0.1 > work/server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          node tests/menu-background-browser.cjs work/menu-background
+          node tests/full-flow-browser.cjs http://127.0.0.1:4180 work/browser-flow
+          node tests/audio-transport-browser.cjs http://127.0.0.1:4180 work/audio-transport
+          node tests/stream-recovery-browser.cjs http://127.0.0.1:4180 work/stream-recovery
+          node tests/hosted-cache-browser.cjs http://127.0.0.1:4180 work/hosted-cache
+          node tests/hosted-progress-browser.cjs http://127.0.0.1:4180 work/hosted-progress
+          node tests/audio-gesture-prime-browser.cjs http://127.0.0.1:4180 work/audio-gesture-prime
+          node tests/audio-session-ownership-browser.cjs http://127.0.0.1:4180 work/audio-session-ownership
+          node tests/loading-cancel-browser.cjs http://127.0.0.1:4180 work/loading-cancel
+          PHI_REPLAY_OWNERSHIP_CASE=preparation node scripts/audit-replay-ownership.cjs http://127.0.0.1:4180 work/replay-preparation
+          node scripts/audit-same-chart-preparation.cjs http://127.0.0.1:4180 work/same-chart-preparation
+          PHI_TEST_SW_PRECLAIM=1 node tests/service-worker-browser.cjs work/service-worker
+          node tests/folder-import-browser.cjs http://127.0.0.1:4180 work/folder-import
+          node tests/library-migration-browser.cjs | tee work/library-migration.log
+          node tests/interactive-replay-media-browser.cjs | tee work/replay-media.log
+      - name: Audit current preparation networking
+        if: ${{ always() && !cancelled() }}
+        run: |
+          mkdir -p work
+          python3 -m http.server 4180 --bind 127.0.0.1 > work/vision-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          node scripts/audit-preparation-network.cjs http://127.0.0.1:4180 work/preparation-network
+      - name: Retain network scope and blocked mirror gates
+        if: ${{ always() && !cancelled() }}
+        run: |
+          audit_status=0
+          main_cors_action=$(python3 scripts/main-cors-checkpoint.py) || { audit_status=$?; main_cors_action=checkpoint-failed; }
+          if [[ "$main_cors_action" == "run" ]]; then
+            echo "Current preparation/cache source changed. The old whole-bootstrap main CORS checkpoint is NOT reused. Full 1091-address current matrix is NOT RUN in this bounded batch; see the independent current preparation network sample."
+            audit_status=1
+          elif [[ "$main_cors_action" == "reuse" ]]; then
+            echo "Reusing dated CI #8 main CORS evidence: exact tested sources unchanged; no 1091-URL re-audit."
+          elif [[ "$main_cors_action" == "reuse-scoped" ]]; then
+            echo "Reusing dated CI #8 main CORS evidence: recorded UI/cache-only edits reconstruct tested bootstrap bytes; network loaders/manifests unchanged; no fresh availability claim or network re-audit."
+          else
+            echo "Main CORS checkpoint failed; preserving its failure and continuing independent vision checks."
+          fi
+          vision_cors_action=$(python3 scripts/vision-cors-checkpoint.py) || { audit_status=$?; vision_cors_action=checkpoint-failed; }
+          if [[ "$vision_cors_action" == "run" ]]; then
+            echo "Current preparation/cache source is outside the old UI-only vision proof. The old whole-bootstrap checkpoint is NOT reused. Full current vision network matrix is NOT RUN; the two recorded HTTP403 mirrors remain blocked and are not retried."
+            audit_status=1
+          elif [[ "$vision_cors_action" == "reuse-blocked" ]]; then
+            echo "Reusing dated CI #10 vision evidence: tested sources unchanged; no repeated network audit; two mirrors remain blocked."
+            audit_status=1
+          elif [[ "$vision_cors_action" == "reuse-blocked-scoped" ]]; then
+            echo "Reusing dated CI #10 vision evidence: recorded UI/cache-only edits reconstruct tested bootstrap bytes; downloaders/manifests unchanged; no fresh network claim; two mirrors remain blocked."
+            audit_status=1
+          else
+            echo "Vision checkpoint failed; preserving nonzero status."
+          fi
+          exit "$audit_status"
+      - name: Keep engineering evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: engineering-regression-${{ github.sha }}
+          path: work/
+          retention-days: 14

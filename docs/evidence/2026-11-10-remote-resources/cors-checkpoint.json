@@ -1,0 +1,47 @@
+{
+  "scope": "Dated native CORS checkpoint; not a claim of fresh availability on later runs",
+  "head": "bc2271c06578efbe022537eab03bdb3aaa4794f2",
+  "run": "https://github.com/tycofficial/phigros/actions/runs/42857848906",
+  "checkedDate": "2026-11-10",
+  "ciConclusion": "success",
+  "nativeCORSPassed": 1091,
+  "sourceHashes": {
+    "index.html": "601aeaa15cd9e76c6130faf6208cbe73516d32f33a1d7ae27cdba6dc54bac91a",
+    "js/app.js": "9a89c7bb6d749489809a0dbceb139a4437021eb629c14e07ad10bc92ccc8b527",
+    "js/remote-assets.js": "7943b98f7a6a9310024880cd51178abdc22f459769e02d6eda64b9a6018410b2",
+    "js/hosted-media.js": "479c231c136ce27e8c1a54b5a2b6466ef57964e5889f6860127da9511b2ef2d2",
+    "js/site-network-guard.js": "c8ae0e2ac7afa04572cfd8b20ec558d49ec2054129d5fc06340eeee38cecbdbd",
+    "scripts/audit-remote-cors-batch.cjs": "7bb6d53ce931aa9180378759248a2f18ace42da6f603544fdd4f76dabdc1f75b"
+  },
+  "scopedSourceChanges": {
+    "index.html": {
+      "currentSHA256": "6e08dfcb342d1b660c5114eca113b6429454d99a798e51dcb2a95d19f9a4e658",
+      "measuredSHA256": "601aeaa15cd9e76c6130faf6208cbe73516d32f33a1d7ae27cdba6dc54bac91a",
+      "reverseEdits": [
+        {
+          "before": "pages-38",
+          "after": "pages-37",
+          "count": 28
+        }
+      ],
+      "auditImpact": "Only cache release tokens and, in app.js, loading Back replay cancellation. The archived probes call downloaders directly and never this UI handler; request code, fixed resource addresses, manifests and CSP are unchanged. Runtime UI/input/cancellation changes have separate real-browser regressions. This is dated scope applicability, never fresh availability."
+    },
+    "js/app.js": {
+      "currentSHA256": "7fb7b89bf137b6e8ba45fc2e7c3c2a42a62541f96e7875393316315c4e493acc",
+      "measuredSHA256": "9a89c7bb6d749489809a0dbceb139a4437021eb629c14e07ad10bc92ccc8b527",
+      "reverseEdits": [
+        {
+          "before": "pages-38",
+          "after": "pages-37",
+          "count": 2
+        },
+        {
+          "before": "      if(globalThis.PhiInteractiveReplay?.current)PhiInteractiveReplay.cancel(false);\n",
+          "after": "",
+          "count": 1
+        }
+      ],
+      "auditImpact": "Only cache release tokens and, in app.js, loading Back replay cancellation. The archived probes call downloaders directly and never this UI handler; request code, fixed resource addresses, manifests and CSP are unchanged. Runtime UI/input/cancellation changes have separate real-browser regressions. This is dated scope applicability, never fresh availability."
+    }
+  }
+}

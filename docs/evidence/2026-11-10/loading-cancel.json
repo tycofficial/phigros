@@ -1,0 +1,12 @@
+{
+  "scope": "Engineering cancellation regression, not official reference comparison",
+  "appSHA256": "e5d21bb69bfb159313b990a028cec9dc172e1207b05fe96d978e48e6e79c87eb",
+  "requests": [
+    1794318015638
+  ],
+  "pageErrors": [],
+  "atExit": 1,
+  "afterExit": 1,
+  "engineRunning": false,
+  "status": "passed"
+}

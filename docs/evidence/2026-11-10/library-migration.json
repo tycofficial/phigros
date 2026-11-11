@@ -1,0 +1,208 @@
+{
+  "browser": "156.0.8078.79",
+  "passed": 11,
+  "results": [
+    {
+      "scenario": "missing-zip",
+      "status": "passed",
+      "error": {
+        "name": "Error",
+        "message": "迁移包中没有谱面 ZIP"
+      },
+      "storesBefore": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "storesAfter": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "scenario": "invalid-chart",
+      "status": "passed",
+      "error": {
+        "name": "Error",
+        "message": "fixture.zip\n  chart.json：元数据指向了该文件，但内容不是可识别的 PGR／RPE／PEC／SUS 谱面"
+      },
+      "storesBefore": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "storesAfter": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "scenario": "missing-declared-chart",
+      "status": "passed",
+      "error": {
+        "name": "Error",
+        "message": "迁移包谱面缺失或重复：charts/absent.zip"
+      },
+      "storesBefore": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "storesAfter": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "scenario": "malformed-settings",
+      "status": "passed",
+      "error": {
+        "name": "Error",
+        "message": "迁移包设置或成绩清单无效"
+      },
+      "storesBefore": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "storesAfter": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "scenario": "transaction-failure",
+      "status": "passed",
+      "error": {
+        "name": "DataCloneError",
+        "message": "injected write failure"
+      },
+      "storesBefore": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "storesAfter": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "scenario": "success",
+      "status": "passed",
+      "error": null,
+      "storesBefore": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "storesAfter": [
+        2,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "scenario": "direct-import",
+      "status": "passed",
+      "error": null,
+      "storesBefore": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "storesAfter": [
+        2,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "scenario": "direct-partial-failure",
+      "status": "passed",
+      "error": null,
+      "storesBefore": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "storesAfter": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "scenario": "direct-formats",
+      "status": "passed",
+      "error": null,
+      "storesBefore": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "storesAfter": [
+        6,
+        6,
+        1,
+        1
+      ]
+    },
+    {
+      "scenario": "direct-pez",
+      "status": "passed",
+      "error": null,
+      "storesBefore": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "storesAfter": [
+        2,
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "scenario": "direct-loose",
+      "status": "passed",
+      "error": null,
+      "storesBefore": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "storesAfter": [
+        2,
+        2,
+        1,
+        1
+      ]
+    }
+  ]
+}

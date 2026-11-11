@@ -1,0 +1,129 @@
+{
+  "scope": "Actual local UI/engine on exact published pages-41 source; not yet a live production or user-device reproduction",
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)",
+    "Failed to load resource: the server responded with a status of 404 (File not found)",
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4182/assets/meta/native-block-resources.json",
+      "status": 200
+    }
+  ],
+  "startedAt": "2026-11-11T12:27:48.086Z",
+  "runtime": "4.0.1.2-pages-41",
+  "selected": "ハテ",
+  "engine": {
+    "name": "ハテ",
+    "id": "builtin:chapter9-ハテ.rNFrums-at",
+    "tier": "AT",
+    "kind": "pgr",
+    "chartKeys": [
+      "kind",
+      "blockAreas",
+      "formatVersion",
+      "offset",
+      "lines",
+      "noteCount",
+      "eventCount",
+      "rawKind",
+      "modelVersion",
+      "compatibilityReport",
+      "packageMeta"
+    ],
+    "areas": 14355,
+    "firstAreas": [
+      {
+        "appearTime": 1.6326531,
+        "enableTime": 1.6326531,
+        "disableTime": 11.972789,
+        "disappearTime": 11.972789
+      },
+      {
+        "appearTime": 1.6326531,
+        "enableTime": 1.6326531,
+        "disableTime": 5.442177,
+        "disappearTime": 5.442177
+      },
+      {
+        "appearTime": 2.1768708,
+        "enableTime": 2.1768708,
+        "disableTime": 4.0816326,
+        "disappearTime": 4.0816326
+      },
+      {
+        "appearTime": 2.7210884,
+        "enableTime": 2.7210884,
+        "disableTime": 5.9863944,
+        "disappearTime": 5.9863944
+      }
+    ],
+    "earliest": 1.6326531,
+    "activeAtCurrent": 0,
+    "renderer": true,
+    "rendererGL": true,
+    "contextLost": false,
+    "lastRenderTime": 0.2249319727891148,
+    "noiseDataset": {
+      "lowResolution": "0",
+      "hyper120Quality": "1.00",
+      "renderDpr": "1.000",
+      "backingSize": "1280x720",
+      "noiseRenderer": "webgl-native",
+      "noiseSource": "Adai-add/PhiraiAd@a60b49ad",
+      "backgroundRenderer": "transparent-canvas-over-single-static-background",
+      "backgroundState": "baked"
+    },
+    "overlay": {
+      "width": 1280,
+      "height": 720,
+      "display": "block",
+      "opacity": "1",
+      "zIndex": "19"
+    },
+    "time": 0.2365419501133772,
+    "music": 0.2365419501133772,
+    "running": true,
+    "paused": false
+  },
+  "beforePixels": {
+    "time": 0.30620181405895686,
+    "music": 0.30620181405895686,
+    "zones": 0,
+    "nontransparentPixels": 0,
+    "coloredPixels": 0,
+    "paused": false,
+    "lastRenderTime": 0.2249319727891148,
+    "geometry": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "sampleTarget": 1.8826531,
+  "activePixels": {
+    "time": 2.494682539682538,
+    "music": 2.494682539682538,
+    "zones": 3,
+    "nontransparentPixels": 80467,
+    "coloredPixels": 80467,
+    "paused": false,
+    "lastRenderTime": 2.065113378684808,
+    "geometry": [
+      54,
+      54,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "dialog": "关闭",
+  "status": "pixels-observed",
+  "finishedAt": "2026-11-11T12:28:08.769Z"
+}

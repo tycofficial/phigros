@@ -1,0 +1,18 @@
+{
+  "scope": "Content integrity at fixed URLs, not browser CORS or official authenticity",
+  "planSHA256": "109f4377f8ed0e6df8bbee94d9487eb65ce9b09d3298817c568702b013bd3dc9",
+  "sessionStartedAt": "2026-11-10T16:33:41+00:00",
+  "finishedAt": "2026-11-10T16:37:51+00:00",
+  "expectedResources": 1091,
+  "expectedTotalBytes": 3014460209,
+  "recordedResources": 1091,
+  "notAttempted": 0,
+  "passed": 1091,
+  "failed": 0,
+  "blocked": 0,
+  "skipped": 0,
+  "verifiedBytes": 3014460209,
+  "workers": 3,
+  "browserCORS": "not_verified",
+  "officialAcceptance": "blocked"
+}

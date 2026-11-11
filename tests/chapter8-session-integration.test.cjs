@@ -131,8 +131,18 @@ test('cancel during deferred chart preparation stops a late engine without reviv
   const beginning=h.runtime.begin(entry('luminescence'));await flush();
   const id=h.runtime.current.id;h.runtime.cancel();assert.ok(h.cancelled.includes(id));
   gate.resolve();assert.equal(await beginning,false);
+  // Entry cancellation now settles before the late chart callback; drain that
+  // callback separately before checking its engine was stopped.
+  await flush();
   assert.equal(h.engine,null);assert.equal(h.runtime.current,null);assert.equal(h.exitCount,1);
   assert.ok(h.stops.filter(value=>value===id).length>=2);assert.deepEqual(h.errors,[]);
+});
+test('cancel releases the chart entry caller while its old chart callback is still pending',async()=>{
+ const gate=deferred(),h=harness({startSong:()=>gate.promise});let result='pending';
+ const beginning=h.runtime.begin(entry('luminescence')).then(value=>{result=value;});await flush();h.runtime.cancel();await flush();
+ try{assert.equal(result,false,'a cancelled chart entry must not hold the selection button');}
+ finally{gate.resolve();await beginning;await flush();}
+ assert.equal(h.runtime.current,null);assert.equal(h.engine,null);assert.deepEqual(h.errors,[]);
 });
 
 test('a stale video failure after cancel cannot poison a new chapter session',async()=>{

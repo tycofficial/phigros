@@ -1,0 +1,44 @@
+{
+  "scope": "Verified cache bytes, original createSurface, native muted playback at start/end and loop/codec-selection checks; not remote CORS, full real-time playthrough or official reference matching",
+  "browser": "156.0.8078.79",
+  "startedAt": "2026-11-10T17:22:56.615Z",
+  "sourceSHA256": "07de625163d4a010c64840f6995d4416a395c5ef6b81d753a52fc656283ed8eb",
+  "externalRequests": [],
+  "pageErrors": [],
+  "results": [
+    {
+      "id": "about_us_1_m4a",
+      "checkedAt": "2026-11-10T17:22:58.995Z",
+      "mime": "audio/mp4",
+      "selected": {
+        "id": "about_us_1_m4a",
+        "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.m4a"
+      },
+      "start": {
+        "before": 0.000213,
+        "after": 0.360342,
+        "paused": false,
+        "duration": 194.820998,
+        "width": null,
+        "height": null,
+        "frames": null
+      },
+      "end": {
+        "time": 194.820998,
+        "ended": true,
+        "loop": false,
+        "paused": true
+      },
+      "controlledFlacUnsupported": true,
+      "nativeCanPlay": "maybe",
+      "status": "passed",
+      "mediaErrors": []
+    }
+  ],
+  "selectedMediaIDs": [
+    "about_us_1_m4a"
+  ],
+  "mediaErrors": [],
+  "status": "passed",
+  "finishedAt": "2026-11-10T17:22:58.998Z"
+}

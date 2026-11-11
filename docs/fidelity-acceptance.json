@@ -1,0 +1,458 @@
+{
+  "schemaVersion": 1,
+  "scope": "初始逐模块验收台账，不是完整页面清单或完成声明",
+  "officialBaseline": {
+    "version": null,
+    "build": null,
+    "platform": null,
+    "settings": null,
+    "referenceSource": null,
+    "language": null,
+    "displayAspectRatio": null,
+    "resolution": null,
+    "displayScale": null,
+    "quality": null,
+    "gameSettings": null
+  },
+  "overallStatus": "blocked",
+  "officialFidelityPercent": null,
+  "baseCommit": "cd07039b7f75fb85852d0eec5ff01b72cde4baf1",
+  "items": [
+    {
+      "id": "opening",
+      "criterion": "开场／标题",
+      "reference": null,
+      "implementation": [
+        "js/opening.js",
+        "index.html"
+      ],
+      "verificationMethod": "同版本原版录屏逐帧对齐",
+      "result": "未进行官方对照",
+      "remainingDifference": "现有程序粒子和网格近似，不是官方逐帧验证",
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+    },
+    {
+      "id": "loading",
+      "criterion": "加载页面／动画",
+      "reference": null,
+      "implementation": [
+        "js/loading-presentation.js",
+        "js/app.js"
+      ],
+      "verificationMethod": "原版同尺寸进入／退出时序对照",
+      "result": "未进行官方对照",
+      "remainingDifference": "保留模拟器现有 850ms/300ms 时序，尚无官方依据",
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+    },
+    {
+      "id": "tips",
+      "criterion": "Tips 全集与出现规则",
+      "reference": null,
+      "implementation": [
+        "index.html"
+      ],
+      "verificationMethod": "目标构建文本清单及触发规则核对",
+      "result": "未进行官方对照",
+      "remainingDifference": "缺少官方语料与出现规则；删除旧自写提示不等于还原",
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+    },
+    {
+      "id": "selection",
+      "criterion": "选歌与章节封面／导航",
+      "reference": null,
+      "implementation": [
+        "js/app.js",
+        "js/catalog-runtime.js"
+      ],
+      "verificationMethod": "逐页面截图、滚动、难度切换与触点对照",
+      "result": "未进行官方对照",
+      "remainingDifference": "当前元数据卡片与原版导航未完成对照",
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+    },
+    {
+      "id": "catalog",
+      "criterion": "全曲目／谱面／音乐／曲绘",
+      "reference": null,
+      "implementation": [
+        "js/full-catalog.js",
+        "CATALOG-SOURCES.md"
+      ],
+      "verificationMethod": "目标构建资源清单与当前素材哈希、版本、权限核对",
+      "result": "未进行官方对照",
+      "remainingDifference": "335 版本条目不是全曲目证明，历史 SP 和远程依赖仍有缺口",
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+    },
+    {
+      "id": "gameplay",
+      "criterion": "判定／音画同步／计分",
+      "reference": null,
+      "implementation": [
+        "js/app.js"
+      ],
+      "verificationMethod": "原版受控输入、时钟和判定边界对照",
+      "result": "未进行官方对照",
+      "remainingDifference": "内部回归测试不能证明官方判定参数",
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+    },
+    {
+      "id": "course",
+      "criterion": "课题模式",
+      "reference": null,
+      "implementation": [
+        "js/course-mode.js"
+      ],
+      "verificationMethod": "官方选曲、规则、约束、失败与结果流程对照",
+      "result": "未进行官方对照",
+      "remainingDifference": "社区规则和自定义 UI 尚未官方验收",
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+    },
+    {
+      "id": "replay",
+      "criterion": "章节重演与分支",
+      "reference": null,
+      "implementation": [
+        "js/interactive-replay.js",
+        "js/boss-replay-rules.js",
+        "js/chapter8-replay-rules.js"
+      ],
+      "verificationMethod": "逐章节成功／失败／退出路径录像与状态对照",
+      "result": "未进行官方对照",
+      "remainingDifference": "保留现有文本内容；额外标签清理及历史修改版来源均不能当作官方通过",
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+    },
+    {
+      "id": "effects",
+      "criterion": "全部演出后处理",
+      "reference": null,
+      "implementation": [
+        "js/chapter8-stage-effects.js",
+        "js/chapter8-replay-visuals.js"
+      ],
+      "verificationMethod": "同帧官方原图与输出的空间／时序差异测量",
+      "result": "未进行官方对照",
+      "remainingDifference": "Bloom、径向模糊等已知缺口；未选择官方版本",
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+    },
+    {
+      "id": "chapter9",
+      "criterion": "第九章完整交互",
+      "reference": null,
+      "implementation": [
+        "CATALOG-SOURCES.md"
+      ],
+      "verificationMethod": "官方全流程录像与资源关联",
+      "result": "未进行官方对照",
+      "remainingDifference": "完整原版交互仍未实现",
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+    },
+    {
+      "id": "settings-results",
+      "criterion": "设置／暂停／结算及隐藏流程",
+      "reference": null,
+      "implementation": [
+        "index.html",
+        "js/app.js"
+      ],
+      "verificationMethod": "建立所有页面和状态清单后逐项对照",
+      "result": "未进行官方对照",
+      "remainingDifference": "清单未穷尽，缺少统一官方参考，不可宣称全覆盖",
+      "status": "blocked",
+      "engineeringEvidence": "docs/evidence/2026-11-10/verification.json"
+    },
+    {
+      "id": "local-import",
+      "criterion": "本地导入（扩展功能，非官方复刻）",
+      "reference": null,
+      "implementation": [
+        "js/app.js",
+        "tests/local-import-storage.test.cjs"
+      ],
+      "verificationMethod": "ZIP/PEZ/散文件/文件夹/旧成绩持久化回归",
+      "result": "11 个 Chromium 导入／迁移场景已通过；本批还通过真实完整文件夹选择器、三种视口菜单开关、嵌套同名文件的逐首音频映射、原数据保留及刷新恢复。",
+      "remainingDifference": "文件夹测试只覆盖三首 PGR／JSON 元数据／WAV 合成输入；实际用户存档、其他文件夹格式组合及真实 iPad 未穷尽验证。",
+      "status": "unverified",
+      "engineeringEvidence": "docs/evidence/2026-11-10-folder-import/verification.json"
+    }
+  ],
+  "engineeringChanges": [
+    {
+      "id": "loading-module",
+      "implementation": [
+        "js/loading-presentation.js",
+        "tests/loading-presentation.test.cjs"
+      ],
+      "method": "可控时钟、DOM、rAF、URL 依赖的生命周期回归",
+      "result": "12 项新增测试通过；提取模块并修复已取消／替代请求的旧进度回写",
+      "officialEquivalence": "not-verified"
+    },
+    {
+      "id": "replay-stale-caption",
+      "implementation": [
+        "js/interactive-replay.js",
+        "tests/replay-instruction-presentation.test.cjs"
+      ],
+      "method": "执行真实私有 surface，修改前复现失败，修改后通过",
+      "result": "3 项新增测试通过；空 instruction 清空旧标签，未提供该字段的叙事帧保留文本",
+      "officialEquivalence": "not-verified"
+    },
+    {
+      "id": "runtime-bootstrap",
+      "implementation": [
+        "js/app.js",
+        "tests/runtime-bootstrap.test.cjs"
+      ],
+      "method": "执行真实启动前导代码的依赖存在／缺失／失败场景与版本一致性测试",
+      "result": "4 项新增测试通过；旧缓存 HTML 可补载新提取模块",
+      "officialEquivalence": "not-verified"
+    },
+    {
+      "id": "course-catalog-race",
+      "implementation": [
+        "js/course-mode.js",
+        "tests/course-mode-state.test.cjs"
+      ],
+      "method": "执行真实模块，以两个可控异步目录请求复现交错；修改前选择曲目抛出 TypeError，修改后通过",
+      "result": "6 项课题状态／取消／过期响应测试通过；旧响应不再覆盖当前选曲数据",
+      "officialEquivalence": "not-verified"
+    },
+    {
+      "id": "local-import-cache-commit",
+      "implementation": [
+        "js/app.js",
+        "tests/local-import-cache.test.cjs"
+      ],
+      "verificationMethod": "Node VM executes shipped helpers with controlled transaction completion/rejection; six failures reproduced before fix, eight tests pass after fix",
+      "result": "Single-chart and summary writes, and deletes, publish cache changes only after persistent commit; temporary-mode and bulk-import compatibility tests pass",
+      "officialFidelityStatus": "not_applicable",
+      "limitation": "Controlled completion tests do not replace real-browser IndexedDB rollback/reopen or device tests"
+    },
+    {
+      "id": "audio-wake-session-guard",
+      "implementation": [
+        "js/app.js",
+        "tests/audio-wake-lifecycle.test.cjs"
+      ],
+      "verificationMethod": "Execute shipped Engine.start/resume with deferred audio activation; four cancellation/supersession cases fail before fix and pass after; active resume still reaches playback",
+      "result": "Revalidate transition token and running state before touching UI or starting music after audio session activation",
+      "officialFidelityStatus": "not_applicable",
+      "limitation": "Tests isolate activation boundary; real Safari audio lifecycle and other asynchronous playback boundaries remain outside this result"
+    },
+    {
+      "id": "audio-transport-session-guard",
+      "implementation": [
+        "js/app.js",
+        "tests/audio-transport-lifecycle.test.cjs",
+        "tests/audio-transport-browser.cjs"
+      ],
+      "verificationMethod": "18 transport regressions; original 12 cases had 10 failures before the fix. Real decoded Web Audio browser test fails on parent source and passes on final source.",
+      "result": "Cancelled or superseded context activation/buffer waits cannot start music or switch transport; old start/resume completions and watchdog callbacks cannot pause or mutate replacement playback.",
+      "officialFidelityStatus": "not_applicable",
+      "limitation": "Controlled asynchronous boundaries and real Chromium playback; no physical Safari latency or official timing equivalence measurement."
+    },
+    {
+      "id": "pr-engineering-ci",
+      "implementation": [
+        ".github/workflows/engineering-regression.yml"
+      ],
+      "verificationMethod": "Local equivalent commands and parsed workflow YAML; remote result must be read for the final SHA.",
+      "result": "PR checks install browser tooling before the Node suite, use explicit bash pipefail, and upload browser evidence. Initial false-green run is recorded in docs/evidence/2026-11-10/ci-first-run.json; final SHA requires raw-log verification.",
+      "officialFidelityStatus": "not_applicable"
+    },
+    {
+      "id": "service-worker-ready-before-claim",
+      "implementation": [
+        "sw.js",
+        "tests/service-worker.test.cjs",
+        "tests/service-worker-browser.cjs"
+      ],
+      "verificationMethod": "Original worker: eight new unit cases fail and actual updated-worker offline reload fails. Final worker: 18 SW tests and nine actual-worker browser steps pass with gzip transport, controlled missing bootstrap, retry, and isolated saved-data/range checks.",
+      "result": "Prepare entry and HTML-declared startup code before activating; keep the existing working worker on failed install; preserve shared media cache and test saves.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-service-worker/verification.json",
+      "limitation": "Only program startup resources, not complete song/artwork/font/optional-resource offline coverage; real user/device/Safari and official UI fidelity unverified."
+    },
+    {
+      "id": "existing-folder-import-entry",
+      "implementation": [
+        "css/style.css",
+        "tests/folder-import-browser.cjs",
+        "tests/helpers/import-fixtures.cjs"
+      ],
+      "verificationMethod": "Actual More action exposes aria-expanded=true but import action remains hidden before the selector correction. Final Chromium checks three viewports and native directory chooser; nested same-name media are checked against independent Node SHA-256 expectations.",
+      "result": "Restore the existing import panel; nested folder import and prior-data/reload checks pass without changing importer logic, formats or menu contents.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-folder-import/verification.json",
+      "limitation": "Synthetic PGR folder and Chromium only; no exhaustive format/device/user-save or official-UI equivalence conclusion."
+    },
+    {
+      "id": "stream-recovery-ownership",
+      "implementation": [
+        "js/app.js",
+        "tests/stream-recovery-lifecycle.test.cjs",
+        "tests/stream-recovery-browser.cjs"
+      ],
+      "verificationMethod": "Before: 9/10 new controlled lifecycle cases fail and actual HTML media is paused by a late recovery completion. After: 19 combined buffer cases, real-media ordering checks and full 456-test suite pass.",
+      "result": "Cancellation releases the recovery slot and closes its input interval immediately; stale progress/finally callbacks cannot clear the new recovery or pause replacement music.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-stream-recovery/verification.json",
+      "limitation": "Actual media and Engine methods with controlled fallback/readiness/promise ordering; no live-network frequency, physical latency, Safari or official rule equivalence result."
+    },
+    {
+      "id": "gesture-prime-ownership",
+      "implementation": [
+        "js/app.js",
+        "tests/audio-gesture-prime.test.cjs",
+        "tests/audio-gesture-prime-browser.cjs"
+      ],
+      "verificationMethod": "Before: 9/11 controlled cases fail and native HTML media resumes muted, then old fulfillment pauses/rewinds it. After: 44 combined lifecycle cases, three real-media ordered scenarios and full 467-test suite pass.",
+      "result": "Current transport cancels its owned temporary prime state before reuse; only the matching prime completion/timeout may restore mute/position.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-audio-gesture-prime/verification.json",
+      "limitation": "Actual media, resume/countdown and timeout with delayed promise observation; no organic network/Safari, physical latency or official-equivalence conclusion."
+    },
+    {
+      "id": "shared-audio-session-mixer-ownership",
+      "implementation": [
+        "js/app.js",
+        "tests/audio-session-failure.test.cjs",
+        "tests/hit-mixer-ownership.test.cjs",
+        "tests/audio-session-ownership-browser.cjs"
+      ],
+      "verificationMethod": "Before: 15/20 new cases fail; native worklet creation loses replacement ownership and obsolete context/mixer failures stop replacement Web Audio. After: 64 combined lifecycle cases, four native controlled scenarios and full 487-test suite pass.",
+      "result": "Only active session preparation may trigger media fallback; pending/ready mixers remain scoped to their context and factory, with stale mixers disconnected and newer ownership retained.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-audio-session/verification.json",
+      "limitation": "Actual contexts/worklets/music with controlled completion observation and injected obsolete errors; organic failures, device output/latency, Safari and official consistency unverified."
+    },
+    {
+      "id": "remote-allowlist-content-audit",
+      "implementation": [
+        "scripts/audit-remote-resources.py",
+        "scripts/audit-remote-cors.cjs",
+        "scripts/audit-remote-cors-batch.cjs"
+      ],
+      "verificationMethod": "All 1091 fixed primary resources measured for byte length, SHA256 and Git blob hash; four prior samples reused and 1087 new downloads cached. Resume schedules zero requests. Native local browser probe is TLS-blocked; complete primary CORS audit is configured in CI with partial bodies and four full-loader samples.",
+      "result": "Content integrity passed: 3014460209 bytes. No resource/ref mismatch found; no production fix. Browser CORS remains environment-specific and must use actual latest CI results.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-remote-resources/verification.json",
+      "limitation": "Current allowlist integrity only; official authenticity, separate vision resources, exhaustive mirror/fallback, decoding/physical-device behavior remain unaccepted."
+    },
+    {
+      "id": "vision-resource-audit",
+      "implementation": [
+        "scripts/audit-remote-resources.py",
+        "scripts/audit-vision-cors.cjs",
+        "scripts/audit-vision-decode.py",
+        "scripts/audit-vision-playback.cjs",
+        "scripts/main-cors-checkpoint.py"
+      ],
+      "verificationMethod": "13 primary and 11 mirror full body lengths/SHA256/Git blob match; two CDN mirrors return actual HTTP403 file-size denial. All 13 cached files fully decode. Original native surface start/end/loop or natural playback measured for 13 unique media; FLAC end-seek diagnostic retained as failed.",
+      "result": "Overall resource audit blocked by two declared mirrors. No production resource/player changes; other independent browser/cancellation/fallback checks continue in CI.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-vision-resources/verification.json",
+      "limitation": "These manifests declare third-party modified historical 3.0 sources. Not official 4.0.1.2 attribution, full event timeline or physical/Safari validation."
+    },
+    {
+      "id": "native-replay-flow-and-worker-observer-order",
+      "implementation": [
+        "tests/service-worker-browser.cjs",
+        "scripts/audit-replay-flow.cjs",
+        "scripts/vision-cors-checkpoint.py",
+        "tests/vision-cors-checkpoint.test.cjs"
+      ],
+      "verificationMethod": "Real recovered worker preclaims before the old listener: original 20000 ms wait fails; observer now arms before reopening release/network and both normal and early-claim nine-scene checks pass. Actual full app DF HD and Igallta EZ entry/input/chart-start/retry/cancel/return measured using original cached bytes.",
+      "result": "491/491 local Node regressions, 9 normal and 9 preclaim SW scenarios, 7 native app flow checkpoints passed. No production fix or resource change. Exact CI9 root cause remains unverified. Dated CI10 network checkpoint retains two mirror blocks and nonzero workflow result without mechanical repeated requests.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-replay-flow/verification.json",
+      "limitation": "Only specified entry/lifecycle paths. Full chapter play/results/all branches, Rrharil hold clock, credits chain, physical audio/input, Safari and official identity/timelines remain unverified or blocked."
+    },
+    {
+      "id": "rrharil-key-and-chart-cancellation-ownership",
+      "implementation": [
+        "js/interactive-replay.js",
+        "js/app.js",
+        "index.html",
+        "sw.js",
+        "scripts/audit-replay-ownership.cjs"
+      ],
+      "verificationMethod": "Actual Rrharil keyboard/pointer hold-release-reentry, native 1x media and chart start; Luminescence real chart completion delayed until after cancel and new HD engine start. Original failures, callback settlement and new engine clock recorded. Focused browser and 496 Node regressions pass locally; exact new SHA CI pending.",
+      "result": "Old scene key release no longer confirms clock-ready; Loading Back cancels ownership and entry caller settles before a late loader completion, releasing Play. Late original adapter settlement cannot revive old session or stop new HD engine. Runtime cache bumped to pages-38; no resources, rules or timing parameters changed.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-replay-ownership/verification.json",
+      "limitation": "Only recorded Rrharil and EZ-to-HD preparation paths. Same-difficulty shared pending record, complete gameplay/results, credits, all branches and physical/Safari/official comparison remain unverified. Dated network applicability only; denied mirrors remain blocked."
+    },
+    {
+      "id": "same-difficulty-shared-preparation-cancellation",
+      "implementation": [
+        "js/app.js",
+        "scripts/audit-same-chart-preparation.cjs",
+        "scripts/audit-preparation-network.cjs",
+        "tests/builtin-preparation-ownership.test.cjs"
+      ],
+      "verificationMethod": "Actual same Luminescence EZ UI cancel/re-entry with immediate original abort, delayed original success, delayed original AbortError; cache Promise tokens/signals and real engine recorded. Shared producer consumers and stale cleanup separately tested.",
+      "result": "Original late AbortError poisons the new session via reused pending Promise. Fixed both asset and streaming-record preparation with independent producer ownership, consumer cancellation and current-task commit/cleanup. Local 3 UI cases, 7 focused cache cases and 504 Node tests pass. Actual external protocol sample pending exact-SHA CI; local cached protocol is not CORS evidence.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-10-same-chart-preparation/verification.json",
+      "limitation": "Current full main/vision network matrices not rerun. Old whole-bootstrap UI proof is invalidated, not expanded; scope and two mirror gates remain nonzero. Physical/official/full-chapter acceptance remains blocked."
+    },
+    {
+      "id": "hosted-download-cache-ownership-and-release",
+      "implementation": [
+        "js/hosted-media.js",
+        "tests/hosted-media.test.cjs",
+        "tests/hosted-cache-browser.cjs",
+        "scripts/audit-preparation-network.cjs"
+      ],
+      "verificationMethod": "Original transfer Promise settlement observer and native original-byte component tests; concurrent completion/release tests; public cache re-read counts and audioQuality(), no private counter-only assertions.",
+      "result": "Original 29 targeted tests: 25 pass/4 fail. Fixed 29/29 and 509/509 total pass; 4 browser cases pass. Obsolete success cannot update bytes/sample or evict valid entries; idle completion cache trims on last release. Exact pushed commit CI and fresh native small sample pending.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-11-hosted-cache/verification.json",
+      "limitation": "Fulfillment cancellation and aligned browser bodies are controlled schedules, not physical-click/live failure frequency. Full current network matrices unverified, two mirror blocks and nonzero gate retained. Official reference remains blocked."
+    },
+    {
+      "id": "shared-progress-function-subscription-ownership",
+      "implementation": [
+        "js/hosted-media.js",
+        "tests/hosted-media.test.cjs",
+        "tests/hosted-progress-browser.cjs",
+        "scripts/audit-preparation-network.cjs"
+      ],
+      "verificationMethod": "Original same-function API callers, controlled original-byte native responses and pass-through producer progress. One/all/repeated cancellation, rejoin, shared failure/retry, distinct callbacks and completed-cache reuse. Current UI source callsites audited separately.",
+      "result": "Original 34 targeted Node checks: 32 pass / 2 fail; browser shared-cancel and shared-rejoin lose progress while bytes/download succeed. Reference-counted Map preserves one dispatch per function and releases only the final subscriber. Fixed targeted 34/34, final full Node 514/514, browser progress 5/cache 4/main flow 15, cancellation/reentry/SW/import/migration checks pass. Exact pushed SHA CI pending.",
+      "officialFidelityStatus": "not_applicable",
+      "evidence": "docs/evidence/2026-11-11-shared-progress/verification.json",
+      "limitation": "Public API boundary only; existing UI callers create fresh callbacks, no observed player stall. Full network matrices unverified and two mirror blocks retained. Published site remains pages-40. Official baseline remains blocked."
+    }
+  ],
+  "blockingEvidence": [
+    "公开商店候选仍为 4.0.1.2；TapTap build 160。缺少唯一官方平台／客户端内部构建号、语言、分辨率／比例／显示缩放、画质和游戏设置。",
+    "缺少同一构建的完整官方实机截图／录屏、Tips 全集与触发规则、原始资源清单和使用授权来源。",
+    "当前实现仍混有历史与社区规则；第九章完整交互、全部解锁和重演分支及演出未验收。",
+    "真实 iPad Safari、物理输入／音频延迟和实际用户存档未验证。"
+  ],
+  "minimalUserInput": [
+    "官方客户端的版本／构建号、平台与显示／游戏设置截图",
+    "同一构建的完整参考录像，先覆盖加载、选歌、重演；原始文件优于压缩二传",
+    "用户有权提供或使用的目标版本原始素材与来源许可信息"
+  ],
+  "publiclyVerifiedCandidate": {
+    "version": "4.0.1.2",
+    "sources": "docs/official-reference-sources.json",
+    "selectedReferencePlatform": null,
+    "verifiedIOSInternalBuild": null,
+    "androidTapTapVersionCode": "160",
+    "scope": "Public store metadata only; not client equivalence"
+  },
+  "lastCheckedDate": "2026-11-11",
+  "latestEngineeringEvidence": "docs/evidence/2026-11-11-shared-progress/verification.json"
+}

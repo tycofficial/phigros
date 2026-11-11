@@ -1,0 +1,49 @@
+{
+  "scope": "Dated CI #10 measurements only, never fresh CORS; exact dependencies; two externally blocked mirrors keep the nonzero gate",
+  "head": "9e705999c2727d5a1aa0b4cae486ba987c240e9d",
+  "checkedDate": "2026-11-10",
+  "run": "https://github.com/tycofficial/phigros/actions/runs/42870234551",
+  "evidenceSHA256": "962fe9d0c8474e4889d1419b3675e08a9d8cee1b28d6e44c139119e3ca73de12",
+  "sourceHashes": {
+    "index.html": "601aeaa15cd9e76c6130faf6208cbe73516d32f33a1d7ae27cdba6dc54bac91a",
+    "js/app.js": "9a89c7bb6d749489809a0dbceb139a4437021eb629c14e07ad10bc92ccc8b527",
+    "js/vision-replay.js": "7d9729da36bb16b97d5b617e8e542f00aa64df538a0d95aabb326c2d149d4bc8",
+    "js/site-network-guard.js": "c8ae0e2ac7afa04572cfd8b20ec558d49ec2054129d5fc06340eeee38cecbdbd",
+    "assets/meta/vision-media.json": "ed2a7ba95a22e854f5f2a6ad53129f618920b46b98ec030a6a1ad9d877fe45bb",
+    "assets/meta/vision-audio.json": "5e89f5983b97497d3a63024366df88d54060c75367b4c5270937b9fe349f2e41",
+    "scripts/audit-vision-cors.cjs": "6cfa248c31634cb2bb0a004ebd7f2b573d32fe2afa71143824a6d82a31bbc96f",
+    "docs/evidence/2026-11-10-vision-resources/plan.json": "a1d691a91d4fbb2d7463a8b99cf4e71bf97d187b3a487ac4b353c4c3230f5f6a",
+    "docs/evidence/2026-11-10-vision-resources/content-results.jsonl": "4f13e22bc6e2e4080a8e18a2f3570c6a3745f3070b9c205884c4da3b1fe61823"
+  },
+  "scopedSourceChanges": {
+    "index.html": {
+      "currentSHA256": "6e08dfcb342d1b660c5114eca113b6429454d99a798e51dcb2a95d19f9a4e658",
+      "measuredSHA256": "601aeaa15cd9e76c6130faf6208cbe73516d32f33a1d7ae27cdba6dc54bac91a",
+      "reverseEdits": [
+        {
+          "before": "pages-38",
+          "after": "pages-37",
+          "count": 28
+        }
+      ],
+      "auditImpact": "Only cache release tokens and, in app.js, loading Back replay cancellation. The archived probes call downloaders directly and never this UI handler; request code, fixed resource addresses, manifests and CSP are unchanged. Runtime UI/input/cancellation changes have separate real-browser regressions. This is dated scope applicability, never fresh availability."
+    },
+    "js/app.js": {
+      "currentSHA256": "7fb7b89bf137b6e8ba45fc2e7c3c2a42a62541f96e7875393316315c4e493acc",
+      "measuredSHA256": "9a89c7bb6d749489809a0dbceb139a4437021eb629c14e07ad10bc92ccc8b527",
+      "reverseEdits": [
+        {
+          "before": "pages-38",
+          "after": "pages-37",
+          "count": 2
+        },
+        {
+          "before": "      if(globalThis.PhiInteractiveReplay?.current)PhiInteractiveReplay.cancel(false);\n",
+          "after": "",
+          "count": 1
+        }
+      ],
+      "auditImpact": "Only cache release tokens and, in app.js, loading Back replay cancellation. The archived probes call downloaders directly and never this UI handler; request code, fixed resource addresses, manifests and CSP are unchanged. Runtime UI/input/cancellation changes have separate real-browser regressions. This is dated scope applicability, never fresh availability."
+    }
+  }
+}

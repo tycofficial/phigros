@@ -1,0 +1,127 @@
+✔ repeat code loads use the current build cache and avoid another network trip (56.454718ms)
+✔ media from the previous release remains available in the shared media cache (2.731858ms)
+✔ updated replay manifests never reuse the prior binary-media cache (5.695425ms)
+✔ versioned replay manifest URL also bypasses a cached pre-upgrade address (1.699959ms)
+✔ native audio ranges retain exact byte offsets including suffixes (14.452789ms)
+✔ network partial responses never poison the full audio cache (7.197847ms)
+✔ navigation checks the network but falls back to the cached page during an outage (1.857287ms)
+✔ a batch of skin requests runs one cache maintenance sweep (1.677956ms)
+✔ entry and uncached code requests revalidate the HTTP cache after a deployment (1.937007ms)
+✔ a slow entry request returns the cached page promptly and still updates it in the background (7.11423ms)
+✖ installation prepares the real entry and bootstrap dependencies before taking control (2.807202ms)
+✖ a missing bootstrap dependency rejects the installation and preserves existing caches (2.245994ms)
+✖ stale deployment metadata cannot activate a new worker (0.976575ms)
+✖ a shell write failure removes only the unfinished new cache (1.386234ms)
+✖ an installed shell supports offline root queries and the index alias (1.188827ms)
+✖ a future entry cannot overwrite this worker's working offline shell (25.801468ms)
+✖ installation drains an earlier response body before queued dependency headers arrive (1.450322ms)
+✖ cached decoded bootstrap bytes have consistent encoding and length headers (0.975033ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 10
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 240.290621
+
+✖ failing tests:
+
+test at tests/service-worker.test.cjs:97:1
+✖ installation prepares the real entry and bootstrap dependencies before taking control (2.807202ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  1 !== 0
+
+      at TestContext.<anonymous> (/workspace/phigros/tests/service-worker.test.cjs:100:68)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/service-worker.test.cjs:109:1
+✖ a missing bootstrap dependency rejects the installation and preserves existing caches (2.245994ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (/workspace/phigros/tests/service-worker.test.cjs:112:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /dependency is not ready/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/service-worker.test.cjs:116:1
+✖ stale deployment metadata cannot activate a new worker (0.976575ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (/workspace/phigros/tests/service-worker.test.cjs:118:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /entry is not ready/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/service-worker.test.cjs:120:1
+✖ a shell write failure removes only the unfinished new cache (1.386234ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (/workspace/phigros/tests/service-worker.test.cjs:123:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /quota/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/service-worker.test.cjs:126:1
+✖ an installed shell supports offline root queries and the index alias (1.188827ms)
+  Error: offline
+      at /workspace/phigros/tests/service-worker.test.cjs:127:66
+      at fetch (/workspace/phigros/tests/service-worker.test.cjs:16:44)
+      at evalmachine.<anonymous>:54:19
+
+test at tests/service-worker.test.cjs:132:1
+✖ a future entry cannot overwrite this worker's working offline shell (25.801468ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + '<script id="phiBuildMetadata" type="application/json">{"runtime":"4.0.1.2-pages-34"}</script><script src="./js/app.js?v=4.0.1.2-pages-34"></script><link href="./css/style.css?v=4.0.1.2-pages-34"><p>entry</p>'
+  - '<script id="phiBuildMetadata" type="application/json">{"runtime":"4.0.1.2-pages-33"}</script><script src="./js/app.js?v=4.0.1.2-pages-33"></script><link href="./css/style.css?v=4.0.1.2-pages-33"><p>entry</p>'
+
+      at TestContext.<anonymous> (/workspace/phigros/tests/service-worker.test.cjs:136:23)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<script id="phiBuildMetadata" type="application/json">{"runtime":"4.0.1.2-pages-34"}</script><script src="./js/app.js?v=4.0.1.2-pages-34"></script><link href="./css/style.css?v=4.0.1.2-pages-34"><p>entry</p>',
+    expected: '<script id="phiBuildMetadata" type="application/json">{"runtime":"4.0.1.2-pages-33"}</script><script src="./js/app.js?v=4.0.1.2-pages-33"></script><link href="./css/style.css?v=4.0.1.2-pages-33"><p>entry</p>',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/service-worker.test.cjs:138:1
+✖ installation drains an earlier response body before queued dependency headers arrive (1.450322ms)
+  TypeError [Error]: Cannot read properties of undefined (reading 'text')
+      at TestContext.<anonymous> (/workspace/phigros/tests/service-worker.test.cjs:146:125)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/service-worker.test.cjs:148:1
+✖ cached decoded bootstrap bytes have consistent encoding and length headers (0.975033ms)
+  TypeError [Error]: Cannot read properties of undefined (reading 'headers')
+      at TestContext.<anonymous> (/workspace/phigros/tests/service-worker.test.cjs:151:25)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

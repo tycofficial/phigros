@@ -1,0 +1,95 @@
+{
+  "scope": "Real service-worker engineering regression; synthetic saves, no official equivalence",
+  "sourceHashes": {
+    "index.html": "4610427d018ee7fbe9a017f4dcdbea825e7269c25d363c8a09a6c68cc9470de5",
+    "js/app.js": "353eaffc19fd365014fa550d737896768d47cee4f54b1e1f33088e7edbfdefb8",
+    "sw.js": "ddc7ada8a5eee93e31c04e1f299827dfa6bb7d358a69a0c7a8cb6d72173cbd19"
+  },
+  "steps": [
+    {
+      "name": "previous-worker-warmed",
+      "runtime": "4.0.1.2-pages-32",
+      "caches": [
+        "tycphigros-app-pages-32",
+        "tycphigros-4.0.1.2-stability-2"
+      ]
+    },
+    {
+      "name": "updated-worker-claimed",
+      "caches": [
+        "tycphigros-app-pages-32",
+        "tycphigros-4.0.1.2-stability-2",
+        "tycphigros-app-pages-34"
+      ]
+    },
+    {
+      "name": "offline-after-update-restores-app-and-saves",
+      "runtime": "4.0.1.2-pages-34",
+      "restored": {
+        "id": "sw-existing-chart",
+        "chartText": "saved-original",
+        "audio": "saved-original-audio",
+        "setting": {
+          "offset": 123
+        },
+        "score": 321,
+        "localScore": "321"
+      },
+      "screenshot": "offline-after-update.png"
+    },
+    {
+      "name": "shared-media-range-survives-update",
+      "status": 206,
+      "range": "bytes 2-5/10",
+      "body": "2345"
+    },
+    {
+      "name": "offline-index-alias-loads",
+      "runtime": "4.0.1.2-pages-34"
+    },
+    {
+      "name": "missing-bootstrap-rejects-update",
+      "state": "redundant",
+      "sameController": true
+    },
+    {
+      "name": "failed-install-keeps-offline-app",
+      "runtime": "4.0.1.2-pages-34"
+    },
+    {
+      "name": "retry-installs-complete-release-and-preserves-saves",
+      "runtime": "4.0.1.2-pages-35",
+      "restored": {
+        "id": "sw-existing-chart",
+        "chartText": "saved-original",
+        "audio": "saved-original-audio",
+        "setting": {
+          "offset": 123
+        },
+        "score": 321,
+        "localScore": "321"
+      }
+    },
+    {
+      "name": "first-install-can-reopen-shell-offline",
+      "runtime": "4.0.1.2-pages-34",
+      "screenshot": "offline-after-first-install.png",
+      "limitation": "Only the program shell is prepared; this does not download all songs or optional resources."
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [
+    {
+      "phase": "previous",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ],
+  "releaseSimulation": "Previous app differs only by runtime/cache tokens; broken/recovered next releases rewrite those same tokens and inject one controlled missing bootstrap response.",
+  "previousSourceHashes": {
+    "index.html": "1dd5e4434300051b7a89801002f25f11ebb08b3f9d47f1e78e664d3df2c87157",
+    "js/app.js": "e5d21bb69bfb159313b990a028cec9dc172e1207b05fe96d978e48e6e79c87eb",
+    "sw.js": "9b9d0d68e8be6d969888c5efa2dbf520e9147721d3e137a5aae7bcf31cab7ff2"
+  },
+  "browser": "156.0.8078.79",
+  "status": "passed"
+}

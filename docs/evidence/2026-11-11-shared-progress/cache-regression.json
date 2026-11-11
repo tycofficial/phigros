@@ -1,0 +1,224 @@
+{
+  "scope": "Original-byte local component lifecycle; programmatic fulfilled-Promise cancellation and aligned native response delivery are controlled schedules, not physical-click incidence, live CORS or official fidelity",
+  "startedAt": "2026-11-11T11:51:21.767Z",
+  "sourceSHA256": "7361ec27654bd2759012d58f4e0396e7c5fd13b2d3819dc4587343cefe98676d",
+  "samples": [
+    {
+      "id": "catalog-361f4eb30d8a76d8-music",
+      "url": "./assets/catalog-media/361f4eb30d8a76d8.ogg",
+      "bytes": 3663043,
+      "SHA256": "2488f8d3d48950094c9ea8abcce3ec3e616f54e2f67152b56087c4d8fae0f923"
+    },
+    {
+      "id": "catalog-84917d440c46be92-music",
+      "url": "./assets/catalog-media/84917d440c46be92.ogg",
+      "bytes": 4904906,
+      "SHA256": "0afc5fee95c21fed4c0b2d9661d2ee2ed76da2a9cce00caf1b9826cf9a91cfad"
+    },
+    {
+      "id": "catalog-5cc92af80e1ec083-music",
+      "url": "./assets/catalog-media/5cc92af80e1ec083.ogg",
+      "bytes": 4666915,
+      "SHA256": "e2f370c709625aa1dc887e8675c5678d51bf5e70abf4a880232de69f8a0759ef"
+    },
+    {
+      "id": "catalog-384b5dc064832ba8-music",
+      "url": "./assets/catalog-media/384b5dc064832ba8.ogg",
+      "bytes": 4660552,
+      "SHA256": "ce50f66c4cc92d76e52850fd65913a4266c18920fb67bb6eea7a3c1ae3d070f4"
+    }
+  ],
+  "results": [
+    {
+      "mode": "obsolete-success",
+      "status": "passed",
+      "observations": {
+        "cancelled": "AbortError",
+        "oldSignalAborted": true,
+        "replacementSHA256": "0afc5fee95c21fed4c0b2d9661d2ee2ed76da2a9cce00caf1b9826cf9a91cfad",
+        "cacheReadRequests": 0,
+        "markerRequests": 1,
+        "retainedOriginalBytes": 8567949
+      },
+      "requests": [
+        {
+          "id": "catalog-361f4eb30d8a76d8-music",
+          "status": 200,
+          "bytes": 3663043,
+          "SHA256": "2488f8d3d48950094c9ea8abcce3ec3e616f54e2f67152b56087c4d8fae0f923",
+          "signalAborted": false
+        },
+        {
+          "id": "catalog-84917d440c46be92-music",
+          "status": 200,
+          "bytes": 4904906,
+          "SHA256": "0afc5fee95c21fed4c0b2d9661d2ee2ed76da2a9cce00caf1b9826cf9a91cfad",
+          "signalAborted": false
+        },
+        {
+          "id": "catalog-84917d440c46be92-music",
+          "status": 200,
+          "bytes": 4904906,
+          "SHA256": "0afc5fee95c21fed4c0b2d9661d2ee2ed76da2a9cce00caf1b9826cf9a91cfad",
+          "signalAborted": false
+        }
+      ],
+      "transfers": [
+        {
+          "url": "http://127.0.0.1:4182/assets/catalog-media/361f4eb30d8a76d8.ogg",
+          "status": "resolved",
+          "signalAborted": false
+        },
+        {
+          "url": "http://127.0.0.1:4182/assets/catalog-media/84917d440c46be92.ogg",
+          "status": "resolved",
+          "abortedBeforeReplacement": true,
+          "signalAborted": true
+        },
+        {
+          "url": "http://127.0.0.1:4182/assets/catalog-media/84917d440c46be92.ogg",
+          "status": "resolved",
+          "signalAborted": false
+        }
+      ]
+    },
+    {
+      "mode": "obsolete-failure",
+      "status": "passed",
+      "observations": {
+        "cancelled": "AbortError",
+        "oldAborted": true,
+        "oldTransferOutcome": "AbortError",
+        "validSHA256": "0afc5fee95c21fed4c0b2d9661d2ee2ed76da2a9cce00caf1b9826cf9a91cfad",
+        "cacheReadRequests": 0
+      },
+      "requests": [
+        {
+          "id": "catalog-84917d440c46be92-music",
+          "status": 200,
+          "bytes": 4904906,
+          "SHA256": "0afc5fee95c21fed4c0b2d9661d2ee2ed76da2a9cce00caf1b9826cf9a91cfad",
+          "signalAborted": false
+        },
+        {
+          "id": "catalog-84917d440c46be92-music",
+          "status": 200,
+          "bytes": 4904906,
+          "SHA256": "0afc5fee95c21fed4c0b2d9661d2ee2ed76da2a9cce00caf1b9826cf9a91cfad",
+          "signalAborted": false
+        }
+      ],
+      "transfers": [
+        {
+          "url": "http://127.0.0.1:4182/assets/catalog-media/84917d440c46be92.ogg",
+          "status": "AbortError",
+          "signalAborted": true
+        },
+        {
+          "url": "http://127.0.0.1:4182/assets/catalog-media/84917d440c46be92.ogg",
+          "status": "resolved",
+          "signalAborted": false
+        }
+      ]
+    },
+    {
+      "mode": "shared-consumer",
+      "status": "passed",
+      "observations": {
+        "cancelled": "AbortError",
+        "oldAborted": false,
+        "oldTransferOutcome": "resolved",
+        "validSHA256": "0afc5fee95c21fed4c0b2d9661d2ee2ed76da2a9cce00caf1b9826cf9a91cfad",
+        "cacheReadRequests": 0
+      },
+      "requests": [
+        {
+          "id": "catalog-84917d440c46be92-music",
+          "status": 200,
+          "bytes": 4904906,
+          "SHA256": "0afc5fee95c21fed4c0b2d9661d2ee2ed76da2a9cce00caf1b9826cf9a91cfad",
+          "signalAborted": false
+        }
+      ],
+      "transfers": [
+        {
+          "url": "http://127.0.0.1:4182/assets/catalog-media/84917d440c46be92.ogg",
+          "status": "resolved",
+          "signalAborted": false
+        }
+      ]
+    },
+    {
+      "mode": "release-budget",
+      "status": "passed",
+      "observations": {
+        "delivery": "Verified native original bodies, buffered and released together",
+        "completedOriginalBytes": 14232373,
+        "budget": 12582912,
+        "initialRequests": 3,
+        "cacheReadRequests": 1,
+        "cacheHits": [
+          "catalog-5cc92af80e1ec083-music",
+          "catalog-384b5dc064832ba8-music"
+        ],
+        "retainedBytesBeforeReread": 9327467
+      },
+      "requests": [
+        {
+          "id": "catalog-84917d440c46be92-music",
+          "status": 200,
+          "bytes": 4904906,
+          "SHA256": "0afc5fee95c21fed4c0b2d9661d2ee2ed76da2a9cce00caf1b9826cf9a91cfad",
+          "signalAborted": false
+        },
+        {
+          "id": "catalog-384b5dc064832ba8-music",
+          "status": 200,
+          "bytes": 4660552,
+          "SHA256": "ce50f66c4cc92d76e52850fd65913a4266c18920fb67bb6eea7a3c1ae3d070f4",
+          "signalAborted": false
+        },
+        {
+          "id": "catalog-5cc92af80e1ec083-music",
+          "status": 200,
+          "bytes": 4666915,
+          "SHA256": "e2f370c709625aa1dc887e8675c5678d51bf5e70abf4a880232de69f8a0759ef",
+          "signalAborted": false
+        },
+        {
+          "id": "catalog-84917d440c46be92-music",
+          "status": 200,
+          "bytes": 4904906,
+          "SHA256": "0afc5fee95c21fed4c0b2d9661d2ee2ed76da2a9cce00caf1b9826cf9a91cfad",
+          "signalAborted": false
+        }
+      ],
+      "transfers": [
+        {
+          "url": "http://127.0.0.1:4182/assets/catalog-media/84917d440c46be92.ogg",
+          "status": "resolved",
+          "signalAborted": false
+        },
+        {
+          "url": "http://127.0.0.1:4182/assets/catalog-media/5cc92af80e1ec083.ogg",
+          "status": "resolved",
+          "signalAborted": false
+        },
+        {
+          "url": "http://127.0.0.1:4182/assets/catalog-media/384b5dc064832ba8.ogg",
+          "status": "resolved",
+          "signalAborted": false
+        },
+        {
+          "url": "http://127.0.0.1:4182/assets/catalog-media/84917d440c46be92.ogg",
+          "status": "resolved",
+          "signalAborted": false
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "browser": "156.0.8078.79",
+  "status": "passed",
+  "finishedAt": "2026-11-11T11:51:23.633Z"
+}

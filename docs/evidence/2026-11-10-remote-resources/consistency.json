@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "rows": 1091,
+  "uniqueURLs": 1091,
+  "passed": 1091,
+  "verifiedBytes": 3014460209,
+  "historicalSamplesReused": 4,
+  "newHTTP200Results": 1087,
+  "cacheFiles": 1087,
+  "cacheBytes": 3010152644,
+  "bySource": {
+    "7aGiven/Phigros_Resource/0c7e90ee5d8ffaaa756d79d8aef879338fdde423": 173,
+    "7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815": 572,
+    "7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec": 173,
+    "tycofficial/phigros/cda525e6d9e30a3cd7732e5b9978ee01e2a09e38": 173
+  },
+  "journalSHA256BeforeResume": "47f9251142430998e9ba40467fa0d1367a67fc1c495febc9b74b1de053489a73",
+  "journalSHA256AfterResume": "47f9251142430998e9ba40467fa0d1367a67fc1c495febc9b74b1de053489a73",
+  "resumeScheduledResources": 0,
+  "resumeStatus": "passed; no resources scheduled and journal unchanged"
+}

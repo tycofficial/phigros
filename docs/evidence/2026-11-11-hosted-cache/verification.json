@@ -1,0 +1,173 @@
+{
+  "scope": "Bounded hosted-download ownership and idle cache budget; engineering evidence only",
+  "recordedAt": "2026-11-11T10:51:09.800972+00:00",
+  "startingCommit": "d89026499b71b0403646cf4e4d8c52a2e9aff71c",
+  "runtime": "4.0.1.2-pages-40",
+  "officialFidelityStatus": "blocked",
+  "officialFidelityPercent": null,
+  "sourceSHA256": {
+    "index.html": "cec44f3471b77fcc743c7426ece2887d31524f760f9469b3c69d672a7e7a0ee3",
+    "js/app.js": "5ba58f70af638d378407a3f506915a25dec2b2a890eb911017c5256b603b21d2",
+    "js/hosted-media.js": "626f748d65fc57b3755a18f00891c607b0b39a4fa1721ada3d8ce40a39ffb019",
+    "sw.js": "db071511c022c3d8a331eaeba0233012433c17a08840bf77719418104ba1f5bd",
+    "tests/hosted-media.test.cjs": "9024334778e6389ba163c572c807eef5e6e7fc753e31fb86173ccde416ceaa0b",
+    "tests/hosted-cache-browser.cjs": "467e283fa9556623a025c0351f89e73aa718f0c94a6e86d289a8bf13c07523d4",
+    "scripts/audit-preparation-network.cjs": "490c3fbbad3ed7500003b9999309b3cb8833ff509688c4f6968b4058b77ffec2"
+  },
+  "findings": [
+    {
+      "id": "obsolete-success-accounting",
+      "status": "reproduced-and-fixed",
+      "before": "Actual 3663043 + 4904906 bytes fit in the 12582912-byte budget, but the canceled fulfilled producer adds 4904906 phantom bytes after replacement. Re-reading both originals causes 2 unnecessary native local requests.",
+      "after": "0 extra requests; both original byte hashes unchanged; obsolete success cannot update size, sample or eviction, nor delete the replacement. An aborted owner with no replacement is removed.",
+      "evidence": [
+        "before.json",
+        "after.json",
+        "node-before.log",
+        "node-after.log"
+      ]
+    },
+    {
+      "id": "obsolete-bandwidth-sample",
+      "status": "reproduced-and-fixed-controlled-clock",
+      "before": "The 100000-byte canceled fast transfer changes public audioQuality() from low to high while its replacement is still pending.",
+      "after": "The surviving low-bandwidth sample stays low. Network thresholds and quality variants are unchanged.",
+      "evidence": [
+        "node-before.log",
+        "node-after.log"
+      ]
+    },
+    {
+      "id": "last-consumer-capacity",
+      "status": "reproduced-and-fixed",
+      "before": "Two 8 MiB complete active downloads remain retained after both consumers release in the original Node transfer chain. Browser aligned original bodies retain all 14232373 bytes, above 12582912.",
+      "after": "Last-consumer release trims completed idle entries in insertion order while protecting active consumers. Browser re-read of 3 originals hits exactly 2 objects (9327467 bytes in this run) and re-fetches exactly 1.",
+      "evidence": [
+        "before.json",
+        "after.json"
+      ]
+    },
+    {
+      "id": "existing-cancellation-isolation",
+      "status": "passed-before-and-after",
+      "result": "Shared caller cancellation keeps the second caller alive with one native request; an old actual AbortError cannot remove a completed replacement.",
+      "evidence": [
+        "before.json",
+        "after.json"
+      ]
+    }
+  ],
+  "scheduleClassification": {
+    "settledSuccess": "A pass-through observer on the exact original PhiTransfer.download Promise aborts the caller at fulfillment, yields one microtask for the original consumer finally, then re-enters. The original producer is already fulfilled and cannot be retroactively rejected. This is programmatic/API settlement robustness, NOT a reproduction from an ordinary physical click. No synthetic success value or engine is used.",
+    "pendingFailure": "First actual native response is held after clone validation. Caller cancellation and replacement finish before the old response is delivered; the original transfer then produces its own AbortError. Only delivery order is controlled.",
+    "releaseBudget": "Node reproduction uses original PhiTransfer with simultaneous complete Response bodies and no producer observer. Browser first obtains and hashes native original bodies, buffers each into one Response chunk, and releases all three together. This aligns completion deliberately; unmodified native-body scheduling did not reproduce the capacity defect in the initial browser run.",
+    "quality": "Node controlled clock and real transfer functions, synthetic byte input; not live bandwidth or a physical network-incidence measurement."
+  },
+  "testCorrection": {
+    "evidence": "test-order-assumption-failure.json",
+    "reason": "Initial browser assertion demanded the newest inserted item stay cached. Active protection and response completion order can instead evict that item while older ones are still active. Final assertion observes concurrent public re-reads: exactly 2 hits, 1 request and retained bytes <= original budget. The failing overly strict result is retained; product capacity assertion remains strict."
+  },
+  "commands": [
+    {
+      "command": "PHI_TEST_HOSTED_MEDIA_SOURCE=work/hosted-cache/hosted-media-before.js node --test tests/hosted-media.test.cjs",
+      "exitCode": 1,
+      "result": {
+        "tests": 29,
+        "pass": 25,
+        "fail": 4,
+        "skipped": 0
+      }
+    },
+    {
+      "command": "node --test tests/hosted-media.test.cjs",
+      "exitCode": 0,
+      "result": {
+        "tests": 29,
+        "pass": 29,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "command": "node --test tests/*.test.cjs",
+      "exitCode": 0,
+      "result": {
+        "tests": 509,
+        "pass": 509,
+        "fail": 0,
+        "skipped": 0
+      },
+      "rawLog": "CI artifact; local work/hosted-cache/node-all.log"
+    },
+    {
+      "command": "PHI_TEST_HOSTED_MEDIA_SOURCE=work/hosted-cache/hosted-media-before.js node tests/hosted-cache-browser.cjs http://127.0.0.1:4180 work/hosted-cache/browser-before",
+      "exitCode": 1,
+      "result": "2 failure / 2 pass; pageErrors=[]"
+    },
+    {
+      "command": "node tests/hosted-cache-browser.cjs http://127.0.0.1:4180 work/hosted-cache/browser-after",
+      "exitCode": 0,
+      "result": "4 pass; pageErrors=[]"
+    },
+    {
+      "command": "PHI_PREPARATION_NETWORK_CACHED=1 node scripts/audit-preparation-network.cjs http://127.0.0.1:4180 work/hosted-cache/preparation-cached",
+      "exitCode": 0,
+      "result": "3 pass using previously measured original chart bytes; NOT native external CORS"
+    },
+    {
+      "command": "node tests/stream-recovery-browser.cjs http://127.0.0.1:4180 work/hosted-cache/stream-recovery",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/audit-same-chart-preparation.cjs http://127.0.0.1:4180 work/hosted-cache/same-chart-preparation",
+      "exitCode": 0,
+      "result": "3 actual same-difficulty UI cases pass"
+    },
+    {
+      "command": "PHI_TEST_SW_PRECLAIM=1 node tests/service-worker-browser.cjs work/hosted-cache/service-worker",
+      "exitCode": 0,
+      "result": "9 cases pass; original timer retained"
+    },
+    {
+      "command": "node tests/folder-import-browser.cjs http://127.0.0.1:4180 work/hosted-cache/folder-import",
+      "exitCode": 0,
+      "result": "Existing folder entry/import and data retained"
+    },
+    {
+      "command": "python3 scripts/build-runtime-release.py --output /tmp/phigros-phase15-runtime-final --report work/hosted-cache/runtime-package.json",
+      "exitCode": 0,
+      "result": {
+        "files": 1927,
+        "bytes": 999582709,
+        "removedOrReencodedResources": 0
+      }
+    }
+  ],
+  "otherLocalRun": {
+    "fullFlow": "15 steps and pageErrors=[] passed during this batch; browser loaded before the final aborted-owner slot cleanup. Exact final-source full flow/video will be checked in CI.",
+    "localVideo": "Initial PHI_FLOW_VIDEO=1 stopped before page creation because this resumed image lacks Playwright ffmpeg-1011. The same flow without recording then passed; CI installs its official browser tooling. No system settings or certificate trust were changed."
+  },
+  "networkScope": {
+    "freshExternalSample": "pending exact-commit CI; one fixed 23413-byte InfinityHeaven EZ chart, 3 scenarios / 5 measured bodies planned, normal browser TLS and CORS, no music",
+    "fullCurrentMainMatrix": "NOT RUN; 1091 addresses not re-requested; old whole-bootstrap proof not reused for modified cache source",
+    "fullCurrentVisionMatrix": "NOT RUN; old whole-bootstrap proof not reused; two >20MB jsDelivr mirror HTTP403 blocks retained and not retried",
+    "historicalJournals": "Archive content checks pass without network requests; they are dated measurements, not current availability or official identity",
+    "scopeGate": "Remains nonzero. No weakening, new CDN/proxy, splitting, transcoding, resource replacement or new hosting."
+  },
+  "ci": {
+    "status": "pending exact pushed commit; authoritative result will be linked in the existing PR latest-ci section; this file is the pre-push local evidence snapshot"
+  },
+  "remaining": [
+    "Only component API settlement and specified existing UI regressions. Physical-click incidence of the fulfilled-Promise boundary is not established.",
+    "Physical devices/Safari, full chapter play/results/credits/all branches and user saves are not comprehensively verified.",
+    "Official unique build/platform/language/display/resolution/quality/game settings, complete same-build references and original resource correspondence remain missing.",
+    "CI #9 exact uninstrumented Service Worker timeout cause remains unconfirmed; the earlier reproducible observer race fix and original limits are retained."
+  ],
+  "preserved": [
+    "Original bytes, cache budget, active consumer protection and insertion-order eviction among eligible entries",
+    "Valid deduplication, independent caller cancellation, failure retry, current request ownership",
+    "Judgement, chapters, mode rules, resources, local import entry/formats/data/behavior and saves"
+  ],
+  "delivery": "Existing draft PR #1 only; no main push, merge, auto-merge or deployment",
+  "stopPoint": "Complete this bounded cache investigation and exact-SHA CI verification. No other independently reproduced runtime defect is claimed."
+}

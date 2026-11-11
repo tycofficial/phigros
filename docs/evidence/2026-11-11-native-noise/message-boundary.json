@@ -1,0 +1,37 @@
+{
+  "entry": "chapter9-Message.くるぶっこちゃん-in",
+  "offset": 0,
+  "intervals": [
+    {
+      "index": 43,
+      "appear": 14.727273,
+      "enable": 14.727273,
+      "disable": 15,
+      "disappear": 15
+    },
+    {
+      "index": 44,
+      "appear": 14.863636,
+      "enable": 14.863636,
+      "disable": 15.136364,
+      "disappear": 15.136364
+    },
+    {
+      "index": 45,
+      "appear": 15,
+      "enable": 15,
+      "disable": 16.09,
+      "disappear": 16.09
+    }
+  ],
+  "checks": [
+    {
+      "time": 15.07409297052154,
+      "activeAreas": 2
+    },
+    {
+      "time": 15.225022675736962,
+      "activeAreas": 1
+    }
+  ]
+}

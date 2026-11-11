@@ -1,0 +1,1646 @@
+{
+  "scope": "Real service-worker engineering regression; synthetic saves, no official equivalence",
+  "sourceHashes": {
+    "index.html": "713e577c97fb623ed1788ac8ca311539cbdf1de9361a945b711b0636e697a7c7",
+    "js/app.js": "d001cb34863d4bb6f9acc13575607e4897ee76ea45529fa756bbad7b8c8d2a05",
+    "sw.js": "837815b7ce12d8b3e0121e1618f27fdfe6d4fd8235c3993f004f06a584e99640"
+  },
+  "steps": [
+    {
+      "name": "previous-worker-warmed",
+      "runtime": "4.0.1.2-pages-32",
+      "caches": [
+        "tycphigros-4.0.1.2-stability-2",
+        "tycphigros-app-pages-32"
+      ]
+    },
+    {
+      "name": "updated-worker-claimed",
+      "caches": [
+        "tycphigros-4.0.1.2-stability-2",
+        "tycphigros-app-pages-32",
+        "tycphigros-app-pages-33"
+      ]
+    },
+    {
+      "name": "offline-after-update-restores-app-and-saves",
+      "runtime": "4.0.1.2-pages-33",
+      "restored": {
+        "id": "sw-existing-chart",
+        "chartText": "saved-original",
+        "audio": "saved-original-audio",
+        "setting": {
+          "offset": 123
+        },
+        "score": 321,
+        "localScore": "321"
+      },
+      "screenshot": "offline-after-update.png"
+    },
+    {
+      "name": "shared-media-range-survives-update",
+      "status": 206,
+      "range": "bytes 2-5/10",
+      "body": "2345"
+    },
+    {
+      "name": "offline-index-alias-loads",
+      "runtime": "4.0.1.2-pages-33"
+    },
+    {
+      "name": "missing-bootstrap-rejects-update",
+      "state": "redundant",
+      "sameController": true
+    },
+    {
+      "name": "failed-install-keeps-offline-app",
+      "runtime": "4.0.1.2-pages-33"
+    },
+    {
+      "name": "retry-installs-complete-release-and-preserves-saves",
+      "runtime": "4.0.1.2-pages-34",
+      "restored": {
+        "id": "sw-existing-chart",
+        "chartText": "saved-original",
+        "audio": "saved-original-audio",
+        "setting": {
+          "offset": 123
+        },
+        "score": 321,
+        "localScore": "321"
+      }
+    },
+    {
+      "name": "first-install-can-reopen-shell-offline",
+      "runtime": "4.0.1.2-pages-33",
+      "screenshot": "offline-after-first-install.png",
+      "limitation": "Only the program shell is prepared; this does not download all songs or optional resources."
+    }
+  ],
+  "requests": [
+    {
+      "phase": "previous",
+      "path": "/game/",
+      "search": "?skipIntro=1",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/opening/tyc-brand.ttf",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/app.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/remote-assets.js",
+      "search": "?v=pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/site-network-guard.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/style.css",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/original-materials.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/safari-hud.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/opening.css",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/catalog.css",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/vision-replay.css",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/interactive-replay.css",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/opening/tyc-logo.png",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/course-mode.css",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/chart-codec.js",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/performance-policy.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/hosted-manifest.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/full-catalog.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/catalog-runtime.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/course-mode.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/resource-transfer.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/hosted-media.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/opening.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/vision-replay.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/vision-mode.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/boss-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/boss-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/chapter8-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/chapter8-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/chapter8-stage-effects.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/interactive-replay.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/loading-presentation.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/d7dd3e86b7a47a5a.webp",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/8c7d10849712112a.svg",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/723a45d2b0fe5f66.png",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/d65b08975e2b2814.woff2",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/8c7d10849712112a.svg",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/0ffce31409ad144a.woff",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/sw.js",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/8c7d10849712112a.svg",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/catalog-media/a519338625e302d0-tiny.jpg",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/thumbs/94886c5c89d6efa3.webp",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/previews/ch9_0_art-tiny.jpg",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/",
+      "search": "?skipIntro=1",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/previews/ch9_0_art-medium.jpg",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/opening/tyc-brand.ttf",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/app.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/remote-assets.js",
+      "search": "?v=pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/site-network-guard.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/style.css",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/original-materials.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/safari-hud.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/opening.css",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/catalog.css",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/course-mode.css",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/vision-replay.css",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/css/interactive-replay.css",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/opening/tyc-logo.png",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/chart-codec.js",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/performance-policy.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/hosted-manifest.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/full-catalog.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/catalog-runtime.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/course-mode.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/resource-transfer.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/hosted-media.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/opening.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/vision-replay.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/vision-mode.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/boss-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/boss-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/chapter8-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/chapter8-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/chapter8-stage-effects.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/interactive-replay.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/js/loading-presentation.js",
+      "search": "?v=4.0.1.2-pages-32",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/d7dd3e86b7a47a5a.webp",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/d65b08975e2b2814.woff2",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/8c7d10849712112a.svg",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/723a45d2b0fe5f66.png",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/ui/0ffce31409ad144a.woff",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/catalog-media/a519338625e302d0-tiny.jpg",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/previews/ch9_0_art-tiny.jpg",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/previews/ch9_0_art-medium.jpg",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/previews/ch9_0_art-clear.jpg",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/packs/core/click.webp",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/packs/core/click_mh.webp",
+      "search": ""
+    },
+    {
+      "phase": "previous",
+      "path": "/game/assets/packs/core/drag.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/drag_mh.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/flick.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/flick_mh.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/hold.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/hold_mh.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/hold_head.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/hold_head_mh.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/hold_tail.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/pause.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/progress.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/hit_fx.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/click.wav",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/drag.wav",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/flick.wav",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/packs/core/info.yml",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/sw.js",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/app.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/remote-assets.js",
+      "search": "?v=pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/site-network-guard.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/style.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/original-materials.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/safari-hud.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/opening.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/catalog.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/course-mode.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/vision-replay.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/interactive-replay.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/chart-codec.js",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/performance-policy.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/hosted-manifest.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/full-catalog.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/catalog-runtime.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/course-mode.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/resource-transfer.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/hosted-media.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/opening.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/vision-replay.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/vision-mode.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/boss-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/boss-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/chapter8-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/chapter8-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/chapter8-stage-effects.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/interactive-replay.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/loading-presentation.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/sw.js",
+      "search": ""
+    },
+    {
+      "phase": "broken",
+      "path": "/game/",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/app.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/remote-assets.js",
+      "search": "?v=pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/site-network-guard.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/css/style.css",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/css/original-materials.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/css/safari-hud.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/css/opening.css",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/css/catalog.css",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/css/course-mode.css",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/css/vision-replay.css",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/css/interactive-replay.css",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/chart-codec.js",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/performance-policy.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/hosted-manifest.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/full-catalog.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/catalog-runtime.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/course-mode.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/resource-transfer.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/hosted-media.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/opening.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/vision-replay.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/vision-mode.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/boss-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/boss-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/chapter8-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/chapter8-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/chapter8-stage-effects.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/interactive-replay.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "broken",
+      "path": "/game/js/loading-presentation.js",
+      "search": "?v=4.0.1.2-pages-34"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/sw.js",
+      "search": ""
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/app.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/remote-assets.js",
+      "search": "?v=pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/site-network-guard.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/css/style.css",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/css/original-materials.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/css/safari-hud.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/css/opening.css",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/css/catalog.css",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/css/course-mode.css",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/css/vision-replay.css",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/css/interactive-replay.css",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/chart-codec.js",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/performance-policy.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/hosted-manifest.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/full-catalog.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/catalog-runtime.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/course-mode.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/resource-transfer.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/hosted-media.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/opening.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/vision-replay.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/vision-mode.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/boss-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/boss-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/chapter8-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/chapter8-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/chapter8-stage-effects.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/interactive-replay.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "recovered",
+      "path": "/game/js/loading-presentation.js",
+      "search": "?v=4.0.1.2-pages-34",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/",
+      "search": "?skipIntro=1",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/opening/tyc-brand.ttf",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/app.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/remote-assets.js",
+      "search": "?v=pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/site-network-guard.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/style.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/original-materials.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/safari-hud.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/opening.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/catalog.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/course-mode.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/vision-replay.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/interactive-replay.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/opening/tyc-logo.png",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/chart-codec.js",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/performance-policy.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/hosted-manifest.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/full-catalog.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/catalog-runtime.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/course-mode.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/resource-transfer.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/hosted-media.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/opening.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/vision-replay.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/ui/d7dd3e86b7a47a5a.webp",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/vision-mode.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/boss-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/boss-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/chapter8-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/chapter8-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/chapter8-stage-effects.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/interactive-replay.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/loading-presentation.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/ui/8c7d10849712112a.svg",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/ui/723a45d2b0fe5f66.png",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/ui/d65b08975e2b2814.woff2",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/sw.js",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/ui/8c7d10849712112a.svg",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/ui/0ffce31409ad144a.woff",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/app.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/remote-assets.js",
+      "search": "?v=pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/site-network-guard.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/ui/8c7d10849712112a.svg",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/style.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/original-materials.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/safari-hud.css",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/opening.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/catalog.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/course-mode.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/vision-replay.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/css/interactive-replay.css",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/chart-codec.js",
+      "search": "",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/performance-policy.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/hosted-manifest.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/full-catalog.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/catalog-runtime.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/course-mode.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/resource-transfer.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/hosted-media.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/opening.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/vision-replay.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/vision-mode.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/boss-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/boss-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/chapter8-replay-rules.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/chapter8-replay-visuals.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/chapter8-stage-effects.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/interactive-replay.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/js/loading-presentation.js",
+      "search": "?v=4.0.1.2-pages-33",
+      "encoding": "gzip"
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/catalog-media/a519338625e302d0-tiny.jpg",
+      "search": ""
+    },
+    {
+      "phase": "current",
+      "path": "/game/assets/ui/thumbs/94886c5c89d6efa3.webp",
+      "search": ""
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [
+    {
+      "phase": "previous",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ],
+  "releaseSimulation": "Previous app differs only by runtime/cache tokens; broken/recovered next releases rewrite those same tokens and inject one controlled missing bootstrap response.",
+  "previousSourceHashes": {
+    "index.html": "1dd5e4434300051b7a89801002f25f11ebb08b3f9d47f1e78e664d3df2c87157",
+    "js/app.js": "e5d21bb69bfb159313b990a028cec9dc172e1207b05fe96d978e48e6e79c87eb",
+    "sw.js": "9b9d0d68e8be6d969888c5efa2dbf520e9147721d3e137a5aae7bcf31cab7ff2"
+  },
+  "browser": "156.0.8078.79",
+  "status": "passed"
+}

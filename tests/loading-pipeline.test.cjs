@@ -23,10 +23,11 @@ test('hosted music enters Web Audio only after its complete local Blob is ready'
 function deferred(){let resolve;const promise=new Promise(r=>resolve=r);return {promise,resolve};}
 test('a playable record never waits for its optional cover download',async()=>{
   let artworkCalls=0;
-  const context=vm.createContext({Blob,Promise,normalizeMeta:x=>x,blobText:b=>b.text(),
+  const context=vm.createContext({Blob,Promise,AbortController,DOMException,normalizeMeta:x=>x,blobText:b=>b.text(),
     PhiHostedMedia:{manifest:{audio:{music:{url:'./song.m4a',duration:160}}},artwork:()=>{artworkCalls++;return new Promise(()=>{});}},
     materializeBuiltinAsset:async id=>{assert.equal(id,'chart');return new Blob(['{"formatVersion":3}']);}});
   vm.runInContext(fs.readFileSync('js/performance-policy.js','utf8'),context);
+  vm.runInContext(source.slice(source.indexOf('  const builtinPreparationRequests = new WeakMap();'),source.indexOf('  async function phiHostedBytes(')),context);
   vm.runInContext('const builtinStreamingRecords=new PhiPerformance.ResourceCache(8*1024*1024,6);\n'+source.slice(source.indexOf('  async function materializeStreamingBuiltinPack('),source.indexOf('  async function materializeBuiltinPack('))+'\nglobalThis.prepare=materializeStreamingBuiltinPack;',context);
   const record=await context.prepare(entry);assert.equal(record.chartText,'{"formatVersion":3}');assert.equal(record.bgBlob,null);assert.equal(artworkCalls,0);
 });

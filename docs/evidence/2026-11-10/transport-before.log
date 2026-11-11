@@ -1,0 +1,224 @@
+✖ Web Audio resolved activation cannot start or change a stopped session (7.902986ms)
+✖ Web Audio resolved activation cannot start or change a superseded session (1.320105ms)
+✖ Web Audio rejected activation cannot start or change a stopped session (1.162497ms)
+✖ Web Audio rejected activation cannot start or change a superseded session (1.095746ms)
+✖ stream activation cannot play or seek after stopped (5.157876ms)
+✖ stream activation cannot play or seek after superseded (1.090378ms)
+✖ stream buffer cannot play or seek after stopped (8.465677ms)
+✖ stream buffer cannot play or seek after superseded (6.199721ms)
+✔ current Web Audio activation starts the requested source (1.465676ms)
+✔ current stream still waits for its buffer before playing (1.997169ms)
+✖ late start completion cannot pause replacement playback (1.966898ms)
+✖ late resume completion cannot pause replacement playback (2.310322ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 2
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 103.403541
+
+✖ failing tests:
+
+test at tests/audio-transport-lifecycle.test.cjs:20:2
+✖ Web Audio resolved activation cannot start or change a stopped session (7.902986ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + [
+  +   'pause',
+  +   'cancel-auto',
+  +   'source',
+  +   'start'
+  + ]
+  - []
+
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-transport-lifecycle.test.cjs:25:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'pause', 'cancel-auto', 'source', 'start' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-transport-lifecycle.test.cjs:20:2
+✖ Web Audio resolved activation cannot start or change a superseded session (1.320105ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + [
+  +   'pause',
+  +   'cancel-auto',
+  +   'source',
+  +   'start'
+  + ]
+  - []
+
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-transport-lifecycle.test.cjs:25:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'pause', 'cancel-auto', 'source', 'start' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-transport-lifecycle.test.cjs:20:2
+✖ Web Audio rejected activation cannot start or change a stopped session (1.162497ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + [
+  +   'media-source',
+  +   'play'
+  + ]
+  - []
+
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-transport-lifecycle.test.cjs:25:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'media-source', 'play' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-transport-lifecycle.test.cjs:20:2
+✖ Web Audio rejected activation cannot start or change a superseded session (1.095746ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + [
+  +   'media-source',
+  +   'play'
+  + ]
+  - []
+
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-transport-lifecycle.test.cjs:25:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'media-source', 'play' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-transport-lifecycle.test.cjs:29:2
+✖ stream activation cannot play or seek after stopped (5.157876ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(!calls.includes('play'))
+
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-transport-lifecycle.test.cjs:34:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/audio-transport-lifecycle.test.cjs:29:2
+✖ stream activation cannot play or seek after superseded (1.090378ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(!calls.includes('play'))
+
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-transport-lifecycle.test.cjs:34:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/audio-transport-lifecycle.test.cjs:29:2
+✖ stream buffer cannot play or seek after stopped (8.465677ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(!calls.includes('play'))
+
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-transport-lifecycle.test.cjs:34:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/audio-transport-lifecycle.test.cjs:29:2
+✖ stream buffer cannot play or seek after superseded (6.199721ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(!calls.includes('play'))
+
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-transport-lifecycle.test.cjs:34:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/audio-transport-lifecycle.test.cjs:47:2
+✖ late start completion cannot pause replacement playback (1.966898ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + [
+  +   'pause-replacement'
+  + ]
+  - []
+
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-transport-lifecycle.test.cjs:56:42)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'pause-replacement' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-transport-lifecycle.test.cjs:47:2
+✖ late resume completion cannot pause replacement playback (2.310322ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + [
+  +   'pause-replacement'
+  + ]
+  - []
+
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-transport-lifecycle.test.cjs:56:42)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'pause-replacement' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

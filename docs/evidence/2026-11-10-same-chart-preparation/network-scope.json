@@ -1,0 +1,11 @@
+{
+  "previousEvidence": "Dated CI8 main and CI10 vision full-bootstrap checkpoints",
+  "currentMainAction": "run",
+  "currentVisionAction": "run",
+  "reusedAsCurrentWholeBootstrap": false,
+  "classification": "Cache/cancellation loading path changed; NOT a pure UI/version change. Old proof remains unchanged and rejects this new bootstrap.",
+  "currentFreshTest": "audit-preparation-network.cjs: one actual fixed 23413-byte chart, two ownership cases, expected 3 measured bodies; actual external result pending CI",
+  "fullCurrentMainMatrix": "NOT RUN in bounded batch",
+  "fullCurrentVisionMatrix": "NOT RUN in bounded batch",
+  "knownDeniedMirrors": "Two previous HTTP403 size denials remain blocked and are never retried. Gate remains nonzero for scope gaps plus mirrors."
+}

@@ -1,0 +1,730 @@
+{
+  "scope": "Real app Rrharil hold/release/re-entry and preparation ownership; verified cached bytes through controlled transport. No fresh CORS, official fidelity or physical-device comparison.",
+  "startedAt": "2026-11-10T20:59:53.010Z",
+  "sourceHashes": {
+    "js/app.js": "7fb7b89bf137b6e8ba45fc2e7c3c2a42a62541f96e7875393316315c4e493acc",
+    "js/interactive-replay.js": "fd81c993d3d44ee16497ff8a4a5eccd746a01ce3b3a03da4d55ea230073b635f",
+    "js/boss-replay-rules.js": "374dd9bb9494af79d5bd7c4257f4ae9d8f86dc2214aa0d887704340ccd790b16",
+    "js/boss-replay-visuals.js": "5643738682b8eb4b8a2611584c83935f91e003b504e0a35761db890322d935c4"
+  },
+  "steps": [
+    {
+      "name": "native-reverse-reaches-fresh-clock",
+      "at": "2026-11-10T21:00:05.004Z",
+      "state": {
+        "replay": {
+          "id": 2,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "EZ"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "EZ",
+            "phase": "clock",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 0,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": false,
+            "cameraZ": -10,
+            "cameraSpeed": 0,
+            "clockProgress": 0,
+            "elapsed": 0,
+            "introElapsed": 0,
+            "instruction": "按住画面，继续前进"
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      }
+    },
+    {
+      "name": "real-keyboard-hold-and-release-decelerate",
+      "at": "2026-11-10T21:00:07.733Z",
+      "held": {
+        "replay": {
+          "id": 2,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "EZ"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "EZ",
+            "phase": "clock",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 1.2832000000000017,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": true,
+            "cameraZ": 30.273216049421734,
+            "cameraSpeed": 61.319606013182586,
+            "clockProgress": 0.04109511841777728,
+            "elapsed": 1.2831999999999812,
+            "introElapsed": 0,
+            "instruction": "按住画面，继续前进"
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      },
+      "released": {
+        "replay": {
+          "id": 2,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "EZ"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "EZ",
+            "phase": "clock",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 2.7832000000000012,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": false,
+            "cameraZ": 45.55698507411855,
+            "cameraSpeed": 0.18408276117942848,
+            "clockProgress": 0.056690801096039335,
+            "elapsed": 2.783199999999958,
+            "introElapsed": 0,
+            "instruction": "按住画面，继续前进"
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      }
+    },
+    {
+      "name": "release-after-clock-ready",
+      "at": "2026-11-10T21:00:15.452Z",
+      "ready": {
+        "replay": {
+          "id": 2,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "EZ"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "EZ",
+            "phase": "clock-ready",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 0,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": true,
+            "cameraZ": 970,
+            "cameraSpeed": 179.67660607532537,
+            "clockProgress": 1,
+            "elapsed": 0,
+            "introElapsed": 0,
+            "instruction": "Play"
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      },
+      "afterRelease": {
+        "replay": {
+          "id": 2,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "EZ"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "EZ",
+            "phase": "clock-ready",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 0.1,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": false,
+            "cameraZ": 970,
+            "cameraSpeed": 179.67660607532537,
+            "clockProgress": 1,
+            "elapsed": 0.09999999999999787,
+            "introElapsed": 0,
+            "instruction": "Play"
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      }
+    },
+    {
+      "name": "real-reentry-resets-clock-and-keeps-new-tier",
+      "at": "2026-11-10T21:00:25.035Z",
+      "state": {
+        "replay": {
+          "id": 5,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "HD"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "HD",
+            "phase": "clock",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 0,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": false,
+            "cameraZ": -10,
+            "cameraSpeed": 0,
+            "clockProgress": 0,
+            "elapsed": 0,
+            "introElapsed": 0,
+            "instruction": "按住画面，继续前进"
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      }
+    },
+    {
+      "name": "real-pointer-hold-and-release-decelerate",
+      "at": "2026-11-10T21:00:27.782Z",
+      "held": {
+        "replay": {
+          "id": 5,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "HD"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "HD",
+            "phase": "clock",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 1.2499000000000013,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": true,
+            "cameraZ": 30.255084562505303,
+            "cameraSpeed": 61.320378203228096,
+            "clockProgress": 0.04107661690051562,
+            "elapsed": 1.2498999999999807,
+            "introElapsed": 0,
+            "instruction": "按住画面，继续前进"
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      },
+      "released": {
+        "replay": {
+          "id": 5,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "HD"
+          },
+          "scene": "RrharilEventLevelStart001",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "HD",
+            "phase": "clock",
+            "scene": "RrharilEventLevelStart001",
+            "sceneTime": 2.7499,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": false,
+            "cameraZ": 45.539032455189925,
+            "cameraSpeed": 0.18408504984889706,
+            "clockProgress": 0.056672482097132576,
+            "elapsed": 2.7498999999999594,
+            "introElapsed": 0,
+            "instruction": "按住画面，继续前进"
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      }
+    },
+    {
+      "name": "actual-play-target-starts-original-unlock",
+      "at": "2026-11-10T21:00:37.488Z",
+      "state": {
+        "replay": {
+          "id": 5,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "HD"
+          },
+          "scene": "RrharilUnlock",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "HD",
+            "phase": "intro",
+            "scene": "RrharilUnlock",
+            "sceneTime": 0.2832999999999957,
+            "clip": "rr_unlock",
+            "cancelled": false,
+            "result": null,
+            "held": false,
+            "cameraZ": 970,
+            "cameraSpeed": 179.67670370224417,
+            "clockProgress": 1,
+            "elapsed": 0.2832999999999899,
+            "introElapsed": 0.11659999999999471,
+            "instruction": ""
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0.068085,
+          "src": "blob:http://127.0.0.1:4190/53f5483e-b179-416f-b8e5-10d93d24461b",
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      }
+    },
+    {
+      "name": "original-rr-unlock-final-play-to-real-chart",
+      "at": "2026-11-10T21:01:13.226Z",
+      "state": {
+        "replay": {
+          "id": 5,
+          "route": {
+            "key": "rrharil",
+            "chapter": 7,
+            "family": "boss",
+            "tier": "HD"
+          },
+          "scene": "Level",
+          "loading": false,
+          "snapshot": {
+            "boss": "rrharil",
+            "tier": "HD",
+            "phase": "playing",
+            "scene": "Level",
+            "sceneTime": 0.3,
+            "clip": null,
+            "cancelled": false,
+            "result": null,
+            "held": false,
+            "cameraZ": 970,
+            "cameraSpeed": 179.67670370224417,
+            "clockProgress": 1,
+            "elapsed": 0.3000000000000256,
+            "introElapsed": 32.41530000000088,
+            "instruction": ""
+          }
+        },
+        "engine": {
+          "name": "Rrhar'il · 联网",
+          "running": true,
+          "paused": false,
+          "time": 0.2655668934240367,
+          "replay": {
+            "id": 5,
+            "chapter": 7,
+            "phase": "playing",
+            "songKey": "rrharil"
+          }
+        },
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": false
+      }
+    },
+    {
+      "name": "actual-quit-releases-rr-session",
+      "at": "2026-11-10T21:01:13.316Z"
+    },
+    {
+      "name": "actual-chart-preparation-held-after-transfer",
+      "at": "2026-11-10T21:01:13.914Z",
+      "state": {
+        "replay": {
+          "id": 8,
+          "route": {
+            "key": "luminescence",
+            "chapter": 8,
+            "family": "chapter8",
+            "tier": "EZ",
+            "controller": "luminescence"
+          },
+          "scene": "Level",
+          "loading": true,
+          "snapshot": {
+            "songKey": "luminescence",
+            "difficulty": "EZ",
+            "scene": "Level",
+            "phase": null,
+            "stage": "playing",
+            "time": 0,
+            "rawScore": 0,
+            "sceneTime": 0,
+            "hp": null,
+            "totalNoteAffect": 0,
+            "dead": false,
+            "locked": false,
+            "awaitingInput": false,
+            "eventActive": false,
+            "stage1Failed": false,
+            "stage2Failed": false,
+            "scoreCheckComplete": false,
+            "timeTag": 0,
+            "targetScore": 684796.5,
+            "complete": false,
+            "outro": 1.7999999523162842,
+            "videoTime": 0,
+            "clip": null,
+            "flags": {},
+            "messageIndex": 0,
+            "subtitle": "",
+            "creditsProgress": 0,
+            "creditsTime": 0,
+            "skipOpacity": 0
+          }
+        },
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": true,
+        "library": true
+      },
+      "prepared": {
+        "url": "./assets/catalog-charts/41c50afe2d44ef97-ez-bc051f9f49.json.gz",
+        "bytes": 319174
+      }
+    },
+    {
+      "name": "loading-back-releases-replay-ownership",
+      "at": "2026-11-10T21:01:14.150Z",
+      "state": {
+        "replay": null,
+        "engine": null,
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": true
+      }
+    },
+    {
+      "name": "late-preparation-cannot-revive-or-stop-new-session",
+      "at": "2026-11-10T21:01:18.324Z",
+      "before": {
+        "replay": {
+          "id": 11,
+          "route": {
+            "key": "luminescence",
+            "chapter": 8,
+            "family": "chapter8",
+            "tier": "HD",
+            "controller": "luminescence"
+          },
+          "scene": "Level",
+          "loading": false,
+          "snapshot": {
+            "songKey": "luminescence",
+            "difficulty": "HD",
+            "scene": "Level",
+            "phase": null,
+            "stage": "playing",
+            "time": 0.265566885471344,
+            "rawScore": 0,
+            "sceneTime": 0.29989999999999417,
+            "hp": null,
+            "totalNoteAffect": 0,
+            "dead": false,
+            "locked": false,
+            "awaitingInput": false,
+            "eventActive": false,
+            "stage1Failed": false,
+            "stage2Failed": false,
+            "scoreCheckComplete": false,
+            "timeTag": 0,
+            "targetScore": 677965.5,
+            "complete": false,
+            "outro": 1.7999999523162842,
+            "videoTime": 0,
+            "clip": null,
+            "flags": {},
+            "messageIndex": 0,
+            "subtitle": "",
+            "creditsProgress": 0,
+            "creditsTime": 0,
+            "skipOpacity": 0
+          }
+        },
+        "engine": {
+          "name": "Luminescence",
+          "running": true,
+          "paused": false,
+          "time": 0.2655668934240367,
+          "replay": {
+            "id": 11,
+            "chapter": 8,
+            "phase": "luminescence",
+            "songKey": "luminescence"
+          }
+        },
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": false
+      },
+      "after": {
+        "replay": {
+          "id": 11,
+          "route": {
+            "key": "luminescence",
+            "chapter": 8,
+            "family": "chapter8",
+            "tier": "HD",
+            "controller": "luminescence"
+          },
+          "scene": "Level",
+          "loading": false,
+          "snapshot": {
+            "songKey": "luminescence",
+            "difficulty": "HD",
+            "scene": "Level",
+            "phase": null,
+            "stage": "playing",
+            "time": 0.3961791396141052,
+            "rawScore": 0,
+            "sceneTime": 0.4331999999999972,
+            "hp": null,
+            "totalNoteAffect": 0,
+            "dead": false,
+            "locked": false,
+            "awaitingInput": false,
+            "eventActive": false,
+            "stage1Failed": false,
+            "stage2Failed": false,
+            "scoreCheckComplete": false,
+            "timeTag": 0,
+            "targetScore": 677965.5,
+            "complete": false,
+            "outro": 1.7999999523162842,
+            "videoTime": 0,
+            "clip": null,
+            "flags": {},
+            "messageIndex": 0,
+            "subtitle": "",
+            "creditsProgress": 0,
+            "creditsTime": 0,
+            "skipOpacity": 0
+          }
+        },
+        "engine": {
+          "name": "Luminescence",
+          "running": true,
+          "paused": false,
+          "time": 0.39617913832198326,
+          "replay": {
+            "id": 11,
+            "chapter": 8,
+            "phase": "luminescence",
+            "songKey": "luminescence"
+          }
+        },
+        "video": {
+          "time": 0,
+          "src": null,
+          "rate": 1
+        },
+        "loading": false,
+        "library": false
+      },
+      "oldSignalAborted": true,
+      "settlements": [
+        {
+          "id": 5,
+          "at": 79210.09999999776
+        },
+        {
+          "id": 11,
+          "at": 84455.19999999925
+        },
+        {
+          "id": 8,
+          "error": "重演曲目未能启动",
+          "at": 84788
+        }
+      ]
+    },
+    {
+      "name": "replacement-quit-clears-ownership",
+      "at": "2026-11-10T21:01:18.450Z"
+    }
+  ],
+  "requests": [
+    {
+      "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/0c7e90ee5d8ffaaa756d79d8aef879338fdde423/Rrharil.TeamGrimoire.png",
+      "hash": "4dac809af51fe2737bd0ef34c5ca4f1026e5a32771e254e1fd9c829c431ba8e7",
+      "status": "cached-original"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/TimeReverse_Video.mp4",
+      "hash": "691eae099af269b4fe2ec928b1cee3ab43916166aa11135700421d7e11c94b5e",
+      "status": "cached-original"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/TimeReverse_Video.mp4",
+      "hash": "691eae099af269b4fe2ec928b1cee3ab43916166aa11135700421d7e11c94b5e",
+      "status": "cached-original"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/1a9df85d38fca17cce1f1d62f4b348054c180d24/vision/Rr_Unlock.mp4",
+      "hash": "671e2862af83d5629aad91cfc764a4bd419f79e0f3f6a34fd7a581da1a7a17d6",
+      "status": "cached-original"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5142ba2673ccbeb23173886f3bd851e9c881e6ec/Rrharil.TeamGrimoire.ogg",
+      "hash": "56ac263329edaae2bee082bcd567bc1622a790df2f7a090440dd6413b7a40920",
+      "status": "cached-original"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/Rrharil.TeamGrimoire.0/HD.json",
+      "hash": "98ba9b4b5ba031bde9f20c6f652354ea9f8fed0d538ad2449e3d2e9134f06493",
+      "status": "cached-original"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "unknownExternal": [],
+  "selectedCase": "all",
+  "browser": "156.0.8078.79",
+  "selections": [
+    {
+      "key": "rrharil",
+      "tier": "EZ",
+      "name": "Rrhar'il · 联网",
+      "at": "2026-11-10T20:59:55.355Z"
+    },
+    {
+      "key": "rrharil",
+      "tier": "HD",
+      "name": "Rrhar'il · 联网",
+      "at": "2026-11-10T21:00:15.796Z"
+    },
+    {
+      "key": "luminescence",
+      "tier": "EZ",
+      "name": "Luminescence",
+      "at": "2026-11-10T21:01:13.734Z"
+    },
+    {
+      "key": "luminescence",
+      "tier": "HD",
+      "name": "Luminescence",
+      "at": "2026-11-10T21:01:14.299Z"
+    }
+  ],
+  "status": "passed",
+  "finishedAt": "2026-11-10T21:01:18.451Z",
+  "uniqueCachedFiles": 5,
+  "uniqueCachedBytes": 26084700
+}

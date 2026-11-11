@@ -1,0 +1,42 @@
+[
+  {
+    "fixedRef": "cee10d70dc4f036f9ce98577abee52455f88423e",
+    "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+    "declaredBytes": 1069467,
+    "scope": "GET first 512 bytes only; not complete mirror hash or browser CORS",
+    "status": 200,
+    "responseURL": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+    "contentType": "video/mp4",
+    "firstBytes": 512
+  },
+  {
+    "fixedRef": "1a9df85d38fca17cce1f1d62f4b348054c180d24",
+    "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@1a9df85d38fca17cce1f1d62f4b348054c180d24/vision/Rr_Unlock.mp4",
+    "declaredBytes": 15910589,
+    "scope": "GET first 512 bytes only; not complete mirror hash or browser CORS",
+    "status": 200,
+    "responseURL": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@1a9df85d38fca17cce1f1d62f4b348054c180d24/vision/Rr_Unlock.mp4",
+    "contentType": "video/mp4",
+    "firstBytes": 512
+  },
+  {
+    "fixedRef": "d72db57ac90f5dc650fec2cbbe876f0d16d834f7",
+    "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@d72db57ac90f5dc650fec2cbbe876f0d16d834f7/vision/QD.mp4",
+    "declaredBytes": 14588474,
+    "scope": "GET first 512 bytes only; not complete mirror hash or browser CORS",
+    "status": 200,
+    "responseURL": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@d72db57ac90f5dc650fec2cbbe876f0d16d834f7/vision/QD.mp4",
+    "contentType": "video/mp4",
+    "firstBytes": 512
+  },
+  {
+    "fixedRef": "67c08c5610973308959855fed0db86f784de24c3",
+    "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+    "declaredBytes": 1051123,
+    "scope": "GET first 512 bytes only; not complete mirror hash or browser CORS",
+    "status": 200,
+    "responseURL": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+    "contentType": "audio/mp4",
+    "firstBytes": 512
+  }
+]

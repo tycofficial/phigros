@@ -1,0 +1,38 @@
+{
+  "checkedDate": "2026-11-10",
+  "method": "Direct official-store page retrieval on 2026-11-10; Apple version history and TapTap release metadata rechecked; no package or complete reference capture obtained",
+  "sources": [
+    {
+      "url": "https://apps.apple.com/cn/app/phigros/id1454809109",
+      "platform": "iOS/iPadOS",
+      "version": "4.0.1.2",
+      "updateDateDisplayed": "October 21",
+      "publisher": "Xiamen Pigeon Games Network Co., Ltd.",
+      "minimumOS": "15.0",
+      "internalBuild": null
+    },
+    {
+      "url": "https://www.taptap.cn/app/165287",
+      "platform": "Android / TapTap",
+      "version": "4.0.1.2",
+      "versionCode": "160",
+      "updateDate": "2026-10-21"
+    },
+    {
+      "url": "https://play.google.com/store/apps/details?id=com.PigeonGames.Phigros",
+      "platform": "Android / Google Play",
+      "package": "com.PigeonGames.Phigros",
+      "publisher": "PigeonGames",
+      "updateDate": "2026-10-21",
+      "version": null,
+      "versionCode": null
+    }
+  ],
+  "limitations": [
+    "Version labels establish a public candidate, not the user-selected reference platform or internal iOS build.",
+    "Store promotional screenshots do not verify every page, animation, timing, Tip, chart, unlock or replay branch.",
+    "No official client interaction recording or package was acquired.",
+    "Public listings do not grant blanket redistribution rights for music, artwork or other assets."
+  ],
+  "selectedOfficialBaseline": null
+}

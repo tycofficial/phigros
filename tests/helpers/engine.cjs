@@ -1,7 +1,7 @@
 const fs=require('node:fs');
 const vm=require('node:vm');
 // Exercise the shipped Engine methods without initializing the app or a GPU.
-const source=fs.readFileSync('js/app.js','utf8');
+const source=fs.readFileSync(process.env.PHI_TEST_APP_SOURCE||'js/app.js','utf8');
 const engineSource=source.slice(source.indexOf('  class Engine {'),source.indexOf('  let resultArtworkURL'));
 const inputConstants=source.slice(source.indexOf('  const PERFECT ='),source.indexOf('  // Official-like global Note depth'));
 class ElementMock { closest(){return null;} }

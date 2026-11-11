@@ -76,8 +76,19 @@ const {chromium}=require('playwright');
    const historicalContent={subtitle:root.querySelector('.visionSceneSubtitle').textContent,title:root.querySelector('.visionNativeDialog h2').textContent,body:root.querySelector('.visionNativeDialog p').textContent,button:root.querySelector('.visionNativeDialog button').textContent};
    root.querySelector('.visionNativeDialog button').click();
    const dialogConfirmed=actions.at(-1)==='confirm';
+   // A hold began in the clock scene. Its key release belongs to that input,
+   // even when clock-ready redraws the scene before the user releases Enter.
+   ui.scene('RrharilEventLevelStart001');ui.paint({phase:'clock'});
+   root.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
+   ui.scene('RrharilEventLevelStart001');ui.paint({phase:'clock-ready'});
+   const beforeClockRelease=actions.length;
+   root.dispatchEvent(new KeyboardEvent('keyup',{key:'Enter',bubbles:true}));
+   const clockReleaseActions=actions.slice(beforeClockRelease),beforeNewConfirm=actions.length;
+   root.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
+   root.dispatchEvent(new KeyboardEvent('keyup',{key:'Enter',bubbles:true}));
+   const newConfirmActions=actions.slice(beforeNewConfirm);
    const noExtraUI=!root.querySelector('.visionSceneToolbar span,.visionSceneToolbar h1,.visionSceneToolbar h2,[data-action=restart],.visionSceneStatus,.visionResumeMedia,.visionCreditsViewport span');
-   return {exitActions,historicalContent,dialogConfirmed,fatalRecovered,paused,resumed,pointerActions,gateStillPaused,afterStaleClip,duringNewAudio,afterNewAudio,blocked,keyboardActions,afterKeyboard,noExtraUI,escapeCancelled};
+   return {clockReleaseActions,newConfirmActions,exitActions,historicalContent,dialogConfirmed,fatalRecovered,paused,resumed,pointerActions,gateStillPaused,afterStaleClip,duringNewAudio,afterNewAudio,blocked,keyboardActions,afterKeyboard,noExtraUI,escapeCancelled};
   });
   const manifestRaces=await page.evaluate(async()=>{
    const results={};
@@ -116,6 +127,8 @@ const {chromium}=require('playwright');
   assert.equal(result.afterStaleClip.mediaBlocked,false);assert.equal(result.afterStaleClip.clipId,'b');
   assert.equal(result.duringNewAudio.audioLoading,true);assert.equal(result.duringNewAudio.mediaBlocked,false);assert.equal(result.afterNewAudio.audioLoading,false);
   assert.equal(result.blocked.mediaBlocked,true);assert.equal(result.afterKeyboard.mediaBlocked,false);assert(!result.keyboardActions.includes('activate'));assert(!result.keyboardActions.includes('hold-start'));
+  assert.deepEqual(result.clockReleaseActions,['hold-end'],'a previous scene key release cannot confirm clock-ready');
+  assert.deepEqual(result.newConfirmActions,['hold-start','hold-end','activate'],'a fresh Enter still confirms clock-ready');
   assert.deepEqual(result.exitActions,['cancel']);assert.deepEqual(result.historicalContent,{subtitle:'鸠？！',title:'PhigrOS已崩溃',body:'模拟结束，谢谢你的参与。',button:'好'});assert.equal(result.dialogConfirmed,true);assert.equal(result.fatalRecovered,true);assert.equal(result.noExtraUI,true);assert.equal(result.escapeCancelled,true);assert.deepEqual(errors,[]);
   console.log(JSON.stringify({scope:'Browser media lifecycle only; official equivalence unverified',result,manifestRaces},null,2));
  }finally{await browser.close();}

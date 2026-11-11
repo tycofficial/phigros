@@ -1,0 +1,174 @@
+✔ current gesture prime resolved restores the original mute state (7.68029ms)
+✔ current gesture prime rejected restores the original mute state (1.285452ms)
+✖ startMusic cancels a delayed resolved gesture prime before reusing the media (2.503802ms)
+✖ startMusic cancels a delayed rejected gesture prime before reusing the media (4.755902ms)
+✖ pauseMusic cancels a delayed resolved gesture prime before reusing the media (2.110361ms)
+✖ pauseMusic cancels a delayed rejected gesture prime before reusing the media (1.039479ms)
+✖ stopMusic cancels a delayed resolved gesture prime before reusing the media (1.082746ms)
+✖ stopMusic cancels a delayed rejected gesture prime before reusing the media (1.105008ms)
+✖ a second gesture prime inherits the real mute state rather than the temporary mute of the first (3.164389ms)
+✖ a timed-out prime restores paused media before session preparation continues (1.349037ms)
+✖ an old session timeout cannot cancel a replacement prime (1.172781ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 2
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 109.256027
+
+✖ failing tests:
+
+test at tests/audio-gesture-prime.test.cjs:19:108
+✖ startMusic cancels a delayed resolved gesture prime before reusing the media (2.503802ms)
+  AssertionError [ERR_ASSERTION]: replacement starts with the old prime mute state
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-gesture-prime.test.cjs:23:33)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-gesture-prime.test.cjs:19:108
+✖ startMusic cancels a delayed rejected gesture prime before reusing the media (4.755902ms)
+  AssertionError [ERR_ASSERTION]: replacement starts with the old prime mute state
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-gesture-prime.test.cjs:23:33)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-gesture-prime.test.cjs:19:108
+✖ pauseMusic cancels a delayed resolved gesture prime before reusing the media (2.110361ms)
+  AssertionError [ERR_ASSERTION]: late prime paused replacement media
+  
+  3 !== 2
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-gesture-prime.test.cjs:28:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-gesture-prime.test.cjs:19:108
+✖ pauseMusic cancels a delayed rejected gesture prime before reusing the media (1.039479ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-gesture-prime.test.cjs:28:118)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-gesture-prime.test.cjs:19:108
+✖ stopMusic cancels a delayed resolved gesture prime before reusing the media (1.082746ms)
+  AssertionError [ERR_ASSERTION]: late prime paused replacement media
+  
+  3 !== 2
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-gesture-prime.test.cjs:28:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-gesture-prime.test.cjs:19:108
+✖ stopMusic cancels a delayed rejected gesture prime before reusing the media (1.105008ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-gesture-prime.test.cjs:28:118)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-gesture-prime.test.cjs:30:1
+✖ a second gesture prime inherits the real mute state rather than the temporary mute of the first (3.164389ms)
+  AssertionError [ERR_ASSERTION]: old completion changed the new pending prime
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-gesture-prime.test.cjs:33:37)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-gesture-prime.test.cjs:36:1
+✖ a timed-out prime restores paused media before session preparation continues (1.349037ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-gesture-prime.test.cjs:39:48)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/audio-gesture-prime.test.cjs:43:1
+✖ an old session timeout cannot cancel a replacement prime (1.172781ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/audio-gesture-prime.test.cjs:48:44)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

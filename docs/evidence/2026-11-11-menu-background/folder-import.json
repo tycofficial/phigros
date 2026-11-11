@@ -1,0 +1,145 @@
+{
+  "scope": "Engineering folder import and existing-menu visibility only; no official equivalence",
+  "styleSHA256": "02b2710e57475247f2129e092da6e2869641aafeb5d672762612074f99669244",
+  "pageErrors": [],
+  "steps": [
+    {
+      "name": "existing-more-menu-opens",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "expanded": "true",
+      "viewClasses": "view libraryToolsOpen",
+      "display": "block"
+    },
+    {
+      "name": "existing-more-menu-opens",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "expanded": "true",
+      "viewClasses": "view libraryToolsOpen",
+      "display": "block"
+    },
+    {
+      "name": "existing-more-menu-opens",
+      "viewport": {
+        "width": 720,
+        "height": 1280
+      },
+      "expanded": "true",
+      "viewClasses": "view libraryToolsOpen",
+      "display": "block"
+    },
+    {
+      "name": "nested-folder-import-preserves-original-data",
+      "files": [
+        {
+          "name": "chart.json",
+          "path": "input/nested/song-3/chart.json"
+        },
+        {
+          "name": "music.wav",
+          "path": "input/nested/song-3/music.wav"
+        },
+        {
+          "name": "info.json",
+          "path": "input/nested/song-3/info.json"
+        },
+        {
+          "name": "chart.json",
+          "path": "input/nested/song-2/chart.json"
+        },
+        {
+          "name": "music.wav",
+          "path": "input/nested/song-2/music.wav"
+        },
+        {
+          "name": "info.json",
+          "path": "input/nested/song-2/info.json"
+        },
+        {
+          "name": "chart.json",
+          "path": "input/nested/song-1/chart.json"
+        },
+        {
+          "name": "music.wav",
+          "path": "input/nested/song-1/music.wav"
+        },
+        {
+          "name": "info.json",
+          "path": "input/nested/song-1/info.json"
+        }
+      ],
+      "imported": [
+        {
+          "id": "chart:5cb4dc27486dbf36e5fa0f822113b04973668fd8f89925057e1fd14fa011051c",
+          "name": "Folder regression fixture 3",
+          "parser": "pgr",
+          "notes": 4,
+          "duration": 4,
+          "audioHash": "sha256:78531834d663fe0c2a5e3b2029454a1ed735928c1e3ee2765e1c1751e04b3aa0:64044"
+        },
+        {
+          "id": "chart:82a0e3e289fbbfbf825d486c2403130d7fada5022efc136998d265dc73336dfd",
+          "name": "Folder regression fixture 2",
+          "parser": "pgr",
+          "notes": 4,
+          "duration": 4,
+          "audioHash": "sha256:982aaf5ad85c5a96989bca31ba95967c7f1543e3489a2bb4a3dac118d465a786:64044"
+        },
+        {
+          "id": "chart:b662f3208f67f2ff9748d9d9405df322e98a4e31d0cb6c227fd8c48fee4ae645",
+          "name": "Folder regression fixture 1",
+          "parser": "pgr",
+          "notes": 4,
+          "duration": 4,
+          "audioHash": "sha256:fa7b9145aa2354fcb3bd064ad11ed7022d6f2328362e9bf40b6628611e0fae0d:64044"
+        }
+      ],
+      "original": {
+        "chart": {
+          "id": "folder-existing",
+          "name": "Existing regression fixture",
+          "chartText": "{\"formatVersion\":3,\"offset\":0,\"judgeLineList\":[{\"bpm\":120,\"notesAbove\":[{\"type\":1,\"time\":64,\"positionX\":0,\"holdTime\":0,\"speed\":1,\"floorPosition\":1},{\"type\":1,\"time\":96,\"positionX\":0,\"holdTime\":0,\"speed\":1,\"floorPosition\":1.5},{\"type\":1,\"time\":128,\"positionX\":0,\"holdTime\":0,\"speed\":1,\"floorPosition\":2},{\"type\":1,\"time\":160,\"positionX\":0,\"holdTime\":0,\"speed\":1,\"floorPosition\":2.5}],\"notesBelow\":[],\"speedEvents\":[{\"startTime\":0,\"endTime\":10000,\"value\":1}],\"judgeLineMoveEvents\":[{\"startTime\":0,\"endTime\":10000,\"start\":0.5,\"end\":0.5,\"start2\":0.5,\"end2\":0.5}],\"judgeLineRotateEvents\":[{\"startTime\":0,\"endTime\":10000,\"start\":0,\"end\":0}],\"judgeLineDisappearEvents\":[{\"startTime\":0,\"endTime\":10000,\"start\":1,\"end\":1}]}]}",
+          "importedAt": 7,
+          "audioSHA256": "f0345021a74cfdb745b5f2a335979f2145f44d119f3869ee887cecae811dd01e"
+        },
+        "setting": {
+          "key": "folder-setting",
+          "value": {
+            "offset": 123
+          }
+        },
+        "score": {
+          "key": "folder-score",
+          "score": 321,
+          "ranked": true
+        }
+      },
+      "screenshot": "folder-import.png"
+    },
+    {
+      "name": "folder-data-and-original-saves-survive-reload",
+      "restored": [
+        {
+          "id": "chart:5cb4dc27486dbf36e5fa0f822113b04973668fd8f89925057e1fd14fa011051c",
+          "audioHash": "sha256:78531834d663fe0c2a5e3b2029454a1ed735928c1e3ee2765e1c1751e04b3aa0:64044"
+        },
+        {
+          "id": "chart:82a0e3e289fbbfbf825d486c2403130d7fada5022efc136998d265dc73336dfd",
+          "audioHash": "sha256:982aaf5ad85c5a96989bca31ba95967c7f1543e3489a2bb4a3dac118d465a786:64044"
+        },
+        {
+          "id": "chart:b662f3208f67f2ff9748d9d9405df322e98a4e31d0cb6c227fd8c48fee4ae645",
+          "audioHash": "sha256:fa7b9145aa2354fcb3bd064ad11ed7022d6f2328362e9bf40b6628611e0fae0d:64044"
+        }
+      ]
+    }
+  ],
+  "browser": "156.0.8078.79",
+  "runtime": "4.0.1.2-pages-42",
+  "status": "passed"
+}

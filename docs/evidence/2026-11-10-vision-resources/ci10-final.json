@@ -1,0 +1,475 @@
+{
+  "date": "2026-11-10",
+  "head": "9e705999c2727d5a1aa0b4cae486ba987c240e9d",
+  "merge": "fa25f4d8018c22794f8eeb509d79e770c9fb96f1",
+  "tree": "bb5d8a8877052bdaf80032deba5d56fe5f025f52",
+  "headAndMergeTreesIdentical": true,
+  "base": "cd07039b7f75fb85852d0eec5ff01b72cde4baf1",
+  "run": {
+    "id": 42870234551,
+    "number": 10,
+    "status": "completed",
+    "conclusion": "failure",
+    "url": "https://github.com/tycofficial/phigros/actions/runs/42870234551",
+    "startedAt": "2026-11-10T17:57:37Z",
+    "updatedAt": "2026-11-10T18:02:18Z",
+    "job": 130019233076,
+    "jobURL": "https://github.com/tycofficial/phigros/actions/runs/42870234551/job/130019233076"
+  },
+  "overall": "blocked: two independently measured CDN source size limits; audit correctly exits 1",
+  "unitTests": {
+    "command": "node --test tests/*.test.cjs",
+    "passed": 487,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browserStep": "passed",
+  "serviceWorker": {
+    "status": "passed",
+    "steps": [
+      {
+        "name": "previous-worker-warmed",
+        "runtime": "4.0.1.2-pages-32",
+        "caches": [
+          "tycphigros-4.0.1.2-stability-2",
+          "tycphigros-app-pages-32"
+        ]
+      },
+      {
+        "name": "updated-worker-claimed",
+        "caches": [
+          "tycphigros-4.0.1.2-stability-2",
+          "tycphigros-app-pages-32",
+          "tycphigros-app-pages-37"
+        ]
+      },
+      {
+        "name": "offline-after-update-restores-app-and-saves",
+        "runtime": "4.0.1.2-pages-37",
+        "restored": {
+          "id": "sw-existing-chart",
+          "chartText": "saved-original",
+          "audio": "saved-original-audio",
+          "setting": {
+            "offset": 123
+          },
+          "score": 321,
+          "localScore": "321"
+        },
+        "screenshot": "offline-after-update.png"
+      },
+      {
+        "name": "shared-media-range-survives-update",
+        "status": 206,
+        "range": "bytes 2-5/10",
+        "body": "2345"
+      },
+      {
+        "name": "offline-index-alias-loads",
+        "runtime": "4.0.1.2-pages-37"
+      },
+      {
+        "name": "missing-bootstrap-rejects-update",
+        "state": "redundant",
+        "sameController": true
+      },
+      {
+        "name": "failed-install-keeps-offline-app",
+        "runtime": "4.0.1.2-pages-37"
+      },
+      {
+        "name": "retry-installs-complete-release-and-preserves-saves",
+        "runtime": "4.0.1.2-pages-38",
+        "restored": {
+          "id": "sw-existing-chart",
+          "chartText": "saved-original",
+          "audio": "saved-original-audio",
+          "setting": {
+            "offset": 123
+          },
+          "score": 321,
+          "localScore": "321"
+        }
+      },
+      {
+        "name": "first-install-can-reopen-shell-offline",
+        "runtime": "4.0.1.2-pages-37",
+        "screenshot": "offline-after-first-install.png",
+        "limitation": "Only the program shell is prepared; this does not download all songs or optional resources."
+      }
+    ]
+  },
+  "priorServiceWorkerTimeout": {
+    "run": 42868000405,
+    "rootCause": "unverified",
+    "notClaimedFixed": true
+  },
+  "runtime": {
+    "changedThisBatch": false,
+    "version": "4.0.1.2-pages-37",
+    "fileCount": 1927,
+    "bytes": 999580190,
+    "removed": 0,
+    "reencoded": 0
+  },
+  "content": {
+    "primaryPassed": 13,
+    "primaryBytes": 135705896,
+    "mirrorPassed": 11,
+    "mirrorBlocked": 2,
+    "verifiedBothOriginsBytes": 221595536,
+    "blockedUnmeasuredMirrorBytes": 49816256,
+    "reason": "Actual HTTP 403: File size exceeded the configured limit of 20 MB.",
+    "blockedPaths": [
+      "vision/DF_Unlock.mp4",
+      "vision/audio/AboutUs1.flac"
+    ],
+    "main3GBDownloadedAgain": false
+  },
+  "decode": {
+    "passed": 13,
+    "command": "python3 scripts/audit-vision-decode.py --plan docs/evidence/2026-11-10-vision-resources/plan.json --cache work/vision-resource-audit/cache --output work/vision-resource-audit/decode.json"
+  },
+  "nativePlayback": {
+    "sampled": 12,
+    "naturalFull": 1,
+    "naturalDuration": 194.821224,
+    "naturalRate": 1,
+    "naturalEnded": true,
+    "flacEndSeek": "failed diagnostic retained",
+    "officialChapterTimeline": "not verified"
+  },
+  "visionNetwork": {
+    "status": "blocked",
+    "availableCORS": 24,
+    "externalBlocked": 2,
+    "executableChecksPassed": true,
+    "fullLoaderResults": [
+      {
+        "id": "df_touch",
+        "variant": "primary",
+        "at": "2026-11-10T18:02:13.830Z",
+        "actualBytes": 1069467,
+        "actualSHA256": "18851074ef2e1675fb4c5c031a3aa536042a2d61e93d6903be4b026548abdaa9",
+        "sources": [
+          0
+        ],
+        "attempts": [
+          {
+            "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+            "mode": "cors",
+            "credentials": "omit",
+            "redirect": "error",
+            "controlled": false
+          }
+        ],
+        "responses": [
+          {
+            "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+            "status": 200,
+            "type": "cors"
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "id": "df_touch",
+        "variant": "mirror",
+        "at": "2026-11-10T18:02:13.852Z",
+        "actualBytes": 1069467,
+        "actualSHA256": "18851074ef2e1675fb4c5c031a3aa536042a2d61e93d6903be4b026548abdaa9",
+        "sources": [
+          0,
+          1
+        ],
+        "attempts": [
+          {
+            "url": "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+            "mode": "cors",
+            "credentials": "omit",
+            "redirect": "error",
+            "controlled": true
+          },
+          {
+            "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+            "mode": "cors",
+            "credentials": "omit",
+            "redirect": "error",
+            "controlled": false
+          }
+        ],
+        "responses": [
+          {
+            "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+            "status": 200,
+            "type": "cors"
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "id": "about_us_0_m4a",
+        "variant": "primary",
+        "at": "2026-11-10T18:02:13.876Z",
+        "actualBytes": 1051123,
+        "actualSHA256": "0adf8f96d1f8aa4d2ba7cbab2c37a7468a7d15a4f97cabd472c1051a079f762f",
+        "sources": [
+          0
+        ],
+        "attempts": [
+          {
+            "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+            "mode": "cors",
+            "credentials": "omit",
+            "redirect": "error",
+            "controlled": false
+          }
+        ],
+        "responses": [
+          {
+            "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+            "status": 200,
+            "type": "cors"
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "id": "about_us_0_m4a",
+        "variant": "mirror",
+        "at": "2026-11-10T18:02:13.898Z",
+        "actualBytes": 1051123,
+        "actualSHA256": "0adf8f96d1f8aa4d2ba7cbab2c37a7468a7d15a4f97cabd472c1051a079f762f",
+        "sources": [
+          0,
+          1
+        ],
+        "attempts": [
+          {
+            "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+            "mode": "cors",
+            "credentials": "omit",
+            "redirect": "error",
+            "controlled": true
+          },
+          {
+            "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+            "mode": "cors",
+            "credentials": "omit",
+            "redirect": "error",
+            "controlled": false
+          }
+        ],
+        "responses": [
+          {
+            "url": "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs0.m4a",
+            "status": 200,
+            "type": "cors"
+          }
+        ],
+        "status": "passed"
+      }
+    ],
+    "controlledChecks": [
+      {
+        "name": "cancel-after-progress-no-fallback",
+        "transport": "Original loader with native fetch; normal browser HTTP cache permitted",
+        "status": "passed",
+        "nativeFetch": true,
+        "error": "AbortError",
+        "sources": [
+          0
+        ],
+        "calls": [
+          "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4"
+        ]
+      },
+      {
+        "name": "both-source-failure",
+        "transport": "controlled response/failure around independently measured real bytes; no fresh CORS claim",
+        "status": "passed",
+        "error": "影片来源不可访问或校验失败，请检查网络后重试（Controlled source outage）",
+        "calls": [
+          "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+          "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4"
+        ]
+      },
+      {
+        "name": "recovery-new-session",
+        "transport": "Original loader with native fetch; normal browser HTTP cache permitted",
+        "status": "passed",
+        "nativeFetch": true,
+        "calls": [
+          "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4"
+        ]
+      },
+      {
+        "name": "same-length-corruption-falls-back",
+        "transport": "controlled response/failure around independently measured real bytes; no fresh CORS claim",
+        "status": "passed",
+        "sources": [
+          0,
+          1
+        ],
+        "calls": [
+          "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4",
+          "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4"
+        ]
+      },
+      {
+        "name": "mirror-alias-still-prefers-primary",
+        "transport": "controlled response/failure around independently measured real bytes; no fresh CORS claim",
+        "status": "passed",
+        "sources": [
+          0
+        ],
+        "calls": [
+          "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Touch2Start.mp4"
+        ]
+      },
+      {
+        "name": "blocked-mirror-error-vision/DF_Unlock.mp4",
+        "transport": "controlled response/failure around independently measured real bytes; no fresh CORS claim",
+        "status": "passed",
+        "error": "影片来源不可访问或校验失败，请检查网络后重试（来源响应无效）",
+        "calls": [
+          "https://raw.githubusercontent.com/tycofficial/phigros/cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4",
+          "https://cdn.jsdelivr.net/gh/tycofficial/phigros@cee10d70dc4f036f9ce98577abee52455f88423e/vision/DF_Unlock.mp4"
+        ],
+        "priorRealHTTPStatus": 403
+      },
+      {
+        "name": "blocked-mirror-error-vision/audio/AboutUs1.flac",
+        "transport": "controlled response/failure around independently measured real bytes; no fresh CORS claim",
+        "status": "passed",
+        "error": "影片来源不可访问或校验失败，请检查网络后重试（来源响应无效）",
+        "calls": [
+          "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.flac",
+          "https://cdn.jsdelivr.net/gh/tycofficial/phigros@67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.flac"
+        ],
+        "priorRealHTTPStatus": 403
+      }
+    ],
+    "pageErrors": []
+  },
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2
+    },
+    {
+      "name": "Run actions/setup-node@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3
+    },
+    {
+      "name": "Prepare browser tooling",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4
+    },
+    {
+      "name": "Select installed Chromium",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5
+    },
+    {
+      "name": "Run unit and integration regressions",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6
+    },
+    {
+      "name": "Verify complete runtime packaging",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7
+    },
+    {
+      "name": "Verify measured remote-resource evidence without downloads",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8
+    },
+    {
+      "name": "Verify vision measurements including recorded source limits",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9
+    },
+    {
+      "name": "Run actual app and persistent storage browser checks",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10
+    },
+    {
+      "name": "Audit vision networking independently",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 11
+    },
+    {
+      "name": "Keep engineering evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 12
+    },
+    {
+      "name": "Post Run actions/setup-node@v4",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 23
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 24
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 25
+    }
+  ],
+  "artifact": {
+    "id": 13788338866,
+    "name": "engineering-regression-fa25f4d8018c22794f8eeb509d79e770c9fb96f1",
+    "size_in_bytes": 11845865,
+    "url": "https://api.github.com/repos/tycofficial/phigros/actions/artifacts/13788338866",
+    "archive_download_url": "https://api.github.com/repos/tycofficial/phigros/actions/artifacts/13788338866/zip",
+    "expired": false,
+    "created_at": "2026-11-10T18:02:15Z",
+    "expires_at": "2026-11-24T18:02:14Z",
+    "updated_at": "2026-11-10T18:02:15Z",
+    "digest": "sha256:9e3d5487ca0869f220cbed1400706f0c71d47926b50219601f7f9a30167e2229",
+    "workflow_run": {
+      "id": 42870234551,
+      "repository_id": 1429539890,
+      "head_repository_id": 1429539890,
+      "head_branch": "dot/phigros-loading-refactor",
+      "head_sha": "9e705999c2727d5a1aa0b4cae486ba987c240e9d"
+    }
+  },
+  "sources": {
+    "localSourceEvidence": "docs/evidence/2026-11-10-vision-resources/",
+    "CISummary": "Latest CI section of draft PR #1; raw job logs; work/vision-cors/report.json in artifact"
+  },
+  "officialAcceptance": "blocked; unique official build/settings/full reference and version-to-resource correspondence absent",
+  "nextUncoveredWork": [
+    "Identify the CI #9 worker retry takeover timeout without weakening assertions or time limits; the later pass does not establish cause.",
+    "Exercise actual chapter event/input/cancellation transitions with verified cached original media; sampled generic video surfaces do not prove complete chapter integration."
+  ]
+}

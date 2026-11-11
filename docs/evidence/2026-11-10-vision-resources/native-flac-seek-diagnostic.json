@@ -1,0 +1,34 @@
+{
+  "scope": "Verified cache bytes, original createSurface, native muted playback at start/end and loop/codec-selection checks; not remote CORS, full real-time playthrough or official reference matching",
+  "browser": "156.0.8078.79",
+  "startedAt": "2026-11-10T17:22:55.269Z",
+  "sourceSHA256": "07de625163d4a010c64840f6995d4416a395c5ef6b81d753a52fc656283ed8eb",
+  "externalRequests": [],
+  "pageErrors": [],
+  "results": [],
+  "selectedMediaIDs": [
+    "about_us_1_flac"
+  ],
+  "status": "failed",
+  "error": "page.evaluate: Error: Native media boundary timed out: about_us_1_flac\n    at until (eval at evaluate (:311:30), <anonymous>:2:123)\n    at async eval (eval at evaluate (:311:30), <anonymous>:11:92)\n    at async <anonymous>:337:30\n    at /workspace/phigros/scripts/audit-vision-playback.cjs:25:28",
+  "failureState": {
+    "selected": {
+      "id": "about_us_1_flac",
+      "url": "https://raw.githubusercontent.com/tycofficial/phigros/67c08c5610973308959855fed0db86f784de24c3/vision/audio/AboutUs1.flac"
+    },
+    "mediaErrors": [
+      "PipelineStatus::PIPELINE_ERROR_READ: FFmpegDemuxer: demuxer seek failed"
+    ],
+    "credits": {
+      "currentTime": 194.641224,
+      "duration": 194.821224,
+      "readyState": 1,
+      "paused": false,
+      "ended": false,
+      "seeking": true,
+      "loop": false,
+      "error": "PipelineStatus::PIPELINE_ERROR_READ: FFmpegDemuxer: demuxer seek failed"
+    }
+  },
+  "finishedAt": "2026-11-10T17:23:03.657Z"
+}

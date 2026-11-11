@@ -1,0 +1,205 @@
+{
+  "scope": "Shared progress callback subscription ownership through public PhiHostedMedia.bytes(), not an observed existing-player UI stall",
+  "recordedAtUTC": "2026-11-11T11:55:12.002870+00:00",
+  "runtime": "4.0.1.2-pages-41",
+  "officialFidelityStatus": "blocked",
+  "officialFidelityPercent": null,
+  "baselineCommit": "33669f4b405ca419eaa045780eb76ea4e1cfdfd1",
+  "fixCommit": "37b39e0071067bd74ffc8a457da1fbb6ff0860cf",
+  "mainSyncCommit": "5c8b80412ac9bcb45798cdb24cf7008b74025749",
+  "mainSync": {
+    "publishedCommit": "36622f9b25802f0744baef87440e0c33f928ad06",
+    "reason": "The independent pages-40 publication made the old PR conflict. Its runtime is byte-identical to the reviewed baseline. Sync retains pages-41 runtime/test hashes and adopts already-published verification workflow/scripts; no main write or deployment.",
+    "eightReviewedFileHashesUnchanged": true
+  },
+  "sourceSHA256": {
+    ".github/workflows/engineering-regression.yml": "af2555e4261aa07ab5f9e997a78ecfdf0d8b5043c6fc26e4874fe8877ece3b3c",
+    "index.html": "fc8fdc4ed057944e728afc4e92e3a8f5aac9a3e76b16f046a2376abf91287a25",
+    "js/app.js": "558ae841826fb03ca5ecae9392e4573a42285f24760d68bb727017ddb945ea01",
+    "js/hosted-media.js": "7361ec27654bd2759012d58f4e0396e7c5fd13b2d3819dc4587343cefe98676d",
+    "scripts/audit-preparation-network.cjs": "1e7cc0ceff0738f510f7dded57be1497c3fe4b9c31572544cd23bcdea5073bc8",
+    "sw.js": "7ad44c46ef4eb256e4f426084814c8b14cfd23ea3be57d7ebc3d024ef6f779c0",
+    "tests/hosted-media.test.cjs": "8fd935585256a8161c45cac943e4d1eac66038595ea10cf3af2c15a9bc1e11fe",
+    "tests/hosted-progress-browser.cjs": "9719575bdcc66474bb6dc4369a2eca48920c87f310be1370a8cc8c5adef14e3c",
+    "js/resource-transfer.js": "2812fb9bc895f855461893de20ba58afa38c1a382b76c55dd72a50fc32ecafd4",
+    "js/remote-assets.js": "7943b98f7a6a9310024880cd51178abdc22f459769e02d6eda64b9a6018410b2"
+  },
+  "reproduction": {
+    "before": {
+      "node": {
+        "tests": 34,
+        "pass": 32,
+        "fail": 2,
+        "skipped": 0
+      },
+      "browserFailures": [
+        "shared-cancel",
+        "shared-rejoin"
+      ],
+      "browserPassingControls": [
+        "all-cancel",
+        "failure-retry",
+        "distinct-callbacks"
+      ],
+      "evidence": [
+        "before.json",
+        "node-before.log",
+        "protocol-before-cached.json"
+      ]
+    },
+    "actualImpact": "Two callers share the same onProgress function. The original Set invokes it once per event, but either caller finally deletes it. The surviving download still resolves with the correct bytes using one producer/request while its progress stops. Rejoining then cancelling another subscriber loses the final event in the same way.",
+    "browserBefore": {
+      "nativeSourceBytes": 53750,
+      "actualSharedProgress": [
+        17916
+      ],
+      "expectedSharedProgress": [
+        17916,
+        35833,
+        53750
+      ],
+      "requests": 1,
+      "finalBytesSHA256": "bbc59e241be8229405a6f4768bf9db3aa009d7c53929ed58489aa67dd64202df"
+    },
+    "cachedRemoteBefore": {
+      "actualProgress": [
+        0,
+        11706
+      ],
+      "expectedProgress": [
+        0,
+        11706,
+        23413
+      ],
+      "originalTransportProgress": [
+        0,
+        11706,
+        23413
+      ],
+      "note": "Previously measured source bytes, controlled cached fetch; not native external CORS"
+    },
+    "currentUIReachability": "Source review finds fresh callback arrows per phiHostedBytes invocation and Stream.readMusic attempt, or no callback. No same-function existing UI path is demonstrated. See callsite-audit.json."
+  },
+  "fix": "Reference-count subscriptions by function in a private Map. Dispatch each function once per producer progress event, increment per caller and remove only when its final caller releases. Keep shared producer cancellation, completed cache, owner guards, bytes, byte budget and retry semantics.",
+  "preservedControls": [
+    "One caller cancelled repeatedly: surviving shared callback continues exactly once per event, one request, producer signal remains live.",
+    "Rejoining same function and cancelling another caller: final subscriber continues once, no negative/double release.",
+    "Both cancelled repeatedly: producer aborts, old late progress is ignored and a new request succeeds.",
+    "Injected permanent 404: shared failure uses one request, retry succeeds with one callback per event.",
+    "Distinct function cancellation only releases its own subscription."
+  ],
+  "browserMethod": "Original 53750-byte repository artwork is fetched natively and SHA-256 checked, then re-streamed in controlled chunks to the original PhiTransfer. A pass-through producer progress observer records actual dispatch; no engine, result bytes or private cache state is fabricated. The 404 and late chunk schedules are explicit fault/timing injection, not live source incidence.",
+  "testsChangedDuringFinalReview": false,
+  "testOrchestrationNotes": "See environment-errors.json. The retained failed runs did not reach the product. Original two regression failures and all assertions/time limits are retained.",
+  "checks": [
+    {
+      "command": "node --test tests/*.test.cjs",
+      "status": "passed",
+      "exitCode": 0,
+      "tests": 514,
+      "pass": 514,
+      "fail": 0,
+      "skipped": 0,
+      "evidence": "node-final.log"
+    },
+    {
+      "command": "node tests/hosted-progress-browser.cjs http://127.0.0.1:4182 work/hosted-progress/final/progress",
+      "status": "passed",
+      "exitCode": 0,
+      "cases": 5,
+      "evidence": "after.json"
+    },
+    {
+      "command": "node tests/hosted-cache-browser.cjs http://127.0.0.1:4182 work/hosted-progress/final/cache",
+      "status": "passed",
+      "exitCode": 0,
+      "cases": 4,
+      "evidence": "cache-regression.json"
+    },
+    {
+      "command": "node tests/full-flow-browser.cjs http://127.0.0.1:4182 work/hosted-progress/final/full-flow",
+      "status": "passed",
+      "exitCode": 0,
+      "steps": 15,
+      "evidence": "full-flow.json"
+    },
+    {
+      "command": "node tests/loading-cancel-browser.cjs http://127.0.0.1:4182 work/hosted-progress/final/loading-cancel",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/audit-same-chart-preparation.cjs http://127.0.0.1:4182 work/hosted-progress/final/same-chart",
+      "status": "passed",
+      "exitCode": 0,
+      "cases": 3
+    },
+    {
+      "command": "node tests/stream-recovery-browser.cjs http://127.0.0.1:4182 work/hosted-progress/final/stream-recovery",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "PHI_TEST_SW_PRECLAIM=1 node tests/service-worker-browser.cjs work/hosted-progress/final/service-worker",
+      "status": "passed",
+      "exitCode": 0,
+      "cases": 9
+    },
+    {
+      "command": "node tests/folder-import-browser.cjs http://127.0.0.1:4182 work/hosted-progress/final/folder-import",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/library-migration-browser.cjs",
+      "status": "passed",
+      "exitCode": 0,
+      "cases": 11
+    },
+    {
+      "command": "PHI_PREPARATION_NETWORK_CACHED=1 node scripts/audit-preparation-network.cjs http://127.0.0.1:4182 work/hosted-progress/final/protocol-cached",
+      "status": "passed-controlled-cache-NOT-native-external-CORS",
+      "exitCode": 0,
+      "cases": 4,
+      "evidence": "protocol-after-cached.json"
+    },
+    {
+      "command": "python3 scripts/build-runtime-release.py --output /tmp/phigros-pages41-final-review-runtime --report work/hosted-progress/final/runtime-package.json",
+      "status": "passed",
+      "exitCode": 0,
+      "files": 1927,
+      "bytes": 999582968,
+      "resourceFilesRemoved": 0,
+      "resourceFilesReencoded": 0
+    }
+  ],
+  "resources": {
+    "unchangedFromBaselineGitTrees": true,
+    "scope": "assets/, css/, workers/ exact Git comparison; runtime package validates all included references. This does not prove official resource identity."
+  },
+  "networkScope": {
+    "currentFullMainMatrix": "NOT RUN; 1091 addresses not requested again",
+    "currentFullVisionMatrix": "NOT RUN",
+    "oldWholeBootstrapEvidence": "NOT reused as current complete measurement after actual loader/cache source edits",
+    "expectedCIProbe": "One fixed 23413-byte InfinityHeaven EZ chart, four cases / six measured native source bodies (140478 bytes), normal TLS; no music or denied mirror requests",
+    "probeCaveat": "The shared-progress case verifies the native complete CORS body first, then controls two-chunk delivery of the same bytes. It is not a native network packet-timing measurement.",
+    "mirrorBlocks": "Two historical >20MB jsDelivr HTTP403 blocks retained, not retried; no alternate CDN/proxy, splitting, transcoding, replacement or new hosting.",
+    "gate": "Existing scope/mirror gate remains nonzero; engineering passes do not make it green."
+  },
+  "delivery": {
+    "target": "Existing draft PR #1 and dot/phigros-loading-refactor only",
+    "publicSite": "https://tycofficial.github.io/phigros/",
+    "publicRuntimeUnchanged": "4.0.1.2-pages-40",
+    "publicMainCommitUnchanged": "36622f9b25802f0744baef87440e0c33f928ad06",
+    "pages41Deployed": false
+  },
+  "ci": {
+    "status": "pending exact final pushed commit; authoritative run/raw log/artifact will be recorded in PR latest-ci section; this is the pre-push local evidence snapshot"
+  },
+  "remaining": [
+    "Official unique build/platform/language/display/resolution/quality/game settings, complete same-build reference and resource correspondence are missing.",
+    "Physical devices/Safari, full chapters/results/credits/all branches, original user saves and live failure incidence are not comprehensively verified.",
+    "CI #9 exact uninstrumented Service Worker timeout remains unconfirmed; existing reproduced observer race fix and original 20-second limit retained."
+  ],
+  "stopPoint": "Complete this bounded subscription fix, exact-commit CI and PR evidence. No further independently reproduced defect is claimed; any pages-41 publication is a separate decision."
+}

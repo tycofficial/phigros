@@ -1,0 +1,209 @@
+{
+  "scope": "Actual local UI/engine with recorded runtime; not a live production or user-device reproduction",
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)",
+    "Failed to load resource: the server responded with a status of 404 (File not found)",
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4182/assets/meta/native-block-resources.json",
+      "status": 200
+    }
+  ],
+  "startedAt": "2026-11-11T12:38:21.083Z",
+  "runtime": "4.0.1.2-pages-41",
+  "selected": "Leave All Behind",
+  "engine": {
+    "name": "Leave All Behind",
+    "id": "builtin:leave-all-behind-at",
+    "tier": "AT",
+    "kind": "pgr",
+    "chartKeys": [
+      "kind",
+      "blockAreas",
+      "formatVersion",
+      "offset",
+      "lines",
+      "noteCount",
+      "eventCount",
+      "rawKind",
+      "modelVersion",
+      "compatibilityReport",
+      "packageMeta"
+    ],
+    "areas": 27,
+    "firstAreas": [
+      {
+        "appearTime": 46.4,
+        "enableTime": 46.4,
+        "disableTime": 70.4,
+        "disappearTime": 70.4
+      },
+      {
+        "appearTime": 46.4,
+        "enableTime": 46.4,
+        "disableTime": 47.4,
+        "disappearTime": 47.4
+      },
+      {
+        "appearTime": 46.4,
+        "enableTime": 46.4,
+        "disableTime": 70.4,
+        "disappearTime": 70.4
+      },
+      {
+        "appearTime": 59.2,
+        "enableTime": 59.2,
+        "disableTime": 63.2,
+        "disappearTime": 63.2
+      }
+    ],
+    "earliest": 46.4,
+    "earliestActive": 46.4,
+    "visibleAtCurrent": 0,
+    "renderer": true,
+    "rendererGL": true,
+    "contextLost": false,
+    "lastRenderTime": 0.23654195011337897,
+    "noiseDataset": {
+      "lowResolution": "0",
+      "hyper120Quality": "1.00",
+      "renderDpr": "1.000",
+      "backingSize": "1280x720",
+      "noiseRenderer": "webgl-native",
+      "noiseSource": "Adai-add/PhiraiAd@a60b49ad",
+      "backgroundRenderer": "transparent-canvas-over-single-static-background",
+      "backgroundState": "baked"
+    },
+    "overlay": {
+      "width": 1280,
+      "height": 720,
+      "display": "block",
+      "opacity": "1",
+      "zIndex": "19"
+    },
+    "time": 0.25395691609977433,
+    "music": 0.25395691609977433,
+    "running": true,
+    "paused": false
+  },
+  "beforePixels": {
+    "time": 0.3352267573696146,
+    "music": 0.3352267573696146,
+    "zones": 0,
+    "activeZones": 0,
+    "nontransparentPixels": 0,
+    "coloredPixels": 0,
+    "paused": false,
+    "lastRenderTime": 0.23654195011337897,
+    "geometry": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "samples": [
+    {
+      "target": 46.8,
+      "time": 47.14375283446712,
+      "music": 47.14375283446712,
+      "zones": 3,
+      "activeZones": 3,
+      "nontransparentPixels": 0,
+      "coloredPixels": 0,
+      "paused": false,
+      "lastRenderTime": 46.86511337868481,
+      "geometry": [
+        54,
+        108,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "target": 50,
+      "time": 50.38583900226757,
+      "music": 50.38583900226757,
+      "zones": 2,
+      "activeZones": 2,
+      "nontransparentPixels": 331362,
+      "coloredPixels": 331362,
+      "paused": false,
+      "lastRenderTime": 50.08397959183674,
+      "geometry": [
+        0,
+        108,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "target": 54,
+      "time": 54.426111111111105,
+      "music": 54.426111111111105,
+      "zones": 2,
+      "activeZones": 2,
+      "nontransparentPixels": 609634,
+      "coloredPixels": 609634,
+      "paused": false,
+      "lastRenderTime": 54.07490929705215,
+      "geometry": [
+        0,
+        108,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "target": 60,
+      "time": 60.38493197278911,
+      "music": 60.38493197278911,
+      "zones": 4,
+      "activeZones": 4,
+      "nontransparentPixels": 797345,
+      "coloredPixels": 797345,
+      "paused": false,
+      "lastRenderTime": 60.054047619047616,
+      "geometry": [
+        54,
+        162,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "activePixels": {
+    "time": 60.38493197278911,
+    "music": 60.38493197278911,
+    "zones": 4,
+    "activeZones": 4,
+    "nontransparentPixels": 797345,
+    "coloredPixels": 797345,
+    "paused": false,
+    "lastRenderTime": 60.054047619047616,
+    "geometry": [
+      54,
+      162,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "dialog": "关闭",
+  "status": "pixels-observed",
+  "finishedAt": "2026-11-11T12:39:42.850Z"
+}

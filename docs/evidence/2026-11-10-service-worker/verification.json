@@ -1,0 +1,102 @@
+{
+  "scope": "Engineering lifecycle and offline-program startup only; official 1:1 acceptance remains blocked",
+  "date": "2026-11-10",
+  "parentCommit": "615db45541bc5d9ec9f0d4d75d7a880d65746764",
+  "runtime": "4.0.1.2-pages-33",
+  "officialAcceptance": "blocked",
+  "officialFidelityPercent": null,
+  "sourceHashes": {
+    "index.html": "713e577c97fb623ed1788ac8ca311539cbdf1de9361a945b711b0636e697a7c7",
+    "js/app.js": "d001cb34863d4bb6f9acc13575607e4897ee76ea45529fa756bbad7b8c8d2a05",
+    "sw.js": "837815b7ce12d8b3e0121e1618f27fdfe6d4fd8235c3993f004f06a584e99640",
+    "tests/service-worker.test.cjs": "2dc25386c1f9bca9776c8f6c92a8ef42ec7782774f226f3ceac903353b971d36",
+    "tests/service-worker-browser.cjs": "c135247531647e1d8b79733a112667b18176fe132ed4bbf178cd1862471b7103",
+    "tests/fixtures/service-worker-pages32.js": "9b9d0d68e8be6d969888c5efa2dbf520e9147721d3e137a5aae7bcf31cab7ff2",
+    ".github/workflows/engineering-regression.yml": "6362f3c2145ae11634274c6cc772e7ffb6c3fb47a87c1c461226d8ea4c201c53"
+  },
+  "problem": "The previous worker activates before preparing its new code cache. A cache-token-only update of that shipped worker fails real offline reload after it takes control.",
+  "changes": [
+    "Prepare the matching runtime entry and all 29 JS/CSS URLs declared in that HTML before skipWaiting; reject missing/mismatched entry or dependency failures without replacing the working worker.",
+    "Read every dependency response body while other requests are pending; normalize decoded body encoding/length headers before caching.",
+    "Support root/index.html query aliases from the prepared entry, and prevent a future runtime HTML from overwriting the current offline entry.",
+    "Keep the existing media cache and do not alter IndexedDB/localStorage user data; add the actual-worker browser flow to PR CI."
+  ],
+  "commands": [
+    {
+      "command": "PHI_TEST_SW_SOURCE=tests/fixtures/service-worker-pages32.js node tests/service-worker-browser.cjs work/service-worker-before-final",
+      "result": "failed-as-expected",
+      "evidence": "browser-before.json"
+    },
+    {
+      "command": "PHI_TEST_SW_SOURCE=tests/fixtures/service-worker-pages32.js node --test tests/service-worker.test.cjs",
+      "result": "failed-as-expected",
+      "pass": 10,
+      "fail": 8,
+      "evidence": "unit-before.log"
+    },
+    {
+      "command": "node tests/service-worker-browser.cjs work/service-worker-final",
+      "result": "passed",
+      "steps": 9,
+      "pageErrors": 0,
+      "evidence": "browser-after.json"
+    },
+    {
+      "command": "node --test tests/*.test.cjs",
+      "result": "passed",
+      "tests": 446,
+      "failures": 0,
+      "skipped": 0,
+      "evidence": "node-tests.log"
+    },
+    {
+      "command": "python3 scripts/build-runtime-release.py --output /tmp/phigros-runtime-pages33 --report work/runtime-pages33.json",
+      "result": "passed",
+      "bytes": 999578137,
+      "evidence": "runtime-package-summary.json"
+    },
+    {
+      "command": "git diff --check; node --check sw.js; node --check tests/service-worker-browser.cjs; git diff --quiet 615db45 -- assets",
+      "result": "passed"
+    }
+  ],
+  "baselineTraceability": "The fixture worker equals git show 615db45:sw.js byte-for-byte. The previous app/index reconstructed by replacing pages-33 with pages-32 match the prior verification source hashes. For the before run, only the old worker cache token is changed to force a new-cache activation. The broken/recovered next-release runtime is simulated and is not a published game version.",
+  "browserConditions": {
+    "browser": "156.0.8078.79",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "serviceWorkers": "allow",
+    "cacheControl": "no-store (HTTP cache cannot rescue navigation)",
+    "runtimeTransport": "Real gzip HTML, JS and CSS responses; worker native response bodies are decoded before cache storage.",
+    "offline": "BrowserContext.setOffline(true), not intercepted success responses"
+  },
+  "dataPreserved": [
+    "Synthetic chart original text",
+    "Audio Blob original bytes",
+    "Setting record",
+    "IndexedDB score record",
+    "localStorage score record",
+    "Shared media cached byte range"
+  ],
+  "artifacts": [
+    {
+      "path": "work/service-worker-final/offline-after-first-install.png",
+      "bytes": 757152,
+      "sha256": "949fbfbf9343c94acdeefcd8c8526a3aced2232ee05d42f56fb83b98895a534f"
+    },
+    {
+      "path": "work/service-worker-final/offline-after-update.png",
+      "bytes": 460497,
+      "sha256": "9b12da4b550e19af6829f7058424c7cff4f16133ef8f01c4b677775c46cd7f3e"
+    }
+  ],
+  "limitations": [
+    "Program entry, scripts and styles are prepared; songs, artwork, fonts outside that HTML and optional modules are not all downloaded by this change. The offline screenshots can lack artwork or use an existing font fallback; visual completeness is not passed.",
+    "One synthetic save fixture and Chromium do not prove all user-save or Safari/device states.",
+    "Browser storage eviction and device quota policies can remove caches; this is not a permanent offline-storage guarantee.",
+    "Official baseline, visuals, animation, Tips, all gameplay/chapter/replay rules and complete resources remain unaccepted as recorded in docs/fidelity-acceptance.json."
+  ],
+  "remoteCI": "The PR workflow runs this new actual-worker regression. The final pushed SHA and its raw logs must be read before accepting that CI run."
+}

@@ -1,0 +1,108 @@
+✔ save-data, slow mobile hints and unknown Safari routes select small OGG (46.473449ms)
+✔ a strong route selects the original OGG and preserves actual lossless assets when provided (3.016979ms)
+✔ unsupported OGG codecs use small AAC on weak links and compatible AAC on strong links (3.001726ms)
+✔ measured same-origin bandwidth selects quality on browsers without network hints (11.038452ms)
+✔ an overoptimistic strong-network hint downgrades stalled music without ending the load (12.307788ms)
+✔ music cannot begin from an early partial buffer while the transfer is still pending (3.697949ms)
+✔ cancelling one subscriber preserves the resource needed by a second subscriber (2.191162ms)
+✖ a cancelled settled transfer cannot evict a valid cache after its URL is replaced (288.46095ms)
+✖ a cancelled settled transfer cannot replace the surviving route bandwidth sample (6.264196ms)
+✖ a cancelled settled transfer with no replacement cannot displace retained bytes (198.370833ms)
+✖ completed active downloads shrink to the original byte budget when consumers release (60.389489ms)
+✔ an aborted old transfer failure cannot remove its completed replacement (13.077372ms)
+✔ prepares a complete local music Blob before permitting playback (1.734391ms)
+✔ waits for audio readiness and then resolves as more audio arrives (1.495971ms)
+✔ returning to the library aborts a pending wait without hanging (1.278512ms)
+✔ under-speed links use bounded startup headroom instead of demanding most of a song (0.790084ms)
+✔ a fully buffered short tail can resume immediately (1.312824ms)
+[Artwork] 资源加载失败（404）：https://example.test/phigros/clear.jpg
+✔ failed fetches can be retried and never poison the cache (501.877283ms)
+✔ progressive artwork preserves the small image if the clear image fails (2.608682ms)
+✔ blocks cross-origin resource paths (3.849728ms)
+✔ a browser denying workers reports a compatibility fallback without mutating its DOMException (5.511609ms)
+✔ chart loading transfers a copy and terminates its worker after receiving the result (1.764676ms)
+✔ the chart worker owns its download, reports progress, and terminates on cancellation (1.01886ms)
+✔ a caller can cancel a recovery wait without destroying the stream (5.6911ms)
+✔ a fast first chunk followed by a slow link lowers the measured download rate (1.215606ms)
+✔ complete local music does not demand browser preload of the entire duration (1.684866ms)
+✔ an artwork deadline aborts its fetch instead of blocking song startup (3.22215ms)
+✔ opening cues follow the music clock, remain clear after looping, and stop on exit (6.702489ms)
+✔ progressive artwork assigns each JPEG and lossless WebP its true MIME type (12.432918ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 25
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1290.787217
+
+✖ failing tests:
+
+test at tests/hosted-media.test.cjs:104:1
+✖ a cancelled settled transfer cannot evict a valid cache after its URL is replaced (288.46095ms)
+  AssertionError [ERR_ASSERTION]: 4+5 MiB fits: obsolete bytes must not evict the marker
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/hosted-media.test.cjs:122:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/hosted-media.test.cjs:126:1
+✖ a cancelled settled transfer cannot replace the surviving route bandwidth sample (6.264196ms)
+  AssertionError [ERR_ASSERTION]: cancelled fast bytes must not select the large high-quality variant
+  
+  'high' !== 'low'
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/hosted-media.test.cjs:145:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'high',
+    expected: 'low',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/hosted-media.test.cjs:149:1
+✖ a cancelled settled transfer with no replacement cannot displace retained bytes (198.370833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/hosted-media.test.cjs:162:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/hosted-media.test.cjs:167:1
+✖ completed active downloads shrink to the original byte budget when consumers release (60.389489ms)
+  AssertionError [ERR_ASSERTION]: two idle 8 MiB objects cannot both remain in a 12 MiB cache
+  
+  2 !== 3
+  
+      at TestContext.<anonymous> (/workspace/phigros/tests/hosted-media.test.cjs:174:39)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,4124 @@
+{
+  "loading-cancel": {
+    "scope": "Engineering cancellation regression, not official reference comparison",
+    "appSHA256": "558ae841826fb03ca5ecae9392e4573a42285f24760d68bb727017ddb945ea01",
+    "requests": [
+      1794397885547
+    ],
+    "pageErrors": [],
+    "atExit": 1,
+    "afterExit": 1,
+    "engineRunning": false,
+    "status": "passed"
+  },
+  "same-chart": {
+    "scope": "Same Luminescence EZ entry cancel/re-enter, original cache/transfer/engine, controlled original completion order; not official fidelity",
+    "startedAt": "2026-11-11T11:51:29.664Z",
+    "sourceSHA256": "558ae841826fb03ca5ecae9392e4573a42285f24760d68bb727017ddb945ea01",
+    "results": [
+      {
+        "scenario": "immediate-abort",
+        "steps": [
+          {
+            "name": "old-original-preparation-pending",
+            "at": "2026-11-11T11:51:31.746Z",
+            "state": {
+              "session": {
+                "id": 2,
+                "route": {
+                  "key": "luminescence",
+                  "chapter": 8,
+                  "family": "chapter8",
+                  "tier": "EZ",
+                  "controller": "luminescence"
+                },
+                "scene": "Level",
+                "loading": true,
+                "snapshot": {
+                  "songKey": "luminescence",
+                  "difficulty": "EZ",
+                  "scene": "Level",
+                  "phase": null,
+                  "stage": "playing",
+                  "time": 0,
+                  "rawScore": 0,
+                  "sceneTime": 0,
+                  "hp": null,
+                  "totalNoteAffect": 0,
+                  "dead": false,
+                  "locked": false,
+                  "awaitingInput": false,
+                  "eventActive": false,
+                  "stage1Failed": false,
+                  "stage2Failed": false,
+                  "scoreCheckComplete": false,
+                  "timeTag": 0,
+                  "targetScore": 684796.5,
+                  "complete": false,
+                  "outro": 1.7999999523162842,
+                  "videoTime": 0,
+                  "clip": null,
+                  "flags": {},
+                  "messageIndex": 0,
+                  "subtitle": "",
+                  "creditsProgress": 0,
+                  "creditsTime": 0,
+                  "skipOpacity": 0
+                }
+              },
+              "engine": null,
+              "playDisabled": true,
+              "loading": true,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": false,
+                  "outcome": "pending",
+                  "returned": false
+                }
+              ],
+              "settlements": [],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1711
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1712.199999999255
+                }
+              ]
+            }
+          },
+          {
+            "name": "cancelled-before-original-completion",
+            "at": "2026-11-11T11:51:31.799Z",
+            "state": {
+              "session": null,
+              "engine": null,
+              "playDisabled": false,
+              "loading": false,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "AbortError",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1834.0999999996275
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1711
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1712.199999999255
+                }
+              ]
+            }
+          },
+          {
+            "name": "same-entry-started-before-old-result",
+            "at": "2026-11-11T11:51:32.065Z",
+            "state": {
+              "session": {
+                "id": 5,
+                "route": {
+                  "key": "luminescence",
+                  "chapter": 8,
+                  "family": "chapter8",
+                  "tier": "EZ",
+                  "controller": "luminescence"
+                },
+                "scene": "Level",
+                "loading": true,
+                "snapshot": {
+                  "songKey": "luminescence",
+                  "difficulty": "EZ",
+                  "scene": "Level",
+                  "phase": null,
+                  "stage": "playing",
+                  "time": 0,
+                  "rawScore": 0,
+                  "sceneTime": 0,
+                  "hp": null,
+                  "totalNoteAffect": 0,
+                  "dead": false,
+                  "locked": false,
+                  "awaitingInput": false,
+                  "eventActive": false,
+                  "stage1Failed": false,
+                  "stage2Failed": false,
+                  "scoreCheckComplete": false,
+                  "timeTag": 0,
+                  "targetScore": 684796.5,
+                  "complete": false,
+                  "outro": 1.7999999523162842,
+                  "videoTime": 0,
+                  "clip": null,
+                  "flags": {},
+                  "messageIndex": 0,
+                  "subtitle": "",
+                  "creditsProgress": 0,
+                  "creditsTime": 0,
+                  "skipOpacity": 0
+                }
+              },
+              "engine": null,
+              "playDisabled": true,
+              "loading": true,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "AbortError",
+                  "returned": true
+                },
+                {
+                  "call": 2,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1834.0999999996275
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1711
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1712.199999999255
+                },
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2022.699999999255
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2022.9000000003725
+                },
+                {
+                  "method": "delete",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2097.9000000003725
+                },
+                {
+                  "method": "set",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 1,
+                  "at": 2098
+                },
+                {
+                  "method": "delete",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2104.199999999255
+                },
+                {
+                  "method": "set",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 2,
+                  "at": 2104.199999999255
+                }
+              ]
+            }
+          },
+          {
+            "name": "new-session-after-old-settlement",
+            "at": "2026-11-11T11:51:35.621Z",
+            "state": {
+              "session": {
+                "id": 5,
+                "route": {
+                  "key": "luminescence",
+                  "chapter": 8,
+                  "family": "chapter8",
+                  "tier": "EZ",
+                  "controller": "luminescence"
+                },
+                "scene": "Level",
+                "loading": false,
+                "snapshot": {
+                  "songKey": "luminescence",
+                  "difficulty": "EZ",
+                  "scene": "Level",
+                  "phase": null,
+                  "stage": "playing",
+                  "time": 0.2539569139480591,
+                  "rawScore": 0,
+                  "sceneTime": 0.2833000000000002,
+                  "hp": null,
+                  "totalNoteAffect": 0,
+                  "dead": false,
+                  "locked": false,
+                  "awaitingInput": false,
+                  "eventActive": false,
+                  "stage1Failed": false,
+                  "stage2Failed": false,
+                  "scoreCheckComplete": false,
+                  "timeTag": 0,
+                  "targetScore": 684796.5,
+                  "complete": false,
+                  "outro": 1.7999999523162842,
+                  "videoTime": 0,
+                  "clip": null,
+                  "flags": {},
+                  "messageIndex": 0,
+                  "subtitle": "",
+                  "creditsProgress": 0,
+                  "creditsTime": 0,
+                  "skipOpacity": 0
+                }
+              },
+              "engine": {
+                "name": "Luminescence",
+                "id": 5,
+                "tier": "EZ",
+                "running": true,
+                "time": 0.25395691609977344
+              },
+              "playDisabled": false,
+              "loading": false,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "AbortError",
+                  "returned": true
+                },
+                {
+                  "call": 2,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1834.0999999996275
+                },
+                {
+                  "id": 5,
+                  "at": 5360.9000000003725
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1711
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1712.199999999255
+                },
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2022.699999999255
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2022.9000000003725
+                },
+                {
+                  "method": "delete",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2097.9000000003725
+                },
+                {
+                  "method": "set",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 1,
+                  "at": 2098
+                },
+                {
+                  "method": "delete",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2104.199999999255
+                },
+                {
+                  "method": "set",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 2,
+                  "at": 2104.199999999255
+                }
+              ]
+            }
+          },
+          {
+            "name": "new-music-clock-continues",
+            "at": "2026-11-11T11:51:35.822Z",
+            "state": {
+              "session": {
+                "id": 5,
+                "route": {
+                  "key": "luminescence",
+                  "chapter": 8,
+                  "family": "chapter8",
+                  "tier": "EZ",
+                  "controller": "luminescence"
+                },
+                "scene": "Level",
+                "loading": false,
+                "snapshot": {
+                  "songKey": "luminescence",
+                  "difficulty": "EZ",
+                  "scene": "Level",
+                  "phase": null,
+                  "stage": "playing",
+                  "time": 0.4542290270328522,
+                  "rawScore": 0,
+                  "sceneTime": 0.4833000000000004,
+                  "hp": null,
+                  "totalNoteAffect": 0,
+                  "dead": false,
+                  "locked": false,
+                  "awaitingInput": false,
+                  "eventActive": false,
+                  "stage1Failed": false,
+                  "stage2Failed": false,
+                  "scoreCheckComplete": false,
+                  "timeTag": 0,
+                  "targetScore": 684796.5,
+                  "complete": false,
+                  "outro": 1.7999999523162842,
+                  "videoTime": 0,
+                  "clip": null,
+                  "flags": {},
+                  "messageIndex": 0,
+                  "subtitle": "",
+                  "creditsProgress": 0,
+                  "creditsTime": 0,
+                  "skipOpacity": 0
+                }
+              },
+              "engine": {
+                "name": "Luminescence",
+                "id": 5,
+                "tier": "EZ",
+                "running": true,
+                "time": 0.4542290249433103
+              },
+              "playDisabled": false,
+              "loading": false,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "AbortError",
+                  "returned": true
+                },
+                {
+                  "call": 2,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1834.0999999996275
+                },
+                {
+                  "id": 5,
+                  "at": 5360.9000000003725
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1711
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1712.199999999255
+                },
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2022.699999999255
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2022.9000000003725
+                },
+                {
+                  "method": "delete",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2097.9000000003725
+                },
+                {
+                  "method": "set",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 1,
+                  "at": 2098
+                },
+                {
+                  "method": "delete",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2104.199999999255
+                },
+                {
+                  "method": "set",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 2,
+                  "at": 2104.199999999255
+                }
+              ]
+            }
+          },
+          {
+            "name": "normal-quit-clears-ownership",
+            "at": "2026-11-11T11:51:35.995Z",
+            "state": {
+              "session": null,
+              "engine": null,
+              "playDisabled": false,
+              "loading": false,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "AbortError",
+                  "returned": true
+                },
+                {
+                  "call": 2,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1834.0999999996275
+                },
+                {
+                  "id": 5,
+                  "at": 5360.9000000003725
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1711
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1712.199999999255
+                },
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2022.699999999255
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2022.9000000003725
+                },
+                {
+                  "method": "delete",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2097.9000000003725
+                },
+                {
+                  "method": "set",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 1,
+                  "at": 2098
+                },
+                {
+                  "method": "delete",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2104.199999999255
+                },
+                {
+                  "method": "set",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 2,
+                  "at": 2104.199999999255
+                }
+              ]
+            }
+          }
+        ],
+        "requests": [
+          {
+            "at": "2026-11-11T11:51:31.680Z",
+            "url": "http://127.0.0.1:4182/assets/catalog-charts/41c50afe2d44ef97-ez-bc051f9f49.json.gz"
+          },
+          {
+            "at": "2026-11-11T11:51:31.986Z",
+            "url": "http://127.0.0.1:4182/assets/catalog-charts/41c50afe2d44ef97-ez-bc051f9f49.json.gz"
+          }
+        ],
+        "pageErrors": [],
+        "consoleErrors": [],
+        "externalRequests": [],
+        "status": "passed",
+        "finishedAt": "2026-11-11T11:51:35.996Z"
+      },
+      {
+        "scenario": "late-resolve",
+        "steps": [
+          {
+            "name": "old-original-preparation-pending",
+            "at": "2026-11-11T11:51:37.706Z",
+            "state": {
+              "session": {
+                "id": 2,
+                "route": {
+                  "key": "luminescence",
+                  "chapter": 8,
+                  "family": "chapter8",
+                  "tier": "EZ",
+                  "controller": "luminescence"
+                },
+                "scene": "Level",
+                "loading": true,
+                "snapshot": {
+                  "songKey": "luminescence",
+                  "difficulty": "EZ",
+                  "scene": "Level",
+                  "phase": null,
+                  "stage": "playing",
+                  "time": 0,
+                  "rawScore": 0,
+                  "sceneTime": 0,
+                  "hp": null,
+                  "totalNoteAffect": 0,
+                  "dead": false,
+                  "locked": false,
+                  "awaitingInput": false,
+                  "eventActive": false,
+                  "stage1Failed": false,
+                  "stage2Failed": false,
+                  "scoreCheckComplete": false,
+                  "timeTag": 0,
+                  "targetScore": 684796.5,
+                  "complete": false,
+                  "outro": 1.7999999523162842,
+                  "videoTime": 0,
+                  "clip": null,
+                  "flags": {},
+                  "messageIndex": 0,
+                  "subtitle": "",
+                  "creditsProgress": 0,
+                  "creditsTime": 0,
+                  "skipOpacity": 0
+                }
+              },
+              "engine": null,
+              "playDisabled": true,
+              "loading": true,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": false
+                }
+              ],
+              "settlements": [],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1466.7000000011176
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1468.300000000745
+                }
+              ]
+            }
+          },
+          {
+            "name": "cancelled-before-original-completion",
+            "at": "2026-11-11T11:51:37.746Z",
+            "state": {
+              "session": null,
+              "engine": null,
+              "playDisabled": false,
+              "loading": false,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "resolved",
+                  "returned": false
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1607.2000000011176
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1466.7000000011176
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1468.300000000745
+                }
+              ]
+            }
+          },
+          {
+            "name": "same-entry-started-before-old-result",
+            "at": "2026-11-11T11:51:38.081Z",
+            "state": {
+              "session": {
+                "id": 5,
+                "route": {
+                  "key": "luminescence",
+                  "chapter": 8,
+                  "family": "chapter8",
+                  "tier": "EZ",
+                  "controller": "luminescence"
+                },
+                "scene": "Level",
+                "loading": true,
+                "snapshot": {
+                  "songKey": "luminescence",
+                  "difficulty": "EZ",
+                  "scene": "Level",
+                  "phase": null,
+                  "stage": "playing",
+                  "time": 0,
+                  "rawScore": 0,
+                  "sceneTime": 0,
+                  "hp": null,
+                  "totalNoteAffect": 0,
+                  "dead": false,
+                  "locked": false,
+                  "awaitingInput": false,
+                  "eventActive": false,
+                  "stage1Failed": false,
+                  "stage2Failed": false,
+                  "scoreCheckComplete": false,
+                  "timeTag": 0,
+                  "targetScore": 684796.5,
+                  "complete": false,
+                  "outro": 1.7999999523162842,
+                  "videoTime": 0,
+                  "clip": null,
+                  "flags": {},
+                  "messageIndex": 0,
+                  "subtitle": "",
+                  "creditsProgress": 0,
+                  "creditsTime": 0,
+                  "skipOpacity": 0
+                }
+              },
+              "engine": null,
+              "playDisabled": true,
+              "loading": true,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "resolved",
+                  "returned": false
+                },
+                {
+                  "call": 2,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1607.2000000011176
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1466.7000000011176
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1468.300000000745
+                },
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1784.9000000003725
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1785.2000000011176
+                },
+                {
+                  "method": "delete",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1925.5
+                },
+                {
+                  "method": "set",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 1,
+                  "at": 1925.5999999996275
+                },
+                {
+                  "method": "delete",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1938
+                },
+                {
+                  "method": "set",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 2,
+                  "at": 1938
+                }
+              ]
+            }
+          },
+          {
+            "name": "new-session-after-old-settlement",
+            "at": "2026-11-11T11:51:41.685Z",
+            "state": {
+              "session": {
+                "id": 5,
+                "route": {
+                  "key": "luminescence",
+                  "chapter": 8,
+                  "family": "chapter8",
+                  "tier": "EZ",
+                  "controller": "luminescence"
+                },
+                "scene": "Level",
+                "loading": false,
+                "snapshot": {
+                  "songKey": "luminescence",
+                  "difficulty": "EZ",
+                  "scene": "Level",
+                  "phase": null,
+                  "stage": "playing",
+                  "time": 0.265566885471344,
+                  "rawScore": 0,
+                  "sceneTime": 0.3001000000000004,
+                  "hp": null,
+                  "totalNoteAffect": 0,
+                  "dead": false,
+                  "locked": false,
+                  "awaitingInput": false,
+                  "eventActive": false,
+                  "stage1Failed": false,
+                  "stage2Failed": false,
+                  "scoreCheckComplete": false,
+                  "timeTag": 0,
+                  "targetScore": 684796.5,
+                  "complete": false,
+                  "outro": 1.7999999523162842,
+                  "videoTime": 0,
+                  "clip": null,
+                  "flags": {},
+                  "messageIndex": 0,
+                  "subtitle": "",
+                  "creditsProgress": 0,
+                  "creditsTime": 0,
+                  "skipOpacity": 0
+                }
+              },
+              "engine": {
+                "name": "Luminescence",
+                "id": 5,
+                "tier": "EZ",
+                "running": true,
+                "time": 0.2655668934240367
+              },
+              "playDisabled": false,
+              "loading": false,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "resolved",
+                  "returned": true
+                },
+                {
+                  "call": 2,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1607.2000000011176
+                },
+                {
+                  "id": 5,
+                  "at": 5238.800000000745
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1466.7000000011176
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1468.300000000745
+                },
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1784.9000000003725
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1785.2000000011176
+                },
+                {
+                  "method": "delete",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1925.5
+                },
+                {
+                  "method": "set",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 1,
+                  "at": 1925.5999999996275
+                },
+                {
+                  "method": "delete",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1938
+                },
+                {
+                  "method": "set",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 2,
+                  "at": 1938
+                }
+              ]
+            }
+          },
+          {
+            "name": "new-music-clock-continues",
+            "at": "2026-11-11T11:51:41.886Z",
+            "state": {
+              "session": {
+                "id": 5,
+                "route": {
+                  "key": "luminescence",
+                  "chapter": 8,
+                  "family": "chapter8",
+                  "tier": "EZ",
+                  "controller": "luminescence"
+                },
+                "scene": "Level",
+                "loading": false,
+                "snapshot": {
+                  "songKey": "luminescence",
+                  "difficulty": "EZ",
+                  "scene": "Level",
+                  "phase": null,
+                  "stage": "playing",
+                  "time": 0.4658389985561371,
+                  "rawScore": 0,
+                  "sceneTime": 0.5001000000000004,
+                  "hp": null,
+                  "totalNoteAffect": 0,
+                  "dead": false,
+                  "locked": false,
+                  "awaitingInput": false,
+                  "eventActive": false,
+                  "stage1Failed": false,
+                  "stage2Failed": false,
+                  "scoreCheckComplete": false,
+                  "timeTag": 0,
+                  "targetScore": 684796.5,
+                  "complete": false,
+                  "outro": 1.7999999523162842,
+                  "videoTime": 0,
+                  "clip": null,
+                  "flags": {},
+                  "messageIndex": 0,
+                  "subtitle": "",
+                  "creditsProgress": 0,
+                  "creditsTime": 0,
+                  "skipOpacity": 0
+                }
+              },
+              "engine": {
+                "name": "Luminescence",
+                "id": 5,
+                "tier": "EZ",
+                "running": true,
+                "time": 0.4658390022675736
+              },
+              "playDisabled": false,
+              "loading": false,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "resolved",
+                  "returned": true
+                },
+                {
+                  "call": 2,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1607.2000000011176
+                },
+                {
+                  "id": 5,
+                  "at": 5238.800000000745
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1466.7000000011176
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1468.300000000745
+                },
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1784.9000000003725
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1785.2000000011176
+                },
+                {
+                  "method": "delete",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1925.5
+                },
+                {
+                  "method": "set",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 1,
+                  "at": 1925.5999999996275
+                },
+                {
+                  "method": "delete",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1938
+                },
+                {
+                  "method": "set",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 2,
+                  "at": 1938
+                }
+              ]
+            }
+          },
+          {
+            "name": "normal-quit-clears-ownership",
+            "at": "2026-11-11T11:51:42.001Z",
+            "state": {
+              "session": null,
+              "engine": null,
+              "playDisabled": false,
+              "loading": false,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "resolved",
+                  "returned": true
+                },
+                {
+                  "call": 2,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1607.2000000011176
+                },
+                {
+                  "id": 5,
+                  "at": 5238.800000000745
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1466.7000000011176
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1468.300000000745
+                },
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1784.9000000003725
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1785.2000000011176
+                },
+                {
+                  "method": "delete",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1925.5
+                },
+                {
+                  "method": "set",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 1,
+                  "at": 1925.5999999996275
+                },
+                {
+                  "method": "delete",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1938
+                },
+                {
+                  "method": "set",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 2,
+                  "at": 1938
+                }
+              ]
+            }
+          }
+        ],
+        "requests": [
+          {
+            "at": "2026-11-11T11:51:37.612Z",
+            "url": "http://127.0.0.1:4182/assets/catalog-charts/41c50afe2d44ef97-ez-bc051f9f49.json.gz"
+          }
+        ],
+        "pageErrors": [],
+        "consoleErrors": [],
+        "externalRequests": [],
+        "status": "passed",
+        "finishedAt": "2026-11-11T11:51:42.001Z"
+      },
+      {
+        "scenario": "late-abort",
+        "steps": [
+          {
+            "name": "old-original-preparation-pending",
+            "at": "2026-11-11T11:51:43.911Z",
+            "state": {
+              "session": {
+                "id": 2,
+                "route": {
+                  "key": "luminescence",
+                  "chapter": 8,
+                  "family": "chapter8",
+                  "tier": "EZ",
+                  "controller": "luminescence"
+                },
+                "scene": "Level",
+                "loading": true,
+                "snapshot": {
+                  "songKey": "luminescence",
+                  "difficulty": "EZ",
+                  "scene": "Level",
+                  "phase": null,
+                  "stage": "playing",
+                  "time": 0,
+                  "rawScore": 0,
+                  "sceneTime": 0,
+                  "hp": null,
+                  "totalNoteAffect": 0,
+                  "dead": false,
+                  "locked": false,
+                  "awaitingInput": false,
+                  "eventActive": false,
+                  "stage1Failed": false,
+                  "stage2Failed": false,
+                  "scoreCheckComplete": false,
+                  "timeTag": 0,
+                  "targetScore": 684796.5,
+                  "complete": false,
+                  "outro": 1.7999999523162842,
+                  "videoTime": 0,
+                  "clip": null,
+                  "flags": {},
+                  "messageIndex": 0,
+                  "subtitle": "",
+                  "creditsProgress": 0,
+                  "creditsTime": 0,
+                  "skipOpacity": 0
+                }
+              },
+              "engine": null,
+              "playDisabled": true,
+              "loading": true,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": false,
+                  "outcome": "pending",
+                  "returned": false
+                }
+              ],
+              "settlements": [],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1563.2000000011176
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1564.5
+                }
+              ]
+            }
+          },
+          {
+            "name": "cancelled-before-original-completion",
+            "at": "2026-11-11T11:51:43.978Z",
+            "state": {
+              "session": null,
+              "engine": null,
+              "playDisabled": false,
+              "loading": false,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "AbortError",
+                  "returned": false
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1704.5999999996275
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1563.2000000011176
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1564.5
+                }
+              ]
+            }
+          },
+          {
+            "name": "same-entry-started-before-old-result",
+            "at": "2026-11-11T11:51:44.407Z",
+            "state": {
+              "session": {
+                "id": 5,
+                "route": {
+                  "key": "luminescence",
+                  "chapter": 8,
+                  "family": "chapter8",
+                  "tier": "EZ",
+                  "controller": "luminescence"
+                },
+                "scene": "Level",
+                "loading": true,
+                "snapshot": {
+                  "songKey": "luminescence",
+                  "difficulty": "EZ",
+                  "scene": "Level",
+                  "phase": null,
+                  "stage": "playing",
+                  "time": 0,
+                  "rawScore": 0,
+                  "sceneTime": 0,
+                  "hp": null,
+                  "totalNoteAffect": 0,
+                  "dead": false,
+                  "locked": false,
+                  "awaitingInput": false,
+                  "eventActive": false,
+                  "stage1Failed": false,
+                  "stage2Failed": false,
+                  "scoreCheckComplete": false,
+                  "timeTag": 0,
+                  "targetScore": 684796.5,
+                  "complete": false,
+                  "outro": 1.7999999523162842,
+                  "videoTime": 0,
+                  "clip": null,
+                  "flags": {},
+                  "messageIndex": 0,
+                  "subtitle": "",
+                  "creditsProgress": 0,
+                  "creditsTime": 0,
+                  "skipOpacity": 0
+                }
+              },
+              "engine": null,
+              "playDisabled": true,
+              "loading": true,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "AbortError",
+                  "returned": false
+                },
+                {
+                  "call": 2,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1704.5999999996275
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1563.2000000011176
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1564.5
+                },
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1899.5
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1900.300000000745
+                },
+                {
+                  "method": "delete",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2130.7000000011176
+                },
+                {
+                  "method": "set",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 1,
+                  "at": 2130.7000000011176
+                }
+              ]
+            }
+          },
+          {
+            "name": "new-session-after-old-settlement",
+            "at": "2026-11-11T11:51:47.437Z",
+            "state": {
+              "session": {
+                "id": 5,
+                "route": {
+                  "key": "luminescence",
+                  "chapter": 8,
+                  "family": "chapter8",
+                  "tier": "EZ",
+                  "controller": "luminescence"
+                },
+                "scene": "Level",
+                "loading": false,
+                "snapshot": {
+                  "songKey": "luminescence",
+                  "difficulty": "EZ",
+                  "scene": "Level",
+                  "phase": null,
+                  "stage": "playing",
+                  "time": 0.265566885471344,
+                  "rawScore": 0,
+                  "sceneTime": 0.3,
+                  "hp": null,
+                  "totalNoteAffect": 0,
+                  "dead": false,
+                  "locked": false,
+                  "awaitingInput": false,
+                  "eventActive": false,
+                  "stage1Failed": false,
+                  "stage2Failed": false,
+                  "scoreCheckComplete": false,
+                  "timeTag": 0,
+                  "targetScore": 684796.5,
+                  "complete": false,
+                  "outro": 1.7999999523162842,
+                  "videoTime": 0,
+                  "clip": null,
+                  "flags": {},
+                  "messageIndex": 0,
+                  "subtitle": "",
+                  "creditsProgress": 0,
+                  "creditsTime": 0,
+                  "skipOpacity": 0
+                }
+              },
+              "engine": {
+                "name": "Luminescence",
+                "id": 5,
+                "tier": "EZ",
+                "running": true,
+                "time": 0.2655668934240363
+              },
+              "playDisabled": false,
+              "loading": false,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "AbortError",
+                  "returned": true
+                },
+                {
+                  "call": 2,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1704.5999999996275
+                },
+                {
+                  "id": 5,
+                  "at": 4853.300000000745
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1563.2000000011176
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1564.5
+                },
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1899.5
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1900.300000000745
+                },
+                {
+                  "method": "delete",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2130.7000000011176
+                },
+                {
+                  "method": "set",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 1,
+                  "at": 2130.7000000011176
+                },
+                {
+                  "method": "delete",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2138.5999999996275
+                },
+                {
+                  "method": "set",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 2,
+                  "at": 2138.5999999996275
+                }
+              ]
+            }
+          },
+          {
+            "name": "new-music-clock-continues",
+            "at": "2026-11-11T11:51:47.635Z",
+            "state": {
+              "session": {
+                "id": 5,
+                "route": {
+                  "key": "luminescence",
+                  "chapter": 8,
+                  "family": "chapter8",
+                  "tier": "EZ",
+                  "controller": "luminescence"
+                },
+                "scene": "Level",
+                "loading": false,
+                "snapshot": {
+                  "songKey": "luminescence",
+                  "difficulty": "EZ",
+                  "scene": "Level",
+                  "phase": null,
+                  "stage": "playing",
+                  "time": 0.4658389985561371,
+                  "rawScore": 0,
+                  "sceneTime": 0.5,
+                  "hp": null,
+                  "totalNoteAffect": 0,
+                  "dead": false,
+                  "locked": false,
+                  "awaitingInput": false,
+                  "eventActive": false,
+                  "stage1Failed": false,
+                  "stage2Failed": false,
+                  "scoreCheckComplete": false,
+                  "timeTag": 0,
+                  "targetScore": 684796.5,
+                  "complete": false,
+                  "outro": 1.7999999523162842,
+                  "videoTime": 0,
+                  "clip": null,
+                  "flags": {},
+                  "messageIndex": 0,
+                  "subtitle": "",
+                  "creditsProgress": 0,
+                  "creditsTime": 0,
+                  "skipOpacity": 0
+                }
+              },
+              "engine": {
+                "name": "Luminescence",
+                "id": 5,
+                "tier": "EZ",
+                "running": true,
+                "time": 0.465839002267574
+              },
+              "playDisabled": false,
+              "loading": false,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "AbortError",
+                  "returned": true
+                },
+                {
+                  "call": 2,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1704.5999999996275
+                },
+                {
+                  "id": 5,
+                  "at": 4853.300000000745
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1563.2000000011176
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1564.5
+                },
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1899.5
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1900.300000000745
+                },
+                {
+                  "method": "delete",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2130.7000000011176
+                },
+                {
+                  "method": "set",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 1,
+                  "at": 2130.7000000011176
+                },
+                {
+                  "method": "delete",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2138.5999999996275
+                },
+                {
+                  "method": "set",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 2,
+                  "at": 2138.5999999996275
+                }
+              ]
+            }
+          },
+          {
+            "name": "normal-quit-clears-ownership",
+            "at": "2026-11-11T11:51:47.776Z",
+            "state": {
+              "session": null,
+              "engine": null,
+              "playDisabled": false,
+              "loading": false,
+              "calls": [
+                {
+                  "call": 1,
+                  "signalAborted": true,
+                  "outcome": "AbortError",
+                  "returned": true
+                },
+                {
+                  "call": 2,
+                  "signalAborted": false,
+                  "outcome": "resolved",
+                  "returned": true
+                }
+              ],
+              "settlements": [
+                {
+                  "id": 2,
+                  "error": "重演曲目未能启动",
+                  "at": 1704.5999999996275
+                },
+                {
+                  "id": 5,
+                  "at": 4853.300000000745
+                }
+              ],
+              "cache": [
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1563.2000000011176
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1564.5
+                },
+                {
+                  "method": "has",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1899.5
+                },
+                {
+                  "method": "has",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 1900.300000000745
+                },
+                {
+                  "method": "delete",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2130.7000000011176
+                },
+                {
+                  "method": "set",
+                  "capacity": 32,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 1,
+                  "at": 2130.7000000011176
+                },
+                {
+                  "method": "delete",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": null,
+                  "at": 2138.5999999996275
+                },
+                {
+                  "method": "set",
+                  "capacity": 6,
+                  "key": "catalog-41c50afe2d44ef97-ez",
+                  "previous": null,
+                  "value": 2,
+                  "at": 2138.5999999996275
+                }
+              ]
+            }
+          }
+        ],
+        "requests": [
+          {
+            "at": "2026-11-11T11:51:43.839Z",
+            "url": "http://127.0.0.1:4182/assets/catalog-charts/41c50afe2d44ef97-ez-bc051f9f49.json.gz"
+          },
+          {
+            "at": "2026-11-11T11:51:44.183Z",
+            "url": "http://127.0.0.1:4182/assets/catalog-charts/41c50afe2d44ef97-ez-bc051f9f49.json.gz"
+          }
+        ],
+        "pageErrors": [],
+        "consoleErrors": [],
+        "externalRequests": [],
+        "status": "passed",
+        "finishedAt": "2026-11-11T11:51:47.776Z"
+      }
+    ],
+    "browser": "156.0.8078.79",
+    "finishedAt": "2026-11-11T11:51:47.790Z",
+    "status": "passed"
+  },
+  "stream-recovery": {
+    "scope": "Controlled callback ordering on real HTML media and Engine lifecycles; no official or physical latency conclusion",
+    "browser": "156.0.8078.79",
+    "appSHA256": "558ae841826fb03ca5ecae9392e4573a42285f24760d68bb727017ddb945ea01",
+    "pageErrors": [],
+    "pendingStart": {
+      "mode": "pending-start",
+      "before": {
+        "paused": false,
+        "starting": true
+      },
+      "during": {
+        "paused": false,
+        "starting": true
+      },
+      "after": {
+        "paused": false,
+        "running": true,
+        "starting": false,
+        "timeBefore": 0.013333,
+        "timeAfter": 0.301333
+      },
+      "elapsed": 1969.5
+    },
+    "resumeOwner": {
+      "mode": "resume-owner",
+      "resumeInput": {
+        "buffered": false,
+        "pending": false
+      },
+      "retained": {
+        "controller": true,
+        "progress": true,
+        "pending": true,
+        "buffering": true,
+        "visible": true,
+        "oldAborted": true
+      },
+      "after": {
+        "pending": false,
+        "buffering": false,
+        "paused": false
+      },
+      "elapsed": 2352.4000000003725
+    },
+    "status": "passed"
+  },
+  "service-worker": {
+    "scope": "Real service-worker engineering regression; synthetic saves, no official equivalence",
+    "sourceHashes": {
+      "index.html": "fc8fdc4ed057944e728afc4e92e3a8f5aac9a3e76b16f046a2376abf91287a25",
+      "js/app.js": "558ae841826fb03ca5ecae9392e4573a42285f24760d68bb727017ddb945ea01",
+      "sw.js": "7ad44c46ef4eb256e4f426084814c8b14cfd23ea3be57d7ebc3d024ef6f779c0"
+    },
+    "steps": [
+      {
+        "name": "previous-worker-warmed",
+        "runtime": "4.0.1.2-pages-32",
+        "caches": [
+          "tycphigros-4.0.1.2-stability-2",
+          "tycphigros-app-pages-32"
+        ]
+      },
+      {
+        "name": "updated-worker-claimed",
+        "caches": [
+          "tycphigros-4.0.1.2-stability-2",
+          "tycphigros-app-pages-32",
+          "tycphigros-app-pages-41"
+        ]
+      },
+      {
+        "name": "offline-after-update-restores-app-and-saves",
+        "runtime": "4.0.1.2-pages-41",
+        "restored": {
+          "id": "sw-existing-chart",
+          "chartText": "saved-original",
+          "audio": "saved-original-audio",
+          "setting": {
+            "offset": 123
+          },
+          "score": 321,
+          "localScore": "321"
+        },
+        "screenshot": "offline-after-update.png"
+      },
+      {
+        "name": "shared-media-range-survives-update",
+        "status": 206,
+        "range": "bytes 2-5/10",
+        "body": "2345"
+      },
+      {
+        "name": "offline-index-alias-loads",
+        "runtime": "4.0.1.2-pages-41"
+      },
+      {
+        "name": "missing-bootstrap-rejects-update",
+        "state": "redundant",
+        "sameController": true
+      },
+      {
+        "name": "failed-install-keeps-offline-app",
+        "runtime": "4.0.1.2-pages-41"
+      },
+      {
+        "name": "retry-installs-complete-release-and-preserves-saves",
+        "runtime": "4.0.1.2-pages-42",
+        "restored": {
+          "id": "sw-existing-chart",
+          "chartText": "saved-original",
+          "audio": "saved-original-audio",
+          "setting": {
+            "offset": 123
+          },
+          "score": 321,
+          "localScore": "321"
+        }
+      },
+      {
+        "name": "first-install-can-reopen-shell-offline",
+        "runtime": "4.0.1.2-pages-41",
+        "screenshot": "offline-after-first-install.png",
+        "limitation": "Only the program shell is prepared; this does not download all songs or optional resources."
+      }
+    ],
+    "requests": [
+      {
+        "phase": "previous",
+        "path": "/game/",
+        "search": "?skipIntro=1",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/opening/tyc-brand.ttf",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/app.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/remote-assets.js",
+        "search": "?v=pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/site-network-guard.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/style.css",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/original-materials.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/safari-hud.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/opening.css",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/catalog.css",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/vision-replay.css",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/course-mode.css",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/interactive-replay.css",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/opening/tyc-logo.png",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/chart-codec.js",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/performance-policy.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/hosted-manifest.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/full-catalog.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/catalog-runtime.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/course-mode.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/resource-transfer.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/hosted-media.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/opening.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/vision-replay.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/vision-mode.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/boss-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/boss-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/chapter8-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/chapter8-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/chapter8-stage-effects.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/interactive-replay.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/d7dd3e86b7a47a5a.webp",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/loading-presentation.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/8c7d10849712112a.svg",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/723a45d2b0fe5f66.png",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/d65b08975e2b2814.woff2",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/sw.js",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/8c7d10849712112a.svg",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/0ffce31409ad144a.woff",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/8c7d10849712112a.svg",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/catalog-media/a519338625e302d0-tiny.jpg",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/thumbs/94886c5c89d6efa3.webp",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/previews/ch9_0_art-tiny.jpg",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/",
+        "search": "?skipIntro=1",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/previews/ch9_0_art-medium.jpg",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/opening/tyc-brand.ttf",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/app.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/remote-assets.js",
+        "search": "?v=pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/site-network-guard.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/style.css",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/original-materials.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/safari-hud.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/opening.css",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/catalog.css",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/course-mode.css",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/vision-replay.css",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/css/interactive-replay.css",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/opening/tyc-logo.png",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/chart-codec.js",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/performance-policy.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/hosted-manifest.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/full-catalog.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/catalog-runtime.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/course-mode.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/resource-transfer.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/hosted-media.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/opening.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/vision-replay.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/vision-mode.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/boss-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/boss-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/chapter8-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/chapter8-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/chapter8-stage-effects.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/interactive-replay.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/js/loading-presentation.js",
+        "search": "?v=4.0.1.2-pages-32",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/d7dd3e86b7a47a5a.webp",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/d65b08975e2b2814.woff2",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/8c7d10849712112a.svg",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/723a45d2b0fe5f66.png",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/catalog-media/a519338625e302d0-tiny.jpg",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/ui/0ffce31409ad144a.woff",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/previews/ch9_0_art-tiny.jpg",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/previews/ch9_0_art-medium.jpg",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/previews/ch9_0_art-clear.jpg",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/packs/core/click.webp",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/packs/core/click_mh.webp",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/packs/core/drag.webp",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/packs/core/drag_mh.webp",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/packs/core/flick.webp",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/packs/core/flick_mh.webp",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/packs/core/hold.webp",
+        "search": ""
+      },
+      {
+        "phase": "previous",
+        "path": "/game/assets/packs/core/hold_mh.webp",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/packs/core/hold_head.webp",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/packs/core/hold_head_mh.webp",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/packs/core/hold_tail.webp",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/packs/core/pause.webp",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/packs/core/progress.webp",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/packs/core/hit_fx.webp",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/packs/core/click.wav",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/packs/core/drag.wav",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/packs/core/flick.wav",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/packs/core/info.yml",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/sw.js",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/app.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/remote-assets.js",
+        "search": "?v=pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/site-network-guard.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/style.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/original-materials.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/safari-hud.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/opening.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/catalog.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/course-mode.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/vision-replay.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/interactive-replay.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/chart-codec.js",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/performance-policy.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/hosted-manifest.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/full-catalog.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/catalog-runtime.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/course-mode.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/resource-transfer.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/hosted-media.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/opening.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/vision-replay.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/vision-mode.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/boss-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/boss-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/chapter8-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/chapter8-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/chapter8-stage-effects.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/interactive-replay.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/loading-presentation.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/sw.js",
+        "search": ""
+      },
+      {
+        "phase": "broken",
+        "path": "/game/",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/app.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/remote-assets.js",
+        "search": "?v=pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/site-network-guard.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/css/style.css",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/css/original-materials.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/css/safari-hud.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/css/opening.css",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/css/catalog.css",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/css/course-mode.css",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/css/vision-replay.css",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/css/interactive-replay.css",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/chart-codec.js",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/performance-policy.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/hosted-manifest.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/full-catalog.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/catalog-runtime.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/course-mode.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/resource-transfer.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/hosted-media.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/opening.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/vision-replay.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/vision-mode.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/boss-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/boss-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/chapter8-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/chapter8-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/chapter8-stage-effects.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/interactive-replay.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "broken",
+        "path": "/game/js/loading-presentation.js",
+        "search": "?v=4.0.1.2-pages-42"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/sw.js",
+        "search": ""
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/app.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/remote-assets.js",
+        "search": "?v=pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/site-network-guard.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/css/style.css",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/css/original-materials.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/css/safari-hud.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/css/opening.css",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/css/catalog.css",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/css/course-mode.css",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/css/vision-replay.css",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/css/interactive-replay.css",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/chart-codec.js",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/performance-policy.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/hosted-manifest.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/full-catalog.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/catalog-runtime.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/course-mode.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/resource-transfer.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/hosted-media.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/opening.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/vision-replay.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/vision-mode.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/boss-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/boss-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/chapter8-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/chapter8-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/chapter8-stage-effects.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/interactive-replay.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/js/loading-presentation.js",
+        "search": "?v=4.0.1.2-pages-42",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "recovered",
+        "path": "/game/sw.js",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/",
+        "search": "?skipIntro=1",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/opening/tyc-brand.ttf",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/app.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/remote-assets.js",
+        "search": "?v=pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/site-network-guard.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/style.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/original-materials.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/safari-hud.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/opening.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/catalog.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/course-mode.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/vision-replay.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/interactive-replay.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/opening/tyc-logo.png",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/chart-codec.js",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/performance-policy.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/hosted-manifest.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/full-catalog.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/catalog-runtime.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/course-mode.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/resource-transfer.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/hosted-media.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/ui/d7dd3e86b7a47a5a.webp",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/opening.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/vision-replay.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/vision-mode.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/boss-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/boss-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/chapter8-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/chapter8-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/chapter8-stage-effects.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/interactive-replay.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/loading-presentation.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/ui/8c7d10849712112a.svg",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/ui/723a45d2b0fe5f66.png",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/ui/d65b08975e2b2814.woff2",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/ui/8c7d10849712112a.svg",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/ui/0ffce31409ad144a.woff",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/sw.js",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/app.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/remote-assets.js",
+        "search": "?v=pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/site-network-guard.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/style.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/original-materials.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/safari-hud.css",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/opening.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/catalog.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/course-mode.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/vision-replay.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/css/interactive-replay.css",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/chart-codec.js",
+        "search": "",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/performance-policy.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/hosted-manifest.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/full-catalog.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/catalog-runtime.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/course-mode.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/resource-transfer.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/hosted-media.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/opening.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/vision-replay.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/vision-mode.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/catalog-media/a519338625e302d0-tiny.jpg",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/ui/8c7d10849712112a.svg",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/boss-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/boss-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/chapter8-replay-rules.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/chapter8-replay-visuals.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/chapter8-stage-effects.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/interactive-replay.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/js/loading-presentation.js",
+        "search": "?v=4.0.1.2-pages-41",
+        "encoding": "gzip"
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/catalog-media/a519338625e302d0-tiny.jpg",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/ui/thumbs/94886c5c89d6efa3.webp",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/assets/previews/ch9_0_art-tiny.jpg",
+        "search": ""
+      },
+      {
+        "phase": "current",
+        "path": "/game/sw.js",
+        "search": ""
+      }
+    ],
+    "pageErrors": [],
+    "consoleErrors": [
+      {
+        "phase": "previous",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      }
+    ],
+    "releaseSimulation": "Previous app differs only by runtime/cache tokens; broken/recovered next releases rewrite those same tokens and inject one controlled missing bootstrap response.",
+    "previousSourceHashes": {
+      "index.html": "1dd5e4434300051b7a89801002f25f11ebb08b3f9d47f1e78e664d3df2c87157",
+      "js/app.js": "efba9a53bae9db74870e62ab0209946db5eebec236a9970a6b42fd7622076d35",
+      "sw.js": "9b9d0d68e8be6d969888c5efa2dbf520e9147721d3e137a5aae7bcf31cab7ff2"
+    },
+    "browser": "156.0.8078.79",
+    "updateObservations": [
+      {
+        "phase": "current",
+        "events": 1,
+        "claimedBeforeExplicitUpdate": false,
+        "timeoutMs": 20000
+      },
+      {
+        "phase": "recovered",
+        "events": 1,
+        "claimedBeforeExplicitUpdate": true,
+        "timeoutMs": 20000
+      }
+    ],
+    "status": "passed"
+  },
+  "folder-import": {
+    "scope": "Engineering folder import and existing-menu visibility only; no official equivalence",
+    "styleSHA256": "02b2710e57475247f2129e092da6e2869641aafeb5d672762612074f99669244",
+    "pageErrors": [],
+    "steps": [
+      {
+        "name": "existing-more-menu-opens",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "expanded": "true",
+        "viewClasses": "view libraryToolsOpen",
+        "display": "block"
+      },
+      {
+        "name": "existing-more-menu-opens",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "expanded": "true",
+        "viewClasses": "view libraryToolsOpen",
+        "display": "block"
+      },
+      {
+        "name": "existing-more-menu-opens",
+        "viewport": {
+          "width": 720,
+          "height": 1280
+        },
+        "expanded": "true",
+        "viewClasses": "view libraryToolsOpen",
+        "display": "block"
+      },
+      {
+        "name": "nested-folder-import-preserves-original-data",
+        "files": [
+          {
+            "name": "chart.json",
+            "path": "input/nested/song-3/chart.json"
+          },
+          {
+            "name": "music.wav",
+            "path": "input/nested/song-3/music.wav"
+          },
+          {
+            "name": "info.json",
+            "path": "input/nested/song-3/info.json"
+          },
+          {
+            "name": "chart.json",
+            "path": "input/nested/song-2/chart.json"
+          },
+          {
+            "name": "music.wav",
+            "path": "input/nested/song-2/music.wav"
+          },
+          {
+            "name": "info.json",
+            "path": "input/nested/song-2/info.json"
+          },
+          {
+            "name": "chart.json",
+            "path": "input/nested/song-1/chart.json"
+          },
+          {
+            "name": "music.wav",
+            "path": "input/nested/song-1/music.wav"
+          },
+          {
+            "name": "info.json",
+            "path": "input/nested/song-1/info.json"
+          }
+        ],
+        "imported": [
+          {
+            "id": "chart:5cb4dc27486dbf36e5fa0f822113b04973668fd8f89925057e1fd14fa011051c",
+            "name": "Folder regression fixture 3",
+            "parser": "pgr",
+            "notes": 4,
+            "duration": 4,
+            "audioHash": "sha256:78531834d663fe0c2a5e3b2029454a1ed735928c1e3ee2765e1c1751e04b3aa0:64044"
+          },
+          {
+            "id": "chart:82a0e3e289fbbfbf825d486c2403130d7fada5022efc136998d265dc73336dfd",
+            "name": "Folder regression fixture 2",
+            "parser": "pgr",
+            "notes": 4,
+            "duration": 4,
+            "audioHash": "sha256:982aaf5ad85c5a96989bca31ba95967c7f1543e3489a2bb4a3dac118d465a786:64044"
+          },
+          {
+            "id": "chart:b662f3208f67f2ff9748d9d9405df322e98a4e31d0cb6c227fd8c48fee4ae645",
+            "name": "Folder regression fixture 1",
+            "parser": "pgr",
+            "notes": 4,
+            "duration": 4,
+            "audioHash": "sha256:fa7b9145aa2354fcb3bd064ad11ed7022d6f2328362e9bf40b6628611e0fae0d:64044"
+          }
+        ],
+        "original": {
+          "chart": {
+            "id": "folder-existing",
+            "name": "Existing regression fixture",
+            "chartText": "{\"formatVersion\":3,\"offset\":0,\"judgeLineList\":[{\"bpm\":120,\"notesAbove\":[{\"type\":1,\"time\":64,\"positionX\":0,\"holdTime\":0,\"speed\":1,\"floorPosition\":1},{\"type\":1,\"time\":96,\"positionX\":0,\"holdTime\":0,\"speed\":1,\"floorPosition\":1.5},{\"type\":1,\"time\":128,\"positionX\":0,\"holdTime\":0,\"speed\":1,\"floorPosition\":2},{\"type\":1,\"time\":160,\"positionX\":0,\"holdTime\":0,\"speed\":1,\"floorPosition\":2.5}],\"notesBelow\":[],\"speedEvents\":[{\"startTime\":0,\"endTime\":10000,\"value\":1}],\"judgeLineMoveEvents\":[{\"startTime\":0,\"endTime\":10000,\"start\":0.5,\"end\":0.5,\"start2\":0.5,\"end2\":0.5}],\"judgeLineRotateEvents\":[{\"startTime\":0,\"endTime\":10000,\"start\":0,\"end\":0}],\"judgeLineDisappearEvents\":[{\"startTime\":0,\"endTime\":10000,\"start\":1,\"end\":1}]}]}",
+            "importedAt": 7,
+            "audioSHA256": "f0345021a74cfdb745b5f2a335979f2145f44d119f3869ee887cecae811dd01e"
+          },
+          "setting": {
+            "key": "folder-setting",
+            "value": {
+              "offset": 123
+            }
+          },
+          "score": {
+            "key": "folder-score",
+            "score": 321,
+            "ranked": true
+          }
+        },
+        "screenshot": "folder-import.png"
+      },
+      {
+        "name": "folder-data-and-original-saves-survive-reload",
+        "restored": [
+          {
+            "id": "chart:5cb4dc27486dbf36e5fa0f822113b04973668fd8f89925057e1fd14fa011051c",
+            "audioHash": "sha256:78531834d663fe0c2a5e3b2029454a1ed735928c1e3ee2765e1c1751e04b3aa0:64044"
+          },
+          {
+            "id": "chart:82a0e3e289fbbfbf825d486c2403130d7fada5022efc136998d265dc73336dfd",
+            "audioHash": "sha256:982aaf5ad85c5a96989bca31ba95967c7f1543e3489a2bb4a3dac118d465a786:64044"
+          },
+          {
+            "id": "chart:b662f3208f67f2ff9748d9d9405df322e98a4e31d0cb6c227fd8c48fee4ae645",
+            "audioHash": "sha256:fa7b9145aa2354fcb3bd064ad11ed7022d6f2328362e9bf40b6628611e0fae0d:64044"
+          }
+        ]
+      }
+    ],
+    "browser": "156.0.8078.79",
+    "runtime": "4.0.1.2-pages-41",
+    "status": "passed"
+  },
+  "library-migration": {
+    "browser": "156.0.8078.79",
+    "passed": 11,
+    "results": [
+      {
+        "scenario": "missing-zip",
+        "status": "passed",
+        "error": {
+          "name": "Error",
+          "message": "迁移包中没有谱面 ZIP"
+        },
+        "storesBefore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "storesAfter": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "scenario": "invalid-chart",
+        "status": "passed",
+        "error": {
+          "name": "Error",
+          "message": "fixture.zip\n  chart.json：元数据指向了该文件，但内容不是可识别的 PGR／RPE／PEC／SUS 谱面"
+        },
+        "storesBefore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "storesAfter": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "scenario": "missing-declared-chart",
+        "status": "passed",
+        "error": {
+          "name": "Error",
+          "message": "迁移包谱面缺失或重复：charts/absent.zip"
+        },
+        "storesBefore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "storesAfter": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "scenario": "malformed-settings",
+        "status": "passed",
+        "error": {
+          "name": "Error",
+          "message": "迁移包设置或成绩清单无效"
+        },
+        "storesBefore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "storesAfter": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "scenario": "transaction-failure",
+        "status": "passed",
+        "error": {
+          "name": "DataCloneError",
+          "message": "injected write failure"
+        },
+        "storesBefore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "storesAfter": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "scenario": "success",
+        "status": "passed",
+        "error": null,
+        "storesBefore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "storesAfter": [
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      {
+        "scenario": "direct-import",
+        "status": "passed",
+        "error": null,
+        "storesBefore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "storesAfter": [
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      {
+        "scenario": "direct-partial-failure",
+        "status": "passed",
+        "error": null,
+        "storesBefore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "storesAfter": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "scenario": "direct-formats",
+        "status": "passed",
+        "error": null,
+        "storesBefore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "storesAfter": [
+          6,
+          6,
+          1,
+          1
+        ]
+      },
+      {
+        "scenario": "direct-pez",
+        "status": "passed",
+        "error": null,
+        "storesBefore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "storesAfter": [
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      {
+        "scenario": "direct-loose",
+        "status": "passed",
+        "error": null,
+        "storesBefore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "storesAfter": [
+          2,
+          2,
+          1,
+          1
+        ]
+      }
+    ]
+  }
+}

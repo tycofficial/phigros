@@ -1,0 +1,114 @@
+{
+  "head": "190c89f9fbb0f3e09dca7f96eb8f10229a6cd8d3",
+  "merge": "50cd15a73aaf1df924724a2d0cdc41907569a02b",
+  "tree": "d62e8bae3556b2f2c062c5879249ffbd8c907ea6",
+  "run": 42907805014,
+  "job": 130150280220,
+  "url": "https://github.com/tycofficial/phigros/actions/runs/42907805014",
+  "conclusion": "failure",
+  "unit": {
+    "passed": 503,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": "passed",
+  "currentNativePreparationNetwork": {
+    "status": "passed",
+    "cases": [
+      {
+        "mode": "surviving-consumer",
+        "status": "passed",
+        "cancelled": {
+          "outcome": "AbortError"
+        },
+        "transportAbortedAfterFirst": false,
+        "preparedSHA256": "f5b3551c678d632ad7a24b78f3f1e92530048d711cdd1831e37a488ee5423c14",
+        "preparedCharacters": 23413,
+        "cacheReused": true,
+        "requests": [
+          {
+            "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/InfinityHeaven.HyuN.0/EZ.json",
+            "status": 200,
+            "type": "cors",
+            "bytes": 23413,
+            "SHA256": "f5b3551c678d632ad7a24b78f3f1e92530048d711cdd1831e37a488ee5423c14",
+            "options": {
+              "method": "GET",
+              "mode": "cors",
+              "credentials": "omit",
+              "redirect": "error"
+            }
+          }
+        ]
+      },
+      {
+        "mode": "replacement-after-abort",
+        "status": "passed",
+        "cancelled": {
+          "outcome": "AbortError"
+        },
+        "transportAbortedAfterFirst": true,
+        "preparedSHA256": "f5b3551c678d632ad7a24b78f3f1e92530048d711cdd1831e37a488ee5423c14",
+        "preparedCharacters": 23413,
+        "cacheReused": true,
+        "requests": [
+          {
+            "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/InfinityHeaven.HyuN.0/EZ.json",
+            "status": 200,
+            "type": "cors",
+            "bytes": 23413,
+            "SHA256": "f5b3551c678d632ad7a24b78f3f1e92530048d711cdd1831e37a488ee5423c14",
+            "options": {
+              "method": "GET",
+              "mode": "cors",
+              "credentials": "omit",
+              "redirect": "error"
+            }
+          },
+          {
+            "url": "https://raw.githubusercontent.com/7aGiven/Phigros_Resource/5d40bfdf05bee53f5107a6ea5620ca0e953de815/InfinityHeaven.HyuN.0/EZ.json",
+            "status": 200,
+            "type": "cors",
+            "bytes": 23413,
+            "SHA256": "f5b3551c678d632ad7a24b78f3f1e92530048d711cdd1831e37a488ee5423c14",
+            "options": {
+              "method": "GET",
+              "mode": "cors",
+              "credentials": "omit",
+              "redirect": "error"
+            }
+          }
+        ]
+      }
+    ],
+    "measuredBodies": 3,
+    "bodyBytes": 70239,
+    "normalTLS": true,
+    "wholeMatrix": false
+  },
+  "gates": {
+    "currentWholeMatrices": "NOT RUN; old UI-only proofs not reused",
+    "knownDeniedMirrors": 2,
+    "status": "failure"
+  },
+  "artifact": {
+    "id": 13806002787,
+    "name": "engineering-regression-50cd15a73aaf1df924724a2d0cdc41907569a02b",
+    "size_in_bytes": 12857761,
+    "url": "https://api.github.com/repos/tycofficial/phigros/actions/artifacts/13806002787",
+    "archive_download_url": "https://api.github.com/repos/tycofficial/phigros/actions/artifacts/13806002787/zip",
+    "expired": false,
+    "created_at": "2026-11-10T21:49:03Z",
+    "expires_at": "2026-11-24T21:49:02Z",
+    "updated_at": "2026-11-10T21:49:03Z",
+    "digest": "sha256:df1146ddc42d0b211be16d5a39d77b02395637e9d0606d14a5a23d1bd740f136",
+    "workflow_run": {
+      "id": 42907805014,
+      "repository_id": 1429539890,
+      "head_repository_id": 1429539890,
+      "head_branch": "dot/phigros-loading-refactor",
+      "head_sha": "190c89f9fbb0f3e09dca7f96eb8f10229a6cd8d3"
+    }
+  },
+  "role": "Intermediate commit before explicit falsey-rejection preservation; not the final delivery SHA"
+}

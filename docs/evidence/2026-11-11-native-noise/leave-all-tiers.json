@@ -1,0 +1,72 @@
+[
+  {
+    "id": "leave-all-behind-ez",
+    "tier": "EZ",
+    "rawAreas": 0,
+    "parsedAreas": 0,
+    "keys": [
+      "formatVersion",
+      "offset",
+      "judgeLineList"
+    ],
+    "earliestAppear": null,
+    "earliestEnable": null,
+    "first": []
+  },
+  {
+    "id": "leave-all-behind-hd",
+    "tier": "HD",
+    "rawAreas": 0,
+    "parsedAreas": 0,
+    "keys": [
+      "formatVersion",
+      "offset",
+      "judgeLineList"
+    ],
+    "earliestAppear": null,
+    "earliestEnable": null,
+    "first": []
+  },
+  {
+    "id": "leave-all-behind-in",
+    "tier": "IN",
+    "rawAreas": 0,
+    "parsedAreas": 0,
+    "keys": [
+      "formatVersion",
+      "offset",
+      "judgeLineList"
+    ],
+    "earliestAppear": null,
+    "earliestEnable": null,
+    "first": []
+  },
+  {
+    "id": "leave-all-behind-at",
+    "tier": "AT",
+    "rawAreas": 27,
+    "parsedAreas": 27,
+    "keys": [
+      "formatVersion",
+      "offset",
+      "judgeLineList",
+      "blockAreaList"
+    ],
+    "earliestAppear": 46.4,
+    "earliestEnable": 46.4,
+    "first": [
+      {
+        "appear": 46.4,
+        "enable": 46.4,
+        "disable": 70.4,
+        "disappear": 70.4
+      },
+      {
+        "appear": 46.4,
+        "enable": 46.4,
+        "disable": 47.4,
+        "disappear": 47.4
+      }
+    ]
+  }
+]

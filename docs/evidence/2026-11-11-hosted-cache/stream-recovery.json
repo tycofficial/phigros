@@ -1,0 +1,47 @@
+{
+  "scope": "Controlled callback ordering on real HTML media and Engine lifecycles; no official or physical latency conclusion",
+  "browser": "156.0.8078.79",
+  "appSHA256": "5ba58f70af638d378407a3f506915a25dec2b2a890eb911017c5256b603b21d2",
+  "pageErrors": [],
+  "pendingStart": {
+    "mode": "pending-start",
+    "before": {
+      "paused": false,
+      "starting": true
+    },
+    "during": {
+      "paused": false,
+      "starting": true
+    },
+    "after": {
+      "paused": false,
+      "running": true,
+      "starting": false,
+      "timeBefore": 0.008529,
+      "timeAfter": 0.28585
+    },
+    "elapsed": 1969.9000000003725
+  },
+  "resumeOwner": {
+    "mode": "resume-owner",
+    "resumeInput": {
+      "buffered": false,
+      "pending": false
+    },
+    "retained": {
+      "controller": true,
+      "progress": true,
+      "pending": true,
+      "buffering": true,
+      "visible": true,
+      "oldAborted": true
+    },
+    "after": {
+      "pending": false,
+      "buffering": false,
+      "paused": false
+    },
+    "elapsed": 2339.5999999996275
+  },
+  "status": "passed"
+}

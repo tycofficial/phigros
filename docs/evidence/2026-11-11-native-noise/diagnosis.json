@@ -1,0 +1,54 @@
+{
+  "scope": "Diagnostic evidence for built-in PGR noise only; no runtime repair is claimed, user playback source remains to be confirmed",
+  "publishedSource": "a399f0445c1a87804d380552c9302f3cd422b900",
+  "validatedRuntimeSource": "a5a1ebc7a82f8890a19f0174c6cc75b2a7a32777",
+  "referenceSource": "cd07039b7f75fb85852d0eec5ff01b72cde4baf1",
+  "versions": [
+    "pages-27",
+    "pages-41"
+  ],
+  "findings": [
+    "Native parsing, resource preparation, timeline, renderer and overlay source sections are unchanged between these published versions.",
+    "Built-in Leave All Behind EZ/HD/IN source charts contain no blockAreaList. AT contains 27; first appears/enables at 46.4s. This describes repository content, not an official-game rule assertion.",
+    "Both reference and current AT at 46.8s can legitimately produce a transparent overlay. At 50/54/60s both have substantial visible noise pixels; the images confirm the red native effect.",
+    "Two other current real PGR cases (Message IN 142 areas, ハテ AT 14355 areas) initialize and produce visible overlay pixels.",
+    "The first 30s AT wait was shorter than its authored first appearance; the earlier probe timeout was a diagnostic timing error, not a product regression. Natural playback now samples up to 60s, without seeking or changing game state.",
+    "Initial hidden search navigation and formal expected-version parsing assumptions were corrected in diagnostic code only. Original failed records remain in local work evidence.",
+    "No evidence yet establishes a global disappearance on the published URL or the actual user device. The new job tests the original URL using real UI, normal 1x playback, original assets and actual GPU overlay pixels."
+  ],
+  "limitations": [
+    "Software WebGL; physical user GPU/browser/device and a possibly different imported chart remain unverified.",
+    "No official complete-build reference, no 1:1 or percentage claim.",
+    "Known mirror HTTP403 and full-network-scope gates remain; no rejected mirror requests or resource replacement."
+  ],
+  "runtimeChanged": false,
+  "newDeployment": false,
+  "CI": "Await exact next diagnostic SHA; original URL native checks and existing full regression remain enabled.",
+  "CI17": {
+    "run": 43023620387,
+    "nativeJob": 130532681191,
+    "result": "failure at the resource-200-only assertion after AT pixel assertions; whole native job not passed; Message command not executed",
+    "artifact": 13856372035,
+    "artifactBytes": 5491517,
+    "artifactSHA256": "56f3d7a1f7eae4dd9fc01b8f312813d053a34d9eb4a65a2f25d59625d1957dba",
+    "oldReportResponseDetails": "Unavailable in this executor: plugin returned a reusable artifact reference, but local download to the artifact storage host was denied by proxy HTTP403. Not retried or relayed; do not treat 206 as an observed CI17 status."
+  },
+  "rangeDiagnostic": {
+    "reason": "Original PhiTransfer supports valid HTTP206, and SW may return ranges. The old diagnostic incorrectly required only 200.",
+    "correction": "Observe the same original PhiHostedMedia bytes Promise without changing its result, verify complete JSON size and SHA256, require valid and gap-free Content-Range coverage for 206, retain 200 checks for all four textures. Print the complete diagnostic report even on failure.",
+    "localControlledCase": "Actual original bytes served by a normal loopback HTTP206 range handler; full manifest identity and pixel checks passed. Not a measurement of the denied artifact."
+  },
+  "CI18": {
+    "run": 43025437010,
+    "nativeJob": 130538855151,
+    "nativeJobResult": "failure; not reported as whole-job pass",
+    "LeaveAllBehindAT": "passed on original public URL, 50/54/60s nontransparent/colored pixels 326638/610461/808967; manifest 206 complete range and full original SHA256 verified",
+    "MessageIN": "162009 colored/nontransparent pixels; assertion used current engine clock 15.2250226757 while the pixels were drawn at renderer.lastTime 15.0740929705. Current active count was zero at the later clock; this is retained as a diagnostic frame-correlation failure."
+  },
+  "frameCorrelationCorrection": {
+    "sourceMeaning": "NativeBlockRenderer.prepare sets lastTime=t+chart.offset and builds geometry for that same authored time. Canvas pixels belong to that rendered frame, not an audio/update time sampled later.",
+    "fix": "Compute visible/active authored intervals purely at renderer.lastTime without mutating the engine timeline. Keep active-area and positive pixel assertions and add a positive active-geometry assertion. Record current-clock activity separately.",
+    "evidence": "message-boundary.json and frame-correlated-message.json",
+    "runtimeChanged": false
+  }
+}

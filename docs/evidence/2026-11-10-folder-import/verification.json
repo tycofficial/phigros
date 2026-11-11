@@ -1,0 +1,93 @@
+{
+  "scope": "Existing custom import compatibility and menu behavior only; no official visual/rule equivalence",
+  "date": "2026-11-10",
+  "parentCommit": "3043a0d1f84b78be7c8d2a9419a5a27fdb83e6b2",
+  "runtime": "4.0.1.2-pages-34",
+  "officialAcceptance": "blocked",
+  "officialFidelityPercent": null,
+  "sourceHashes": {
+    "css/style.css": "02b2710e57475247f2129e092da6e2869641aafeb5d672762612074f99669244",
+    "index.html": "4610427d018ee7fbe9a017f4dcdbea825e7269c25d363c8a09a6c68cc9470de5",
+    "js/app.js": "353eaffc19fd365014fa550d737896768d47cee4f54b1e1f33088e7edbfdefb8",
+    "sw.js": "ddc7ada8a5eee93e31c04e1f299827dfa6bb7d358a69a0c7a8cb6d72173cbd19",
+    "tests/full-flow-browser.cjs": "e377583afd7256e4daec22c0157910f897eabac79f39bbae85338ba7e15c4366",
+    "tests/folder-import-browser.cjs": "06314b5e3ae256f388437d5a537329f1ea26cc63c724d05cd249bcd1bc887265",
+    "tests/helpers/import-fixtures.cjs": "208aaf9cab2dfdc77a6adb33caa79be089a09c127c7dbdb8296aa47b60866045",
+    "tests/service-worker.test.cjs": "1c307bbe96e8c29247147babd590d41fc485ad05239894e050efcdbc509ee3c9",
+    ".github/workflows/engineering-regression.yml": "6d50ffe20a200ec5ef142170d5d53ac937edd0256088ec806d4ab905c48e36e6"
+  },
+  "problem": "More toggles libraryToolsOpen on #libraryView itself, but the phi-mode CSS required a descendant with that class. aria-expanded=true while the panel remained display:none, blocking the original full-folder picker path.",
+  "changes": [
+    "Correct the existing phi-mode selector to #libraryView.libraryToolsOpen .libraryMoreSheet; do not redesign menu contents, file picker or importer.",
+    "Add the actual nested-directory chooser browser flow to PR CI.",
+    "Share the prior exact wave/chart fixture functions with the existing full-flow browser regression.",
+    "Keep the SW future-version regression distinct when the runtime number advances; synchronize pages-34 cache/version tokens."
+  ],
+  "commands": [
+    {
+      "command": "git show 3043a0d:css/style.css > /tmp/phigros-style-before-folder.css; PHI_TEST_STYLE_SOURCE=/tmp/phigros-style-before-folder.css node tests/folder-import-browser.cjs http://127.0.0.1:4180 work/folder-import-before",
+      "result": "failed-as-expected",
+      "evidence": "browser-before.json"
+    },
+    {
+      "command": "node tests/folder-import-browser.cjs http://127.0.0.1:4180 work/folder-import-after",
+      "result": "passed",
+      "evidence": "browser-after.json"
+    },
+    {
+      "command": "node --test tests/*.test.cjs",
+      "result": "passed",
+      "tests": 446,
+      "failures": 0,
+      "skipped": 0,
+      "evidence": "node-tests.log"
+    },
+    {
+      "command": "PLAYWRIGHT_BROWSERS_PATH=/tmp/phigros-playwright PHI_FLOW_VIDEO=1 node tests/full-flow-browser.cjs http://127.0.0.1:4180 work/browser-flow-pages34",
+      "result": "passed",
+      "steps": 15,
+      "evidence": "full-flow.json"
+    },
+    {
+      "command": "node tests/service-worker-browser.cjs work/service-worker-pages34",
+      "result": "passed",
+      "steps": 9,
+      "evidence": "service-worker-summary.json"
+    },
+    {
+      "command": "python3 scripts/build-runtime-release.py --output /tmp/phigros-runtime-pages34 --report work/runtime-pages34.json",
+      "result": "passed",
+      "bytes": 999578136,
+      "evidence": "runtime-package-summary.json"
+    },
+    {
+      "command": "git diff --check; node --check tests/folder-import-browser.cjs; node --check tests/full-flow-browser.cjs; node --check tests/helpers/import-fixtures.cjs",
+      "result": "passed"
+    }
+  ],
+  "browserChecks": [
+    "More opens and Escape/outside-card click close it at 1280x720, 1920x1080 and 720x1280.",
+    "Existing More -> Import -> full-folder button opens the actual directory chooser; it supplies nine webkitRelativePath files in three nested song directories.",
+    "Each directory has identical chart.json/music.wav/info.json leaf names; all three imported PGR charts have four notes and four seconds of audio; each name maps to the expected SHA-256 music bytes.",
+    "Original chart text, audio SHA-256, importedAt, setting and IndexedDB score remain identical after import and reload; all newly imported IDs/audio hashes reopen unchanged."
+  ],
+  "fixtureProvenance": "The original full-flow wave/chart functions were moved byte-for-byte into tests/helpers/import-fixtures.cjs. Synthetic inputs remain in isolated browser contexts and ignored work/ output; they are not product resources or official references.",
+  "screenshots": [
+    {
+      "path": "work/folder-import-before/failure.png",
+      "bytes": 801144,
+      "sha256": "c62f66c29431f38c87f9f4800fdd1a121b9efec91eb6e8c7f2d10010eb6f0763"
+    },
+    {
+      "path": "work/folder-import-after/folder-import.png",
+      "bytes": 203732,
+      "sha256": "110d003001b00adaf5add43370a85110ed7352297c93c59d8d55dece983d60bc"
+    }
+  ],
+  "limitations": [
+    "One nested PGR/JSON-metadata/WAV folder fixture does not prove every folder-format/metadata combination or actual user archive.",
+    "Chromium desktop/portrait viewports do not establish real iPad Safari or physical device compatibility.",
+    "Existing menu contents were restored, not accepted as official UI. Official baseline, all visuals, animations, Tips, resources and complete chapter/replay rules remain blocked or unverified."
+  ],
+  "remoteCI": "Latest pushed SHA and raw CI logs must be checked; prior 3043a0d run 42835410047 independently passed 446 tests and nine worker scenarios."
+}

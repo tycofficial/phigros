@@ -1,0 +1,21 @@
+{
+  "scope": "Engineering audio transport lifecycle only; official equivalence unverified",
+  "browser": "156.0.8078.79",
+  "appSHA256": "e5d21bb69bfb159313b990a028cec9dc172e1207b05fe96d978e48e6e79c87eb",
+  "pageErrors": [],
+  "superseded": {
+    "retained": true,
+    "before": 0,
+    "after": 0.25395691609977433,
+    "playing": true,
+    "running": true,
+    "paused": false,
+    "autoplay": false
+  },
+  "stopped": {
+    "running": false,
+    "playing": false,
+    "hasSource": false
+  },
+  "status": "passed"
+}

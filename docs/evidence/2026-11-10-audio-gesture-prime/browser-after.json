@@ -1,0 +1,87 @@
+{
+  "scope": "Controlled delayed gesture-prime observation on native HTML media; official/Safari timing unverified",
+  "browser": "156.0.8078.79",
+  "appSHA256": "049584167d43b93cc4fc6213cfe711e710750fac1501b12161973eab791a64b3",
+  "pageErrors": [],
+  "scenarios": [
+    {
+      "mode": "timeout-fulfillment",
+      "preserved": 0.530667,
+      "before": {
+        "paused": false,
+        "muted": false,
+        "time": 0.842667,
+        "running": true,
+        "resumePending": false
+      },
+      "after": {
+        "paused": false,
+        "muted": false,
+        "time": 0.890667,
+        "running": true,
+        "resumePending": false
+      },
+      "later": {
+        "paused": false,
+        "muted": false,
+        "time": 1.11838,
+        "running": true,
+        "resumePending": false
+      },
+      "elapsed": 4820.9000000003725
+    },
+    {
+      "mode": "timeout-rejection",
+      "preserved": 1.130974,
+      "before": {
+        "paused": false,
+        "muted": false,
+        "time": 1.474974,
+        "running": true,
+        "resumePending": false
+      },
+      "after": {
+        "paused": false,
+        "muted": false,
+        "time": 1.522974,
+        "running": true,
+        "resumePending": false
+      },
+      "later": {
+        "paused": false,
+        "muted": false,
+        "time": 1.765641,
+        "running": true,
+        "resumePending": false
+      },
+      "elapsed": 4813
+    },
+    {
+      "mode": "cancel-resume",
+      "preserved": 1.771438,
+      "before": {
+        "paused": false,
+        "muted": false,
+        "time": 2.120771,
+        "running": true,
+        "resumePending": false
+      },
+      "after": {
+        "paused": false,
+        "muted": false,
+        "time": 2.171438,
+        "running": true,
+        "resumePending": false
+      },
+      "later": {
+        "paused": false,
+        "muted": false,
+        "time": 2.411438,
+        "running": true,
+        "resumePending": false
+      },
+      "elapsed": 3260.7999999998137
+    }
+  ],
+  "status": "passed"
+}

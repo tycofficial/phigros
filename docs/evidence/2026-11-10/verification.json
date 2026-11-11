@@ -1,0 +1,130 @@
+{
+  "scope": "Engineering checks of the actual simulator; no official equivalence measurement",
+  "date": "2026-11-10",
+  "parentCommit": "e7a4833f1341fb90c217874b8d02aacbed7347f2",
+  "runtime": "4.0.1.2-pages-32",
+  "officialAcceptance": "blocked",
+  "officialFidelityPercent": null,
+  "sourceHashes": {
+    "index.html": "1dd5e4434300051b7a89801002f25f11ebb08b3f9d47f1e78e664d3df2c87157",
+    "sw.js": "9b9d0d68e8be6d969888c5efa2dbf520e9147721d3e137a5aae7bcf31cab7ff2",
+    "js/app.js": "e5d21bb69bfb159313b990a028cec9dc172e1207b05fe96d978e48e6e79c87eb",
+    "tests/audio-transport-lifecycle.test.cjs": "44aebbbbe42cc9060c9e1f9054ff441570ac943fbaca384d92ca9ec038c1f3c3",
+    "tests/audio-transport-browser.cjs": "09c2116d0760d8b03d1abbaf319dc0bf1b5718211c18fdb202bc76e748b375ff",
+    ".github/workflows/engineering-regression.yml": "9893225e1f3222f41b24717d48c538752e5231b40af561c15525b76c546a256d"
+  },
+  "commands": [
+    {
+      "command": "node --test tests/*.test.cjs",
+      "result": "passed",
+      "tests": 438,
+      "failures": 0,
+      "skipped": 0,
+      "evidence": "node-tests.log",
+      "scope": "Local run includes four real Chromium IndexedDB transaction tests."
+    },
+    {
+      "command": "PHI_TEST_APP_SOURCE=/tmp/phigros-app-before.js node tests/audio-transport-browser.cjs http://127.0.0.1:4180 work/audio-transport-before",
+      "result": "failed-as-expected-on-parent-source",
+      "evidence": "audio-transport-before.json"
+    },
+    {
+      "command": "node tests/audio-transport-browser.cjs http://127.0.0.1:4180 work/audio-transport",
+      "result": "passed",
+      "evidence": "audio-transport-after.json"
+    },
+    {
+      "command": "PLAYWRIGHT_BROWSERS_PATH=/tmp/phigros-playwright PHI_FLOW_VIDEO=1 node tests/full-flow-browser.cjs http://127.0.0.1:4180 work/browser-flow",
+      "result": "passed",
+      "evidence": "full-flow.json"
+    },
+    {
+      "command": "node tests/loading-cancel-browser.cjs http://127.0.0.1:4180 work/loading-cancel",
+      "result": "passed",
+      "evidence": "loading-cancel.json"
+    },
+    {
+      "command": "node tests/library-migration-browser.cjs",
+      "result": "passed",
+      "scenarios": 11,
+      "evidence": "library-migration.json"
+    },
+    {
+      "command": "node tests/interactive-replay-media-browser.cjs",
+      "result": "passed",
+      "evidence": "replay-media.json"
+    },
+    {
+      "command": "python3 scripts/audit-resources.py --output work/resource-audit",
+      "result": "passed-local-integrity-only",
+      "evidence": "resource-audit-summary.json"
+    },
+    {
+      "command": "python3 scripts/build-runtime-release.py --output /tmp/phigros-runtime-pages32 --report work/runtime-pages32.json",
+      "result": "passed",
+      "evidence": "runtime-package-summary.json"
+    },
+    {
+      "command": "git diff --check; node --check js/app.js; node --check sw.js; node --check tests/audio-transport-browser.cjs; node --check tests/audio-transport-lifecycle.test.cjs",
+      "result": "passed"
+    }
+  ],
+  "reproduction": "git show e7a4833f1341fb90c217874b8d02aacbed7347f2:js/app.js > /tmp/phigros-app-before.js; run the before command above. For original 12 controlled cases, 10 failed and 2 current-session controls passed before the fix; final suite has 18 transport cases.",
+  "screenshotsAndVideo": [
+    {
+      "path": "work/browser-flow/01-startup.png",
+      "bytes": 15867,
+      "sha256": "75046634440629c507dbe1515b0f0f8b56e6dfe1131d84328510d4e0ff1a6677"
+    },
+    {
+      "path": "work/browser-flow/02-song-selection.png",
+      "bytes": 774795,
+      "sha256": "04953dae637c6342208376c196e5361e451cc191367f8bee316fbf3229c0a2a1"
+    },
+    {
+      "path": "work/browser-flow/03-builtin-gameplay.png",
+      "bytes": 528648,
+      "sha256": "a6cc2823868b95af4db021bbc938935f851f40200a85768dba8dd1aa5d0e64a3"
+    },
+    {
+      "path": "work/browser-flow/04-paused.png",
+      "bytes": 192724,
+      "sha256": "9496d8315159ea3a5c654c73af5e61acb8807c2359bca19f9a0d8de3bf4317c0"
+    },
+    {
+      "path": "work/browser-flow/05-imported-library.png",
+      "bytes": 134912,
+      "sha256": "546ee598bde528eb012a485ce399ae13c631bf79440b9fbcb694478dd46bbe5e"
+    },
+    {
+      "path": "work/browser-flow/06-local-natural-result.png",
+      "bytes": 54013,
+      "sha256": "602329c3b7d5ea7b0303b80667f5c351c14782f9d8cbd4b38e19095fb3e1be72"
+    },
+    {
+      "path": "work/browser-flow/07-course-complete.png",
+      "bytes": 173478,
+      "sha256": "09b5c05ad31221b76da285104bf8d8a195da4442607b8000800579a683089a04"
+    },
+    {
+      "path": "work/browser-flow/video/page@272bee6370e741990f780ff783d6b5d5.webm",
+      "bytes": 7215524,
+      "sha256": "304b56b2e54f7e5b1ed63b1782662204af1a0ad530e243d10a134ffd337d16fa"
+    }
+  ],
+  "artifactAvailability": "Local work/ evidence is ignored by git. PR Engineering regression CI uploads its own screenshots, video, logs and reports as an Actions artifact for the tested SHA; it does not publish the game.",
+  "environmentNotes": [
+    "Chromium 156.0.8078.79 on Linux x64; 1280x720, scale 1, locale zh-CN; difficulty clicks also tested at 1920x1080 and 720x1280.",
+    "Initial video attempt failed because the Playwright ffmpeg bundle was missing. Official bundle downloads were blocked by the environment domain policy. The existing /usr/bin/ffmpeg was used via a temporary Playwright executable link; no policy was changed.",
+    "Service workers are blocked in browser functional tests for deterministic source loading. Service-worker behavior has separate Node coverage.",
+    "Browser import and course fixtures are synthetic test inputs, never game content or official references.",
+    "Headless media decoding and advancing clocks do not measure audible output, physical input latency or iPad Safari."
+  ],
+  "remainingUnverified": [
+    "Same-build official screenshot/recording and original resources are absent; unique platform and settings are not established.",
+    "Folder picker, actual user save migrations, real iPad Safari and every local-format metadata combination have not been exhaustively tested.",
+    "572 remote charts / 1104 unique remote URLs were not downloaded by the local resource audit.",
+    "Official chapters/unlocks, all replay branches and effects, all Tips, exact animation timing, scoring/judgment boundaries and visual matching remain unaccepted."
+  ],
+  "remoteFirstAttempt": "ci-first-run.json"
+}
