@@ -23,5 +23,19 @@
   ],
   "runtimeChanged": false,
   "newDeployment": false,
-  "CI": "Pending exact diagnostic commit; final evidence will be in PR metadata and job artifact."
+  "CI": "A new exact diagnostic commit will recheck the original public URL; no runtime or public-site change.",
+  "CI17": {
+    "run": 43023620387,
+    "nativeJob": 130532681191,
+    "result": "failure at the resource-200-only assertion after AT pixel assertions; whole native job not passed; Message command not executed",
+    "artifact": 13856372035,
+    "artifactBytes": 5491517,
+    "artifactSHA256": "56f3d7a1f7eae4dd9fc01b8f312813d053a34d9eb4a65a2f25d59625d1957dba",
+    "oldReportResponseDetails": "Unavailable in this executor: plugin returned a reusable artifact reference, but local download to the artifact storage host was denied by proxy HTTP403. Not retried or relayed; do not treat 206 as an observed CI17 status."
+  },
+  "rangeDiagnostic": {
+    "reason": "Original PhiTransfer supports valid HTTP206, and SW may return ranges. The old diagnostic incorrectly required only 200.",
+    "correction": "Observe the same original PhiHostedMedia bytes Promise without changing its result, verify complete JSON size and SHA256, require valid and gap-free Content-Range coverage for 206, retain 200 checks for all four textures. Print the complete diagnostic report even on failure.",
+    "localControlledCase": "Actual original bytes served by a normal loopback HTTP206 range handler; full manifest identity and pixel checks passed. Not a measurement of the denied artifact."
+  }
 }
