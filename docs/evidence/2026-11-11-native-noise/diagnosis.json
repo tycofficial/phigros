@@ -1,0 +1,27 @@
+{
+  "scope": "Diagnostic evidence for built-in PGR noise only; no runtime repair is claimed, user playback source remains to be confirmed",
+  "publishedSource": "a399f0445c1a87804d380552c9302f3cd422b900",
+  "validatedRuntimeSource": "a5a1ebc7a82f8890a19f0174c6cc75b2a7a32777",
+  "referenceSource": "cd07039b7f75fb85852d0eec5ff01b72cde4baf1",
+  "versions": [
+    "pages-27",
+    "pages-41"
+  ],
+  "findings": [
+    "Native parsing, resource preparation, timeline, renderer and overlay source sections are unchanged between these published versions.",
+    "Built-in Leave All Behind EZ/HD/IN source charts contain no blockAreaList. AT contains 27; first appears/enables at 46.4s. This describes repository content, not an official-game rule assertion.",
+    "Both reference and current AT at 46.8s can legitimately produce a transparent overlay. At 50/54/60s both have substantial visible noise pixels; the images confirm the red native effect.",
+    "Two other current real PGR cases (Message IN 142 areas, ハテ AT 14355 areas) initialize and produce visible overlay pixels.",
+    "The first 30s AT wait was shorter than its authored first appearance; the earlier probe timeout was a diagnostic timing error, not a product regression. Natural playback now samples up to 60s, without seeking or changing game state.",
+    "Initial hidden search navigation and formal expected-version parsing assumptions were corrected in diagnostic code only. Original failed records remain in local work evidence.",
+    "No evidence yet establishes a global disappearance on the published URL or the actual user device. The new job tests the original URL using real UI, normal 1x playback, original assets and actual GPU overlay pixels."
+  ],
+  "limitations": [
+    "Software WebGL; physical user GPU/browser/device and a possibly different imported chart remain unverified.",
+    "No official complete-build reference, no 1:1 or percentage claim.",
+    "Known mirror HTTP403 and full-network-scope gates remain; no rejected mirror requests or resource replacement."
+  ],
+  "runtimeChanged": false,
+  "newDeployment": false,
+  "CI": "Pending exact diagnostic commit; final evidence will be in PR metadata and job artifact."
+}

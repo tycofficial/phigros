@@ -13,6 +13,33 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  native-noise:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PHI_NOISE_EXPECTED_RUNTIME: '4.0.1.2-pages-41'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Prepare native-noise browser
+        run: |
+          npm install --prefix "$RUNNER_TEMP/phigros-noise-browser" --no-save --package-lock=false playwright@1.62.1
+          node "$RUNNER_TEMP/phigros-noise-browser/node_modules/playwright/cli.js" install --with-deps chromium
+          export NODE_PATH="$RUNNER_TEMP/phigros-noise-browser/node_modules"
+          node -e "require('node:fs').appendFileSync(process.env.GITHUB_ENV, 'NODE_PATH='+process.env.NODE_PATH+'\nCHROMIUM_PATH='+require('playwright').chromium.executablePath()+'\n')"
+      - name: Verify original-site native noise pixels
+        run: |
+          node scripts/audit-native-noise.cjs https://tycofficial.github.io/phigros/ work/native-noise/leave-at 'Leave All Behind' AT
+          node scripts/audit-native-noise.cjs https://tycofficial.github.io/phigros/ work/native-noise/message-in Message IN
+      - name: Keep native-noise diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-noise-${{ github.sha }}
+          path: work/native-noise/
+          retention-days: 14
   regression:
     runs-on: ubuntu-latest
     timeout-minutes: 20
