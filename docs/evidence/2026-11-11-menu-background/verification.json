@@ -1,0 +1,95 @@
+{
+  "scope": "Repository collection-background URL repair; not noise rendering or official fidelity",
+  "officialReference": null,
+  "officialAcceptance": "blocked: unique official build/settings and complete same-version references absent",
+  "baselineDevelopment": "a881bcbe68176bfc50bbfd9c93698b71f432aa34",
+  "baselinePublished": "a399f0445c1a87804d380552c9302f3cd422b900",
+  "candidateRuntime": "4.0.1.2-pages-42",
+  "localStatus": "passed",
+  "exactCommitCI": "pending; final raw results recorded on existing PR #1",
+  "deployment": "pending; original URL only after exact-commit verification",
+  "cause": "The relative URL token in --ref-menu-image is resolved at its use in css/style.css, producing /css/assets/... instead of /assets/...; reproduced at both / and /phigros/.",
+  "fix": "Resolve the original thumbnail against document.baseURI before writing the CSS custom property; invalidate only the code cache with pages-42. No replacement asset or CSS/layout change.",
+  "originalAsset": {
+    "path": "assets/ui/thumbs/94886c5c89d6efa3.webp",
+    "bytes": 15712,
+    "gitBlob": "60834acd6ddbb7f1a31f6eb5979b5c221b1ff923",
+    "SHA256": "94886c5c89d6efa3ccafa71d2c09f42840fae54ba39ce9cab64c5940075b88a3"
+  },
+  "before": {
+    "realBrowserPaths": 2,
+    "failed": 2,
+    "reason": "Computed CSS URL includes /css/assets/ and actual request returns HTTP404; screenshots show missing cover/background"
+  },
+  "after": {
+    "realBrowserPaths": 2,
+    "passed": 2,
+    "statesPerPath": [
+      "initial collection",
+      "library return to collection",
+      "real SW cached reload to collection"
+    ],
+    "pageErrors": [],
+    "pixelCheck": "Nine unobscured card pixels compared to the original cover image scaled with the actual CSS cover geometry. At least six must differ by <=8 per channel; actual maximum difference was 3. This checks original-image painting, not whole-game fidelity."
+  },
+  "commands": [
+    {
+      "command": "NODE_PATH=<existing Playwright> node tests/menu-background-browser.cjs work/menu-background/before-regression",
+      "exitCode": 1,
+      "expectedFailure": true,
+      "productSource": "original pages-41"
+    },
+    {
+      "command": "NODE_PATH=<existing Playwright> node tests/menu-background-browser.cjs work/menu-background/final",
+      "exitCode": 0
+    },
+    {
+      "command": "node --test tests/*.test.cjs",
+      "exitCode": 0,
+      "tests": 514,
+      "pass": 514,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "command": "node tests/full-flow-browser.cjs http://127.0.0.1:4184 work/menu-background/full-flow",
+      "exitCode": 0,
+      "steps": 15
+    },
+    {
+      "command": "PHI_TEST_SW_PRECLAIM=1 node tests/service-worker-browser.cjs work/menu-background/service-worker",
+      "exitCode": 0,
+      "scenarios": 9
+    },
+    {
+      "command": "node tests/folder-import-browser.cjs http://127.0.0.1:4184 work/menu-background/folder-import",
+      "exitCode": 0,
+      "steps": 5
+    },
+    {
+      "command": "python3 scripts/build-runtime-release.py --output <new empty /tmp directory> --report work/menu-background/runtime-package.json",
+      "exitCode": 0,
+      "files": 1927,
+      "bytes": 999582999,
+      "resourcesRemoved": 0,
+      "resourcesReencoded": 0
+    }
+  ],
+  "sourceSHA256": {
+    "index.html": "3b7de85f0265942e584fd2ae58c5cc3a8de7a9f8d84deba2a463a4ba40a7c60e",
+    "js/app.js": "02b574823ec2a7b14cb042746b9c9ed5ff5540ea9635f4027daf58707125c073",
+    "sw.js": "224b6dbd3f3e449f51008794301fd952e2a8006cfd23fea7329204d87fa938db",
+    "scripts/verify-menu-background.cjs": "0e18e0672273611f701c206ed64a6b9fa672e0bbf5ee424bcefbaf8fda67a4c6",
+    "tests/menu-background-browser.cjs": "939a0b535b3d6f88e83c2d374d3c7c41197aa53d1bdafd0c673a482fb7542d1e",
+    ".github/workflows/engineering-regression.yml": "64937050e7c1b7ddff21562fcf0b43316ce086c2922be0d72749fca7ecbecddc",
+    ".github/workflows/verify-published-runtime.yml": "e14c8e8a0b3af8afc9f8da2ff4e44c39a91869240896122fb36ad92501eb4c90"
+  },
+  "unchangedResourceRoots": [],
+  "limits": [
+    "UI image repair is separate from still-unexplained noise symptoms on the user device/source.",
+    "SW update testing retains the existing pages-32 fixture and synthetic saves; current-background test also covers fresh pages-42 controller/cache reload. Real existing-user update incidence is not measured.",
+    "Complete current main/vision network matrices not run; old whole-bootstrap evidence not reused. Two recorded HTTP403 mirrors not requested.",
+    "Existing native-noise CI job remains explicitly pinned to the prior published pages-41; it is not a candidate pages-42 noise test.",
+    "Cloud-local migration backup is unchanged and excluded. No private local AT17 package is accessed or uploaded."
+  ]
+}

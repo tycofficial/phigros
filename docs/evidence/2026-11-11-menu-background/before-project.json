@@ -1,0 +1,38 @@
+{
+  "scope": "Original collection background URL, bytes and painted pixels; not official fidelity or noise rendering",
+  "base": "http://127.0.0.1:43081/phigros/",
+  "expectedURL": "http://127.0.0.1:43081/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp",
+  "expectedBytes": 15712,
+  "expectedSHA256": "94886c5c89d6efa3ccafa71d2c09f42840fae54ba39ce9cab64c5940075b88a3",
+  "responses": [
+    {
+      "url": "http://127.0.0.1:43081/phigros/css/assets/ui/thumbs/94886c5c89d6efa3.webp",
+      "status": 404,
+      "fromServiceWorker": true,
+      "bytes": 0,
+      "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "steps": [
+    {
+      "name": "initial-collection",
+      "runtime": "4.0.1.2-pages-41",
+      "property": "url(\"./assets/ui/thumbs/94886c5c89d6efa3.webp\")",
+      "backgrounds": [
+        {
+          "selector": "#refCollection",
+          "value": "url(\"http://127.0.0.1:43081/phigros/css/assets/ui/thumbs/94886c5c89d6efa3.webp\")"
+        },
+        {
+          "selector": ".refCollectionCard.main",
+          "value": "url(\"http://127.0.0.1:43081/phigros/css/assets/ui/thumbs/94886c5c89d6efa3.webp\")"
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "startedAt": "2026-11-11T14:47:16.104Z",
+  "status": "failed",
+  "error": "AssertionError [ERR_ASSERTION]: CSS background must resolve from the document base, including its project path\n+ actual - expected\n\n+ 'url(\"http://127.0.0.1:43081/phigros/css/assets/ui/thumbs/94886c5c89d6efa3.webp\")'\n- 'url(\"http://127.0.0.1:43081/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp\")'\n\n    at sample (/workspace/phigros/scripts/verify-menu-background.cjs:20:44)\n    at async verifyMenuBackground (/workspace/phigros/scripts/verify-menu-background.cjs:35:122)\n    at async /workspace/phigros/tests/menu-background-browser.cjs:10:117",
+  "finishedAt": "2026-11-11T14:47:17.310Z"
+}

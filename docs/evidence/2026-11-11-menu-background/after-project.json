@@ -1,0 +1,558 @@
+{
+  "scope": "Original collection background URL, bytes and painted pixels; not official fidelity or noise rendering",
+  "base": "http://127.0.0.1:43781/phigros/",
+  "expectedURL": "http://127.0.0.1:43781/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp",
+  "expectedBytes": 15712,
+  "expectedSHA256": "94886c5c89d6efa3ccafa71d2c09f42840fae54ba39ce9cab64c5940075b88a3",
+  "responses": [
+    {
+      "url": "http://127.0.0.1:43781/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp",
+      "status": 200,
+      "fromServiceWorker": true,
+      "bytes": 15712,
+      "SHA256": "94886c5c89d6efa3ccafa71d2c09f42840fae54ba39ce9cab64c5940075b88a3"
+    },
+    {
+      "url": "http://127.0.0.1:43781/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp",
+      "status": 200,
+      "fromServiceWorker": true,
+      "bytes": 15712,
+      "SHA256": "94886c5c89d6efa3ccafa71d2c09f42840fae54ba39ce9cab64c5940075b88a3"
+    }
+  ],
+  "steps": [
+    {
+      "name": "initial-collection",
+      "runtime": "4.0.1.2-pages-42",
+      "property": "url(\"http://127.0.0.1:43781/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp\")",
+      "backgrounds": [
+        {
+          "selector": "#refCollection",
+          "value": "url(\"http://127.0.0.1:43781/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp\")"
+        },
+        {
+          "selector": ".refCollectionCard.main",
+          "value": "url(\"http://127.0.0.1:43781/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp\")"
+        }
+      ],
+      "pixels": {
+        "width": 512,
+        "height": 270,
+        "samples": [
+          {
+            "x": 282,
+            "y": 302,
+            "actual": [
+              23,
+              48,
+              90,
+              255
+            ],
+            "expected": [
+              23,
+              48,
+              90,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 282,
+            "y": 336,
+            "actual": [
+              32,
+              55,
+              98,
+              255
+            ],
+            "expected": [
+              32,
+              55,
+              98,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 282,
+            "y": 369,
+            "actual": [
+              17,
+              42,
+              87,
+              255
+            ],
+            "expected": [
+              17,
+              42,
+              87,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 364,
+            "y": 302,
+            "actual": [
+              239,
+              234,
+              228,
+              255
+            ],
+            "expected": [
+              237,
+              233,
+              229,
+              255
+            ],
+            "maxDifference": 2
+          },
+          {
+            "x": 364,
+            "y": 336,
+            "actual": [
+              244,
+              231,
+              221,
+              255
+            ],
+            "expected": [
+              244,
+              231,
+              221,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 364,
+            "y": 369,
+            "actual": [
+              201,
+              178,
+              176,
+              255
+            ],
+            "expected": [
+              201,
+              178,
+              176,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 447,
+            "y": 302,
+            "actual": [
+              114,
+              142,
+              167,
+              255
+            ],
+            "expected": [
+              113,
+              140,
+              166,
+              255
+            ],
+            "maxDifference": 2
+          },
+          {
+            "x": 447,
+            "y": 336,
+            "actual": [
+              233,
+              216,
+              216,
+              255
+            ],
+            "expected": [
+              233,
+              216,
+              215,
+              255
+            ],
+            "maxDifference": 1
+          },
+          {
+            "x": 447,
+            "y": 369,
+            "actual": [
+              164,
+              134,
+              124,
+              255
+            ],
+            "expected": [
+              166,
+              137,
+              127,
+              255
+            ],
+            "maxDifference": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "return-to-collection",
+      "runtime": "4.0.1.2-pages-42",
+      "property": "url(\"http://127.0.0.1:43781/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp\")",
+      "backgrounds": [
+        {
+          "selector": "#refCollection",
+          "value": "url(\"http://127.0.0.1:43781/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp\")"
+        },
+        {
+          "selector": ".refCollectionCard.main",
+          "value": "url(\"http://127.0.0.1:43781/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp\")"
+        }
+      ],
+      "pixels": {
+        "width": 512,
+        "height": 270,
+        "samples": [
+          {
+            "x": 282,
+            "y": 302,
+            "actual": [
+              23,
+              48,
+              90,
+              255
+            ],
+            "expected": [
+              23,
+              48,
+              90,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 282,
+            "y": 336,
+            "actual": [
+              32,
+              55,
+              98,
+              255
+            ],
+            "expected": [
+              32,
+              55,
+              98,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 282,
+            "y": 369,
+            "actual": [
+              17,
+              42,
+              87,
+              255
+            ],
+            "expected": [
+              17,
+              42,
+              87,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 364,
+            "y": 302,
+            "actual": [
+              239,
+              234,
+              228,
+              255
+            ],
+            "expected": [
+              237,
+              233,
+              229,
+              255
+            ],
+            "maxDifference": 2
+          },
+          {
+            "x": 364,
+            "y": 336,
+            "actual": [
+              244,
+              231,
+              221,
+              255
+            ],
+            "expected": [
+              244,
+              231,
+              221,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 364,
+            "y": 369,
+            "actual": [
+              201,
+              178,
+              176,
+              255
+            ],
+            "expected": [
+              201,
+              178,
+              176,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 447,
+            "y": 302,
+            "actual": [
+              114,
+              142,
+              167,
+              255
+            ],
+            "expected": [
+              113,
+              140,
+              166,
+              255
+            ],
+            "maxDifference": 2
+          },
+          {
+            "x": 447,
+            "y": 336,
+            "actual": [
+              233,
+              216,
+              216,
+              255
+            ],
+            "expected": [
+              233,
+              216,
+              215,
+              255
+            ],
+            "maxDifference": 1
+          },
+          {
+            "x": 447,
+            "y": 369,
+            "actual": [
+              164,
+              134,
+              124,
+              255
+            ],
+            "expected": [
+              166,
+              137,
+              127,
+              255
+            ],
+            "maxDifference": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "worker-cached-collection",
+      "runtime": "4.0.1.2-pages-42",
+      "property": "url(\"http://127.0.0.1:43781/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp\")",
+      "backgrounds": [
+        {
+          "selector": "#refCollection",
+          "value": "url(\"http://127.0.0.1:43781/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp\")"
+        },
+        {
+          "selector": ".refCollectionCard.main",
+          "value": "url(\"http://127.0.0.1:43781/phigros/assets/ui/thumbs/94886c5c89d6efa3.webp\")"
+        }
+      ],
+      "pixels": {
+        "width": 512,
+        "height": 270,
+        "samples": [
+          {
+            "x": 282,
+            "y": 302,
+            "actual": [
+              23,
+              48,
+              90,
+              255
+            ],
+            "expected": [
+              23,
+              48,
+              90,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 282,
+            "y": 336,
+            "actual": [
+              32,
+              55,
+              98,
+              255
+            ],
+            "expected": [
+              32,
+              55,
+              98,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 282,
+            "y": 369,
+            "actual": [
+              17,
+              42,
+              87,
+              255
+            ],
+            "expected": [
+              17,
+              42,
+              87,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 364,
+            "y": 302,
+            "actual": [
+              239,
+              234,
+              228,
+              255
+            ],
+            "expected": [
+              237,
+              233,
+              229,
+              255
+            ],
+            "maxDifference": 2
+          },
+          {
+            "x": 364,
+            "y": 336,
+            "actual": [
+              244,
+              231,
+              221,
+              255
+            ],
+            "expected": [
+              244,
+              231,
+              221,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 364,
+            "y": 369,
+            "actual": [
+              201,
+              178,
+              176,
+              255
+            ],
+            "expected": [
+              201,
+              178,
+              176,
+              255
+            ],
+            "maxDifference": 0
+          },
+          {
+            "x": 447,
+            "y": 302,
+            "actual": [
+              114,
+              142,
+              167,
+              255
+            ],
+            "expected": [
+              113,
+              140,
+              166,
+              255
+            ],
+            "maxDifference": 2
+          },
+          {
+            "x": 447,
+            "y": 336,
+            "actual": [
+              233,
+              216,
+              216,
+              255
+            ],
+            "expected": [
+              233,
+              216,
+              215,
+              255
+            ],
+            "maxDifference": 1
+          },
+          {
+            "x": 447,
+            "y": 369,
+            "actual": [
+              164,
+              134,
+              124,
+              255
+            ],
+            "expected": [
+              166,
+              137,
+              127,
+              255
+            ],
+            "maxDifference": 3
+          }
+        ]
+      }
+    }
+  ],
+  "pageErrors": [],
+  "startedAt": "2026-11-11T14:50:20.351Z",
+  "worker": {
+    "controller": "http://127.0.0.1:43781/phigros/sw.js",
+    "caches": [
+      "tycphigros-4.0.1.2-stability-2",
+      "tycphigros-app-pages-42"
+    ]
+  },
+  "status": "passed",
+  "finishedAt": "2026-11-11T14:50:25.777Z"
+}

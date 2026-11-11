@@ -87,6 +87,7 @@ jobs:
           python3 -m http.server 4180 --bind 127.0.0.1 > work/server.log 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
+          node tests/menu-background-browser.cjs work/menu-background
           node tests/full-flow-browser.cjs http://127.0.0.1:4180 work/browser-flow
           node tests/audio-transport-browser.cjs http://127.0.0.1:4180 work/audio-transport
           node tests/stream-recovery-browser.cjs http://127.0.0.1:4180 work/stream-recovery
