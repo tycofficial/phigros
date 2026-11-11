@@ -1,0 +1,215 @@
+{
+  "scope": "Actual local UI/engine with recorded runtime; original URL when an HTTPS base is supplied; software WebGL, not physical-device coverage",
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)",
+    "Failed to load resource: the server responded with a status of 404 (File not found)",
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+  ],
+  "httpErrors": [
+    {
+      "url": "http://127.0.0.1:4197/css/assets/ui/thumbs/94886c5c89d6efa3.webp",
+      "status": 404
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4197/assets/meta/native-block-resources.json",
+      "status": 206,
+      "contentRange": "bytes 0-57060/57061",
+      "contentLength": "57061"
+    },
+    {
+      "url": "http://127.0.0.1:4197/assets/ui/cb60d40405b9af2a.png",
+      "status": 200,
+      "contentLength": "82887"
+    },
+    {
+      "url": "http://127.0.0.1:4197/assets/ui/afa450a810b74638.png",
+      "status": 200,
+      "contentLength": "5403"
+    },
+    {
+      "url": "http://127.0.0.1:4197/assets/ui/13c6ef3641945cc1.png",
+      "status": 200,
+      "contentLength": "1074"
+    },
+    {
+      "url": "http://127.0.0.1:4197/assets/ui/bf216f44ac21bf2c.png",
+      "status": 200,
+      "contentLength": "59238"
+    }
+  ],
+  "startedAt": "2026-11-11T13:07:46.955Z",
+  "runtime": "4.0.1.2-pages-41",
+  "url": "http://127.0.0.1:4197/",
+  "browser": "156.0.8078.79",
+  "selected": "Message",
+  "engine": {
+    "name": "Message",
+    "id": "builtin:chapter9-Message.くるぶっこちゃん-in",
+    "tier": "IN",
+    "kind": "pgr",
+    "chartKeys": [
+      "kind",
+      "blockAreas",
+      "formatVersion",
+      "offset",
+      "lines",
+      "noteCount",
+      "eventCount",
+      "rawKind",
+      "modelVersion",
+      "compatibilityReport",
+      "packageMeta"
+    ],
+    "areas": 142,
+    "firstAreas": [
+      {
+        "appearTime": 88.36364,
+        "enableTime": 88.36364,
+        "disableTime": 90,
+        "disappearTime": 90
+      },
+      {
+        "appearTime": 88.36364,
+        "enableTime": 88.36364,
+        "disableTime": 90,
+        "disappearTime": 90
+      },
+      {
+        "appearTime": 88.36364,
+        "enableTime": 88.36364,
+        "disableTime": 90,
+        "disappearTime": 90
+      },
+      {
+        "appearTime": 88.36364,
+        "enableTime": 88.36364,
+        "disableTime": 90,
+        "disappearTime": 90
+      }
+    ],
+    "earliest": 9.818182,
+    "earliestActive": 14.727273,
+    "visibleAtCurrent": 0,
+    "renderer": true,
+    "rendererGL": true,
+    "contextLost": false,
+    "lastRenderTime": 0.22207498348660876,
+    "noiseDataset": {
+      "lowResolution": "0",
+      "hyper120Quality": "1.00",
+      "renderDpr": "1.000",
+      "backingSize": "1280x720",
+      "noiseRenderer": "webgl-native",
+      "noiseSource": "Adai-add/PhiraiAd@a60b49ad",
+      "backgroundRenderer": "transparent-canvas-over-single-static-background",
+      "backgroundState": "baked"
+    },
+    "overlay": {
+      "width": 1280,
+      "height": 720,
+      "display": "block",
+      "opacity": "1",
+      "zIndex": "19"
+    },
+    "time": 0.22493197278911659,
+    "music": 0.22493197278911659,
+    "running": true,
+    "paused": false
+  },
+  "beforePixels": {
+    "time": 0.25685941043083993,
+    "music": 0.25685941043083993,
+    "renderTime": 0.22207498348660876,
+    "clockTime": 0.25685941043083993,
+    "zones": 0,
+    "activeZones": 0,
+    "clockActiveZones": 0,
+    "nontransparentPixels": 0,
+    "coloredPixels": 0,
+    "paused": false,
+    "lastRenderTime": 0.22207498348660876,
+    "geometry": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "samples": [
+    {
+      "target": 15.027273000000001,
+      "time": 15.146655328798186,
+      "music": 15.146655328798186,
+      "renderTime": 15.04715044334083,
+      "clockTime": 15.146655328798186,
+      "zones": 2,
+      "activeZones": 2,
+      "clockActiveZones": 1,
+      "nontransparentPixels": 163923,
+      "coloredPixels": 163923,
+      "paused": false,
+      "lastRenderTime": 15.04715044334083,
+      "geometry": [
+        108,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "activePixels": {
+    "time": 15.146655328798186,
+    "music": 15.146655328798186,
+    "renderTime": 15.04715044334083,
+    "clockTime": 15.146655328798186,
+    "zones": 2,
+    "activeZones": 2,
+    "clockActiveZones": 1,
+    "nontransparentPixels": 163923,
+    "coloredPixels": 163923,
+    "paused": false,
+    "lastRenderTime": 15.04715044334083,
+    "geometry": [
+      108,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "dialog": "关闭",
+  "serviceWorker": {
+    "controller": "http://127.0.0.1:4197/sw.js",
+    "caches": [
+      "tycphigros-app-pages-41",
+      "tycphigros-4.0.1.2-stability-2"
+    ]
+  },
+  "manifestReads": [
+    {
+      "bytes": 57061,
+      "SHA256": "dba291c8823896b5953794d2e6eb57bee815aa5865bfc7240c293ad3be052734"
+    }
+  ],
+  "manifestValidation": {
+    "bytes": 57061,
+    "SHA256": "dba291c8823896b5953794d2e6eb57bee815aa5865bfc7240c293ad3be052734",
+    "ranges": [
+      [
+        0,
+        57060
+      ]
+    ],
+    "completeOriginalBytesVerified": true
+  },
+  "status": "passed",
+  "finishedAt": "2026-11-11T13:08:18.287Z"
+}

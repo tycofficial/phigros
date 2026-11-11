@@ -23,7 +23,7 @@
   ],
   "runtimeChanged": false,
   "newDeployment": false,
-  "CI": "A new exact diagnostic commit will recheck the original public URL; no runtime or public-site change.",
+  "CI": "Await exact next diagnostic SHA; original URL native checks and existing full regression remain enabled.",
   "CI17": {
     "run": 43023620387,
     "nativeJob": 130532681191,
@@ -37,5 +37,18 @@
     "reason": "Original PhiTransfer supports valid HTTP206, and SW may return ranges. The old diagnostic incorrectly required only 200.",
     "correction": "Observe the same original PhiHostedMedia bytes Promise without changing its result, verify complete JSON size and SHA256, require valid and gap-free Content-Range coverage for 206, retain 200 checks for all four textures. Print the complete diagnostic report even on failure.",
     "localControlledCase": "Actual original bytes served by a normal loopback HTTP206 range handler; full manifest identity and pixel checks passed. Not a measurement of the denied artifact."
+  },
+  "CI18": {
+    "run": 43025437010,
+    "nativeJob": 130538855151,
+    "nativeJobResult": "failure; not reported as whole-job pass",
+    "LeaveAllBehindAT": "passed on original public URL, 50/54/60s nontransparent/colored pixels 326638/610461/808967; manifest 206 complete range and full original SHA256 verified",
+    "MessageIN": "162009 colored/nontransparent pixels; assertion used current engine clock 15.2250226757 while the pixels were drawn at renderer.lastTime 15.0740929705. Current active count was zero at the later clock; this is retained as a diagnostic frame-correlation failure."
+  },
+  "frameCorrelationCorrection": {
+    "sourceMeaning": "NativeBlockRenderer.prepare sets lastTime=t+chart.offset and builds geometry for that same authored time. Canvas pixels belong to that rendered frame, not an audio/update time sampled later.",
+    "fix": "Compute visible/active authored intervals purely at renderer.lastTime without mutating the engine timeline. Keep active-area and positive pixel assertions and add a positive active-geometry assertion. Record current-clock activity separately.",
+    "evidence": "message-boundary.json and frame-correlated-message.json",
+    "runtimeChanged": false
   }
 }

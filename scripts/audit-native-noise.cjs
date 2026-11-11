@@ -23,7 +23,17 @@ const base=process.argv[2]||'http://127.0.0.1:4182',out=process.argv[3]||'work/n
   await p.locator('#libraryFocusDifficulty [data-tier="'+tier+'"]').click();r.selected=await p.locator('#libraryFocusTitle').textContent();await p.locator('#libraryFocusPlay').click();
   try{await p.waitForFunction(()=>window.__phiEngine?.running&&!__phiEngine.starting&&__phiEngine.musicCurrentTime()>.2,null,{timeout:60000});}catch(e){r.startError=e.message;}
   r.engine=await p.evaluate(()=>{const e=window.__phiEngine;if(!e)return null;const areas=e.chart.blockAreas||[],renderer=e.nativeBlockRenderer,overlay=e.nativeNoiseOverlay;return {name:e.record.name,id:e.record.id,tier:e.record.meta?.difficultyClass,kind:e.chart.kind,chartKeys:Object.keys(e.chart),areas:areas.length,firstAreas:areas.slice(0,4).map(b=>({appearTime:b.appearTime,enableTime:b.enableTime,disableTime:b.disableTime,disappearTime:b.disappearTime})),earliest:areas.length?Math.min(...areas.map(b=>b.appearTime)):null,earliestActive:areas.length?Math.min(...areas.filter(b=>b.enableTime<b.disableTime).map(b=>b.enableTime)):null,visibleAtCurrent:PhiOfflineNext.modules.LandscapeLayout.zones(e,e.time).length,renderer:!!renderer,rendererGL:!!renderer?.gl,contextLost:renderer?.gl?.isContextLost(),lastRenderTime:renderer?.lastTime,renderError:e.nativeBlockRenderError?.message,noiseDataset:{...e.canvas.dataset},overlay:overlay?{width:overlay.width,height:overlay.height,display:getComputedStyle(overlay).display,opacity:getComputedStyle(overlay).opacity,zIndex:getComputedStyle(overlay).zIndex}:null,time:e.time,music:e.musicCurrentTime(),running:e.running,paused:e.paused};});
-  const pixelState=()=>p.evaluate(()=>{const e=window.__phiEngine,c=e?.nativeNoiseOverlayCtx;if(!e||!c)return null;const data=c.getImageData(0,0,c.canvas.width,c.canvas.height).data;let opaque=0,rgb=0;for(let i=0;i<data.length;i+=4){if(data[i+3])opaque++;if(data[i]||data[i+1]||data[i+2])rgb++;}return {time:e.time,music:e.musicCurrentTime(),zones:PhiOfflineNext.modules.LandscapeLayout.zones(e,e.time).length,activeZones:PhiOfflineNext.modules.LandscapeLayout.zones(e,e.time).filter(z=>z.active).length,nontransparentPixels:opaque,coloredPixels:rgb,renderError:e.nativeBlockRenderError?.message,paused:e.paused,lastRenderTime:e.nativeBlockRenderer?.lastTime,geometry:e.nativeBlockRenderer?Array.from(e.nativeBlockRenderer.geometryArena.counts):null};});
+  const pixelState=()=>p.evaluate(()=>{
+   const e=window.__phiEngine,c=e?.nativeNoiseOverlayCtx;if(!e||!c)return null;
+   const data=c.getImageData(0,0,c.canvas.width,c.canvas.height).data;let opaque=0,rgb=0;
+   for(let i=0;i<data.length;i+=4){if(data[i+3])opaque++;if(data[i]||data[i+1]||data[i+2])rgb++;}
+   // The overlay contains the renderer's last prepared frame, not necessarily
+   // the newest audio/update clock. Correlate authored areas with that frame.
+   const renderTime=e.nativeBlockRenderer?.lastTime,clockTime=e.time+(Number(e.chart.offset)||0),areas=e.chart.blockAreas||[];
+   const visible=areas.filter(b=>b.appearTime<=renderTime&&renderTime<b.disappearTime);
+   const active=visible.filter(b=>b.enableTime<=renderTime&&renderTime<b.disableTime);
+   return {time:e.time,music:e.musicCurrentTime(),renderTime,clockTime,zones:visible.length,activeZones:active.length,clockActiveZones:areas.filter(b=>b.appearTime<=clockTime&&clockTime<b.disappearTime&&b.enableTime<=clockTime&&clockTime<b.disableTime).length,nontransparentPixels:opaque,coloredPixels:rgb,renderError:e.nativeBlockRenderError?.message,paused:e.paused,lastRenderTime:renderTime,geometry:e.nativeBlockRenderer?Array.from(e.nativeBlockRenderer.geometryArena.counts):null};
+  });
   r.beforePixels=await pixelState();
   if(r.engine?.areas){
    r.samples=[];const targets=song==='Leave All Behind'?[46.8,50,54,60]:[r.engine.earliestActive+.3];
@@ -38,7 +48,7 @@ const base=process.argv[2]||'http://127.0.0.1:4182',out=process.argv[3]||'work/n
   r.dialog=await p.locator('#dialog').textContent();await p.screenshot({path:path.join(out,'state.png')});r.serviceWorker=await p.evaluate(async()=>({controller:navigator.serviceWorker?.controller?.scriptURL||null,caches:await caches.keys()}));
   assert(!r.startError);assert.equal(r.engine.kind,'pgr');assert.equal(r.engine.rendererGL,true);assert.equal(r.engine.contextLost,false);assert.equal(r.engine.noiseDataset.noiseRenderer,'webgl-native');assert(r.engine.areas>0);
   const visible=song==='Leave All Behind'?r.samples.filter(x=>x.target>=50):r.samples;
-  assert(visible.length>0);for(const frame of visible){assert(frame.activeZones>0);assert(frame.nontransparentPixels>0);assert(frame.coloredPixels>0);assert(!frame.renderError);assert.equal(frame.paused,false);}
+  assert(visible.length>0);for(const frame of visible){assert(frame.activeZones>0);assert(frame.geometry[0]+frame.geometry[1]>0);assert(frame.nontransparentPixels>0);assert(frame.coloredPixels>0);assert(!frame.renderError);assert.equal(frame.paused,false);}
   const original=fs.readFileSync('assets/meta/native-block-resources.json'),expectedHash=crypto.createHash('sha256').update(original).digest('hex');
   r.manifestReads=await p.evaluate(()=>__phiNoiseManifestReads);assert(r.manifestReads.some(x=>x.bytes===original.length&&x.SHA256===expectedHash),'Assembled native manifest bytes differ');
   const responses=r.requests.filter(q=>new URL(q.url).pathname.endsWith('/native-block-resources.json'));assert(responses.length>0,'No native manifest response observed');const ranges=[];

@@ -1,0 +1,463 @@
+{
+  "run": 43025437010,
+  "job": 130538855151,
+  "jobConclusion": "failure",
+  "reports": [
+    {
+      "scope": "Actual local UI/engine with recorded runtime; original URL when an HTTPS base is supplied; software WebGL, not physical-device coverage",
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 ()",
+        "Failed to load resource: the server responded with a status of 404 ()",
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "httpErrors": [
+        {
+          "url": "https://tycofficial.github.io/phigros/css/assets/ui/thumbs/94886c5c89d6efa3.webp",
+          "status": 404
+        }
+      ],
+      "requests": [
+        {
+          "url": "https://tycofficial.github.io/phigros/assets/opening/theme-low.ogg",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://tycofficial.github.io/phigros/assets/meta/native-block-resources.json",
+          "status": 206,
+          "contentRange": "bytes 0-57060/57061",
+          "contentLength": "57061"
+        },
+        {
+          "url": "https://tycofficial.github.io/phigros/assets/ui/afa450a810b74638.png",
+          "status": 200,
+          "contentLength": "5403"
+        },
+        {
+          "url": "https://tycofficial.github.io/phigros/assets/ui/cb60d40405b9af2a.png",
+          "status": 200,
+          "contentLength": "82887"
+        },
+        {
+          "url": "https://tycofficial.github.io/phigros/assets/ui/13c6ef3641945cc1.png",
+          "status": 200,
+          "contentLength": "1074"
+        },
+        {
+          "url": "https://tycofficial.github.io/phigros/assets/ui/bf216f44ac21bf2c.png",
+          "status": 200,
+          "contentLength": "59238"
+        }
+      ],
+      "startedAt": "2026-11-11T13:02:51.843Z",
+      "runtime": "4.0.1.2-pages-41",
+      "url": "https://tycofficial.github.io/phigros/",
+      "browser": "151.0.7922.34",
+      "selected": "Leave All Behind",
+      "engine": {
+        "name": "Leave All Behind",
+        "id": "builtin:leave-all-behind-at",
+        "tier": "AT",
+        "kind": "pgr",
+        "chartKeys": [
+          "kind",
+          "blockAreas",
+          "formatVersion",
+          "offset",
+          "lines",
+          "noteCount",
+          "eventCount",
+          "rawKind",
+          "modelVersion",
+          "compatibilityReport",
+          "packageMeta"
+        ],
+        "areas": 27,
+        "firstAreas": [
+          {
+            "appearTime": 46.4,
+            "enableTime": 46.4,
+            "disableTime": 70.4,
+            "disappearTime": 70.4
+          },
+          {
+            "appearTime": 46.4,
+            "enableTime": 46.4,
+            "disableTime": 47.4,
+            "disappearTime": 47.4
+          },
+          {
+            "appearTime": 46.4,
+            "enableTime": 46.4,
+            "disableTime": 70.4,
+            "disappearTime": 70.4
+          },
+          {
+            "appearTime": 59.2,
+            "enableTime": 59.2,
+            "disableTime": 63.2,
+            "disappearTime": 63.2
+          }
+        ],
+        "earliest": 46.4,
+        "earliestActive": 46.4,
+        "visibleAtCurrent": 0,
+        "renderer": true,
+        "rendererGL": true,
+        "contextLost": false,
+        "lastRenderTime": 0.22659881316769487,
+        "noiseDataset": {
+          "lowResolution": "0",
+          "hyper120Quality": "1.00",
+          "renderDpr": "1.000",
+          "backingSize": "1280x720",
+          "noiseRenderer": "webgl-native",
+          "noiseSource": "Adai-add/PhiraiAd@a60b49ad",
+          "backgroundRenderer": "transparent-canvas-over-single-static-background",
+          "backgroundState": "baked"
+        },
+        "overlay": {
+          "width": 1280,
+          "height": 720,
+          "display": "block",
+          "opacity": "1",
+          "zIndex": "19"
+        },
+        "time": 0.2365419501133772,
+        "music": 0.2365419501133772,
+        "running": true,
+        "paused": false
+      },
+      "beforePixels": {
+        "time": 0.2858843537414959,
+        "music": 0.2858843537414959,
+        "zones": 0,
+        "activeZones": 0,
+        "nontransparentPixels": 0,
+        "coloredPixels": 0,
+        "paused": false,
+        "lastRenderTime": 0.22659881316769487,
+        "geometry": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "samples": [
+        {
+          "target": 46.8,
+          "time": 47.01604308390022,
+          "music": 47.01604308390022,
+          "zones": 3,
+          "activeZones": 3,
+          "nontransparentPixels": 0,
+          "coloredPixels": 0,
+          "paused": false,
+          "lastRenderTime": 46.82738095238095,
+          "geometry": [
+            54,
+            108,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "target": 50,
+          "time": 50.266836734693875,
+          "music": 50.266836734693875,
+          "zones": 2,
+          "activeZones": 2,
+          "nontransparentPixels": 326638,
+          "coloredPixels": 326638,
+          "paused": false,
+          "lastRenderTime": 50.06656462585034,
+          "geometry": [
+            0,
+            108,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "target": 54,
+          "time": 54.295498866213144,
+          "music": 54.295498866213144,
+          "zones": 2,
+          "activeZones": 2,
+          "nontransparentPixels": 610461,
+          "coloredPixels": 610461,
+          "paused": false,
+          "lastRenderTime": 54.06620181405896,
+          "geometry": [
+            0,
+            108,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "target": 60,
+          "time": 60.24561224489796,
+          "music": 60.24561224489796,
+          "zones": 4,
+          "activeZones": 4,
+          "nontransparentPixels": 808967,
+          "coloredPixels": 808967,
+          "paused": false,
+          "lastRenderTime": 60.01631519274377,
+          "geometry": [
+            54,
+            162,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "activePixels": {
+        "time": 60.24561224489796,
+        "music": 60.24561224489796,
+        "zones": 4,
+        "activeZones": 4,
+        "nontransparentPixels": 808967,
+        "coloredPixels": 808967,
+        "paused": false,
+        "lastRenderTime": 60.01631519274377,
+        "geometry": [
+          54,
+          162,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialog": "关闭",
+      "serviceWorker": {
+        "controller": "https://tycofficial.github.io/phigros/sw.js",
+        "caches": [
+          "tycphigros-4.0.1.2-stability-2",
+          "tycphigros-app-pages-41"
+        ]
+      },
+      "manifestReads": [
+        {
+          "bytes": 57061,
+          "SHA256": "dba291c8823896b5953794d2e6eb57bee815aa5865bfc7240c293ad3be052734"
+        }
+      ],
+      "manifestValidation": {
+        "bytes": 57061,
+        "SHA256": "dba291c8823896b5953794d2e6eb57bee815aa5865bfc7240c293ad3be052734",
+        "ranges": [
+          [
+            0,
+            57060
+          ]
+        ],
+        "completeOriginalBytesVerified": true
+      },
+      "status": "passed"
+    },
+    {
+      "scope": "Actual local UI/engine with recorded runtime; original URL when an HTTPS base is supplied; software WebGL, not physical-device coverage",
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 ()",
+        "Failed to load resource: the server responded with a status of 404 ()",
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "httpErrors": [
+        {
+          "url": "https://tycofficial.github.io/phigros/css/assets/ui/thumbs/94886c5c89d6efa3.webp",
+          "status": 404
+        }
+      ],
+      "requests": [
+        {
+          "url": "https://tycofficial.github.io/phigros/assets/meta/native-block-resources.json",
+          "status": 206,
+          "contentRange": "bytes 0-57060/57061",
+          "contentLength": "57061"
+        },
+        {
+          "url": "https://tycofficial.github.io/phigros/assets/ui/13c6ef3641945cc1.png",
+          "status": 200,
+          "contentLength": "1074"
+        },
+        {
+          "url": "https://tycofficial.github.io/phigros/assets/ui/cb60d40405b9af2a.png",
+          "status": 200,
+          "contentLength": "82887"
+        },
+        {
+          "url": "https://tycofficial.github.io/phigros/assets/ui/afa450a810b74638.png",
+          "status": 200,
+          "contentLength": "5403"
+        },
+        {
+          "url": "https://tycofficial.github.io/phigros/assets/ui/bf216f44ac21bf2c.png",
+          "status": 200,
+          "contentLength": "59238"
+        }
+      ],
+      "startedAt": "2026-11-11T13:04:05.506Z",
+      "runtime": "4.0.1.2-pages-41",
+      "url": "https://tycofficial.github.io/phigros/",
+      "browser": "151.0.7922.34",
+      "selected": "Message",
+      "engine": {
+        "name": "Message",
+        "id": "builtin:chapter9-Message.くるぶっこちゃん-in",
+        "tier": "IN",
+        "kind": "pgr",
+        "chartKeys": [
+          "kind",
+          "blockAreas",
+          "formatVersion",
+          "offset",
+          "lines",
+          "noteCount",
+          "eventCount",
+          "rawKind",
+          "modelVersion",
+          "compatibilityReport",
+          "packageMeta"
+        ],
+        "areas": 142,
+        "firstAreas": [
+          {
+            "appearTime": 88.36364,
+            "enableTime": 88.36364,
+            "disableTime": 90,
+            "disappearTime": 90
+          },
+          {
+            "appearTime": 88.36364,
+            "enableTime": 88.36364,
+            "disableTime": 90,
+            "disappearTime": 90
+          },
+          {
+            "appearTime": 88.36364,
+            "enableTime": 88.36364,
+            "disableTime": 90,
+            "disappearTime": 90
+          },
+          {
+            "appearTime": 88.36364,
+            "enableTime": 88.36364,
+            "disableTime": 90,
+            "disappearTime": 90
+          }
+        ],
+        "earliest": 9.818182,
+        "earliestActive": 14.727273,
+        "visibleAtCurrent": 0,
+        "renderer": true,
+        "rendererGL": true,
+        "contextLost": false,
+        "lastRenderTime": 0.2075950872526106,
+        "noiseDataset": {
+          "lowResolution": "0",
+          "hyper120Quality": "1.00",
+          "renderDpr": "1.000",
+          "backingSize": "1280x720",
+          "noiseRenderer": "webgl-native",
+          "noiseSource": "Adai-add/PhiraiAd@a60b49ad",
+          "backgroundRenderer": "transparent-canvas-over-single-static-background",
+          "backgroundState": "baked"
+        },
+        "overlay": {
+          "width": 1280,
+          "height": 720,
+          "display": "block",
+          "opacity": "1",
+          "zIndex": "19"
+        },
+        "time": 0.21332199546485242,
+        "music": 0.21332199546485242,
+        "running": true,
+        "paused": false
+      },
+      "beforePixels": {
+        "time": 0.2655668934240367,
+        "music": 0.2655668934240367,
+        "zones": 0,
+        "activeZones": 0,
+        "nontransparentPixels": 0,
+        "coloredPixels": 0,
+        "paused": false,
+        "lastRenderTime": 0.2075950872526106,
+        "geometry": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "samples": [
+        {
+          "target": 15.027273000000001,
+          "time": 15.225022675736962,
+          "music": 15.225022675736962,
+          "zones": 0,
+          "activeZones": 0,
+          "nontransparentPixels": 162009,
+          "coloredPixels": 162009,
+          "paused": false,
+          "lastRenderTime": 15.07409297052154,
+          "geometry": [
+            108,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "activePixels": {
+        "time": 15.225022675736962,
+        "music": 15.225022675736962,
+        "zones": 0,
+        "activeZones": 0,
+        "nontransparentPixels": 162009,
+        "coloredPixels": 162009,
+        "paused": false,
+        "lastRenderTime": 15.07409297052154,
+        "geometry": [
+          108,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialog": "关闭",
+      "serviceWorker": {
+        "controller": "https://tycofficial.github.io/phigros/sw.js",
+        "caches": [
+          "tycphigros-4.0.1.2-stability-2",
+          "tycphigros-app-pages-41"
+        ]
+      },
+      "status": "failed",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(frame.activeZones>0)\n\n    at /home/runner/work/phigros/phigros/scripts/audit-native-noise.cjs:41:56"
+    }
+  ],
+  "note": "Leave All Behind AT passed pixel/resource identity checks. Message IN produced nonzero pixels but failed an assertion comparing current clock state to the previous rendered frame. Original failure is retained; no runtime code was changed."
+}
