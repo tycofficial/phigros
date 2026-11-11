@@ -6,6 +6,12 @@
   let cachedBytes = 0;
   let networkSample = null;
   const MAX_CACHE = 12 * 1024 * 1024;
+  function trimDownloads(){
+    for(const [key,item] of downloads){
+      if(cachedBytes<=MAX_CACHE)break;
+      if(item.size&&!item.consumers){cachedBytes-=item.size;downloads.delete(key);}
+    }
+  }
   function url(path) {
     const value = new URL(path, document.baseURI);
     if ((value.origin !== location.origin || !/^https?:$/.test(value.protocol)) && !globalThis.PhiRemoteAssets?.info(value.href)) throw Error('资源必须来自本站或固定在线曲库');
@@ -42,13 +48,16 @@
       item.promise=(globalThis.PhiRemoteAssets?.info(href) ? Promise.resolve({download:(address, options)=>globalThis.PhiRemoteAssets.download(address, options)}) : ensureTransfer().then(()=>PhiTransfer)).then(transfer=>transfer.download(href,{priority,expectedSize,signal:item.controller.signal,
         onProgress:(done,total)=>{for(const listener of current.listeners)listener(done,total);}
       })).then(result=>{
+        // An already fulfilled producer may arrive after its last caller left
+        // and a new task took this URL. Only the current live owner may commit.
+        if(downloads.get(href)!==current)return result;
+        if(current.controller.signal.aborted){downloads.delete(href);return result;}
         const elapsed=(performance.now()-current.started)/1000;
         // Tiny/cache-speed responses cannot establish the route's bandwidth.
         if(result.byteLength>=65536&&elapsed>=.08)
           networkSample={rate:result.byteLength/elapsed,at:performance.now()};
         current.size=result.byteLength;cachedBytes+=current.size;
-        for(const [key,old] of downloads){if(cachedBytes<=MAX_CACHE)break;
-          if(old!==current&&old.size&&!old.consumers){cachedBytes-=old.size;downloads.delete(key);}}
+        trimDownloads();
         return result;
       },error=>{if(downloads.get(href)===current)downloads.delete(href);throw error;});
       downloads.set(href,item);
@@ -57,7 +66,10 @@
     try{return await abortable(item.promise,signal);}
     finally{
       if(onProgress)item.listeners.delete(onProgress);
-      if(--item.consumers===0&&!item.size)item.controller.abort();
+      if(--item.consumers===0){
+        if(!item.size)item.controller.abort();
+        trimDownloads();
+      }
     }
   }
   async function artwork(asset, { onStage, active = () => true, maxStage = 2, fromStage = 0, signal } = {}) {

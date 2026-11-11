@@ -1,12 +1,16 @@
 
 "use strict";
 (async () => {
-  // Older cached HTML can request the new app before it knows about this small
-  // dependency. Load it once so an update cannot strand an existing player.
-  if(!globalThis.PhiPerformance)await new Promise((resolve,reject)=>{
-    const script=document.createElement('script');script.src='./js/performance-policy.js?v=4.0.1.2-pages-27';
-    script.onload=resolve;script.onerror=()=>reject(Error('性能组件加载失败，请刷新页面'));document.head.appendChild(script);
-  });
+  // Cached HTML may load a newer app without newly extracted dependencies.
+  // Resolve these before constructing any UI, for both old and current entries.
+  for(const [name,path] of [['PhiPerformance','performance-policy.js'],['PhiLoadingPresentation','loading-presentation.js']]){
+    if(globalThis[name])continue;
+    await new Promise((resolve,reject)=>{
+      const script=document.createElement('script');script.src='./js/'+path+'?v=4.0.1.2-pages-40';
+      script.onload=()=>globalThis[name]?resolve():reject(Error('组件未初始化：'+path));
+      script.onerror=()=>reject(Error('组件加载失败，请刷新页面：'+path));document.head.appendChild(script);
+    });
+  }
   let phiExportViewport=null;
   const $ = (s) => document.querySelector(s)||phiExportViewport?.document?.querySelector(s)||null;
   const gameplayDocument = () => phiExportViewport?.document||document;
@@ -26,7 +30,7 @@
    * Builder 与独立游戏均从同一份 Runtime 模板生成，避免版本漂移。
    */
   const PHI_VERSIONS = Object.freeze({
-    runtime: "4.0.1.2-pages-27",
+    runtime: "4.0.1.2-pages-40",
     parser: "9.0-native-sus",
     renderEngine: "38.3-safari-caption-baseline",
     buildTimestamp: "2026-11-04T11:27:12Z",
@@ -2216,30 +2220,33 @@
   }
   async function dbPutChartSummary(summary) {
     if (!summary?.id) return summary?.id;
+    if (!isTemporaryStorage()) {
+      await retryPersistentOperation(
+        () => idbWrite("chartIndex", (store) => store.put(summary)),
+        "StorageManager.chartIndex.write",
+      );
+    }
+    // Publish the cached view only once the persistent write has committed.
     librarySummaryCache.set(summary.id, summary);
-    if (isTemporaryStorage()) return summary?.id;
-    return await retryPersistentOperation(
-      () => idbWrite("chartIndex", (store) => store.put(summary)),
-      "StorageManager.chartIndex.write",
-    );
+    return summary.id;
   }
   async function dbPutChart(v) {
-    libraryDirty = true;
+    const summary = chartSummaryFromRecord(v);
     if (isTemporaryStorage()) {
       sessionStore.charts.set(v.id, v);
-      librarySummaryCache.set(v.id, chartSummaryFromRecord(v));
-      return v.id;
+    } else {
+      await retryPersistentOperation(
+        () => idbWriteMany(["charts", "chartIndex"], (transaction) => {
+          transaction.objectStore("charts").put(v);
+          transaction.objectStore("chartIndex").put(summary);
+          return v.id;
+        }),
+        "StorageManager.charts.write",
+      );
     }
-    const summary = chartSummaryFromRecord(v);
     librarySummaryCache.set(v.id, summary);
-    return await retryPersistentOperation(
-      () => idbWriteMany(["charts", "chartIndex"], (transaction) => {
-        transaction.objectStore("charts").put(v);
-        transaction.objectStore("chartIndex").put(summary);
-        return v.id;
-      }),
-      "StorageManager.charts.write",
-    );
+    libraryDirty = true;
+    return v.id;
   }
   async function dbPutChartsAtomically(records) {
     const unique = [...new Map((records || []).filter((record) => record?.id).map((record) => [record.id, record])).values()];
@@ -2257,17 +2264,18 @@
     return unique.length;
   }
   async function dbDeleteChart(id) {
+    if (!isTemporaryStorage()) {
+      await retryPersistentOperation(
+        () => idbWriteMany(["charts", "chartIndex"], (transaction) => {
+          transaction.objectStore("charts").delete(id);
+          transaction.objectStore("chartIndex").delete(id);
+        }),
+        "StorageManager.charts.delete",
+      );
+    }
     sessionStore.charts.delete(id);
     librarySummaryCache.delete(id);
     libraryDirty = true;
-    if (isTemporaryStorage()) return;
-    return await retryPersistentOperation(
-      () => idbWriteMany(["charts", "chartIndex"], (transaction) => {
-        transaction.objectStore("charts").delete(id);
-        transaction.objectStore("chartIndex").delete(id);
-      }),
-      "StorageManager.charts.delete",
-    );
   }
   async function dbGetSetting(k) {
     if (isTemporaryStorage()) return sessionStore.settings.get(k);
@@ -6135,6 +6143,42 @@ function withTimeout(promise, ms, message = "操作超时") {
   const builtinAssetBlobCache = new PhiPerformance.ResourceCache(24*1024*1024,32);
   // Static hosting: load only resources from this site's own origin.
   const phiHostedBundleCache = new PhiPerformance.ResourceCache(12*1024*1024,32);
+  const builtinPreparationRequests = new WeakMap();
+  function prepareBuiltinResource(cache,key,signal,load,weight){
+    if(signal?.aborted)return Promise.reject(new DOMException('资源准备已取消','AbortError'));
+    if(cache.has(key))return Promise.resolve(cache.get(key));
+    let requests=builtinPreparationRequests.get(cache);
+    if(!requests){requests=new Map();builtinPreparationRequests.set(cache,requests);}
+    let request=requests.get(key);
+    if(!request||request.controller.signal.aborted){
+      request={controller:new AbortController(),consumers:0,settled:false,promise:null};
+      requests.set(key,request);
+      request.promise=Promise.resolve().then(()=>load(request.controller.signal)).then(value=>{
+        request.settled=true;
+        if(requests.get(key)===request&&!request.controller.signal.aborted){
+          const size=weight(value);cache.set(key,value);cache.setWeight(key,size);
+        }
+        return value;
+      },error=>{request.settled=true;throw error;}).finally(()=>{
+        if(requests.get(key)===request)requests.delete(key);
+      });
+    }
+    request.consumers++;
+    return new Promise((resolve,reject)=>{
+      let finished=false;
+      const finish=(success,value)=>{
+        if(finished)return;finished=true;signal?.removeEventListener('abort',abort);
+        if(--request.consumers===0&&!request.settled){
+          request.controller.abort();if(requests.get(key)===request)requests.delete(key);
+        }
+        if(success)resolve(value);else reject(value);
+      };
+      const abort=()=>finish(false,new DOMException('资源准备已取消','AbortError'));
+      signal?.addEventListener('abort',abort,{once:true});
+      request.promise.then(value=>finish(true,value),error=>finish(false,error));
+      if(signal?.aborted)abort();
+    });
+  }
   async function phiHostedBytes(relativePath, {signal} = {}) {
     if (signal?.aborted) throw new DOMException('资源读取已取消', 'AbortError');
     const url = new URL(relativePath, document.baseURI);
@@ -6236,8 +6280,7 @@ function withTimeout(promise, ms, message = "操作超时") {
   }
   async function materializeBuiltinAsset(assetId, name = "", {signal} = {}) {
     const key = String(assetId);
-    if (builtinAssetBlobCache.has(key)) return builtinAssetBlobCache.get(key);
-    const pending = (async () => {
+    return prepareBuiltinResource(builtinAssetBlobCache,key,signal,async signal=>{
       const spec = BUILTIN_ASSET_MAP.get(key);
       if (!spec) throw new Error(`内置去重资源索引不存在：${key}`);
       let workerUnavailable=false;
@@ -6271,14 +6314,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         console.warn("内置资源尺寸校验不一致", key, blob.size, spec.usize);
       if (spec.offset == null) phiHostedBundleCache.delete(new URL(spec.url, document.baseURI).href);
       return blob;
-    })();
-    builtinAssetBlobCache.set(key, pending);
-    try {
-      const blob=await pending;builtinAssetBlobCache.setWeight(key,blob.size);return blob;
-    } catch (e) {
-      builtinAssetBlobCache.delete(key);
-      throw e;
-    }
+    },blob=>blob.size);
   }
   async function materializePackedFiles(list) {
     const out = [];
@@ -6360,8 +6396,7 @@ function withTimeout(promise, ms, message = "操作超时") {
   const builtinLoadPromises = new Map();
   const builtinStreamingRecords = new PhiPerformance.ResourceCache(8*1024*1024,6);
   async function materializeStreamingBuiltinPack(entry, {signal} = {}) {
-    if (builtinStreamingRecords.has(entry.id)) return builtinStreamingRecords.get(entry.id);
-    const pending = (async () => {
+    return prepareBuiltinResource(builtinStreamingRecords,entry.id,signal,async signal=>{
       const chartFile=entry.files.find(file=>file.name===entry.meta?.chart),
         audioFile=entry.files.find(file=>file.name===entry.meta?.music),
         artFile=entry.files.find(file=>file.name===entry.meta?.illustration),
@@ -6376,9 +6411,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         audioBlob:null,audioName:audioFile.name,streamAudioURL:stream.url,streamSpec:stream,
         bgBlob,bgName:artFile?.name||'',artworkAsset:artFile?.asset,assets:[],supplementalFiles:[],
         lineTextureSpecs:[],extraText:'',duration:stream.duration,notes:entry.notes,lines:entry.lines,importedAt:0};
-    })();
-    builtinStreamingRecords.set(entry.id,pending);
-    try { const record=await pending;builtinStreamingRecords.setWeight(entry.id,record.chartText.length*2+(record.bgBlob?.size||0));return record; } catch(error) { builtinStreamingRecords.delete(entry.id); throw error; }
+    },record=>record.chartText.length*2+(record.bgBlob?.size||0));
   }
   async function materializeBuiltinPack(entry, options = null) {
     if(options?.streaming && globalThis.PhiHostedMedia && Array.isArray(entry.files))return materializeStreamingBuiltinPack(entry,options);
@@ -6581,69 +6614,29 @@ function withTimeout(promise, ms, message = "操作超时") {
       .replace(/\s+\[(?:EZ|HD|IN|AT|SP)\]$/i, "")
       .trim();
   }
-  let loadingArtworkURL = "", referenceLoadingAt=0, songLoadToken=0, songLoadStream=null;
+  // Loading view owns its DOM, artwork URLs and timing; the loader retains cancellation and media ownership.
+  let songLoadToken=0, songLoadStream=null, loadingPresentation=null;
   function assertSongLoad(token){if(token!==songLoadToken)throw new DOMException('已返回选歌','AbortError');}
-  function setLoadingStatus(text){const node=$('#loadingProgress');if(node)node.textContent=text;}
-  function clearLoadingArtwork() {
-    if (loadingArtworkURL) { try { URL.revokeObjectURL(loadingArtworkURL); } catch {} }
-    loadingArtworkURL = "";
-    for (const id of ["#loadingBackdrop", "#loadingArtwork"]) { const el=$(id); if (el) el.style.backgroundImage=""; }
+  function loadingViewController(){
+    return loadingPresentation ||= PhiLoadingPresentation.create({
+      lookup:$,difficultyInfoFor,cleanSongName:cleanGameplaySongName,applyLengthClass,
+      Blob,URL,now:()=>performance.now(),frame:requestAnimationFrame,sleep,
+      reducedMotion:()=>matchMedia('(prefers-reduced-motion: reduce)').matches,
+      assertCurrent:assertSongLoad
+    });
   }
-  function setLoadingArtwork(blob) {
-    clearLoadingArtwork();
-    if (!(blob instanceof Blob)) return;
-    loadingArtworkURL = URL.createObjectURL(blob);
-    const image = `url("${loadingArtworkURL}")`;
-    $("#loadingBackdrop").style.backgroundImage = image;
-    $("#loadingArtwork").style.backgroundImage = image;
-  }
-  function updateLoadingPresentation(record, fallbackBlob = null) {
-    const info = difficultyInfoFor(record), m = record?.meta || {};
-    const loadingName = cleanGameplaySongName(record?.name || m.name || "未命名曲目");
-    $("#loadingSongTitle").textContent = loadingName;
-    applyLengthClass($("#loadingSongTitle"), loadingName);
-    $("#loadingLevel").textContent = info.level >= 0 ? String(info.level) : "?";
-    $("#loadingLevel").dataset.tier=info.tier;
-    $("#loadingTitleComposer").textContent=String(m.composer||m.artist||"");
-    $("#loadingIllustrator").textContent=String(m.illustrator||"");
-    $("#loadingComposer").textContent = String(m.composer || m.artist || "");
-    $("#loadingCharter").textContent = String(m.charter || m.chartDesigner || "");
-    const blob = record?.bgBlob instanceof Blob ? record.bgBlob : fallbackBlob;
-    if (blob instanceof Blob) setLoadingArtwork(blob);
-  }
-  async function beginLoadingPresentation(record, fallbackBlob = null) {
-    const view = $("#loadingView"), library = $("#libraryView");
+  function setLoadingStatus(text){loadingViewController().setStatus(text);}
+  function clearLoadingArtwork(){loadingViewController().clearArtwork();}
+  function setLoadingArtwork(blob){loadingViewController().setArtwork(blob);}
+  function updateLoadingPresentation(record,fallbackBlob=null){loadingViewController().update(record,fallbackBlob);}
+  async function beginLoadingPresentation(record,fallbackBlob=null){
     clearTimeout(focusedArtworkTimer);focusedArtworkAbort?.abort();focusedArtworkGeneration++;
-    referenceLoadingAt=performance.now();
-    updateLoadingPresentation(record, fallbackBlob);
-    view.classList.remove("hidden", "loadingExit");
-    view.classList.add("loadingEnter");
-    library?.classList.add("libraryLeavingForLoad");
-    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-    setLoadingStatus('正在准备谱面…');
+    await loadingViewController().begin(record,fallbackBlob);
   }
-  async function finishLoadingPresentation(token=songLoadToken) {
-    const view = $("#loadingView");
-    if (!view || view.classList.contains("hidden")) return;
-    await sleep(Math.max(0,850-(performance.now()-referenceLoadingAt)));
-    assertSongLoad(token);
-    view.classList.remove("loadingEnter");
-    view.classList.add("loadingExit");
-    // Reference keeps the blurred loading background briefly after the card has left.
-    await sleep(matchMedia('(prefers-reduced-motion: reduce)').matches?20:300);
-    assertSongLoad(token);
-    view.classList.add("hidden");
-    view.classList.remove("loadingExit");
-    $("#libraryView")?.classList.remove("libraryLeavingForLoad");
-    clearLoadingArtwork();
-  }
-  function cancelLoadingPresentation() {
+  async function finishLoadingPresentation(token=songLoadToken){await loadingViewController().finish(token);}
+  function cancelLoadingPresentation(){
     Engine._primedMusicElement?.pause();Engine._primedMusicElement=null;
-    const view=$("#loadingView");
-    view?.classList.add("hidden");
-    view?.classList.remove("loadingEnter","loadingExit");
-    $("#libraryView")?.classList.remove("libraryLeavingForLoad");
-    clearLoadingArtwork();
+    loadingViewController().cancel();
   }
 
   let libraryFocusCard = null,
@@ -8977,6 +8970,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     static _hitOut = null;
     static _hitMixer = null;
     static _hitMixerPromise = null;
+    static _hitMixerPendingContext = null;
     static _hitMixerSamples = [];
     static sharedAudioContext() {
       if (this._ac && this._ac.state !== "closed") return this._ac;
@@ -8992,6 +8986,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       this._hitOut = null;
       this._hitMixer = null;
       this._hitMixerPromise = null;
+      this._hitMixerPendingContext = null;
       this._hitMixerSamples = [];
       this._hitVolume = -1;
       if (old && old.state !== "closed") {
@@ -9033,19 +9028,31 @@ function withTimeout(promise, ms, message = "操作超时") {
       const ac = this.sharedAudioContext();
       if (!ac?.audioWorklet?.addModule || typeof AudioWorkletNode !== "function") return null;
       if (!this._hitMixer || this._hitMixer.context !== ac) {
-        if (!this._hitMixerPromise) {
-          this._hitMixerPromise = PhiHitAudioMixer.create(ac, this.hitSoundOutput())
-            .then((mixer) => (this._hitMixer = mixer))
+        if (!this._hitMixerPromise || this._hitMixerPendingContext !== ac) {
+          const owns = () => this._ac === ac && this._hitMixerPromise === pending;
+          const pending = PhiHitAudioMixer.create(ac, this.hitSoundOutput())
+            .then((mixer) => {
+              if (!owns()) { mixer?.destroy?.(); return null; }
+              return (this._hitMixer = mixer);
+            })
             .catch((error) => {
-              Diagnostics.warn("AudioEngine.worklet", error?.message || String(error), { fallback: "AudioBufferSourceNode" });
+              if (owns()) Diagnostics.warn("AudioEngine.worklet", error?.message || String(error), { fallback: "AudioBufferSourceNode" });
               return null;
             })
-            .finally(() => { this._hitMixerPromise = null; });
+            .finally(() => {
+              if (this._hitMixerPromise === pending) {
+                this._hitMixerPromise = null;
+                this._hitMixerPendingContext = null;
+              }
+            });
+          this._hitMixerPromise = pending;
+          this._hitMixerPendingContext = ac;
         }
         await this._hitMixerPromise;
       }
+      if (this._ac !== ac) return null;
       const mixer = this._hitMixer;
-      if (!mixer) return null;
+      if (!mixer || mixer.context !== ac) return null;
       const unique = new Set();
       for (const buffer of Object.values(pack?.sounds || {})) if (buffer) unique.add(buffer);
       if (customHitSounds?.values)
@@ -9590,15 +9597,24 @@ function withTimeout(promise, ms, message = "操作超时") {
       }
       return this.audio;
     }
+    cancelStreamRecovery(){
+      const cancellation=this.streamRecoveryAbort;
+      this.streamRecoveryAbort=null;this.streamRecoveryPending=false;this.streamBuffering=false;
+      if(engine===this)$('#streamBufferStatus')?.classList.add('hidden');
+      cancellation?.abort();
+    }
     async recoverStreamBuffer(){
       if(!this.streamSession||!this.running||this.paused||this.starting||this.resumePending||this.streamRecoveryPending||this.musicDuration()-this.musicCurrentTime()<.3)return;
       if(this.audio.readyState>=3||PhiHostedMedia.bufferedAhead(this.audio)>.25)return;
       const session=this.streamSession,token=this.transitionToken,status=$('#streamBufferStatus'),cancellation=new AbortController();
-      const active=()=>this.running&&!this.paused&&!this.starting&&!this.resumePending&&this.transitionToken===token;
+      const active=()=>this.streamRecoveryAbort===cancellation&&!cancellation.signal.aborted&&this.streamSession===session&&this.running&&!this.paused&&!this.starting&&!this.resumePending&&this.transitionToken===token;
+      const progress=state=>{if(active()&&status)status.textContent=`正在缓冲音乐… ${state.ahead.toFixed(1)} 秒`;};
       this.streamRecoveryPending=true;this.streamRecoveryAbort=cancellation;
       let began=performance.now(),recovered=false;
       const pauses=this.inputClockPauses||=[],pauseInterval={start:began,end:Infinity};
       pauses.push(pauseInterval);if(pauses.length>64)pauses.shift();
+      const closeInterval=()=>{if(pauseInterval.end===Infinity)pauseInterval.end=performance.now();};
+      cancellation.signal.addEventListener('abort',closeInterval,{once:true});
       this.streamBuffering=true;this.cancelLoop();this.syncClock(true);
       if(status){status.textContent='音乐缓冲中（谱面同步暂停）';status.classList.remove('hidden');}
       try{
@@ -9608,14 +9624,14 @@ function withTimeout(promise, ms, message = "操作超时") {
         if(!active()||document.hidden||this.audio.readyState>=3||PhiHostedMedia.bufferedAhead(this.audio)>.25)return;
         this.pauseMusic();this.syncClock(true);this.draw(this.time);
         if(status){status.textContent='正在缓冲音乐…';status.classList.remove('hidden');}
-        session.onProgress=state=>{if(active()&&status)status.textContent=`正在缓冲音乐… ${state.ahead.toFixed(1)} 秒`;};
+        session.onProgress=progress;
         this.streamStalls=(this.streamStalls||0)+1;
         await session.wait(Math.min(12,4+this.streamStalls*2),{signal:cancellation.signal});
         if(!active()||document.hidden)return;
         // Keep the same media position and all live contacts. In particular this
         // must not use manual pause/resume, which clears fingers and seeks again.
         await withTimeout(this.audio.play(),5000,'音乐恢复播放未响应');
-        if(!active()||document.hidden){if(this.paused||!this.running)this.audio.pause();return;}
+        if(!active()||document.hidden)return;
         this.rebaseBufferedInput(began,performance.now());recovered=true;
         this.syncClock(true);this.visualTime=NaN;this.lastFramePerf=0;
       }catch(error){
@@ -9623,13 +9639,17 @@ function withTimeout(promise, ms, message = "操作超时") {
           this.pause('buffering-error');toast(error.message,true,6500);
         }
       }finally{
-        pauseInterval.end=performance.now();
+        closeInterval();cancellation.signal.removeEventListener('abort',closeInterval);
         if(!recovered&&active()){
           this.rebaseBufferedInput(began,performance.now());this.syncClock(true);this.visualTime=NaN;this.lastFramePerf=0;
         }
-        session.onProgress=null;this.streamRecoveryPending=false;this.streamBuffering=false;this.streamRecoveryAbort=null;
-        if(engine===this&&status)status.classList.add('hidden');
-        if(active()&&!document.hidden)this.scheduleLoop();
+        if(session.onProgress===progress)session.onProgress=null;
+        if(this.streamRecoveryAbort===cancellation){
+          const resumeLoop=active()&&!document.hidden;
+          this.streamRecoveryPending=false;this.streamBuffering=false;this.streamRecoveryAbort=null;
+          if(engine===this&&status)status.classList.add('hidden');
+          if(resumeLoop)this.scheduleLoop();
+        }
       }
     }
     rebaseBufferedInput(began,now){
@@ -9709,25 +9729,35 @@ function withTimeout(promise, ms, message = "操作超时") {
       return g;
     }
     async startMusic(offset = 0) {
+      // Audio activation and stream readiness can outlive pause, retry or exit.
+      // Only the transport's original transition may touch the shared audio.
+      const transition = this.transitionToken,
+        active = () => transition === this.transitionToken && this.running;
+      if (!active()) return;
+      this.finishAudioWake();
       if (!this.musicUsingWebAudio) {
         this.ensureMediaAudioSource();
         if(this.streamSession){
           try{
             await Engine.ensureAudioContextRunning(1600,false);
+            if (!active()) return;
             if(!this.mediaMusicSource){this.mediaMusicSource=Engine.sharedAudioContext().createMediaElementSource(this.audio);this.mediaMusicSource.connect(this.ensureMusicGain());}
           }catch(error){Diagnostics.warn('AudioEngine.stream',error.message);}
         }
+        if (!active()) return;
         try {
           const position=clamp(offset,0,this.musicDuration());
           if(Math.abs(this.audio.currentTime-position)>.025)this.audio.currentTime=position;
         } catch (error) { Diagnostics.warn("Runtime.recoverable", error?.message || String(error)); }
         if(this.streamSession)await this.streamSession.wait();
+        if (!active()) return;
         await withTimeout(this.audio.play(),5000,'Safari 音乐播放未响应');
         return;
       }
       let ac;
       try{ac=await Engine.ensureAudioContextRunning(1600,false);}
-      catch(error){this.musicUsingWebAudio=false;return this.startMusic(offset);}
+      catch(error){if(!active())return;this.musicUsingWebAudio=false;return this.startMusic(offset);}
+      if (!active()) return;
       this.audio.pause();this.audio.loop=false;
       this.cancelAutoplayAudio();
       if (this.musicSource) {
@@ -9762,13 +9792,14 @@ function withTimeout(promise, ms, message = "操作超时") {
         // An actually stalled context after start gets an automatic media retry.
         // No pre-play clock gate and no extra user-facing activation control.
         const at=this.musicOffset;this.pauseMusic();this.musicUsingWebAudio=false;
-        this.startMusic(at).then(()=>this.syncClock(true)).catch(error=>{this.pause('music-error');toast('音乐播放失败：'+error.message,true,7000);});
+        this.startMusic(at).then(()=>{if(active())this.syncClock(true);}).catch(error=>{if(active()){this.pause('music-error');toast('音乐播放失败：'+error.message,true,7000);}});
       },650);
       this.prepareAutoplayScheduler(offset - this.chart.offset);
       this.prepareAutoJudge(offset - this.chart.offset);
       if (this.autoplay) this.startAudioPump();
     }
     pauseMusic() {
+      this.finishAudioWake();
       this.stopAudioPump();
       if (!this.musicUsingWebAudio) {
         this.audio.pause();
@@ -9786,6 +9817,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.cancelAutoplayAudio();
     }
     stopMusic(reset = false) {
+      this.finishAudioWake();
       clearTimeout(this.audioStartWatchdog);
       this.stopAudioPump();
       if (!this.musicUsingWebAudio) {
@@ -10876,6 +10908,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       if (token !== this.transitionToken || !this.running) return;
       try {
         await this.ensureAudioSessionReady(this.audioWakePromise);
+        if (token !== this.transitionToken || !this.running) return;
         this.audioWakePromise = null;
         if(this.chart.kind!=="pjsk"){
           this.prepareFrame(0);
@@ -10886,6 +10919,7 @@ function withTimeout(promise, ms, message = "操作超时") {
         }
         await this.startMusic(0);
       } catch (e) {
+        if (token !== this.transitionToken || !this.running) return;
         if (token === this.transitionToken) {
           this.starting = false;
           this.paused = true;
@@ -10894,7 +10928,6 @@ function withTimeout(promise, ms, message = "操作超时") {
         throw e;
       }
       if (token !== this.transitionToken || !this.running) {
-        this.pauseMusic();
         return;
       }
       this.paused = false;
@@ -10916,7 +10949,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.scheduleLoop();
     }
     reset() {
-      this.streamRecoveryAbort?.abort();this.streamBuffering=false;
+      this.cancelStreamRecovery();
       this.clearChapter8CommunityPresentation();
       this.resetLumiInSongPresentation();
       this.chapter8StageRenderer?.dispose();this.chapter8StageRenderer=null;
@@ -10996,7 +11029,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       if(this.visionStutterSource){try{this.visionStutterSource.stop();this.visionStutterSource.disconnect();}catch{}this.visionStutterSource=null;}
       this.hostedArtworkAbort?.abort();
       this.clearChapter8CommunityPresentation();
-      this.streamRecoveryAbort?.abort();this.streamBuffering=false;$('#streamBufferStatus')?.classList.add('hidden');
+      this.cancelStreamRecovery();
       clearTimeout(this.referenceFinishTimer);this.referenceFinishing=false;
       $("#gameView")?.classList.remove("phiStageIntro","phiStageOutro");
       keyboardInput?.clear("engine.stop");
@@ -11088,36 +11121,58 @@ function withTimeout(promise, ms, message = "操作超时") {
       this.foregroundFxCtx = null;
       this.foregroundFxVisible = false;
     }
+    finishAudioWake(prime = this.audioGesturePrime, restorePosition = true) {
+      if (!prime || this.audioGesturePrime !== prime) return;
+      this.audioGesturePrime = null;
+      if (restorePosition) {
+        prime.audio.pause();
+        try { prime.audio.currentTime = prime.time; } catch {}
+      }
+      prime.audio.muted = prime.muted;
+    }
     beginAudioWakeFromGesture() {
       // This method is called before the first await in a click handler. Safari
       // therefore receives the AudioContext.resume() request while user activation
       // is still valid, rather than after the 3-2-1 countdown.
-      const preservedTime = Number(this.audio.currentTime) || 0,
-        preservedMuted = !!this.audio.muted;
-      let mediaPrime = Promise.resolve();
+      this.finishAudioWake();
+      let mediaPrime = Promise.resolve(), prime = null;
       if (!this.musicUsingWebAudio) {
+        prime = { audio: this.audio, time: Number(this.audio.currentTime) || 0, muted: !!this.audio.muted };
+        this.audioGesturePrime = prime;
         try {
           this.audio.muted = true;
           const playResult = this.audio.play();
-          mediaPrime = Promise.resolve(playResult).then(() => {
-            this.audio.pause();
-            try { this.audio.currentTime = preservedTime; } catch {}
-            this.audio.muted = preservedMuted;
-          }, () => { this.audio.muted = preservedMuted; });
-        } catch { this.audio.muted = preservedMuted; }
+          mediaPrime = Promise.resolve(playResult).then(
+            () => this.finishAudioWake(prime),
+            () => this.finishAudioWake(prime, false),
+          );
+        } catch { this.finishAudioWake(prime, false); }
       }
       const contextPrime = Engine.ensureAudioContextRunning(1400, true);
-      return Promise.allSettled([contextPrime, mediaPrime]);
+      const result = Promise.allSettled([contextPrime, mediaPrime]);
+      if (prime) prime.promise = result;
+      return result;
     }
     async ensureAudioSessionReady(primePromise = null) {
-      if(primePromise)await withTimeout(primePromise,2200,'音频唤醒超时').catch(()=>null);
+      const token = this.transitionToken,
+        active = () => token === this.transitionToken && this.running;
+      if (primePromise) {
+        try { await withTimeout(primePromise, 2200, '音频唤醒超时'); } catch {}
+        finally {
+          const prime = this.audioGesturePrime;
+          if (prime?.promise === primePromise) this.finishAudioWake(prime);
+        }
+      }
+      if (!active()) return false;
       try{
         await Engine.ensureAudioContextRunning(1600,false);
+        if (!active()) return false;
         // Do not test currentTime before scheduling music. Safari may not render
         // an idle graph yet; that was a false failure and caused the old loop.
         await withTimeout(Engine.ensureHitMixer(this.pack,this.customHitSounds),6000,'判定音准备超时');
-        return true;
+        return active();
       }catch(error){
+        if (!active()) return false;
         Diagnostics.warn('AudioEngine.session',error.message,{playback:'gesture-primed media element'});
         this.stopMusic(false);this.musicUsingWebAudio=false;
         this.ensureMediaAudioSource();return true;
@@ -11154,7 +11209,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       Diagnostics.info("GameState.lifecycle", "页面已返回前台，等待用户继续", { reason, offset: this.musicCurrentTime() });
     }
     pause(reason = "manual") {
-      this.streamRecoveryAbort?.abort();this.streamBuffering=false;$('#streamBufferStatus')?.classList.add('hidden');
+      this.cancelStreamRecovery();
       keyboardInput?.clear("engine.pause");
       if (!this.running) return;
       if (this.paused && !this.resumePending && !this.starting) return;
@@ -11195,6 +11250,7 @@ function withTimeout(promise, ms, message = "操作超时") {
       }
       try {
         await this.ensureAudioSessionReady(audioWake);
+        if (token !== this.transitionToken || !this.running) return;
         syncGameViewportCSS();
         this.resize();
         this.mountGameplayBackground(true);
@@ -11209,7 +11265,6 @@ function withTimeout(promise, ms, message = "操作超时") {
         return;
       }
       if (token !== this.transitionToken || !this.running) {
-        this.pauseMusic();
         return;
       }
       this.paused = false;
@@ -14760,6 +14815,7 @@ function withTimeout(promise, ms, message = "操作超时") {
     };
     $("#refCollectionBack").onclick=()=>{++referenceRouteToken;referenceScene("home");};
     $('#loadingBack').onclick=()=>{
+      if(globalThis.PhiInteractiveReplay?.current)PhiInteractiveReplay.cancel(false);
       ++songLoadToken;
       songLoadStream?.destroy();
       if(songLoadStream){songLoadStream.audio.pause();songLoadStream.audio.removeAttribute('src');songLoadStream.audio.load();songLoadStream=null;}

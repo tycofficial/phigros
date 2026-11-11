@@ -41,16 +41,27 @@
       }
       if(isCurrent(s))raf=env.requestAnimationFrame?.(tick)||0;
     }
+    function waitForSession(s,task){
+      // Cancellation releases the entry caller even if a loader completion is
+      // delayed. The task still settles through its existing ownership checks.
+      const signal=s.abort.signal;
+      return new Promise((resolve,reject)=>{
+        const abort=()=>{signal.removeEventListener('abort',abort);resolve();};
+        signal.addEventListener('abort',abort,{once:true});
+        Promise.resolve(task).then(value=>{signal.removeEventListener('abort',abort);resolve(value);},error=>{signal.removeEventListener('abort',abort);reject(error);});
+        if(signal.aborted)abort();
+      });
+    }
     async function begin(entry){
       const route=routeForSong(entry);if(!route)return false;
       cancel(false);const s={id:++serial,entry,route,abort:new AbortController(),scene:'',sceneTime:0,held:false,engine:null,loading:false,trackSerial:0};active=s;
       surface().show(route);surface().status('');
       try{
-        await adapter.prepare?.(route,s.abort.signal);if(!isCurrent(s))return false;
+        await waitForSession(s,adapter.prepare?.(route,s.abort.signal));if(!isCurrent(s))return false;
         const tier=route.tier==='AT'?'IN':route.tier;
         s.rule=route.family==='boss'?env.PhiBossReplayRules.create({boss:route.key,tier:route.tier}):env.PhiChapter8ReplayRules.createController(route.controller,tier);
         surface().status('');dispatch(s,s.rule.drain?.()||s.rule.update({time:0,deltaTime:0}));
-        if(route.family==='chapter8'&&!['df-unlock','d321-unlock'].includes(route.controller))await playTrack(s,{songKey:route.key,difficulty:route.tier,phase:route.controller});
+        if(route.family==='chapter8'&&!['df-unlock','d321-unlock'].includes(route.controller))await waitForSession(s,playTrack(s,{songKey:route.key,difficulty:route.tier,phase:route.controller}));
         if(!isCurrent(s))return false;notify();raf=env.requestAnimationFrame?.(tick)||0;return true;
       }catch(error){fail(s,error);return false;}
     }
@@ -246,7 +257,7 @@
     root.addEventListener('pointercancel',event=>{contacts.delete(event.pointerId);if(!contacts.size)actions.input('hold-end');});
     let keyPhase=null;
     root.addEventListener('keydown',event=>{if([' ','Enter'].includes(event.key)&&!excluded(event.target)){event.preventDefault();if(!event.repeat){if(resumeMedia()){keyPhase='media-resume';return;}keyPhase=root.dataset.phase;actions.input('hold-start');if(root.dataset.scene==='DFUnlock')actions.input('activate');}}});
-    root.addEventListener('keyup',event=>{if([' ','Enter'].includes(event.key)&&!excluded(event.target)){event.preventDefault();actions.input('hold-end');if(keyPhase!=='clock'&&keyPhase!=='media-resume'&&root.dataset.scene!=='DFUnlock')actions.input('activate');keyPhase=null;}});
+    root.addEventListener('keyup',event=>{if([' ','Enter'].includes(event.key)&&!excluded(event.target)){event.preventDefault();actions.input('hold-end');if(keyPhase!==null&&keyPhase!=='clock'&&keyPhase!=='media-resume'&&root.dataset.scene!=='DFUnlock')actions.input('activate');keyPhase=null;}});
     root.querySelector('[data-action=exit]').onclick=()=>actions.cancel();
     doc.addEventListener('keydown',event=>{if(event.key==='Escape'&&!root.classList.contains('hidden')){event.preventDefault();event.stopImmediatePropagation();actions.cancel();}},{capture:true});
     doc.getElementById('loadingBack')?.addEventListener('click',()=>{if(!root.classList.contains('hidden'))actions.cancel();});
@@ -292,7 +303,7 @@
         if(event.type==='black-mask')root.classList.toggle('visionBlackMask',!!event.visible);
         if(event.type==='red-flash'){const view=doc.querySelector('#gameView');view?.classList.remove('visionRedFlash');void view?.offsetWidth;view?.classList.add('visionRedFlash');}
       },
-      paint(state){root.dataset.phase=state.phase||state.stage||'';if(scene==='Level'&&Number.isFinite(state.blackOpacity))root.style.setProperty('--vision-scene-black',state.blackOpacity);if(state.instruction)native.textContent=state.instruction;if(scene==='AboutUs'){
+      paint(state){root.dataset.phase=state.phase||state.stage||'';if(scene==='Level'&&Number.isFinite(state.blackOpacity))root.style.setProperty('--vision-scene-black',state.blackOpacity);if(Object.prototype.hasOwnProperty.call(state,'instruction'))native.textContent=state.instruction||'';if(scene==='AboutUs'){
         if(state.stage==='credits-wait')native.textContent='touch to start';else native.textContent='';
         if(creditsData){const y=(creditsData.startPosition[1]+(creditsData.serializedEndPosition[1]-creditsData.startPosition[1])*state.creditsProgress)*root.clientHeight/18.75;credits.querySelector('div').style.transform=`translateY(${-y}px)`;}
         credits.querySelector('i').style.transform=`scaleX(${state.skipOpacity||0})`;
@@ -319,7 +330,7 @@
     };
   }
   let installed=null;
-  const api={routeForSong,songKey,createRuntime,configure(adapter){installed?.cancel(false);installed=createRuntime(adapter);return installed;},begin(entry){return installed?.begin(entry);},cancel(){installed?.cancel();},updateSong(...args){installed?.updateSong(...args);},judge(...args){installed?.judge(...args);},finishSong(...args){return installed?.finishSong(...args)||false;},drawSong(...args){installed?.drawSong(...args);},detach(...args){installed?.detach(...args);},get current(){return installed?.current||null;}};
+  const api={routeForSong,songKey,createRuntime,configure(adapter){installed?.cancel(false);installed=createRuntime(adapter);return installed;},begin(entry){return installed?.begin(entry);},cancel(returnToLibrary=true){installed?.cancel(returnToLibrary);},updateSong(...args){installed?.updateSong(...args);},judge(...args){installed?.judge(...args);},finishSong(...args){return installed?.finishSong(...args)||false;},drawSong(...args){installed?.drawSong(...args);},detach(...args){installed?.detach(...args);},get current(){return installed?.current||null;}};
   globalThis.PhiInteractiveReplay=Object.freeze(api);
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })();

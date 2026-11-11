@@ -1,10 +1,40 @@
 /* Code is versioned separately from unchanged media. Never cache partial audio. */
 'use strict';
-const APP_CACHE='tycphigros-app-pages-27';
+const RUNTIME='4.0.1.2-pages-40';
+const APP_CACHE='tycphigros-app-pages-40';
 // Reuse the existing media store across this code-only release.
 const MEDIA_CACHE='tycphigros-4.0.1.2-stability-2';
 let nextMaintenance=0;
-self.addEventListener('install',event=>event.waitUntil(self.skipWaiting()));
+const ENTRY=new URL('./',self.location.href).href;
+function entryRuntime(html){
+  const match=html.match(/<script\b[^>]*\bid=["']phiBuildMetadata["'][^>]*>([\s\S]*?)<\/script>/i);
+  try{return match?JSON.parse(match[1]).runtime:null;}catch{return null;}
+}
+async function installShell(){
+  const existed=(await caches.keys()).includes(APP_CACHE);
+  try{
+    const entry=await fetch(ENTRY,{cache:'no-cache'}),html=await entry.clone().text();
+    if(entry.status!==200||entryRuntime(html)!==RUNTIME)throw Error('Runtime entry is not ready');
+    const urls=[...new Set([...html.matchAll(/(?:src|href)=["'](\.\/(?:js|css)\/[^"']+)["']/g)].map(match=>new URL(match[1],ENTRY).href))];
+    if(!urls.includes(new URL('./js/app.js?v='+RUNTIME,ENTRY).href))throw Error('Runtime bootstrap is missing');
+    const files=await Promise.all(urls.map(async url=>{
+      const response=await fetch(url,{cache:'no-cache'});
+      if(response.status!==200||response.type==='opaque')throw Error('Runtime dependency is not ready: '+url);
+      // Consume each body while other requests are in flight. Waiting for all
+      // headers first can fill the browser's unread-stream/connection budget.
+      const body=await response.blob(),headers=new Headers(response.headers);
+      headers.delete('Content-Encoding');headers.set('Content-Length',String(body.size));
+      return {url,response:new Response(body,{status:200,headers})};
+    }));
+    const cache=await caches.open(APP_CACHE);
+    await Promise.all(files.map(({url,response})=>cache.put(url,response)));
+    await cache.put(new URL('index.html',ENTRY).href,entry.clone());
+    await cache.put(ENTRY,entry);
+    // Only a complete shell may replace the currently working worker/cache.
+    await self.skipWaiting();
+  }catch(error){if(!existed)await caches.delete(APP_CACHE);throw error;}
+}
+self.addEventListener('install',event=>event.waitUntil(installShell()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
   for(const key of await caches.keys())
     if(key.startsWith('tycphigros-')&&key!==APP_CACHE&&key!==MEDIA_CACHE)await caches.delete(key);
@@ -46,14 +76,18 @@ self.addEventListener('fetch',event=>{
       if(full?.status===200){const result=await ranged(full,range);if(result)return result;}
       return fetch(request);
     }
-    const cached=await cache.match(request);
+    const shellNavigation=request.mode==='navigate'&&(url.pathname===new URL(ENTRY).pathname||url.pathname===new URL('index.html',ENTRY).pathname);
+    const cached=await cache.match(request)||(shellNavigation?await cache.match(ENTRY):null);
     if(cached&&request.mode!=='navigate')return cached;
     let stored=Promise.resolve();
     // Revalidate entry/code HTTP responses on a build-cache miss. A fresh HTTP
     // cache entry from the previous deploy must not silently serve old code.
-    const network=fetch(request,{cache:media?'default':'no-cache'}).then(response=>{
+    const network=fetch(request,{cache:media?'default':'no-cache'}).then(async response=>{
       const length=Number(response.headers.get('Content-Length'));
-      if(response.status===200&&response.type!=='opaque'&&(!length||length<=8*1024*1024))
+      // A newer or incomplete deployment must not overwrite this worker's
+      // last working entry before its own complete shell can install.
+      const entryReady=!shellNavigation||entryRuntime(await response.clone().text())===RUNTIME;
+      if(response.status===200&&response.type!=='opaque'&&entryReady&&(!length||length<=8*1024*1024))
         stored=save(cache,request,response.clone());
       if(!response.ok&&cached)return cached;
       return response;

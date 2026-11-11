@@ -1,0 +1,27 @@
+'use strict';
+const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const base=(process.argv[2]||'https://tycofficial.github.io/phigros/').replace(/\/?$/,'/'),out=path.resolve(process.argv[3]||'work/deployment/browser');fs.mkdirSync(out,{recursive:true});
+const expected=fs.readFileSync('js/app.js','utf8').match(/runtime:\s*"(4\.0\.1\.2-pages-\d+)"/)[1],indexHash=crypto.createHash('sha256').update(fs.readFileSync('index.html')).digest('hex');
+const report={scope:'Actual published runtime, real builtin play/pause/resume/return, import entry and fresh-worker cached reload; not official fidelity, physical output or existing-user upgrade incidence',baseUrl:base,commit:process.env.GITHUB_SHA||null,expectedRuntime:expected,startedAt:new Date().toISOString(),pageErrors:[],steps:[]};
+(async()=>{const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox','--autoplay-policy=no-user-gesture-required','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}),context=await browser.newContext({viewport:{width:1280,height:720},locale:'zh-CN',serviceWorkers:'allow'}),page=await context.newPage();page.setDefaultTimeout(45000);page.on('pageerror',e=>report.pageErrors.push(e.message));
+ try{
+  const response=await page.goto(base,{waitUntil:'domcontentloaded'});assert.equal(response.status(),200);assert.equal(new URL(page.url()).pathname,new URL(base).pathname);
+  await page.waitForFunction(()=>window.PhiOfflineNext?.modules.StorageManager.mode()==='persistent');
+  const runtime=await page.evaluate(()=>PhiOfflineNext.versions.runtime);assert.equal(runtime,expected);report.steps.push({name:'original-url-new-runtime',url:page.url(),runtime});
+  for(let n=0;n<3&&!await page.locator('#refCollection').isVisible();n++)await page.locator('#refHome').click({position:{x:100,y:100}});
+  await page.waitForSelector('#refCollection:not(.hidden)');await page.locator('[data-reference-open-library]').first().click();await page.waitForSelector('#libraryView:not(.hidden)');
+  await page.waitForFunction(()=>document.querySelector('#libraryFocusTitle').textContent==='Leave All Behind');await page.locator('#libraryFocusDifficulty [data-tier="EZ"]').click();await page.locator('#libraryFocusPlay').click();
+  await page.waitForFunction(()=>window.__phiEngine?.running&&!__phiEngine.starting&&__phiEngine.musicCurrentTime()>.5,null,{timeout:90000});
+  const before=await page.evaluate(()=>__phiEngine.musicCurrentTime());await page.waitForTimeout(600);const after=await page.evaluate(()=>__phiEngine.musicCurrentTime());assert(after>before+.2);await page.screenshot({path:path.join(out,'gameplay.png')});
+  await page.locator('#pauseBtn:visible,#innerPauseBtn:visible').first().click();await page.waitForFunction(()=>__phiEngine.paused);const paused=await page.evaluate(()=>__phiEngine.musicCurrentTime());
+  await page.waitForTimeout(300);assert(Math.abs(await page.evaluate(()=>__phiEngine.musicCurrentTime())-paused)<.1);await page.locator('#resumeBtn').click();await page.waitForFunction(t=>!__phiEngine.paused&&!__phiEngine.resumePending&&__phiEngine.musicCurrentTime()>t+.2,paused);
+  await page.locator('#pauseBtn:visible,#innerPauseBtn:visible').first().click();await page.waitForFunction(()=>__phiEngine.paused);await page.locator('#quitBtn').click();await page.waitForSelector('#libraryView:not(.hidden)');report.steps.push({name:'real-builtin-play-pause-resume-return',before,after,paused});
+  await page.locator('#libraryMoreBtn').click();await page.locator('#importCharts').click();assert(await page.locator('#pickChartFolder').isVisible());assert(await page.locator('#pickChartFolder').isEnabled());await page.screenshot({path:path.join(out,'import-entry.png')});report.steps.push({name:'existing-folder-import-entry-visible-enabled'});
+  const cacheName='tycphigros-app-'+expected.match(/pages-\d+$/)[0];
+  await page.waitForFunction(async name=>!!navigator.serviceWorker.controller&&(await caches.keys()).includes(name),cacheName);
+  const cached=await page.evaluate(async({name,base})=>{const cache=await caches.open(name),response=await cache.match(base);if(!response)return null;const bytes=await response.arrayBuffer();return {keys:await caches.keys(),indexSHA256:Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),v=>v.toString(16).padStart(2,'0')).join('')};},{name:cacheName,base});assert.equal(cached?.indexSHA256,indexHash);
+  const reload=await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>window.PhiOfflineNext);assert.equal(await page.evaluate(()=>PhiOfflineNext.versions.runtime),expected);assert(reload.fromServiceWorker());await page.screenshot({path:path.join(out,'cached-reload.png')});report.steps.push({name:'actual-new-worker-cached-reload',fromServiceWorker:reload.fromServiceWorker(),...cached});
+  assert.deepEqual(report.pageErrors,[]);report.status='passed';
+ }catch(error){report.status='failed';report.error=error.stack;process.exitCode=1;await page.screenshot({path:path.join(out,'failure.png')}).catch(()=>{});}
+ finally{report.finishedAt=new Date().toISOString();fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));await context.close();await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});
