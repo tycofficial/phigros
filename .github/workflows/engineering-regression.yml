@@ -26,7 +26,7 @@ jobs:
       - name: Prepare native-noise browser
         run: |
           npm install --prefix "$RUNNER_TEMP/phigros-noise-browser" --no-save --package-lock=false playwright@1.62.1
-          node "$RUNNER_TEMP/phigros-noise-browser/node_modules/playwright/cli.js" install --with-deps chromium
+          node "$RUNNER_TEMP/phigros-noise-browser/node_modules/playwright/cli.js" install chromium
           export NODE_PATH="$RUNNER_TEMP/phigros-noise-browser/node_modules"
           node -e "require('node:fs').appendFileSync(process.env.GITHUB_ENV, 'NODE_PATH='+process.env.NODE_PATH+'\nCHROMIUM_PATH='+require('playwright').chromium.executablePath()+'\n')"
       - name: Verify original-site native noise pixels
@@ -54,7 +54,7 @@ jobs:
       - name: Prepare browser tooling
         run: |
           npm install --prefix "$RUNNER_TEMP/phigros-browser" --no-save --package-lock=false playwright@1.62.1
-          node "$RUNNER_TEMP/phigros-browser/node_modules/playwright/cli.js" install --with-deps chromium
+          node "$RUNNER_TEMP/phigros-browser/node_modules/playwright/cli.js" install chromium
           echo "NODE_PATH=$RUNNER_TEMP/phigros-browser/node_modules" >> "$GITHUB_ENV"
       - name: Select installed Chromium
         run: >-

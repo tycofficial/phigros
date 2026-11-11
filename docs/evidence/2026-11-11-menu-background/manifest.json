@@ -30,6 +30,11 @@
     "SHA256": "8d346a427c31d39cbb4f28f7a7e2c0b62bdcd7214591b6358d4bfe5d69208c29"
   },
   {
+    "path": "ci20-environment.json",
+    "bytes": 1354,
+    "SHA256": "bbd2454587e957c1e6a24eccb6f7d578bd1a07cf84df296a9fbd33ae564abaa0"
+  },
+  {
     "path": "folder-import.json",
     "bytes": 5180,
     "SHA256": "dbd92f9128bb76e09e6bafd7e6ad40e8b036c80138d034f846f7c4cf6d1c76e2"
@@ -51,7 +56,7 @@
   },
   {
     "path": "verification.json",
-    "bytes": 4761,
-    "SHA256": "a1acebfc0e2d3dc80b83b9101cedad07de823db7fad7983f1036ed44da815b0b"
+    "bytes": 5149,
+    "SHA256": "3ab45cf345240948db4b7cb14d89cbf880cf9a108a8776fd6c1f49397b06c9e9"
   }
 ]

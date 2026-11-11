@@ -31,7 +31,7 @@ jobs:
       - name: Prepare published-browser verification
         run: |
           npm install --prefix "$RUNNER_TEMP/phigros-published-browser" --no-save --package-lock=false playwright@1.62.1
-          node "$RUNNER_TEMP/phigros-published-browser/node_modules/playwright/cli.js" install --with-deps chromium
+          node "$RUNNER_TEMP/phigros-published-browser/node_modules/playwright/cli.js" install chromium
           export NODE_PATH="$RUNNER_TEMP/phigros-published-browser/node_modules"
           node -e "require('node:fs').appendFileSync(process.env.GITHUB_ENV, 'NODE_PATH='+process.env.NODE_PATH+'\nCHROMIUM_PATH='+require('playwright').chromium.executablePath()+'\n')"
       - name: Check original menu background bytes and pixels

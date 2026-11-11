@@ -81,8 +81,8 @@
     "sw.js": "224b6dbd3f3e449f51008794301fd952e2a8006cfd23fea7329204d87fa938db",
     "scripts/verify-menu-background.cjs": "0e18e0672273611f701c206ed64a6b9fa672e0bbf5ee424bcefbaf8fda67a4c6",
     "tests/menu-background-browser.cjs": "939a0b535b3d6f88e83c2d374d3c7c41197aa53d1bdafd0c673a482fb7542d1e",
-    ".github/workflows/engineering-regression.yml": "64937050e7c1b7ddff21562fcf0b43316ce086c2922be0d72749fca7ecbecddc",
-    ".github/workflows/verify-published-runtime.yml": "e14c8e8a0b3af8afc9f8da2ff4e44c39a91869240896122fb36ad92501eb4c90"
+    ".github/workflows/engineering-regression.yml": "8e970ccca96e0235a0199296d0a537dd4224a207c0e727b774b0936697aaf3d4",
+    ".github/workflows/verify-published-runtime.yml": "efabf7be1a6d40c1905eed138f0c8453b38c87c15ae613c6f9e4a4102196fa75"
   },
   "unchangedResourceRoots": [],
   "limits": [
@@ -91,5 +91,6 @@
     "Complete current main/vision network matrices not run; old whole-bootstrap evidence not reused. Two recorded HTTP403 mirrors not requested.",
     "Existing native-noise CI job remains explicitly pinned to the prior published pages-41; it is not a candidate pages-42 noise test.",
     "Cloud-local migration backup is unchanged and excluded. No private local AT17 package is accessed or uploaded."
-  ]
+  ],
+  "ciEnvironmentRepair": "CI #20 native job cancelled at its 10-minute bound during apt DNS failures, before browser/game checks. Shared libraries were already installed; only additional system fonts were pending. Use standard Playwright Chromium installation on the existing runner libraries, retaining browser launch, tests and assertions. No mirror/proxy/TLS/network-policy changes."
 }
