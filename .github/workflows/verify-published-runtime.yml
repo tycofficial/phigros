@@ -15,7 +15,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - name: Wait for Pages and verify published bytes
@@ -25,10 +25,21 @@ jobs:
           --timeout 540
           --interval 10
           --output work/deployment/live-check.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Prepare published-browser verification
+        run: |
+          npm install --prefix "$RUNNER_TEMP/phigros-published-browser" --no-save --package-lock=false playwright@1.62.1
+          node "$RUNNER_TEMP/phigros-published-browser/node_modules/playwright/cli.js" install --with-deps chromium
+          export NODE_PATH="$RUNNER_TEMP/phigros-published-browser/node_modules"
+          node -e "require('node:fs').appendFileSync(process.env.GITHUB_ENV, 'NODE_PATH='+process.env.NODE_PATH+'\nCHROMIUM_PATH='+require('playwright').chromium.executablePath()+'\n')"
+      - name: Check actual original URL and gameplay
+        run: node scripts/verify-published-browser.cjs https://tycofficial.github.io/phigros/ work/deployment/browser
       - name: Keep verification evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: published-runtime-verification
-          path: work/deployment/live-check.json
+          path: work/deployment/
           retention-days: 7
