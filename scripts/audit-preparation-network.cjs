@@ -6,15 +6,17 @@ const base=process.argv[2]||'http://127.0.0.1:4180',out=path.resolve(process.arg
 const catalog=JSON.parse(fs.readFileSync('js/full-catalog.js','utf8').split('globalThis.PhiFullCatalog=')[1].trim().replace(/;$/,''));
 const id='catalog-2bd25eaa9c1f1ecc-ez',entry=catalog.entries.find(e=>e.id===id),asset=catalog.assets.find(a=>a.id===id);
 assert(entry&&asset&&asset.method===0&&asset.byteLength===23413&&asset.url.startsWith('https://raw.githubusercontent.com/'));
+const hostedSource=fs.readFileSync(process.env.PHI_TEST_HOSTED_MEDIA_SOURCE||'js/hosted-media.js','utf8');
 const report={scope:'Current preparation cache and native CORS for one fixed real chart; not the 1091-address matrix or official fidelity',startedAt:new Date().toISOString(),appSHA256:crypto.createHash('sha256').update(fs.readFileSync('js/app.js')).digest('hex'),TLSVerificationDisabled:false,sample:{id,url:asset.url,bytes:asset.byteLength,SHA256:asset.sha256},results:[],pageErrors:[]};
 const cached=process.env.PHI_PREPARATION_NETWORK_CACHED==='1';report.transport=cached?'Controlled previously measured cache; NOT external native CORS':'Actual native external fetch; normal browser HTTP cache permitted';
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});report.browser=browser.version();
- try{for(const mode of ['surviving-consumer','replacement-after-abort','hosted-settled-replacement']){
+ report.hostedMediaSHA256=crypto.createHash('sha256').update(hostedSource).digest('hex');
+ try{for(const mode of ['surviving-consumer','replacement-after-abort','hosted-settled-replacement','shared-progress']){
   const context=await browser.newContext({serviceWorkers:'block'}),page=await context.newPage();page.on('pageerror',e=>report.pageErrors.push(e.message));
   try{
    // Stop unexpected remote addresses rather than testing a fallback host.
-   await context.route('**/*',route=>{const url=route.request().url();if(cached&&url===asset.url){const body=fs.readFileSync('work/remote-resource-audit/cache/'+asset.sha256+'.bin');assert.equal(body.length,asset.byteLength);assert.equal(crypto.createHash('sha256').update(body).digest('hex'),asset.sha256);return route.fulfill({status:200,headers:{'access-control-allow-origin':'*','content-type':'application/json'},body});}return new URL(url).origin===new URL(base).origin||url===asset.url?route.continue():route.abort('blockedbyclient');});
+   await context.route('**/*',route=>{const url=route.request().url();if(process.env.PHI_TEST_HOSTED_MEDIA_SOURCE&&new URL(url).pathname==='/js/hosted-media.js')return route.fulfill({contentType:'application/javascript',body:hostedSource});if(cached&&url===asset.url){const body=fs.readFileSync('work/remote-resource-audit/cache/'+asset.sha256+'.bin');assert.equal(body.length,asset.byteLength);assert.equal(crypto.createHash('sha256').update(body).digest('hex'),asset.sha256);return route.fulfill({status:200,headers:{'access-control-allow-origin':'*','content-type':'application/json'},body});}return new URL(url).origin===new URL(base).origin||url===asset.url?route.continue():route.abort('blockedbyclient');});
    await page.goto(base+'/?skipIntro=1',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>window.PhiOfflineNext?.modules.BuiltinCatalog);
    const result=await page.evaluate(async({mode,id,asset})=>{
     const originalFetch=window.fetch.bind(window),requests=[],gate={release:null,signal:null,returned:false};
@@ -24,10 +26,32 @@ const cached=process.env.PHI_PREPARATION_NETWORK_CACHED==='1';report.transport=c
      const address=new URL(url instanceof Request?url.url:url,location.href).href;if(address!==asset.url)return originalFetch(url,options);
      const response=await originalFetch(url,options),data=await response.clone().arrayBuffer(),row={url:response.url,status:response.status,type:response.type,bytes:data.byteLength,SHA256:await digest(data),options:{method:options?.method||'GET',mode:options?.mode,credentials:options?.credentials,redirect:options?.redirect}};requests.push(row);
      if(response.status!==200||response.type!=='cors'||row.bytes!==asset.byteLength||row.SHA256!==asset.sha256)throw Error('Native sample bytes/CORS differ');
+     if(mode==='shared-progress'){
+      gate.data=new Uint8Array(data);
+      return new Response(new ReadableStream({start(controller){gate.stream=controller;}}),{status:response.status,headers:response.headers});
+     }
      if(requests.length===1&&mode!=='hosted-settled-replacement'){gate.signal=options.signal;await new Promise(resolve=>{gate.release=resolve;});gate.returned=true;}
      return response;
     };
     try{
+     if(mode==='shared-progress'){
+      const remote=PhiRemoteAssets,caller=new AbortController(),progress=[],transportProgress=[];let producerSignal;
+      const onProgress=(done,total)=>progress.push([done,total]);
+      window.PhiRemoteAssets={...remote,download(address,options){
+       producerSignal=options.signal;
+       return remote.download(address,{...options,onProgress:(done,total)=>{transportProgress.push([done,total]);options.onProgress?.(done,total);}});
+      }};
+      try{
+       const first=PhiHostedMedia.bytes(asset.url,{signal:caller.signal,onProgress}).then(()=> 'resolved',e=>e.name),second=PhiHostedMedia.bytes(asset.url,{onProgress});
+       await until(()=>gate.stream);const split=Math.floor(asset.byteLength/2);gate.stream.enqueue(gate.data.subarray(0,split));
+       await until(()=>transportProgress.some(([done])=>done===split));caller.abort();caller.abort();const cancelled=await first;
+       const transportAbortedAfterFirst=producerSignal.aborted;gate.stream.enqueue(gate.data.subarray(split));gate.stream.close();
+       const bytes=await second,hash=await digest(bytes),beforeReuse=requests.length,reused=await PhiHostedMedia.bytes(asset.url,{onProgress});
+       const expected=[[0,asset.byteLength],[split,asset.byteLength],[asset.byteLength,asset.byteLength]];
+       if(cancelled!=='AbortError'||transportAbortedAfterFirst||hash!==asset.sha256||reused!==bytes||requests.length!==1||requests.length!==beforeReuse||JSON.stringify(progress)!==JSON.stringify(expected))throw Error('Shared progress subscriber lost ownership or duplicated delivery: '+JSON.stringify({progress,expected,transportProgress}));
+       return {mode,status:'passed',cancelled,transportAbortedAfterFirst,preparedSHA256:hash,progress,transportProgress,cacheReused:true,schedule:'Native complete CORS response verified before controlled two-chunk original-byte delivery',requests};
+      }finally{try{gate.stream?.close();}catch{}window.PhiRemoteAssets=remote;}
+     }
      if(mode==='hosted-settled-replacement'){
       const remote=PhiRemoteAssets,caller=new AbortController();let observed=false,replacement,oldSignalAborted;
       window.PhiRemoteAssets={...remote,download(...args){

@@ -43,10 +43,10 @@
     let item=downloads.get(href);
     if(item?.controller.signal.aborted){downloads.delete(href);item=null;}
     if(!item){
-      item={size:0,consumers:0,listeners:new Set(),controller:new AbortController(),promise:null,started:performance.now()};
+      item={size:0,consumers:0,listeners:new Map(),controller:new AbortController(),promise:null,started:performance.now()};
       const current=item;
       item.promise=(globalThis.PhiRemoteAssets?.info(href) ? Promise.resolve({download:(address, options)=>globalThis.PhiRemoteAssets.download(address, options)}) : ensureTransfer().then(()=>PhiTransfer)).then(transfer=>transfer.download(href,{priority,expectedSize,signal:item.controller.signal,
-        onProgress:(done,total)=>{for(const listener of current.listeners)listener(done,total);}
+        onProgress:(done,total)=>{for(const listener of current.listeners.keys())listener(done,total);}
       })).then(result=>{
         // An already fulfilled producer may arrive after its last caller left
         // and a new task took this URL. Only the current live owner may commit.
@@ -62,10 +62,14 @@
       },error=>{if(downloads.get(href)===current)downloads.delete(href);throw error;});
       downloads.set(href,item);
     }
-    item.consumers++;if(onProgress)item.listeners.add(onProgress);
+    // Deliver once per function while any caller still owns its subscription.
+    item.consumers++;if(onProgress)item.listeners.set(onProgress,(item.listeners.get(onProgress)||0)+1);
     try{return await abortable(item.promise,signal);}
     finally{
-      if(onProgress)item.listeners.delete(onProgress);
+      if(onProgress){
+        const remaining=item.listeners.get(onProgress)-1;
+        if(remaining)item.listeners.set(onProgress,remaining);else item.listeners.delete(onProgress);
+      }
       if(--item.consumers===0){
         if(!item.size)item.controller.abort();
         trimDownloads();
